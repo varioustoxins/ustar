@@ -1,0 +1,145 @@
+
+// vertical_tab = _{ "\u{000B}" } // though Hall defines the vertical tab its of no practical use...
+dollar = _{ "$" }
+blank = _{ " " | "\t" }  // we separate simple spaces and end of line spaces, this doesn't contain a vertical tab vide supra
+
+new_line = _{"\n"}
+semi_colon = _{";"}
+new_line_semi_colon = @{new_line ~ semi_colon}
+basic_whitespace = _{ blank | "\n" | "\r" }
+WHITESPACE = _{ !new_line_semi_colon ~ basic_whitespace}
+COMMENT = _{ "#" ~ (!"\n" ~ ANY)* ~ "\n" }
+
+non_blank_char_no_quotes = { "!" | '#'..'&' |  '('..'~' }  // it makes it complicated if quotes are in here
+no_blank_char = { '!'..'~' }
+double_quote = {"\""}
+single_quote = {"'"}
+
+not_a_d_quote = { !double_quote ~ no_blank_char }
+not_a_s_quote = { !single_quote ~ no_blank_char }
+char = {blank | non_blank_char_no_quotes}
+underscore = {"_"}
+
+// the data keyword which is case insensitive
+data_anycase = _{^"data"}
+data_keyword = @{data_anycase ~ underscore}
+
+loop_anycase = _{^"loop"}
+loop_keyword = @{loop_anycase ~ underscore}
+
+global_anycase = _{^"global"}
+global_keyword = @{global_anycase ~ underscore}
+
+// the save keyword which is case insensitive
+save_anycase = _{^"save"}
+save_keyword = @{save_anycase ~ underscore}
+
+stop_anycase = _{^"stop"}
+stop_keyword = @{stop_anycase ~ underscore}
+
+key_words = _{data_keyword | loop_keyword | global_keyword | save_keyword | stop_keyword}
+
+
+// a name of the form _ABC
+data_name = @{underscore ~ no_blank_char+}
+
+// a value which doesn't start with _ $ and isn't save_ or a loop initialiser
+non_quoted_text_string = @{!underscore ~ !dollar ~ non_blank_char_no_quotes+}
+// Hall doesn't note that a non_quoted_text_string can't start with an _ or  dollar and cant be save_?
+// or do i have thus wrong
+
+// a double quoted string -  note there should be ways to write this closer to the original gammar
+// <double_quoted_text_string> ::= <D_quote> <D_quote_string> <D_quote>
+// D_quote_string ::= {<D_quote> <non_blank_char> | * <not_a_D_quote>
+double_quote_string = @{double_quote ~ double_inner* ~ double_quote }
+double_quote_inner_non_blank_char = _{ non_blank_char_no_quotes | "'" }
+double_quote_inner_char = _{double_quote_inner_non_blank_char | blank}
+double_inner = { double_quote ~ double_quote_inner_non_blank_char | double_quote_inner_char}
+
+// a single quoted string - note there should be ways to write this closer to the original gammar
+// <single_quoted_text_string> ::= <S_quote> <S_quote_string> <S_quote>
+// S_quote_string ::= {<S_quote> <non_blank_char> | * <not_a_S_quote>
+single_quote_string = @{single_quote ~ single_inner* ~ single_quote }
+single_quote_inner_non_blank_char = _{ non_blank_char_no_quotes | "\"" }
+single_quote_inner_char = _{single_quote_inner_non_blank_char | blank}
+single_inner = { single_quote ~ single_quote_inner_non_blank_char | single_quote_inner_char}
+
+// a frame code
+frame_code = @{"$" ~ non_blank_char_no_quotes+}
+
+
+line_of_text_only = {char+}
+line_of_text_newline = @{line_of_text_only ~ new_line}
+line_of_text_new_line_semi_colon = @{line_of_text_only ~ new_line_semi_colon}
+
+line_of_text_newline_or_newline_semi_colon = _{line_of_text_new_line_semi_colon| line_of_text_newline }
+
+semi_colon_bounded_text_string = {new_line_semi_colon ~ line_of_text_newline_or_newline_semi_colon+}
+
+// a group of values
+// note as per 10a the values data_ loop_ global_ save_ and stop_ are not allowed as they are keywords
+// to use them you have to wrap them in a string
+data_value = _{
+    !key_words
+    ~ non_quoted_text_string
+    | semi_colon_bounded_text_string
+    | double_quote_string
+    | single_quote_string
+    | frame_code
+}
+
+// heading of a data block of
+// <global_heading> ::= global_
+// global_heading = @{global_keyword}
+
+// <global_block> ::= <global_heading> <data_block_body>+
+global_block = {global_keyword ~ global_block_body+}
+
+// <global_block_body> ::= <data>+
+global_block_body = _{data+}
+
+// a data item
+data = {data_name ~ data_value | data_loop}
+
+// heading of a data block of the form data_***
+data_heading = @{data_keyword  ~ no_blank_char+}
+
+// a data block of the form data_*** ...
+data_block = {data_heading ~ data_block_body+} // 1. place to move + to
+
+// the body of a data block containing data [data_names and data_values] or save frames
+data_block_body =  _{data | save_frame}  // move plus to 1. above ?
+
+// heading for a save_frame
+// save_heading ::= save_<<non_blank_char>+e>
+save_heading = @{save_keyword ~ no_blank_char+}
+
+// save frame
+// save_frame ::= <save_heading> <data>+ save_
+save_frame = {save_heading ~ data+ ~ save_keyword}
+
+
+// data_loop
+// data_loop ::= loop_ <data_loop_definition> <data_loop_values>
+data_loop = {loop_keyword ~ data_loop_definition ~ data_loop_values}
+
+// <data_loop_definition>  ::= <data_loop_field>+
+data_loop_definition = {data_loop_field+}
+
+//<nested_loop> ::= loop_ <data_loop_definition> [stop_]
+nested_loop = {loop_keyword ~ data_name ~ data_loop_field+ ~ stop_keyword{0,1} }
+
+// <data_loop_field> ::= <data_name> | <nested_loop>
+data_loop_field = _{data_name | nested_loop}
+
+// <data_loop_values> ::= <data_loop_item>+
+data_loop_values = {data_loop_item+}
+
+// <data_loop_item> ::= <data_value> | stop_
+data_loop_item = _{stop_keyword | data_value }
+
+// star file
+// <star-file> ::= {<data_block> I <global_block> }*
+data_block_or_global_block = _{data_block | global_block}
+
+star_file = {SOI ~ data_block_or_global_block* ~ EOI}
