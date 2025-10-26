@@ -1,36 +1,20 @@
-use pest::{Parser};
 use pest_derive::Parser;
 
+#[cfg(test)]
+#[macro_use]
+extern crate pest;
 
 #[derive(Parser)]
 #[grammar = "star.pest"]
 pub struct StarParser;
 
-fn main() {
-    let test_string = "loop_                                  \
-                                 _atom_name                         \
-                                 _atomic_mass_ratio                 \
-                                     1H	    1.007825031898(14)      \
-                                     2H	    1.0070508889220(75)     \
-                                     3H	    1.005349760440(27)      \
-                                     3He	1.005343107322(20)      \
-                             stop_                                  ";
-
-
-    let successful_parse = StarParser::parse(Rule::data_loop, test_string);
-    // println!("{:?}", successful_parse);
-    println!("{}", successful_parse.unwrap());
-    // println!("{:?}", successful_parse);
-
-}
-
-#[macro_use]
-extern crate pest;
-
+// Re-export commonly used types for external use
+pub use pest::iterators::{Pair, Pairs};
+pub use pest::Parser;
+pub use pest::RuleType;
 
 #[cfg(test)]
 mod tests {
-    use pest::parses_to;
     use super::*;
 
     // data_name
