@@ -68,7 +68,7 @@ single_inner = { single_quote ~ single_quote_inner_non_blank_char | single_quote
 frame_code = @{"$" ~ non_blank_char_no_quotes+}
 
 
-line_of_text_only = {char+}
+line_of_text_only = {char*}
 line_of_text_newline = @{line_of_text_only ~ new_line}
 line_of_text_new_line_semi_colon = @{line_of_text_only ~ new_line_semi_colon}
 
