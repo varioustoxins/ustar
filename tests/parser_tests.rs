@@ -1033,17 +1033,17 @@ fn semi_colon_bounded_string() {
         pos: 0
     }
 
-    let test_string = "\n;a string ;\n another \n ;";
+    let test_string = "\n;a string ;\n another \n;";
 
      parses_to! {
         parser: StarParser,
         input:  test_string,
         rule:   Rule::semi_colon_bounded_text_string,
         tokens: [
-             semi_colon_bounded_text_string(0, 23, [
+             semi_colon_bounded_text_string(0, 24, [
                  new_line_semi_colon(0, 2),
-                 line_of_text_newline(2, 13),
-                 line_of_text_newline(14, 23)
+                 semicolon_text_content(2, 22),
+                 new_line_semi_colon(22, 24)
              ])
          ]
 
