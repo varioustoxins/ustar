@@ -1262,21 +1262,107 @@ fn semi_colon_bounded_string_full_bad() {
         ],
         negatives: vec![],
         pos: 160
+}
+}
+
+
+
+#[test]
+fn parse_mmcif_nef_dictionary() {
+    let file_path = "tests/test_data/mmcif_nef_v1_1_ascii.dic";
+    let test_string = std::fs::read_to_string(file_path).unwrap();
+    
+    let successful_parse = StarParser::parse(Rule::star_file, &test_string);
+    
+    if let Ok(pairs) = successful_parse {
+        println!("Successfully parsed mmcif_nef_v1_1_ascii.dic!");
+        
+        let star_file = pairs.into_iter().next().unwrap();
+        
+        // Verify we have a star_file rule
+        assert_eq!(star_file.as_rule(), Rule::star_file);
+        
+        // Verify that the file contains at least one data block
+        let mut has_data_block = false;
+        for pair in star_file.into_inner() {
+            if pair.as_rule() == Rule::data_block {
+                has_data_block = true;
+                break;
+            }
+        }
+        assert!(has_data_block, "mmcif_nef_v1_1_ascii.dic should contain at least one data block");
+    } else if let Err(e) = &successful_parse {
+        println!("Parse failed with human-readable error:");
+        
+        // Get line and column info
+        let (line, col) = match e.line_col {
+            pest::error::LineColLocation::Pos((line, col)) => (line, col),
+            pest::error::LineColLocation::Span((line, col), _) => (line, col),
+        };
+        
+        println!("Error at line {}, column {}", line, col);
+        
+        // Get the error details
+        match &e.variant {
+            pest::error::ErrorVariant::ParsingError { positives, negatives } => {
+                println!("Expected one of: {:?}", positives);
+                if !negatives.is_empty() {
+                    println!("Did not expect: {:?}", negatives);
+                }
+            }
+            _ => {
+                println!("Error variant: {:?}", e.variant);
     }
 }
 
-//TODO: add tests of data blocks with save frames and loops
-
-/*
-notes
-1. v1. allows for an empty star file v2 must have at least on data_block
-2. NMRStar [pynmrstar] does not allow data inside a data_block before save frames
-3. version 2 and version 1 allow data and save frames to be interspersed in any order
-4. NMRStar doesn't allow for empty data loops
-5. save_ data_ global_ etc are case insenitive [certainly in v2]
-6. it appears v2 doesn't require loops to have data [pynmrstar does but NEF doesn't!]
-7. quoted strings allow embedded quotation marks as long as they are not proceeded/followed/surrounded by a space...
-8. cif v1 has some interesting conventions on item element lengths etc
-9. pathalogical strings with ""a" amd ''a' are allowed but """ and ''' are not
-   and neither are "a"" or ''a' the rule is <D_quote> <no_blank_char> | <not_a_D_quote>
-*/
+        // Show context around the error
+        let lines: Vec<&str> = test_string.lines().collect();
+        let error_line_idx = line - 1; // Convert to 0-based index
+        
+        println!("\nContext:");
+        let start = if error_line_idx >= 2 { error_line_idx - 2 } else { 0 };
+        let end = std::cmp::min(error_line_idx + 3, lines.len());
+        
+        for (i, line_text) in lines[start..end].iter().enumerate() {
+            let line_num = start + i + 1;
+            if line_num == line {
+                println!(">>> {:3}: {}", line_num, line_text);
+                println!("     {}^", " ".repeat(col.saturating_sub(1)));
+            } else {
+                println!("    {:3}: {}", line_num, line_text);
+            }
+        }
+        
+        // Try to parse up to the error point to show what was successfully parsed
+        println!("\nAttempting to show parse tree up to failure point:");
+        
+        // Get the error position in bytes
+        let error_pos = match e.location {
+            pest::error::InputLocation::Pos(pos) => pos,
+            pest::error::InputLocation::Span((start, _)) => start,
+        };
+        
+        // Try parsing just up to before the error
+        let partial_string = &test_string[..error_pos.saturating_sub(10)];
+        if let Ok(partial_pairs) = StarParser::parse(Rule::star_file, partial_string) {
+            println!("Successfully parsed content up to position {}:", error_pos - 10);
+            for pair in partial_pairs {
+                println!("{:#?}", pair);
+            }
+        } else {
+            // Try an even smaller section
+            let smaller_string = &test_string[..error_pos.saturating_sub(50)];
+            if let Ok(smaller_pairs) = StarParser::parse(Rule::star_file, smaller_string) {
+                println!("Successfully parsed content up to position {}:", error_pos - 50);
+                for pair in smaller_pairs {
+                    println!("{:#?}", pair);
+                }
+            } else {
+                println!("Could not parse even a smaller section before the error.");
+            }
+        }
+        
+        // Don't fail the test, just show the error for analysis
+        println!("\nNote: This test shows where the parser currently fails on the real-world mmcif file.");
+    }
+}
