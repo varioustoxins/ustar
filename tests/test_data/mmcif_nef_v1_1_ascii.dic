@@ -1,3 +1,22 @@
+###########################################################################
+#
+# File:  mmcif_nef.dic
+# Date:  November 2020
+#
+# Created from files in CVS module dict-mmcif_nef.dic unless noted:
+#        mmcif_nef-header.dic   
+#        mmcif_nef-data.dic   
+#        mmcif_nef-ext.dic   
+#
+###########################################################################
+ 
+ 
+###########################################################################
+# 
+#        NMR Exchange Format Data Dictionary (NEF)
+#                                                                           
+###########################################################################
+
 data_mmcif_nef.dic
 
     _datablock.id                          mmcif_nef.dic
@@ -71,12 +90,12 @@ data_mmcif_nef.dic
      loop_
     _sub_category.id
     _sub_category.description
-              cartesian_coordinate
+              'cartesian_coordinate'
 ;              The collection of x, y, and z components of a position specified
                with reference to a Cartesian (orthogonal angstrom) coordinate
                system.
 ;
-              matrix
+              'matrix'
 ;              The collection of elements of a matrix.
 ;
 
