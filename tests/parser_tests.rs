@@ -998,8 +998,8 @@ fn semi_colon_bounded_string() {
         tokens: [
             semi_colon_bounded_text_string(0, 23, [
                 new_line_semi_colon(0, 2),
-                line_of_text_newline(2, 12),
-                line_of_text_new_line_semi_colon(13, 23)
+                semicolon_text_content(2, 21),
+                new_line_semi_colon(21, 23)
             ])
         ]
 
@@ -1015,8 +1015,8 @@ fn semi_colon_bounded_string() {
         tokens: [
              semi_colon_bounded_text_string(0, 24, [
                  new_line_semi_colon(0, 2),
-                 line_of_text_newline(2, 13),
-                 line_of_text_new_line_semi_colon(14, 24)]
+                 semicolon_text_content(2, 22),
+                 new_line_semi_colon(22, 24)]
              )
          ]
 
@@ -1035,21 +1035,89 @@ fn semi_colon_bounded_string() {
 
     let test_string = "\n;a string ;\n another \n ;";
 
-     parses_to! {
+     fails_with! {
         parser: StarParser,
-        input:  test_string,
-        rule:   Rule::semi_colon_bounded_text_string,
-        tokens: [
-             semi_colon_bounded_text_string(0, 23, [
-                 new_line_semi_colon(0, 2),
-                 line_of_text_newline(2, 13),
-                 line_of_text_newline(14, 23)
-             ])
-         ]
-
+        input: test_string,
+        rule: Rule::semi_colon_bounded_text_string,
+        positives: vec![Rule::new_line_semi_colon],
+        negatives: vec![],
+        pos: 25
     }
 
 }
+
+#[test]
+fn mmcif_loop_95() {
+    let test_string = "data_test
+    save_test
+    loop_
+    _sub_category.id
+    _sub_category.description
+              'cartesian_coordinate'
+;              The collection of x, y, and z components of a position specified
+               with reference to a Cartesian (orthogonal angstrom) coordinate
+               system.
+;
+              'matrix'
+;              The collection of elements of a matrix.
+;
+    stop_
+    save_   
+    ";
+    
+
+    let successful_parse = StarParser::parse(Rule::data_block, &test_string);
+    
+    if let Ok(pairs) = successful_parse {
+        println!("Parse result for mmcif_loop_95:");
+        for pair in pairs {
+            println!("{:#?}", pair);
+        }
+    } else if let Err(e) = &successful_parse {
+        println!("Parse failed with human-readable error:");
+        
+        // Get line and column info
+        let (line, col) = match e.line_col {
+            pest::error::LineColLocation::Pos((line, col)) => (line, col),
+            pest::error::LineColLocation::Span((line, col), _) => (line, col),
+        };
+        
+        println!("Error at line {}, column {}", line, col);
+        
+        // Get the error details
+        match &e.variant {
+            pest::error::ErrorVariant::ParsingError { positives, negatives } => {
+                println!("Expected one of: {:?}", positives);
+                if !negatives.is_empty() {
+                    println!("Did not expect: {:?}", negatives);
+                }
+            }
+            _ => {
+                println!("Error variant: {:?}", e.variant);
+            }
+        }
+        
+        // Show context around the error
+        let lines: Vec<&str> = test_string.lines().collect();
+        let error_line_idx = line - 1; // Convert to 0-based index
+        
+        println!("\nContext:");
+        let start = if error_line_idx >= 2 { error_line_idx - 2 } else { 0 };
+        let end = std::cmp::min(error_line_idx + 3, lines.len());
+        
+        for (i, line_text) in lines[start..end].iter().enumerate() {
+            let line_num = start + i + 1;
+            if line_num == line {
+                println!(">>> {:3}: {}", line_num, line_text);
+                println!("     {}^", " ".repeat(col.saturating_sub(1)));
+            } else {
+                println!("    {:3}: {}", line_num, line_text);
+            }
+        }
+    }
+   
+}
+
 
 #[test]
 fn star_document() {
@@ -1232,8 +1300,8 @@ fn semi_colon_bounded_string_full() {
                     data(105, 141, [data_name(105, 118), non_quoted_text_string(132, 141)]),
                     data(147, 189, [data_name(147, 156), semi_colon_bounded_text_string(156, 189, [
                         new_line_semi_colon(156, 158),
-                        line_of_text_newline(159, 184),
-                        line_of_text_new_line_semi_colon(184, 189)])
+                        semicolon_text_content(159, 187),
+                        new_line_semi_colon(187, 189)])
                     ])
                 ]),
                 EOI(189, 189)
@@ -1262,7 +1330,7 @@ fn semi_colon_bounded_string_full_bad() {
         ],
         negatives: vec![],
         pos: 160
-}
+    }
 }
 
 
@@ -1312,9 +1380,9 @@ fn parse_mmcif_nef_dictionary() {
             }
             _ => {
                 println!("Error variant: {:?}", e.variant);
-    }
-}
-
+            }
+        }
+        
         // Show context around the error
         let lines: Vec<&str> = test_string.lines().collect();
         let error_line_idx = line - 1; // Convert to 0-based index
@@ -1366,3 +1434,4 @@ fn parse_mmcif_nef_dictionary() {
         println!("\nNote: This test shows where the parser currently fails on the real-world mmcif file.");
     }
 }
+

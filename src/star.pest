@@ -72,9 +72,22 @@ line_of_text_only = {char*}
 line_of_text_newline = @{line_of_text_only ~ new_line}
 line_of_text_new_line_semi_colon = @{line_of_text_only ~ new_line_semi_colon}
 
-line_of_text_newline_or_newline_semi_colon = _{line_of_text_new_line_semi_colon| line_of_text_newline }
+// For semicolon-bounded text, we need to distinguish between:
+// 1. Lines with content that can contain semicolons anywhere EXCEPT as first character
+// 2. A line that starts with ; AS THE FIRST CHARACTER (terminates the text)  
+// CRITICAL: terminator requires ; at position 0 with NO preceding whitespace
+ascii_char = { '\x00'..'\x7F' }
+semicolon_text_char = { !new_line ~ ascii_char }
 
-semi_colon_bounded_text_string = {new_line_semi_colon ~ line_of_text_newline_or_newline_semi_colon+}
+// For semicolon-bounded text: character by character approach (ASCII only)
+semicolon_text_content = @{ (!new_line_semi_colon ~ ascii_char)* }
+after_semicolon = @{ (!new_line ~ ascii_char)* ~ new_line? }
+
+semi_colon_bounded_text_string = {
+    new_line_semi_colon ~
+    semicolon_text_content ~
+    new_line_semi_colon
+}
 
 // a group of values
 // note as per 10a the values data_ loop_ global_ save_ and stop_ are not allowed as they are keywords
