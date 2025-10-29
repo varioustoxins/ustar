@@ -1366,3 +1366,131 @@ fn parse_mmcif_nef_dictionary() {
         println!("\nNote: This test shows where the parser currently fails on the real-world mmcif file.");
     }
 }
+
+// Double quote escaping tests now covered comprehensively by parameterized tests above
+// The macro-generated tests provide better coverage with descriptive case names
+
+// Single quote escaping tests now covered comprehensively by parameterized tests above  
+// The macro-generated tests provide better coverage with descriptive case names
+
+// ====================================================================
+// PARAMETERIZED QUOTE TESTS - Comprehensive testing with rstest
+// ====================================================================
+
+use rstest::rstest;
+
+// Macro to generate both single and double quote test cases
+macro_rules! generate_quote_tests {
+    (
+        $(
+            $test_name:ident: ($single_input:literal, $single_expected:literal, $double_input:literal, $double_expected:literal)
+        ),+ $(,)?
+    ) => {
+        // Generate single quote tests
+        #[rstest]
+        $(
+            #[case::$test_name($single_input, $single_expected)]
+        )+
+        fn test_single_quote_patterns_comprehensive(
+            #[case] input: &str,
+            #[case] expected: &str,
+        ) {
+            let result = StarParser::parse(Rule::single_quote_string, input);
+            assert!(result.is_ok(), "Failed to parse single quote string: {}", input);
+            
+            let parsed = result.unwrap().as_str();
+            assert_eq!(
+                parsed, expected,
+                "Single quote mismatch: expected '{}', got '{}' for input '{}'",
+                expected, parsed, input
+            );
+        }
+
+        // Generate double quote tests
+        #[rstest]
+        $(
+            #[case::$test_name($double_input, $double_expected)]
+        )+
+        fn test_double_quote_patterns_comprehensive(
+            #[case] input: &str,
+            #[case] expected: &str,
+        ) {
+            let result = StarParser::parse(Rule::double_quote_string, input);
+            assert!(result.is_ok(), "Failed to parse double quote string: {}", input);
+            
+            let parsed = result.unwrap().as_str();
+            assert_eq!(
+                parsed, expected,
+                "Double quote mismatch: expected '{}', got '{}' for input '{}'",
+                expected, parsed, input
+            );
+        }
+    };
+}
+
+// Generate comprehensive quote tests using the macro
+// Single source of truth - all test cases defined here with both quote types
+generate_quote_tests! {
+    empty_string: ("''", "''", r#""""#, r#""""#),
+    simple_string: ("'hello'", "'hello'", r#""hello""#, r#""hello""#),
+    string_with_spaces: ("'hello world'", "'hello world'", r#""hello world""#, r#""hello world""#),
+    mixed_quotes_and_chars: ("'test'a more text'", "'test'a more text'", r#""test"a more text""#, r#""test"a more text""#),
+    single_character: ("'x'", "'x'", r#""x""#, r#""x""#),
+    quote_char_quote_pattern: ("'x'y'", "'x'y'", r#""x"y""#, r#""x"y""#),
+    double_quote_at_start: ("''x'", "''x'", r#"""x""#, r#"""x""#),
+    complex_alternating_pattern: ("'a'b'c'd'", "'a'b'c'd'", r#""a"b"c"d""#, r#""a"b"c"d""#),
+    quotes_with_spaces: ("'He said ''Hello'' to me'", "'He said ''Hello'' to me'", r#""He said ""Hello"" to me""#, r#""He said ""Hello"" to me""#),
+    dense_quotes_without_spaces: ("'He said''Hello''to''me'", "'He said''Hello''to''me'", r#""He said""Hello""to""me""#, r#""He said""Hello""to""me""#),
+    quotes_followed_by_chars: ("'test'abc'def'xyz'", "'test'abc'def'xyz'", r#""test"abc"def"xyz""#, r#""test"abc"def"xyz""#),
+    multiple_quotes_at_end: ("'Hello world'''", "'Hello world'''", r#""Hello world""""#, r#""Hello world""""#),
+    complex_with_quotes_at_end: ("'text''more''data'''", "'text''more''data'''", r#""text""more""data""""#, r#""text""more""data""""#),
+    many_quotes_at_end: ("'test'''''", "'test'''''", r#""test""""""#, r#""test""""""#),
+    multiple_quotes_at_start: ("'''Hello world'", "'''Hello world'", r#""""Hello world""#, r#""""Hello world""#),
+    complex_with_quotes_at_start: ("'''''data''more''text'", "'''''data''more''text'", r#"""""data""more""text""#, r#"""""data""more""text""#),
+    quotes_at_both_ends: ("'''Hello world'''", "'''Hello world'''", r#""""Hello world""""#, r#""""Hello world""""#),
+}
+
+// Test cases that should fail
+#[rstest]
+#[case::unterminated_single_quote("'unterminated")]
+#[case::unterminated_double_quote("\"unterminated")]
+#[case::mixed_quote_types("'mixed\"")]
+fn test_invalid_quote_patterns(
+    #[case] input: &str,
+) {
+    let single_result = StarParser::parse(Rule::single_quote_string, input);
+    let double_result = StarParser::parse(Rule::double_quote_string, input);
+    
+    assert!(
+        single_result.is_err() && double_result.is_err(),
+        "Expected '{}' to fail parsing, but one succeeded", input
+    );
+}
+
+// Test quote termination conditions
+#[rstest]
+#[case::single_quote_followed_by_space("'test' ", "'test'")]
+#[case::double_quote_followed_by_space("\"test\" ", "\"test\"")]
+#[case::single_quote_followed_by_newline("'test'\n", "'test'")]
+#[case::double_quote_followed_by_newline("\"test\"\n", "\"test\"")]
+fn test_quote_termination(
+    #[case] input: &str,
+    #[case] expected: &str,
+) {
+    // Test both single and double quotes
+    let rule = if input.starts_with('\'') {
+        Rule::single_quote_string
+    } else {
+        Rule::double_quote_string
+    };
+    
+    let result = StarParser::parse(rule, input);
+    assert!(result.is_ok(), "Failed to parse quote termination: {}", input);
+    
+    let parsed = result.unwrap().as_str();
+    assert_eq!(
+        parsed, expected,
+        "Quote termination mismatch: expected '{}', got '{}' for input '{}'",
+        expected, parsed, input
+    );
+}

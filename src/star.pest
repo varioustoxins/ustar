@@ -3,8 +3,8 @@
 dollar = _{ "$" }
 blank = _{ " " | "\t" }  // we separate simple spaces and end of line spaces, this doesn't contain a vertical tab vide supra
 
-new_line = _{"\n"}
-semi_colon = _{";"}
+new_line = {"\n"}
+semi_colon = {";"}
 new_line_semi_colon = @{new_line ~ semi_colon}
 basic_whitespace = _{ blank | "\n" | "\r" }
 WHITESPACE = _{ !new_line_semi_colon ~ basic_whitespace}
@@ -15,8 +15,11 @@ no_blank_char = { '!'..'~' }
 double_quote = {"\""}
 single_quote = {"'"}
 
-not_a_d_quote = { !double_quote ~ no_blank_char }
-not_a_s_quote = { !single_quote ~ no_blank_char }
+single_quote_char = @{"'"}
+double_quote_char = @{"\""}
+two_single_quote_chars = @{"''"}
+two_double_quote_chars = @{"\"\""}
+
 char = {blank | non_blank_char_no_quotes}
 semi_colon_quoted_char = { char | double_quote | single_quote | new_line | "\r" }
 underscore = {"_"}
@@ -52,42 +55,35 @@ non_quoted_text_string = @{!underscore ~ !dollar ~ non_blank_char_no_quotes+}
 // a double quoted string -  note there should be ways to write this closer to the original gammar
 // <double_quoted_text_string> ::= <D_quote> <D_quote_string> <D_quote>
 // D_quote_string ::= {<D_quote> <non_blank_char> | * <not_a_D_quote>
-double_quote_string = @{double_quote ~ double_inner* ~ double_quote }
-double_quote_inner_non_blank_char = _{ non_blank_char_no_quotes | "'" }
-double_quote_inner_char = _{double_quote_inner_non_blank_char | blank}
-double_inner = { double_quote ~ double_quote_inner_non_blank_char | double_quote_inner_char}
+double_quote_string = @{double_quote ~ double_quote_string_inner* ~ double_quote }
+double_quote_end = @{double_quote ~ (blank|EOI|new_line)}
+double_quote_inner = @{single_quote_char ~ non_blank_char_no_quotes | non_blank_char_no_quotes ~ double_quote_char |  two_double_quote_chars}
+double_quote_string_inner = @{ !double_quote_end ~ (non_blank_char_no_quotes | single_quote_char  | double_quote_inner | blank) }
 
 // a single quoted string - note there should be ways to write this closer to the original gammar
 // <single_quoted_text_string> ::= <S_quote> <S_quote_string> <S_quote>
 // S_quote_string ::= {<S_quote> <non_blank_char> | * <not_a_S_quote>
-single_quote_string = @{single_quote ~ single_inner* ~ single_quote }
-single_quote_inner_non_blank_char = _{ non_blank_char_no_quotes | "\"" }
-single_quote_inner_char = _{single_quote_inner_non_blank_char | blank}
-single_inner = { single_quote ~ single_quote_inner_non_blank_char | single_quote_inner_char}
+single_quote_string = @{single_quote ~ single_quote_string_inner* ~ single_quote }
+single_quote_end = @{single_quote ~ (blank|EOI|new_line)}
+single_quote_inner = @{single_quote_char ~ non_blank_char_no_quotes | non_blank_char_no_quotes ~ single_quote_char |  two_single_quote_chars}
+single_quote_string_inner = @{ !single_quote_end ~ (non_blank_char_no_quotes | "\""  | single_quote_inner| blank) }
 
 // a frame code
 frame_code = @{"$" ~ non_blank_char_no_quotes+}
 
 
-line_of_text_only = {char*}
-line_of_text_newline = @{line_of_text_only ~ new_line}
-line_of_text_new_line_semi_colon = @{line_of_text_only ~ new_line_semi_colon}
 
 // For semicolon-bounded text, we need to distinguish between:
 // 1. Lines with content that can contain semicolons anywhere EXCEPT as first character
 // 2. A line that starts with ; AS THE FIRST CHARACTER (terminates the text)  
 // CRITICAL: terminator requires ; at position 0 with NO preceding whitespace
-semicolon_text_char = { !new_line ~ semi_colon_quoted_char }
-
 // For semicolon-bounded text: character by character approach (ASCII only)
-semicolon_text_content = @{ (!new_line_semi_colon ~ semi_colon_quoted_char)* }
-after_semicolon = @{ (!new_line ~ semi_colon_quoted_char)* ~ new_line? }
-
 semi_colon_bounded_text_string = {
     new_line_semi_colon ~
     semicolon_text_content ~
     new_line_semi_colon
 }
+semicolon_text_content = @{ (!new_line_semi_colon ~ semi_colon_quoted_char)* }
 
 // a group of values
 // note as per 10a the values data_ loop_ global_ save_ and stop_ are not allowed as they are keywords
