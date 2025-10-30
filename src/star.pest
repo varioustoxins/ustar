@@ -1,77 +1,76 @@
 
 // vertical_tab = _{ "\u{000B}" } // though Hall defines the vertical tab its of no practical use...
-dollar = _{ "$" }
-blank = _{ " " | "\t" }  // we separate simple spaces and end of line spaces, this doesn't contain a vertical tab vide supra
+DOLLAR = _{ "$" }
+BLANK = _{ " " | "\t" }  // we separate simple spaces and end of line spaces, this doesn't contain a vertical tab vide supra
 
-new_line = {"\n"}
-semi_colon = {";"}
-new_line_semi_colon = @{new_line ~ semi_colon}
-basic_whitespace = _{ blank | "\n" | "\r" }
-WHITESPACE = _{ !new_line_semi_colon ~ basic_whitespace}
+NEWLINE = {"\n"}
+SEMICOLON = {";"}
+NEWLINE_SEMICOLON = @{NEWLINE ~ SEMICOLON}
+BASIC_WHITESPACE = _{ BLANK | "\n" | "\r" }
+WHITESPACE = _{ !NEWLINE_SEMICOLON ~ BASIC_WHITESPACE}
 COMMENT = _{ "#" ~ (!"\n" ~ ANY)* ~ "\n" }
 
-non_blank_char_no_quotes = { "!" | '#'..'&' |  '('..'~' }  // it makes it complicated if quotes are in here
-no_blank_char = { '!'..'~' }
-double_quote = {"\""}
-single_quote = {"'"}
+NON_BLANK_CHAR_NO_QUOTES = { "!" | '#'..'&' |  '('..'~' }  // it makes it complicated if quotes are in here
+NO_BLANK_CHAR = { '!'..'~' }
+DOUBLE_QUOTE = _{"\""}
+SINGLE_QUOTE = _{"'"}
+SINGLE_QUOTE_CHAR = {"'"}
+DOUBLE_QUOTE_CHAR = {"\""}
+TWO_SINGLE_QUOTE_CHARS = {"''"}
+TWO_DOUBLE_QUOTE_CHARS = {"\"\""}
 
-single_quote_char = @{"'"}
-double_quote_char = @{"\""}
-two_single_quote_chars = @{"''"}
-two_double_quote_chars = @{"\"\""}
 
-char = {blank | non_blank_char_no_quotes}
-semi_colon_quoted_char = { char | double_quote | single_quote | new_line | "\r" }
-underscore = {"_"}
+CHAR = {BLANK | NON_BLANK_CHAR_NO_QUOTES}
+SEMICOLON_QUOTED_CHAR = { CHAR | DOUBLE_QUOTE | SINGLE_QUOTE | NEWLINE | "\r" }
+UNDERSCORE = {"_"}
 
 // the data keyword which is case insensitive
 data_anycase = _{^"data"}
-data_keyword = @{data_anycase ~ underscore}
+data_keyword = @{data_anycase ~ UNDERSCORE}
 
 loop_anycase = _{^"loop"}
-loop_keyword = @{loop_anycase ~ underscore}
+loop_keyword = @{loop_anycase ~ UNDERSCORE}
 
 global_anycase = _{^"global"}
-global_keyword = @{global_anycase ~ underscore}
+global_keyword = @{global_anycase ~ UNDERSCORE}
 
 // the save keyword which is case insensitive
 save_anycase = _{^"save"}
-save_keyword = @{save_anycase ~ underscore}
+save_keyword = @{save_anycase ~ UNDERSCORE}
 
 stop_anycase = _{^"stop"}
-stop_keyword = @{stop_anycase ~ underscore}
+stop_keyword = @{stop_anycase ~ UNDERSCORE}
 
 key_words = _{data_keyword | loop_keyword | global_keyword | save_keyword | stop_keyword}
 
-
 // a name of the form _ABC
-data_name = @{underscore ~ no_blank_char+}
+data_name = @{UNDERSCORE ~ NO_BLANK_CHAR+}
 
 // a value which doesn't start with _ $ and isn't save_ or a loop initialiser
-non_quoted_text_string = @{!underscore ~ !dollar ~ non_blank_char_no_quotes+}
+non_quoted_text_string = @{!UNDERSCORE ~ !DOLLAR ~ NON_BLANK_CHAR_NO_QUOTES+}
 // Hall doesn't note that a non_quoted_text_string can't start with an _ or  dollar and cant be save_?
 // or do i have thus wrong
 
-// a double quoted string -  note there should be ways to write this closer to the original gammar
+// a double quoted string 
 // <double_quoted_text_string> ::= <D_quote> <D_quote_string> <D_quote>
 // D_quote_string ::= {<D_quote> <non_blank_char> | * <not_a_D_quote>
-double_quote_string = @{double_quote ~ double_quote_string_inner* ~ double_quote }
-double_quote_end = @{double_quote ~ (blank|EOI|new_line)}
-double_quote_inner = @{single_quote_char ~ non_blank_char_no_quotes | non_blank_char_no_quotes ~ double_quote_char |  two_double_quote_chars}
-double_quote_string_inner = @{ !double_quote_end ~ (non_blank_char_no_quotes | single_quote_char  | double_quote_inner | blank) }
+// NOTE: this is writtens so that double quoted text string can contain anything except "<SPACE>|EOI|NEWLINE"
+double_quote_string = @{DOUBLE_QUOTE ~ double_quote_string_inner* ~ DOUBLE_QUOTE }
+double_quote_end = @{DOUBLE_QUOTE ~ (BLANK|EOI|NEWLINE)}
+double_quote_inner = @{SINGLE_QUOTE_CHAR ~ NON_BLANK_CHAR_NO_QUOTES | NON_BLANK_CHAR_NO_QUOTES ~ DOUBLE_QUOTE_CHAR |  TWO_DOUBLE_QUOTE_CHARS}
+double_quote_string_inner = @{ !double_quote_end ~ (NON_BLANK_CHAR_NO_QUOTES | SINGLE_QUOTE_CHAR  | double_quote_inner | BLANK) }
 
-// a single quoted string - note there should be ways to write this closer to the original gammar
+// a single quoted string
 // <single_quoted_text_string> ::= <S_quote> <S_quote_string> <S_quote>
 // S_quote_string ::= {<S_quote> <non_blank_char> | * <not_a_S_quote>
-single_quote_string = @{single_quote ~ single_quote_string_inner* ~ single_quote }
-single_quote_end = @{single_quote ~ (blank|EOI|new_line)}
-single_quote_inner = @{single_quote_char ~ non_blank_char_no_quotes | non_blank_char_no_quotes ~ single_quote_char |  two_single_quote_chars}
-single_quote_string_inner = @{ !single_quote_end ~ (non_blank_char_no_quotes | "\""  | single_quote_inner| blank) }
+// NOTE: this is writtens so that single quoted text string can contain anything except '<SPACE>|EOI|NEWLINE"
+single_quote_string = @{SINGLE_QUOTE ~ single_quote_string_inner* ~ SINGLE_QUOTE }
+single_quote_end = @{SINGLE_QUOTE ~ (BLANK|EOI|NEWLINE)}
+single_quote_inner = @{SINGLE_QUOTE_CHAR ~ NON_BLANK_CHAR_NO_QUOTES | NON_BLANK_CHAR_NO_QUOTES ~ SINGLE_QUOTE_CHAR |  TWO_SINGLE_QUOTE_CHARS}
+single_quote_string_inner = @{ !single_quote_end ~ (NON_BLANK_CHAR_NO_QUOTES | DOUBLE_QUOTE_CHAR  | single_quote_inner| BLANK) }
 
 // a frame code
-frame_code = @{"$" ~ non_blank_char_no_quotes+}
-
-
+frame_code = @{DOLLAR ~ NON_BLANK_CHAR_NO_QUOTES+}
 
 // For semicolon-bounded text, we need to distinguish between:
 // 1. Lines with content that can contain semicolons anywhere EXCEPT as first character
@@ -79,11 +78,11 @@ frame_code = @{"$" ~ non_blank_char_no_quotes+}
 // CRITICAL: terminator requires ; at position 0 with NO preceding whitespace
 // For semicolon-bounded text: character by character approach (ASCII only)
 semi_colon_bounded_text_string = {
-    new_line_semi_colon ~
+    NEWLINE_SEMICOLON ~
     semicolon_text_content ~
-    new_line_semi_colon
+    NEWLINE_SEMICOLON
 }
-semicolon_text_content = @{ (!new_line_semi_colon ~ semi_colon_quoted_char)* }
+semicolon_text_content = @{ (!NEWLINE_SEMICOLON ~ SEMICOLON_QUOTED_CHAR)* }
 
 // a group of values
 // note as per 10a the values data_ loop_ global_ save_ and stop_ are not allowed as they are keywords
@@ -100,7 +99,6 @@ data_value = _{
 // heading of a data block of
 // <global_heading> ::= global_
 // global_heading = @{global_keyword}
-
 // <global_block> ::= <global_heading> <data_block_body>+
 global_block = {global_keyword ~ global_block_body+}
 
@@ -111,7 +109,7 @@ global_block_body = _{data+}
 data = {data_name ~ data_value | data_loop}
 
 // heading of a data block of the form data_***
-data_heading = @{data_keyword  ~ no_blank_char+}
+data_heading = @{data_keyword  ~ NO_BLANK_CHAR+}
 
 // a data block of the form data_*** ...
 data_block = {data_heading ~ data_block_body+} // 1. place to move + to
@@ -121,7 +119,7 @@ data_block_body =  _{data | save_frame}  // move plus to 1. above ?
 
 // heading for a save_frame
 // save_heading ::= save_<<non_blank_char>+e>
-save_heading = @{save_keyword ~ no_blank_char+}
+save_heading = @{save_keyword ~ NO_BLANK_CHAR+}
 
 // save frame
 // save_frame ::= <save_heading> <data>+ save_

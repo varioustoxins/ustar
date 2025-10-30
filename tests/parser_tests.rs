@@ -150,7 +150,7 @@ fn data() {
         input: "_test",
         rule: Rule::data,
         positives: vec![
-            Rule::new_line_semi_colon,
+            Rule::NEWLINE_SEMICOLON,
             Rule::non_quoted_text_string,
             Rule::double_quote_string,
             Rule::single_quote_string,
@@ -165,7 +165,7 @@ fn data() {
         input: "_test _test",
         rule: Rule::data,
         positives: vec![
-            Rule::new_line_semi_colon,
+            Rule::NEWLINE_SEMICOLON,
             Rule::non_quoted_text_string,
             Rule::double_quote_string,
             Rule::single_quote_string,
@@ -467,7 +467,7 @@ fn basic_data_block() {
         input: test_string,
         rule: Rule::data_block,
         positives: vec![
-            Rule::new_line_semi_colon,
+            Rule::NEWLINE_SEMICOLON,
             Rule::non_quoted_text_string,
             Rule::double_quote_string,
             Rule::single_quote_string,
@@ -997,9 +997,9 @@ fn semi_colon_bounded_string() {
         rule:   Rule::semi_colon_bounded_text_string,
         tokens: [
             semi_colon_bounded_text_string(0, 23, [
-                new_line_semi_colon(0, 2),
+                NEWLINE_SEMICOLON(0, 2),
                 semicolon_text_content(2, 21),
-                new_line_semi_colon(21, 23)
+                NEWLINE_SEMICOLON(21, 23)
             ])
         ]
 
@@ -1014,9 +1014,9 @@ fn semi_colon_bounded_string() {
         rule:   Rule::semi_colon_bounded_text_string,
         tokens: [
              semi_colon_bounded_text_string(0, 24, [
-                 new_line_semi_colon(0, 2),
+                 NEWLINE_SEMICOLON(0, 2),
                  semicolon_text_content(2, 22),
-                 new_line_semi_colon(22, 24)]
+                 NEWLINE_SEMICOLON(22, 24)]
              )
          ]
 
@@ -1028,7 +1028,7 @@ fn semi_colon_bounded_string() {
         parser: StarParser,
         input: test_string,
         rule: Rule::semi_colon_bounded_text_string,
-        positives: vec![Rule::new_line_semi_colon],
+        positives: vec![Rule::NEWLINE_SEMICOLON],
         negatives: vec![],
         pos: 0
     }
@@ -1041,9 +1041,9 @@ fn semi_colon_bounded_string() {
         rule:   Rule::semi_colon_bounded_text_string,
         tokens: [
              semi_colon_bounded_text_string(0, 24, [
-                 new_line_semi_colon(0, 2),
+                 NEWLINE_SEMICOLON(0, 2),
                  semicolon_text_content(2, 22),
-                 new_line_semi_colon(22, 24)
+                 NEWLINE_SEMICOLON(22, 24)
              ])
          ]
 
@@ -1231,9 +1231,9 @@ fn semi_colon_bounded_string_full() {
                     data(66, 99, [data_name(66, 84), single_quote_string(93, 99)]),
                     data(105, 141, [data_name(105, 118), non_quoted_text_string(132, 141)]),
                     data(147, 189, [data_name(147, 156), semi_colon_bounded_text_string(156, 189, [
-                        new_line_semi_colon(156, 158),
+                        NEWLINE_SEMICOLON(156, 158),
                         semicolon_text_content(159, 187),
-                        new_line_semi_colon(187, 189)])
+                        NEWLINE_SEMICOLON(187, 189)])
                     ])
                 ]),
                 EOI(189, 189)
