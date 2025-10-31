@@ -14,9 +14,6 @@ symbol  level  rule name                       offsets  line:col  content
 #10     [2]    data                            40-92    4:1-8:2   _long_text\n;\nThis is some text\nwith multiple lines\n;        
 #11     [3]    data_name                       40-50    4:1-4:11  _long_text                                                      
 #12     [3]    semi_colon_bounded_text_string  50-92    4:11-8:2  \n;\nThis is some text\nwith multiple lines\n;                  
-#13     [4]    NEWLINE_SEMICOLON               50-52    4:11-5:2  \n;                                                             
-#14     [4]    semicolon_text_content          53-90    6:1-7:20  This is some text\nwith multiple lines                          
-#15     [4]    NEWLINE_SEMICOLON               90-92    7:20-8:2  \n;                                                             
-#16     [1]    EOI                             92-92    8:2-8:2                                                                   
+#13     [1]    EOI                             92-92    8:2-8:2                                                                   
 
-lines: 8 symbols: 16
+lines: 8 symbols: 13

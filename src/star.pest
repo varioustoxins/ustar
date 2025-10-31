@@ -6,18 +6,18 @@ BLANK = _{ " " | "\t" }  // we separate simple spaces and end of line spaces, th
 NEWLINE = {"\n"}
 SEMICOLON = {";"}
 
-NEWLINE_SEMICOLON = {"\n;"}
+NEWLINE_SEMICOLON = @{NEWLINE ~ SEMICOLON}
 BASIC_WHITESPACE = _{ BLANK | "\n" | "\r" }
 WHITESPACE = _{ !NEWLINE_SEMICOLON ~ BASIC_WHITESPACE}
 COMMENT = _{ "#" ~ (!"\n" ~ ANY)* ~ "\n" }
 
 NON_BLANK_CHAR_NO_QUOTES = { "!" | '#'..'&' |  '('..'~' }  // it makes it complicated if quotes are in here
 NO_BLANK_CHAR = { '!'..'~' }
-DOUBLE_QUOTE = _{"\""}
-SINGLE_QUOTE = _{"'"}
+DOUBLE_QUOTE = {"\""}
+SINGLE_QUOTE = {"'"}
+TWO_DOUBLE_QUOTE_CHARS = @{DOUBLE_QUOTE ~ DOUBLE_QUOTE}
+TWO_SINGLE_QUOTE_CHARS = @{SINGLE_QUOTE ~ SINGLE_QUOTE}
 
-not_a_d_quote = { !DOUBLE_QUOTE ~ NO_BLANK_CHAR }
-not_a_s_quote = { !SINGLE_QUOTE ~ NO_BLANK_CHAR }
 CHAR = {BLANK | NON_BLANK_CHAR_NO_QUOTES}
 SEMICOLON_QUOTED_CHAR = { CHAR | DOUBLE_QUOTE | SINGLE_QUOTE | NEWLINE | "\r" }
 UNDERSCORE = {"_"}
@@ -41,50 +41,42 @@ stop_keyword = @{stop_anycase ~ UNDERSCORE}
 
 key_words = _{data_keyword | loop_keyword | global_keyword | save_keyword | stop_keyword}
 
-
 // a name of the form _ABC
 data_name = @{UNDERSCORE ~ NO_BLANK_CHAR+}
 
 // a value which doesn't start with _ $ and isn't save_ or a loop initialiser
 non_quoted_text_string = @{!UNDERSCORE ~ !DOLLAR ~ NON_BLANK_CHAR_NO_QUOTES+}
 // Hall doesn't note that a non_quoted_text_string can't start with an _ or  dollar and cant be save_?
-// or do i have thus wrong
+// or do i have this wrong
 
 // a double quoted string -  note there should be ways to write this closer to the original gammar
 // <double_quoted_text_string> ::= <D_quote> <D_quote_string> <D_quote>
 // D_quote_string ::= {<D_quote> <non_blank_char> | * <not_a_D_quote>
 double_quote_string = @{DOUBLE_QUOTE ~ double_quote_string_inner* ~ DOUBLE_QUOTE }
 double_quote_end = @{DOUBLE_QUOTE ~ (BLANK|EOI|NEWLINE)}
-double_quote_inner = @{"\"" ~ NON_BLANK_CHAR_NO_QUOTES | NON_BLANK_CHAR_NO_QUOTES ~ "\"" |  "\"\""}
-double_quote_string_inner = @{ !double_quote_end ~ (NON_BLANK_CHAR_NO_QUOTES | "'"  | double_quote_inner | BLANK) }
+double_quote_inner = @{DOUBLE_QUOTE ~ NON_BLANK_CHAR_NO_QUOTES | NON_BLANK_CHAR_NO_QUOTES ~ DOUBLE_QUOTE |  TWO_DOUBLE_QUOTE_CHARS}
+double_quote_string_inner = @{ !double_quote_end ~ (NON_BLANK_CHAR_NO_QUOTES | SINGLE_QUOTE | double_quote_inner | BLANK) }
 
 // a single quoted string - note there should be ways to write this closer to the original gammar
 // <single_quoted_text_string> ::= <S_quote> <S_quote_string> <S_quote>
 // S_quote_string ::= {<S_quote> <non_blank_char> | * <not_a_S_quote>
 single_quote_string = @{SINGLE_QUOTE ~ single_quote_string_inner* ~ SINGLE_QUOTE }
 single_quote_end = @{SINGLE_QUOTE ~ (BLANK|EOI|NEWLINE)}
-single_quote_inner = @{"'" ~ NON_BLANK_CHAR_NO_QUOTES | NON_BLANK_CHAR_NO_QUOTES ~ "'" |  "''"}
-single_quote_string_inner = @{ !single_quote_end ~ (NON_BLANK_CHAR_NO_QUOTES | "\""  | single_quote_inner| BLANK) }
+single_quote_inner = @{SINGLE_QUOTE ~ NON_BLANK_CHAR_NO_QUOTES | NON_BLANK_CHAR_NO_QUOTES ~ SINGLE_QUOTE |  TWO_SINGLE_QUOTE_CHARS}
+single_quote_string_inner = @{ !single_quote_end ~ (NON_BLANK_CHAR_NO_QUOTES | DOUBLE_QUOTE | single_quote_inner| BLANK) }
 
 // a frame code
 frame_code = @{DOLLAR ~ NON_BLANK_CHAR_NO_QUOTES+}
-
-
-line_of_text_only = {CHAR*}
-// line_of_text_newline = @{line_of_text_only ~ new_line}
-// line_of_text_new_line_semi_colon = @{line_of_text_only ~ new_line_semi_colon}
 
 // For semicolon-bounded text, we need to distinguish between:
 // 1. Lines with content that can contain semicolons anywhere EXCEPT as first character
 // 2. A line that starts with ; AS THE FIRST CHARACTER (terminates the text)  
 // CRITICAL: terminator requires ; at position 0 with NO preceding whitespace
 // semicolon_text_char = { !new_line ~ semi_colon_quoted_char }
-
 // For semicolon-bounded text: character by character approach (ASCII only)
 semicolon_text_content = @{ (!NEWLINE_SEMICOLON ~ SEMICOLON_QUOTED_CHAR)* }
-// after_semicolon = @{ (!NEWLINE ~ SEMICOLON_QUOTED_CHAR)* ~ NEWLINE? }
 
-semi_colon_bounded_text_string = {
+semi_colon_bounded_text_string = @{
     NEWLINE_SEMICOLON ~
     semicolon_text_content ~
     NEWLINE_SEMICOLON
