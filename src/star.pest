@@ -1,14 +1,18 @@
 
 // vertical_tab = _{ "\u{000B}" } // though Hall defines the vertical tab its of no practical use...
 DOLLAR = _{ "$" }
-BLANK = _{ " " | "\t" }  // we separate simple spaces and end of line spaces, this doesn't contain a vertical tab vide supra
 
-NEWLINE = {"\n"}
+NEWLINE_CHAR = {"\n"}
+CARRIAGE_RETURN_CHAR  = {"\r"}
+UNIX_NEWLINE = {NEWLINE_CHAR}
+WINDOWS_NEWLINE = @{CARRIAGE_RETURN_CHAR ~ NEWLINE_CHAR}
+NEWLINE = @{UNIX_NEWLINE | WINDOWS_NEWLINE}
 SEMICOLON = {";"}
-CARRIAGE_RETURN  = {"\r"}
+
+BLANK = _{ " " | "\t"}  // we separate simple spaces and end of line spaces, this doesn't contain a vertical tab vide supra
 
 NEWLINE_SEMICOLON = @{NEWLINE ~ SEMICOLON}
-BASIC_WHITESPACE = _{ BLANK | NEWLINE | CARRIAGE_RETURN }
+BASIC_WHITESPACE = _{ BLANK | NEWLINE }
 WHITESPACE = _{ !NEWLINE_SEMICOLON ~ BASIC_WHITESPACE}
 COMMENT = _{ "#" ~ (!"\n" ~ ANY)* ~ "\n" }
 
@@ -20,7 +24,7 @@ TWO_DOUBLE_QUOTE_CHARS = @{DOUBLE_QUOTE ~ DOUBLE_QUOTE}
 TWO_SINGLE_QUOTE_CHARS = @{SINGLE_QUOTE ~ SINGLE_QUOTE}
 
 CHAR = {BLANK | NON_BLANK_CHAR_NO_QUOTES}
-SEMICOLON_QUOTED_CHAR = { CHAR | DOUBLE_QUOTE | SINGLE_QUOTE | NEWLINE | "\r" }
+SEMICOLON_QUOTED_CHAR = { CHAR | DOUBLE_QUOTE | SINGLE_QUOTE | NEWLINE  }
 UNDERSCORE = {"_"}
 
 // the data keyword which is case insensitive

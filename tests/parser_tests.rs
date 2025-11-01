@@ -478,6 +478,128 @@ fn basic_data_block() {
     }
 }
 
+// Windows line ending specific unit tests
+#[test]
+fn windows_line_ending_basic_parsing() {
+    // Test basic data parsing with Windows line endings
+    parses_to! {
+        parser: StarParser,
+        input: "data_test\r\n_item value\r\n",
+        rule: Rule::star_file,
+        tokens: [
+            star_file(0, 24, [
+                data_block(0, 22, [
+                    data_heading(0, 9),
+                    data(11, 22, [
+                        data_name(11, 16),
+                        non_quoted_string(17, 22)
+                    ])
+                ]),
+                EOI(24, 24)
+            ])
+        ]
+    }
+}
+
+#[test]
+fn mixed_line_endings_handling() {
+    // Test handling of mixed Unix and Windows line endings in the same file
+    let mixed_input = "data_test\n_unix_item value1\r\n_windows_item value2\n";
+    
+    parses_to! {
+        parser: StarParser,
+        input: mixed_input,
+        rule: Rule::star_file,
+        tokens: [
+            star_file(0, 50, [
+                data_block(0, 49, [
+                    data_heading(0, 9),
+                    data(10, 27, [
+                        data_name(10, 20),
+                        non_quoted_string(21, 27)
+                    ]),
+                    data(29, 49, [
+                        data_name(29, 42),
+                        non_quoted_string(43, 49)
+                    ])
+                ]),
+                EOI(50, 50)
+            ])
+        ]
+    }
+}
+
+#[test] 
+fn carriage_return_in_whitespace() {
+    // Test that Windows line endings (CRLF) are properly handled in whitespace
+    parses_to! {
+        parser: StarParser,
+        input: "data_test\r\n_item hello\r\n_value 42\r\n",
+        rule: Rule::star_file,
+        tokens: [
+            star_file(0, 35, [
+                data_block(0, 33, [
+                    data_heading(0, 9),
+                    data(11, 22, [
+                        data_name(11, 16),
+                        non_quoted_string(17, 22)
+                    ]),
+                    data(24, 33, [
+                        data_name(24, 30),
+                        non_quoted_string(31, 33)
+                    ])
+                ]),
+                EOI(35, 35)
+            ])
+        ]
+    }
+}
+
+#[test]
+fn windows_line_endings_in_semicolon_string() {
+    // Test that Windows CRLF line endings work correctly inside semicolon-delimited strings
+    let input = "data_test\r\n_description\r\n;\r\nThis is line 1 with CRLF\r\nThis is line 2 with CRLF\r\nMixed content here\r\n;\r\n";
+    
+    parses_to! {
+        parser: StarParser,
+        input: input,
+        rule: Rule::star_file,
+        tokens: [
+            star_file(0, 103, [
+                data_block(0, 101, [
+                    data_heading(0, 9),
+                    data(11, 101, [
+                        data_name(11, 23),
+                        semi_colon_string(23, 101)
+                    ])
+                ]),
+                EOI(103, 103)
+            ])
+        ]
+    }
+    
+    // Also test mixed line endings within semicolon strings (Unix LF and Windows CRLF)
+    let mixed_input = "data_mixed\n_text\n;\nUnix line\nWindows line\r\nAnother Unix line\n;\n";
+    
+    parses_to! {
+        parser: StarParser,
+        input: mixed_input,
+        rule: Rule::star_file,
+        tokens: [
+            star_file(0, 63, [
+                data_block(0, 62, [
+                    data_heading(0, 10),
+                    data(11, 62, [
+                        data_name(11, 16),
+                        semi_colon_string(16, 62)
+                    ])
+                ]),
+                EOI(63, 63)
+            ])
+        ]
+    }
+}
+
 // save_heading
 #[test]
 fn save_heading() {
@@ -1348,6 +1470,34 @@ fn parse_mmcif_nef_dictionary() {
         
         // Don't fail the test, just show the error for analysis
         println!("\nNote: This test shows where the parser currently fails on the real-world mmcif file.");
+    }
+}
+
+#[test]
+fn windows_line_endings_compatibility() {
+    let file_path = "tests/test_data/simple_star_file_windows.star";
+    let test_string = std::fs::read_to_string(file_path).unwrap();
+    
+    // Verify the file actually has Windows line endings
+    assert!(test_string.contains("\r\n"), "Test file should contain CRLF line endings");
+    
+    let successful_parse = StarParser::parse(Rule::star_file, &test_string);
+    assert!(successful_parse.is_ok(), "Parser should handle Windows line endings correctly");
+    
+    parses_to! {
+        parser: StarParser,
+        input:  &test_string,
+        rule:   Rule::star_file,
+        tokens: [
+            star_file(0, 43, [
+                data_block(0, 43, [
+                    data_heading(0, 11),
+                    data(13, 32, [data_name(13, 18), double_quote_string(19, 32)]),
+                    data(34, 43, [data_name(34, 40), non_quoted_string(41, 43)])
+                ]),
+                EOI(43, 43)
+            ])
+        ]
     }
 }
 
