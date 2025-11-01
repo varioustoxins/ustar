@@ -5,9 +5,10 @@ BLANK = _{ " " | "\t" }  // we separate simple spaces and end of line spaces, th
 
 NEWLINE = {"\n"}
 SEMICOLON = {";"}
+CARRIAGE_RETURN  = {"\r"}
 
 NEWLINE_SEMICOLON = @{NEWLINE ~ SEMICOLON}
-BASIC_WHITESPACE = _{ BLANK | "\n" | "\r" }
+BASIC_WHITESPACE = _{ BLANK | NEWLINE | CARRIAGE_RETURN }
 WHITESPACE = _{ !NEWLINE_SEMICOLON ~ BASIC_WHITESPACE}
 COMMENT = _{ "#" ~ (!"\n" ~ ANY)* ~ "\n" }
 
@@ -45,7 +46,7 @@ key_words = _{data_keyword | loop_keyword | global_keyword | save_keyword | stop
 data_name = @{UNDERSCORE ~ NO_BLANK_CHAR+}
 
 // a value which doesn't start with _ $ and isn't save_ or a loop initialiser
-non_quoted_text_string = @{!UNDERSCORE ~ !DOLLAR ~ NON_BLANK_CHAR_NO_QUOTES+}
+non_quoted_string = @{!UNDERSCORE ~ !DOLLAR ~ NON_BLANK_CHAR_NO_QUOTES+}
 // Hall doesn't note that a non_quoted_text_string can't start with an _ or  dollar and cant be save_?
 // or do i have this wrong
 
@@ -76,7 +77,7 @@ frame_code = @{DOLLAR ~ NON_BLANK_CHAR_NO_QUOTES+}
 // For semicolon-bounded text: character by character approach (ASCII only)
 semicolon_text_content = @{ (!NEWLINE_SEMICOLON ~ SEMICOLON_QUOTED_CHAR)* }
 
-semi_colon_bounded_text_string = @{
+semi_colon_string = @{
     NEWLINE_SEMICOLON ~
     semicolon_text_content ~
     NEWLINE_SEMICOLON
@@ -87,8 +88,8 @@ semi_colon_bounded_text_string = @{
 // to use them you have to wrap them in a string
 data_value = _{
     !key_words
-    ~ non_quoted_text_string
-    | semi_colon_bounded_text_string
+    ~ non_quoted_string
+    | semi_colon_string
     | double_quote_string
     | single_quote_string
     | frame_code

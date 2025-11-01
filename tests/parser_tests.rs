@@ -59,9 +59,9 @@ fn data_value() {
     parses_to! {
         parser: StarParser,
         input:  "ABC",
-        rule:   Rule::non_quoted_text_string,
+        rule:   Rule::non_quoted_string,
         tokens: [
-            non_quoted_text_string(0, 3)
+            non_quoted_string(0, 3)
         ]
     }
     
@@ -69,9 +69,9 @@ fn data_value() {
     parses_to! {
         parser: StarParser,
         input:  "A_BC",
-        rule:   Rule::non_quoted_text_string,
+        rule:   Rule::non_quoted_string,
         tokens: [
-            non_quoted_text_string(0, 4)
+            non_quoted_string(0, 4)
         ]
     }
     
@@ -79,8 +79,8 @@ fn data_value() {
     fails_with! {
         parser: StarParser,
         input: "_ABC",
-        rule: Rule::non_quoted_text_string,
-        positives: vec![Rule::non_quoted_text_string],
+        rule: Rule::non_quoted_string,
+        positives: vec![Rule::non_quoted_string],
         negatives: vec![],
         pos: 0
     }
@@ -95,7 +95,7 @@ fn data() {
         tokens: [
             data(0, 9, [
                 data_name(0, 5),
-                non_quoted_text_string(6, 9)
+                non_quoted_string(6, 9)
             ])
         ]
     }
@@ -150,11 +150,11 @@ fn data() {
         input: "_test",
         rule: Rule::data,
         positives: vec![
-            Rule::non_quoted_text_string,
+            Rule::non_quoted_string,
             Rule::double_quote_string,
             Rule::single_quote_string,
             Rule::frame_code,
-            Rule::semi_colon_bounded_text_string
+            Rule::semi_colon_string
         ],
         negatives: vec![],
         pos: 5
@@ -165,11 +165,11 @@ fn data() {
         input: "_test _test",
         rule: Rule::data,
         positives: vec![
-            Rule::non_quoted_text_string,
+            Rule::non_quoted_string,
             Rule::double_quote_string,
             Rule::single_quote_string,
             Rule::frame_code,
-            Rule::semi_colon_bounded_text_string
+            Rule::semi_colon_string
         ],
         negatives: vec![],
         pos: 6
@@ -438,7 +438,7 @@ fn basic_data_block() {
         tokens: [
             data_block(0, 95, [
                 data_heading(0, 6),
-                data(20, 33, [data_name(20, 25), non_quoted_text_string(30, 33)]),
+                data(20, 33, [data_name(20, 25), non_quoted_string(30, 33)]),
                 data(40, 55, [data_name(40, 47), double_quote_string(50, 55)]),
                 data(58, 75, [data_name(58, 65), single_quote_string(68, 75)]),
                 data(78, 95, [data_name(78, 85), frame_code(88, 95)])
@@ -467,11 +467,11 @@ fn basic_data_block() {
         input: test_string,
         rule: Rule::data_block,
         positives: vec![
-            Rule::non_quoted_text_string,
+            Rule::non_quoted_string,
             Rule::double_quote_string,
             Rule::single_quote_string,
             Rule::frame_code,
-            Rule::semi_colon_bounded_text_string
+            Rule::semi_colon_string
         ],
         negatives: vec![],
         pos: 30
@@ -553,10 +553,10 @@ fn data_loop() {
                 ]
             ),
             data_loop_values(109, 235, [
-                    non_quoted_text_string(109, 111), non_quoted_text_string(116, 134),
-                    non_quoted_text_string(140, 142), non_quoted_text_string(147, 166),
-                    non_quoted_text_string(171, 173), non_quoted_text_string(178, 196),
-                    non_quoted_text_string(202, 205), non_quoted_text_string(206, 224),
+                    non_quoted_string(109, 111), non_quoted_string(116, 134),
+                    non_quoted_string(140, 142), non_quoted_string(147, 166),
+                    non_quoted_string(171, 173), non_quoted_string(178, 196),
+                    non_quoted_string(202, 205), non_quoted_string(206, 224),
                     stop_keyword(230, 235)
                 ])
             ])
@@ -608,23 +608,23 @@ fn data_loop() {
                     ])
                 ]),
                 data_loop_values(312, 858, [
-                    non_quoted_text_string(312, 320),
-                      double_quote_string(355, 366),      non_quoted_text_string(367, 376),
-                        non_quoted_text_string(394, 407), non_quoted_text_string(411, 414),
-                        non_quoted_text_string(432, 444), non_quoted_text_string(449, 452), stop_keyword(453, 458),
+                    non_quoted_string(312, 320),
+                      double_quote_string(355, 366),      non_quoted_string(367, 376),
+                        non_quoted_string(394, 407), non_quoted_string(411, 414),
+                        non_quoted_string(432, 444), non_quoted_string(449, 452), stop_keyword(453, 458),
 
-                      double_quote_string(470, 480),      non_quoted_text_string(482, 491),
-                        non_quoted_text_string(509, 522), non_quoted_text_string(526, 529),
-                        non_quoted_text_string(547, 560), non_quoted_text_string(564, 567), stop_keyword(568, 573),
+                      double_quote_string(470, 480),      non_quoted_string(482, 491),
+                        non_quoted_string(509, 522), non_quoted_string(526, 529),
+                        non_quoted_string(547, 560), non_quoted_string(564, 567), stop_keyword(568, 573),
 
-                      double_quote_string(585, 595),      non_quoted_text_string(597, 606),
-                        non_quoted_text_string(624, 637), non_quoted_text_string(641, 653),
-                        non_quoted_text_string(662, 675), non_quoted_text_string(679, 691), stop_keyword(692, 697),
+                      double_quote_string(585, 595),      non_quoted_string(597, 606),
+                        non_quoted_string(624, 637), non_quoted_string(641, 653),
+                        non_quoted_string(662, 675), non_quoted_string(679, 691), stop_keyword(692, 697),
 
-                      double_quote_string(700, 710),      non_quoted_text_string(712, 721),
-                        non_quoted_text_string(739, 751), non_quoted_text_string(755, 768),
-                        non_quoted_text_string(777, 790), non_quoted_text_string(793, 806),
-                        non_quoted_text_string(815, 828), non_quoted_text_string(831, 844), stop_keyword(845, 850),
+                      double_quote_string(700, 710),      non_quoted_string(712, 721),
+                        non_quoted_string(739, 751), non_quoted_string(755, 768),
+                        non_quoted_string(777, 790), non_quoted_string(793, 806),
+                        non_quoted_string(815, 828), non_quoted_string(831, 844), stop_keyword(845, 850),
                     stop_keyword(853, 858)])
             ])
         ]
@@ -659,17 +659,17 @@ fn data_block_with_save_frame() {
         tokens: [
             data_block(0, 362, [
                 data_heading(0, 15),
-                data(35, 57, [data_name(35, 52), non_quoted_text_string(53, 57)]),
-                data(66, 87, [data_name(66, 81), non_quoted_text_string(84, 87)]),
+                data(35, 57, [data_name(35, 52), non_quoted_string(53, 57)]),
+                data(66, 87, [data_name(66, 81), non_quoted_string(84, 87)]),
                 save_frame(97, 199, [
                     save_heading(97, 112),
-                    data(132, 154, [data_name(132, 149), non_quoted_text_string(151, 154)]),
-                    data(163, 185, [data_name(163, 179), non_quoted_text_string(182, 185)]),
+                    data(132, 154, [data_name(132, 149), non_quoted_string(151, 154)]),
+                    data(163, 185, [data_name(163, 179), non_quoted_string(182, 185)]),
                 save_keyword(194, 199)]),
                 save_frame(229, 362, [
                     save_heading(229, 244),
-                    data(264, 285, [data_name(264, 281), non_quoted_text_string(283, 285)]),
-                    data(295, 317, [data_name(295, 311), non_quoted_text_string(314, 317)]),
+                    data(264, 285, [data_name(264, 281), non_quoted_string(283, 285)]),
+                    data(295, 317, [data_name(295, 311), non_quoted_string(314, 317)]),
                     data(326, 356, [data_name(326, 342), frame_code(345, 356)]),
                 save_keyword(357, 362)])
             ])
@@ -709,17 +709,17 @@ fn data_block_with_save_frame() {
 
                 save_frame(35, 137, [
                     save_heading(35, 50),
-                    data(70, 92, [data_name(70, 87), non_quoted_text_string(89, 92)]),
-                    data(101, 123, [data_name(101, 117), non_quoted_text_string(120, 123)]),
+                    data(70, 92, [data_name(70, 87), non_quoted_string(89, 92)]),
+                    data(101, 123, [data_name(101, 117), non_quoted_string(120, 123)]),
                 save_keyword(132, 137)]),
 
-                data(167, 189, [data_name(167, 184), non_quoted_text_string(185, 189)]),
-                data(202, 223, [data_name(202, 217), non_quoted_text_string(220, 223)]),
+                data(167, 189, [data_name(167, 184), non_quoted_string(185, 189)]),
+                data(202, 223, [data_name(202, 217), non_quoted_string(220, 223)]),
 
                 save_frame(237, 370, [
                     save_heading(237, 252),
-                    data(272, 293, [data_name(272, 289), non_quoted_text_string(291, 293)]),
-                    data(303, 325, [data_name(303, 319), non_quoted_text_string(322, 325)]),
+                    data(272, 293, [data_name(272, 289), non_quoted_string(291, 293)]),
+                    data(303, 325, [data_name(303, 319), non_quoted_string(322, 325)]),
                     data(334, 364, [data_name(334, 350), frame_code(353, 364)]),
                 save_keyword(365, 370)])
             ])
@@ -749,14 +749,14 @@ fn data_block_with_save_frame() {
             data_heading(0, 15),
             save_frame(35, 137, [
                 save_heading(35, 50),
-                data(70, 92, [data_name(70, 87), non_quoted_text_string(89, 92)]),
-                data(101, 123, [data_name(101, 117), non_quoted_text_string(120, 123)]),
+                data(70, 92, [data_name(70, 87), non_quoted_string(89, 92)]),
+                data(101, 123, [data_name(101, 117), non_quoted_string(120, 123)]),
                 save_keyword(132, 137)
             ]),
             save_frame(167, 300, [
                 save_heading(167, 182),
-                data(202, 223, [data_name(202, 219), non_quoted_text_string(221, 223)]),
-                data(233, 255, [data_name(233, 249), non_quoted_text_string(252, 255)]),
+                data(202, 223, [data_name(202, 219), non_quoted_string(221, 223)]),
+                data(233, 255, [data_name(233, 249), non_quoted_string(252, 255)]),
                 data(264, 294, [data_name(264, 280), frame_code(283, 294)]),
                 save_keyword(295, 300)])
             ])
@@ -797,8 +797,8 @@ fn data_block_with_save_frame() {
             data_heading(0, 15),
             save_frame(35, 594, [
                 save_heading(35, 50),
-                data(70, 92, [data_name(70, 87), non_quoted_text_string(89, 92)]),
-                data(101, 123, [data_name(101, 117), non_quoted_text_string(120, 123)]),
+                data(70, 92, [data_name(70, 87), non_quoted_string(89, 92)]),
+                data(101, 123, [data_name(101, 117), non_quoted_string(120, 123)]),
                 data(132, 303, [data_loop(132, 303, [
                     loop_keyword(132, 137),
                     data_loop_definition(163, 211, [
@@ -806,9 +806,9 @@ fn data_block_with_save_frame() {
                         data_name(190, 211)
                     ]),
                     data_loop_values(217, 303, [
-                        non_quoted_text_string(217, 218), non_quoted_text_string(219, 220),
-                        non_quoted_text_string(244, 245), non_quoted_text_string(246, 247),
-                        non_quoted_text_string(271, 272), non_quoted_text_string(273, 274),
+                        non_quoted_string(217, 218), non_quoted_string(219, 220),
+                        non_quoted_string(244, 245), non_quoted_string(246, 247),
+                        non_quoted_string(271, 272), non_quoted_string(273, 274),
                         stop_keyword(298, 303)]
                     )]
                 )]
@@ -821,15 +821,15 @@ fn data_block_with_save_frame() {
                         data_name(387, 408)
                     ]),
                 data_loop_values(414, 500, [
-                        non_quoted_text_string(414, 415), non_quoted_text_string(416, 417),
-                        non_quoted_text_string(441, 442), non_quoted_text_string(443, 444),
-                        non_quoted_text_string(468, 469), non_quoted_text_string(470, 471),
+                        non_quoted_string(414, 415), non_quoted_string(416, 417),
+                        non_quoted_string(441, 442), non_quoted_string(443, 444),
+                        non_quoted_string(468, 469), non_quoted_string(470, 471),
                         stop_keyword(495, 500)
                     ])
                 ])
             ]),
-            data(527, 549, [data_name(527, 544), non_quoted_text_string(546, 549)]),
-            data(558, 580, [data_name(558, 574), non_quoted_text_string(577, 580)]),
+            data(527, 549, [data_name(527, 544), non_quoted_string(546, 549)]),
+            data(558, 580, [data_name(558, 574), non_quoted_string(577, 580)]),
             save_keyword(589, 594)])])]
 
     }
@@ -871,8 +871,8 @@ fn data_block_with_save_frame() {
                 data_heading(0, 15),
                 save_frame(35, 594, [
                     save_heading(35, 50),
-                    data(70, 92, [data_name(70, 87), non_quoted_text_string(89, 92)]),
-                    data(101, 123, [data_name(101, 117), non_quoted_text_string(120, 123)]),
+                    data(70, 92, [data_name(70, 87), non_quoted_string(89, 92)]),
+                    data(101, 123, [data_name(101, 117), non_quoted_string(120, 123)]),
                     data(132, 303, [
                     data_loop(132, 303, [
                         loop_keyword(132, 137),
@@ -881,14 +881,14 @@ fn data_block_with_save_frame() {
                             data_name(190, 211)
                         ]),
                         data_loop_values(217, 303, [
-                            non_quoted_text_string(217, 218), non_quoted_text_string(219, 220),
-                            non_quoted_text_string(244, 245), non_quoted_text_string(246, 247),
-                            non_quoted_text_string(271, 272), non_quoted_text_string(273, 274),
+                            non_quoted_string(217, 218), non_quoted_string(219, 220),
+                            non_quoted_string(244, 245), non_quoted_string(246, 247),
+                            non_quoted_string(271, 272), non_quoted_string(273, 274),
                             stop_keyword(298, 303)])
                         ])
                     ]),
-                    data(329, 351, [data_name(329, 346), non_quoted_text_string(348, 351)]),
-                    data(360, 382, [data_name(360, 376), non_quoted_text_string(379, 382)]),
+                    data(329, 351, [data_name(329, 346), non_quoted_string(348, 351)]),
+                    data(360, 382, [data_name(360, 376), non_quoted_string(379, 382)]),
                     data(391, 562, [data_loop(391, 562, [
                         loop_keyword(391, 396),
                         data_loop_definition(422, 470, [
@@ -896,9 +896,9 @@ fn data_block_with_save_frame() {
                             data_name(449, 470)
                         ]),
                         data_loop_values(476, 562, [
-                            non_quoted_text_string(476, 477), non_quoted_text_string(478, 479),
-                            non_quoted_text_string(503, 504), non_quoted_text_string(505, 506),
-                            non_quoted_text_string(530, 531), non_quoted_text_string(532, 533),
+                            non_quoted_string(476, 477), non_quoted_string(478, 479),
+                            non_quoted_string(503, 504), non_quoted_string(505, 506),
+                            non_quoted_string(530, 531), non_quoted_string(532, 533),
                             stop_keyword(557, 562)
                         ])
                     ])
@@ -925,8 +925,8 @@ fn global_block() {
         tokens: [
             global_block(0, 66, [
                 global_keyword(0, 7),
-                data(25, 42, [data_name(25, 40), non_quoted_text_string(41, 42)]),
-                data(46, 66, [data_name(46, 62), non_quoted_text_string(63, 66)])
+                data(25, 42, [data_name(25, 40), non_quoted_string(41, 42)]),
+                data(46, 66, [data_name(46, 62), non_quoted_string(63, 66)])
             ])
         ]
 
@@ -967,8 +967,8 @@ fn global_block() {
         tokens: [
             global_block(0, 135, [
                 global_keyword(0, 7),
-                data(27, 44, [data_name(27, 42), non_quoted_text_string(43, 44)]),
-                data(49, 69, [data_name(49, 65), non_quoted_text_string(66, 69)]),
+                data(27, 44, [data_name(27, 42), non_quoted_string(43, 44)]),
+                data(49, 69, [data_name(49, 65), non_quoted_string(66, 69)]),
                 data(71, 135, [
                     data_loop(71, 135, [
                         loop_keyword(71, 76),
@@ -976,8 +976,8 @@ fn global_block() {
                             data_name(93, 103)
                         ]),
                         data_loop_values(111, 135, [
-                            non_quoted_text_string(111, 119),
-                            non_quoted_text_string(129, 135)
+                            non_quoted_string(111, 119),
+                            non_quoted_string(129, 135)
                         ])
                     ])
                 ])
@@ -994,9 +994,9 @@ fn semi_colon_bounded_string() {
     parses_to! {
         parser: StarParser,
         input:  test_string,
-        rule:   Rule::semi_colon_bounded_text_string,
+        rule:   Rule::semi_colon_string,
         tokens: [
-            semi_colon_bounded_text_string(0, 23)
+            semi_colon_string(0, 23)
         ]
 
     }
@@ -1007,9 +1007,9 @@ fn semi_colon_bounded_string() {
      parses_to! {
         parser: StarParser,
         input:  test_string,
-        rule:   Rule::semi_colon_bounded_text_string,
+        rule:   Rule::semi_colon_string,
         tokens: [
-             semi_colon_bounded_text_string(0, 24)
+             semi_colon_string(0, 24)
          ]
 
     }
@@ -1019,8 +1019,8 @@ fn semi_colon_bounded_string() {
      fails_with! {
         parser: StarParser,
         input: test_string,
-        rule: Rule::semi_colon_bounded_text_string,
-        positives: vec![Rule::semi_colon_bounded_text_string],
+        rule: Rule::semi_colon_string,
+        positives: vec![Rule::semi_colon_string],
         negatives: vec![],
         pos: 0
     }
@@ -1030,9 +1030,9 @@ fn semi_colon_bounded_string() {
      parses_to! {
         parser: StarParser,
         input:  test_string,
-        rule:   Rule::semi_colon_bounded_text_string,
+        rule:   Rule::semi_colon_string,
         tokens: [
-             semi_colon_bounded_text_string(0, 24)
+             semi_colon_string(0, 24)
          ]
 
     }
@@ -1106,35 +1106,35 @@ fn star_document() {
             star_file(0, 2842, [
                 global_block(60, 209, [
                     global_keyword(60, 67),
-                    data(121, 150, [data_name(121, 136), non_quoted_text_string(149, 150)]),
-                    data(178, 209, [data_name(178, 194), non_quoted_text_string(206, 209)])
+                    data(121, 150, [data_name(121, 136), non_quoted_string(149, 150)]),
+                    data(178, 209, [data_name(178, 194), non_quoted_string(206, 209)])
                 ]),
                 data_block(235, 504, [
                     data_heading(235, 249),
-                    data(296, 328, [data_name(296, 310), non_quoted_text_string(324, 328)]),
+                    data(296, 328, [data_name(296, 310), non_quoted_string(324, 328)]),
                     data(353, 389, [data_name(353, 366), single_quote_string(381, 389)]),
-                    data(410, 446, [data_name(410, 423), non_quoted_text_string(438, 446)]),
+                    data(410, 446, [data_name(410, 423), non_quoted_string(438, 446)]),
                     data(467, 504, [data_name(467, 486), single_quote_string(495, 504)])
                 ]),
                 global_block(524, 680, [
                     global_keyword(524, 531),
                     data(585, 625, [data_name(585, 605), single_quote_string(613, 625)]),
-                    data(642, 680, [data_name(642, 660), non_quoted_text_string(670, 680)])
+                    data(642, 680, [data_name(642, 660), non_quoted_string(670, 680)])
                 ]),
                 data_block(699, 1340, [
                     data_heading(699, 714),
-                    data(760, 791, [data_name(760, 777), non_quoted_text_string(787, 791)]),
-                    data(816, 846, [data_name(816, 831), non_quoted_text_string(843, 846)]),
+                    data(760, 791, [data_name(760, 777), non_quoted_string(787, 791)]),
+                    data(816, 846, [data_name(816, 831), non_quoted_string(843, 846)]),
                     save_frame(872, 1050, [
                         save_heading(872, 887),
-                        data(933, 963, [data_name(933, 950), non_quoted_text_string(960, 963)]),
-                        data(989, 1019, [data_name(989, 1005), non_quoted_text_string(1016, 1019)]),
+                        data(933, 963, [data_name(933, 950), non_quoted_string(960, 963)]),
+                        data(989, 1019, [data_name(989, 1005), non_quoted_string(1016, 1019)]),
                         save_keyword(1045, 1050)
                     ]),
                     save_frame(1106, 1340, [
                         save_heading(1106, 1121),
-                        data(1167, 1196, [data_name(1167, 1184), non_quoted_text_string(1194, 1196)]),
-                        data(1223, 1253, [data_name(1223, 1239), non_quoted_text_string(1250, 1253)]),
+                        data(1167, 1196, [data_name(1167, 1184), non_quoted_string(1194, 1196)]),
+                        data(1223, 1253, [data_name(1223, 1239), non_quoted_string(1250, 1253)]),
                         data(1279, 1317, [data_name(1279, 1295), frame_code(1306, 1317)]),
                         save_keyword(1335, 1340)
                     ])
@@ -1143,11 +1143,11 @@ fn star_document() {
                     data_heading(1396, 1412),
                     data(1457, 1495, [data_name(1457, 1472), single_quote_string(1484, 1495)]),
                     data(1513, 1546, [data_name(1513, 1531), single_quote_string(1540, 1546)]),
-                    data(1569, 1605, [data_name(1569, 1582), non_quoted_text_string(1596, 1605)]),
+                    data(1569, 1605, [data_name(1569, 1582), non_quoted_string(1596, 1605)]),
                     data(1625, 1677, [data_name(1625, 1634), single_quote_string(1651, 1677)]),
                     save_frame(1681, 2795, [
                         save_heading(1681, 1696),
-                        data(1742, 1769, [data_name(1742, 1759), non_quoted_text_string(1768, 1769)]),
+                        data(1742, 1769, [data_name(1742, 1759), non_quoted_string(1768, 1769)]),
                         data(1798, 2746, [
                             data_loop(1798, 2746, [
                                 loop_keyword(1798, 1803),
@@ -1165,23 +1165,23 @@ fn star_document() {
                                     ])
                                 ]),
                                 data_loop_values(2156, 2746, [
-                                    non_quoted_text_string(2156, 2164),
-                                        double_quote_string(2204, 2215), non_quoted_text_string(2216, 2225),
-                                            non_quoted_text_string(2246, 2259), non_quoted_text_string(2263, 2266),
-                                            non_quoted_text_string(2287, 2299), non_quoted_text_string(2304, 2307),
+                                    non_quoted_string(2156, 2164),
+                                        double_quote_string(2204, 2215), non_quoted_string(2216, 2225),
+                                            non_quoted_string(2246, 2259), non_quoted_string(2263, 2266),
+                                            non_quoted_string(2287, 2299), non_quoted_string(2304, 2307),
                                         stop_keyword(2308, 2313),
-                                        double_quote_string(2328, 2338), non_quoted_text_string(2340, 2349),
-                                            non_quoted_text_string(2370, 2383), non_quoted_text_string(2387, 2390),
-                                            non_quoted_text_string(2411, 2424), non_quoted_text_string(2428, 2431),
+                                        double_quote_string(2328, 2338), non_quoted_string(2340, 2349),
+                                            non_quoted_string(2370, 2383), non_quoted_string(2387, 2390),
+                                            non_quoted_string(2411, 2424), non_quoted_string(2428, 2431),
                                         stop_keyword(2432, 2437),
-                                        double_quote_string(2452, 2462), non_quoted_text_string(2464, 2473),
-                                            non_quoted_text_string(2494, 2507),  non_quoted_text_string(2511, 2523),
-                                            non_quoted_text_string(2535, 2548), non_quoted_text_string(2552, 2564),
+                                        double_quote_string(2452, 2462), non_quoted_string(2464, 2473),
+                                            non_quoted_string(2494, 2507),  non_quoted_string(2511, 2523),
+                                            non_quoted_string(2535, 2548), non_quoted_string(2552, 2564),
                                         stop_keyword(2565, 2570),
-                                        double_quote_string(2576, 2586), non_quoted_text_string(2588, 2597),
-                                            non_quoted_text_string(2618, 2630), non_quoted_text_string(2634, 2647),
-                                            non_quoted_text_string(2659, 2672), non_quoted_text_string(2675, 2688),
-                                            non_quoted_text_string(2700, 2713), non_quoted_text_string(2716, 2729),
+                                        double_quote_string(2576, 2586), non_quoted_string(2588, 2597),
+                                            non_quoted_string(2618, 2630), non_quoted_string(2634, 2647),
+                                            non_quoted_string(2659, 2672), non_quoted_string(2675, 2688),
+                                            non_quoted_string(2700, 2713), non_quoted_string(2716, 2729),
                                         stop_keyword(2730, 2735),
                                     stop_keyword(2741, 2746)
                                 ])
@@ -1217,8 +1217,8 @@ fn semi_colon_bounded_string_full() {
                     data_heading(0, 16),
                     data(22, 60, [data_name(22, 37), single_quote_string(49, 60)]),
                     data(66, 99, [data_name(66, 84), single_quote_string(93, 99)]),
-                    data(105, 141, [data_name(105, 118), non_quoted_text_string(132, 141)]),
-                    data(147, 189, [data_name(147, 156), semi_colon_bounded_text_string(156, 189)])
+                    data(105, 141, [data_name(105, 118), non_quoted_string(132, 141)]),
+                    data(147, 189, [data_name(147, 156), semi_colon_string(156, 189)])
                 ]),
                 EOI(189, 189)
             ])

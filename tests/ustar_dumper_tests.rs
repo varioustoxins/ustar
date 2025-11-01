@@ -94,7 +94,7 @@ fn test_cli_semicolon_bounded_file() {
     assert!(output.contains("source: tests/test_data/semicolon_bounded.star"), "Should show correct source file");
     
     // Should contain semicolon bounded text handling
-    assert!(output.contains("semi_colon_bounded_text_string"), "Should identify semicolon bounded text");
+    assert!(output.contains("semi_colon_string"), "Should identify semicolon bounded text");
     
     // Should successfully parse
     assert!(output.contains("lines:"), "Should show line count");
