@@ -10,7 +10,7 @@ pub use pest::Parser;
 pub use pest::RuleType;
 
 // Dumpable trait and implementations
-pub mod dumpable;
+pub mod dump_extractors;
 
 // MutablePair - mutable alternative to Pair
 pub mod mutable_pair;

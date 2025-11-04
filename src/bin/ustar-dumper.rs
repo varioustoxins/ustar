@@ -3,7 +3,7 @@ use std::fs;
 use std::io::{self, Read};
 use std::path::PathBuf;
 use ustar::{StarParser, Rule};
-use ustar::dumpable::{DumpExtractor, PairExtractor};
+use ustar::dump_extractors::{DumpExtractor, PairExtractor};
 use pest::Parser as PestParser;
 use pest::iterators::Pairs;
 use tabled::{Table, Tabled, settings::Style};
