@@ -8,3 +8,9 @@ pub struct StarParser;
 pub use pest::iterators::{Pair, Pairs};
 pub use pest::Parser;
 pub use pest::RuleType;
+
+// Dumpable trait and implementations
+pub mod dumpable;
+
+// MutablePair - mutable alternative to Pair
+pub mod mutable_pair;
