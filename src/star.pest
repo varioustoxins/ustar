@@ -14,7 +14,7 @@ BLANK = _{ " " | "\t"}  // we separate simple spaces and end of line spaces, thi
 NEWLINE_SEMICOLON = @{NEWLINE ~ SEMICOLON}
 BASIC_WHITESPACE = _{ BLANK | NEWLINE }
 WHITESPACE = _{ !NEWLINE_SEMICOLON ~ BASIC_WHITESPACE}
-COMMENT = _{ "#" ~ (!"\n" ~ ANY)* ~ "\n" }
+COMMENT = _{ "#" ~ (!"\n" ~ ANY)* ~ ("\n" | EOI) }
 
 NON_BLANK_CHAR_NO_QUOTES = { "!" | '#'..'&' |  '('..'~' }  // it makes it complicated if quotes are in here
 NO_BLANK_CHAR = { '!'..'~' }
@@ -104,7 +104,7 @@ data_value = _{
 // global_heading = @{global_keyword}
 
 // <global_block> ::= <global_heading> <data_block_body>+
-global_block = {global_keyword ~ global_block_body+}
+global_block = {global_keyword ~ global_block_body+ ~ COMMENT*}
 
 // <global_block_body> ::= <data>+
 global_block_body = _{data+}
@@ -116,7 +116,7 @@ data = {data_name ~ data_value | data_loop}
 data_heading = @{data_keyword  ~ NO_BLANK_CHAR+}
 
 // a data block of the form data_*** ...
-data_block = {data_heading ~ data_block_body+} // 1. place to move + to
+data_block = {data_heading ~ data_block_body+ ~ COMMENT*} // Allow trailing comments after data block
 
 // the body of a data block containing data [data_names and data_values] or save frames
 data_block_body =  _{data | save_frame}  // move plus to 1. above ?
@@ -153,4 +153,4 @@ data_loop_item = _{stop_keyword | data_value }
 // <star-file> ::= {<data_block> I <global_block> }*
 data_block_or_global_block = _{data_block | global_block}
 
-star_file = {SOI ~ data_block_or_global_block* ~ EOI}
+star_file = {SOI ~ data_block_or_global_block* ~ COMMENT* ~ EOI }
