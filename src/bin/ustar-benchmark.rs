@@ -2,6 +2,7 @@ use std::fs;
 use std::path::Path;
 use std::time::{Duration, Instant};
 use ustar::{StarParser, Rule};
+use ustar::mutable_pair::MutablePair;
 use pest::Parser as PestParser;
 use clap::Parser;
 
@@ -24,6 +25,10 @@ struct Args {
     /// Number of warmup cycles before measurement
     #[arg(short, long, default_value = "10")]
     warmup: usize,
+    
+    /// Include MutablePair conversion benchmark
+    #[arg(short = 'm', long)]
+    mutable_pair: bool,
 }
 
 fn main() {
@@ -185,6 +190,15 @@ fn main() {
                 range, count, percentage, "█".repeat((percentage / 2.0) as usize));
         }
     }
+
+    // Benchmark MutablePair conversion (if requested)
+    if args.mutable_pair {
+        println!();
+        println!("==============================================");
+        println!("MutablePair Conversion Benchmark");
+        println!("==============================================");
+        benchmark_mutable_pair_conversion(&content, args.iterations, args.warmup, args.verbose, total_ms);
+    }
 }
 
 fn create_timing_histogram(times: &[Duration]) -> Vec<(String, usize)> {
@@ -293,4 +307,92 @@ fn establish_baseline() -> f64 {
     let baseline_per_byte = (baseline_ms * 1_000_000.0) / baseline_size as f64;
     
     baseline_per_byte
+}
+
+fn benchmark_mutable_pair_conversion(content: &str, iterations: usize, warmup: usize, verbose: bool, parse_total_ms: f64) {
+    println!("Testing conversion from Pair<Rule> to MutablePair...");
+    println!();
+    
+    // Warmup phase
+    if warmup > 0 {
+        println!("Running warmup ({} cycles)...", warmup);
+        for i in 0..warmup {
+            if let Ok(pairs) = StarParser::parse(Rule::star_file, content) {
+                for pair in pairs {
+                    let _ = MutablePair::from_pest_pair(&pair);
+                }
+            }
+            if verbose && (i + 1) % (warmup / 5).max(1) == 0 {
+                println!("  Warmup {}/{}", i + 1, warmup);
+            }
+        }
+    }
+    
+    println!();
+    println!("Running conversion benchmark...");
+    
+    let mut conversion_times: Vec<Duration> = Vec::with_capacity(iterations);
+    let mut total_duration = Duration::new(0, 0);
+    
+    for i in 0..iterations {
+        if let Ok(pairs) = StarParser::parse(Rule::star_file, content) {
+            let start_time = Instant::now();
+            
+            // Convert all pairs to MutablePairs
+            for pair in pairs {
+                let _ = MutablePair::from_pest_pair(&pair);
+            }
+            
+            let elapsed = start_time.elapsed();
+            conversion_times.push(elapsed);
+            total_duration += elapsed;
+            
+            if verbose && (i + 1) % (iterations / 10).max(1) == 0 {
+                println!("  Iteration {}/{}: {:.3}ms", 
+                    i + 1, iterations, elapsed.as_secs_f64() * 1000.0);
+            }
+        }
+    }
+    
+    // Calculate statistics
+    conversion_times.sort();
+    
+    let total_ms = total_duration.as_secs_f64() * 1000.0;
+    let avg_ms = total_ms / iterations as f64;
+    let min_ms = conversion_times[0].as_secs_f64() * 1000.0;
+    let max_ms = conversion_times[iterations - 1].as_secs_f64() * 1000.0;
+    let median_ms = if iterations % 2 == 0 {
+        (conversion_times[iterations / 2 - 1].as_secs_f64() + 
+         conversion_times[iterations / 2].as_secs_f64()) * 500.0
+    } else {
+        conversion_times[iterations / 2].as_secs_f64() * 1000.0
+    };
+    
+    // Calculate percentage of parse time
+    let percentage_of_parse = (total_ms / parse_total_ms) * 100.0;
+    
+    println!();
+    println!("Conversion Results");
+    println!("==================");
+    println!("Total time:     {:.3}ms [{:.1}% of parse time]", total_ms, percentage_of_parse);
+    println!("Average time:   {:.3}ms", avg_ms);
+    println!("Median time:    {:.3}ms", median_ms);
+    println!("Min time:       {:.3}ms", min_ms);
+    println!("Max time:       {:.3}ms", max_ms);
+    
+    let file_size = content.len();
+    println!();
+    println!("Performance per byte: {:.2} ns/byte", (avg_ms * 1_000_000.0) / file_size as f64);
+    
+    if verbose {
+        println!();
+        println!("Detailed Timing Distribution");
+        println!("============================");
+        let buckets = create_timing_histogram(&conversion_times);
+        for (range, count) in buckets {
+            let percentage = (count as f64 / iterations as f64) * 100.0;
+            println!("{:>12}: {:>4} ({:>5.1}%) {}", 
+                range, count, percentage, "█".repeat((percentage / 2.0) as usize));
+        }
+    }
 }
