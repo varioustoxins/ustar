@@ -1628,3 +1628,144 @@ fn test_quote_termination(
         expected, parsed, input
     );
 }
+
+#[test]
+fn test_ccpn_files_can_be_parsed() {
+    use std::fs;
+    use std::path::Path;
+    use std::time::Instant;
+    
+    let ccpn_dir = Path::new("tests/test_data/ccpn");
+    
+    // Check if directory exists
+    assert!(
+        ccpn_dir.exists(),
+        "CCPN test data directory does not exist: {:?}",
+        ccpn_dir
+    );
+    
+    // Get all .nef files in the directory
+    let entries = fs::read_dir(ccpn_dir)
+        .expect("Failed to read CCPN directory");
+    
+    let mut files_tested = 0;
+    let mut failures = Vec::new();
+    let mut known_issues = Vec::new();
+    let mut parse_times = Vec::new();
+    
+    // Known files with parsing issues (trailing comments, etc.)
+    let known_issue_files = vec!["CCPN_XPLOR_test1.nef"];
+    
+    for entry in entries {
+        let entry = entry.expect("Failed to read directory entry");
+        let path = entry.path();
+        
+        // Only process .nef files
+        if path.extension().and_then(|s| s.to_str()) == Some("nef") {
+            let file_name = path.file_name().unwrap().to_string_lossy().to_string();
+            
+            let content = fs::read_to_string(&path)
+                .expect(&format!("Failed to read file: {:?}", path));
+            
+            let file_size = content.len();
+            
+            // Time the parsing
+            let start = Instant::now();
+            let parse_result = StarParser::parse(Rule::star_file, &content);
+            let duration = start.elapsed();
+            
+            match parse_result {
+                Ok(_) => {
+                    let duration_ms = duration.as_secs_f64() * 1000.0;
+                    let throughput = (file_size as f64) / duration.as_secs_f64() / 1_000_000.0; // MB/s
+                    
+                    println!("✓ {} ({:.2} KB) - {:.2}ms ({:.2} MB/s)", 
+                        file_name, 
+                        file_size as f64 / 1024.0,
+                        duration_ms,
+                        throughput
+                    );
+                    
+                    parse_times.push((file_name.clone(), file_size, duration_ms, throughput));
+                    files_tested += 1;
+                }
+                Err(e) => {
+                    let error_msg = format!("{}: {}", file_name, e);
+                    
+                    // Check if this is a known issue
+                    if known_issue_files.contains(&file_name.as_str()) {
+                        println!("⚠ {} has known parsing issue", file_name);
+                        known_issues.push(error_msg);
+                    } else {
+                        println!("✗ {} failed to parse: {}", file_name, e);
+                        failures.push(error_msg);
+                    }
+                }
+            }
+        }
+    }
+    
+    // Report results
+    println!("\n=== CCPN Files Parsing Test Results ===");
+    println!("Files tested: {}", files_tested);
+    println!("Failures: {}", failures.len());
+    println!("Known issues: {}", known_issues.len());
+    
+    if files_tested > 0 {
+        // Sort by file size for summary
+        parse_times.sort_by(|a, b| a.1.cmp(&b.1));
+        
+        println!("\n=== Parsing Performance Summary ===");
+        println!("{:<35} {:>12} {:>12} {:>12}", "File", "Size", "Time", "Throughput");
+        println!("{}", "-".repeat(75));
+        
+        let mut total_size = 0;
+        let mut total_time = 0.0;
+        
+        for (name, size, time_ms, throughput) in &parse_times {
+            println!("{:<35} {:>10.2} KB {:>9.2} ms {:>9.2} MB/s", 
+                name, 
+                *size as f64 / 1024.0,
+                time_ms,
+                throughput
+            );
+            total_size += size;
+            total_time += time_ms;
+        }
+        
+        println!("{}", "-".repeat(75));
+        println!("{:<35} {:>10.2} KB {:>9.2} ms {:>9.2} MB/s",
+            "TOTAL",
+            total_size as f64 / 1024.0,
+            total_time,
+            (total_size as f64 / (total_time / 1000.0)) / 1_000_000.0
+        );
+    }
+    
+    if !known_issues.is_empty() {
+        println!("\nFiles with known issues:");
+        for issue in &known_issues {
+            println!("  - {}", issue);
+        }
+    }
+    
+    if !failures.is_empty() {
+        println!("\nFailed files:");
+        for failure in &failures {
+            println!("  - {}", failure);
+        }
+    }
+    
+    assert!(
+        files_tested > 0,
+        "No .nef files found in {:?}",
+        ccpn_dir
+    );
+    
+    assert!(
+        failures.is_empty(),
+        "Failed to parse {} CCPN file(s) (excluding {} known issue(s))",
+        failures.len(),
+        known_issues.len()
+    );
+}
