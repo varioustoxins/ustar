@@ -3,6 +3,7 @@ use std::fs;
 use std::io::{self, Read};
 use std::path::PathBuf;
 use ustar::{StarParser, Rule};
+use ustar::dumpable::{DumpExtractor, PairExtractor};
 use pest::Parser as PestParser;
 use pest::iterators::Pairs;
 use tabled::{Table, Tabled, settings::Style};
@@ -125,22 +126,23 @@ fn collect_symbol_info(
     indent_level: usize,
     symbols: &mut Vec<SymbolInfo>,
 ) {
+    let extractor = PairExtractor::new();
+    
     for pair in pairs {
         *symbol_counter += 1;
         let current_symbol = *symbol_counter;
         
-        let span = pair.as_span();
-        let rule_name = format!("{:?}", pair.as_rule());
-        let start_pos = span.start();
-        let end_pos = span.end();
-        let content = pair.as_str();
+        let rule_name = format!("{:?}", extractor.extract_rule(&pair));
+        let start_pos = extractor.extract_start(&pair);
+        let end_pos = extractor.extract_end(&pair);
+        let content = extractor.extract_str(&pair);
         
         // Calculate line and column positions
         let (start_line, start_col) = get_line_col(input, start_pos);
         let (end_line, end_col) = get_line_col(input, end_pos);
         
         // Check if this has children (non-terminal)
-        let has_children = pair.clone().into_inner().count() > 0;
+        let has_children = extractor.has_children(&pair);
         
         // Format content display: apply 30...30 rule to ALL symbols and replace newlines
         let normalized_content = content.replace('\n', "\\n").replace('\r', "\\r");
@@ -167,7 +169,7 @@ fn collect_symbol_info(
         
         // Recursively collect inner pairs
         if has_children {
-            collect_symbol_info(pair.into_inner(), input, symbol_counter, indent_level + 1, symbols);
+            collect_symbol_info(extractor.get_children(&pair), input, symbol_counter, indent_level + 1, symbols);
         }
     }
 }
