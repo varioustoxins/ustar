@@ -14,7 +14,7 @@ BLANK = _{ " " | "\t"}  // we separate simple spaces and end of line spaces, thi
 NEWLINE_SEMICOLON = @{NEWLINE ~ SEMICOLON}
 BASIC_WHITESPACE = _{ BLANK | NEWLINE }
 WHITESPACE = _{ !NEWLINE_SEMICOLON ~ BASIC_WHITESPACE}
-COMMENT = _{ "#" ~ (!"\n" ~ ANY)* ~ ("\n" | EOI) }
+COMMENT = _{ "#" ~ (!"\n" ~ ANY)* ~ (!("\n" ~ ";") ~ "\n" | EOI) }
 
 NON_BLANK_CHAR_NO_QUOTES = { "!" | '#'..'&' |  '('..'~' }  // it makes it complicated if quotes are in here
 NO_BLANK_CHAR = { '!'..'~' }

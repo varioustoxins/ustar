@@ -1374,6 +1374,21 @@ fn semi_colon_bounded_string_full_bad() {
 
 
 #[test]
+fn comment_before_semicolon_string() {
+    // Test that a comment between a loop definition and semicolon string works
+    // This was previously failing because COMMENT consumed the newline
+    let file_path = "tests/test_data/comment_before_semicolon.star";
+    let test_string = std::fs::read_to_string(file_path).unwrap();
+    
+    let successful_parse = StarParser::parse(Rule::star_file, &test_string);
+    assert!(successful_parse.is_ok(), "Should parse comment before semicolon string");
+    
+    let pairs = successful_parse.unwrap();
+    let star_file = pairs.into_iter().next().unwrap();
+    assert_eq!(star_file.as_rule(), Rule::star_file);
+}
+
+#[test]
 fn parse_mmcif_nef_dictionary() {
     let file_path = "tests/test_data/mmcif_nef_v1_1_ascii.dic";
     let test_string = std::fs::read_to_string(file_path).unwrap();
@@ -1915,6 +1930,188 @@ fn test_mmcif_files_can_be_parsed() {
     assert!(
         failures.is_empty(),
         "Failed to parse {} mmCIF file(s)",
+        failures.len()
+    );
+}
+
+#[test]
+fn test_mmcif_dictionaries_can_be_parsed() {
+    use std::fs;
+    use std::path::PathBuf;
+    use std::time::{Duration, Instant};
+    use indicatif::HumanBytes;
+    use tabled::{Table, Tabled, settings::{Style, Alignment, Modify, object::Columns}};
+
+    #[derive(Tabled)]
+    struct ParseResult {
+        #[tabled(rename = "File")]
+        name: String,
+        #[tabled(rename = "Size")]
+        size: String,
+        #[tabled(rename = "Time")]
+        time: String,
+        #[tabled(rename = "Throughput")]
+        throughput: String,
+    }
+
+    fn format_duration(duration: &Duration) -> String {
+        if duration.as_secs() > 0 {
+            format!("{:.2}s", duration.as_secs_f64())
+        } else if duration.as_millis() > 0 {
+            format!("{}ms", duration.as_millis())
+        } else if duration.as_micros() > 0 {
+            format!("{}μs", duration.as_micros())
+        } else {
+            format!("{}ns", duration.as_nanos())
+        }
+    }
+
+    let dicts_dir: PathBuf = ["tests", "test_data", "dicts"].iter().collect();
+    
+    assert!(
+        dicts_dir.exists() && dicts_dir.is_dir(),
+        "Dictionaries test directory not found: {:?}",
+        dicts_dir
+    );
+
+    println!();
+
+    let mut files_tested = 0;
+    let mut failures = Vec::new();
+    let mut parse_times = Vec::new();
+
+    // Read all .dic files in the dicts directory
+    let entries = fs::read_dir(&dicts_dir)
+        .unwrap_or_else(|e| panic!("Failed to read dicts directory {:?}: {}", dicts_dir, e));
+
+    for entry in entries {
+        let entry = entry.expect("Failed to read directory entry");
+        let path = entry.path();
+        
+        if path.extension().and_then(|s| s.to_str()) == Some("dic") {
+            files_tested += 1;
+            let filename = path.file_name().unwrap().to_string_lossy().to_string();
+            
+            print!("{}. {}", files_tested, filename);
+            
+            let content = fs::read_to_string(&path)
+                .unwrap_or_else(|e| panic!("Failed to read file {:?}: {}", path, e));
+            
+            let file_size = content.len();
+            
+            // Time the parsing
+            let start = Instant::now();
+            match StarParser::parse(Rule::star_file, &content) {
+                Ok(_) => {
+                    let duration = start.elapsed();
+                    let throughput = (file_size as f64 / duration.as_secs_f64()) / 1_000_000.0;
+                    
+                    let time_str = format_duration(&duration);
+                    
+                    print!(" ✓ ");
+                    println!(" [{}, {} = {:.2} MB/s", 
+                        HumanBytes(file_size as u64),
+                        time_str,
+                        throughput
+                    );
+                    
+                    parse_times.push((filename, file_size, duration, throughput));
+                },
+                Err(e) => {
+                    println!(" ✗");
+                    println!("  Error: {}", e);
+                    
+                    // Extract line number from error message
+                    let error_str = e.to_string();
+                    if let Some(line_start) = error_str.find("-->") {
+                        if let Some(line_end) = error_str[line_start..].find(':') {
+                            let line_part = &error_str[line_start + 4..line_start + line_end];
+                            if let Ok(line_num) = line_part.trim().parse::<usize>() {
+                                // Show context around the error
+                                let lines: Vec<&str> = content.lines().collect();
+                                let start_line = line_num.saturating_sub(3).max(1);
+                                let end_line = (line_num + 2).min(lines.len());
+                                
+                                println!("  Context (lines {}-{}):", start_line, end_line);
+                                for i in start_line..=end_line {
+                                    let marker = if i == line_num { ">>>" } else { "   " };
+                                    if i <= lines.len() {
+                                        let line = lines[i - 1];
+                                        // Show whitespace characters
+                                        let visible_line = line
+                                            .replace('\t', "␉")
+                                            .replace('\r', "␍")
+                                            .replace(' ', "·");
+                                        let display_line = if visible_line.chars().count() > 100 {
+                                            let truncated: String = visible_line.chars().take(97).collect();
+                                            format!("{}...", truncated)
+                                        } else {
+                                            visible_line
+                                        };
+                                        println!("  {} {:4}: {}", marker, i, display_line);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    
+                    failures.push(filename);
+                }
+            }
+        }
+    }
+    
+    if !failures.is_empty() {
+        println!("\n{} file(s) failed to parse", failures.len());
+    }
+    
+    // Print summary
+    if files_tested > 0 && !parse_times.is_empty() {
+        println!("\n=== mmCIF Dictionary Parsing Performance Summary ===\n");
+        
+        let mut table_data = Vec::new();
+        let mut total_size = 0;
+        let mut total_duration = Duration::ZERO;
+        
+        for (name, size, duration, throughput) in &parse_times {
+            table_data.push(ParseResult {
+                name: name.clone(),
+                size: format!("{}", HumanBytes(*size as u64)),
+                time: format_duration(duration),
+                throughput: format!("{:.2} MB/s", throughput),
+            });
+            total_size += size;
+            total_duration += *duration;
+        }
+        
+        // Add total row
+        table_data.push(ParseResult {
+            name: "TOTAL".to_string(),
+            size: format!("{}", HumanBytes(total_size as u64)),
+            time: format_duration(&total_duration),
+            throughput: format!("{:.2} MB/s", (total_size as f64 / total_duration.as_secs_f64()) / 1_000_000.0),
+        });
+        
+        let table = Table::new(table_data)
+            .with(Style::rounded())
+            .with(Modify::new(Columns::single(1)).with(Alignment::right()))
+            .with(Modify::new(Columns::single(2)).with(Alignment::right()))
+            .with(Modify::new(Columns::single(3)).with(Alignment::right()))
+            .to_string();
+        
+        println!("{}", table);
+        println!();
+    }
+    
+    assert!(
+        files_tested > 0,
+        "No .dic files found in {:?}",
+        dicts_dir
+    );
+    
+    assert!(
+        failures.is_empty(),
+        "Failed to parse {} dictionary file(s)",
         failures.len()
     );
 }
