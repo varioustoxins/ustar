@@ -1769,3 +1769,152 @@ fn test_ccpn_files_can_be_parsed() {
         known_issues.len()
     );
 }
+
+#[test]
+fn test_mmcif_files_can_be_parsed() {
+    use std::fs;
+    use std::path::PathBuf;
+    use std::time::{Duration, Instant};
+    use indicatif::HumanBytes;
+    use tabled::{Table, Tabled, settings::{Style, Alignment, Modify, object::Columns}};
+
+    #[derive(Tabled)]
+    struct ParseResult {
+        #[tabled(rename = "File")]
+        name: String,
+        #[tabled(rename = "Size")]
+        size: String,
+        #[tabled(rename = "Time")]
+        time: String,
+        #[tabled(rename = "Throughput")]
+        throughput: String,
+    }
+
+    fn format_duration(duration: &Duration) -> String {
+        if duration.as_secs() > 0 {
+            format!("{:.2}s ", duration.as_secs_f64())
+        } else if duration.as_millis() > 0 {
+            format!("{}ms", duration.as_millis())
+        } else if duration.as_micros() > 0 {
+            format!("{}μs", duration.as_micros())
+        } else {
+            format!("{}ns", duration.as_nanos())
+        }
+    }
+
+    let mmcif_dir: PathBuf = ["tests", "test_data", "mmcif"].iter().collect();
+    
+    assert!(
+        mmcif_dir.exists() && mmcif_dir.is_dir(),
+        "mmCIF test directory not found: {:?}",
+        mmcif_dir
+    );
+
+    println!();
+
+    let mut files_tested = 0;
+    let mut failures = Vec::new();
+    let mut parse_times = Vec::new();
+
+    // Read all .cif files in the mmcif directory
+    let entries = fs::read_dir(&mmcif_dir)
+        .unwrap_or_else(|e| panic!("Failed to read mmCIF directory {:?}: {}", mmcif_dir, e));
+
+    for entry in entries {
+        let entry = entry.expect("Failed to read directory entry");
+        let path = entry.path();
+        
+        if path.extension().and_then(|s| s.to_str()) == Some("cif") {
+            files_tested += 1;
+            let filename = path.file_name().unwrap().to_string_lossy().to_string();
+            
+            print!("{}. {}", files_tested, filename);
+            
+            let content = fs::read_to_string(&path)
+                .unwrap_or_else(|e| panic!("Failed to read file {:?}: {}", path, e));
+            
+            let file_size = content.len();
+            
+            // Time the parsing
+            let start = Instant::now();
+            match StarParser::parse(Rule::star_file, &content) {
+                Ok(_) => {
+                    let duration = start.elapsed();
+                    let throughput = (file_size as f64 / duration.as_secs_f64()) / 1_000_000.0;
+                    
+                    let time_str = format_duration(&duration);
+                    
+                    print!(" ✓ ");
+                    println!(" [{}, {} = {:.2} MB/s", 
+                        HumanBytes(file_size as u64),
+                        time_str,
+                        throughput
+                    );
+                    
+                    parse_times.push((filename, file_size, duration, throughput));
+                }
+                Err(e) => {
+                    println!("  ✗ Parse failed: {}", e);
+                    failures.push(filename);
+                }
+            }
+        }
+    }
+    
+    if !failures.is_empty() {
+        println!("\nFailed files:");
+        for failure in &failures {
+            println!("  - {}", failure);
+        }
+    }
+    
+    // Print summary
+    if files_tested > 0 && !parse_times.is_empty() {
+        println!("\n=== mmCIF Parsing Performance Summary ===\n");
+        
+        let mut table_data = Vec::new();
+        let mut total_size = 0;
+        let mut total_duration = Duration::ZERO;
+        
+        for (name, size, duration, throughput) in &parse_times {
+            table_data.push(ParseResult {
+                name: name.clone(),
+                size: format!("{}", HumanBytes(*size as u64)),
+                time: format_duration(duration),
+                throughput: format!("{:.2} MB/s", throughput),
+            });
+            total_size += size;
+            total_duration += *duration;
+        }
+        
+        // Add total row
+        table_data.push(ParseResult {
+            name: "TOTAL".to_string(),
+            size: format!("{}", HumanBytes(total_size as u64)),
+            time: format_duration(&total_duration),
+            throughput: format!("{:.2} MB/s", (total_size as f64 / total_duration.as_secs_f64()) / 1_000_000.0),
+        });
+        
+        let table = Table::new(table_data)
+            .with(Style::rounded())
+            .with(Modify::new(Columns::single(1)).with(Alignment::right()))
+            .with(Modify::new(Columns::single(2)).with(Alignment::right()))
+            .with(Modify::new(Columns::single(3)).with(Alignment::right()))
+            .to_string();
+        
+        println!("{}", table);
+        println!();
+    }
+    
+    assert!(
+        files_tested > 0,
+        "No .cif files found in {:?}",
+        mmcif_dir
+    );
+    
+    assert!(
+        failures.is_empty(),
+        "Failed to parse {} mmCIF file(s)",
+        failures.len()
+    );
+}
