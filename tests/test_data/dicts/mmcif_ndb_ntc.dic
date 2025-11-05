@@ -1,0 +1,1531 @@
+# -------------------------------------------------------------------------------------------------------------------------
+#
+#  File: ndb-ntc-extension.dic
+#  Date: 10-MAR-2020
+#
+#  Dictionary extension for integrative/hybrid models.
+#
+# -------------------------------------------------------------------------------------------------------------------------
+#
+data_ndb-ntc-extension.dic
+
+    _datablock.id                          ndb-ntc-extension.dic
+    _datablock.description
+;
+     This data block holds the extension dictionary for DNATCO conformer 
+     analysis of nucleic acids (https://www.dnatco.org/) for NDB. 
+;
+
+    _dictionary.title           ndb-ntc-extension.dic
+    _dictionary.datablock_id    ndb-ntc-extension.dic
+    _dictionary.version         0.01
+#
+     loop_
+    _dictionary_history.version
+    _dictionary_history.update
+    _dictionary_history.revision
+
+  0.01   2020-03-10
+;
+  Changes (bv/cl/bs/jc)
+  + Release as initial version 0.01
+;
+#########################
+## CATEGORY_GROUP_LIST ##
+#########################
+
+     loop_
+    _category_group_list.id
+    _category_group_list.parent_id
+    _category_group_list.description
+##
+              'inclusive_group'   .
+;              The parent category group containing all of the data categories in the macromolecular dictionary.
+;
+              'ndb_group'
+              'inclusive_group'
+;              Categories that describe the DNATCO nucleotide conformers for NDB.
+;
+####################
+## ITEM_TYPE_LIST ##
+####################
+#
+#
+#  The regular expressions defined here are not compliant
+#  with the POSIX 1003.2 standard as they include the
+#  '\n' and '\t' special characters.  These regular expressions
+#  have been tested using version 0.12 of Richard Stallman's
+#  GNU regular expression library in POSIX mode.
+#
+#
+##############################################################################
+
+     loop_
+    _item_type_list.code
+    _item_type_list.primitive_code
+    _item_type_list.construct
+    _item_type_list.detail
+               code      char
+               '[][_,.;:"&<>()/\{}'`~!@#$%A-Za-z0-9*|+-]*'
+;              code item types/single words ...
+;
+               ucode      uchar
+               '[][_,.;:"&<>()/\{}'`~!@#$%A-Za-z0-9*|+-]*'
+;              code item types/single words  (case insensitive) ...
+;
+               line      char
+               '[][ \t_(),.;:"&<>/\{}'`~!@#$%?+=*A-Za-z0-9|^-]*'
+;              char item types / multi-word items ...
+;
+               uline      uchar
+               '[][ \t_(),.;:"&<>/\{}'`~!@#$%?+=*A-Za-z0-9|^-]*'
+;              char item types / multi-word items (case insensitive)...
+;
+               text      char
+               '[][ \n\t()_,.;:"&<>/\{}'`~!@#$%?+=*A-Za-z0-9|^-]*'
+;              text item types / multi-line text ...
+;
+               int       numb
+               '[+-]?[0-9]+'
+;              int item types are the subset of numbers that are the negative
+               or positive integers.
+;
+               float     numb
+          '-?(([0-9]+)[.]?|([0-9]*[.][0-9]+))([(][0-9]+[)])?([eE][+-]?[0-9]+)?'
+;              float item types are the subset of numbers that are the floating
+               numbers.
+;
+               name      uchar
+               '_[_A-Za-z0-9]+\.[][_A-Za-z0-9%-]+'
+;              name item types take the form...
+;
+
+############################
+## NDB_STRUCT_NTC_OVERALL ##
+############################
+
+save_ndb_struct_ntc_overall
+    _category.description
+;              Data items in the NDB_STRUCT_NTC_OVERALL category defines
+               the overall DNATCO features of the entry. 
+               
+;
+    _category.id                  ndb_struct_ntc_overall
+    _category.mandatory_code      no
+     loop_
+    _category_key.name          '_ndb_struct_ntc_overall.entry_id'
+
+    loop_
+    _category_group.id           'inclusive_group'
+                                 'ndb_group'
+    loop_
+    _category_examples.detail
+    _category_examples.case
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+;
+    Example 1 - 
+;
+;
+        loop_
+        _ndb_struct_ntc_overall.entry_id
+        _ndb_struct_ntc_overall.confal_score
+        _ndb_struct_ntc_overall.confal_percentile
+        _ndb_struct_ntc_overall.ntc_version
+        _ndb_struct_ntc_overall.cana_version
+        _ndb_struct_ntc_overall.num_steps
+        _ndb_struct_ntc_overall.num_classified
+        _ndb_struct_ntc_overall.num_unclassified
+        _ndb_struct_ntc_overall.num_unclassified_rmsd_close
+         1bna 59 33 3.1 3.1 22 22 0 0
+         # ...  abbreviated ...
+;
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+   _pdbx_category_context.type         CONTRIBUTED
+   _pdbx_category_context.category_id  ndb_struct_ntc_overall
+     save_
+
+save__ndb_struct_ntc_overall.entry_id
+    _item_description.description
+;     The entry id.
+      This data item is a pointer to _entry.id in the
+      ENTRY category.
+;
+    _item.name                  '_ndb_struct_ntc_overall.entry_id'
+    _item.category_id             ndb_struct_ntc_overall
+    _item.mandatory_code          yes
+    _item_type.code               code
+    _item_linked.child_name       '_ndb_struct_ntc_overall.entry_id'
+    _item_linked.parent_name      '_entry.id'
+     save_
+
+save__ndb_struct_ntc_overall.confal_score
+    _item_description.description
+;   The confal score.      
+;
+    _item.name                  '_ndb_struct_ntc_overall.confal_score'
+    _item.category_id             ndb_struct_ntc_overall
+    _item.mandatory_code          yes
+    _item_type.code               float
+     save_
+
+save__ndb_struct_ntc_overall.confal_percentile
+    _item_description.description
+;   The confal percentile. 
+    The percentile will vary as the number of nucleic acid
+    structures increase and is expected to be updated on a 
+    yearly basis.     
+;
+    _item.name                  '_ndb_struct_ntc_overall.confal_percentile'
+    _item.category_id             ndb_struct_ntc_overall
+    _item.mandatory_code          yes
+    _item_type.code               float
+     save_
+
+save__ndb_struct_ntc_overall.NtC_version
+    _item_description.description
+;   The NtC version used.
+;
+    _item.name                  '_ndb_struct_ntc_overall.NtC_version'
+    _item.category_id             ndb_struct_ntc_overall
+    _item.mandatory_code          yes
+    _item_type.code               float
+     save_
+
+save__ndb_struct_ntc_overall.CANA_version
+    _item_description.description
+;   The CANA version used.
+;
+    _item.name                  '_ndb_struct_ntc_overall.CANA_version'
+    _item.category_id             ndb_struct_ntc_overall
+    _item.mandatory_code          yes
+    _item_type.code               float
+     save_
+
+save__ndb_struct_ntc_overall.num_steps
+    _item_description.description
+;   The number of steps. 
+;
+    _item.name                  '_ndb_struct_ntc_overall.num_steps'
+    _item.category_id             ndb_struct_ntc_overall
+    _item.mandatory_code          no
+    _item_type.code               int
+     save_
+
+save__ndb_struct_ntc_overall.num_classified
+    _item_description.description
+;   The number of steps classified using NtCs. 
+;
+    _item.name                  '_ndb_struct_ntc_overall.num_classified'
+    _item.category_id             ndb_struct_ntc_overall
+    _item.mandatory_code          no
+    _item_type.code               int
+     save_
+
+save__ndb_struct_ntc_overall.num_unclassified
+    _item_description.description
+;   The number of unclassified steps.
+;
+    _item.name                  '_ndb_struct_ntc_overall.num_unclassified'
+    _item.category_id             ndb_struct_ntc_overall
+    _item.mandatory_code          no
+    _item_type.code               int
+     save_
+
+save__ndb_struct_ntc_overall.num_unclassified_rmsd_close
+    _item_description.description
+;   The number of unclassified steps that have close rmsds to known NtCs in the golden set.
+;
+    _item.name                  '_ndb_struct_ntc_overall.num_unclassified_rmsd_close'
+    _item.category_id             ndb_struct_ntc_overall
+    _item.mandatory_code          no
+    _item_type.code               int
+     save_
+
+#########################
+## NDB_STRUCT_NTC_STEP ##
+#########################
+
+save_ndb_struct_ntc_step
+    _category.description
+;              Data items in the NDB_STRUCT_NTC_STEP category defines
+               the dinucleotide steps in the structure.
+
+;
+    _category.id                  ndb_struct_ntc_step
+    _category.mandatory_code      no
+     loop_
+    _category_key.name          '_ndb_struct_ntc_step.id'
+
+    loop_
+    _category_group.id           'inclusive_group'
+                                 'ndb_group'
+    loop_
+    _category_examples.detail
+    _category_examples.case
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+;
+    Example 1 -
+;
+;
+        loop_
+        _ndb_struct_ntc_step.id
+        _ndb_struct_ntc_step.name
+        _ndb_struct_ntc_step.PDB_model_number
+        _ndb_struct_ntc_step.label_entity_id_1
+        _ndb_struct_ntc_step.label_asym_id_1
+        _ndb_struct_ntc_step.label_seq_id_1
+        _ndb_struct_ntc_step.label_comp_id_1
+        _ndb_struct_ntc_step.label_alt_id_1
+        _ndb_struct_ntc_step.label_entity_id_2
+        _ndb_struct_ntc_step.label_asym_id_2
+        _ndb_struct_ntc_step.label_seq_id_2
+        _ndb_struct_ntc_step.label_comp_id_2
+        _ndb_struct_ntc_step.label_alt_id_2
+        _ndb_struct_ntc_step.auth_asym_id_1
+        _ndb_struct_ntc_step.auth_seq_id_1
+        _ndb_struct_ntc_step.auth_asym_id_2
+        _ndb_struct_ntc_step.auth_seq_id_2
+        _ndb_struct_ntc_step.PDB_ins_code_1
+        _ndb_struct_ntc_step.PDB_ins_code_2
+         1 '1a9n_Q_C_0_C_1' 1 1 A 1 C . 1 A 2 C . Q 0 Q 1 . .
+         # ...  abbreviated ...
+;
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+   _pdbx_category_context.type         CONTRIBUTED
+   _pdbx_category_context.category_id  ndb_struct_ntc_step
+     save_
+
+save__ndb_struct_ntc_step.id
+    _item_description.description
+;     Unique identifier for the step.
+;
+    _item.name                  '_ndb_struct_ntc_step.id'
+    _item.category_id             ndb_struct_ntc_step
+    _item.mandatory_code          yes
+    _item_type.code               int
+     save_
+
+save__ndb_struct_ntc_step.name
+    _item_description.description
+;     Step name as referred to in DNATCO.
+;
+    _item.name                  '_ndb_struct_ntc_step.name'
+    _item.category_id             ndb_struct_ntc_step
+    _item.mandatory_code          no
+    _item_type.code               code
+     save_
+
+save__ndb_struct_ntc_step.PDB_model_num
+    _item_description.description
+;     The PDB model number. 
+;
+    _item.name                  '_ndb_struct_ntc_step.PDB_model_num'
+    _item.category_id             ndb_struct_ntc_step
+    _item.mandatory_code          yes
+    _item_type.code               int
+    _item_linked.child_name       '_ndb_struct_ntc_step.PDB_model_num'
+    _item_linked.parent_name      '_atom_site.pdbx_PDB_model_num'
+     save_
+
+save__ndb_struct_ntc_step.label_entity_id_1
+    _item_description.description
+;     The entity identifier of the first nucleotide in the step. 
+;
+    _item.name                  '_ndb_struct_ntc_step.label_entity_id_1'
+    _item.category_id             ndb_struct_ntc_step
+    _item.mandatory_code          yes
+    _item_type.code               code
+    _item_linked.child_name       '_ndb_struct_ntc_step.label_entity_id_1'
+    _item_linked.parent_name      '_atom_site.label_entity_id'
+     save_
+
+save__ndb_struct_ntc_step.label_asym_id_1
+    _item_description.description
+;     The asym/chain identifier of the first nucleotide in the step. 
+;
+    _item.name                  '_ndb_struct_ntc_step.label_asym_id_1'
+    _item.category_id             ndb_struct_ntc_step
+    _item.mandatory_code          yes
+    _item_type.code               code
+    _item_linked.child_name       '_ndb_struct_ntc_step.label_asym_id_1'
+    _item_linked.parent_name      '_atom_site.label_asym_id'
+     save_
+
+save__ndb_struct_ntc_step.label_seq_id_1
+    _item_description.description
+;     The residue number identifier of the first nucleotide in the step. 
+;
+    _item.name                  '_ndb_struct_ntc_step.label_seq_id_1'
+    _item.category_id             ndb_struct_ntc_step
+    _item.mandatory_code          yes
+    _item_type.code               int
+    _item_linked.child_name       '_ndb_struct_ntc_step.label_seq_id_1'
+    _item_linked.parent_name      '_atom_site.label_seq_id'
+     save_
+
+save__ndb_struct_ntc_step.label_comp_id_1
+    _item_description.description
+;     The component/residue name identifier of the first nucleotide in the step.  
+;
+    _item.name                  '_ndb_struct_ntc_step.label_comp_id_1'
+    _item.category_id             ndb_struct_ntc_step
+    _item.mandatory_code          yes
+    _item_type.code               ucode
+    _item_linked.child_name       '_ndb_struct_ntc_step.label_comp_id_1'
+    _item_linked.parent_name      '_atom_site.label_comp_id'
+     save_
+
+save__ndb_struct_ntc_step.label_alt_id_1
+    _item_description.description
+;     The alternate conformation identifier of the first nucleotide in the step.  
+;
+    _item.name                  '_ndb_struct_ntc_step.label_alt_id_1'
+    _item.category_id             ndb_struct_ntc_step
+    _item.mandatory_code          yes
+    _item_type.code               code
+    _item_linked.child_name       '_ndb_struct_ntc_step.label_alt_id_1'
+    _item_linked.parent_name      '_atom_site.label_alt_id'
+     save_
+
+save__ndb_struct_ntc_step.label_entity_id_2
+    _item_description.description
+;     The entity identifier of the second nucleotide in the step.
+;
+    _item.name                  '_ndb_struct_ntc_step.label_entity_id_2'
+    _item.category_id             ndb_struct_ntc_step
+    _item.mandatory_code          yes
+    _item_type.code               code
+    _item_linked.child_name       '_ndb_struct_ntc_step.label_entity_id_2'
+    _item_linked.parent_name      '_atom_site.label_entity_id'
+     save_
+
+save__ndb_struct_ntc_step.label_asym_id_2
+    _item_description.description
+;     The asym/chain identifier of the second nucleotide in the step.
+;
+    _item.name                  '_ndb_struct_ntc_step.label_asym_id_2'
+    _item.category_id             ndb_struct_ntc_step
+    _item.mandatory_code          yes
+    _item_type.code               code
+    _item_linked.child_name       '_ndb_struct_ntc_step.label_asym_id_2'
+    _item_linked.parent_name      '_atom_site.label_asym_id'
+     save_
+
+save__ndb_struct_ntc_step.label_seq_id_2
+    _item_description.description
+;     The residue number identifier of the second nucleotide in the step.
+;
+    _item.name                  '_ndb_struct_ntc_step.label_seq_id_2'
+    _item.category_id             ndb_struct_ntc_step
+    _item.mandatory_code          yes
+    _item_type.code               int
+    _item_linked.child_name       '_ndb_struct_ntc_step.label_seq_id_2'
+    _item_linked.parent_name      '_atom_site.label_seq_id'
+     save_
+
+save__ndb_struct_ntc_step.label_comp_id_2
+    _item_description.description
+;     The component/residue name identifier of the second nucleotide in the step.
+;
+    _item.name                  '_ndb_struct_ntc_step.label_comp_id_2'
+    _item.category_id             ndb_struct_ntc_step
+    _item.mandatory_code          yes
+    _item_type.code               ucode     
+    _item_linked.child_name       '_ndb_struct_ntc_step.label_comp_id_2'
+    _item_linked.parent_name      '_atom_site.label_comp_id'
+     save_
+
+save__ndb_struct_ntc_step.label_alt_id_2
+    _item_description.description
+;     The alternate conformation identifier of the second nucleotide in the step.
+;
+    _item.name                  '_ndb_struct_ntc_step.label_alt_id_2'
+    _item.category_id             ndb_struct_ntc_step
+    _item.mandatory_code          yes
+    _item_type.code               code
+    _item_linked.child_name       '_ndb_struct_ntc_step.label_alt_id_2'
+    _item_linked.parent_name      '_atom_site.label_alt_id'
+     save_
+
+save__ndb_struct_ntc_step.auth_asym_id_1
+    _item_description.description
+;     The author provided asym/chain identifier of the first nucleotide in the step.
+;
+    _item.name                  '_ndb_struct_ntc_step.auth_asym_id_1'
+    _item.category_id             ndb_struct_ntc_step
+    _item.mandatory_code          yes
+    _item_type.code               code
+    _item_linked.child_name       '_ndb_struct_ntc_step.auth_asym_id_1'
+    _item_linked.parent_name      '_atom_site.auth_asym_id'
+     save_
+
+save__ndb_struct_ntc_step.auth_seq_id_1
+    _item_description.description
+;     The author provided residue number identifier of the first nucleotide in the step.
+;
+    _item.name                  '_ndb_struct_ntc_step.auth_seq_id_1'
+    _item.category_id             ndb_struct_ntc_step
+    _item.mandatory_code          yes
+    _item_type.code               code
+    _item_linked.child_name       '_ndb_struct_ntc_step.auth_seq_id_1'
+    _item_linked.parent_name      '_atom_site.auth_seq_id'
+     save_
+
+save__ndb_struct_ntc_step.auth_asym_id_2
+    _item_description.description
+;     The author provided asym/chain identifier of the second nucleotide in the step.
+;
+    _item.name                  '_ndb_struct_ntc_step.auth_asym_id_2'
+    _item.category_id             ndb_struct_ntc_step
+    _item.mandatory_code          yes
+    _item_type.code               code
+    _item_linked.child_name       '_ndb_struct_ntc_step.auth_asym_id_2'
+    _item_linked.parent_name      '_atom_site.auth_asym_id'
+     save_
+
+save__ndb_struct_ntc_step.auth_seq_id_2
+    _item_description.description
+;     The author provided residue number identifier of the second nucleotide in the step.
+;
+    _item.name                  '_ndb_struct_ntc_step.auth_seq_id_2'
+    _item.category_id             ndb_struct_ntc_step
+    _item.mandatory_code          yes
+    _item_type.code               code
+    _item_linked.child_name       '_ndb_struct_ntc_step.auth_seq_id_2'
+    _item_linked.parent_name      '_atom_site.auth_seq_id'
+     save_
+
+save__ndb_struct_ntc_step.PDB_ins_code_1
+    _item_description.description
+;     The residue insertion code of the first nucleotide in the step.
+;
+    _item.name                  '_ndb_struct_ntc_step.PDB_ins_code_1'
+    _item.category_id             ndb_struct_ntc_step
+    _item.mandatory_code          yes
+    _item_type.code               code
+    _item_linked.child_name       '_ndb_struct_ntc_step.PDB_ins_code_1'
+    _item_linked.parent_name      '_atom_site.pdbx_PDB_ins_code'
+     save_
+
+save__ndb_struct_ntc_step.PDB_ins_code_2
+    _item_description.description
+;     The residue insertion code of the second nucleotide in the step.
+;
+    _item.name                  '_ndb_struct_ntc_step.PDB_ins_code_2'
+    _item.category_id             ndb_struct_ntc_step
+    _item.mandatory_code          yes
+    _item_type.code               code
+    _item_linked.child_name       '_ndb_struct_ntc_step.PDB_ins_code_2'
+    _item_linked.parent_name      '_atom_site.pdbx_PDB_ins_code'
+     save_
+
+#################################
+## NDB_STRUCT_NTC_STEP_SUMMARY ##
+#################################
+
+save_ndb_struct_ntc_step_summary
+    _category.description
+;              Data items in the NDB_STRUCT_NTC_STEP_SUMMARY category summarizes
+               the DNATCO features of the dinucleotide steps.
+
+;
+    _category.id                  ndb_struct_ntc_step_summary
+    _category.mandatory_code      no
+     loop_
+    _category_key.name          '_ndb_struct_ntc_step_summary.step_id'
+
+    loop_
+    _category_group.id           'inclusive_group'
+                                 'ndb_group'
+    loop_
+    _category_examples.detail
+    _category_examples.case
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+;
+    Example 1 -
+;
+;
+        loop_
+        _ndb_struct_ntc_step_summary.step_id
+        _ndb_struct_ntc_step_summary.assigned_CANA
+        _ndb_struct_ntc_step_summary.assigned_NtC
+        _ndb_struct_ntc_step_summary.confal_score
+        _ndb_struct_ntc_step_summary.euclidean_distance_NtC_ideal
+        _ndb_struct_ntc_step_summary.cartesian_rmsd_closest_NtC_representative
+        _ndb_struct_ntc_step_summary.closest_CANA
+        _ndb_struct_ntc_step_summary.closest_NtC
+        _ndb_struct_ntc_step_summary.closest_step_golden
+         1 B12 BB04 33 ? 0.36 B12 BB04 ?
+         # ...  abbreviated ...
+;
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+   _pdbx_category_context.type         CONTRIBUTED
+   _pdbx_category_context.category_id  ndb_struct_ntc_step_summary
+     save_
+
+save__ndb_struct_ntc_step_summary.step_id
+    _item_description.description
+;     The nucleotide step identifier.
+;
+    _item.name                  '_ndb_struct_ntc_step_summary.step_id'
+    _item.category_id             ndb_struct_ntc_step_summary
+    _item.mandatory_code          yes
+    _item_type.code               int
+    _item_linked.child_name       '_ndb_struct_ntc_step_summary.step_id'
+    _item_linked.parent_name      '_ndb_struct_ntc_step.id'
+     save_
+
+save__ndb_struct_ntc_step_summary.assigned_CANA
+    _item_description.description
+;     The assigned CANA for the nucleotide step.
+;
+    _item.name                  '_ndb_struct_ntc_step_summary.assigned_CANA'
+    _item.category_id             ndb_struct_ntc_step_summary
+    _item.mandatory_code          yes
+    _item_type.code               code
+    loop_
+     _item_enumeration.value
+     _item_enumeration.detail
+     'AAA'  'steps in the A form'
+     'AAw'  'steps in the A form but some torsions (typically α and ɣ) have values switched from the typical values'
+     'AAu'  'A forms with bases partially unstacked'
+     'A-B'  'A to B transition steps (first nucleotide A, second B)'
+     'B-A'  'B to A transition steps (first nucleotide B, second A)'
+     'BBB'  'Steps in the B form'
+     'BBw'  'Steps in the B form but some torsions (typically α and ɣ) have values switched from the typical values'
+     'B12'  'Steps with torsion values bridging B and BII forms'
+     'BB2'  'Steps in the BII ("b-two") form'
+     'miB'  'Steps with B like sugar puckers and stacked bases but untypical torsion values'
+     'ICL'  'Steps with parallel but distant bases that can be intercalated'
+     'OPN'  'Steps with unstacked, frequently distant bases and untypical torsion values'
+     'SYN'  'Steps containing base in the syn orientation'
+     'ZZZ'  'steps in the Z form'
+     'NAN'  'Unassigned steps'
+     save_
+
+save__ndb_struct_ntc_step_summary.assigned_NtC
+    _item_description.description
+;     The assigned NtC for the nucleotide step.
+;
+    _item.name                  '_ndb_struct_ntc_step_summary.assigned_NtC'
+    _item.category_id             ndb_struct_ntc_step_summary
+    _item.mandatory_code          yes
+    _item_type.code               code
+    loop_
+     _item_enumeration.value
+     _item_enumeration.detail
+     'AA00' 'the most frequent, canonical A form'
+     'AA02' 'A-DNA with the B like χ1/χ2'
+     'AA03' 'A like, similar to AA00, high α2'
+     'AA04' 'A like, similar to AA00, low α2'
+     'AA08' 'A form variant'
+     'AA09' 'A form variant'
+     'AA01' 'A like, α2/ɣ2 switch (150/180)'
+     'AA05' 'A like, α2/ɣ2 switch (130/180)'
+     'AA06' 'A like, α2/ɣ2 switch (130/180)'
+     'AA10' 'A like, α2/ɣ2 switch (210/140)'
+     'AA11' 'A like, α2/ɣ2 switch (90/190)'
+     'AA07' 'A form with distant bases, low ζ1'
+     'AA12' 'A like backbone, bases can be intercalated'
+     'AA13' 'A form with distant bases, low ζ1'
+     'AB01' "A-B: δ1 C3'-endo, δ2 C2'-endo, χ1/χ2 have A-B pattern"
+     'AB02' "A-B: δ1 O4'-endo, extremely low ε1, χ1/χ2 are B like"
+     'AB03' 'A-B: similar to AB01 with high α2 and low ζ1, β2, ɣ2'
+     'AB04' "A-B: δ1 C3'-endo, δ2 C2'-endo, χ1/χ2 have A/B pattern, C'C' high"
+     'AB05' "A-B: δ1 C3'-endo, δ2 C2'-endo, χ1/χ2 have A/B pattern"
+     'BA01' "BI-A complex conformer with δ2 from C3' to C4'-exo, χ1/χ2 are B like"
+     'BA05' "BI-A complex conformer with δ2 from C3' to C4'-exo, χ1/χ2 are B like"
+     'BA09' 'BI-A: extremely low β2~60, α2/ɣ2 switch (260/170), χ2 A like'
+     'BA08' 'B-A: low β2'
+     'BA10' 'B-A complex cluster: α2~90, ɣ2~180, χ2 A like'
+     'BA13' 'B-A complex cluster: α2~90, ɣ2~180, χ2 A like'
+     'BA16' 'BII-A: χ2 A like'
+     'BA17' "BII-A: δ2~O4'-endo, β2~130"
+     'BB00' 'the most frequent DNA conformer, canonical B form, also called BI'
+     'BB01' 'less populated variant of BI form'
+     'BB17' 'less populated variant of BI form, very low ε1, α2, β2'
+     'BB02' 'BI with α2/ɣ2 typical values switched to 30/300'
+     'BB03' 'BI with α2/ɣ2 typical values switched to 160/170'
+     'BB11' 'B form with α2/ɣ2 typical values switched to 120/190 and low both ε1 and ζ1'
+     'BB16' 'B like, with χ1 A like'
+     'BB04' 'conformer with torsion transforming BI to BII form'
+     'BB05' 'BI-BII with α2/ɣ2 typical values switched to 70/220, χ2 A like'
+     'BB07' 'BII form, typical by ε1/ζ1 switch compared to BI'
+     'BB08' 'BII form variant with α1/ɣ1 typical values switched to 70/210'
+     'BB10' 'B form with extremely low values of α2, β2, ɣ2, and low ε1 and ζ1'
+     'BB12' 'BI like with α2/ɣ2 typical values switched to 260/170, low β2 70, χ2 A like'
+     'BB13' 'BI like with α2/ɣ2 typical values switched to 220/160, low β2 70, χ2 A like'
+     'BB14' 'B like with extremely low ε1, high β2'
+     'BB15' 'BI with high α2 (340) and ɣ2 near 0'
+     'BB20' 'B like pucker, χ2 A like, unusual combination of ε1, ζ1, α2, ɣ2, χ2'
+     'IC01' 'A-B backbone, parallel distant bases can be intercalated'
+     'IC02' 'A-B backbone, parallel distant bases can be intercalated'
+     'IC03' 'A-B backbone, parallel distant bases can be intercalated, α2/ɣ2 typical values switched to 70/300, χ2 B like'
+     'IC04' 'A-B backbone, parallel distant bases can be intercalated, α2/ɣ2 typical values switched to 190/180, χ2 B like'
+     'IC05' 'BII backbone, parallel distant bases can be intercalated'
+     'IC06' 'B like, parallel distant bases can be intercalated, χ1 A like'
+     'IC07' 'A like intercalated'
+     'OP01' 'A pucker and χ torsions, unusual combination of backbone torsions, bases distant, parallel, low rise'
+     'OP02' 'A pucker and χ torsions, unusual combination of backbone torsions, bases distant, angled'
+     'OP03' 'A pucker and χ torsions, unusual combination of backbone torsions, base sangled, can be intercalated'
+     'OP04' 'A pucker and χ torsions, unusual combination of backbone torsions, base sangled, can be intercalated'
+     'OP05' 'A pucker and χ torsions, unusual combination of backbone torsions, bases distant, perpendicular'
+     'OP06' 'A pucker and χ torsions, unusual combination of ε1, ζ1, α2, β2, bases distant, low rise'
+     'OP07' 'A pucker and χ torsions, unusual combination of ε1, ζ1, α2, β2, low rise'
+     'OP08' 'A pucker and χ torsions, unusual combination of ε1, ζ1, α2, β2, bases parallel, low rise'
+     'OP09' 'A-B pucker and χ torsions, unusual combination of ε1, ζ1, α2, β2, bases distant, angled'
+     'OP10' 'B-A pucker and χ torsions, unusual combination of ε1, ζ1, α2, β2, bases distant, parallel'
+     'OP11' 'B-A pucker and χ torsions, unusual combination of ε1, ζ1, α2, β2, bases distant, perpendicular'
+     'OP12' 'B-A pucker and χ torsions, unusual combination of ε1, ζ1, α2, β2, bases distant, angled'
+     'OP13' 'B-A pucker and χ torsions, unusual combination of ε1, ζ1, α2, β2, bases distant, perpendicular'
+     'OP14' 'B-A pucker and χ torsions, unusual combination of ε1, ζ1, α2, β2, bases distant, angled'
+     'OP15' 'B-A pucker and χ torsions, unusual combination of ε1, ζ1, α2, β2, bases can pair with each other'
+     'OP16' 'B-A pucker and χ torsions, unusual combination of ε1, ζ1, α2, β2, bases distant, perpendicular'
+     'OP17' 'B-A pucker and χ torsions, unusual combination of ε1, ζ1, α2, β2, bases distant, angled'
+     'OP18' 'B pucker and χ torsions, unusual combination of ε1, ζ1, α2, β2, bases distant, angled'
+     'OP19' 'B pucker and χ torsions, unusual combination of ε1, ζ1, α2, β2, bases distant'
+     'OP20' 'B pucker and χ torsions, unusual combination of ε1, ζ1, α2, β2, bases distant in 4-way junction'
+     'OP21' 'B pucker and χ torsions, unusual combination of ε1, ζ1, α2, β2, bases distant in 5'-end dsDNA'
+     'OP22' 'B pucker and χ torsions, unusual combination of ε1, ζ1, α2, β2, bases distant angled'
+     'OP23' 'B like open, parallel bases'
+     'OP24' 'B like open, low χ2, perpendicular bases'
+     'OP25' 'B-A open, perpendicular bases'
+     'OP26' 'B-A pucker and χ torsions, unusual combination of ε1, ζ1, α2, β2, bases can pair with each other'
+     'OP27' 'B-A pucker, A like χ torsions, unusual combination of ε1, ζ1, α2, β2, bases distant, angled'
+     'OP28' 'A-B pucker, A like χ torsions, unusual combination of ε1, ζ1, α2, β2, bases distant, angled'
+     'OP29' 'A pucker and χ torsions, unusual combination of backbone torsions, bases distant'
+     'OP30' 'A pucker and χ torsions, unusual combination of backbone torsions, bases distant, parallel'
+     'OP31' 'A pucker and χ torsions, unusual combination of ε1, ζ1, α2, β2, bases distant angled'
+     'OPS1' 'B-A pucker, unusual combination of ε1, ζ1, α2, β2, bases perpendicular, first syn'
+     'OP1S' 'B pucker, unusual combination of ε1, ζ1, α2, β2, bases angled, second syn'
+     'AAS1' 'A like with first base in syn orientation'
+     'AB1S' 'A-B, χ2 syn'
+     'AB2S' 'A-B, χ2 syn'
+     'BB1S' 'BI like, unusual β2 and ɣ2, χ2 syn'
+     'BB2S' 'BI like, α2 50, ɣ2 290, χ2 syn'
+     'BBS1' 'BI like, χ1 syn'
+     'ZZ01' 'Z like conformer similar to ZZS2 but both bases anti'
+     'ZZ02' 'Z like conformer similar to ZZ1S with α2/ɣ2 typical values switched to 230/60 and both bases anti'
+     'ZZ1S' 'Z form, Y-R step'
+     'ZZ2S' "Z form, Y-R step,  δ2 C2'-endo"
+     'ZZS1' 'ZI form, R-Y step'
+     'ZZS2' 'ZII form, R-Y step'
+     'NANT' 'Unassigned conformations'
+     save_
+
+save__ndb_struct_ntc_step_summary.confal_score
+    _item_description.description
+;     The confal score.
+;
+    _item.name                  '_ndb_struct_ntc_step_summary.confal_score'
+    _item.category_id             ndb_struct_ntc_step_summary
+    _item.mandatory_code          yes
+    _item_type.code               float
+     save_
+
+save__ndb_struct_ntc_step_summary.euclidean_distance_NtC_ideal
+    _item_description.description
+;     The euclidean distance to ideal NtC values.
+;
+    _item.name                  '_ndb_struct_ntc_step_summary.euclidean_distance_NtC_ideal'
+    _item.category_id             ndb_struct_ntc_step_summary
+    _item.mandatory_code          no
+    _item_type.code               float
+     save_
+
+save__ndb_struct_ntc_step_summary.cartesian_rmsd_closest_NtC_representative
+    _item_description.description
+;     The carterian rmsd to the best NtC representative in the golden set. Representative 
+      is the step with its 12 parameters most similar to ideal NtC values.
+;
+    _item.name                  '_ndb_struct_ntc_step_summary.cartesian_rmsd_closest_NtC_representative'
+    _item.category_id             ndb_struct_ntc_step_summary
+    _item.mandatory_code          yes
+    _item_type.code               float
+     save_
+
+save__ndb_struct_ntc_step_summary.closest_NtC
+    _item_description.description
+;     The closest NtC in the golden set.
+;
+    _item.name                  '_ndb_struct_ntc_step_summary.closest_NtC'
+    _item.category_id             ndb_struct_ntc_step_summary
+    _item.mandatory_code          no
+    _item_type.code               code
+     save_
+
+save__ndb_struct_ntc_step_summary.closest_CANA
+    _item_description.description
+;     The CANA of the closest NtC in the golden set.
+;
+    _item.name                  '_ndb_struct_ntc_step_summary.closest_CANA'
+    _item.category_id             ndb_struct_ntc_step_summary
+    _item.mandatory_code          no
+    _item_type.code               code
+     save_
+
+save__ndb_struct_ntc_step_summary.closest_step_golden
+    _item_description.description
+;     The closest step in the golden set.
+;
+    _item.name                  '_ndb_struct_ntc_step_summary.closest_step_golden'
+    _item.category_id             ndb_struct_ntc_step_summary
+    _item.mandatory_code          no
+    _item_type.code               code
+     save_
+
+####################################
+## NDB_STRUCT_NTC_STEP_PARAMETERS ##
+####################################
+
+save_ndb_struct_ntc_step_parameters
+    _category.description
+;              Data items in the NDB_STRUCT_NTC_STEP_PARAMETERS category provides
+               the DNATCO parameters of the dinucleotide steps.
+
+;
+    _category.id                  ndb_struct_ntc_step_parameters
+    _category.mandatory_code      no
+     loop_
+    _category_key.name          '_ndb_struct_ntc_step_parameters.step_id'
+
+    loop_
+    _category_group.id           'inclusive_group'
+                                 'ndb_group'
+    loop_
+    _category_examples.detail
+    _category_examples.case
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+;
+    Example 1 -
+;
+;
+        loop_
+        _ndb_struct_ntc_step_parameters.step_id
+        _ndb_struct_ntc_step_parameters.tor_delta_1
+        _ndb_struct_ntc_step_parameters.tor_epsilon_1
+        _ndb_struct_ntc_step_parameters.tor_zeta_1
+        _ndb_struct_ntc_step_parameters.tor_alpha_2
+        _ndb_struct_ntc_step_parameters.tor_beta_2
+        _ndb_struct_ntc_step_parameters.tor_gamma_2
+        _ndb_struct_ntc_step_parameters.tor_delta_2
+        _ndb_struct_ntc_step_parameters.tor_chi_1
+        _ndb_struct_ntc_step_parameters.tor_chi_2
+        _ndb_struct_ntc_step_parameters.dist_NN
+        _ndb_struct_ntc_step_parameters.dist_CC
+        _ndb_struct_ntc_step_parameters.tor_NCCN
+         1 140 201 214 315 153 46 140 263 253 4.6 5.1 29
+         # ...  abbreviated ...
+;
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+   _pdbx_category_context.type         CONTRIBUTED
+   _pdbx_category_context.category_id  ndb_struct_ntc_step_parameters
+     save_
+
+save__ndb_struct_ntc_step_parameters.step_id
+    _item_description.description
+;     The nucleotide step identifier.
+;
+    _item.name                  '_ndb_struct_ntc_step_parameters.step_id'
+    _item.category_id             ndb_struct_ntc_step_parameters
+    _item.mandatory_code          yes
+    _item_type.code               int
+    _item_linked.child_name       '_ndb_struct_ntc_step_parameters.step_id'
+    _item_linked.parent_name      '_ndb_struct_ntc_step.id'
+     save_
+
+save__ndb_struct_ntc_step_parameters.tor_delta_1
+    _item_description.description
+;     The delta_1 torsion angle defined by C5'(1)-C4'(1)-C3'(1)-O3'(1) atoms.
+;
+    _item.name                  '_ndb_struct_ntc_step_parameters.tor_delta_1'
+    _item.category_id             ndb_struct_ntc_step_parameters
+    _item.mandatory_code          yes
+    _item_type.code               float
+     save_
+
+save__ndb_struct_ntc_step_parameters.tor_epsilon_1
+    _item_description.description
+;     The epsilon_1 torsion angle defined by C4'(1)-C3'(1)-O3'(1)-P(2) atoms.
+;
+    _item.name                  '_ndb_struct_ntc_step_parameters.tor_epsilon_1'
+    _item.category_id             ndb_struct_ntc_step_parameters
+    _item.mandatory_code          yes
+    _item_type.code               float
+     save_
+
+save__ndb_struct_ntc_step_parameters.tor_zeta_1
+    _item_description.description
+;     The zeta_1 torsion angle defined by C3'(1)-O3'(1)-P(2)-O5'(2) atoms.
+;
+    _item.name                  '_ndb_struct_ntc_step_parameters.tor_zeta_1'
+    _item.category_id             ndb_struct_ntc_step_parameters
+    _item.mandatory_code          yes
+    _item_type.code               float
+     save_
+
+save__ndb_struct_ntc_step_parameters.tor_alpha_2
+    _item_description.description
+;     The alpha_2 torsion angle defined by O3'(1)-P(2)-O5'(2)-C5'(2) atoms.
+;
+    _item.name                  '_ndb_struct_ntc_step_parameters.tor_alpha_2'
+    _item.category_id             ndb_struct_ntc_step_parameters
+    _item.mandatory_code          yes
+    _item_type.code               float
+     save_
+
+save__ndb_struct_ntc_step_parameters.tor_beta_2
+    _item_description.description
+;     The beta_2 torsion angle defined by P(2)-O5'(2)-C5'(2)-C4'(2) atoms.
+;
+    _item.name                  '_ndb_struct_ntc_step_parameters.tor_beta_2'
+    _item.category_id             ndb_struct_ntc_step_parameters
+    _item.mandatory_code          yes
+    _item_type.code               float
+     save_
+
+save__ndb_struct_ntc_step_parameters.tor_gamma_2
+    _item_description.description
+;     The gamma_2 torsion angle defined by O5'(2)-C5'(2)-C4'(2)-C3'(2) atoms.
+;
+    _item.name                  '_ndb_struct_ntc_step_parameters.tor_gamma_2'
+    _item.category_id             ndb_struct_ntc_step_parameters
+    _item.mandatory_code          yes
+    _item_type.code               float
+     save_
+
+save__ndb_struct_ntc_step_parameters.tor_delta_2
+    _item_description.description
+;     The delta_2 torsion angle defined by C5'(2)-C4'(2)-C3'(2)-O3'(2) atoms.
+;
+    _item.name                  '_ndb_struct_ntc_step_parameters.tor_delta_2'
+    _item.category_id             ndb_struct_ntc_step_parameters
+    _item.mandatory_code          yes
+    _item_type.code               float
+     save_
+
+save__ndb_struct_ntc_step_parameters.tor_chi_1
+    _item_description.description
+;     The chi_1 torsion angle defined by O4'(1)-C1'(1)-N1/9(1)-C2/4(1) atoms.
+;
+    _item.name                  '_ndb_struct_ntc_step_parameters.tor_chi_1'
+    _item.category_id             ndb_struct_ntc_step_parameters
+    _item.mandatory_code          yes
+    _item_type.code               float
+     save_
+
+save__ndb_struct_ntc_step_parameters.tor_chi_2
+    _item_description.description
+;     The chi_2 torsion angle defined by O4'(2)-C1'(2)-N1/9(2)-C2/4(2) atoms.
+;
+    _item.name                  '_ndb_struct_ntc_step_parameters.tor_chi_2'
+    _item.category_id             ndb_struct_ntc_step_parameters
+    _item.mandatory_code          yes
+    _item_type.code               float
+     save_
+
+save__ndb_struct_ntc_step_parameters.dist_NN
+    _item_description.description
+;     The NN distance defined by N1/9(1)-N1/9(2) atoms.
+;
+    _item.name                  '_ndb_struct_ntc_step_parameters.dist_NN'
+    _item.category_id             ndb_struct_ntc_step_parameters
+    _item.mandatory_code          yes
+    _item_type.code               float
+     save_
+
+save__ndb_struct_ntc_step_parameters.dist_CC
+    _item_description.description
+;     The CC distance defined by C2/4(1)-C2/4(2) atoms.
+;
+    _item.name                  '_ndb_struct_ntc_step_parameters.dist_CC'
+    _item.category_id             ndb_struct_ntc_step_parameters
+    _item.mandatory_code          yes
+    _item_type.code               float
+     save_
+
+save__ndb_struct_ntc_step_parameters.tor_NCCN
+    _item_description.description
+;     The NCCN (mu) torsion angle defined by N1/9(1)-C2/4(1)-C2/4(2)-N1/9(2) atoms.
+;
+    _item.name                  '_ndb_struct_ntc_step_parameters.tor_NCCN'
+    _item.category_id             ndb_struct_ntc_step_parameters
+    _item.mandatory_code          yes
+    _item_type.code               float
+     save_
+
+save__ndb_struct_ntc_step_parameters.diff_tor_delta_1
+    _item_description.description
+;     The delta_1 torsion angle difference.
+;
+    _item.name                  '_ndb_struct_ntc_step_parameters.diff_tor_delta_1'
+    _item.category_id             ndb_struct_ntc_step_parameters
+    _item.mandatory_code          no
+    _item_type.code               float
+     save_
+
+save__ndb_struct_ntc_step_parameters.diff_tor_epsilon_1
+    _item_description.description
+;     The epsilon_1 torsion angle difference.
+;
+    _item.name                  '_ndb_struct_ntc_step_parameters.diff_tor_epsilon_1'
+    _item.category_id             ndb_struct_ntc_step_parameters
+    _item.mandatory_code          no
+    _item_type.code               float
+     save_
+
+save__ndb_struct_ntc_step_parameters.diff_tor_zeta_1
+    _item_description.description
+;     The zeta_1 torsion angle difference.
+;
+    _item.name                  '_ndb_struct_ntc_step_parameters.diff_tor_zeta_1'
+    _item.category_id             ndb_struct_ntc_step_parameters
+    _item.mandatory_code          no
+    _item_type.code               float
+     save_
+
+save__ndb_struct_ntc_step_parameters.diff_tor_alpha_2
+    _item_description.description
+;     The alpha_2 torsion angle difference.
+;
+    _item.name                  '_ndb_struct_ntc_step_parameters.diff_tor_alpha_2'
+    _item.category_id             ndb_struct_ntc_step_parameters
+    _item.mandatory_code          no
+    _item_type.code               float
+     save_
+
+save__ndb_struct_ntc_step_parameters.diff_tor_beta_2
+    _item_description.description
+;     The beta_2 torsion angle difference.
+;
+    _item.name                  '_ndb_struct_ntc_step_parameters.diff_tor_beta_2'
+    _item.category_id             ndb_struct_ntc_step_parameters
+    _item.mandatory_code          no
+    _item_type.code               float
+     save_
+
+save__ndb_struct_ntc_step_parameters.diff_tor_gamma_2
+    _item_description.description
+;     The gamma_2 torsion angle difference.
+;
+    _item.name                  '_ndb_struct_ntc_step_parameters.diff_tor_gamma_2'
+    _item.category_id             ndb_struct_ntc_step_parameters
+    _item.mandatory_code          no
+    _item_type.code               float
+     save_
+
+save__ndb_struct_ntc_step_parameters.diff_tor_delta_2
+    _item_description.description
+;     The delta_2 torsion angle difference.
+;
+    _item.name                  '_ndb_struct_ntc_step_parameters.diff_tor_delta_2'
+    _item.category_id             ndb_struct_ntc_step_parameters
+    _item.mandatory_code          no
+    _item_type.code               float
+     save_
+
+save__ndb_struct_ntc_step_parameters.diff_tor_chi_1
+    _item_description.description
+;     The chi_1 torsion angle difference.
+;
+    _item.name                  '_ndb_struct_ntc_step_parameters.diff_tor_chi_1'
+    _item.category_id             ndb_struct_ntc_step_parameters
+    _item.mandatory_code          no
+    _item_type.code               float
+     save_
+
+save__ndb_struct_ntc_step_parameters.diff_tor_chi_2
+    _item_description.description
+;     The chi_2 torsion angle difference.
+;
+    _item.name                  '_ndb_struct_ntc_step_parameters.diff_tor_chi_2'
+    _item.category_id             ndb_struct_ntc_step_parameters
+    _item.mandatory_code          no
+    _item_type.code               float
+     save_
+
+save__ndb_struct_ntc_step_parameters.diff_dist_NN
+    _item_description.description
+;     The NN distance difference.
+;
+    _item.name                  '_ndb_struct_ntc_step_parameters.diff_dist_NN'
+    _item.category_id             ndb_struct_ntc_step_parameters
+    _item.mandatory_code          no
+    _item_type.code               float
+     save_
+
+save__ndb_struct_ntc_step_parameters.diff_dist_CC
+    _item_description.description
+;     The CC distance difference.
+;
+    _item.name                  '_ndb_struct_ntc_step_parameters.diff_dist_CC'
+    _item.category_id             ndb_struct_ntc_step_parameters
+    _item.mandatory_code          no
+    _item_type.code               float
+     save_
+
+save__ndb_struct_ntc_step_parameters.diff_tor_NCCN
+    _item_description.description
+;     The NCCN torsion angle difference.
+;
+    _item.name                  '_ndb_struct_ntc_step_parameters.diff_tor_NCCN'
+    _item.category_id             ndb_struct_ntc_step_parameters
+    _item.mandatory_code          no
+    _item_type.code               float
+     save_
+
+save__ndb_struct_ntc_step_parameters.confal_tor_delta_1
+    _item_description.description
+;     The delta_1 torsion angle confal score.
+;
+    _item.name                  '_ndb_struct_ntc_step_parameters.confal_tor_delta_1'
+    _item.category_id             ndb_struct_ntc_step_parameters
+    _item.mandatory_code          no
+    _item_type.code               float
+     save_
+
+save__ndb_struct_ntc_step_parameters.confal_tor_epsilon_1
+    _item_description.description
+;     The epsilon_1 torsion angle confal score.
+;
+    _item.name                  '_ndb_struct_ntc_step_parameters.confal_tor_epsilon_1'
+    _item.category_id             ndb_struct_ntc_step_parameters
+    _item.mandatory_code          no
+    _item_type.code               float
+     save_
+
+save__ndb_struct_ntc_step_parameters.confal_tor_zeta_1
+    _item_description.description
+;     The zeta_1 torsion angle confal score.
+;
+    _item.name                  '_ndb_struct_ntc_step_parameters.confal_tor_zeta_1'
+    _item.category_id             ndb_struct_ntc_step_parameters
+    _item.mandatory_code          no
+    _item_type.code               float
+     save_
+
+save__ndb_struct_ntc_step_parameters.confal_tor_alpha_2
+    _item_description.description
+;     The alpha_2 torsion angle confal score.
+;
+    _item.name                  '_ndb_struct_ntc_step_parameters.confal_tor_alpha_2'
+    _item.category_id             ndb_struct_ntc_step_parameters
+    _item.mandatory_code          no
+    _item_type.code               float
+     save_
+
+save__ndb_struct_ntc_step_parameters.confal_tor_beta_2
+    _item_description.description
+;     The beta_2 torsion angle confal score.
+;
+    _item.name                  '_ndb_struct_ntc_step_parameters.confal_tor_beta_2'
+    _item.category_id             ndb_struct_ntc_step_parameters
+    _item.mandatory_code          no
+    _item_type.code               float
+     save_
+
+save__ndb_struct_ntc_step_parameters.confal_tor_gamma_2
+    _item_description.description
+;     The gamma_2 torsion angle confal score.
+;
+    _item.name                  '_ndb_struct_ntc_step_parameters.confal_tor_gamma_2'
+    _item.category_id             ndb_struct_ntc_step_parameters
+    _item.mandatory_code          no
+    _item_type.code               float
+     save_
+
+save__ndb_struct_ntc_step_parameters.confal_tor_delta_2
+    _item_description.description
+;     The delta_2 torsion angle confal score.
+;
+    _item.name                  '_ndb_struct_ntc_step_parameters.confal_tor_delta_2'
+    _item.category_id             ndb_struct_ntc_step_parameters
+    _item.mandatory_code          no
+    _item_type.code               float
+     save_
+
+save__ndb_struct_ntc_step_parameters.confal_tor_chi_1
+    _item_description.description
+;     The chi_1 torsion angle confal score.
+;
+    _item.name                  '_ndb_struct_ntc_step_parameters.confal_tor_chi_1'
+    _item.category_id             ndb_struct_ntc_step_parameters
+    _item.mandatory_code          no
+    _item_type.code               float
+     save_
+
+save__ndb_struct_ntc_step_parameters.confal_tor_chi_2
+    _item_description.description
+;     The chi_2 torsion angle confal score.
+;
+    _item.name                  '_ndb_struct_ntc_step_parameters.confal_tor_chi_2'
+    _item.category_id             ndb_struct_ntc_step_parameters
+    _item.mandatory_code          no
+    _item_type.code               float
+     save_
+
+save__ndb_struct_ntc_step_parameters.confal_dist_NN
+    _item_description.description
+;     The NN distance confal score.
+;
+    _item.name                  '_ndb_struct_ntc_step_parameters.confal_dist_NN'
+    _item.category_id             ndb_struct_ntc_step_parameters
+    _item.mandatory_code          no
+    _item_type.code               float
+     save_
+
+save__ndb_struct_ntc_step_parameters.confal_dist_CC
+    _item_description.description
+;     The CC distance confal score.
+;
+    _item.name                  '_ndb_struct_ntc_step_parameters.confal_dist_CC'
+    _item.category_id             ndb_struct_ntc_step_parameters
+    _item.mandatory_code          no
+    _item_type.code               float
+     save_
+
+save__ndb_struct_ntc_step_parameters.confal_tor_NCCN
+    _item_description.description
+;     The NCCN torsion angle confal score.
+;
+    _item.name                  '_ndb_struct_ntc_step_parameters.confal_tor_NCCN'
+    _item.category_id             ndb_struct_ntc_step_parameters
+    _item.mandatory_code          no
+    _item_type.code               float
+     save_
+
+save__ndb_struct_ntc_step_parameters.details
+    _item_description.description
+;     Additional details about the step parameters. For unassigned steps close to 
+      known NtC, this item contains list of parameters outside cutoff distances.
+;
+    _item.name                  '_ndb_struct_ntc_step_parameters.details'
+    _item.category_id             ndb_struct_ntc_step_parameters
+    _item.mandatory_code          no
+    _item_type.code               text
+     save_
+
+######################################
+## NDB_STRUCT_SUGAR_STEP_PARAMETERS ##
+######################################
+
+save_ndb_struct_sugar_step_parameters
+    _category.description
+;              Data items in the NDB_STRUCT_SUGAR_STEP_PARAMETERS category provides
+               the sugar parameters for the dinucleotide steps.
+
+;
+    _category.id                  ndb_struct_sugar_step_parameters
+    _category.mandatory_code      no
+     loop_
+    _category_key.name          '_ndb_struct_sugar_step_parameters.step_id'
+
+    loop_
+    _category_group.id           'inclusive_group'
+                                 'ndb_group'
+    loop_
+    _category_examples.detail
+    _category_examples.case
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+;
+    Example 1 -
+;
+;
+        loop_
+        _ndb_struct_sugar_step_parameters.step_id
+        _ndb_struct_sugar_step_parameters.P_1
+        _ndb_struct_sugar_step_parameters.tau_1
+        _ndb_struct_sugar_step_parameters.Pn_1
+        _ndb_struct_sugar_step_parameters.P_2
+        _ndb_struct_sugar_step_parameters.tau_2
+        _ndb_struct_sugar_step_parameters.Pn_2
+        _ndb_struct_sugar_step_parameters.nu_1_1
+        _ndb_struct_sugar_step_parameters.nu_1_2
+        _ndb_struct_sugar_step_parameters.nu_1_3
+        _ndb_struct_sugar_step_parameters.nu_1_4
+        _ndb_struct_sugar_step_parameters.nu_1_5
+        _ndb_struct_sugar_step_parameters.nu_2_1
+        _ndb_struct_sugar_step_parameters.nu_2_2
+        _ndb_struct_sugar_step_parameters.nu_2_3
+        _ndb_struct_sugar_step_parameters.nu_2_4
+        _ndb_struct_sugar_step_parameters.nu_2_5
+         1 . . . . . . . . . . . . . . . .
+         # ...  abbreviated ...
+;
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+   _pdbx_category_context.type         CONTRIBUTED
+   _pdbx_category_context.category_id  ndb_struct_sugar_step_parameters
+     save_
+
+save__ndb_struct_sugar_step_parameters.step_id
+    _item_description.description
+;     The nucleotide step identifier.
+;
+    _item.name                  '_ndb_struct_sugar_step_parameters.step_id'
+    _item.category_id             ndb_struct_sugar_step_parameters
+    _item.mandatory_code          yes
+    _item_type.code               int
+    _item_linked.child_name       '_ndb_struct_sugar_step_parameters.step_id'
+    _item_linked.parent_name      '_ndb_struct_ntc_step.id'
+     save_
+
+save__ndb_struct_sugar_step_parameters.P_1
+    _item_description.description
+;     The P_1 parameter. Pseudorotation phase angle for (deoxy) ribose of residue 1. 
+;
+    _item.name                  '_ndb_struct_sugar_step_parameters.P_1'
+    _item.category_id             ndb_struct_sugar_step_parameters
+    _item.mandatory_code          yes
+    _item_type.code               float
+     save_
+
+save__ndb_struct_sugar_step_parameters.tau_1
+    _item_description.description
+;     The tau_1 parameter. Maximum degree of pucker for residue 1. 
+;
+    _item.name                  '_ndb_struct_sugar_step_parameters.tau_1'
+    _item.category_id             ndb_struct_sugar_step_parameters
+    _item.mandatory_code          yes
+    _item_type.code               float
+     save_
+
+save__ndb_struct_sugar_step_parameters.Pn_1
+    _item_description.description
+;     The Pn_1 parameter. First residue pucker name (eg., C2end for C2'-endo or C3exo for C3'-exo puckers). 
+;
+    _item.name                  '_ndb_struct_sugar_step_parameters.Pn_1'
+    _item.category_id             ndb_struct_sugar_step_parameters
+    _item.mandatory_code          yes
+    _item_type.code               float
+     save_
+
+save__ndb_struct_sugar_step_parameters.P_2
+    _item_description.description
+;     The P_2 parameter. Pseudorotation phase angle for (deoxy) ribose of residue 2. 
+;
+    _item.name                  '_ndb_struct_sugar_step_parameters.P_2'
+    _item.category_id             ndb_struct_sugar_step_parameters
+    _item.mandatory_code          yes
+    _item_type.code               float
+     save_
+
+save__ndb_struct_sugar_step_parameters.tau_2
+    _item_description.description
+;     The tau_2 parameter. Maximum degree of pucker for residue 2.
+;
+    _item.name                  '_ndb_struct_sugar_step_parameters.tau_2'
+    _item.category_id             ndb_struct_sugar_step_parameters
+    _item.mandatory_code          yes
+    _item_type.code               float
+     save_
+
+save__ndb_struct_sugar_step_parameters.Pn_2
+    _item_description.description
+;     The Pn_2 parameter. Second residue pucker name (eg., C2end for C2'-endo or C3exo for C3'-exo puckers).
+;
+    _item.name                  '_ndb_struct_sugar_step_parameters.Pn_2'
+    _item.category_id             ndb_struct_sugar_step_parameters
+    _item.mandatory_code          yes
+    _item_type.code               float
+     save_
+
+save__ndb_struct_sugar_step_parameters.nu_1_1
+    _item_description.description
+;     The nu_1_1 parameter. Torsion defined by C4'-O4'-C1'-C2' atoms of residue 1.
+;
+    _item.name                  '_ndb_struct_sugar_step_parameters.nu_1_1'
+    _item.category_id             ndb_struct_sugar_step_parameters
+    _item.mandatory_code          yes
+    _item_type.code               float
+     save_
+
+save__ndb_struct_sugar_step_parameters.nu_1_2
+    _item_description.description
+;     The nu_1_2 parameter. Torsion defined by O4'-C1'-C2'-C3' atoms of residue 1.
+;
+    _item.name                  '_ndb_struct_sugar_step_parameters.nu_1_2'
+    _item.category_id             ndb_struct_sugar_step_parameters
+    _item.mandatory_code          yes  
+    _item_type.code               float
+     save_
+
+save__ndb_struct_sugar_step_parameters.nu_1_3
+    _item_description.description
+;     The nu_1_3 parameter. Torsion defined by C1'-C2'-C3'-C4' atoms of residue 1.
+;
+    _item.name                  '_ndb_struct_sugar_step_parameters.nu_1_3'
+    _item.category_id             ndb_struct_sugar_step_parameters
+    _item.mandatory_code          yes
+    _item_type.code               float
+     save_
+
+save__ndb_struct_sugar_step_parameters.nu_1_4
+    _item_description.description
+;     The nu_1_4 parameter. Torsion defined by C2'-C3'-C4'-O4' atoms of residue 1.
+;
+    _item.name                  '_ndb_struct_sugar_step_parameters.nu_1_4'
+    _item.category_id             ndb_struct_sugar_step_parameters
+    _item.mandatory_code          yes  
+    _item_type.code               float
+     save_
+
+save__ndb_struct_sugar_step_parameters.nu_1_5
+    _item_description.description
+;     The nu_1_5 parameter. Torsion defined by C3'-C4'-O4'-C1' atoms of residue 1.
+;
+    _item.name                  '_ndb_struct_sugar_step_parameters.nu_1_5'
+    _item.category_id             ndb_struct_sugar_step_parameters
+    _item.mandatory_code          yes  
+    _item_type.code               float
+     save_
+
+save__ndb_struct_sugar_step_parameters.nu_2_1
+    _item_description.description
+;     The nu_2_1 parameter. Torsion defined by C4'-O4'-C1'-C2' atoms of residue 2.
+;
+    _item.name                  '_ndb_struct_sugar_step_parameters.nu_2_1'
+    _item.category_id             ndb_struct_sugar_step_parameters
+    _item.mandatory_code          yes  
+    _item_type.code               float
+     save_
+
+save__ndb_struct_sugar_step_parameters.nu_2_2
+    _item_description.description
+;     The nu_2_2 parameter. Torsion defined by O4'-C1'-C2'-C3' atoms of residue 2.
+;
+    _item.name                  '_ndb_struct_sugar_step_parameters.nu_2_2'
+    _item.category_id             ndb_struct_sugar_step_parameters
+    _item.mandatory_code          yes
+    _item_type.code               float
+     save_
+
+save__ndb_struct_sugar_step_parameters.nu_2_3
+    _item_description.description
+;     The nu_2_3 parameter. Torsion defined by C1'-C2'-C3'-C4' atoms of residue 2.
+;
+    _item.name                  '_ndb_struct_sugar_step_parameters.nu_2_3'
+    _item.category_id             ndb_struct_sugar_step_parameters
+    _item.mandatory_code          yes
+    _item_type.code               float
+     save_
+
+save__ndb_struct_sugar_step_parameters.nu_2_4
+    _item_description.description
+;     The nu_2_4 parameter. Torsion defined by C2'-C3'-C4'-O4' atoms of residue 2.
+;
+    _item.name                  '_ndb_struct_sugar_step_parameters.nu_2_4'
+    _item.category_id             ndb_struct_sugar_step_parameters
+    _item.mandatory_code          yes
+    _item_type.code               float
+     save_
+
+save__ndb_struct_sugar_step_parameters.nu_2_5
+    _item_description.description
+;     The nu_2_5 parameter. Torsion defined by C3'-C4'-O4'-C1' atoms of residue 2.
+;
+    _item.name                  '_ndb_struct_sugar_step_parameters.nu_2_5'
+    _item.category_id             ndb_struct_sugar_step_parameters
+    _item.mandatory_code          yes
+    _item_type.code               float
+     save_
+
+save__ndb_struct_sugar_step_parameters.diff_nu_1_1
+    _item_description.description
+;     The nu_1_1 parameter difference.
+;
+    _item.name                  '_ndb_struct_sugar_step_parameters.diff_nu_1_1'
+    _item.category_id             ndb_struct_sugar_step_parameters
+    _item.mandatory_code          no
+    _item_type.code               float
+     save_
+
+save__ndb_struct_sugar_step_parameters.diff_nu_1_2
+    _item_description.description
+;     The nu_1_2 parameter difference.
+;
+    _item.name                  '_ndb_struct_sugar_step_parameters.diff_nu_1_2'
+    _item.category_id             ndb_struct_sugar_step_parameters
+    _item.mandatory_code          no  
+    _item_type.code               float
+     save_
+
+save__ndb_struct_sugar_step_parameters.diff_nu_1_3
+    _item_description.description
+;     The nu_1_3 parameter difference.
+;
+    _item.name                  '_ndb_struct_sugar_step_parameters.diff_nu_1_3'
+    _item.category_id             ndb_struct_sugar_step_parameters
+    _item.mandatory_code          no
+    _item_type.code               float
+     save_
+
+save__ndb_struct_sugar_step_parameters.diff_nu_1_4
+    _item_description.description
+;     The nu_1_4 parameter difference.
+;
+    _item.name                  '_ndb_struct_sugar_step_parameters.diff_nu_1_4'
+    _item.category_id             ndb_struct_sugar_step_parameters
+    _item.mandatory_code          no  
+    _item_type.code               float
+     save_
+
+save__ndb_struct_sugar_step_parameters.diff_nu_1_5
+    _item_description.description
+;     The nu_1_5 parameter difference.
+;
+    _item.name                  '_ndb_struct_sugar_step_parameters.diff_nu_1_5'
+    _item.category_id             ndb_struct_sugar_step_parameters
+    _item.mandatory_code          no  
+    _item_type.code               float
+     save_
+
+save__ndb_struct_sugar_step_parameters.diff_nu_2_1
+    _item_description.description
+;     The nu_2_1 parameter difference.
+;
+    _item.name                  '_ndb_struct_sugar_step_parameters.diff_nu_2_1'
+    _item.category_id             ndb_struct_sugar_step_parameters
+    _item.mandatory_code          no  
+    _item_type.code               float
+     save_
+
+save__ndb_struct_sugar_step_parameters.diff_nu_2_2
+    _item_description.description
+;     The nu_2_2 parameter difference.
+;
+    _item.name                  '_ndb_struct_sugar_step_parameters.diff_nu_2_2'
+    _item.category_id             ndb_struct_sugar_step_parameters
+    _item.mandatory_code          no
+    _item_type.code               float
+     save_
+
+save__ndb_struct_sugar_step_parameters.diff_nu_2_3
+    _item_description.description
+;     The nu_2_3 parameter difference.
+;
+    _item.name                  '_ndb_struct_sugar_step_parameters.diff_nu_2_3'
+    _item.category_id             ndb_struct_sugar_step_parameters
+    _item.mandatory_code          no
+    _item_type.code               float
+     save_
+
+save__ndb_struct_sugar_step_parameters.diff_nu_2_4
+    _item_description.description
+;     The nu_2_4 parameter difference.
+;
+    _item.name                  '_ndb_struct_sugar_step_parameters.diff_nu_2_4'
+    _item.category_id             ndb_struct_sugar_step_parameters
+    _item.mandatory_code          no
+    _item_type.code               float
+     save_
+
+save__ndb_struct_sugar_step_parameters.diff_nu_2_5
+    _item_description.description
+;     The nu_2_5 parameter difference.
+;
+    _item.name                  '_ndb_struct_sugar_step_parameters.diff_nu_2_5'
+    _item.category_id             ndb_struct_sugar_step_parameters
+    _item.mandatory_code          no
+    _item_type.code               float
+     save_
+

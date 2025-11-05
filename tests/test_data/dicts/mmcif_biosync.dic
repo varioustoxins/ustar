@@ -1,0 +1,3094 @@
+###########################################################################
+#
+# File:  mmcif_biosync.dic
+# Date:  Mon Aug 16 07:18:26 EDT 2021
+#
+# Created from files in CVS module dict-mmcif_biosync.dic unless noted:
+#        mmcif_biosync-header.dic   
+#        mmcif_biosync-data.dic   
+#        mmcif_biosync-def-1.dic   
+#        mmcif_biosync-def-ilg.dic   
+#
+###########################################################################
+ 
+ 
+##############################################################################
+#
+# File:  mmcif_biosync-header.dic
+#                                              
+#                        BIOSYNC Dictionary Extension to the                         
+#                          Macromolecular CIF Dictionary                       
+#
+#  This extension dictionary contains definitions describing the details of 
+#  synchrotron beamlines and beamline facilities. 
+#                                                                          
+#
+#                              Header Section
+#                                                                          
+##############################################################################
+
+data_mmcif_biosync.dic
+
+    _datablock.id                          mmcif_biosync.dic
+    _datablock.description
+;
+     This data block holds the BIOSYNC extension to the mmCIF data dictionary.
+;
+
+    _dictionary.title           mmcif_biosync.dic
+    _dictionary.version         0.7
+    _dictionary.datablock_id    mmcif_biosync.dic
+
+
+########################
+## DICTIONARY_HISTORY ##
+########################
+
+     loop_
+    _dictionary_history.version
+    _dictionary_history.update
+    _dictionary_history.revision
+   0.1   2000-02-17   'Initial version'
+   0.2   2000-07-31   'Update, add versioning'
+   0.3   2000-08-01   'Revised application of beamline_id'
+   0.4   2001-01-24   'mmCIF aliases added'
+   0.5   2005-10-20   
+; Changes (jdw):
+  +Added items:   
+     _bsync_diffrn_measurement.special_capabilities
+     _bsync_diffrn_measurement.other_instrumentation
+;
+   0.6   2005-10-27   
+; Changes (jdw):
+  +Moved 
+     _bsync_diffrn_measurement.monochromator
+     _bsync_diffrn_measurement.monochromator_crystal
+     _bsync_diffrn_measurement.mirrors
+     _bsync_diffrn_measurement.mirror_cutoff
+   to category bsync_diffrn_radiation.
+;
+   0.7   2008-05-29
+; Changes (jdw):
+   + corrections to examples, set mandatory codes for key items.
+;
+### EOF  mmcif_biosync-header.dic
+##############################################################################
+#
+# File:  mmcif_biosync-data.dic
+#                                              
+#                        BIOSYNC Dictionary Extension to the                         
+#                          Macromolecular CIF Dictionary                       
+#
+#  This extension dictionary contains definitions describing the details of 
+#  synchrotron beamlines and beamline facilities. 
+#                                                                          
+#
+#                              Data Section
+#                                                                          
+##############################################################################
+
+####################
+## ITEM_TYPE_LIST ##
+####################
+#
+#
+#  The regular expressions defined here are not compliant
+#  with the POSIX 1003.2 standard as they include the
+#  '\n' and '\t' special characters.  These regular expressions
+#  have been tested using the version 0.12 of Richard Stallman's
+#  GNU regular expression libary in POSIX mode.
+#
+     loop_
+    _item_type_list.code
+    _item_type_list.primitive_code
+    _item_type_list.construct
+    _item_type_list.detail
+               code      char
+               '[_,.;:"&<>/\{}'`~!@#$%A-Za-z0-9*|+-]*'
+;              code item types/single words ...
+;
+               line      char
+               '[][ \t_(),.;:"&<>/\{}'`~!@#$%?+=*A-Za-z0-9|^-]*'
+;              char item types / multi-word items ...
+;
+               uline      uchar
+               '[][ \t_(),.;:"&<>/\{}'`~!@#$%?+=*A-Za-z0-9|^-]*'
+;              char item types / multi-word items (case insensitive)...
+;
+
+               text      char
+                '[][ \n\t()_,.;:"&<>/\{}'`~!@#$%?+=*A-Za-z0-9|^-]*'
+;              text item types / multi-line text ...
+;
+               int       numb
+               '-?[0-9]+'
+;              int item types are the subset of numbers that are the negative
+               or positive integers.
+;
+               float     numb
+               '-?(([0-9]+)|([0-9]*[.][0-9]+))([(][0-9]+[)])?([eE][+-]?[0-9]+)?'
+;              int item types are the subset of numbers that are the floating
+               numbers.
+;
+               yyyy-mm-dd  char
+                '[0-9]?[0-9]?[0-9][0-9]-[0-9]?[0-9]-[0-9][0-9]'
+;
+               Standard format for CIF dates.
+;
+               any       char
+               '.*'
+;              A catch all for items that may take any form...
+;
+
+
+
+#####################
+## ITEM_UNITS_LIST ##
+#####################
+
+     loop_
+    _item_units_list.code
+    _item_units_list.detail
+     'meters'       .
+     'centimetres'  'centimetres (meters * 10^( -2))'
+     'millimetres'  'millimetres (meters * 10^( -3))'
+     'nanometres'   'nanometres  (meters * 10^( -9))'
+     'angstroms'    'angstroms   (meters * 10^(-10))'
+     'celsius'      'degrees (of temperature) Celsius'
+     'kelvins'      'degrees (of temperature) Kelvin'
+     'hours'        'hours'
+     'minutes'      'minutes'
+     'seconds'      'seconds'
+     'microseconds' 'microseconds'
+     'kilowatts'    'kilowatts'
+     'milliamperes' 'milliamperes'
+     'kilovolts'    'kilovolts'
+     'KeV'          'kiloelectron volts (electron volts * 10^(3)'
+
+#########################
+## CATEGORY_GROUP_LIST ##
+#########################
+
+loop_
+_category_group_list.id
+_category_group_list.parent_id
+_category_group_list.description
+             'inclusive_group'
+             .
+;             All categories
+;
+             'bsync_group'
+             .
+;             Categories which pertain to the BIOSYNC project
+;
+
+### EOF mmcif_biosync-data.dic
+
+####################
+## BSYNC_FACILITY ##
+####################
+
+save_bsync_facility
+    _category.description
+;          
+   You must press the "Save General Synchrotron Information" button to save changes.
+   Then, Use the "UPDATE PROFILE" button at the top of this page to have the changes
+   appear on the BioSync web site. 
+;
+# Data items in the BSYNC_FACILITY category describe data collection sites.
+    _category.id                  bsync_facility
+    _category.mandatory_code      no
+    _category_key.name          '_bsync_facility.id'
+     loop_
+    _category_group.id           'inclusive_group'
+                                 'bsync_group'
+     loop_
+    _category_examples.detail
+    _category_examples.case
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+;
+    Example 1 -
+;
+;
+    _bsync_facility.id                    'aps'
+    _bsync_facility.name                  'Advanced Photon Source'
+    _bsync_facility.operation             'Argonne National Lab' 
+    _bsync_facility.details              
+    ;  3rd generation light source ...
+    ;
+;
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+     save_
+
+save__bsync_facility.id
+    _item_description.description
+;    The synchrotron name, acronym. 
+;
+     loop_
+    _item.name                  
+    _item.category_id             
+    _item.mandatory_code          
+     '_bsync_facility.id'                  bsync_facility          yes
+     '_bsync_beamline.facility_id'         bsync_beamline          yes
+     '_bsync_facility_website.facility_id' bsync_facility_website  yes
+    _item_type.code               code
+     loop_
+    _item_examples.case           'aps' 'ssrl'
+     loop_
+    _item_linked.parent_name
+    _item_linked.child_name
+     '_bsync_facility.id'     '_bsync_facility_website.facility_id'
+     '_bsync_facility.id'     '_bsync_beamline.facility_id'
+     save_
+
+
+
+
+
+save__bsync_facility.name
+    _item_description.description
+;              The full name of the synchrotron facility
+;
+    _item.name                  '_bsync_facility.name'
+    _item.category_id             bsync_facility
+    _item.mandatory_code          no
+    _item_type.code               text
+    _item_examples.case
+;                                 Advanced Photon Source.
+;
+     save_
+
+save__bsync_facility.location
+    _item_description.description
+;              The location of the synchrotron facility.  City, State
+;
+    _item.name                  '_bsync_facility.location'
+    _item.category_id             bsync_facility
+    _item.mandatory_code          no
+    _item_type.code               text
+    _item_examples.case
+;                                Argonne,IL 
+;
+     save_
+
+save__bsync_facility.street1
+    _item_description.description
+;              The street address of the synchrotron facility.  
+;
+    _item.name                  '_bsync_facility.street1'
+    _item.category_id             bsync_facility
+    _item.mandatory_code          no
+    _item_type.code               text
+    _item_examples.case
+;                  1 Cyclotron Road 
+;
+
+     save_
+
+save__bsync_facility.street2
+    _item_description.description
+;              The street address of the synchrotron facility.
+;
+    _item.name                  '_bsync_facility.street2'
+    _item.category_id             bsync_facility
+    _item.mandatory_code          no
+    _item_type.code               text
+    _item_examples.case
+;                  1 Cyclotron Road
+;
+
+     save_
+
+save__bsync_facility.zip
+    _item_description.description
+;              The zip code address of the synchrotron facility.
+;
+    _item.name                  '_bsync_facility.zip'
+    _item.category_id             bsync_facility
+    _item.mandatory_code          no
+    _item_type.code               text
+    _item_examples.case
+;                  1 Cyclotron Road
+;
+
+     save_
+
+
+save__bsync_facility.location_details
+    _item_description.description
+;              A more detailed description of the location of the synchrotron facility. 
+;
+    _item.name                  '_bsync_facility.location_details'
+    _item.category_id             bsync_facility
+    _item.mandatory_code          no
+    _item_type.code               text
+    _item_examples.case
+;                                Argonne,IL
+;
+     save_
+
+save__bsync_facility.operation
+    _item_description.description
+;             The lab or university which operates the synchrotron. 
+;
+    _item.name                  '_bsync_facility.operation'
+    _item.category_id             bsync_facility
+    _item.mandatory_code          no
+    _item_type.code               text
+    _item_examples.case
+;                                 Brookhaven National Lab 
+;
+     save_
+
+
+save__bsync_facility.organization
+    _item_description.description
+;            A paragraph describing the organization of the synchrotron. 
+;
+    _item.name                  '_bsync_facility.organization'
+    _item.category_id             bsync_facility
+    _item.mandatory_code          no
+    _item_type.code               text
+    _item_examples.case
+;                                 Participating Research Teams.
+;
+     save_
+
+save__bsync_facility.website_url
+    _item_description.description
+;              Site location (URL)
+;
+    _item.name                  '_bsync_facility.website_url'
+    _item.category_id             bsync_facility
+    _item.mandatory_code          no
+    _item_type.code               text
+     save_
+
+
+
+save__bsync_facility.details
+    _item_description.description
+;              A description of special aspects of the facility.
+;
+    _item.name                  '_bsync_facility.details'
+    _item.category_id             bsync_facility
+    _item.mandatory_code          no
+    _item_type.code               text
+    _item_examples.case
+;                                3rd generation light source 
+;
+     save_
+
+
+####################################
+## BSYNC_FACILITY_CRYSTALLOGRAPHY ##
+####################################
+
+save_bsync_facility_crystallography
+    _category.description
+;              Data items in the BSYNC_FACILITY_CRYSTALLOGRAPHY category record 
+               details about any special crystallography facility, organization,
+               or website.
+;
+    _category.id                  bsync_facility_crystallography
+    _category.mandatory_code      no
+     loop_
+    _category_key.name          '_bsync_facility_crystallography.facility_id'
+                                '_bsync_facility_crystallography.name'
+     loop_
+    _category_group.id           'inclusive_group'
+                                 'bsync_group'
+     loop_
+    _category_examples.detail
+    _category_examples.case
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+;
+    Example 1 - SSRL
+;
+;
+
+  _bsync_facility_crystallography.facility_id  ssrl
+  _bsync_facility_crystallography.name
+  ; Structural Molecular Biology
+  ;
+  _bsync_facility_crystallography.url
+    'http://smb.slac.stanford.edu/'
+;
+     save_
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+save__bsync_facility_crystallography.facility_id
+    _item_description.description
+;              This data item is a pointer to _bsync_facility.id in the
+               BSYNC_FACILITY  category.
+;
+    _item.name                  '_bsync_facility_crystallography.facility_id'
+    _item.mandatory_code          yes
+    _item_type.code               code
+    _item_examples.case
+;                               APS 
+;
+
+     save_
+
+
+
+save__bsync_facility_crystallography.name
+    _item_description.description
+;             Name of specialized organization or facility within the
+    synchrotron organization that operates beamlines for crystallography 
+;
+    _item.name                  '_bsync_facility_crystallography.name'
+    _item.category_id             bsync_facility_crystallography
+    _item.mandatory_code          yes
+    _item_type.code               text
+    _item_examples.case
+;                                SBC-CAT 
+;
+
+     save_
+
+
+save__bsync_facility_crystallography.category
+    _item_description.description
+;           The category for the structural biology
+    organization - structural genomics, crystallography group 
+;
+    _item.name                  '_bsync_facility_crystallography.category'
+    _item.category_id             bsync_facility_crystallography
+    _item.mandatory_code          no
+    _item_type.code               text
+    loop_
+    _item_enumeration.value
+                                 'Structural Genomics'
+                                 'Crystallography'
+                                 'Other'
+
+     save_
+
+
+save__bsync_facility_crystallography.url
+    _item_description.description
+;            Website for the organization 
+;
+    _item.name                  '_bsync_facility_crystallography.url'
+    _item.category_id             bsync_facility_crystallography
+    _item.mandatory_code          no
+    _item_type.code               text
+     save_
+
+
+save__bsync_facility_crystallography.description
+    _item_description.description
+;   A brief description of the specialized organization or facility within the
+    synchrotron organization that operates beamlines for crystallography
+;
+    _item.name                  '_bsync_facility_crystallography.description'
+    _item.category_id             bsync_facility_crystallography
+    _item.mandatory_code          no
+    _item_type.code               text
+     save_
+
+
+save__bsync_facility_crystallography.details
+    _item_description.description
+;   More details about the specialized organization or facility within the
+    synchrotron organization that operates beamlines for crystallography
+;
+    _item.name                  '_bsync_facility_crystallography.details'
+    _item.category_id             bsync_facility_crystallography
+    _item.mandatory_code          no
+    _item_type.code               text
+     save_
+
+
+
+
+
+save__bsync_facility_crystallography.logo
+    _item_description.description
+;       Logo for the crystallography facility or 
+     website. 
+;
+    _item.name                  '_bsync_facility_crystallography.logo'
+    _item.category_id             bsync_facility_crystallography
+    _item.mandatory_code          no
+    _item_type.code               text
+     save_
+
+
+#########################
+## BSYNC_FACILITY_NEWS ##
+#########################
+
+save_bsync_facility_news
+    _category.description
+;              Data items in the BSYNC_FACILITY_NEWS category record details
+               meetings, workshops, applications deadlines, news and
+               announcements.
+;
+    _category.id                  bsync_facility_news
+    _category.mandatory_code      no
+     loop_
+    _category_key.name          '_bsync_facility_news.facility_id'
+##                                '_bsync_facility_news.name'
+     loop_
+    _category_group.id           'inclusive_group'
+                                 'bsync_group'
+     loop_
+    _category_examples.detail
+    _category_examples.case
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+;
+    Example 1 - SSRL
+;
+;
+
+  _bsync_facility_news.facility_id  ssrl
+  _bsync_facility_news.url
+    'http://www-ssrl.slac.stanford.edu/welcome.html'
+  _bsync_facility_news.details 'summer school for crystallographers'
+;
+     save_
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+
+save__bsync_facility_news.facility_id
+    _item_description.description
+;              This data item is a pointer to _bsync_facility.id in the
+               BSYNC_FACILITY  category.
+;
+    _item.name                  '_bsync_facility_news.facility_id'
+    _item.mandatory_code          yes
+    _item_type.code               code
+     save_
+
+
+save__bsync_facility_news.date
+    _item_description.description
+;              A date for the news item.  The date format is
+               yyyy-mm-dd.
+;
+    _item.name                  '_bsync_facility_news.date'
+    _item.category_id             bsync_facility_news
+    _item.mandatory_code           yes 
+    _item_type.code               yyyy-mm-dd
+    _item_examples.case          '1990-07-12'
+     save_
+
+
+save__bsync_facility_news.details
+    _item_description.description
+;             News or announcement description.
+;
+    _item.name                  '_bsync_facility_news.details'
+    _item.category_id             bsync_facility_news
+    _item.mandatory_code          no
+    _item_type.code               text
+     save_
+
+save__bsync_facility_news.title
+    _item_description.description
+;            Title of news or announcement.
+;
+    _item.name                  '_bsync_facility_news.title'
+    _item.category_id             bsync_facility_news
+    _item.mandatory_code          no
+    _item_type.code               text
+     save_
+
+
+save__bsync_facility_news.url
+    _item_description.description
+;              Site location (URL) for more information
+;
+    _item.name                  '_bsync_facility_news.url'
+    _item.category_id             bsync_facility_news
+    _item.mandatory_code          no
+    _item_type.code               text
+     save_
+
+
+####################
+## BSYNC_BEAMLINE ##
+####################
+
+save_bsync_beamline
+    _category.description
+;             
+   You must press the "Save General Beamline Information" button to save changes.
+   Then, Use the "UPDATE PROFILE" button at the top of this page to have the changes
+   appear on the BioSync web site.
+;
+#  Data items in the BSYNC_BEAMLINE category describe data collection beamlines.
+
+    _category.id                  bsync_beamline
+    _category.mandatory_code      no
+     loop_
+    _category_key.name          '_bsync_beamline.id'
+                                '_bsync_beamline.facility_id'
+     loop_
+    _category_group.id           'inclusive_group'
+                                 'bsync_group'
+     loop_
+    _category_examples.detail
+    _category_examples.case
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+;
+    Example 1 -
+;
+;
+    _bsync_beamline.id                    '19_ID'
+    _bsync_beamline.facility_id           'aps'
+    _bsync_beamline.owner                 'SBC-CAT'      
+    _bsync_beamline.experiments            MAD 
+;
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+     save_
+
+
+save__bsync_beamline.facility_id
+    _item_description.description
+;              This data item is a pointer to _bsync_facility.id in the 
+               BSYNC_FACILITY  category.
+;
+    _item.name                  '_bsync_beamline.facility_id'
+    _item.mandatory_code          yes
+    _item_type.code               code
+     save_
+
+
+save__bsync_beamline.id
+    _item_description.description
+;              A unique identifier for the beamline within a facility.
+;
+     loop_
+    _item.name                  
+    _item.category_id             
+    _item.mandatory_code          
+     '_bsync_beamline.id'                    bsync_beamline           yes
+     '_bsync_diffrn_detector.beamline_id'    bsync_diffrn_detector    yes
+     '_bsync_diffrn_radiation.beamline_id'   bsync_diffrn_radiation   yes
+     '_bsync_diffrn_measurement.beamline_id' bsync_diffrn_measurement yes
+     '_bsync_diffrn_source.beamline_id'      bsync_diffrn_source      yes
+     '_bsync_software.beamline_id'           bsync_software           yes
+    _item_type.code               code
+     loop_
+    _item_examples.case           1 2 3
+     loop_
+    _item_linked.parent_name
+    _item_linked.child_name
+     '_bsync_beamline.id'  '_bsync_diffrn_detector.beamline_id'   
+     '_bsync_beamline.id'  '_bsync_diffrn_radiation.beamline_id'  
+     '_bsync_beamline.id'  '_bsync_diffrn_measurement.beamline_id'
+     '_bsync_beamline.id'  '_bsync_diffrn_source.beamline_id'     
+     '_bsync_beamline.id'  '_bsync_software.beamline_id'     
+     loop_
+    _item_enumeration.value   
+     1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25
+     26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50
+
+     save_
+
+
+save__bsync_beamline.name
+    _item_description.description
+;              The name of the beamline.
+;
+    _item.name                  '_bsync_beamline.name'
+    _item.category_id             bsync_beamline
+    _item.mandatory_code          no
+    _item_type.code               code
+     loop_
+    _item_examples.case           'XB11' '18-ID'
+     save_
+
+save__bsync_beamline.source_type
+    _item_description.description
+;              This data item is a pointer to _bsync_diffrn_source.type in
+               the BSYNC_DIFFRN_SOURCE  category.
+;
+    _item.name                  '_bsync_beamline.source_type'
+    _item.mandatory_code          yes
+    _item_type.code               text 
+     save_
+
+
+
+
+save__bsync_beamline.experiments
+    _item_description.description
+;              A description of the experiments which can be performed on this beamline.
+;
+    _item.name                  '_bsync_beamline.experiments'
+    _item.category_id             bsync_beamline
+    _item.mandatory_code          no
+    _item_type.code               text
+    _item_examples.case
+;                                MAD 
+;
+     save_
+save__bsync_beamline.operational
+    _item_description.description
+;           Beamtime is available to the general user.              
+;
+    _item.name                  '_bsync_beamline.operational'
+    _item.category_id             bsync_beamline
+    _item.mandatory_code          no
+    _item_type.code               text
+     loop_
+    _item_examples.case
+                                 'yes' 
+;                                 no, beamline is being commisioned
+;
+     save_
+
+save__bsync_beamline.general_user
+    _item_description.description
+;           Percentage of beamtime available to general user. 
+;
+    _item.name                  '_bsync_beamline.general_user'
+    _item.category_id             bsync_beamline
+    _item.mandatory_code          no
+    _item_type.code               text
+     loop_
+    _item_examples.case
+                                 '25'
+     save_
+
+
+save__bsync_beamline.schedule_URL
+    _item_description.description
+;          Website with current beamline operating schedule           
+;
+    _item.name                  '_bsync_beamline.schedule_URL'
+    _item.category_id             bsync_beamline
+    _item.mandatory_code          no
+    _item_type.code               text
+     loop_
+    _item_examples.case
+                                 'http://www.x8c.nsls.bnl.gov/schedule.html'
+     save_
+
+
+save__bsync_beamline.owner
+    _item_description.description
+;              The name of the owners of the beamline.
+;
+    _item.name                  '_bsync_beamline.owner'
+    _item.category_id             bsync_beamline
+    _item.mandatory_code          no
+    _item_type.code               text
+    _item_examples.case
+;                                 SBC-CAT 
+;
+     save_
+
+save__bsync_beamline.owner_url
+    _item_description.description
+;     The url for the website of the owner of the beamline.
+;
+    _item.name                  '_bsync_beamline.owner_url'
+    _item.category_id             bsync_beamline
+    _item.mandatory_code          no
+    _item_type.code               text
+    _item_examples.case
+;  http://www.sbc.anl.gov/  
+;
+     save_
+
+
+save__bsync_beamline.url
+    _item_description.description
+;     The url for the beamline website. 
+;
+    _item.name                  '_bsync_beamline.url'
+    _item.category_id             bsync_beamline
+    _item.mandatory_code          no
+    _item_type.code               text
+    _item_examples.case
+; http://www.sbc.anl.gov/Facilities/beamline_19-ID.html 
+;
+     save_
+
+
+save__bsync_beamline.details
+    _item_description.description
+;              A description of special aspects of the beamline.
+;
+    _item.name                  '_bsync_beamline.details'
+    _item.category_id             bsync_beamline
+    _item.mandatory_code          no
+    _item_type.code               text
+    _item_examples.case
+;                                 Need new example here.
+;
+     save_
+
+save__bsync_beamline.description
+    _item_description.description
+;              A description of the beamline.
+;
+    _item.name                  '_bsync_beamline.description'
+    _item.category_id             bsync_beamline
+    _item.mandatory_code          no
+    _item_type.code               text
+    _item_examples.case
+;                                 Need new example here.
+;
+     save_
+
+save__bsync_beamline.template
+    _item_description.description
+;              A description of the beamline template.
+;
+    _item.name                  '_bsync_beamline.template'
+    _item.category_id             bsync_beamline
+    _item.mandatory_code          no
+    _item_type.code               text
+    _item_examples.case
+;                                 Need new example here.
+;
+     save_
+
+
+###########################
+## BSYNC_DIFFRN_DETECTOR ##
+###########################
+
+save_bsync_diffrn_detector
+    _category.description
+;              Data items in the DETECTORS category describe the 
+               detector to measure the scattered radiation, including
+               any analyser and post-sample collimation.
+;
+    _category.id                  bsync_diffrn_detector
+    _category.mandatory_code      no
+    _category_key.name          '_bsync_diffrn_detector.beamline_id'
+     loop_
+    _category_group.id           'inclusive_group'
+                                 'bsync_group'
+     loop_
+    _category_examples.detail
+    _category_examples.case
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+;
+    Example 1 -
+;
+;
+    _bsync_diffrn_detector.beamline_id            1
+    _bsync_diffrn_detector.beamline_name         'd1'
+    _bsync_diffrn_detector.detector              'multiwire'
+    _bsync_diffrn_detector.type                  'Siemens'
+;
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+     save_
+
+save__bsync_diffrn_detector.beamline_id
+    _item_description.description
+;              This data item is a pointer to _bsync_beamline.id in 
+               the BSYNC_BEAMLINE  category.
+;
+    _item.name                  '_bsync_diffrn_detector.beamline_id'
+    _item.mandatory_code          yes
+    _item_type.code               code
+     loop_
+    _item_enumeration.value   
+     1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25
+     26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50
+     
+     save_
+
+
+save__bsync_diffrn_detector.beamline_name
+    _item_description.description
+;              This is a short beamline identifier.
+;
+    _item.name                  '_bsync_diffrn_detector.beamline_name'
+    _item.mandatory_code          yes
+    _item_type.code               code
+     save_
+
+
+
+
+save__bsync_diffrn_detector.detector
+    _item_description.description
+;              The general class of the radiation detector.
+;
+    _item.name                  '_bsync_diffrn_detector.detector'
+    _item.category_id             bsync_diffrn_detector
+    _item.mandatory_code          no
+    _item_type.code               text
+    _item_aliases.alias_name    '_diffrn_detector.detector'
+    _item_aliases.dictionary     cif_mm.dic
+    _item_aliases.version        2.0.03
+     loop_
+    _item_examples.case          'photographic film'
+                                 'scintillation counter'
+                                 'CCD plate'
+                                 'BF~3~ counter'
+     save_
+
+save__bsync_diffrn_detector.type
+    _item_description.description
+;              The make, model or name of the detector device used.
+;
+    _item.name                  '_bsync_diffrn_detector.type'
+    _item.category_id             bsync_diffrn_detector
+    _item.mandatory_code          no
+    loop_
+    _item_aliases.alias_name    
+    _item_aliases.dictionary   
+    _item_aliases.version     
+    '_diffrn_detector_type' cif_core.dic 2.0.1
+    '_diffrn_detector.type' cif_mm.dic 2.0.03
+    _item_type.code               text
+     save_
+
+
+
+save__bsync_diffrn_detector.details
+    _item_description.description
+;              A description of special aspects of the radiation detector.
+;
+    _item.name                  '_bsync_diffrn_detector.details'
+    _item.category_id             bsync_diffrn_detector
+    _item.mandatory_code          no
+    _item_type.code               text
+    _item_aliases.alias_name    '_diffrn_detector.detector'
+    _item_aliases.dictionary     cif_mm.dic
+    _item_aliases.version        2.0.03
+    _item_examples.case
+;                                 Need new example here.
+;
+     save_
+
+##############################
+## BSYNC_DIFFRN_MEASUREMENT ##
+##############################
+
+save_bsync_diffrn_measurement
+    _category.description
+;              Data items in the MEASUREMENT category record
+               details about data measurement and the manner in which  
+               the diffraction data are measured.
+;
+    _category.id                  bsync_diffrn_measurement
+    _category.mandatory_code      no
+     loop_
+    _category_key.name          '_bsync_diffrn_measurement.beamline_id'
+                                '_bsync_diffrn_measurement.device'
+     loop_
+    _category_group.id           'inclusive_group'
+                                 'bsync_group'
+     loop_
+    _category_examples.detail
+    _category_examples.case
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+;
+    Example 1 - 
+;
+;
+    _bsync_diffrn_measurement.beamline_id         1
+    _bsync_diffrn_measurement.beamline_name      'bxk1'
+    _bsync_diffrn_measurement.device             '3-circle camera'
+    _bsync_diffrn_measurement.device_type        'Supper model x'
+    _bsync_diffrn_measurement.method             'omega scan'
+    _bsync_diffrn_measurement.device_details
+    ; detector distance 12 cm
+    ;
+;
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+     save_
+
+save__bsync_diffrn_measurement.beamline_name
+    _item_description.description
+;              This data item is a short identifier for the beamline.
+;
+    _item.name                  '_bsync_diffrn_measurement.beamline_name'
+    _item.mandatory_code          yes
+    _item_type.code               code
+     save_
+
+save__bsync_diffrn_measurement.beamline_id
+    _item_description.description
+;              This data item is a pointer to _bsync_beamline.id in the 
+               BSYNC_BEAMLINE category.
+;
+    _item.name                  '_bsync_diffrn_measurement.beamline_id'
+    _item.mandatory_code          yes
+    _item_type.code               code
+     loop_
+    _item_enumeration.value   
+     1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25
+     26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50
+
+     save_
+
+
+
+save__bsync_diffrn_measurement.device
+    _item_description.description
+;              The general class of  goniometer or device used to support and
+               orient the specimen.
+;
+    _item.name                  '_bsync_diffrn_measurement.device'
+    _item.category_id             bsync_diffrn_measurement
+    _item.mandatory_code          yes
+    _item_type.code               text
+    _item_aliases.alias_name    '_diffrn_measurement.device'
+    _item_aliases.dictionary     cif_mm.dic
+    _item_aliases.version        2.0.03
+     loop_
+    _item_examples.case          '3-circle camera'
+                                 '4-circle camera'
+                                 'kappa-geometry camera'
+                                 'oscillation camera'
+                                 'precession camera'
+     save_
+
+
+save__bsync_diffrn_measurement.device_details
+    _item_description.description
+;              A description of special aspects of the device used to measure
+               the diffraction intensities.
+;
+    _item.name                  '_bsync_diffrn_measurement.device_details'
+    _item.category_id             bsync_diffrn_measurement
+    _item.mandatory_code          no
+    loop_
+    _item_aliases.alias_name    
+    _item_aliases.dictionary   
+    _item_aliases.version     
+    '_diffrn_measurement_device_details' cif_core.dic  2.0.1
+    '_diffrn_measurement_device_details' cif_mm.dic 2.0.03
+    _item_type.code               text
+    _item_examples.case
+;                                 Need new example here.
+;
+     save_
+
+save__bsync_diffrn_measurement.device_type
+    _item_description.description
+;              The make, model or name of the measurement device
+               (goniometer) used.
+;
+    _item.name                  '_bsync_diffrn_measurement.device_type'
+    _item.category_id             bsync_diffrn_measurement
+    _item.mandatory_code          no
+    _item_type.code               text
+    _item_aliases.alias_name    '_diffrn_measurement.device_type'
+    _item_aliases.dictionary     cif_mm.dic
+    _item_aliases.version        2.0.03
+
+     loop_
+    _item_examples.case          'Supper model q'
+                                 'Huber model r'
+                                 'Enraf-Nonius model s'
+                                 'homemade'
+     save_
+
+save__bsync_diffrn_measurement.method
+    _item_description.description
+;              Method used to measure intensities.
+;
+    _item.name                  '_bsync_diffrn_measurement.method'
+    _item.category_id             bsync_diffrn_measurement
+    _item.mandatory_code          no
+    _item_aliases.alias_name    '_diffrn_measurement.method'
+    _item_aliases.dictionary     cif_mm.dic
+    _item_aliases.version        2.0.03
+    _item_type.code               text
+    _item_examples.case          'profile data from theta/2theta scans'
+     save_
+
+
+
+save__bsync_diffrn_measurement.device_pinlength
+    _item_description.description
+;             The range of pin lengths. 
+;
+    _item.name                  '_bsync_diffrn_measurement.device_pinlength'
+    _item.category_id             bsync_diffrn_measurement
+    _item.mandatory_code          no
+    _item_type.code               text
+    _item_examples.case
+;        total height of mounting pin (or capillary) 
+         and goniometer head should be between 53 mm 
+         and 63 mm 
+;
+     save_
+
+
+save__bsync_diffrn_measurement.restrictions
+    _item_description.description
+;          Restrictions due to possible collision.   
+;
+    _item.name                  '_bsync_diffrn_measurement.restrictions'
+    _item.category_id             bsync_diffrn_measurement
+    _item.mandatory_code          no
+    _item_type.code               text
+    _item_examples.case
+;                               omega: +/-25 (depends on detector distance), 
+                                 chi +/-95, phi no limits.  
+;
+     save_
+
+save__bsync_diffrn_measurement.distance
+    _item_description.description
+;            The range of crystal to detector distances. 
+;
+    _item.name                  '_bsync_diffrn_measurement.distance'
+    _item.category_id             bsync_diffrn_measurement
+    _item.mandatory_code          no
+    _item_type.code               text
+    _item_examples.case
+;                                50-1000 mm 
+;
+     save_
+
+save__bsync_diffrn_measurement.twotheta
+    _item_description.description
+;            2theta range 
+;
+    _item.name                  '_bsync_diffrn_measurement.twotheta'
+    _item.category_id             bsync_diffrn_measurement
+    _item.mandatory_code          no
+    _item_type.code               text
+    _item_examples.case
+;                                vertical movement of -5 to 35  
+;
+     save_
+
+save__bsync_diffrn_measurement.cryo
+    _item_description.description
+;             Cryo capability 
+;
+    _item.name                  '_bsync_diffrn_measurement.cryo'
+    _item.category_id             bsync_diffrn_measurement
+    _item.mandatory_code          no
+    _item_type.code               text
+    _item_examples.case
+;                                 Oxford Instruments Cryojet  
+;
+     save_
+
+
+save__bsync_diffrn_measurement.special_capabilities
+    _item_description.description
+;              Capabilities for special data collection.
+;
+    _item.name                  '_bsync_diffrn_measurement.special_capabilities'
+    _item.category_id             bsync_diffrn_measurement
+    _item.mandatory_code          no
+    _item_type.code               text
+    _item_examples.case  
+;  Facilities for measurement at S K/Cl K edge region for biological samples. 
+;
+     save_
+
+save__bsync_diffrn_measurement.other_instrumentation
+    _item_description.description
+;            Additional instrumentation available for use during data collection.
+;
+    _item.name                  '_bsync_diffrn_measurement.other_instrumentation'
+    _item.category_id             bsync_diffrn_measurement
+    _item.mandatory_code          no
+    _item_type.code               text
+    _item_examples.case  
+;  Motorized optical rail, slits, sample alignment stages, grazing incidence instrument.
+;
+     save_
+
+
+
+############################
+## BSYNC_DIFFRN_RADIATION ##
+############################
+
+save_bsync_diffrn_radiation
+    _category.description
+;              Data items in the RADIATION category describe
+               the radiation used in measuring diffraction intensities,
+               its collimation and monochromatisation before the sample.
+;
+    _category.id                  bsync_diffrn_radiation
+    _category.mandatory_code      no
+     loop_
+    _category_key.name          '_bsync_diffrn_radiation.beamline_id'
+                                '_bsync_diffrn_radiation.monochromator'
+     loop_
+    _category_group.id           'inclusive_group'
+                                 'bsync_group'
+     loop_
+    _category_examples.detail
+    _category_examples.case
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+;
+    Example 1 - based on PDB entry 5HVP and laboratory records for the
+                structure corresponding to PDB entry 5HVP
+;
+;
+    _bsync_diffrn_radiation.beamline_id           1
+    _bsync_diffrn_radiation.beamline_name        'b1'
+    _bsync_diffrn_radiation.collimation          '0.3 mm double pinhole'
+    _bsync_diffrn_radiation.monochromator        'graphite'
+
+;
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+     save_
+
+save__bsync_diffrn_radiation.beamline_id
+    _item_description.description
+;              This data item is a pointer to _bsync_beamline.id in the 
+               BSYNC_BEAMLINE category.
+;
+    _item.name                  '_bsync_diffrn_radiation.beamline_id'
+    _item.mandatory_code          yes
+    _item_type.code               code
+     loop_
+    _item_enumeration.value   
+     1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25
+     26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50
+     save_
+
+
+save__bsync_diffrn_radiation.beamline_name
+    _item_description.description
+;              This data item is a short identifier for the beamline.
+;
+    _item.name                  '_bsync_diffrn_radiation.beamline_name'
+    _item.mandatory_code          yes
+    _item_type.code               code
+     save_
+
+save__bsync_diffrn_radiation.optics
+    _item_description.description
+;             a general description of the optics including collimation
+     and monochromator. 
+;
+    _item.name                  '_bsync_diffrn_radiation.optics'
+    _item.category_id             bsync_diffrn_radiation
+    _item.mandatory_code          no
+    _item_type.code               text
+     loop_
+    _item_examples.case         
+;              2-crystal monochromator, Si111, 1m long Rh coated bent 
+               cylindrical mirror for horizontal and vertical focussing 
+; 
+     save_
+
+save__bsync_diffrn_radiation.flux
+    _item_description.description
+;              Flux definition needed
+;
+    _item.name                  '_bsync_diffrn_radiation.flux'
+    _item.category_id             bsync_diffrn_radiation
+    _item.mandatory_code          no
+     loop_
+    _item_type.code              text 
+     loop_
+    _item_examples.case         
+;    1x10E(10) p/s through 0.2 mm aperture
+; 
+
+     save_
+
+save__bsync_diffrn_radiation.flux_details
+    _item_description.description
+;              Additional details about radiation flux.
+;
+    _item.name                  '_bsync_diffrn_radiation.flux_details'
+    _item.category_id             bsync_diffrn_radiation
+    _item.mandatory_code          no
+     loop_
+    _item_type.code              text 
+     save_
+
+save__bsync_diffrn_radiation.resolving_power
+    _item_description.description
+;              Resolving power of ... 
+;
+    _item.name                  '_bsync_diffrn_radiation.resolving_power'
+    _item.category_id             bsync_diffrn_radiation
+    _item.mandatory_code          no
+     loop_
+    _item_range.maximum           
+    _item_range.minimum            .    0.0
+                                  0.0   0.0
+    _item_type.code               float
+###    _item_units.code              ???
+     save_
+
+save__bsync_diffrn_radiation.wavelength_range
+    _item_description.description
+;              The range of wavelength in angstroms.
+;
+    _item.name                  '_bsync_diffrn_radiation.wavelength_range'
+    _item.category_id             bsync_diffrn_radiation
+    _item.mandatory_code          no
+    _item_type.code               text 
+     save_
+
+save__bsync_diffrn_radiation.wavelength_details
+    _item_description.description
+;              Additional details about the wavelength
+;
+    _item.name                  '_bsync_diffrn_radiation.wavelength_details'
+    _item.category_id             bsync_diffrn_radiation
+    _item.mandatory_code          no
+    _item_type.code               text 
+     save_
+
+save__bsync_diffrn_radiation.wavelength_max
+    _item_description.description
+;              The maximum radiation wavelength in angstroms or zero if single wavelength.
+;
+    _item.name                  '_bsync_diffrn_radiation.wavelength_max'
+    _item.category_id             bsync_diffrn_radiation
+    _item.mandatory_code          no
+     loop_
+    _item_range.maximum           
+    _item_range.minimum            .    0.0
+                                  0.0   0.0
+    _item_type.code               float
+    _item_units.code              angstroms
+     save_
+
+save__bsync_diffrn_radiation.wavelength_min
+    _item_description.description
+;              The minimum radiation wavelength in angstroms or the radiation 
+     wavelength if a single wavelength.
+;
+    _item.name                  '_bsync_diffrn_radiation.wavelength_min'
+    _item.category_id             bsync_diffrn_radiation
+    _item.mandatory_code          no
+     loop_
+    _item_range.maximum           
+    _item_range.minimum            .    0.0
+                                  0.0   0.0
+    _item_type.code               float
+    _item_units.code              angstroms
+     save_
+
+
+
+save__bsync_diffrn_radiation.collimation
+    _item_description.description
+;              The collimation or focusing applied to the radiation.
+;
+    _item.name                  '_bsync_diffrn_radiation.collimation'
+    _item.category_id             bsync_diffrn_radiation
+    _item.mandatory_code          no
+    _item_type.code               text
+    _item_aliases.alias_name    '_diffrn_radiation.collimation'
+    _item_aliases.dictionary     cif_mm.dic
+    _item_aliases.version        2.0.03
+
+     loop_
+    _item_examples.case          '0.3 mm double-pinhole'
+                                 '0.5 mm'
+                                 'focusing mirrors'
+     save_
+
+
+save__bsync_diffrn_radiation.filter_edge
+    _item_description.description
+;              Absorption edge in angstroms of the radiation filter used.
+;
+    _item.name                  '_bsync_diffrn_radiation.filter_edge'
+    _item.category_id             bsync_diffrn_radiation
+    _item.mandatory_code          no
+     loop_
+    _item_range.maximum           
+    _item_range.minimum            .    0.0
+                                  0.0   0.0
+    _item_type.code               float
+    _item_aliases.alias_name    '_diffrn_radiation.filter_edge'
+    _item_aliases.dictionary     cif_mm.dic
+    _item_aliases.version        2.0.03
+    _item_units.code              angstroms
+     save_
+
+
+
+
+
+
+save__bsync_diffrn_radiation.inhomogeneity
+    _item_description.description
+;              Half-width in millimetres of the incident beam in the
+               direction perpendicular to the diffraction plane.
+;
+    _item.name                  '_bsync_diffrn_radiation.inhomogeneity'
+    _item.category_id             bsync_diffrn_radiation
+    _item.mandatory_code          no
+     loop_
+    _item_range.maximum           
+    _item_range.minimum            .    0.0
+                                  0.0   0.0
+    _item_type.code               float
+    _item_units.code              millimetres
+    _item_aliases.alias_name    '_diffrn_radiation.inhomogeneity'
+    _item_aliases.dictionary     cif_mm.dic
+    _item_aliases.version        2.0.03
+     save_
+
+save__bsync_diffrn_radiation.monochromator
+    _item_description.description
+;              The method used to obtain monochromatic radiation. If a mono-
+               chromator crystal is used the material and the indices of the
+               Bragg reflection are specified.
+;
+    _item.name                  '_bsync_diffrn_radiation.monochromator'
+    _item.category_id             bsync_diffrn_radiation
+    _item.mandatory_code          yes
+    _item_aliases.alias_name    '_diffrn_radiation.monochromator'
+    _item_aliases.dictionary     cif_mm.dic
+    _item_aliases.version        2.0.03
+    _item_type.code               text
+     loop_
+    _item_examples.case          'Zr filter'
+                                 'Ge 220'
+                                 'none'
+                                 'equatorial mounted graphite'
+     save_
+
+save__bsync_diffrn_radiation.monochromator_crystal
+    _item_description.description
+;              The type of crystal(s) in the monochromator  The indices of the 
+               Bragg reflection used for the filtering is specified.
+
+;
+    _item.name                  '_bsync_diffrn_radiation.monochromator_crystal'
+    _item.category_id             bsync_diffrn_radiation
+    _item.mandatory_code          no
+    _item_type.code               text
+    _item_examples.case
+;                                 Si(111) or W/B4C multilayers, water cooled.
+;
+     save_
+
+save__bsync_diffrn_radiation.mirrors
+    _item_description.description
+;              A system of optical mirrors used to focus the incident beam as it
+               leaves the source
+
+;
+    _item.name                  '_bsync_diffrn_radiation.mirrors'
+    _item.category_id             bsync_diffrn_radiation
+    _item.mandatory_code          no
+    _item_type.code               text
+    _item_examples.case  
+;                       bent cylinder, Pt-coated Si (1:1 demagnifcation)               
+;
+     save_
+
+save__bsync_diffrn_radiation.mirror_cutoff
+    _item_description.description
+;              The energy cuttoff (KeV) for the mirror system.
+;
+    _item.name                  '_bsync_diffrn_radiation.mirror_cutoff'
+    _item.category_id             bsync_diffrn_radiation
+    _item.mandatory_code          no
+    _item_type.code               float
+    _item_units.code              KeV
+    _item_examples.case  
+;                       11.25
+;
+     save_
+
+save__bsync_diffrn_radiation.probe
+    _item_description.description
+;              Name of the type of radiation used. It is strongly encouraged
+               that this field be specified so that the probe radiation
+               can be simply determined.
+;
+    _item.name                  '_bsync_diffrn_radiation.probe'
+    _item.category_id             bsync_diffrn_radiation
+    _item.mandatory_code          no
+    _item_aliases.alias_name    '_diffrn_radiation.probe'
+    _item_aliases.dictionary     cif_mm.dic
+    _item_aliases.version        2.0.03
+    _item_type.code               line
+     loop_
+    _item_enumeration.value      'x-ray'
+                                 'neutron'
+                                 'electron'
+                                 'gamma'
+     save_
+
+
+save__bsync_diffrn_radiation.divergence
+    _item_description.description
+;              Divergence definition needed.
+;
+    _item.name                  '_bsync_diffrn_radiation.divergence'
+    _item.category_id             bsync_diffrn_radiation
+    _item.mandatory_code          no
+     loop_
+    _item_range.maximum           
+    _item_range.minimum            .    0.0
+                                  0.0   0.0
+    _item_type.code               float
+##    _item_units.code              ?
+     save_
+
+save__bsync_diffrn_radiation.energy_range
+    _item_description.description
+;              Energy range.
+;
+    _item.name                  '_bsync_diffrn_radiation.energy_range'
+    _item.category_id             bsync_diffrn_radiation
+    _item.mandatory_code          no
+    _item_type.code               text
+     save_
+
+
+
+
+
+#########################
+## BSYNC_DIFFRN_SOURCE ##
+#########################
+
+save_bsync_diffrn_source
+    _category.description
+;              Data items in the SOURCE category record details of
+               the source of radiation.
+;
+    _category.id                  bsync_diffrn_source
+    _category.mandatory_code      no
+     loop_
+    _category_key.name          '_bsync_diffrn_source.beamline_id'
+                                '_bsync_diffrn_source.type'
+     loop_
+    _category_group.id           'inclusive_group'
+                                 'bsync_group'
+     loop_
+    _category_examples.detail
+    _category_examples.case
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+;
+    Example 1
+;
+;
+    _bsync_diffrn_source.beamline_id     1
+    _bsync_diffrn_source.beamline_name   's1'
+    _bsync_diffrn_source.source          'rotating anode'
+    _bsync_diffrn_source.type            'Rigaku RU-200'
+    _bsync_diffrn_source.power           '50 kw, 180 mA'
+;
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+     save_
+
+save__bsync_diffrn_source.beamline_id
+    _item_description.description
+;              This data item is a pointer to _bsync_beamline.id in the
+               BSYNC_BEAMLINE category.
+;
+    _item.name                  '_bsync_diffrn_source.beamline_id'
+    _item.mandatory_code          yes
+    _item_type.code               code
+     loop_
+    _item_enumeration.value   
+     1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25
+     26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50
+     save_
+
+
+save__bsync_diffrn_source.beamline_name
+    _item_description.description
+;              This data item is a short identifier for the beamline.
+;
+    _item.name                  '_bsync_diffrn_source.beamline_name'
+    _item.mandatory_code          yes
+    _item_type.code               code
+     save_
+
+
+save__bsync_diffrn_source.beam_lifetime
+    _item_description.description
+;             average beam lifetime 
+;
+    _item.name                  '_bsync_diffrn_source.beam_lifetime'
+    _item.category_id             bsync_diffrn_source
+    _item.mandatory_code          no
+    _item_type.code               text
+    _item_examples.case
+;                                40 hrs (75 mA average over 24 hr fill period)  
+;
+     save_
+
+save__bsync_diffrn_source.current
+    _item_description.description
+;              The current in milliamperes at which the radiation source
+               was operated. 
+;
+    _item.name                  '_bsync_diffrn_source.current'
+
+    _item.mandatory_code          no
+    _item_type.code               float
+    _item_aliases.alias_name    '_diffrn_source.current'
+    _item_aliases.dictionary     cif_mm.dic
+    _item_aliases.version        2.0.03
+    _item_units.code              milliamperes
+     save_
+
+save__bsync_diffrn_source.details
+    _item_description.description
+;              A description of special aspects of the radiation source used.
+;
+    _item.name                  '_bsync_diffrn_source.details'
+    _item.category_id             bsync_diffrn_source
+    _item.mandatory_code          no
+    _item_type.code               text
+    _item_aliases.alias_name    '_diffrn_source.details'
+    _item_aliases.dictionary     cif_mm.dic
+    _item_aliases.version        2.0.03
+     save_
+
+
+
+save__bsync_diffrn_source.power
+    _item_description.description
+;              The power in kilowatts at which the radiation source
+               was operated.
+;
+    _item.name                  '_bsync_diffrn_source.power'
+    _item.category_id             bsync_diffrn_source
+    _item.mandatory_code          no
+    _item_type.code               float
+    _item_units.code              kilowatts
+    _item_aliases.alias_name    '_diffrn_source.power'
+    _item_aliases.dictionary     cif_mm.dic
+    _item_aliases.version        2.0.03
+     save_
+
+save__bsync_diffrn_source.size
+    _item_description.description
+;              The dimensions of the source as viewed from the sample.
+;
+    _item.name                  '_bsync_diffrn_source.size'
+    _item.category_id             bsync_diffrn_source
+    _item.mandatory_code          no
+    _item_type.code               text
+    _item_aliases.alias_name    '_diffrn_source.size'
+    _item_aliases.dictionary     cif_mm.dic
+    _item_aliases.version        2.0.03
+
+     loop_
+    _item_examples.case          '8mm x 0.4 mm fine-focus'
+     save_
+
+save__bsync_diffrn_source.source
+    _item_description.description
+;              The general class of the radiation source.
+;
+    _item.name                  '_bsync_diffrn_source.source'
+    _item.category_id             bsync_diffrn_source
+    _item.mandatory_code          no
+    _item_type.code               text
+     loop_
+    _item_examples.case          'undulator' 
+                                 'bending magnet'
+                                 'wiggler'
+     save_
+
+
+save__bsync_diffrn_source.type
+    _item_description.description
+;              The make, model or name of the source of radiation.
+;
+    _item.name                  '_bsync_diffrn_source.type'
+    _item.category_id             bsync_diffrn_source
+    _item.mandatory_code          yes
+    _item_type.code               text
+     loop_
+    _item_linked.parent_name
+    _item_linked.child_name
+     '_bsync_diffrn_source.type'     '_bsync_beamline.source_type'
+    _item_aliases.alias_name    '_diffrn_source.type'
+    _item_aliases.dictionary     cif_mm.dic
+    _item_aliases.version        2.0.03
+     loop_
+    _item_examples.case          'NSLS beamline X8C'
+                                 'Rigaku RU200'
+     save_
+
+save__bsync_diffrn_source.voltage
+    _item_description.description
+;              The voltage in kilovolts at which the radiation source was
+               operated. 
+;
+    _item.name                  '_bsync_diffrn_source.voltage'
+    _item.category_id             bsync_diffrn_source
+    _item.mandatory_code          no
+    _item_type.code               float
+    _item_aliases.alias_name    '_diffrn_source.voltage'
+    _item_aliases.dictionary     cif_mm.dic
+    _item_aliases.version        2.0.03
+
+    _item_units.code              kilovolts
+     save_
+
+
+#######################
+## BSYNC_DIFFRN_LAB  ##
+#######################
+
+save_bsync_diffrn_lab
+    _category.description
+;              Data items in the LAB category describe the
+    laboratory facilities and biohazard capabilities at the beamline
+;
+    _category.id                  bsync_diffrn_lab
+    _category.mandatory_code      no
+    _category_key.name          '_bsync_diffrn_lab.beamline_id'
+     loop_
+    _category_group.id           'inclusive_group'
+                                 'bsync_group'
+     loop_
+    _category_examples.detail
+    _category_examples.case
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+;
+    Example 1 -
+;
+;
+    _bsync_diffrn_lab.beamline_id            1
+    _bsync_diffrn_lab.beamline_name         'A1'
+    _bsync_diffrn_lab.lab_facilities        'cold room and biochemistry'
+    _bsync_diffrn_lab.biohazard             'P2'
+;
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+     save_
+
+save__bsync_diffrn_lab.beamline_name
+    _item_description.description
+;              This is a short beamline identifier.
+;
+    _item.name                  '_bsync_diffrn_lab.beamline_name'
+    _item.mandatory_code          yes
+    _item_type.code               code
+     save_
+
+save__bsync_diffrn_lab.name
+    _item_description.description
+;              Lab name.
+;
+    _item.name                  '_bsync_diffrn_lab.name'
+    _item.mandatory_code          yes
+    _item_type.code               text
+     save_
+
+
+save__bsync_diffrn_lab.beamline_id
+    _item_description.description
+;              This data item is a pointer to _bsync_beamline.id in
+               the BSYNC_BEAMLINE  category.
+;
+    _item.name                  '_bsync_diffrn_lab.beamline_id'
+    _item.mandatory_code          yes
+    _item_type.code               code
+     loop_
+    _item_enumeration.value
+     1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25
+     26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50
+     save_
+
+save__bsync_diffrn_lab.lab_facilities
+    _item_description.description
+;           Lab Facilities at the beamline. 
+;
+    _item.name                  '_bsync_diffrn_lab.lab_facilities'
+    _item.category_id             bsync_diffrn_lab
+    _item.mandatory_code          no
+    _item_type.code               text
+    _item_examples.case
+;                                 Need new example here.
+;
+     save_
+
+save__bsync_diffrn_lab.biohazard
+    _item_description.description
+;             Biohazard level allowed at the beamline 
+;
+    _item.name                  '_bsync_diffrn_lab.biohazard'
+    _item.category_id             bsync_diffrn_lab
+    _item.mandatory_code          no
+    _item_type.code               text
+    _item_examples.case
+;                                 Need new example here.
+;
+     save_
+
+
+
+####################
+## BSYNC_HARDWARE ##
+####################
+
+save_bsync_hardware
+    _category.description
+;              Data items in the HARDWARE category record details about
+               the hardware available for data collection and structure 
+               determination and for data back-up.
+ 
+;
+    _category.id                  bsync_hardware
+    _category.mandatory_code      no
+     loop_
+    _category_key.name          '_bsync_hardware.beamline_id'
+     loop_
+    _category_group.id           'inclusive_group'
+                                 'bsync_group'
+     loop_
+    _category_examples.detail
+    _category_examples.case
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+;
+    Example 1 -
+;
+;
+    _bsync_hardware.beamline_id   1
+    _bsync_hardware.backup        'FireWire and USB disk drives'
+;
+     save_
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+save__bsync_hardware.beamline_id
+    _item_description.description
+;              This data item is a pointer to _bsync_beamline.id in the
+               BSYNC_BEAMLINE category.
+;
+    _item.name                  '_bsync_hardware.beamline_id'
+    _item.mandatory_code          yes
+    _item_type.code               code
+     loop_
+    _item_enumeration.value
+     1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25
+     26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50
+     save_
+ 
+ 
+save__bsync_hardware.beamline_name
+    _item_description.description
+;              This data item is a short identifier for the beamline.
+;
+    _item.name                  '_bsync_hardware.beamline_name'
+    _item.mandatory_code          yes
+    _item_type.code               code
+     save_
+ 
+save__bsync_hardware.name
+    _item_description.description
+;              The name of the hardware.
+;
+    _item.name                  '_bsync_hardware.name'
+    _item.category_id             bsync_hardware
+    _item.mandatory_code         no 
+    _item_type.code               text
+     save_
+ 
+save__bsync_hardware.backup
+    _item_description.description
+;              Backup hardware.
+;
+    _item.name                  '_bsync_hardware.backup'
+    _item.category_id             bsync_hardware
+    _item.mandatory_code         no
+    _item_type.code               text
+     save_
+
+
+
+####################
+## BSYNC_SOFTWARE ##
+####################
+
+save_bsync_software
+    _category.description
+;              Data items in the SOFTWARE category record details about 
+               the software available for data collection and structure determination. 
+
+;
+    _category.id                  bsync_software 
+    _category.mandatory_code      no
+     loop_
+    _category_key.name          '_bsync_software.beamline_id'
+                                '_bsync_software.name'
+                                '_bsync_software.version'
+     loop_
+    _category_group.id           'inclusive_group'
+                                 'bsync_group'
+     loop_
+    _category_examples.detail
+    _category_examples.case
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+;
+    Example 1 - 
+;
+;    
+    loop_      
+    _bsync_software.beamline_id
+    _bsync_software.name
+    _bsync_software.version
+    _bsync_software.date
+    _bsync_software.type
+    _bsync_software.contact_author
+    _bsync_software.contact_author_email
+    _bsync_software.location
+    _bsync_software.classification
+    _bsync_software.language
+    _bsync_software.compiler_name
+    _bsync_software.compiler_version
+    _bsync_software.hardware
+    _bsync_software.os
+    _bsync_software.os_version
+    _bsync_software.dependencies
+    _bsync_software.mods
+    _bsync_software.description
+       Prolsq    unknown  .    program     'Wayne A. Hendrickson'  ?
+       'ftp://rosebud.sdsc.edu/pub/sdsc/xtal/CCP4/ccp4/'    refinement
+        ref5  Fortran
+       'Convex Fortran' v8.0 'Convex C220' ConvexOS  v10.1
+       'Requires that Protin be run first'    optimized
+       'restrained least-squares refinement'
+;
+     save_
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+save__bsync_software.beamline_id
+    _item_description.description
+;              This data item is a pointer to _bsync_beamline.id in the
+               BSYNC_BEAMLINE category.
+;
+    _item.name                  '_bsync_software.beamline_id'
+    _item.mandatory_code          yes
+    _item_type.code               code
+     loop_
+    _item_enumeration.value   
+     1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25
+     26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50
+     save_
+
+
+save__bsync_software.beamline_name
+    _item_description.description
+;              This data item is a short identifier for the beamline.
+;
+    _item.name                  '_bsync_software.beamline_name'
+    _item.mandatory_code          yes
+    _item_type.code               code
+     save_
+
+
+save__bsync_software.classification
+    _item_description.description
+;              The classification of the program according to its
+               major function.
+;
+    _item.name                  '_bsync_software.classification'
+    _item.category_id             bsync_software
+    _item.mandatory_code          no
+    _item_type.code               uline
+     loop_
+    _item_enumeration.value      'data collection'
+                                 'data reduction'
+                                 'phasing'
+                                 'model building'
+                                 'refinement' 
+                                 'validation'
+                                 'other'
+     save_
+
+save__bsync_software.compiler_name
+    _item_description.description
+;              The compiler used to compile the software.
+;
+    _item.name                  '_bsync_software.compiler_name'
+    _item.category_id             bsync_software
+    _item.mandatory_code          no
+    _item_type.code               line
+     loop_
+    _item_examples.case
+                                 'Convex Fortran'
+                                 'gcc'
+                                 'DEC C'
+     save_
+ 
+save__bsync_software.compiler_version
+    _item_description.description
+;              The version of the compiler used to compile the software.
+;
+    _item.name                  '_bsync_software.compiler_version'
+    _item.category_id             bsync_software
+    _item.mandatory_code          no
+    _item_type.code               line
+     loop_
+    _item_examples.case          '3.1'
+                                 '2.1 alpha'
+     save_
+
+save__bsync_software.contact_author
+    _item_description.description
+;              The recognized contact author of the software. This could be 
+               the original author, modifier of the code, or maintainer, but
+               should be the individual most commonly associated with the
+               code.
+;
+    _item.name                  '_bsync_software.contact_author'
+    _item.category_id             bsync_software
+    _item.mandatory_code          no
+    _item_type.code               line
+     loop_
+    _item_examples.case          'T. Alwyn Jones'
+                                 'Axel Brunger'
+     save_
+
+save__bsync_software.contact_author_email
+    _item_description.description
+;              The email address of the _bsync_software.contact_author.
+;
+    _item.name                  '_bsync_software.contact_author_email'
+    _item.category_id             bsync_software
+    _item.mandatory_code          no
+    _item_type.code               line
+    _item_examples.case          'bourne@sdsc.edu'
+     save_
+ 
+save__bsync_software.date
+    _item_description.description
+;              The date the software was released. 
+;
+    _item.name                  '_bsync_software.date'   
+    _item.category_id             bsync_software
+    _item.mandatory_code          no
+    _item_type.code               line
+     loop_
+    _item_examples.case           1991-10-01
+                                  1990-04-30 
+     save_
+
+save__bsync_software.description
+    _item_description.description
+;              Description of the software.              
+;
+    _item.name                  '_bsync_software.description'
+    _item.category_id             bsync_software
+    _item.mandatory_code          no
+    _item_type.code               line
+    _item_examples.case          'Uses method of restrained least squares'
+     save_
+
+save__bsync_software.dependencies
+    _item_description.description
+;              Any prerequisite software required to run _bsync_software.name.
+;
+    _item.name                  '_bsync_software.dependencies'
+    _item.category_id             bsync_software
+    _item.mandatory_code          no
+    _item_type.code               line
+    _item_examples.case          'PDBlib class library'
+     save_
+ 
+save__bsync_software.hardware
+    _item_description.description
+;              The hardware upon which the software was run.
+;
+    _item.name                  '_bsync_software.hardware'
+    _item.category_id             bsync_software
+    _item.mandatory_code          no
+    _item_type.code               line
+     loop_
+    _item_examples.case          'Sun Sparc 10 model 41'
+                                 'Dec Alpha 3000 model 500S'
+                                 'Silicon Graphics Elan'
+                                 'Compaq PC 486/66'
+     save_
+ 
+save__bsync_software.language
+    _item_description.description
+;              The major computing language in which the software is 
+               coded.
+;
+    _item.name                  '_bsync_software.language'
+    _item.category_id             bsync_software
+    _item.mandatory_code          no
+    _item_type.code               uline
+     loop_
+    _item_enumeration.value       Ada
+                                  assembler
+                                  Awk
+                                  Basic
+                                 'C++'
+                                  C
+                                  csh
+                                  Fortran
+                                  Java
+                                  ksh
+                                  Pascal
+                                  Perl
+                                  Python
+                                  sh
+                                  Tcl
+                                  Other
+     save_
+
+save__bsync_software.location
+    _item_description.description
+;              An Internet address in the form of a URL describing
+               where details of the software can be found.
+;
+    _item.name                  '_bsync_software.location'
+    _item.category_id             bsync_software
+    _item.mandatory_code          no
+    _item_type.code               line
+     loop_
+    _item_examples.case          
+                  'http://rosebud.sdsc.edu/projects/pb/IUCr/software.html'
+                  'ftp://ftp.sdsc.edu/pub/sdsc/biology/'
+     save_
+
+save__bsync_software.mods
+    _item_description.description
+;              Any noteworthy modifications to the base software, if applicable.
+;
+    _item.name                  '_bsync_software.mods'
+    _item.category_id             bsync_software
+    _item.mandatory_code          no
+    _item_type.code               line
+    _item_examples.case          'Added support for space group F432'
+     save_
+
+save__bsync_software.name
+    _item_description.description
+;              The name of the software.
+;
+    _item.name                  '_bsync_software.name'
+    _item.category_id             bsync_software
+    _item.mandatory_code          yes
+    _item_type.code               text
+     loop_
+    _item_examples.case          'Merlot'
+                                 'O'
+                                 'Xengen'
+                                 'X-plor'
+
+     save_
+
+save__bsync_software.os
+    _item_description.description
+;              The name of the operating system under which the software
+               runs.
+;
+    _item.name                  '_bsync_software.os'
+    _item.category_id             bsync_software
+    _item.mandatory_code          no 
+    _item_type.code              text 
+     loop_
+    _item_examples.case          'Ultrix'
+                                 'OpenVMS'
+                                 'DOS'
+                                 'Windows 95'
+                                 'Windows NT'
+                                 'Irix'
+                                 'HPUX'
+                                 'DEC Unix'
+     save_
+
+save__bsync_software.os_version
+    _item_description.description
+;              The version of the operating system under which the software
+               runs.
+;
+    _item.name                  '_bsync_software.os_version'
+    _item.category_id             bsync_software
+    _item.mandatory_code          no 
+    _item_type.code               text
+     loop_
+    _item_examples.case          '3.1'
+                                 '4.2.1'
+     save_
+
+save__bsync_software.type
+    _item_description.description
+;              The classification of the software according to the most
+               common types.
+;
+    _item.name                  '_bsync_software.type'
+    _item.category_id             bsync_software
+    _item.mandatory_code          no
+    _item_type.code               uline
+     loop_
+    _item_enumeration.value
+    _item_enumeration.detail      program  
+;                                 individual program with limited
+                                  functionality
+;
+                                  library
+;                                 used by a program at load time
+;
+                                  package
+;                                 collections of programs with multiple
+                                  functionality
+;
+                                  filter
+;                                 filters input and output streams
+;
+                                  jiffy
+;                                 short simple program
+;
+                                  other
+;                                 all other classifications
+;
+     save_
+ 
+save__bsync_software.version
+    _item_description.description
+;              The version of the software.
+;
+    _item.name                  '_bsync_software.version'
+    _item.category_id             bsync_software 
+    _item.mandatory_code          yes
+    _item_type.code               line
+     loop_
+    _item_examples.case          'v1.0'
+                                 'beta'
+                                 '3.1-2'
+                                 'unknown'
+     save_
+
+
+
+
+
+##########################
+## BSYNC_ADMIN_CONTACT  ##
+##########################
+
+save_bsync_admin_contact
+    _category.description
+;              Data items in the BSYNC_ADMIN_CONTACT category describe the
+               adiministrative, logistical, contact and travel 
+               infomtion in preparing a trip to a synchrotron. 
+;
+    _category.id                  bsync_admin_contact
+    _category.mandatory_code      no
+    _category_key.name          '_bsync_admin_contact.beamline_id'
+     loop_
+    _category_group.id           'inclusive_group'
+                                 'bsync_group'
+     loop_
+    _category_examples.detail
+    _category_examples.case
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+;
+    Example 1 -
+;
+;
+    _bsync_admin_contact.beamline_id            1
+    _bsync_admin_contact.beamline_name         'd1'
+    _bsync_admin_contact.for_technical_name          'Joe Smith'
+    _bsync_admin_contact.for_technical_email         'smith@synchrotron.edu'
+;
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+     save_
+
+
+save__bsync_admin_contact.beamline_name
+    _item_description.description
+;              This is a short beamline identifier.
+;
+    _item.name                  '_bsync_admin_contact.beamline_name'
+    _item.mandatory_code          yes
+    _item_type.code               code
+     save_
+
+
+save__bsync_admin_contact.beamline_id
+    _item_description.description
+;              This data item is a pointer to _bsync_beamline.id in
+               the BSYNC_BEAMLINE  category.
+;
+    _item.name                  '_bsync_admin_contact.beamline_id'
+    _item.mandatory_code          yes
+    _item_type.code               code
+     loop_
+    _item_enumeration.value
+     1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25
+     26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50
+     save_
+
+save__bsync_admin_contact.website
+    _item_description.description
+;             Website with staff contacts.
+;
+    _item.name                  '_bsync_admin_contact.website'
+    _item.category_id             bsync_admin_contact
+    _item.mandatory_code          no
+    _item_type.code               text
+    _item_examples.case
+;                                 Need new example here.
+;
+     save_
+
+
+save__bsync_admin_contact.for_technical_name
+    _item_description.description
+;              Name of beamline contact person for technical information.
+;
+    _item.name                  '_bsync_admin_contact.for_technical_name'
+    _item.category_id             bsync_admin_contact
+    _item.mandatory_code          no
+    _item_type.code               text
+    _item_examples.case
+;                                 Need new example here.
+;
+     save_
+
+save__bsync_admin_contact.for_beamtime_name
+    _item_description.description
+;              Name of contact person for proposal information 
+;
+    _item.name                  '_bsync_admin_contact.for_beamtime_name'
+    _item.category_id             bsync_admin_contact
+    _item.mandatory_code          no
+    _item_type.code               text
+    _item_examples.case
+;                                 Need new example here.
+;
+     save_
+
+
+save__bsync_admin_contact.for_technical_phone
+    _item_description.description
+;              Phone number of beamline contact person.
+;
+    _item.name                  '_bsync_admin_contact.for_technical_phone'
+    _item.category_id             bsync_admin_contact
+    _item.mandatory_code          no
+    _item_type.code               text
+    _item_examples.case
+;                                 Need new example here.
+;
+     save_
+
+save__bsync_admin_contact.for_beamtime_phone
+    _item_description.description
+;              Phone number of beamline contact person.
+;
+    _item.name                  '_bsync_admin_contact.for_beamtime_phone'
+    _item.category_id             bsync_admin_contact
+    _item.mandatory_code          no
+    _item_type.code               text
+    _item_examples.case
+;                                 Need new example here.
+;
+     save_
+
+
+save__bsync_admin_contact.for_technical_email
+    _item_description.description
+;              Email of beamline contact person.
+;
+    _item.name                  '_bsync_admin_contact.for_technical_email'
+    _item.category_id             bsync_admin_contact
+    _item.mandatory_code          no
+    _item_type.code               text
+    _item_examples.case
+;                                 Need new example here.
+;
+     save_
+
+save__bsync_admin_contact.for_beamtime_email
+    _item_description.description
+;              Email of beamline contact person.
+;
+    _item.name                  '_bsync_admin_contact.for_beamtime_email'
+    _item.category_id             bsync_admin_contact
+    _item.mandatory_code          no
+    _item_type.code               text
+    _item_examples.case
+;                                 Need new example here.
+;
+     save_
+
+save__bsync_admin_contact.shipping_address
+    _item_description.description
+;              The shipping address of beamline facilities.
+;
+    _item.name                  '_bsync_admin_contact.shipping_address'
+    _item.category_id             bsync_admin_contact
+    _item.mandatory_code          no
+    _item_type.code               text
+    _item_examples.case
+;                                 Need new example here.
+;
+     save_
+
+
+save__bsync_admin_contact.contact_address
+    _item_description.description
+;              Address of beamline contact person.
+;
+    _item.name                  '_bsync_admin_contact.contact_address'
+    _item.category_id             bsync_admin_contact
+    _item.mandatory_code          no
+    _item_type.code               text
+    _item_examples.case
+;                                 Need new example here.
+;
+     save_
+
+
+
+#########################
+## BSYNC_ADMIN_LOGOS   ##
+#########################
+
+save_bsync_admin_logos
+    _category.description
+;              Data items in the BSYNC_ADMIN_LOGOS category describe the
+               logo associated with each beamline and
+               synchrotron.
+;
+    _category.id                  bsync_admin_logos
+    _category.mandatory_code      no
+     loop_
+    _category_key.name          '_bsync_admin_logos.beamline_id'
+     loop_
+    _category_group.id           'inclusive_group'
+                                 'bsync_group'
+     loop_
+    _category_examples.detail
+    _category_examples.case
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+;
+    Example 1
+;
+;
+    _bsync_admin_logos.beamline_id       1
+    _bsync_admin_logos.crystallography   'hbar_pxssrl.gif'
+    _bsync_admin_logos.synchrotron       'hbar_ssrl.gif'
+;
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+     save_
+
+save__bsync_admin_logos.beamline_id
+    _item_description.description
+;              This data item is a pointer to _bsync_beamline.id in the
+               BSYNC_BEAMLINE category.
+;
+    _item.name                  '_bsync_admin_logos.beamline_id'
+    _item.mandatory_code          yes
+    _item_type.code               code
+     loop_
+    _item_enumeration.value  
+     1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25
+     26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50
+     save_
+
+save__bsync_admin_logos.beamline_name
+    _item_description.description
+;              This data item is a short identifier for the beamline.
+;
+    _item.name                  '_bsync_admin_logos.beamline_name'
+    _item.mandatory_code          yes
+    _item_type.code               code
+     save_
+
+
+save__bsync_admin_logos.crystallography
+    _item_description.description
+;              The logo for the cat or prt or crystallography
+    group that operates the beamline.
+;
+    _item.name                  '_bsync_admin_logos.crystallography'
+    _item.category_id             bsync_admin_logos
+    _item.mandatory_code          no
+    _item_type.code               text
+    _item_examples.case          'hbar_pxssrl.gif' 
+     save_
+
+save__bsync_admin_logos.synchrotron
+    _item_description.description
+;              The logo for the synchrotron facility
+;
+    _item.name                  '_bsync_admin_logos.synchrotron'
+    _item.category_id             bsync_admin_logos
+    _item.mandatory_code          no
+    _item_type.code               text
+    _item_examples.case          'hbar_ssrl.gif'
+ 
+     save_
+
+
+
+###############################
+## BSYNC_ADMIN_APPLICATIONS  ##
+###############################
+
+save_bsync_admin_applications
+    _category.description
+;              Data items in the APPLICATIONS category describe the
+               application procedure to obtain beamtime at a
+               given beamline.
+;
+    _category.id                  bsync_admin_applications
+    _category.mandatory_code      no
+    _category_key.name          '_bsync_admin_applications.beamline_id'
+     loop_
+    _category_group.id           'inclusive_group'
+                                 'bsync_group'
+     loop_
+    _category_examples.detail
+    _category_examples.case
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+;
+    Example 1 -
+;
+;
+    _bsync_admin_applications.beamline_id            1
+    _bsync_admin_applications.beamline_name         'd1'
+;
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+     save_
+
+
+save__bsync_admin_applications.beamline_name
+    _item_description.description
+;              This is a short beamline identifier.
+;
+    _item.name                  '_bsync_admin_applications.beamline_name'
+    _item.mandatory_code          yes
+    _item_type.code               code
+     save_
+
+
+save__bsync_admin_applications.beamline_id
+    _item_description.description
+;              This data item is a pointer to _bsync_beamline.id in
+               the BSYNC_BEAMLINE  category.
+;
+    _item.name                  '_bsync_admin_applications.beamline_id'
+    _item.mandatory_code          yes
+    _item_type.code               code
+     loop_
+    _item_enumeration.value
+     1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25
+     26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50
+     save_
+
+    
+
+save__bsync_admin_applications.url
+    _item_description.description
+;             url for applications.
+;
+    _item.name                  '_bsync_admin_applications.url'
+    _item.category_id             bsync_admin_applications
+    _item.mandatory_code          no
+    _item_type.code               text
+    _item_examples.case
+;                                 Need new example here.
+;
+     save_
+
+
+save__bsync_admin_applications.url_name
+    _item_description.description
+;             name of the url for applications.
+;
+    _item.name                  '_bsync_admin_applications.url_name'
+    _item.category_id             bsync_admin_applications
+    _item.mandatory_code          no
+    _item_type.code               text
+    _item_examples.case
+;                                 Procedure for obtaining Beam Time 
+;
+     save_
+
+
+save__bsync_admin_applications.deadlines
+    _item_description.description
+;             deadline for beamtime applications 
+;
+    _item.name                  '_bsync_admin_applications.deadlines'
+    _item.category_id             bsync_admin_applications
+    _item.mandatory_code          no
+    _item_type.code               text
+    _item_examples.case
+;                                 Need new example here.
+;
+     save_
+
+save__bsync_admin_applications.procedure
+    _item_description.description
+;            procedure for applications
+;
+    _item.name                  '_bsync_admin_applications.procedure'
+    _item.category_id             bsync_admin_applications
+    _item.mandatory_code          no
+    _item_type.code               text
+    _item_examples.case
+;                                 Need new example here.
+;
+     save_
+
+
+############################
+## BSYNC_FACILITY_WEBSITE ##
+############################
+
+save_bsync_facility_website
+    _category.description
+;              Data items in the BSYNC_FACILITY_WEBSITE category record details 
+               about hyperlinks and desciptions of those links to the 
+               synchrotron facility website.  This category forms the  basis 
+              of the BioSync Web portal. 
+
+;
+    _category.id                  bsync_facility_website
+    _category.mandatory_code      no
+     loop_
+    _category_key.name          '_bsync_facility_website.facility_id'
+     loop_
+    _category_group.id           'inclusive_group'
+                                 'bsync_group'
+     loop_
+    _category_examples.detail
+    _category_examples.case
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+;
+    Example 1 - SSRL
+;
+;
+
+  _bsync_facility_website.facility_id  ssrl
+  _bsync_facility_website.facility_map_url
+    'http://www-ssrl.slac.stanford.edu/welcome.html'
+;
+     save_
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+save__bsync_facility_website.facility_id
+    _item_description.description
+;              This data item is a pointer to _bsync_facility.id in the
+               BSYNC_FACILITY  category.
+;
+    _item.name                  '_bsync_facility_website.facility_id'
+    _item.mandatory_code          yes
+    _item_type.code               code
+     save_
+
+
+
+save__bsync_facility_website.ring_status_url
+    _item_description.description
+;             The url for the current ring status 
+;
+    _item.name                  '_bsync_facility_website.ring_status_url'
+    _item.category_id             bsync_facility_website
+    _item.mandatory_code          no
+    _item_type.code               text
+     save_
+
+save__bsync_facility_website.ring_status
+    _item_description.description
+;             A description of the url for the current ring status
+;
+    _item.name                  '_bsync_facility_website.ring_status'
+    _item.category_id             bsync_facility_website
+    _item.mandatory_code          no
+    _item_type.code               text
+     save_
+
+save__bsync_facility_website.facility_map_url
+    _item_description.description
+;             The url for a map of the synchrotron facility 
+;
+    _item.name                  '_bsync_facility_website.facility_map_url'
+    _item.category_id             bsync_facility_website
+    _item.mandatory_code          no
+    _item_type.code               text
+     save_
+
+save__bsync_facility_website.facility_map
+    _item_description.description
+;             A description of the url for the facility map 
+;
+    _item.name                  '_bsync_facility_website.facility_map'
+    _item.category_id             bsync_facility_website
+    _item.mandatory_code          no
+    _item_type.code               text
+     save_
+
+save__bsync_facility_website.directions_url
+    _item_description.description
+;             The url for directions to the facility
+;
+    _item.name                  '_bsync_facility_website.directions_url'
+    _item.category_id             bsync_facility_website
+    _item.mandatory_code          no
+    _item_type.code               text
+     save_
+
+save__bsync_facility_website.directions
+    _item_description.description
+;             A description of the url for directions to the facility
+;
+    _item.name                  '_bsync_facility_website.directions'
+    _item.category_id             bsync_facility_website
+    _item.mandatory_code          no
+    _item_type.code               text
+     save_
+
+
+
+save__bsync_facility_website.accomodation_url
+    _item_description.description
+;             The url for accomodations at the facility
+;
+    _item.name                  '_bsync_facility_website.accomodation_url'
+    _item.category_id             bsync_facility_website
+    _item.mandatory_code          no
+    _item_type.code               text
+     save_
+
+save__bsync_facility_website.accomodation
+    _item_description.description
+;             A description of the url for accomodations at the facility
+;
+    _item.name                  '_bsync_facility_website.accomodation'
+    _item.category_id             bsync_facility_website
+    _item.mandatory_code          no
+    _item_type.code               text
+     save_
+
+
+
+save__bsync_facility_website.publications_url
+    _item_description.description
+;             The url for crystallography publications from research at
+    the  facility
+;
+    _item.name                  '_bsync_facility_website.publications_url'
+    _item.category_id             bsync_facility_website
+    _item.mandatory_code          no
+    _item_type.code               text
+     save_
+
+save__bsync_facility_website.publications
+    _item_description.description
+;             A description of the url for crystallography publications from research at
+    the  facility
+;
+    _item.name                  '_bsync_facility_website.publications'
+    _item.category_id             bsync_facility_website
+    _item.mandatory_code          no
+    _item_type.code               text
+     save_
+
+
+
+
+save__bsync_facility_website.operation_schedule_url
+    _item_description.description
+;             The url for long term operation of the facility 
+;
+    _item.name                  '_bsync_facility_website.operation_schedule_url'
+    _item.category_id             bsync_facility_website
+    _item.mandatory_code          no
+    _item_type.code               text
+     save_
+
+save__bsync_facility_website.operation_schedule
+    _item_description.description
+;             A description of the url for long term operation of the facility
+;
+    _item.name                  '_bsync_facility_website.operation_schedule'
+    _item.category_id             bsync_facility_website
+    _item.mandatory_code          no
+    _item_type.code               text
+     save_
+
+
+save__bsync_facility_website.safety_training_url
+    _item_description.description
+;             The url for info. on safety training at the facility
+;
+    _item.name                  '_bsync_facility_website.safety_training_url'
+    _item.category_id             bsync_facility_website
+    _item.mandatory_code          no
+    _item_type.code               text
+     save_
+
+save__bsync_facility_website.safety_training
+    _item_description.description
+;             A description of safety training at the facility
+;
+    _item.name                  '_bsync_facility_website.safety_training'
+    _item.category_id             bsync_facility_website
+    _item.mandatory_code          no
+    _item_type.code               text
+     save_
+
+
+
+############################
+## BSYNC_ADMIN_SCHEDULES  ##
+############################
+
+save_bsync_admin_schedules
+    _category.description
+;              Data items in the SCHEDULES category describe the
+               application procedure to obtain beamtime at a
+               given beamline.
+;
+    _category.id                  bsync_admin_schedules
+    _category.mandatory_code      no
+    _category_key.name          '_bsync_admin_schedules.beamline_id'
+     loop_
+    _category_group.id           'inclusive_group'
+                                 'bsync_group'
+     loop_
+    _category_examples.detail
+    _category_examples.case
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+;
+    Example 1 -
+;
+;
+    _bsync_admin_schedules.beamline_id            1
+    _bsync_admin_schedules.beamline_name         'd1'
+;
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
+
+     save_
+
+
+save__bsync_admin_schedules.beamline_name
+    _item_description.description
+;              This is a short beamline identifier.
+;
+    _item.name                  '_bsync_admin_schedules.beamline_name'
+    _item.mandatory_code          yes
+    _item_type.code               code
+     save_
+
+
+save__bsync_admin_schedules.beamline_id
+    _item_description.description
+;              This data item is a pointer to _bsync_beamline.id in
+               the BSYNC_BEAMLINE  category.
+;
+    _item.name                  '_bsync_admin_schedules.beamline_id'
+    _item.mandatory_code          yes
+    _item_type.code               code
+     loop_
+    _item_enumeration.value
+     1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25
+     26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50
+     save_
+
+    
+
+save__bsync_admin_schedules.long_term
+    _item_description.description
+;             long term operating schedule for the synchrotron.
+;
+    _item.name                  '_bsync_admin_schedules.long_term'
+    _item.category_id             bsync_admin_schedules
+    _item.mandatory_code          no
+    _item_type.code               text
+    _item_examples.case
+;                                 Need new example here.
+;
+     save_
+
+
+save__bsync_admin_schedules.ring_status
+    _item_description.description
+;           current ring status 
+;
+    _item.name                  '_bsync_admin_schedules.ring_status'
+    _item.category_id             bsync_admin_schedules
+    _item.mandatory_code          no
+    _item_type.code               text
+    _item_examples.case
+;                                 Procedure for obtaining Beam Time 
+;
+     save_
+
+
+save__bsync_admin_schedules.beamline
+    _item_description.description
+;             beamline schedules 
+;
+    _item.name                  '_bsync_admin_schedules.beamline'
+    _item.category_id             bsync_admin_schedules
+    _item.mandatory_code          no
+    _item_type.code               text
+    _item_examples.case
+;                                 Need new example here.
+;
+     save_
+
+
+#################
+## BSYNC_LINKS ##
+#################
+
+save_bsync_links
+    _category.description
+;              Data items in the BSYNC_LINKS category record details 
+               about hyperlinks and desciptions of those links to the 
+               synchrotron facility website.  This category forms the  basis 
+              of the BioSync Web portal. 
+
+;
+    _category.id                  bsync_links
+    _category.mandatory_code      no
+     loop_
+    _category_key.name          '_bsync_links.facility_id'
+                                '_bsync_links.name'
+     loop_
+    _category_group.id           'inclusive_group'
+                                 'bsync_group'
+     loop_
+    _category_examples.detail
+    _category_examples.case
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+;
+    Example 1 - SSRL
+;
+;
+
+  _bsync_links.facility_id  ssrl
+  _bsync_links.name
+  ;Stanford Synchrotron Radiation Laboratory (SSRL)
+  ;
+  _bsync_links.url
+    'http://www-ssrl.slac.stanford.edu/welcome.html'
+  _bsync_links.description 'welcome page for all beamlines'
+;
+     save_
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+save__bsync_links.facility_id
+    _item_description.description
+;              This data item is a pointer to _bsync_facility.id in the
+               BSYNC_FACILITY  category.
+;
+    _item.name                  '_bsync_links.facility_id'
+    _item.mandatory_code          yes
+    _item_type.code               code
+     save_
+
+save__bsync_links.name
+    _item_description.description
+;              Site name for the link.
+;
+    _item.name                  '_bsync_links.name'
+    _item.category_id             bsync_links
+    _item.mandatory_code          yes
+    _item_type.code               text
+     save_
+
+save__bsync_links.category
+    _item_description.description
+;           The category for the link based on the BioSync
+   Web site, contacts, travel, publications, schedules 
+;
+    _item.name                  '_bsync_links.category'
+    _item.category_id             bsync_links
+    _item.mandatory_code          no 
+    _item_type.code               text
+    loop_
+    _item_enumeration.value   
+                                 'Travel'
+                                 'Publications'
+                                 'Calendars'
+                                 'Training'
+                                 'Beam time'
+                                 'Maps'
+                                 'Operations'
+                                 'Staff'
+                                 'Synchrotron and Crystallography Orgs'
+                                 'Synchrotron and Organizations'
+                                 'General Information'
+                                 'Shipping'
+                                 'Beam time, xtal beamlines'
+                                 'Beam time, other beamlines'
+                                 'Beam time, X-ray absorption spectrocopy'
+                                 'Beam Time - crystallography' 
+                                 'Beam Time - saxs & xas'
+
+
+     save_
+
+
+save__bsync_links.url
+    _item_description.description
+;              Site location (URL) for the link
+;
+    _item.name                  '_bsync_links.url'
+    _item.category_id             bsync_links
+    _item.mandatory_code          no
+    _item_type.code               text
+     save_
+
+
+save__bsync_links.description
+    _item_description.description
+;              A description of the website 
+;
+    _item.name                  '_bsync_links.description'
+    _item.category_id             bsync_links
+    _item.mandatory_code          no
+    _item_type.code               text
+     save_
+
+##
+## End of file - mmcif_biosync_def-1.dic
+##
+
+
+
+# 
+loop_
+_pdbx_item_linked_group.category_id 
+_pdbx_item_linked_group.link_group_id 
+_pdbx_item_linked_group.label 
+_pdbx_item_linked_group.context 
+_pdbx_item_linked_group.condition_id 
+bsync_beamline           1 bsync_beamline:bsync_diffrn_source:1      . . 
+bsync_beamline           2 bsync_beamline:bsync_facility:2           . . 
+bsync_diffrn_detector    1 bsync_diffrn_detector:bsync_beamline:1    . . 
+bsync_diffrn_measurement 1 bsync_diffrn_measurement:bsync_beamline:1 . . 
+bsync_diffrn_radiation   1 bsync_diffrn_radiation:bsync_beamline:1   . . 
+bsync_diffrn_source      1 bsync_diffrn_source:bsync_beamline:1      . . 
+bsync_facility_website   1 bsync_facility_website:bsync_facility:1   . . 
+bsync_software           1 bsync_software:bsync_beamline:1           . . 
+# 
+loop_
+_pdbx_item_linked_group_list.child_category_id 
+_pdbx_item_linked_group_list.link_group_id 
+_pdbx_item_linked_group_list.child_name 
+_pdbx_item_linked_group_list.parent_name 
+_pdbx_item_linked_group_list.parent_category_id 
+bsync_beamline           1 '_bsync_beamline.source_type'           '_bsync_diffrn_source.type' bsync_diffrn_source 
+bsync_beamline           2 '_bsync_beamline.facility_id'           '_bsync_facility.id'        bsync_facility      
+bsync_diffrn_detector    1 '_bsync_diffrn_detector.beamline_id'    '_bsync_beamline.id'        bsync_beamline      
+bsync_diffrn_measurement 1 '_bsync_diffrn_measurement.beamline_id' '_bsync_beamline.id'        bsync_beamline      
+bsync_diffrn_radiation   1 '_bsync_diffrn_radiation.beamline_id'   '_bsync_beamline.id'        bsync_beamline      
+bsync_diffrn_source      1 '_bsync_diffrn_source.beamline_id'      '_bsync_beamline.id'        bsync_beamline      
+bsync_facility_website   1 '_bsync_facility_website.facility_id'   '_bsync_facility.id'        bsync_facility      
+bsync_software           1 '_bsync_software.beamline_id'           '_bsync_beamline.id'        bsync_beamline      
+# 

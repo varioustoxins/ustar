@@ -1,0 +1,3716 @@
+###########################################################################
+#
+# File:  mmcif_sas.dic
+# Date:  Mon Aug 16 07:18:26 EDT 2021
+#
+# Created from files in CVS module dict-mmcif_sas.dic unless noted:
+#        mmcif_sas-ext-full.dic   
+#
+###########################################################################
+ 
+ 
+###########################################################################
+#
+# File:  mmcif_sas.dic
+# Date:  Tue Apr 12 08:02:30 EDT 2016
+#
+# Created from files in CVS module dict-mmcif_sas.dic unless noted:
+#        mmcif_sas-header.dic
+#        mmcif_sas-data.dic
+#        mmcif_sas_full.dic
+#        sasCIF-ext.dic
+#        mmcif_sas-def-ilg.dic
+#
+###########################################################################
+
+
+##############################################################################
+#                                                                            #
+#                               SAS CIF Dictionary                           #
+#                                                                            #
+#                       Marc Malfois, Dmitri Svergun                         #
+#                                                                            #
+# Details of revisions are given in dictionary_history at end of the file    #
+#                                                                            #
+##############################################################################
+#                                                                            #
+#        This dictionary built with DDL v2.1. format                         #
+#        CIF data definitions for small-angle scattering applications        #
+#                                                                            #
+##############################################################################
+#IDB
+# OVERVIEW
+#
+# This dictionary describe a additional CIF items needed for a sas experiment
+#
+# This version of the sasCIF dictionary is organized on the following principles:
+#
+# 1. It assumes that a sasCIF will report the intensity measurements as a function
+# of momentum transfer from one or more scans.
+# Each scan will report scattering from either the sample, the matrix, etc. or the
+# processed intensities.  The intensities will be recorded
+# in the sas_scan_intensity category.  Any number of scans may be reported in a
+# single datablock, but different scans may be reported in different datablocks
+# if so desired.
+#
+# 2. The properties of each scan, e.g., the sample, beam and detector used, whether
+# the scattering is from the sample or the matrix, is indentified in the sas_scan
+# category.
+# The properties of the beam, detector and sample are reported in their own
+# categories, but the sas_scan category has pointers to these, allowing each scan
+# to reference any of the reported samples, beams and detectors.
+# If more than one scan is being reported in the CIF, the items in sas_scan will be
+# looped.
+#
+
+
+###################################################################
+#
+#   DRAFT SAS DICTIONARY FOLLOWS
+#
+###################################################################
+
+data_mmcif_sas.dic
+    _datablock.id                          mmcif_sas.dic
+    _datablock.description
+;
+     This data block holds the draft version of SAS dictionary.
+
+;
+    _dictionary.title           mmcif_sas.dic
+    _dictionary.version         0.6
+    _dictionary.datablock_id    mmcif_sas.dic
+
+
+########################
+## DICTIONARY_HISTORY ##
+########################
+
+     loop_
+    _dictionary_history.version
+    _dictionary_history.update
+    _dictionary_history.revision
+0.1   1998-11-09
+;
+   Initial definitions
+;
+0.1.1 1998-11-23
+;
+   Initial definitions corrected according to the DDL2 format.
+;
+0.1.2 1999-03-12
+;
+    Corrections including keywords defined in the core dictionary.
+;
+0.1.3 1999-06-02
+;
+    Corrections with better definitions of the items.
+;
+0.2  2000-12-19
+;   Corrections made by I.D.Brown together with questions raised in comments
+;
+0.3 2001-05-05
+;   Corrections made made by M. Malfois according the questions and comments of I.D.Brown
+;
+0.4.01  2007-10-23
+;   I.D.Brown: Introduced the standard CIF axis system defined in imgCIF and reorganized sas_intensity into sas_scan and sas_scan_intensity.  Moved .beam_id and .detc_id from sas_sample to sas_scan.  Changed some names and improved definitions etc.  Inserted a number of queries.
+;
+0.4.02  2010-01-05
+;   IDB: Further changes in response to DSV's suggestions
+;
+0.4.03  2010-01-26
+;   IDB: set up the sas_axis category and changed all the references to the axis system to conform to the use of a local set of laboratory axes defined in sas_axis in terms of the Standard Laboratory Refrence System.
+Rearranged items in alphabetic order (excetpt .id items come first)
+;
+0.4.04  2013-10-17
+;   jdw: Format and syntax updates based on software checks.
+;
+0.5  2015-01-17
+;  Updates: (jdw)
+   + Incorporate extensions for SASDB provided by Michael Kachala and Dmitri Svergun.
+;
+0.51  2015-01-26
+;  Updates: (jdw)
+   + Refined parent-child relationships ( Michael Kachala and Dmitri Svergun).
+;
+0.6  2017-02-21
+;  Updates: (ck)
+   + Extensions supporting of SASBDB resource and integration with wwPDB OneDep system
+;
+#--eof--eof--eof--eof--eof--eof--eof--eof--eof--eof--eof--eof--eof
+
+
+##################
+## SUB_CATEGORY ##
+##################
+     loop_
+    _sub_category.id
+    _sub_category.description
+              'vector'
+;              The collection of elements of a vector.
+;
+
+####################
+## ITEM_TYPE_LIST ##
+####################
+
+#
+#
+#  The regular expressions defined here are not compliant
+#  with the POSIX 1003.2 standard as they include the
+#  '\n' and '\t' special characters. These regular expressions
+#  have been tested using the version 0.12 of Richard Stallman's
+#  GNU regular expression libary in POSIX mode.
+#
+     loop_
+    _item_type_list.code
+    _item_type_list.primitive_code
+    _item_type_list.construct
+    _item_type_list.detail
+               code      char
+               '[_,.;:"&<>/\{}'`~!@#$%A-Za-z0-9*|+-]*'
+;              code item types/single words ...
+;
+               ucode      uchar
+               '[_,.;:"&<>/\{}'`~!@#$%A-Za-z0-9*|+-]*'
+;              code item types/single words  (case insensitive) ...
+;
+
+               line      char
+               '[][ \t_(),.;:"&<>/\{}'`~!@#$%?+=*A-Za-z0-9|^-]*'
+;              char item types / multi-word items ...
+;
+             text      char
+               '[][ \n\t()_,.;:"&<>/\{}'`~!@#$%?+=*A-Za-z0-9|^-]*'
+;              text item types / multi-line text ...
+;
+               int       numb
+               '-?[0-9]+'
+;              int item types are the subset of numbers that are the negative
+               or positive integers.
+;
+               float     numb
+
+       '-?(([0-9]+)|([0-9]*[.][0-9]+))([(][0-9]+[)])?([eE][+-]?[0-9]+)?'
+
+;             float item types are the subset of numbers that are the floating
+               numbers.
+;
+              yyyy-mm-dd  char
+                '[0-9]?[0-9]?[0-9][0-9]-[0-9]?[0-9]-[0-9][0-9]'
+;
+               Standard format for CIF dates.
+;
+              orcid  char
+                '[0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]'
+;
+               Open Researcher Identifier - see https://orcid.org
+;
+
+
+#####################
+## ITEM_UNITS_LIST ##
+#####################
+
+#IDB
+# I have added metres (correct SI spelling) and rpm and have corrected the
+# spelling of litres.
+
+     loop_
+    _item_units_list.code
+    _item_units_list.detail
+#
+     'metres'                 'metres'
+     'angstroms'              'Angstroms   (metre * 10^(-10)^)'
+#
+     'millimetres'            'millimetres (metre * 10^( -3)^)'
+#
+#IDB
+# I have added another level of parentheses to correct the next line.
+#
+     'reciprocal_angstroms'   'reciprocal angstroms ((metres * 10^(-10))^^-1^)'
+#
+     'seconds'                'seconds'
+     'reciprocal_seconds'     'seconds^-1^'
+#
+     'degrees'                'degrees (of arc)'
+     'radians'             'radians'
+#
+  'mg_per_ml'              'milligram per millilitre'
+#
+     'rpm'                   'revolutions per minute'
+     'pixels'               'element of detector'
+#
+
+#########################
+## CATEGORY_GROUP_LIST ##
+#########################
+##IDB
+## You have defined a number of new categories in this dictionary, and for
+## each category you have defined a category group.  Since the purpose of the
+## category group is to bring different, but related, categories together, it
+## seems unnecessary to define an equal number of new category groups.  However,
+## I am not sure that what purpose the category groups serve (they are only used
+## in DDL2 dictionaries, i.e., the dictionaries used for macromolecular
+## structures).  At this stage we need not be too concerned about these groups.
+## If category groups are important, there should be one group, the sas group.
+##
+## IDB 2010-01-05
+## I have commented them out here and at other places where groups
+## items are defined.  They can be decommented later if necessary.
+    loop_
+    _category_group_list.id
+    _category_group_list.parent_id
+    _category_group_list.description
+              'sas_group'
+              'sas_group'
+;              Categories that belong to the sas dictionary.
+;
+              'beam_group'
+              'sas_group'
+;              Categories that describe the properties of the beam.
+;
+              'detector_group'
+              'sas_group'
+;              Categories that describe the properties of the detector.
+;
+              'sample_group'
+              'sas_group'
+;              Categories that describe the properties of the sample.
+;
+              'intensity_group'
+              'sas_group'
+;              Categories that describe the intensities
+;
+              'result_group'
+              'sas_group'
+;              Categories that describe the results of the measurement
+;
+              'fitting_group'
+              'sas_group'
+;              Categories that describe the fitting of theoretical models' scattering to the experimental data
+;
+              'model_group'
+              'sas_group'
+;              Categories that describe the models
+;
+              'audit_group'
+              'sas_group'
+;              Categories that describe dictionary maintenance and identification.
+;
+
+###################
+## AUDIT_CONFORM ##
+###################
+##CJK: copied from mmcif_pdbx_v40.dic
+
+save_audit_conform
+    _category.description
+;              Data items in the AUDIT_CONFORM category describe the
+               dictionary versions against which the data names appearing in
+               the current data block are conformant.
+;
+    _category.id                  audit_conform
+    _category.mandatory_code      no
+    loop_
+    _category_key.name          '_audit_conform.dict_name'
+                                '_audit_conform.dict_version'
+    loop_
+    _category_group.id           'sas_group'
+                                 'audit_group'
+    loop_
+    _category_examples.detail
+    _category_examples.case
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+;
+    Example 1 - any file conforming to the current CIF core dictionary.
+;
+;
+    _audit_conform.dict_name         mmcif_sas.dic
+    _audit_conform.dict_version      1.2.3
+    _audit_conform.dict_location     http://mmcif.wwpdb.org/dictionaries/ascii/mmcif_sas_v123.dic
+;
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+     save_
+
+save__audit_conform.dict_location
+    _item_description.description
+;              A file name or uniform resource locator (URL) for the
+               dictionary to which the current data block conforms.
+;
+    _item.name                  '_audit_conform.dict_location'
+    _item.category_id             audit_conform
+    _item.mandatory_code          no
+    _item_aliases.alias_name    '_audit_conform_dict_location'
+    _item_aliases.dictionary      cif_core.dic
+    _item_aliases.version         2.0.1
+    _item_type.code               text
+     save_
+
+save__audit_conform.dict_name
+    _item_description.description
+;              The string identifying the highest-level dictionary defining
+               data names used in this file.
+;
+    _item.name                  '_audit_conform.dict_name'
+    _item.category_id             audit_conform
+    _item.mandatory_code          yes
+    _item_aliases.alias_name    '_audit_conform_dict_name'
+    _item_aliases.dictionary      cif_core.dic
+    _item_aliases.version         2.0.1
+    _item_type.code               text
+     save_
+
+save__audit_conform.dict_version
+    _item_description.description
+;              The version number of the dictionary to which the current
+               data block conforms.
+;
+    _item.name                  '_audit_conform.dict_version'
+    _item.category_id             audit_conform
+    _item.mandatory_code          yes
+    _item_aliases.alias_name    '_audit_conform_dict_version'
+    _item_aliases.dictionary      cif_core.dic
+    _item_aliases.version         2.0.1
+    _item_type.code               text
+     save_
+
+
+#############
+## SAS_BEAM #
+#############
+
+#IDB
+# It is the intention that the items in this category be looped so
+# that several different beams can be described, each identified with a different
+# _sas_beam.id.
+
+# If it is intended to allow a number of items from the core dictionary to be used
+# in defining the properties of the beam there may be a problem in combining these
+# since all the items in a loop must belong to the same category.
+# I am proposing that we define all these items as _sas items and, where
+# appropriate, identify the names of the same item in the core as aliases.  See
+# the note 'implications of new developments...' above.
+#
+# What other items related to the beam will be picked up from the core dictionary?
+#
+# The powder dictionary has two items:
+#      _pd_inst_beam_size_ax = _sas_beam.width_y
+#      _pd_inst_beam_size_eq = _sas_beam.width_x
+# for giving the beam size in mm at the sample.  Axial is defined as perpendicular
+# to the plane of the incident and scattered beam.
+# The core dictionary has:
+#       _diffrn_radiation_monochromator
+#       _diffrn_radiation_polarisn_norm
+#       _diffrn_radiation_polarisn_ratio
+#       _diffrn_radiation_probe
+#       _diffrn_radiation_type
+#       _diffrn_radiation_xray_symbol
+# as well as items defining the collimation, filter, inhomogeneity.
+# In a separate category are:
+#       _diffrn_radiation_wavelength  = _diffrn_radiation_wavelength.wavelength
+#       _diffrn_radiation_wavelength_id
+#       _diffrn_radiation_wavelength_wt
+
+# DSV: we used clones of some items available in the core dictionary just for
+# consistency.
+
+## IDB: ok
+
+
+save_sas_beam
+    _category.description
+;              Items in this category give information about the beam.
+;
+    _category.id                  sas_beam
+    _category.mandatory_code      no
+    _category_key.name          '_sas_beam.id'
+    loop_
+    _category_group.id           'sas_group'   'beam_group'
+    loop_
+    _category_examples.detail
+    _category_examples.case
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+;
+    Example   - Hypothetical example to illustrate the description of a
+                beam geometry.
+;
+;
+    _sas_beam.id                         X_ray
+    _sas_beam.shape                      Rectangular
+    _sas_beam.width_ax                    0.2
+    _sas_beam.width_eq                    0.5
+    _sas_beam.radiation_wavelength_id     3
+;
+save_
+
+save__sas_beam.id
+    _item_description.description
+;            The value of _sas_beam.id must uniquely identify
+             the beam setup used to measure the scattered intensities.
+;
+    _item.name                   '_sas_beam.id'
+    _item.category_id             sas_beam
+    _item.mandatory_code          yes
+    _item_type.code               code
+      loop_
+    _item_linked.child_name
+    _item_linked.parent_name
+   '_sas_scan.beam_id'   '_sas_beam.id'
+    save_
+
+save__sas_beam.chopper_frequency
+    _item_description.description
+;              Frequency of the choppers in Hz
+;
+    _item.name                   '_sas_beam.chopper_frequency'
+    _item.category_id             sas_beam
+    _item.mandatory_code          no
+    _item_type.code               float
+    _item_units.code              'reciprocal_seconds'
+    save_
+
+save__sas_beam.collimation_slit_size_x
+    _item_description.description
+;           The width of the collimation slits in the _x direction
+;
+    _item.name                   '_sas_beam.collimation_slit_size_x'
+    _item.category_id             sas_beam
+    _item.mandatory_code          no
+    _item_type.code               float
+    _item_units.code              millimetres
+    save_
+
+save__sas_beam.collimation_slit_size_y
+    _item_description.description
+;           The width of the collimation slits in the _y direction
+;
+    _item.name                   '_sas_beam.collimation_slit_size_y'
+    _item.category_id             sas_beam
+    _item.mandatory_code          no
+    _item_type.code               float
+    _item_units.code              millimetres
+    save_
+
+save__sas_beam.dist_mono_to_spec
+    _item_description.description
+;      the distance in millimetres from the monochromator to the specimen
+;
+    _item.name           '_sas_beam.dist_mono_to_spec'
+    _item.category_id            sas_beam
+    _item.mandatory_code          no
+    _item_type.code               float
+    _item_units.code              millimetres
+    _item_aliases.alias_name      '_pd_instr_dist_mono/spec'
+    _item_aliases.dictionary      'cif_pd.dic'
+    _item_aliases.version          1.0.1
+    save_
+
+save__sas_beam.dist_src_to_mono
+    _item_description.description
+;      The distance in millimetres from the radiation source to the monochromator.
+       For synchrotron radiation, the source is a bending magnet or insertion
+       device.
+;
+    _item.name             '_sas_beam.dist_src_to_mono'
+    _item.category_id            sas_beam
+    _item.mandatory_code          no
+    _item_type.code               float
+    _item_units.code              millimetres
+    _item_aliases.alias_name      '_pd_instr_dist_src/mono'
+    _item_aliases.dictionary      'cif_pd.dic'
+    _item_aliases.version          1.0.1
+    save_
+
+save__sas_beam.dist_src_to_spec
+    _item_description.description
+;      the distance in millimetres from the source to the sample
+       For synchrotron radiation, the source is a bending magnet or insertion
+       device.
+;
+    _item.name           '_sas_beam.dist_src_to_spec'
+    _item.category_id            sas_beam
+    _item.mandatory_code          no
+    _item_type.code               float
+    _item_units.code              millimetres
+    _item_aliases.alias_name      '_pd_instr_dist_src/spec'
+    _item_aliases.dictionary      'cif_pd.dic'
+    _item_aliases.version          1.0.1
+    save_
+
+save__sas_beam.divergence_x
+    _item_description.description
+;            The beam divergence in the _x direction
+;
+    _item.name                   '_sas_beam.divergence_x'
+    _item.category_id             sas_beam
+    _item.mandatory_code          no
+    _item_type.code               float
+    _item_units.code              radians
+## IDB:
+## _pd_instr_divg_eq_mono/spec is a similar quantity but is given in degrees.
+##
+   save_
+
+save__sas_beam.divergence_y
+    _item_description.description
+;            The beam divergence in the _y
+;
+    _item.name                   '_sas_beam.divergence_y'
+    _item.category_id             sas_beam
+    _item.mandatory_code          no
+    _item_type.code               float
+    _item_units.code              radians
+## IDB:
+## _pd_instr_divg_ax_mono/spec is a similar quantity but is given in degrees.
+##
+    save_
+
+
+save__sas_beam.monochromator_takeoff
+    _item_description.description
+;              This is two times the Bragg angle (2 theta) of the monochromator.
+;
+    _item.name                   '_sas_beam.monochromator_takeoff'
+    _item.category_id             sas_beam
+    _item.mandatory_code          no
+    _item_type.code               float
+    _item_units.code              degrees
+    save_
+
+
+# IDB: I have moved this from the sas_detc category since polarization is a beam
+# property and changed the type to record the angle in degrees.
+# Have I described the positive direction correctly?
+
+save__sas_beam.polarization_direction
+    _item_description.description
+;              Direction of the polarization in degrees relative to the x axis
+               The positive direction is counterclockwise when facing the source.
+;
+    _item.name                   '_sas_beam.polarization_direction'
+    _item.category_id             sas_beam
+    _item.mandatory_code          no
+    _item_type.code               float
+    _item_units.code              degrees
+    save_
+
+save__sas_beam.polarizer_details
+    _item_description.description
+;              A description of the device used to polarize the beam
+;
+    _item.name                   '_sas_beam.polarizer_details'
+    _item.category_id             sas_beam
+    _item.mandatory_code          no
+    _item_type.code               text
+    save_
+
+save__sas_beam.radiation_pulse_duration
+    _item_description.description
+;              pulse duration for neutron time of flight measurements
+;
+    _item.name                   '_sas_beam.radiation_pulse_duration'
+    _item.category_id             sas_beam
+    _item.mandatory_code          no
+    _item_type.code               float
+    _item_units.code              seconds
+    save_
+
+##IDB
+## The next couple of items match some of the items in the
+## diffrn_radiation_wavelength category, but I think it is best to define new items
+## within the sas_beam category and avoid getting involved with the diffrn items
+## which are structured differently.  So I have changed _*.radiation_wavelength_id
+## to _*.radiation_wavelength.  This will allow a particular wavelength to be
+## associated with its own beam characterstics since a change in wavelength could
+## well change the divergence etc.  All the beam characteristics will have to be
+## given for each wavelength used.
+
+
+save__sas_beam.shape
+      _item_description.description
+;           Shape of the beam profile if not rectangular, e.g., circular
+;
+    _item.name                   '_sas_beam.shape'
+    _item.category_id             sas_beam
+    _item.mandatory_code          no
+    _item_type.code               text
+    _item_default.value           'rectangular'
+    save_
+
+save__sas_beam.velocity_selector_orientation
+    _item_description.description
+;              Angle between the rotation axis of the velocity selector
+               and the primary beam direction.
+;
+    _item.name                   '_sas_beam.velocity_selector_orientation'
+    _item.category_id             sas_beam
+    _item.mandatory_code          no
+    _item_type.code               float
+    _item_units.code              degrees
+    save_
+
+save__sas_beam.velocity_selector_speed
+    _item_description.description
+;              Rotation speed of the velocity selector in rpm
+;
+    _item.name                   '_sas_beam.velocity_selector_speed'
+    _item.category_id             sas_beam
+    _item.mandatory_code          no
+    _item_type.code               float
+    _item_units.code              rpm
+    save_
+
+save__sas_beam.width_x
+    _item_description.description
+;           The width of the beam at the sample in the _x direction
+;
+    _item.name                    '_sas_beam.width_x'
+    _item.category_id             sas_beam
+    _item.mandatory_code          no
+    _item_type.code               float
+    _item_units.code              millimetres
+## IDB:
+## I have added an alias here and in the next item to indicate that this
+## item gives the same information as one of the existing items in the powder
+## diffraction CIF dictionary.
+##
+    _item_aliases.alias_name      '_pd_inst_beam_size_eq'
+    _item_aliases.dictionary      'cif_pd.dic'
+    _item_aliases.version          1.0.1
+    save_
+
+save__sas_beam.width_y
+    _item_description.description
+;            The width of the beam at the sample in the_y direction
+;
+    _item.name                    '_sas_beam.width_y'
+    _item.category_id             sas_beam
+    _item.mandatory_code          no
+    _item_type.code               float
+    _item_units.code              millimetres
+    _item_aliases.alias_name      '_pd_inst_beam_size_ax'
+    _item_aliases.dictionary      'cif_pd.dic'
+    _item_aliases.version          1.0.1
+    save_
+
+save__sas_beam.radiation_wavelength
+   _item_description.description
+;      The wavelength of the incident beam in Angstroms.
+;
+    _item.name                   '_sas_beam.radiation_wavelength'
+    _item.category_id             sas_beam
+    _item.mandatory_code          no
+    _item_type.code               float
+    _item_units.code              'angstroms'
+    save_
+
+save__sas_beam.radiation_wavelength_width
+   _item_description.description
+;      The halfwidth of the distribution of wavelengths present in the incident
+       beam
+;
+    _item.name                    '_sas_beam.radiation_wavelength_width'
+    _item.category_id              sas_beam
+    _item.mandatory_code          no
+    _item_type.code               float
+    _item_units.code              'angstroms'
+    save_
+
+#################
+## SAS_DETECTOR #
+#################
+
+# DSV: The category sas_detc. has to be kept.
+# The concepts vital for SAS (e.g. beamstop size) are usually irrelevant
+# for Xtal or powder diffraction.
+#
+#IDB
+# I appreciate that there are items here that are not relevant to single crystal
+# work.  The question is how best to incorporate these into CIF when you will also
+# wish to use some of the items already defined in diffrn_detector.  There are
+# three possibilities
+#
+# 1. These items could be defined here but in the category diffrn_detector.  It
+# is permissible to define items in the same category in different dictionaries.
+#
+# 2. All the items required for sas work could be defined in the sas_detc
+# category.  This would require duplicate definitions for those items that also
+# appear in the diffrn_detector category and that are used in sas work.
+#
+# 3. A sas CIF could use items drawn from the sas_detc category and the
+# diffrn_detector category, but since they are not allowed in the same loop, two
+# loops would be needed and they would have to be linked through a parent-child
+# relationship.
+#
+# Of these possibilities, the first is the most elegant, the last the least
+# elegant.
+#
+# Which way should we go?
+
+## DSV: see above, I would suggest option 2
+##
+
+## IDB: I now agree option 2 is the best.  With the eventual conversion of this
+## dictionary to DDLm we will be able to use aliases to bring all the names used
+## for the same item into one description.
+##
+## Are there any other items (e.g., from the core dictionary) that should be
+## defined here?
+
+save_sas_detc
+    _category.description
+;              Gives information about the detector.
+               Extension for the items used in SAS.
+;
+    _category.id                  sas_detc
+    _category.mandatory_code      no
+    _category_key.name          '_sas_detc.id'
+    loop_
+    _category_group.id           'sas_group' 'detector_group'
+    loop_
+    _category_examples.detail
+    _category_examples.case
+# - - - - - - - - - - - - - - - - - - - - - -
+;
+    Example   - Hypothetical example to illustrate the description of a
+                detector.
+;
+;   _sas_detc.id                       2D
+    _sas_detc.beamstop_size_x         0.5
+    _sas_detc.beamstop_size_y         0.5
+    _sas_detc.pixsize_x               0.01
+    _sas_detc.pixsize_y               0.01
+    _sas_detc.center_x                2.0
+    _sas_detc.center_y                2.2
+    _sas_detc.sector_width             45
+    _sas_detc.sector_orientation       22.5
+;
+    save_
+
+save__sas_detc.id
+    _item_description.description
+;
+             The value of _sas_detc.id must uniquely identify
+             the detector used to measure the scattered intensities .
+;
+    _item.name                   '_sas_detc.id'
+    _item.category_id             sas_detc
+    _item.mandatory_code          yes
+    _item_type.code               code
+     loop_
+    _item_linked.child_name
+    _item_linked.parent_name
+           '_sas_scan.detc_id'   '_sas_detc.id'
+ save_
+
+save__sas_detc.beam_position_x
+    _item_description.description
+;              The position of the beam center on the detector in
+               _x direction in the detector coordinate system.
+;
+
+    _item.name                   '_sas_detc.beam_position_x'
+    _item.category_id             sas_detc
+    _item.mandatory_code          no
+    _item_type.code               float
+    _item_units.code              millimetres
+    save_
+
+save__sas_detc.beam_position_y
+    _item_description.description
+;              The position of the beam center on the detector in
+               _y direction.
+               The axis system is given by _sas_detc.axis.id.
+;
+
+    _item.name                   '_sas_detc.beam_position_y'
+    _item.category_id             sas_detc
+    _item.mandatory_code          no
+    _item_type.code               float
+    _item_units.code              millimetres
+    save_
+
+## CJK: Moved from _sas_beam since, if there is more than one
+##      detector, they can be at different distances
+save__sas_detc.dist_spec_to_detc
+    _item_description.description
+;      the distance in millimetres from the sample to the detector
+;
+    _item.name           '_sas_detc.dist_spec_to_detc'
+    _item.category_id            sas_detc
+    _item.mandatory_code          no
+    _item_type.code               float
+    _item_units.code              millimetres
+    _item_aliases.alias_name      '_pd_instr_dist_spec/detc'
+    _item_aliases.dictionary      'cif_pd.dic'
+    _item_aliases.version          1.0.1
+    save_
+
+save__sas_detc.beamstop_shadow_size_x
+    _item_description.description
+;              defines the maximum dimension of the beamstop shadow on the detector
+               in the _x direction
+;
+
+    _item.name                  '_sas_detc.beamstop_shadow_size_x'
+    _item.category_id             sas_detc
+    _item.mandatory_code          no
+    _item_type.code               float
+    _item_units.code              millimetres
+    save_
+
+
+save__sas_detc.beamstop_shadow_size_y
+    _item_description.description
+;              defines the maximum dimension of the beamstop shadow on the detector
+               in the _y direction
+;
+    _item.name                  '_sas_detc.beamstop_shadow_size_y'
+    _item.category_id             sas_detc
+    _item.mandatory_code          no
+    _item_type.code               float
+    _item_units.code              millimetres
+    save_
+
+
+# DSV: We can make _sas_detc.beamstop_shadow_position_x
+# and _sas_detc.beamstop_shadow_position_y in pixels,
+# in which case they will be the coordinates of the beam
+# center in pixels and serve for the transformation between the
+# two systems.
+
+save__sas_detc.beamstop_shadow_position_x
+    _item_description.description
+;              The x coordinate in pixels of the centre of the
+               beamstop shadow on the detector measured using the
+               detector coordinates.
+;
+    _item.name                  '_sas_detc.beamstop_shadow_position_x'
+    _item.category_id             sas_detc
+    _item.mandatory_code          no
+    _item_type.code               int
+    _item_units.code              pixels
+    save_
+
+save__sas_detc.beamstop_shadow_position_y
+    _item_description.description
+;             The y coordinate of the centre of the shadow of the beamstop on the
+              detector measured in the detector coordinate system
+;
+    _item.name                  '_sas_detc.beamstop_shadow_position_y'
+    _item.category_id             sas_detc
+    _item.mandatory_code          no
+    _item_type.code               int
+    _item_units.code              pixels
+    save_
+
+save__sas_detc.beamstop_shape
+    _item_description.description
+;              Shape of the beamstop (circular, rectangular etc)
+;
+    _item.name                   '_sas_detc.beamstop_shape'
+    _item.category_id             sas_detc
+    _item.mandatory_code          no
+    _item_type.code               text
+ save_
+
+save__sas_detc.merge_number
+    _item_description.description
+;              The number n of channels (pixels) merged together (1D-detector)
+		   to decrease the statistical error by a factor of SQRT(n).
+;
+    _item.name                   '_sas_detc.merge_number'
+    _item.category_id             sas_detc
+    _item.mandatory_code          no
+    _item_type.code               int
+    save_
+
+
+# NOTE: we are accustomed to Alpha, Beta, Gamma as Euler angles. This
+# description is routinely used by polymer people to describe detector
+# orientation
+#IDB
+# However, a precise description of how these angles are defined relative to the
+# reference coordinate system should be given, or else a reference to some work in
+# which such a description appears.  The dictionary should be
+# completely self-contained so that it does not to rely on the
+# institutional knowledge which is currently understood but which could be lost
+# in the future.
+# It is not obvious to me (never having done this experiment) how Euler angles are
+# involved.  I thought the normal to the detector plane pointed towards the source
+# in most if not all sas experiments.
+#
+
+# DSV: it could probably be sufficient to define the angle for the detector
+# normal. To be honest I never did experiemnts with tilted detectors either,
+# and it is very seldom that this plays a role.
+
+## IDB: If alphs, beta and gamma are to be included in the dictionary, an
+## unambiguous definition is required.  Euler angles are used on single crystal
+## goniometers and they are called phi, chi and psi.  I don't think there is any
+## universal labelling of these angles.  If the normal is always parallel to the
+## beam should these items be dropped?
+
+save__sas_detc.orientation_alpha
+    _item_description.description
+;              defines the Euler alpha angle of the normal to
+               the detector plane
+;
+    _item.name                    '_sas_detc.orientation_alpha'
+    _item.category_id             sas_detc
+    _item.mandatory_code          no
+    _item_type.code               float
+    _item_units.code              degrees
+    save_
+
+save__sas_detc.orientation_beta
+    _item_description.description
+;              defines the Euler beta angle of the normal to
+               the detector plane
+;
+    _item.name                    '_sas_detc.orientation_beta'
+    _item.category_id             sas_detc
+    _item.mandatory_code          no
+    _item_type.code               float
+    _item_units.code              degrees
+    save_
+
+save__sas_detc.orientation_gamma
+    _item_description.description
+;              defines the Euler gamma angle of the normal to
+               the detector plane
+;
+   _item.name                    '_sas_detc.orientation_gamma'
+   _item.category_id             sas_detc
+   _item.mandatory_code          no
+   _item_type.code               float
+   _item_units.code              degrees
+   save_
+
+save__sas_detc.pixnum_x
+    _item_description.description
+;               The number of detector pixels in the x direction.
+;
+    _item.name                   '_sas_detc.pixnum_x'
+    _item.category_id             sas_detc
+    _item.mandatory_code          no
+    _item_type.code               int
+    _item_units.code              pixels
+    save_
+
+save__sas_detc.pixnum_y
+    _item_description.description
+;                  The number of detector pixels in the y direction.
+;
+    _item.name                   '_sas_detc.pixnum_y'
+    _item.category_id             sas_detc
+    _item.mandatory_code          no
+    _item_type.code               int
+    _item_units.code              pixels
+    save_
+
+save__sas_detc.pixsize_x
+    _item_description.description
+;              The pixel size in mm in the x direction.
+;
+    _item.name                   '_sas_detc.pixsize_x'
+    _item.category_id             sas_detc
+    _item.mandatory_code          no
+    _item_type.code               float
+    _item_units.code              millimetres
+    save_
+
+save__sas_detc.pixsize_y
+    _item_description.description
+;              The pixel size in mm in the y direction.
+;
+    _item.name                   '_sas_detc.pixsize_y'
+    _item.category_id             sas_detc
+    _item.mandatory_code          no
+    _item_type.code               float
+    _item_units.code              millimetres
+    save_
+
+#IDB
+# Are the next three items intended to be used together?  If so, should this be
+# explained in the description?  To complete the description we need the value
+# of r, but in the scan category r is not given, only the momentum transfer.
+# How should these two concepts be linked?  Since the sector is defined by its
+# angular width, the number of pixels in each radial step will increase as r
+# increases.
+#
+
+# DSV: radial_step is just a binning interval, which is typically
+# constant within the run for radial averaging. See the attached figure explaining
+# the three terms
+
+##IDB: I have changed the name of the following items from .radial_step to
+## .sector_radial_width and from .sector_width to
+## .sector_angular_width in order to show that together they represent to
+## dimentions of the binning sector.
+## I have simplified the description.  Please check and
+## change as necessary.
+
+ save__sas_detc.sector_angular_width
+    _item_description.description
+;              The angular width of the binning sector of the 2D-detector:
+;
+    _item.name             '_sas_detc.sector_angular_width'
+    _item.category_id             sas_detc
+    _item.mandatory_code          no
+    _item_type.code               float
+    _item_units.code              degrees
+    save_
+
+save__sas_detc.sector_orientation
+    _item_description.description
+;              This is the angular coordinate of the binning sector
+               in a 2D-detector
+               It is the angle between the central line of the
+               sector and the x direction
+;
+    _item.name                    '_sas_detc.sector_orientation'
+    _item.category_id             sas_detc
+    _item.mandatory_code          no
+    _item_type.code               float
+    _item_units.code              degrees
+    save_
+
+save__sas_detc.sector_radial_width
+    _item_description.description
+;              The radial width of the binnng sector of the 2D-detector.
+;
+    _item.name                   '_sas_detc.sector_radial_width'
+    _item.category_id             sas_detc
+    _item.mandatory_code          no
+    _item_type.code               float
+    _item_units.code              millimetres
+    save_
+
+###########################
+# SAS_SAMPLE              #
+###########################
+
+save_sas_sample
+    _category.description
+;              Gives information about the sample and how it is mounted.
+                The sample is assumed to consist of the specimen to be
+                analysed and a matrix or buffer.
+;
+    _category.id                  sas_sample
+    _category.mandatory_code      no
+    _category_key.name          '_sas_sample.id'
+    loop_
+    _category_group.id          'sas_group' 'sample_group'
+  loop_
+    _category_examples.detail
+    _category_examples.case
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+;
+    Example   - Hypothetical example to illustrate the description of a
+                Sample.
+;
+;   _sas_sample.id                     Lysozyme_sample
+    _sas_sample.details               'Chicken egg white lysozyme in solution'
+    _sas_sample.specimen_concentration 15
+    _sas_sample.thickness              0.2
+    _sas_sample.sample_transmission    0.6
+    _sas_sample.exposure_time          600
+    _sas_sample.calibration_factor     1e-6
+;
+
+    save_
+
+save__sas_sample.id
+    _item_description.description
+;
+             The value of _sas_sample.id must uniquely identify
+             the sample whose scattered intensity was measured.
+             The sample is assumed to consist of a specimen
+             which is actually analysed and a matrix or buffer.
+;
+    _item.name                   '_sas_sample.id'
+    _item.category_id             sas_sample
+    _item.mandatory_code          yes
+    loop_
+    _item_linked.child_name
+    _item_linked.parent_name
+        '_sas_scan.sample_id'      '_sas_sample.id'
+
+    _item_type.code               code
+save_
+
+save__sas_sample.buffer_id
+   _item_description.description
+;       A pointer to _sas_buffer.id in the Buffer category
+;
+   _item.name            "_sas_sample.buffer_id"
+   _item.category_id     sas_sample
+   _item.mandatory_code  yes
+   _item_type.code  code
+save_
+
+save__sas_sample.calibration_details
+    _item_description.description
+;           A description of the calibration used for normalization
+            of the scattering intensity.
+;
+    _item.name                  '_sas_sample.calibration_details'
+    _item.category_id             sas_sample
+    _item.mandatory_code          no
+    _item_type.code               text
+     loop_
+    _item_examples.case          'Black carbon'
+                                 'Ionisation chamber'
+                                 'Water'
+                                 'Standard protein (BSA) '
+     save_
+
+save__sas_sample.details
+    _item_description.description
+;         A description of the sample such as the source of the sample,
+          identification of standards, mixtures, etc.
+          The sample is assumed to consist of a specimen which is
+          actually analysed and a matrix or buffer.
+;
+    _item.name                   '_sas_sample.details'
+    _item.category_id             sas_sample
+    _item.mandatory_code          no
+    _item_type.code               text
+    save_
+
+#IDB
+# Does this define the correct angle?
+#
+# Does it matter whether the normal lies in the xz or yz plane?
+#
+save__sas_sample.disk_orientation
+    _item_description.description
+;         The angle between the normal to the planar sample and
+          the incident beam.
+;
+
+    _item.name                   '_sas_sample.disk_orientation'
+    _item.category_id             sas_sample
+    _item.mandatory_code          no
+    _item_type.code               float
+    _item_units.code              degrees
+    save_
+
+save__sas_sample.fibre_orientation
+    _item_description.description
+;         The angle between the fibre direction of the sample and
+          the principal detector axis.  In the case of two-dimentsional
+          detectors this is the direction that changes most rapidly
+          in the detector output.
+;
+
+    _item.name                   '_sas_sample.fibre_orientation'
+    _item.category_id             sas_sample
+    _item.mandatory_code          no
+    _item_type.code               float
+    _item_units.code              degrees
+    save_
+
+save__sas_sample.length_unstressed
+    _item_description.description
+;              The length of the unstressed sample along the direction of stress.
+;
+    _item.name                   '_sas_sample.length_unstressed'
+    _item.category_id             sas_sample
+    _item.mandatory_code          no
+    _item_type.code               float
+    _item_units.code              millimetres
+    save_
+
+save__sas_sample.position_x
+    _item_description.description
+;              Defines the sample position in the _x direction.
+;
+    _item.name                  '_sas_sample.position_x'
+    _item.category_id             sas_sample
+    _item.mandatory_code          no
+    _item_type.code               float
+    _item_units.code              millimetres
+    save_
+
+save__sas_sample.position_y
+    _item_description.description
+;              defines the sample position in the _y direction.
+;
+    _item.name                  '_sas_sample.position_y'
+    _item.category_id             sas_sample
+    _item.mandatory_code          no
+    _item_type.code               float
+    _item_units.code              millimetres
+    save_
+
+save__sas_sample.position_z
+    _item_description.description
+;              defines the sample position in the _z direction.
+;
+    _item.name                  '_sas_sample.position_z'
+    _item.category_id             sas_sample
+    _item.mandatory_code          no
+    _item_type.code               float
+    _item_units.code              millimetres
+    save_
+
+save__sas_sample.preparation_date
+    _item_description.description
+;         The date of preparation of the sample, i.e., the date when
+          the sample was assembled into a form suitable for measuring
+          small angle scatterng.  The date is given in the format yyyy-mm-dd
+;
+    _item.name                   '_sas_sample.preparation_date'
+    _item.category_id             sas_sample
+    _item.mandatory_code          no
+    _item_type.code               yyyy-mm-dd
+    save_
+
+save__sas_sample.sample_transmission
+    _item_description.description
+;
+     The transmission factor Ts of the sample calculated or measured as
+
+           intensity of beam transmitted through the sample
+           ------------------------------------------------
+                      intensity of incident beam
+
+     The sample is assumed to consist of the specimen that is actually
+     analyzed and a matrix or buffer.
+;
+    _item.name                   '_sas_sample.sample_transmission'
+    _item.category_id             sas_sample
+    _item.mandatory_code          no
+    _item_type.code               float
+    save_
+
+save__sas_sample.shape
+    _item_description.description
+;         defines the shape of the sample. The sample is assumed to
+          consist of a specimen which is actually analysed and
+          a matrix or buffer.
+;
+    _item.name                   '_sas_sample.shape'
+    _item.category_id             sas_sample
+    _item.mandatory_code          no
+    _item_type.code               text
+    loop_
+     _item_examples.case          'fibre'
+                                 'disk'
+                                 'Unknown'
+    save_
+
+save__sas_sample.specimen_concentration
+    _item_description.description
+;          The sample is assumed to consist of the specimen which is
+           actually analysed and a matrix or buffer.
+           This item gives the concentration of the specimen in the sample.
+;
+    _item.name                   '_sas_sample.specimen_concentration'
+    _item.category_id             sas_sample
+    _item.mandatory_code          no
+    _item_type.code               float
+    _item_units.code                   'mg_per_ml'
+    save_
+
+save__sas_sample.strain
+    _item_description.description
+;            The extension of the stressed sample, divided by the
+             original length (or volume).
+;
+    _item.name                   '_sas_sample.strain'
+    _item.category_id             sas_sample
+    _item.mandatory_code          no
+    _item_type.code               float
+    save_
+
+save__sas_sample.stress_description
+    _item_description.description
+;          A description of the stress applied to the sample.
+;
+    _item.name                   '_sas_sample.stress_description'
+    _item.category_id             sas_sample
+    _item.mandatory_code          no
+    _item_type.code               text
+     loop_
+    _item_examples.case          'uniaxial extension'
+                                 'uniaxial compression'
+                                 'fibers under dead-loading'
+    save_
+
+save__sas_sample.support
+    _item_description.description
+;           A description of the sample holder
+;
+    _item.name                  '_sas_sample.support'
+    _item.category_id             sas_sample
+    _item.mandatory_code          no
+    _item_aliases.alias_name    '_diffrn_measurement.specimen_support'
+    _item_aliases.dictionary      cif_core.dic
+    _item_aliases.version         2.0.1
+    _item_type.code               text
+     save_
+
+## IDB: Is the description here correct?  Shouldn't the direction be along the
+## x-ray beam rather than perpendicular to it (which is in any case ambiguous)?
+
+save__sas_sample.thickness
+    _item_description.description
+;          The thickness of the irradiated volume of the sample measured
+           perpendicular to the incident x-ray beam.
+;
+    _item.name                   '_sas_sample.thickness'
+    _item.category_id             sas_sample
+    _item.mandatory_code          no
+    _item_type.code               float
+    _item_units.code              millimetres
+    save_
+
+
+##################
+## SAS_SCAN      #
+##################
+
+#IDB
+# I have made some major changes here including changing the name of this category
+# from sas_intensity.  The new organization provides the flexibility to store the
+# sample or matrix scans etc. either in the same datablock or in different
+# datablocks or files.  The properties of each scan, such as which beam
+# configuration, which detector and which sample were used, and what kind of
+# scattering intensity was measured, are all described in sas_scan.  Several
+# different scans may be described within a single sas_scan loop.  Each scan is
+# assigned a unique identifier.
+#
+# The intensities themselves are stored in a loop in sas_scan_intensity and each
+# measurement is identified as belonging to one of the described scans through the
+# use of the unique scan identifier.  Thus intensities from several different scans
+# may be stored in the same sas_scan_intensity loop.  Of coures if preferred each
+# scan may be reported in its own datablock or file though CIF does not provide
+# secure links between files.
+#
+
+save_sas_scan
+    _category.description
+;   Describes the properties of the different scans reported in sas_scan_intensity.
+;
+    _category.id                  sas_scan
+    _category.mandatory_code      no
+    _category_key.name           '_sas_scan.id'
+     loop_
+     _category_group.id           'sas_group'
+                                 'intensity_group'
+    loop_
+    _category_examples.detail
+    _category_examples.case
+; This example shows how the beam, detector and sample are specified for a each scan.  In addition, the nature of the intensities measured
+  during the scan is shown.  This example should be read in conjuntion with the example in sas_scan_intensity.  No filenames are given for
+  the first three items as the intensities for these scans are found in the current datablock.
+;
+
+;           loop_
+                _sas_scan.id
+                _sas_scan.title
+                _sas_scan.measurement_date
+                _sas_scan.beam_id
+                _sas_scan.detc_id
+                _sas_scan.sample_id
+                _sas_scan.type
+                _sas_scan.filename
+                 1 1 sample1      2007-10-12     2    1   1    sample        .
+                 2 1 matrix1      2007-10-12     2    1   2    matrix        .
+                 3 1 background1  2007-10-10     2    1   .    background    .
+                 4 1 detector1    2007-05-11     2    1   .    detector      c/detector/response.cif
+                 5 1 processed1   2007-10-15     2    1   1    processed     c/scan//processed.cif
+;
+    save_
+
+#IDB
+# The next item is the catgory key and is parent to
+# sas_scan_intensity.scan_id
+# The following three items are links to sas_beam, sas_detc and sas_sample.
+# They link the intensity pattern to the beam, detector and sample used.
+#
+save__sas_scan.id
+    _item_description.description
+;              This data item is the category key and must be unique to each scan
+               reported in the datablock.
+;
+    _item.name                  '_sas_scan.id'
+    _item.category_id             sas_scan
+    _item.mandatory_code          yes
+    _item_type.code               code
+
+     save_
+
+#
+# IDB: The next two items have been moved from sas_sample
+# since the beam and detector
+# are related to the scattering experiment, not the sample set up.
+#
+save__sas_scan.beam_id
+    _item_description.description
+;             This item is a child of _sas_beam.id and identifies the beam
+              configuration used in making the scan.
+;
+    _item.name                   '_sas_scan.beam_id'
+    _item.category_id             sas_scan
+    _item.mandatory_code          no
+    _item_type.code               code
+save_
+
+save__sas_scan.detc_id
+    _item_description.description
+;           This item is a child of _sas_detc.id and identifies the detector used
+            in recording the scan.
+;
+    _item.name                   '_sas_scan.detc_id'
+    _item.category_id             sas_scan
+    _item.mandatory_code          no
+    _item_type.code               code
+save_
+
+save__sas_scan.sample_id
+    _item_description.description
+;              This item is is a child of _sas_sample.id and identifies the sample
+               used in this scan.
+;
+    _item.name                  '_sas_scan.sample_id'
+    _item.category_id             sas_scan
+    _item.mandatory_code          no
+    _item_type.code               code
+     save_
+
+save__sas_scan.calibration_factor
+    _item_description.description
+;           The measured intensity should be multiplied by this factor
+            to get normalized intensity
+;
+    _item.name                  '_sas_scan.calibration_factor'
+    _item.category_id             sas_scan
+    _item.mandatory_code          no
+    _item_type.code               float
+     save_
+
+## IDB: This item was moved from _sas_scan_intensity since every intensity
+## measurement will have the same exposure time which is recorded here.
+
+save__sas_scan.exposure_time
+    _item_description.description
+;         Time interval used to accumulate the counts in each of the values
+          included in _sas_scan_intensity.intensity
+;
+    _item.name                   '_sas_scan.exposure_time'
+    _item.category_id             sas_scan
+    _item.mandatory_code          no
+    _item_type.code               float
+    _item_units.code              seconds
+    save_
+
+save__sas_scan.filename
+    _item_description.description
+;         Name of the file in which the scan intensity is stored on the machine
+          where the primary data processing is done
+;
+    _item.name                   '_sas_scan.filename'
+    _item.category_id             sas_scan
+    _item.mandatory_code          no
+    _item_type.code               line
+    save_
+
+save__sas_scan.measurement_date
+    _item_description.description
+;         The date on which this scan was made.  The format is yyyy-mm-dd
+;
+    _item.name                   '_sas_scan.measurement_date'
+    _item.category_id             sas_scan
+    _item.mandatory_code          no
+    _item_type.code               yyyy-mm-dd
+    save_
+
+save__sas_scan.title
+    _item_description.description
+;         Title for this scan.
+;
+    _item.name                   '_sas_scan.title'
+    _item.category_id             sas_scan
+    _item.mandatory_code          no
+    _item_type.code               line
+    save_
+
+#IDB
+# In the filename section you supply filenames for both measured and normalized
+# scanned intensities.  Do these both need to be specified here?  If not, are these
+# values normalised or measured?
+#
+# DSV: we may just keep the scan as measured and the reference to the normalization
+# constants
+# and if relevant detector responce file -- this would allow one to reproduce the
+# normalization if needed
+
+## IDB: Is this item complete now?  What is missing?
+
+save__sas_scan.type
+    _item_description.description
+;
+  If the type is "processed", the intensity Ip is corrected for background,
+  detector response etc. as follows:
+          Ip = (Is - Im - Ib(Tm-Ts) )/( Id*C*ds*Ts)
+      where
+          Is = the intensity measured with the mounted specimen
+          Im = the intensity measured with the matrix alone
+          Ib = the measured background intensity
+          Id = the detector response
+  (the above four quantities are found in _sas_scan_intensity.intensity depending
+  on the flag given in this item.  See the enumeration list for this item.)
+ Ts = transmission coefficient of the specimen = sas_sample.specimen_transmission
+ Tm = transmission coefficient of the matrix = _sas_sample.matrix_transmission
+ C  = concentration of the specimen          = _sas_sample.specimen_concentration
+ ds = thickness of the sample                = _sas_sample.thickness
+	The detector response is the intensity measured by the detector from
+      a uniform scatterer (e.g. a Fe55 radioactive source for X-rays
+      or water for neutrons).
+;
+    _item.name                   '_sas_scan.type'
+    _item.category_id             sas_scan
+    _item.mandatory_code          no
+    _item_type.code               code
+     loop_
+    _item_enumeration.value
+    _item_enumeration.detail
+          processed   'Ip = processed intensity'
+          sample      'Is = intensity of the sample'
+          matrix      'Im = intensity of the matrix'
+          background  'Ib = intensity of the background'
+          detector    'Id = intensity of the detector response'
+    save_
+
+save__sas_scan.momentum_transfer_units
+    _item_description.description
+;         Units for the momentum_transfer column
+          of the corresponding _sas_scan_intensity category
+;
+    _item.name                   '_sas_scan.momentum_transfer_units'
+    _item.category_id             sas_scan
+    _item.mandatory_code          no
+    _item_type.code               code
+     loop_
+    _item_enumeration.value
+    _item_enumeration.detail
+          1/nm   'inverse nanometre (s = 4*pi*sin(theta)/lambda)'
+          1/AA   'inverse Angstrom (s = 4*pi*sin(theta)/lambda)'
+save_
+
+save__sas_scan.intensity_units
+    _item_description.description
+;         Units for the intensity and intensity_su_* columns
+          of the corresponding _sas_scan_intensity category
+;
+    _item.name                   '_sas_scan.intensity_units'
+    _item.category_id             sas_scan
+    _item.mandatory_code          no
+    _item_type.code               code
+     loop_
+    _item_enumeration.value
+    _item_enumeration.detail
+          au     'arbitrary units'
+          e/cm   'electrons per centimetre'
+save_
+
+#######################
+## SAS_SCAN_INTENSITY #
+#######################
+
+save_sas_scan_intensity
+    _category.description
+;         This category gives the measured and processed intensities
+          and the corresponding momentum transfers.
+;
+    _category.id                  sas_scan_intensity
+    _category.mandatory_code      no
+    _category_key.name          '_sas_scan_intensity.id'
+    loop_
+    _category_group.id           'sas_group'
+                                 'intensity_group'
+    loop_
+    _category_examples.detail
+    _category_examples.case
+;  This example shows the intensity as a function of momentum transfer for the cases given in the sas_scan category example, showing how each of the different scans can be reported in a single file though they can also be reported in different files if so desired
+;
+;    loop_
+     _sas_scan_intensity.id
+     _sas_scan_intensity.scan_id
+     _sas_scan_intensity.momentum transfer
+     _sas_scan_intensity.intensity
+     _sas_scan_intensity.intensity_su_counting
+     _sas_scan_intensity.intensity_su_systematic
+     _sas_scan_intensity.exposure_time
+     _sas_scan_intensity.resolution_width
+##
+## IDB: in this example I am not sure what is a reasonable value for the resolution
+## width.
+# The following is the scan from the sample
+1  1  0.1  1258   35  20   15 ?
+2  1  0.2   953   30  20   15 ?
+3  1  0.3   876   30  20   15 ?
+4  1  0.4  1467   34  20   20 ?
+........
+# The following is the scan from the matrix
+53 2  0.1   350   15  20   15 ?
+54 2  0.2   325   15  20   15 ?
+........
+# The following is the scan of the background
+104 3 0.1    24    3  20   15 ?
+105 3 0.2    35    4  20   15 ?
+........
+;
+    save_
+
+save__sas_scan_intensity.id
+    _item_description.description
+;          This data item is the category key and must have a unique value for each
+           intensity measurement.
+;
+    _item.name                  '_sas_scan_intensity.id'
+    _item.category_id             sas_scan_intensity
+    _item.mandatory_code          yes
+    _item_type.code               code
+     save_
+
+
+save__sas_scan_intensity.scan_id
+    _item_description.description
+;          This data item is a child of _sas_scan.id.  It serves to relate the
+           current intensity measurement with the conditions given for this scan in
+           sas_scan.
+;
+    _item.name                  '_sas_scan_intensity.scan_id'
+    _item.category_id             sas_scan_intensity
+    _item.mandatory_code          no
+    _item_type.code               code
+    _item_linked.child_name       '_sas_scan_intensity.scan_id'
+    _item_linked.parent_name      '_sas_scan.id'
+     save_
+
+save__sas_scan_intensity.group_factor
+    _item_description.description
+;         Number of pixels contributing to the value reported in .intensity.
+;
+    _item.name                   '_sas_scan_intensity.group_factor'
+    _item.category_id             sas_scan_intensity
+    _item.mandatory_code          no
+    _item_type.code               int
+    save_
+
+save__sas_scan_intensity.intensity
+    _item_description.description
+;         Intensity measured or processed at the given momentum transfer
+;
+    _item.name                   '_sas_scan_intensity.intensity'
+    _item.category_id             sas_scan_intensity
+    _item.mandatory_code          no
+    _item_type.code               float
+    save_
+
+save__sas_scan_intensity.intensity_su_counting
+    _item_description.description
+;          Standard uncertainty determined from the counting statistics of the
+           intensity reported in .intensity
+;
+    _item.name                   '_sas_scan_intensity.intensity_su_counting'
+    _item.category_id             sas_scan_intensity
+    _item.mandatory_code          no
+    _item_type.code               float
+    save_
+
+save__sas_scan_intensity.intensity_su_systematic
+    _item_description.description
+;         Estimated standard uncertainty from sources other than counting
+          statistics. e.g. from radial average, incoherent background etc...
+;
+    _item.name                   '_sas_scan_intensity.intensity_su_systematic'
+    _item.category_id             sas_scan_intensity
+    _item.mandatory_code          no
+    _item_type.code               float
+    save_
+
+save__sas_scan_intensity.momentum_transfer
+    _item_description.description
+;         Momentum transfer values
+          4*PI*sin(theta)/lambda  in A^-1
+;
+    _item.name                   '_sas_scan_intensity.momentum_transfer'
+    _item.category_id             sas_scan_intensity
+    _item.mandatory_code          no
+    _item_type.code               float
+    _item_units.code              reciprocal_angstroms
+    save_
+
+save__sas_scan_intensity.momentum_transfer_su
+    _item_description.description
+;         Uncertainty in the momentum transfer (e.g. case for
+          scanning instruments)
+;
+    _item.name                   '_sas_scan_intensity.momentum_transfer_su'
+    _item.category_id             sas_scan_intensity
+    _item.mandatory_code          no
+    _item_type.code               float
+    _item_units.code              reciprocal_angstroms
+    save_
+
+save__sas_scan_intensity.resolution_width
+    _item_description.description
+;         Width of the Gaussian resolution function defined
+          by Pedersen et al, (1990) J. Appl. Cryst., 23, 321
+;
+    _item.name                   '_sas_scan_intensity.resolution_width'
+    _item.category_id             sas_scan_intensity
+    _item.mandatory_code          no
+    _item_type.code               float
+    save_
+#
+#data_sasCIFext
+#
+#_dictionary.title         sasCIF-ext
+#_dictionary.datablock_id  sasCIF-ext
+#_dictionary.version       '0.01'
+##
+#
+save_sas_buffer
+   #
+   _category.description  "Description of the buffer used in the sample"
+   #
+   _category.id              sas_buffer
+   _category.mandatory_code  no
+   #
+   _category_key.name        "_sas_buffer.id"
+   loop_
+   _category_group.id          'sas_group' 'sample_group'
+   #
+   _category_examples.detail  "Example 1"
+   _category_examples.case
+;
+ _sas_buffer.id 1
+ _sas_buffer.name HEPES
+ _sas_buffer.pH 7.5
+ _sas_buffer.comment 'Prepared on 03.10.14'
+;
+   #
+save_
+#
+save__sas_buffer.id
+   #
+
+   _item_description.description  "Buffer identifier"
+   #
+   _item.name            "_sas_buffer.id"
+   _item.category_id     sas_buffer
+   _item.mandatory_code   yes
+   _item_linked.child_name  '_sas_sample.buffer_id'
+   _item_linked.parent_name '_sas_sample.id'
+   _item_type.code  code
+   #
+save_
+#
+save__sas_buffer.pH
+   #
+
+   _item_description.description  "pH of the buffer"
+   #
+   _item.name            "_sas_buffer.pH"
+   _item.category_id     sas_buffer
+   _item.mandatory_code  no
+   #
+   _item_type.code  float
+   #
+save_
+#
+save__sas_buffer.comment
+   #
+
+   _item_description.description  "Comments on the buffer"
+   #
+   _item.name            "_sas_buffer.comment"
+   _item.category_id     sas_buffer
+   _item.mandatory_code  no
+   #
+   _item_type.code  text
+   #
+save_
+#
+save__sas_buffer.name
+   #
+
+   _item_description.description  "Buffer name"
+   #
+   _item.name            "_sas_buffer.name"
+   _item.category_id     sas_buffer
+   _item.mandatory_code  no
+   #
+   _item_type.code  text
+   #
+save_
+#
+save__sas_buffer.D2O_content
+   #
+
+   _item_description.description  "Volume fraction of D2O in the buffer in %"
+   #
+   _item.name            "_sas_buffer.D2O_content"
+   _item.category_id     sas_buffer
+   _item.mandatory_code  no
+   #
+   _item_type.code  text
+   #
+save_
+#
+#
+save__sas_beam.instrument_country
+   #
+
+   _item_description.description  "Country where the beamline is located"
+   #
+   _item.name            "_sas_beam.instrument_country"
+   _item.category_id     sas_beam
+   _item.mandatory_code  no
+   #
+   _item_type.code  text
+   #
+   _item_examples.case  "Germany"
+   #
+save_
+#
+save__sas_beam.instrument_city
+   #
+
+   _item_description.description  "City where the beamline is located"
+   #
+   _item.name            "_sas_beam.instrument_city"
+   _item.category_id     sas_beam
+   _item.mandatory_code  no
+   #
+   _item_type.code  text
+   #
+   _item_examples.case  "Hamburg"
+   #
+save_
+#
+save__sas_beam.type_of_source
+   #
+
+   _item_description.description  "Type of source"
+   #
+   _item.name            "_sas_beam.type_of_source"
+   _item.category_id     sas_beam
+   _item.mandatory_code  no
+   #
+   _item_type.code  text
+   #
+   _item_examples.case  "Synchrotron"
+   #
+save_
+#
+save__sas_beam.instrument_name
+   #
+
+   _item_description.description  "Name of the beamline"
+   #
+   _item.name            "_sas_beam.instrument_name"
+   _item.category_id     sas_beam
+   _item.mandatory_code  no
+   #
+   _item_type.code  text
+   #
+   _item_examples.case  "PETRA III P12"
+   #
+save_
+#
+#
+save__sas_sample.specific_vol
+   #
+
+   _item_description.description  "Specific volume of the sample"
+   #
+   _item.name            "_sas_sample.specific_vol"
+   _item.category_id     sas_sample
+   _item.mandatory_code  no
+   #
+   _item_type.code  float
+   #
+   _item_examples.case  0.724
+   #
+save_
+#
+save__sas_sample.entity_id
+   #
+
+   _item_description.description  "A pointer to _entity_id (molecule) which the sample contains"
+   #
+   _item.name            "_sas_sample.entity_id"
+   _item.category_id     sas_sample
+   _item.mandatory_code  no
+   #
+   _item_type.code  code
+   #
+   _item_examples.case  1
+   #
+save_
+#
+save__sas_sample.ext_coefficient
+   #
+
+   _item_description.description  "Extinction coefficient of the sample"
+   #
+   _item.name            "_sas_sample.ext_coefficient"
+   _item.category_id     sas_sample
+   _item.mandatory_code  no
+   #
+   _item_type.code  float
+   #
+   _item_examples.case  43.824
+   #
+save_
+#
+save__sas_sample.purity_method
+   #
+
+   _item_description.description  "Method of purity determination"
+   #
+   _item.name            "_sas_sample.purity_method"
+   _item.category_id     sas_sample
+   _item.mandatory_code  no
+   #
+   _item_type.code  text
+   #
+   _item_examples.case  "DLS"
+   #
+save_
+#
+save__sas_sample.dry_vol
+   #
+
+   _item_description.description  "Dry volume of the sample"
+   #
+   _item.name            "_sas_sample.dry_vol"
+   _item.category_id     sas_sample
+   _item.mandatory_code  no
+   #
+   _item_type.code  float
+   #
+   _item_examples.case  "53"
+   #
+save_
+#
+save__sas_sample.concentration_method
+   #
+
+   _item_description.description  "Method of concentration determination"
+   #
+   _item.name            "_sas_sample.concentration_method"
+   _item.category_id     sas_sample
+   _item.mandatory_code  no
+   #
+   _item_type.code  text
+   #
+   _item_examples.case  "Nanodrop"
+   #
+save_
+#
+save__sas_sample.cell_temperature
+   #
+
+   _item_description.description  "Temperature at which the sample measurement were performed (in C)"
+   #
+   _item.name            "_sas_sample.cell_temperature"
+   _item.category_id     sas_sample
+   _item.mandatory_code  no
+   #
+   _item_type.code  float
+   #
+   _item_examples.case  20.0
+   #
+save_
+#
+save__sas_sample.storage_temperature
+   #
+
+   _item_description.description  "Temperature at which the sample was stored prior to measurement (in C)"
+   #
+   _item.name            "_sas_sample.storage_temperature"
+   _item.category_id     sas_sample
+   _item.mandatory_code  no
+   #
+   _item_type.code  float
+   #
+   _item_examples.case  10.0
+   #
+save_
+#
+
+
+############
+## ENTITY ##
+############
+##CJK: copied from mmcif_pdbx_v40.dic
+
+save_entity
+    _category.description
+;              Data items in the ENTITY category record details (such as
+               chemical composition, name and source) about the molecular
+               entities that are present in the crystallographic structure.
+
+               Items in the various ENTITY subcategories provide a full
+               chemical description of these molecular entities.
+
+               Entities are of three types:  polymer, non-polymer and water.
+               Note that the water category includes only water;  ordered
+               solvent such as sulfate ion or acetone would be described as
+               individual non-polymer entities.
+
+               The ENTITY category is specific to macromolecular CIF
+               applications and replaces the function of the CHEMICAL category
+               in the CIF core.
+
+               It is important to remember that the ENTITY data are not the
+               result of the crystallographic experiment;  those results are
+               represented by the ATOM_SITE data items. ENTITY data items
+               describe the chemistry of the molecules under investigation
+               and can most usefully be thought of as the ideal groups to which
+               the structure is restrained or constrained during refinement.
+
+               It is also important to remember that entities do not correspond
+               directly to the enumeration of the contents of the asymmetric
+               unit. Entities are described only once, even in those structures
+               that contain multiple observations of an entity. The
+               STRUCT_ASYM data items, which reference the entity list,
+               describe and label the contents of the asymmetric unit.
+;
+    _category.id                  entity
+    _category.mandatory_code      no
+    _category_key.name          '_entity.id'
+    _category_group.id           'sample_group'
+    loop_
+    _category_examples.detail
+    _category_examples.case
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+;
+    Example 1 - based on PDB entry 5HVP and laboratory records for the
+                structure corresponding to PDB entry 5HVP.
+;
+;
+    loop_
+    _entity.id
+    _entity.type
+    _entity.formula_weight
+    _entity.details
+     1 polymer      10916
+    ;              The enzymatically competent form of HIV
+                   protease is a dimer. This entity
+                   corresponds to one monomer of an active dimer.
+    ;
+     2 non-polymer '762'  .
+     3 water        18    .
+
+;
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+     save_
+
+save__entity.details
+    _item_description.description
+;              A description of special aspects of the entity.
+;
+    _item.name                  '_entity.details'
+    _item.category_id             entity
+    _item.mandatory_code          no
+    _item_type.code               text
+     save_
+
+save__entity.formula_weight
+    _item_description.description
+;              Formula mass in daltons of the entity.
+;
+    _item.name                  '_entity.formula_weight'
+    _item.category_id             entity
+    _item.mandatory_code          no
+    loop_
+    _item_range.maximum
+    _item_range.minimum            .    1.0
+                                  1.0   1.0
+    _item_type.code               float
+     save_
+
+save__entity.id
+    _item_description.description
+;              The value of _entity.id must uniquely identify a record in the
+               ENTITY list.
+
+               Note that this item need not be a number; it can be any unique
+               identifier.
+;
+    _item.name            '_entity.id'
+    _item.category_id     entity
+    _item.mandatory_code  yes
+    _item_type.code               code
+save_
+
+save__entity.src_method
+    _item_description.description
+;              The method by which the sample for the entity was produced.
+               Entities isolated directly from natural sources (tissues, soil
+               samples etc.) are expected to have further information in the
+               ENTITY_SRC_NAT category. Entities isolated from genetically
+               manipulated sources are expected to have further information in
+               the ENTITY_SRC_GEN category.
+;
+    _item.name                  '_entity.src_method'
+    _item.category_id             entity
+    _item.mandatory_code          no
+    _item_type.code               ucode
+    loop_
+    _item_enumeration.value
+    _item_enumeration.detail      nat
+;                                 entity isolated from a natural source
+;
+                                  man
+;                                 entity isolated from a genetically
+                                  manipulated source
+;
+                                  syn
+;                                 entity obtained synthetically
+;
+     save_
+
+save__entity.type
+    _item_description.description
+;              Defines the type of the entity.
+
+               Polymer entities are expected to have corresponding
+               ENTITY_POLY and associated entries.
+
+               Non-polymer entities are expected to have corresponding
+               CHEM_COMP and associated entries.
+
+               Water entities are not expected to have corresponding
+               entries in the ENTITY category.
+;
+    _item.name                  '_entity.type'
+    _item.category_id             entity
+    _item.mandatory_code          no
+    _item_type.code               ucode
+    loop_
+    _item_enumeration.value
+    _item_enumeration.detail      polymer      'entity is a polymer'
+                                  non-polymer  'entity is not a polymer'
+                                  macrolide    'entity is a macrolide'
+                                  water        'water in the solvent model'
+     save_
+
+
+#########################
+## SAS_SAMPLE_ENTITIES  #
+#########################
+
+save_sas_sample_entities
+    _category.description
+;   Lists the molecular entities present in each sample, together with properties such as deuteration
+;
+    _category.id                  sas_sample_entities
+    _category.mandatory_code      no
+    _category_key.name           '_sas_sample_entities.id'
+     loop_
+     _category_group.id           'sas_group'
+                                 'sample_group'
+    loop_
+    _category_examples.detail
+    _category_examples.case
+; This example shows two samples with two and three entities respectively
+;
+
+;           loop_
+                _sas_sample_entities.id
+                _sas_sample_entities.sample_id
+                _sas_sample_entities.entity_id
+                _sas_sample_entities.concentration
+                 1 1 BSA 1.2
+                 2 1 LYZ 0.7
+                 3 2 BSA 3.3
+                 3 2 HGF .
+                 3 2 EPO 0.1
+;
+    save_
+
+save__sas_sample_entities.id
+    _item_description.description
+;              This data item is the category key and must be unique to each scan
+               reported in the datablock.
+;
+    _item.name                  '_sas_sample_entities.id'
+    _item.category_id             sas_sample_entities
+    _item.mandatory_code          yes
+    _item_type.code               code
+
+     save_
+
+save__sas_sample_entities.sample_id
+    _item_description.description
+;              Identifies the sample in which the entity is present
+;
+    _item.name                  '_sas_sample_entities.sample_id'
+    _item.category_id             sas_sample_entities
+    _item.mandatory_code          yes
+    _item_type.code               code
+    _item_linked.child_name     '_sas_sample_entities.sample_id'
+    _item_linked.parent_name    '_sas_sample.id'
+     save_
+
+save__sas_sample_entities.entity_id
+    _item_description.description
+;              Identifies the entity
+;
+    _item.name                  '_sas_sample_entities.entity_id'
+    _item.category_id             sas_sample_entities
+    _item.mandatory_code          yes
+    _item_type.code               code
+    _item_linked.child_name     '_sas_sample_entities.entity_id'
+    _item_linked.parent_name    '_entity.id'
+     save_
+
+save__sas_sample_entities.concentration
+    _item_description.description
+;              Concentration of the entity in the sample
+;
+    _item.name                  '_sas_sample_entities.concentration'
+    _item.category_id             sas_sample_entities
+    _item.mandatory_code          no
+    _item_type.code               float
+save_
+
+save__sas_sample_entities.concentration_range_max
+    _item_description.description
+;              The highest concentration in a concentration series (for a
+               sas_result derived from merging / extrapolating curves from
+               several concentrations).
+
+               If this is present then .concentration_range_min should also be
+               present, and .concentration should not be.
+;
+    _item.name                  '_sas_sample_entities.concentration_range_max'
+    _item.category_id             sas_sample_entities
+    _item.mandatory_code          no
+    _item_type.code               float
+save_
+
+save__sas_sample_entities.concentration_range_min
+    _item_description.description
+;              The lowest concentration in a concentration series (for a
+               sas_result derived from merging / extrapolating curves from
+               several concentrations).
+
+               If this is present then .concentration_range_max should also be
+               present, and .concentration should not be.
+;
+    _item.name                  '_sas_sample_entities.concentration_range_min'
+    _item.category_id             sas_sample_entities
+    _item.mandatory_code          no
+    _item_type.code               float
+save_
+
+save__sas_sample_entities.concentration_units
+    _item_description.description
+;             Units for _sas_sample_entities.concentration,
+              .concentration_range_max and .concentration_range_min
+	      When absent, assume mg/ml
+;
+    _item.name                  '_sas_sample_entities.concentration_units'
+    _item.category_id             sas_sample_entities
+    _item.mandatory_code          no
+    _item_type.code               code
+    loop_
+        _item_enumeration.value
+        _item_enumeration.detail
+                                  mg/ml        'milligrams per millilitre'
+                                  mmol         'millimoles per litre'
+save_
+
+save__sas_sample_entities.deuteration
+   _item_description.description  "Percentage of non-exchangeable 2H of the entity (molecule)"
+   _item.name            "_sas_sample_entities.deuteration"
+   _item.category_id     sas_sample_entities
+   _item.mandatory_code  no
+   _item_type.code  float
+save_
+#
+save__sas_sample_entities.contrast
+   #
+   _item_description.description
+;        Contrast of this entity in this sample
+         Accounting for sample deuteration and for buffer composition
+;
+   #
+   _item.name            "_sas_sample_entities.contrast"
+   _item.category_id     sas_sample_entities
+   _item.mandatory_code  no
+   #
+   _item_type.code  float
+   #
+   _item_examples.case  3.047
+   #
+save_
+#
+save__sas_sample_entities.sample_MW
+   #
+   _item_description.description
+;        Molecular weight of the entity in kDa
+         Adjusted for deuteration if necessary
+;
+   #
+   _item.name            "_sas_sample_entities.sample_MW"
+   _item.category_id     sas_sample_entities
+   _item.mandatory_code  no
+   #
+   _item_type.code  float
+   #
+   _item_examples.case  "53.5"
+   #
+save_
+#
+
+
+#
+save__sas_detc.type
+   #
+
+   _item_description.description  "Type of the detector"
+   #
+   _item.name            "_sas_detc.type"
+   _item.category_id     sas_detc
+   _item.mandatory_code  no
+   #
+   _item_type.code  text
+   #
+   _item_examples.case  "MAR Image Plate"
+   #
+save_
+#
+save__sas_detc.name
+   #
+
+   _item_description.description  "Name of the detector"
+   #
+   _item.name            "_sas_detc.name"
+   _item.category_id     sas_detc
+   _item.mandatory_code  no
+   #
+   _item_type.code  text
+   #
+   _item_examples.case  "2D Photon Counting"
+   #
+save_
+#
+#
+save__sas_scan.result_id
+   #
+
+   _item_description.description  "A pointer to _result_id corresponding to the intensity"
+   #
+   _item.name            "_sas_scan.result_id"
+   _item.category_id     sas_scan
+   _item.mandatory_code  no
+   #
+   _item_type.code  code
+   #
+   _item_examples.case  1
+   #
+save_
+#
+save__sas_scan.number_of_frames
+   #
+
+   _item_description.description  "Number of frames taken during the exposure"
+   #
+   _item.name            "_sas_scan.number_of_frames"
+   _item.category_id     sas_scan
+   _item.mandatory_code  no
+   #
+   _item_type.code  int
+   #
+   _item_examples.case  50
+   #
+save_
+#
+save__sas_scan_intensity.qmin
+   #
+
+   _item_description.description  "Minimal momentum transfer value"
+   #
+   _item.name            "_sas_scan_intensity.qmin"
+   _item.category_id     sas_scan_intensity
+   _item.mandatory_code  no
+   #
+   _item_type.code  float
+   #
+   _item_examples.case  0.03
+   #
+save_
+#
+save__sas_scan_intensity.qmax
+   #
+
+   _item_description.description  "Maximal momentum transfer value"
+   #
+   _item.name            "_sas_scan_intensity.qmax"
+   _item.category_id     sas_scan_intensity
+   _item.mandatory_code  no
+   #
+   _item_type.code   float
+   #
+   _item_examples.case  6.5
+   #
+save_
+#
+save__sas_scan_intensity.unit
+   #
+
+   _item_description.description  "Units of momentum transfer"
+   #
+   _item.name            "_sas_scan_intensity.unit"
+   _item.category_id     sas_scan_intensity
+   _item.mandatory_code  no
+   #
+   _item_type.code  text
+   #
+   _item_examples.case  "nanometre"
+   #
+save_
+#
+#
+save_sas_model
+   #
+   _category.description  "Description of the fitted model"
+   #
+   _category.id              sas_model
+   _category.mandatory_code  no
+   #
+   _category_key.name        "_sas_model.id"
+    loop_
+   _category_group.id          'sas_group' 'model_group'
+   #
+   _category_examples.detail  "Example 1"
+   _category_examples.case
+;
+ _sas_model.id 1
+ _sas_model.type_of_model 'dummy'
+ _sas_model.software 'DAMMIF'
+ _sas_model.version '6.0'
+ _sas_model.symmetry 'P1'
+ _sas_model.comment 'Clustered'
+ _sas_model.radius 1.3
+ _sas_model.fitting_id 1
+;
+   #
+save_
+#
+save__sas_model.fitting_id
+   #
+
+   _item_description.description  "A pointer to _fitting_id of the model"
+   #
+   _item.name            "_sas_model.fitting_id"
+   _item.category_id     sas_model
+   _item.mandatory_code  no
+   #
+   _item_type.code  code
+   #
+   _item_examples.case  1
+   #
+save_
+#
+save__sas_model.version
+   #
+
+   _item_description.description  "Version of software used"
+   #
+   _item.name            "_sas_model.version"
+   _item.category_id     sas_model
+   _item.mandatory_code  no
+   #
+   _item_type.code  text
+   #
+   _item_examples.case  "6.0"
+   #
+save_
+#
+save__sas_model.comment
+   #
+
+   _item_description.description  "Comments on the model"
+   #
+   _item.name            "_sas_model.comment"
+   _item.category_id     sas_model
+   _item.mandatory_code  no
+   #
+   _item_type.code  text
+   #
+   _item_examples.case  "Clustered"
+   #
+save_
+#
+save__sas_model.type_of_model
+   #
+
+   _item_description.description  "Type of the model"
+   #
+   _item.name            "_sas_model.type_of_model"
+   _item.category_id     sas_model
+   _item.mandatory_code  no
+   #
+   _item_type.code  text
+   #
+   _item_examples.case  "dummy"
+   #
+save_
+#
+save__sas_model.symmetry
+   #
+
+   _item_description.description  "Symmetry of the model"
+   #
+   _item.name            "_sas_model.symmetry"
+   _item.category_id     sas_model
+   _item.mandatory_code  no
+   #
+   _item_type.code  text
+   #
+   _item_examples.case  "P1"
+   #
+save_
+#
+save__sas_model.id
+   #
+
+   _item_description.description  "Model identifier"
+   #
+   _item.name            "_sas_model.id"
+   _item.category_id     sas_model
+   _item.mandatory_code  yes
+   #
+   _item_type.code  code
+   #
+   _item_examples.case  1
+   #
+save_
+#
+save__sas_model.radius
+   #
+
+   _item_description.description  "Radius of dummy atoms in Angstroms (for ab initio models)"
+   #
+   _item.name            "_sas_model.radius"
+   _item.category_id     sas_model
+   _item.mandatory_code  no
+   #
+   _item_type.code  float
+   #
+   _item_examples.case  1.3
+   #
+save_
+#
+save__sas_model.software
+   #
+
+   _item_description.description  "Software used to create the model"
+   #
+   _item.name            "_sas_model.software"
+   _item.category_id     sas_model
+   _item.mandatory_code  no
+   #
+   _item_type.code  text
+   #
+   _item_examples.case  "DAMMIF"
+   #
+save_
+#
+#
+save_sas_result
+   #
+
+   _category.description  "Results of small-angle scattering measurement"
+   #
+   _category.id              sas_result
+   _category.mandatory_code  no
+   _category_key.name        "_sas_result.id"
+   #
+   loop_
+   _category_group.id          'sas_group' 'result_group'
+   #
+   _category_examples.detail  "Example 1"
+   _category_examples.case
+;
+ _sas_result.id 1
+ _sas_result.SASBDB_code SASDA85
+ _sas_result.experimental_MW 55
+ _sas_result.experimental_MW_error 0.1
+ _sas_result.MW_standard 55
+ _sas_result.MW_standard_error 0.1
+ _sas_result.MW_Porod 49
+ _sas_result.MW_Porod_error 0.3
+ _sas_result.I0_from_PR 10203
+ _sas_result.I0_from_PR_error 195
+ _sas_result.I0_from_Guinier 10128
+ _sas_result.I0_from_Guinier_error 184
+ _sas_result.Rg_from_PR 3.5
+ _sas_result.Rg_from_PR_error 0.3
+ _sas_result.Rg_from_Guinier 3.4
+ _sas_result.Rg_from_Guinier_error 0.2
+ _sas_result.Dmax 10.3
+ _sas_result.Dmax_error 0.2
+ _sas_result.Porod_volume 82
+ _sas_result.Porod_volume_error 7
+ _sas_result.estimated_volume 74
+ _sas_result.estimated_volume_error 5
+ _sas_result.estimated_volume_method 'Ab initio model'
+ _sas_result.Guinier_point_min 5
+ _sas_result.Guinier_point_max 23
+ _sas_result.type_of_curve Merged
+ _sas_result.standard BSA
+ _sas_result.comments 'No signs of aggregation'
+;
+   #
+save_
+#
+save__sas_result.I0_from_PR
+   #
+
+   _item_description.description  "Forward scattering determined from distance distribution function"
+   #
+   _item.name            "_sas_result.I0_from_PR"
+   _item.category_id     sas_result
+   _item.mandatory_code  no
+   #
+   _item_type.code  float
+   #
+save_
+#
+save__sas_result.SASBDB_code
+   #
+
+   _item_description.description  "Code in the SASBDB"
+   #
+   _item.name            "_sas_result.SASBDB_code"
+   _item.category_id     sas_result
+   _item.mandatory_code  no
+   #
+   _item_type.code  text
+   #
+save_
+#
+save__sas_result.Dmax
+   #
+
+   _item_description.description  "Maximum dimension of the particle (in nm)"
+   #
+   _item.name            "_sas_result.Dmax"
+   _item.category_id     sas_result
+   _item.mandatory_code  no
+   #
+   _item_type.code  float
+   #
+save_
+#
+save__sas_result.type_of_curve
+   #
+
+   _item_description.description  "Type of the curve used in analysis"
+   #
+   _item.name            "_sas_result.type_of_curve"
+   _item.category_id     sas_result
+   _item.mandatory_code  no
+   #
+   _item_type.code  text
+   #
+save_
+#
+save__sas_result.Dmax_error
+   #
+
+   _item_description.description  "Error of Dmax"
+   #
+   _item.name            "_sas_result.Dmax_error"
+   _item.category_id     sas_result
+   _item.mandatory_code  no
+   #
+   _item_type.code  float
+   #
+save_
+#
+save__sas_result.Rg_from_PR
+   #
+
+   _item_description.description  "Radius of gyration determined from distance distribution function (in nm)"
+   #
+   _item.name            "_sas_result.Rg_from_PR"
+   _item.category_id     sas_result
+   _item.mandatory_code  no
+   #
+   _item_type.code  float
+   #
+save_
+#
+save__sas_result.I0_from_Guinier
+   #
+
+   _item_description.description  "Forward scattering determined with Guinier approximation"
+   #
+   _item.name            "_sas_result.I0_from_Guinier"
+   _item.category_id     sas_result
+   _item.mandatory_code  no
+   #
+   _item_type.code  float
+   #
+save_
+#
+save__sas_result.Guinier_point_min
+   #
+
+   _item_description.description  "Number of the first point of the guinier region"
+   #
+   _item.name            "_sas_result.Guinier_point_min"
+   _item.category_id     sas_result
+   _item.mandatory_code  no
+   #
+   _item_type.code int
+   #
+save_
+
+save__sas_result.Guinier_point_max
+   #
+
+   _item_description.description  "Number of the last point of the guinier region"
+   #
+   _item.name            "_sas_result.Guinier_point_max"
+   _item.category_id     sas_result
+   _item.mandatory_code  no
+   #
+   _item_type.code int
+   #
+save_
+
+#
+save__sas_result.I0_from_PR_error
+   #
+
+   _item_description.description  "Error of P(R) forward scattering"
+   #
+   _item.name            "_sas_result.I0_from_PR_error"
+   _item.category_id     sas_result
+   _item.mandatory_code  no
+   #
+   _item_type.code  float
+   #
+save_
+#
+save__sas_result.Porod_volume
+   #
+
+   _item_description.description  "Porod volume (excluded volume of the hydrated particle) (in nm3)"
+   #
+   _item.name            "_sas_result.Porod_volume"
+   _item.category_id     sas_result
+   _item.mandatory_code  no
+   #
+   _item_type.code  float
+   #
+save_
+#
+save__sas_result.Porod_volume_error
+   #
+
+   _item_description.description  "Error of Porod volume"
+   #
+   _item.name            "_sas_result.Porod_volume_error"
+   _item.category_id     sas_result
+   _item.mandatory_code  no
+   #
+   _item_type.code  float
+   #
+save_
+#
+save__sas_result.Rg_from_Guinier_error
+   #
+
+   _item_description.description  "Error of Guinier approximation radius of gyration"
+   #
+   _item.name            "_sas_result.Rg_from_Guinier_error"
+   _item.category_id     sas_result
+   _item.mandatory_code  no
+   #
+   _item_type.code  float
+   #
+save_
+#
+save__sas_result.Rg_from_PR_error
+   #
+
+   _item_description.description  "Error of P(R) radius of gyration"
+   #
+   _item.name            "_sas_result.Rg_from_PR_error"
+   _item.category_id     sas_result
+   _item.mandatory_code  no
+   #
+   _item_type.code  float
+   #
+save_
+#
+save__sas_result.I0_from_Guinier_error
+   #
+
+   _item_description.description  "Error of Guinier approximation forward scattering"
+   #
+   _item.name            "_sas_result.I0_from_Guinier_error"
+   _item.category_id     sas_result
+   _item.mandatory_code  no
+   #
+   _item_type.code  float
+   #
+save_
+#
+save__sas_result.MW_standard
+   #
+
+   _item_description.description  "Molecular weight of the sample determined by comparison to the sample forward scattering with that from a standard (in kDa)"
+   #
+   _item.name            "_sas_result.MW_standard"
+   _item.category_id     sas_result
+   _item.mandatory_code  no
+   #
+   _item_type.code  float
+   #
+save_
+#
+save__sas_result.Rg_from_Guinier
+   #
+
+   _item_description.description  "Radius of gyration determined with Guinier approximation (in nm)"
+   #
+   _item.name            "_sas_result.Rg_from_Guinier"
+   _item.category_id     sas_result
+   _item.mandatory_code  no
+   #
+   _item_type.code  float
+   #
+save_
+#
+save__sas_result.id
+   #
+
+   _item_description.description  "Result identifier"
+   #
+   _item.name            "_sas_result.id"
+   _item.category_id     sas_result
+   _item.mandatory_code  yes
+   loop_
+   _item_linked.child_name
+   _item_linked.parent_name
+      '_sas_scan.result_id'                    '_sas_result.id'
+      '_sas_p_of_R_details.result_id'          '_sas_result.id'
+      '_sas_model_fitting_details.result_id'   '_sas_result.id'
+   _item_type.code  code
+   #
+save_
+#
+save__sas_result.experimental_MW_error
+   #
+
+   _item_description.description  "Error of experimental molecular weight"
+   #
+   _item.name            "_sas_result.experimental_MW_error"
+   _item.category_id     sas_result
+   _item.mandatory_code  no
+   #
+   _item_type.code  float
+   #
+save_
+#
+save__sas_result.MW_Porod
+   #
+
+   _item_description.description  "Molecular weight derived from the Porod volume (in kDa)"
+   #
+   _item.name            "_sas_result.MW_Porod"
+   _item.category_id     sas_result
+   _item.mandatory_code  no
+   #
+   _item_type.code  float
+   #
+save_
+#
+save__sas_result.experimental_MW
+   #
+
+   _item_description.description  "Molecular weight of the sample determined by any experimental method (in kDa)"
+   #
+   _item.name            "_sas_result.experimental_MW"
+   _item.category_id     sas_result
+   _item.mandatory_code  no
+   #
+   _item_type.code  float
+   #
+save_
+#
+save__sas_result.MW_Porod_error
+   #
+
+   _item_description.description  "Error of Porod molecular weight"
+   #
+   _item.name            "_sas_result.MW_Porod_error"
+   _item.category_id     sas_result
+   _item.mandatory_code  no
+   #
+   _item_type.code  float
+   #
+save_
+#
+save__sas_result.standard
+   #
+
+   _item_description.description  "Name of the substance used as a standard"
+   #
+   _item.name            "_sas_result.standard"
+   _item.category_id     sas_result
+   _item.mandatory_code  no
+   #
+   _item_type.code  text
+   #
+save_
+#
+save__sas_result.estimated_volume_error
+   #
+
+   _item_description.description  "Error of estimated volume"
+   #
+   _item.name            "_sas_result.estimated_volume_error"
+   _item.category_id     sas_result
+   _item.mandatory_code  no
+   #
+   _item_type.code  float
+   #
+save_
+#
+save__sas_result.comments
+   #
+
+   _item_description.description  "Comments on the results"
+   #
+   _item.name            "_sas_result.comments"
+   _item.category_id     sas_result
+   _item.mandatory_code  no
+   #
+   _item_type.code  text
+   #
+save_
+#
+save__sas_result.estimated_volume
+   #
+
+   _item_description.description  "Volume estimated from scattering curve using any other method than Porod volume calculation (in nm3)"
+   #
+   _item.name            "_sas_result.estimated_volume"
+   _item.category_id     sas_result
+   _item.mandatory_code  no
+   #
+   _item_type.code  float
+   #
+save_
+#
+save__sas_result.estimated_volume_method
+   #
+
+   _item_description.description  "Method used to estimate volume"
+   #
+   _item.name            "_sas_result.estimated_volume_method"
+   _item.category_id     sas_result
+   _item.mandatory_code  no
+   #
+   _item_type.code  text
+   #
+save_
+
+save__sas_result.length_units
+    _item_description.description
+;         Units for the Rg and Dmax items in _sas_result
+          The volume items have units equal to this unit cubed
+;
+    _item.name                   '_sas_result.length_units'
+    _item.category_id             sas_result
+    _item.mandatory_code          no
+    _item_type.code               code
+     loop_
+    _item_enumeration.value
+    _item_enumeration.detail
+          nm   'nanometre'
+          AA   'Angstrom'
+save_
+
+save__sas_result.intensity_units
+    _item_description.description
+;         Units for the I0 items in _sas_result
+;
+    _item.name                   '_sas_result.intensity_units'
+    _item.category_id             sas_result
+    _item.mandatory_code          no
+    _item_type.code               code
+     loop_
+    _item_enumeration.value
+    _item_enumeration.detail
+          au     'arbitrary units'
+          e/cm   'electrons per centimetre'
+save_
+
+
+################
+## SAS_AUTHOR ##
+################
+save_sas_author
+   _category.description  "Lists the author(s) of the SAS data"
+   _category.id              sas_author
+   _category.mandatory_code  no
+   _category_key.name        "_sas_author.id"
+   loop_
+   _category_group.id          'sas_group' 'result_group'
+   #
+   _category_examples.detail  "Example showing SAS responsible author"
+   _category_examples.case
+;
+ _sas_author.id          1
+ _sas_author.result_id   1
+ _sas_author.name        Bloggs, J.
+ _sas_author.orcid       0000-0001-0002-0003
+;
+save_
+
+save__sas_author.id
+   _item_description.description  "Unique ID for the sas_author entry"
+   _item.name            "_sas_author.id"
+   _item.category_id     sas_author
+   _item.mandatory_code  yes
+   _item_type.code  code
+save_
+
+save__sas_author.result_id
+   _item_description.description  "Result for which this author is responsible"
+   _item.name                     "_sas_author.result_id"
+   _item.category_id              sas_author
+   _item.mandatory_code           yes
+   _item_type.code                code
+   _item_linked.child_name        "_sas_author.result_id"
+   _item_linked.parent_name       "_sas_result.id"
+save_
+
+save__sas_author.name
+   _item_description.description  "Name of the person"
+   _item.name                     "_sas_author.name"
+   _item.category_id              sas_author
+   _item.mandatory_code           no
+   _item_type.code                line
+save_
+
+save__sas_author.orcid
+   _item_description.description  "Unique global ID for the author, based on the ORCID system"
+   _item.name                     "_sas_author.orcid"
+   _item.category_id              sas_author
+   _item.mandatory_code           no
+   _item_type.code                orcid
+save_
+
+save__sas_author.role
+   _item_description.description  "Role that the author played in the generation of the data and writing of accompanying articles"
+   _item.name                     "_sas_author.role"
+   _item.category_id              sas_author
+   _item.mandatory_code           no
+   _item_type.code                code
+save_
+
+########################
+## SAS_P_OF_R_DETAILS ##
+########################
+save_sas_p_of_R_details
+   #
+   _category.description  "Description of the distance distribution function P(R)"
+   #
+   _category.id              sas_p_of_R_details
+   _category.mandatory_code  no
+   _category_key.name        "_sas_p_of_R_details.id"
+   #
+   loop_
+   _category_group.id          'sas_group' 'result_group'
+   #
+   _category_examples.detail  "Example 1"
+   _category_examples.case
+;
+ _sas_p_of_R_details.id 1
+ _sas_p_of_R_details.result_id 1
+ _sas_p_of_R_details.software_p_of_R "GNOM 4.6"
+ _sas_p_of_R_details.p_of_R_point_min 5
+ _sas_p_of_R_details.p_of_R_point_max 1100
+ _sas_p_of_R_details.number_of_points 1096
+ _sas_p_of_R_details.qmin 0.04
+ _sas_p_of_R_details.qmax 4.2
+ _sas_p_of_R_details.Rmin 0
+ _sas_p_of_R_details.Rmax 10.2
+;
+#
+save_
+#
+save__sas_p_of_R_details.p_of_R_point_min
+   #
+
+   _item_description.description  "Number of the first point of intensity used to calculate P(R)"
+   #
+   _item.name            "_sas_p_of_R_details.p_of_R_point_min"
+   _item.category_id     sas_p_of_R_details
+   _item.mandatory_code  no
+   #
+   _item_type.code  int
+   #
+save_
+#
+save__sas_p_of_R_details.p_of_R_point_max
+   #
+
+   _item_description.description  "Number of the last point of intensity used to calculate P(R)"
+   #
+   _item.name            "_sas_p_of_R_details.p_of_R_point_max"
+   _item.category_id     sas_p_of_R_details
+   _item.mandatory_code  no
+   #
+   _item_type.code  int
+   #
+save_
+#
+save__sas_p_of_R_details.id
+   #
+
+   _item_description.description  "P(R) identifier"
+   #
+   _item.name            "_sas_p_of_R_details.id"
+   _item.category_id     sas_p_of_R_details
+   _item.mandatory_code  yes
+   loop_
+   _item_linked.child_name
+   _item_linked.parent_name
+        '_sas_p_of_R.id'                 '_sas_p_of_R_details.id'
+        '_sas_p_of_R_extrapolated.id'    '_sas_p_of_R_details.id'
+
+   #
+   _item_type.code  code
+   #
+save_
+#
+save__sas_p_of_R_details.result_id
+   #
+
+   _item_description.description  "A pointer to _sas_result.id"
+   #
+   _item.name            "_sas_p_of_R_details.result_id"
+   _item.category_id     sas_p_of_R_details
+   _item.mandatory_code  no
+   #
+   _item_type.code  code
+   #
+save_
+#
+save__sas_p_of_R_details.software_p_of_R
+   #
+
+   _item_description.description  "Software used for the calculation of"
+   #
+   _item.name            "_sas_p_of_R_details.software_p_of_R"
+   _item.category_id     sas_p_of_R_details
+   _item.mandatory_code  no
+   #
+   _item_type.code  text
+   #
+save_
+#
+save__sas_p_of_R_details.number_of_points
+   #
+
+   _item_description.description  "Number of intensity points used in P(R) calculation"
+   #
+   _item.name            "_sas_p_of_R_details.number_of_points"
+   _item.category_id     sas_p_of_R_details
+   _item.mandatory_code  no
+   #
+   _item_type.code  int
+   #
+save_
+#
+save__sas_p_of_R_details.Rmin
+   #
+
+   _item_description.description  "Minimal value of intramolecular distances R"
+   #
+   _item.name            "_sas_p_of_R_details.Rmin"
+   _item.category_id     sas_p_of_R_details
+   _item.mandatory_code  no
+   #
+   _item_type.code  float
+   #
+save_
+
+save__sas_p_of_R_details.Rmax
+   #
+
+   _item_description.description  "Maximal value of intramolecular distances R"
+   #
+   _item.name            "_sas_p_of_R_details.Rmax"
+   _item.category_id     sas_p_of_R_details
+   _item.mandatory_code  no
+   #
+   _item_type.code  float
+   #
+save_
+
+#
+save__sas_p_of_R_details.qmin
+   #
+
+   _item_description.description  "Minimal value of momentum transfer used for calculation of P(R)"
+   #
+   _item.name            "_sas_p_of_R_details.qmin"
+   _item.category_id     sas_p_of_R_details
+   _item.mandatory_code  no
+   #
+   _item_type.code  float
+   #
+save_
+
+#
+save__sas_p_of_R_details.qmax
+   #
+
+   _item_description.description  "Maximal value of momentum transfer used for calculation of P(R)"
+   #
+   _item.name            "_sas_p_of_R_details.qmax"
+   _item.category_id     sas_p_of_R_details
+   _item.mandatory_code  no
+   #
+   _item_type.code  float
+   #
+save_
+#
+save_sas_p_of_R
+   #
+   _category.description  "The distance distribution function P(R)"
+   #
+   _category.id              sas_p_of_R
+   _category.mandatory_code  no
+   #
+   _category_key.name        "_sas_p_of_R.ordinal"
+   loop_
+   _category_group.id          'sas_group' 'result_group'
+   #
+   _category_examples.detail  "Example 1"
+   _category_examples.case
+;
+ loop_
+  _sas_p_of_R.id
+  _sas_p_of_R.ordinal
+  _sas_p_of_R.R
+  _sas_p_of_R.P
+  _sas_p_of_R.P_error
+  1 1 0.0000E+00  0.0000E+00  0.0000E+00
+  1 2 0.1034E+00  0.2276E+01  0.5545E-01
+  1 3 0.2068E+00  0.5953E+01  0.8992E-01
+  #     .... Rows omitted for brevity ...
+  1 1010  0.1024E+02  0.2941E+01  0.1673E+00
+  1 1011  0.1034E+02  0.0000E+00  0.0000E+00
+;
+#
+save_
+#
+save__sas_p_of_R.id
+   #
+
+   _item_description.description  "P(R) identifier"
+   #
+   _item.name            "_sas_p_of_R.id"
+   _item.category_id     sas_p_of_R
+   _item.mandatory_code  yes
+   #
+   _item_type.code  code
+   #
+save_
+
+save__sas_p_of_R.ordinal
+   #
+
+   _item_description.description  "Ordinal index for the P(R) function"
+   #
+   _item.name            "_sas_p_of_R.ordinal"
+   _item.category_id     sas_p_of_R
+   _item.mandatory_code  yes
+   #
+   _item_type.code  int
+   #
+save_
+#
+save__sas_p_of_R.P
+   #
+
+   _item_description.description  "Values of distance distribution function P(R)"
+   #
+   _item.name            "_sas_p_of_R.P"
+   _item.category_id     sas_p_of_R
+   _item.mandatory_code  no
+   #
+   _item_type.code  float
+   #
+save_
+#
+save__sas_p_of_R.R
+   #
+
+   _item_description.description  "Values of intramolecular distances R"
+   #
+   _item.name            "_sas_p_of_R.R"
+   _item.category_id     sas_p_of_R
+   _item.mandatory_code  no
+   #
+   _item_type.code  float
+   #
+save_
+#
+save__sas_p_of_R.P_error
+   #
+
+   _item_description.description  "Errors of P(R) values"
+   #
+   _item.name            "_sas_p_of_R.P_error"
+   _item.category_id     sas_p_of_R
+   _item.mandatory_code  no
+   #
+   _item_type.code  float
+   #
+save_
+#
+#
+save_sas_p_of_R_extrapolated
+   #
+   _category.description  "The extrapolated quantities backcalculated from the P(R) using inverse Fourier transformation"
+   #
+   _category.id              sas_p_of_R_extrapolated
+   _category.mandatory_code  no
+   #
+   _category_key.name         "_sas_p_of_R.ordinal"
+   loop_
+   _category_group.id          'sas_group' 'result_group'
+   #
+   _category_examples.detail  "Example 1"
+   _category_examples.case
+;
+ loop_
+  _sas_p_of_R.id
+  _sas_p_of_R.ordinal
+  _sas_p_of_R_extrapolated.momentum_transfer
+  _sas_p_of_R.extrapolated.reg
+   1 1  0.0000E+00 0.9616E+04
+   1 2  0.8705E-02 0.9614E+04
+   1 3  0.1741E-01 0.9607E+04
+   1 4  0.2611E-01 0.9596E+04
+   1 5  0.3482E-01 0.9581E+04
+   #    --- abbreviated ---
+;
+#
+save_
+#
+#
+save__sas_p_of_R_extrapolated.id
+   #
+
+   _item_description.description  "P(R) identifier"
+   #
+   _item.name            "_sas_p_of_R_extrapolated.id"
+   _item.category_id     sas_p_of_R_extrapolated
+   _item.mandatory_code  yes
+   #
+   _item_type.code  code
+   #
+save_
+#
+save__sas_p_of_R_extrapolated.ordinal
+   #
+
+   _item_description.description  "Ordinal index for extrapoated value list"
+   #
+   _item.name            "_sas_p_of_R_extrapolated.ordinal"
+   _item.category_id     sas_p_of_R_extrapolated
+   _item.mandatory_code  yes
+   #
+   _item_type.code  int
+   #
+save_
+
+save__sas_p_of_R_extrapolated.momentum_transfer
+   #
+
+   _item_description.description  "Extrapolated momentum transfer values for calculation of extrapolated intensity"
+   #
+   _item.name            "_sas_p_of_R_extrapolated.momentum_transfer"
+   _item.category_id     sas_p_of_R_extrapolated
+   _item.mandatory_code  no
+   #
+   _item_type.code  float
+   #
+save_
+#
+save__sas_p_of_R_extrapolated.intensity_reg
+   #
+   _item_description.description  "Extrapolated regularized arized intensity backcalculated from P(R) using inverse Fourier transformation"
+   #
+   _item.name            "_sas_p_of_R_extrapolated.intensity_reg"
+   _item.category_id     sas_p_of_R_extrapolated
+   _item.mandatory_code  no
+   #
+   _item_type.code  float
+   #
+save_
+#
+#
+save_sas_model_fitting_details
+   #
+   _category.description  "Model fitting details"
+   #
+   _category.id              sas_model_fitting_details
+   _category.mandatory_code  no
+   #
+   _category_key.name        '_sas_model_fitting_details.id'
+   loop_
+   _category_group.id          'sas_group' 'fitting_group'
+   #
+   _category_examples.detail  "Example 1"
+   _category_examples.case
+;
+ loop_
+ _sas_model_fitting_details.id 1
+ _sas_model_fitting_details.unit nanometre
+ _sas_model_fitting_details.chi_square 1.44
+ _sas_model_fitting_details.p-value 1.2
+ _sas_model_fitting_details.result_id 1
+;
+   #
+save_
+#
+save__sas_model_fitting_details.id
+   #
+   _item_description.description  "Fit identifier"
+   #
+   _item.name            "_sas_model_fitting_details.id"
+   _item.category_id     sas_model_fitting_details
+   _item.mandatory_code  yes
+   loop_
+   _item_linked.child_name
+   _item_linked.parent_name
+       '_sas_model_fitting.id'    '_sas_model_fitting_details.id'
+       '_sas_model.fitting_id'    '_sas_model_fitting_details.id'
+
+   #
+   _item_type.code  code
+   #
+save_
+#
+save__sas_model_fitting_details.unit
+   #
+   _item_description.description  "Units of momentum transfer"
+   #
+   _item.name            "_sas_model_fitting_details.unit"
+   _item.category_id     sas_model_fitting_details
+   _item.mandatory_code  no
+   #
+   _item_type.code  text
+   #
+save_
+#
+save__sas_model_fitting_details.chi_square
+   #
+   _item_description.description  "Chi square value"
+   #
+   _item.name            "_sas_model_fitting_details.chi_square"
+   _item.category_id     sas_model_fitting_details
+   _item.mandatory_code  no
+   #
+   _item_type.code  float
+   #
+save_
+#
+save__sas_model_fitting_details.p-value
+   #
+   _item_description.description  "p-value"
+   #
+   _item.name            "_sas_model_fitting_details.p-value"
+   _item.category_id     sas_model_fitting_details
+   _item.mandatory_code  no
+   #
+   _item_type.code  float
+   #
+save_
+#
+save__sas_model_fitting_details.result_id
+   #
+   _item_description.description  "A pointer to _result_id corresponding to the fit"
+   #
+   _item.name            "_sas_model_fitting_details.result_id"
+   _item.category_id     sas_model_fitting_details
+   _item.mandatory_code  no
+   #
+   _item_type.code  code
+   #
+save_
+#
+#
+save_sas_model_fitting
+   #
+   _category.description  "Model fitting data"
+   #
+   _category.id              sas_model_fitting
+   _category.mandatory_code  no
+   #
+   _category_key.name        '_sas_model_fitting.ordinal'
+   loop_
+   _category_group.id          'sas_group' 'fitting_group'
+   #
+   _category_examples.detail  "Example 1"
+   _category_examples.case
+;
+ loop_
+ _sas_model_fitting.id
+ _sas_model_fitting.ordinal
+ _sas_model_fitting.momentum_transfer
+ _sas_model_fitting.intensity
+ _sas_model_fitting.fit
+ 1 1 0.685743E-01  0.101886E+05  0.276659E+05
+ 1 2 0.712083E-01  0.102757E+05  0.259131E+05
+ 1 3 0.738423E-01  0.102851E+05  0.243100E+05
+ 1 4 0.764763E-01  0.100294E+05  0.227069E+05
+;
+   #
+save_
+#
+save__sas_model_fitting.intensity
+   #
+
+   _item_description.description  "The scattering intensity used for fitting theoretical scattering"
+   #
+   _item.name            "_sas_model_fitting.intensity"
+   _item.category_id     sas_model_fitting
+   _item.mandatory_code  no
+   #
+   _item_type.code  float
+   #
+save_
+#
+save__sas_model_fitting.fit
+   #
+
+   _item_description.description  "The theoretical scattering intensity"
+   #
+   _item.name            "_sas_model_fitting.fit"
+   _item.category_id     sas_model_fitting
+   _item.mandatory_code  no
+   #
+   _item_type.code  float
+   #
+save_
+#
+save__sas_model_fitting.id
+   #
+
+   _item_description.description  "Fit identifier"
+   #
+   _item.name            "_sas_model_fitting.id"
+   _item.category_id     sas_model_fitting
+   _item.mandatory_code  no
+   #
+   _item_type.code  code
+   #
+   _item_examples.case  1
+   #
+save_
+#
+save__sas_model_fitting.ordinal
+   #
+
+   _item_description.description  "Fit ordinal identifier"
+   #
+   _item.name            "_sas_model_fitting.ordinal"
+   _item.category_id     sas_model_fitting
+   _item.mandatory_code  yes
+   #
+   _item_type.code  int
+   #
+   _item_examples.case  1
+   #
+save_
+#
+save__sas_model_fitting.momentum_transfer
+   #
+
+   _item_description.description  "Momentum transfer values"
+   #
+   _item.name            "_sas_model_fitting.momentum_transfer"
+   _item.category_id     sas_model_fitting
+   _item.mandatory_code  no
+   #
+   _item_type.code  float
+   #
+save_
+#
+#
+loop_
+_pdbx_item_linked_group.category_id
+_pdbx_item_linked_group.link_group_id
+_pdbx_item_linked_group.label
+_pdbx_item_linked_group.context
+_pdbx_item_linked_group.condition_id
+sas_sample                  1 sas_sample:sas_buffer:1                          . .
+sas_scan                    2 sas_scan:sas_beam:2                              . .
+sas_scan                    3 sas_scan:sas_detc:3                              . .
+sas_scan                    4 sas_scan:sas_result:4                            . .
+sas_scan                    5 sas_scan:sas_sample:5                            . .
+sas_scan_intensity          6 sas_scan_intensity:sas_scan:1                    . .
+sas_p_of_R_details          7 sas_p_of_R_details:sas_result:1                  . .
+sas_p_of_R                  8 sas_p_of_R:sas_p_of_R_details:1                  . .
+sas_p_of_R_extrapolated     9 sas_p_of_R_extrapolated:sas_p_of_R_details:1     . .
+sas_sample_entities        10 sas_sample_entities:sample                       . .
+sas_sample_entities        11 sas_sample_entities:entity                       . .
+sas_author                 12 sas_author:result                                . .
+#
+sas_model_fitting_details   200 sas_model_fitting_details:sas_result:1           . .
+sas_model_fitting           201 sas_model_fitting_details:sas_model_fitting:1    . .
+sas_model                   202 sas_model:sas_model_fitting_details:1            . .
+#
+loop_
+_pdbx_item_linked_group_list.child_category_id
+_pdbx_item_linked_group_list.link_group_id
+_pdbx_item_linked_group_list.child_name
+_pdbx_item_linked_group_list.parent_name
+_pdbx_item_linked_group_list.parent_category_id
+sas_sample                 1 '_sas_sample.buffer_id'                '_sas_buffer.id'                sas_buffer
+sas_scan                   2 '_sas_scan.beam_id'                    '_sas_beam.id'                  sas_beam
+sas_scan                   3 '_sas_scan.detc_id'                    '_sas_detc.id'                  sas_detc
+sas_scan                   4 '_sas_scan.sample_id'                  '_sas_sample.id'                sas_sample
+sas_scan                   5 '_sas_scan.result_id'                  '_sas_result.id'                sas_result
+sas_scan_intensity         6 '_sas_scan_intensity.scan_id'          '_sas_scan.id'                  sas_scan
+sas_p_of_R_details         7 '_sas_p_of_R_details.result_id'        '_sas_result.id'                sas_result
+sas_p_of_R                 8 '_sas_p_of_R.id'                       '_sas_p_of_R_details.id'        sas_p_of_R_details
+sas_p_of_R_extrapolated    9 '_sas_p_of_R_extrapolated.id'          '_sas_p_of_R_details.id'        sas_p_of_R_details
+sas_sample_entities       10 '_sas_sample_entities.sample_id'       '_sas_sample.id'                sas_sample
+sas_sample_entities       11 '_sas_sample_entities.entity_id'       '_entity.id'                    entity
+sas_author                12 '_sas_author.result_id'                '_sas_result.id'                sas_result
+#
+sas_model_fitting_details  200 '_sas_model_fitting_details.result_id' '_sas_result.id'                sas_result
+sas_model_fitting          201 '_sas_model_fitting.id'                '_sas_model_fitting_details.id' sas_model_fitting_details
+sas_model                  202 '_sas_model.fitting_id'                '_sas_model_fitting_details.id' sas_model_fitting_details
+#
