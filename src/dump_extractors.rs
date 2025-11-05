@@ -15,8 +15,8 @@ pub trait DumpExtractor<T: ?Sized> {
     /// The type of iterator returned by get_children
     type ChildIter: Iterator<Item = Self::Child>;
     
-    /// Extract the rule from a node
-    fn extract_rule(&self, node: &T) -> Rule;
+    /// Extract the rule name from a node as a string
+    fn extract_rule_name(&self, node: &T) -> String;
     
     /// Extract the string content from a node
     fn extract_str<'a>(&self, node: &'a T) -> &'a str;
@@ -47,8 +47,8 @@ impl<'i> DumpExtractor<Pair<'i, Rule>> for PairExtractor {
     type Child = Pair<'i, Rule>;
     type ChildIter = pest::iterators::Pairs<'i, Rule>;
     
-    fn extract_rule(&self, node: &Pair<'i, Rule>) -> Rule {
-        node.as_rule()
+    fn extract_rule_name(&self, node: &Pair<'i, Rule>) -> String {
+        format!("{:?}", node.as_rule())
     }
     
     fn extract_str<'a>(&self, node: &'a Pair<'i, Rule>) -> &'a str {
@@ -85,8 +85,8 @@ impl DumpExtractor<MutablePair> for MutablePairExtractor {
     type Child = MutablePair;  // Return owned values for consistency with Pair
     type ChildIter = std::vec::IntoIter<MutablePair>;
     
-    fn extract_rule(&self, node: &MutablePair) -> Rule {
-        node.rule()
+    fn extract_rule_name(&self, node: &MutablePair) -> String {
+        node.rule_name().to_string()
     }
     
     fn extract_str<'a>(&self, node: &'a MutablePair) -> &'a str {
@@ -117,10 +117,10 @@ pub fn dump_pair(pair: &Pair<Rule>, level: usize) {
     let symbol = if extractor.has_children(pair) { ">" } else { "-" };
     
     println!(
-        "{}{} {:?} {}..{} {:?}",
+        "{}{} {} {}..{} {:?}",
         indent,
         symbol,
-        extractor.extract_rule(pair),
+        extractor.extract_rule_name(pair),
         extractor.extract_start(pair),
         extractor.extract_end(pair),
         extractor.extract_str(pair)
@@ -138,10 +138,10 @@ pub fn dump_mutable_pair(pair: &MutablePair, level: usize) {
     let symbol = if extractor.has_children(pair) { ">" } else { "-" };
     
     println!(
-        "{}{} {:?} {}..{} {:?}",
+        "{}{} {} {}..{} {:?}",
         indent,
         symbol,
-        extractor.extract_rule(pair),
+        extractor.extract_rule_name(pair),
         extractor.extract_start(pair),
         extractor.extract_end(pair),
         extractor.extract_str(pair)

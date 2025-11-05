@@ -8,10 +8,11 @@ use crate::Rule;
 
 /// A mutable pair-like structure that mimics pest's Pair but with plain strings.
 /// Unlike Pair<Rule>, this can be constructed and modified freely.
+/// Uses String for rule names to allow synthetic rules not in the grammar.
 #[derive(Debug, Clone, PartialEq)]
 pub struct MutablePair {
-    /// The rule associated with this pair
-    pub rule: Rule,
+    /// The rule name as a string (allows synthetic rules)
+    pub rule_name: String,
     
     /// The string content (token) for this pair
     pub content: String,
@@ -28,9 +29,9 @@ pub struct MutablePair {
 
 impl MutablePair {
     /// Create a new MutablePair without children
-    pub fn new(rule: Rule, content: String, start: usize, end: usize) -> Self {
+    pub fn new(rule_name: impl Into<String>, content: String, start: usize, end: usize) -> Self {
         MutablePair {
-            rule,
+            rule_name: rule_name.into(),
             content,
             start,
             end,
@@ -39,9 +40,9 @@ impl MutablePair {
     }
     
     /// Create a new MutablePair with children
-    pub fn with_children(rule: Rule, content: String, start: usize, end: usize, children: Vec<MutablePair>) -> Self {
+    pub fn with_children(rule_name: impl Into<String>, content: String, start: usize, end: usize, children: Vec<MutablePair>) -> Self {
         MutablePair {
-            rule,
+            rule_name: rule_name.into(),
             content,
             start,
             end,
@@ -61,9 +62,9 @@ impl MutablePair {
         self
     }
     
-    /// Get the rule
-    pub fn rule(&self) -> Rule {
-        self.rule
+    /// Get the rule name
+    pub fn rule_name(&self) -> &str {
+        &self.rule_name
     }
     
     /// Get the content as a string slice
@@ -109,7 +110,7 @@ impl MutablePair {
             .collect();
         
         MutablePair {
-            rule: pair.as_rule(),
+            rule_name: format!("{:?}", pair.as_rule()),
             content: pair.as_str().to_string(),
             start: pair.as_span().start(),
             end: pair.as_span().end(),
@@ -120,7 +121,7 @@ impl MutablePair {
 
 impl std::fmt::Display for MutablePair {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        write!(f, "{:?}({}..{}, {:?})", self.rule, self.start, self.end, self.content)
+        write!(f, "{}({}..{}, {:?})", self.rule_name, self.start, self.end, self.content)
     }
 }
 
@@ -131,13 +132,13 @@ mod tests {
     #[test]
     fn test_mutable_pair_creation() {
         let pair = MutablePair::new(
-            Rule::non_quoted_string,
+            "non_quoted_string",
             "hello".to_string(),
             0,
             5,
         );
         
-        assert_eq!(pair.rule(), Rule::non_quoted_string);
+        assert_eq!(pair.rule_name(), "non_quoted_string");
         assert_eq!(pair.as_str(), "hello");
         assert_eq!(pair.start_pos(), 0);
         assert_eq!(pair.end_pos(), 5);
@@ -146,11 +147,11 @@ mod tests {
     
     #[test]
     fn test_mutable_pair_with_children() {
-        let child1 = MutablePair::new(Rule::non_quoted_string, "a".to_string(), 0, 1);
-        let child2 = MutablePair::new(Rule::non_quoted_string, "b".to_string(), 2, 3);
+        let child1 = MutablePair::new("non_quoted_string", "a".to_string(), 0, 1);
+        let child2 = MutablePair::new("non_quoted_string", "b".to_string(), 2, 3);
         
         let parent = MutablePair::with_children(
-            Rule::data,
+            "data",
             "a b".to_string(),
             0,
             3,
@@ -163,9 +164,9 @@ mod tests {
     
     #[test]
     fn test_builder_pattern() {
-        let pair = MutablePair::new(Rule::data, "parent".to_string(), 0, 10)
-            .add_child(MutablePair::new(Rule::non_quoted_string, "child1".to_string(), 0, 6))
-            .add_child(MutablePair::new(Rule::non_quoted_string, "child2".to_string(), 7, 13));
+        let pair = MutablePair::new("data", "parent".to_string(), 0, 10)
+            .add_child(MutablePair::new("non_quoted_string", "child1".to_string(), 0, 6))
+            .add_child(MutablePair::new("non_quoted_string", "child2".to_string(), 7, 13));
         
         assert_eq!(pair.children().len(), 2);
     }

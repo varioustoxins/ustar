@@ -132,7 +132,7 @@ fn collect_symbol_info(
         *symbol_counter += 1;
         let current_symbol = *symbol_counter;
         
-        let rule_name = format!("{:?}", extractor.extract_rule(&pair));
+        let rule_name = extractor.extract_rule_name(&pair);
         let start_pos = extractor.extract_start(&pair);
         let end_pos = extractor.extract_end(&pair);
         let content = extractor.extract_str(&pair);
