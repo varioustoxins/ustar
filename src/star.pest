@@ -56,7 +56,7 @@ non_quoted_string = @{!UNDERSCORE ~ !DOLLAR ~ NON_BLANK_CHAR_NO_QUOTES+}
 
 // a double quoted string -  note there should be ways to write this closer to the original gammar
 // <double_quoted_text_string> ::= <D_quote> <D_quote_string> <D_quote>
-// D_quote_string ::= {<D_quote> <non_blank_char> | * <not_a_D_quote>
+// D_quote_string ::= {<D_quote> <non_blank_char> | * <not_a_D_quote>}
 double_quote_string = @{DOUBLE_QUOTE ~ double_quote_string_inner* ~ DOUBLE_QUOTE }
 double_quote_end = @{DOUBLE_QUOTE ~ (BLANK|EOI|NEWLINE)}
 double_quote_inner = @{DOUBLE_QUOTE ~ NON_BLANK_CHAR_NO_QUOTES | NON_BLANK_CHAR_NO_QUOTES ~ DOUBLE_QUOTE |  TWO_DOUBLE_QUOTE_CHARS}
