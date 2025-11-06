@@ -50,7 +50,7 @@ key_words = _{data_keyword | loop_keyword | global_keyword | save_keyword | stop
 data_name = @{UNDERSCORE ~ NO_BLANK_CHAR+}
 
 // a value which doesn't start with _ $ and isn't save_ or a loop initialiser
-non_quoted_string = @{!UNDERSCORE ~ !DOLLAR ~ NON_BLANK_CHAR_NO_QUOTES+}
+non_quoted_string = @{!UNDERSCORE ~ !DOLLAR  ~ NON_BLANK_CHAR_NO_QUOTES ~ NO_BLANK_CHAR*}
 // Hall doesn't note that a non_quoted_text_string can't start with an _ or  dollar and cant be save_?
 // or do i have this wrong
 
