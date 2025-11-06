@@ -1389,6 +1389,30 @@ fn comment_before_semicolon_string() {
 }
 
 #[test]
+fn single_quote_string_closed_with_two_quotes() {
+    // Test that a single-quoted string ending with '' (two quotes before space/EOI) 
+    // is correctly parsed. The '' at the end acts as content + closing quote.
+    // Example: 'a'' should parse as opening ', content 'a', content ', closing '
+    let file_path = "tests/test_data/invalid_single_quote_unclosed.star";
+    let test_string = std::fs::read_to_string(file_path).unwrap();
+    
+    let parse_result = StarParser::parse(Rule::star_file, &test_string);
+    assert!(parse_result.is_ok(), "Should successfully parse single-quoted string ending with ''");
+}
+
+#[test]
+fn double_quote_string_closed_with_two_quotes() {
+    // Test that a double-quoted string ending with "" (two quotes before space/EOI) 
+    // is correctly parsed. The "" at the end acts as content + closing quote.
+    // Example: "a"" should parse as opening ", content 'a', content ", closing "
+    let file_path = "tests/test_data/double_quote_closed_with_two_quotes.star";
+    let test_string = std::fs::read_to_string(file_path).unwrap();
+    
+    let parse_result = StarParser::parse(Rule::star_file, &test_string);
+    assert!(parse_result.is_ok(), "Should successfully parse double-quoted string ending with \"\"");
+}
+
+#[test]
 fn parse_mmcif_nef_dictionary() {
     let file_path = "tests/test_data/mmcif_nef_v1_1_ascii.dic";
     let test_string = std::fs::read_to_string(file_path).unwrap();
@@ -1588,7 +1612,7 @@ generate_quote_tests! {
     quote_char_quote_pattern: ("'x'y'", "'x'y'", r#""x"y""#, r#""x"y""#),
     double_quote_at_start: ("''x'", "''x'", r#"""x""#, r#"""x""#),
     complex_alternating_pattern: ("'a'b'c'd'", "'a'b'c'd'", r#""a"b"c"d""#, r#""a"b"c"d""#),
-    quotes_with_spaces: ("'He said ''Hello'' to me'", "'He said ''Hello'' to me'", r#""He said ""Hello"" to me""#, r#""He said ""Hello"" to me""#),
+    quotes_with_double_qoute_ends: ("'He said ''Hello'' to me", "'He said ''Hello''", r#""He said ""Hello"" to me"#, r#""He said ""Hello"""#),
     dense_quotes_without_spaces: ("'He said''Hello''to''me'", "'He said''Hello''to''me'", r#""He said""Hello""to""me""#, r#""He said""Hello""to""me""#),
     quotes_followed_by_chars: ("'test'abc'def'xyz'", "'test'abc'def'xyz'", r#""test"abc"def"xyz""#, r#""test"abc"def"xyz""#),
     multiple_quotes_at_end: ("'Hello world'''", "'Hello world'''", r#""Hello world""""#, r#""Hello world""""#),
@@ -1613,6 +1637,44 @@ fn test_invalid_quote_patterns(
     assert!(
         single_result.is_err() && double_result.is_err(),
         "Expected '{}' to fail parsing, but one succeeded", input
+    );
+}
+
+// Test cases with '' followed by space - should parse but not consume full input
+// because quote+quote+space ends the string
+#[rstest]
+#[case::single_quotes_with_spaces("'He said ''Hello'' to me'", "'He said ''Hello''")]
+fn test_invalid_single_quote_with_space_after_double_quote(
+    #[case] input: &str,
+    #[case] expected_parsed: &str,
+) {
+    let result = StarParser::parse(Rule::single_quote_string, input);
+    assert!(result.is_ok(), "Should parse (but not consume all input): {}", input);
+    
+    let parsed = result.unwrap().as_str();
+    assert_eq!(
+        parsed, expected_parsed,
+        "'' followed by space should end the string: expected '{}', got '{}' for input '{}'",
+        expected_parsed, parsed, input
+    );
+}
+
+// Test cases with "" followed by space - should parse but not consume full input
+// because quote+quote+space ends the string
+#[rstest]
+#[case::double_quotes_with_spaces(r#""He said ""Hello"" to me""#, r#""He said ""Hello"""#)]
+fn test_invalid_double_quote_with_space_after_double_quote(
+    #[case] input: &str,
+    #[case] expected_parsed: &str,
+) {
+    let result = StarParser::parse(Rule::double_quote_string, input);
+    assert!(result.is_ok(), "Should parse (but not consume all input): {}", input);
+    
+    let parsed = result.unwrap().as_str();
+    assert_eq!(
+        parsed, expected_parsed,
+        "\"\" followed by space should end the string: expected '{}', got '{}' for input '{}'",
+        expected_parsed, parsed, input
     );
 }
 
