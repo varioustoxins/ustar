@@ -23,7 +23,7 @@ with embedded text
     println!("\n=== Dump of Parsed Input ===\n");
     let config_decompose = HashMap::new(); // Empty config defaults to true
     
-    match ustar::parse(input, config_decompose) {
+    match ustar::parse(input, &config_decompose) {
         Ok(result) => {
             dump_mutable_pair(&result, 0);
         }

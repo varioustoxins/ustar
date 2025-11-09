@@ -1,10 +1,10 @@
 use std::fs;
 use std::path::Path;
 use std::time::{Duration, Instant};
-use ustar::{StarParser, Rule};
 use ustar::mutable_pair::MutablePair;
 use pest::Parser as PestParser;
 use clap::Parser;
+use ustar::parsers::ascii::{AsciiParser, Rule};
 
 #[derive(Parser)]
 #[command(name = "ustar-benchmark")]
@@ -64,7 +64,7 @@ fn main() {
 
     // Warmup parse to ensure the file is valid
     print!("Validating file... ");
-    match StarParser::parse(Rule::star_file, &content) {
+    match AsciiParser::parse(Rule::star_file, &content) {
         Ok(_) => println!("✓ Valid STAR file"),
         Err(e) => {
             eprintln!("✗ Parse error: {}", e);
@@ -77,7 +77,7 @@ fn main() {
         println!();
         println!("Running warmup ({} cycles)...", args.warmup);
         for i in 0..args.warmup {
-            if let Err(e) = StarParser::parse(Rule::star_file, &content) {
+            if let Err(e) = AsciiParser::parse(Rule::star_file, &content) {
                 eprintln!("Parse error during warmup iteration {}: {}", i + 1, e);
                 std::process::exit(1);
             }
@@ -96,7 +96,7 @@ fn main() {
     for i in 0..args.iterations {
         let start_time = Instant::now();
         
-        match StarParser::parse(Rule::star_file, &content) {
+        match AsciiParser::parse(Rule::star_file, &content) {
             Ok(_) => {
                 let elapsed = start_time.elapsed();
                 parse_times.push(elapsed);
@@ -276,14 +276,14 @@ fn establish_baseline() -> f64 {
     let baseline_size = baseline_content.len();
     
     // Validate baseline file
-    if let Err(_) = StarParser::parse(Rule::star_file, &baseline_content) {
+    if let Err(_) = AsciiParser::parse(Rule::star_file, &baseline_content) {
         eprintln!("Warning: Baseline file is not valid. Using default baseline of 100 ns/byte");
         return 100.0;
     }
     
     // Warmup for baseline benchmark
     for _ in 0..baseline_warmup {
-        let _ = StarParser::parse(Rule::star_file, &baseline_content);
+        let _ = AsciiParser::parse(Rule::star_file, &baseline_content);
     }
     
     // Run baseline benchmark
@@ -291,7 +291,7 @@ fn establish_baseline() -> f64 {
     
     for _ in 0..baseline_iterations {
         let start_time = Instant::now();
-        if StarParser::parse(Rule::star_file, &baseline_content).is_ok() {
+        if AsciiParser::parse(Rule::star_file, &baseline_content).is_ok() {
             baseline_times.push(start_time.elapsed());
         }
     }
@@ -317,7 +317,7 @@ fn benchmark_mutable_pair_conversion(content: &str, iterations: usize, warmup: u
     if warmup > 0 {
         println!("Running warmup ({} cycles)...", warmup);
         for i in 0..warmup {
-            if let Ok(pairs) = StarParser::parse(Rule::star_file, content) {
+            if let Ok(pairs) = AsciiParser::parse(Rule::star_file, content) {
                 for pair in pairs {
                     let _ = MutablePair::from_pest_pair(&pair);
                 }
@@ -335,7 +335,7 @@ fn benchmark_mutable_pair_conversion(content: &str, iterations: usize, warmup: u
     let mut total_duration = Duration::new(0, 0);
     
     for i in 0..iterations {
-        if let Ok(pairs) = StarParser::parse(Rule::star_file, content) {
+        if let Ok(pairs) = AsciiParser::parse(Rule::star_file, content) {
             let start_time = Instant::now();
             
             // Convert all pairs to MutablePairs

@@ -10,16 +10,16 @@ NEWLINE = @{UNIX_NEWLINE | WINDOWS_NEWLINE}
 SEMICOLON = {";"}
 
 // Character class placeholders - replaced by build.rs based on encoding mode
-BLANK = _BLANK___PLACEHOLDER  // we separate simple spaces and end of line spaces
-UTF8_BOM = _UTF8_BOM___PLACEHOLDER  // UTF-8 BOM detection (Unicode mode only)
+BLANK = _{ " " | "\t" }  // we separate simple spaces and end of line spaces
+UTF8_BOM = _{ "\u{FEFF}" }  // UTF-8 BOM detection (Unicode mode only)
 
 NEWLINE_SEMICOLON = @{NEWLINE ~ SEMICOLON}
 BASIC_WHITESPACE = _{ BLANK | NEWLINE }
 WHITESPACE = _{ !NEWLINE_SEMICOLON ~ BASIC_WHITESPACE}
 COMMENT = _{ "#" ~ (!"\n" ~ ANY)* ~ (!("\n" ~ ";") ~ "\n" | EOI) }
 
-NON_BLANK_CHAR_NO_QUOTES = NON_BLANK_CHAR_NO_QUOTES___PLACEHOLDER  // it makes it complicated if quotes are in here
-NO_BLANK_CHAR = NO_BLANK_CHAR___PLACEHOLDER
+NON_BLANK_CHAR_NO_QUOTES = { "!" | '#'..'&' | '('..'~' }  // it makes it complicated if quotes are in here
+NO_BLANK_CHAR = { '!'..'~' }
 DOUBLE_QUOTE = {"\""}
 SINGLE_QUOTE = {"'"}
 TWO_DOUBLE_QUOTE_CHARS = @{DOUBLE_QUOTE ~ DOUBLE_QUOTE}

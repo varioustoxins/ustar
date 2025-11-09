@@ -1,7 +1,8 @@
 use clap::Parser as ClapParser;
 use std::fs;
 use std::path::PathBuf;
-use ustar::{StarParser, Rule, Parser};
+use pest::Parser;
+use ustar::parsers::ascii::{AsciiParser, Rule};
 
 #[derive(ClapParser, Debug)]
 #[command(name = "ustar-parse-debugger")]
@@ -38,7 +39,7 @@ fn main() {
     
     // First, try to parse the entire file
     println!("Attempting to parse entire file...");
-    match StarParser::parse(Rule::star_file, &content) {
+    match AsciiParser::parse(Rule::star_file, &content) {
         Ok(_) => {
             println!("✓ File parses successfully!");
             std::process::exit(0);
@@ -135,7 +136,7 @@ fn find_last_good_parse(content: &str, error_pos: usize, error_line: usize, erro
         // Try to parse up to this position
         let truncated = &content[..current_pos];
         
-        match StarParser::parse(Rule::star_file, truncated) {
+        match AsciiParser::parse(Rule::star_file, truncated) {
             Ok(pairs) => {
                 // Found a successful parse!
                 println!("✓ Found successful parse at byte position: {}", current_pos);

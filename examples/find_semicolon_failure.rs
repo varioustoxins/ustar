@@ -74,8 +74,8 @@ fn main() {
         }
         
         // Try to parse
-        let config = HashMap::new();
-        match parse(&test_content, config) {
+    let config = HashMap::new();
+    match parse(&test_content, &config) {
             Ok(_) => {
                 println!("✓ SUCCESS with {} lines in semicolon string", num_lines);
                 println!("\nLast successful content:");

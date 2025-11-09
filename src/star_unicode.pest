@@ -10,16 +10,16 @@ NEWLINE = @{UNIX_NEWLINE | WINDOWS_NEWLINE}
 SEMICOLON = {";"}
 
 // Character class placeholders - replaced by build.rs based on encoding mode
-BLANK = _BLANK___PLACEHOLDER  // we separate simple spaces and end of line spaces
-UTF8_BOM = _UTF8_BOM___PLACEHOLDER  // UTF-8 BOM detection (Unicode mode only)
+BLANK = _{ "\u{0009}" | "\u{000A}" | "\u{000B}" | "\u{000C}" | "\u{000D}" | "\u{0020}" | "\u{0085}" | "\u{00A0}" | "\u{1680}" | "\u{2000}" | "\u{2001}" | "\u{2002}" | "\u{2003}" | "\u{2004}" | "\u{2005}" | "\u{2006}" | "\u{2007}" | "\u{2008}" | "\u{2009}" | "\u{200A}" | "\u{2028}" | "\u{2029}" | "\u{202F}" | "\u{205F}" | "\u{3000}" }  // we separate simple spaces and end of line spaces
+UTF8_BOM = _{ "\u{FEFF}" }  // UTF-8 BOM detection (Unicode mode only)
 
 NEWLINE_SEMICOLON = @{NEWLINE ~ SEMICOLON}
 BASIC_WHITESPACE = _{ BLANK | NEWLINE }
 WHITESPACE = _{ !NEWLINE_SEMICOLON ~ BASIC_WHITESPACE}
 COMMENT = _{ "#" ~ (!"\n" ~ ANY)* ~ (!("\n" ~ ";") ~ "\n" | EOI) }
 
-NON_BLANK_CHAR_NO_QUOTES = NON_BLANK_CHAR_NO_QUOTES___PLACEHOLDER  // it makes it complicated if quotes are in here
-NO_BLANK_CHAR = NO_BLANK_CHAR___PLACEHOLDER
+NON_BLANK_CHAR_NO_QUOTES = { '\u{0021}'..'\u{0021}' | '\u{0023}'..'\u{0026}' | '\u{0028}'..'\u{10FFFF}' }  // it makes it complicated if quotes are in here
+NO_BLANK_CHAR = { '\u{0021}'..'\u{10FFFF}' }
 DOUBLE_QUOTE = {"\""}
 SINGLE_QUOTE = {"'"}
 TWO_DOUBLE_QUOTE_CHARS = @{DOUBLE_QUOTE ~ DOUBLE_QUOTE}

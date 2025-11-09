@@ -2,11 +2,11 @@ use clap::Parser;
 use std::fs;
 use std::io::{self, Read};
 use std::path::PathBuf;
-use ustar::{StarParser, Rule};
 use ustar::dump_extractors::{DumpExtractor, PairExtractor};
 use pest::Parser as PestParser;
 use pest::iterators::Pairs;
 use tabled::{Table, Tabled, settings::Style};
+use ustar::parsers::ascii::{AsciiParser, Rule};
 
 #[derive(Parser)]
 #[command(name = "ustar-parser")]
@@ -300,7 +300,7 @@ fn main() {
     };
 
     // Parse the input as a complete STAR file
-    match StarParser::parse(Rule::star_file, &input_text) {
+    match AsciiParser::parse(Rule::star_file, &input_text) {
         Ok(pairs) => {
             println!("source: {}", source_info);
             println!();

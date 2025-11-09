@@ -1,14 +1,17 @@
-use pest_derive::Parser;
-use std::collections::HashMap;
-use std::any::Any;
+use pest::Parser as PestParser;
 
-#[derive(Parser)]
-#[grammar = "star.pest"]
-pub struct StarParser;
+
+pub mod parsers;
+mod config;
+
+pub use config::{
+    ParserConfig, ConfigKey, ConfigValue, EncodingMode,
+    default_config, get_decomposed_strings, get_encoding
+};
+pub use parsers::Rule;
 
 // Re-export commonly used types for external use
 pub use pest::iterators::{Pair, Pairs};
-pub use pest::Parser;
 pub use pest::RuleType;
 
 // Dumpable trait and implementations
@@ -35,43 +38,68 @@ pub enum UstarConfiguration {
 ///
 /// # Returns
 /// * `Result<mutable_pair::MutablePair, String>` - Parsed result as a MutablePair tree, or an error message
-pub fn parse(
-    input: &str,
-    configuration: HashMap<UstarConfiguration, Box<dyn Any>>,
-) -> Result<mutable_pair::MutablePair, String> {
-    // Parse the input using the Pest parser
-    let pairs = StarParser::parse(Rule::star_file, input)
-        .map_err(|e| format!("Parse error: {}", e))?;
-    
-    // Convert to MutablePair tree
-    let mut root_pairs: Vec<mutable_pair::MutablePair> = pairs
-        .map(|p| mutable_pair::MutablePair::from_pest_pair(&p))
-        .collect();
-    
-    // Apply transformations based on configuration
-    // Default is to decompose strings (true), unless explicitly set to false
-    let should_decompose = configuration
-        .get(&UstarConfiguration::DecomposedStrings)
-        .and_then(|v| v.downcast_ref::<bool>())
-        .copied()
-        .unwrap_or(true);
-    
-    if should_decompose {
-        for pair in &mut root_pairs {
+// Helper function to process pairs from any parser
+fn process_pairs<'a, R>(
+    pairs: impl Iterator<Item = pest::iterators::Pair<'a, R>>,
+) -> Vec<mutable_pair::MutablePair>
+where
+    R: pest::RuleType,
+{
+    pairs.map(|p| mutable_pair::MutablePair::from_pest_pair(&p)).collect()
+}
+
+fn split_pairs_if_requested(pairs: &mut [mutable_pair::MutablePair], config: &ParserConfig) {
+    if get_decomposed_strings(config) {
+        for pair in pairs.iter_mut() {
             string_decomposer::decompose_strings(pair);
         }
     }
-    
+}
+
+pub fn parse(
+    input: &str,
+    config: &ParserConfig,
+) -> Result<mutable_pair::MutablePair, String> {
+    // BOM auto-detection is controlled by config
+    let auto_detect_bom = config::get_auto_detect_bom(config);
+    let (encoding, input_clean) = if auto_detect_bom && input.starts_with('\u{FEFF}') {
+        (EncodingMode::Unicode, &input[3..])
+    } else {
+        (get_encoding(config), input)
+    };
+
+    // Choose the appropriate parser based on encoding mode
+
+    let mut result = match encoding {
+        EncodingMode::Ascii => {
+            let pairs = parsers::ascii::AsciiParser::parse(parsers::ascii::Rule::star_file, input_clean)
+                .map_err(|e| format!("Parse error: {}", e))?;
+            process_pairs(pairs)
+        }
+        EncodingMode::ExtendedAscii => {
+            let pairs = parsers::extended::ExtendedParser::parse(parsers::extended::Rule::star_file, input_clean)
+                .map_err(|e| format!("Parse error: {}", e))?;
+            process_pairs(pairs)
+        }
+        EncodingMode::Unicode => {
+            let pairs = parsers::unicode::UnicodeParser::parse(parsers::unicode::Rule::star_file, input_clean)
+                .map_err(|e| format!("Parse error: {}", e))?;
+            process_pairs(pairs)
+        }
+    };
+
+    split_pairs_if_requested(&mut result, config);
+
     // For now, return the first root pair or create an empty one
-    if root_pairs.is_empty() {
+    if result.is_empty() {
         Ok(mutable_pair::MutablePair::new(
             "star_file",
             String::new(),
             0,
             0,
         ))
-    } else if root_pairs.len() == 1 {
-        Ok(root_pairs.remove(0))
+    } else if result.len() == 1 {
+        Ok(result.into_iter().next().unwrap())
     } else {
         // Multiple root elements - wrap them in a container
         Ok(mutable_pair::MutablePair::with_children(
@@ -79,7 +107,14 @@ pub fn parse(
             input.to_string(),
             0,
             input.len(),
-            root_pairs,
+            result,
         ))
     }
 }
+
+/// Parse with default configuration (ASCII mode, decomposed strings)
+pub fn parse_default(input: &str) -> Result<mutable_pair::MutablePair, String> {
+    parse(input, &default_config())
+}
+
+

@@ -4,7 +4,7 @@
 //! functionality, but with strings instead of pest grammar tokens. This makes it
 //! suitable for representing transformed/patched parse trees.
 
-use crate::Rule;
+use pest::RuleType;
 
 /// A mutable pair-like structure that mimics pest's Pair but with plain strings.
 /// Unlike Pair<Rule>, this can be constructed and modified freely.
@@ -103,7 +103,7 @@ impl MutablePair {
     }
     
     /// Create a MutablePair from a pest Pair
-    pub fn from_pest_pair(pair: &pest::iterators::Pair<Rule>) -> Self {
+    pub fn from_pest_pair<R: RuleType>(pair: &pest::iterators::Pair<R>) -> Self {
         let children: Vec<MutablePair> = pair.clone()
             .into_inner()
             .map(|child| MutablePair::from_pest_pair(&child))
