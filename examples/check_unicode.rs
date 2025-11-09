@@ -47,7 +47,7 @@ fn main() {
         let mut col_num = 1;
         let mut byte_pos = if has_bom { 3 } else { 0 };
         
-        for (idx, ch) in content.chars().enumerate() {
+    for ch in content.chars() {
             if ch == '\n' {
                 line_num += 1;
                 col_num = 1;
