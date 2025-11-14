@@ -108,7 +108,7 @@ pub fn parse(
         // Multiple root elements - wrap them in a container
         Ok(mutable_pair::MutablePair::with_children(
             "star_file",
-            input.to_string(),
+            input,
             0,
             input.len(),
             result,

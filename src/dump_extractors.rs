@@ -86,7 +86,7 @@ impl DumpExtractor<MutablePair> for MutablePairExtractor {
     type ChildIter = std::vec::IntoIter<MutablePair>;
     
     fn extract_rule_name(&self, node: &MutablePair) -> String {
-        node.rule_name().to_string()
+        node.rule_name().to_owned()
     }
     
     fn extract_str<'a>(&self, node: &'a MutablePair) -> &'a str {

@@ -11,9 +11,7 @@ use crate::mutable_pair::MutablePair;
 
 /// Decompose string MutablePairs in-place
 pub fn decompose_strings(pair: &mut MutablePair) {
-    let rule_name = pair.rule_name().to_string();
-    
-    match rule_name.as_str() {
+    match pair.rule_name() {
         "double_quote_string" => {
             decompose_delimited_string(pair, "\"", "DOUBLE_QUOTE");
         }
@@ -25,7 +23,7 @@ pub fn decompose_strings(pair: &mut MutablePair) {
         }
         "non_quoted_string" => {
             // Convert non_quoted_string to string rule
-            pair.rule_name = "string".to_string();
+            pair.rule_name = "string".to_owned();
         }
         _ => {
             // Recursively process children

@@ -29,10 +29,10 @@ pub struct MutablePair {
 
 impl MutablePair {
     /// Create a new MutablePair without children
-    pub fn new(rule_name: impl Into<String>, content: String, start: usize, end: usize) -> Self {
+    pub fn new(rule_name: impl Into<String>, content: impl Into<String>, start: usize, end: usize) -> Self {
         MutablePair {
             rule_name: rule_name.into(),
-            content,
+            content: content.into(),
             start,
             end,
             children: Vec::new(),
@@ -40,10 +40,10 @@ impl MutablePair {
     }
     
     /// Create a new MutablePair with children
-    pub fn with_children(rule_name: impl Into<String>, content: String, start: usize, end: usize, children: Vec<MutablePair>) -> Self {
+    pub fn with_children(rule_name: impl Into<String>, content: impl Into<String>, start: usize, end: usize, children: Vec<MutablePair>) -> Self {
         MutablePair {
             rule_name: rule_name.into(),
-            content,
+            content: content.into(),
             start,
             end,
             children,
