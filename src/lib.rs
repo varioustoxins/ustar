@@ -20,6 +20,10 @@ pub mod dump_extractors;
 // MutablePair - mutable alternative to Pair
 pub mod mutable_pair;
 
+// Buffered handler traits and walker
+pub mod sas_buffered;
+pub mod sas_buffered_walker;
+
 // String decomposer - transforms MutablePairs to decompose strings (internal)
 mod string_decomposer;
 
