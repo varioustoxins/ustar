@@ -17,7 +17,7 @@ _single_quote_complex  'Mix of "quotes" and ''escapes'''
 
 # Double quoted strings (can contain single quotes and spaces)  
 _double_quoted         "Hello 'world' with spaces"
-_double_quote_escapes  "She said ""Hello"" to me"
+_double_quote_escapes  "She said ""Hello""to me"
 _double_quote_complex  "Mix of 'quotes' and ""escapes"""
 
 # Frame codes (start with $)
@@ -158,8 +158,8 @@ _question_mark         ?
 _single_char           x
 
 # Complex nested quotes
-_complex_quotes        'She said "He replied ''Yes'' to the question"'
-_more_complex         "It's a ""complex"" situation with 'mixed' quotes"
+_complex_quotes        'She said "He replied ''Yes ''to the question"'
+_more_complex         "It's a ""complex ""situation with 'mixed 'quotes"
 
 # Final semicolon-bounded text with complex content
 _final_multiline
