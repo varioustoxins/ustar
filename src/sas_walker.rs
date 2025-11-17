@@ -1,7 +1,7 @@
 
 
 use crate::mutable_pair::MutablePair;
-use crate::sas_buffered::BufferedContentHandler;
+use crate::sas_interface::SASContentHandler;
 
 fn compute_line_starts(input: &str) -> Vec<usize> {
     let mut starts = vec![0];
@@ -21,7 +21,7 @@ fn offset_to_line(line_starts: &[usize], offset: usize) -> usize {
 }
 
 /// Walks a MutablePair parse tree and calls the BufferedContentHandler methods.
-pub struct StarWalker<'a, T: BufferedContentHandler> {
+pub struct StarWalker<'a, T: SASContentHandler> {
     pub line_starts: Vec<usize>,
     pub tag_table: Vec<Vec<String>>,
     pub tag_level: usize,
@@ -31,7 +31,7 @@ pub struct StarWalker<'a, T: BufferedContentHandler> {
     pub handler: &'a mut T,
 }
 
-impl<'a, T: BufferedContentHandler> StarWalker<'a, T> {
+impl<'a, T: SASContentHandler> StarWalker<'a, T> {
     /// Decrement tag_level if possible, and reset tag_index to zero
     pub fn decrement_tag_pointers(&mut self) {
         if self.tag_level > 0 {

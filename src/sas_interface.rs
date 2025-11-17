@@ -1,6 +1,6 @@
-/// SAS-style Buffered ContentHandler trait for STAR file parsing
+/// SAS-style ContentHandler trait for STAR file parsing
 /// Returns true to stop parsing, false to continue (SAS convention)
-pub trait BufferedContentHandler {
+pub trait SASContentHandler {
     // Structure callbacks
     fn start_data(&mut self, line: usize, name: &str) -> bool;
     fn end_data(&mut self, line: usize, name: &str) -> bool;

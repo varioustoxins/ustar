@@ -1,5 +1,5 @@
-use ustar::sas_buffered::{BufferedContentHandler};
-use ustar::sas_buffered_walker::StarWalker;
+use ustar::sas_interface::{SASContentHandler};
+use ustar::sas_walker::StarWalker;
 use ustar::parse_default;
 use std::fs;
 
@@ -7,7 +7,7 @@ struct DemoHandler {
     depth: usize,
 }
 
-impl BufferedContentHandler for DemoHandler {
+impl SASContentHandler for DemoHandler {
     fn start_data(&mut self, line: usize, name: &str) -> bool {
         let indent = "    ".repeat(self.depth);
         println!("{}<start data> [{}] {}", indent, line, name);

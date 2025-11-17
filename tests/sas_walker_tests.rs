@@ -1,5 +1,5 @@
-use ustar::sas_buffered::BufferedContentHandler;
-use ustar::sas_buffered_walker::StarWalker;
+use ustar::sas_interface::SASContentHandler;
+use ustar::sas_walker::StarWalker;
 use ustar::parse_default;
 use std::fs;
 
@@ -7,7 +7,7 @@ struct ComprehensiveTestHandler {
     output: Vec<String>,
 }
 
-impl BufferedContentHandler for ComprehensiveTestHandler {
+impl SASContentHandler for ComprehensiveTestHandler {
     fn start_data(&mut self, line: usize, name: &str) -> bool { 
         self.output.push(format!("<start data> [{}] {}", line, name));
         false 
