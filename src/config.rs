@@ -23,6 +23,26 @@ impl Default for EncodingMode {
     }
 }
 
+/// Error formatting mode for runtime display
+#[derive(Debug, Clone, Copy, Hash, PartialEq, Eq)]
+pub enum ErrorFormatMode {
+    /// Simple [line:col] format
+    Basic,
+    /// ASCII pest error report
+    Ascii,
+    /// Full miette formatting (requires extended-errors feature)
+    Fancy,
+}
+
+impl Default for ErrorFormatMode {
+    fn default() -> Self {
+        #[cfg(feature = "extended-errors")]
+        return ErrorFormatMode::Fancy;
+        #[cfg(not(feature = "extended-errors"))]
+        return ErrorFormatMode::Ascii;
+    }
+}
+
 /// Configuration keys for the USTAR parser
 #[derive(Debug, Clone, Hash, PartialEq, Eq)]
 pub enum ConfigKey {
@@ -34,6 +54,12 @@ pub enum ConfigKey {
 
     /// Whether to auto-detect BOM and override encoding (value: bool)
     AutoDetectBom,
+
+    /// Error format mode for runtime error display (value: ErrorFormatMode)
+    ErrorFormat,
+
+    /// Number of context lines to display around errors (value: usize, ignored by Basic mode)
+    ContextLines,
 }
 
 /// Parser configuration as a HashMap
@@ -44,6 +70,8 @@ pub type ParserConfig = HashMap<ConfigKey, ConfigValue>;
 pub enum ConfigValue {
     Bool(bool),
     Encoding(EncodingMode),
+    ErrorFormat(ErrorFormatMode),
+    Usize(usize),
 }
 
 impl ConfigValue {
@@ -60,6 +88,20 @@ impl ConfigValue {
             _ => None,
         }
     }
+    
+    pub fn as_error_format(&self) -> Option<ErrorFormatMode> {
+        match self {
+            ConfigValue::ErrorFormat(f) => Some(*f),
+            _ => None,
+        }
+    }
+    
+    pub fn as_usize(&self) -> Option<usize> {
+        match self {
+            ConfigValue::Usize(n) => Some(*n),
+            _ => None,
+        }
+    }
 }
 
 /// Create default parser configuration
@@ -68,6 +110,8 @@ pub fn default_config() -> ParserConfig {
     config.insert(ConfigKey::DecomposedStrings, ConfigValue::Bool(true));
     config.insert(ConfigKey::Encoding, ConfigValue::Encoding(EncodingMode::Ascii));
     config.insert(ConfigKey::AutoDetectBom, ConfigValue::Bool(false));
+    config.insert(ConfigKey::ErrorFormat, ConfigValue::ErrorFormat(ErrorFormatMode::default()));
+    config.insert(ConfigKey::ContextLines, ConfigValue::Usize(3)); // Default to 3 lines of context
     config
 }
 
@@ -93,4 +137,20 @@ pub fn get_encoding(config: &ParserConfig) -> EncodingMode {
         .get(&ConfigKey::Encoding)
         .and_then(|v| v.as_encoding())
         .unwrap_or_default()
+}
+
+/// Get error format mode from configuration
+pub fn get_error_format(config: &ParserConfig) -> ErrorFormatMode {
+    config
+        .get(&ConfigKey::ErrorFormat)
+        .and_then(|v| v.as_error_format())
+        .unwrap_or_default()
+}
+
+/// Get context lines setting from configuration
+pub fn get_context_lines(config: &ParserConfig) -> usize {
+    config
+        .get(&ConfigKey::ContextLines)
+        .and_then(|v| v.as_usize())
+        .unwrap_or(3) // Default to 3 lines
 }

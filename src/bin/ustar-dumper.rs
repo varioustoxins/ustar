@@ -6,6 +6,7 @@ use ustar::dump_extractors::{DumpExtractor, PairExtractor};
 use pest::Parser as PestParser;
 use pest::iterators::Pairs;
 use tabled::{Table, Tabled, settings::Style};
+use ustar::{parse, default_config, get_error_format, get_context_lines};
 use ustar::parsers::ascii::{AsciiParser, Rule};
 
 #[derive(Parser)]
@@ -299,18 +300,36 @@ fn main() {
         }
     };
 
-    // Parse the input as a complete STAR file
-    match AsciiParser::parse(Rule::star_file, &input_text) {
-        Ok(pairs) => {
-            println!("source: {}", source_info);
-            println!();
-            let symbol_count = display_parse_tree(pairs, &input_text);
-            let line_count = input_text.lines().count();
-            println!();
-            println!("lines: {} symbols: {}", line_count, symbol_count);
+    // Parse the input using the new error formatting system
+    let config = default_config();
+    match parse(&input_text, &config) {
+        Ok(_result) => {
+            // Convert MutablePair back to pest pairs for display_parse_tree function
+            // For now, we'll use the direct parser for display purposes
+            match AsciiParser::parse(Rule::star_file, &input_text) {
+                Ok(pairs) => {
+                    println!("source: {}", source_info);
+                    println!();
+                    let symbol_count = display_parse_tree(pairs, &input_text);
+                    let line_count = input_text.lines().count();
+                    println!();
+                    println!("lines: {} symbols: {}", line_count, symbol_count);
+                }
+                Err(e) => {
+                    eprintln!("Internal error displaying parse tree: {}", e);
+                    std::process::exit(1);
+                }
+            }
         }
         Err(e) => {
-            eprintln!("Parse error: {}", e);
+            eprintln!("Syntax error in {}", source_info);
+            
+            eprintln!();
+            
+            // Then show the detailed error formatting
+            let error_format = get_error_format(&config);
+            let context_lines = get_context_lines(&config);
+            eprintln!("{}", e.format_error(error_format, context_lines));
             std::process::exit(1);
         }
     }

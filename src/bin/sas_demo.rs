@@ -1,6 +1,6 @@
 use ustar::sas_interface::{SASContentHandler};
 use ustar::sas_walker::StarWalker;
-use ustar::parse_default;
+use ustar::{parse, default_config, get_error_format, get_context_lines};
 use std::fs;
 
 struct DemoHandler {
@@ -81,7 +81,13 @@ fn main() {
     };
     let input = fs::read_to_string(filename)
         .unwrap_or_else(|_| panic!("Failed to read example file: {}", filename));
-    let tree = parse_default(&input).expect("Failed to parse");
+    let config = default_config();
+    let tree = parse(&input, &config).unwrap_or_else(|e| {
+        let error_format = get_error_format(&config);
+        let context_lines = get_context_lines(&config);
+        eprintln!("{}", e.format_error(error_format, context_lines));
+        std::process::exit(1);
+    });
     let mut handler = DemoHandler { depth: 0 };
     let mut walker = StarWalker::from_input(&mut handler, &input);
     walker.walk_star_tree_buffered(&tree);
