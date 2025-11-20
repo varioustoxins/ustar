@@ -1,0 +1,6 @@
+---
+source: tests/error_handling_tests.rs
+assertion_line: 43
+expression: formatted
+---
+Parse error at l3:c32 because expected non_quoted_string, double_quote_string, single_quote_string, frame_code or semi_colon_string

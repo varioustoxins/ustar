@@ -1,0 +1,14 @@
+---
+source: tests/error_handling_tests.rs
+assertion_line: 83
+expression: formatted
+---
+  [31m×[0m Expected non_quoted_string, double_quote_string, single_quote_string, frame_code or semi_colon_string
+   ╭─[3:32]
+ [2m1[0m │ data_test
+ [2m2[0m │ _entry.id                      1ABC
+ [2m3[0m │ _entry.description             "This is an unclosed string that will cause errors
+   · [35;1m                               ▲[0m
+   ·                                [35;1m╰── [35;1mError occurred here[0m[0m
+ [2m4[0m │ _entry.author                  'Smith, J.'
+   ╰────
