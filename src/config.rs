@@ -18,7 +18,6 @@ pub enum EncodingMode {
     Unicode,
 }
 
-
 /// Error formatting mode for runtime display
 #[derive(Debug, Clone, Copy, Hash, PartialEq, Eq)]
 pub enum ErrorFormatMode {

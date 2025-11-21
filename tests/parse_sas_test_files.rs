@@ -32,7 +32,8 @@ fn parse_all_sas_test_files() {
         if let Some(ext) = path.extension() {
             if ext == "str" || ext == "cif" || ext == "dic" {
                 found = true;
-                let data = fs::read(&path).unwrap_or_else(|_| panic!("Failed to read file {:?}", path));
+                let data =
+                    fs::read(&path).unwrap_or_else(|_| panic!("Failed to read file {:?}", path));
                 let content = String::from_utf8_lossy(&data).to_string();
                 let filename = path.file_name().unwrap().to_string_lossy();
                 match ustar::parse(&content, &ustar::default_config()) {

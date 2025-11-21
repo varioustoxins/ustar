@@ -61,8 +61,7 @@ fn generate_grammar(base: &str, output_path: &str, patches: HashMap<&str, &str>)
         result = result.replace(placeholder, replacement);
     }
 
-    fs::write(output_path, &result)
-        .unwrap_or_else(|_| panic!("Failed to write {}", output_path));
+    fs::write(output_path, &result).unwrap_or_else(|_| panic!("Failed to write {}", output_path));
 
     println!("cargo:rerun-if-changed={}", output_path);
 }

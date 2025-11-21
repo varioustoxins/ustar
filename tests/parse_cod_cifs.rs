@@ -16,7 +16,8 @@ fn parse_all_cod_cif_files() {
         if let Some(ext) = path.extension() {
             if ext == "cif" {
                 found = true;
-                let data = fs::read(&path).unwrap_or_else(|_| panic!("Failed to read file {:?}", path));
+                let data =
+                    fs::read(&path).unwrap_or_else(|_| panic!("Failed to read file {:?}", path));
                 let content = String::from_utf8_lossy(&data).to_string();
                 match ustar::parse(&content, &ustar::default_config()) {
                     Ok(_) => {}

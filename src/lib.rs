@@ -85,7 +85,10 @@ fn split_pairs_if_requested(pairs: &mut [mutable_pair::MutablePair], config: &Pa
 ///
 /// # Returns
 /// * `Result<mutable_pair::MutablePair, UstarError>` - Parsed result as a MutablePair tree, or an error with diagnostics
-pub fn parse(input: &str, config: &ParserConfig) -> Result<mutable_pair::MutablePair, Box<UstarError>> {
+pub fn parse(
+    input: &str,
+    config: &ParserConfig,
+) -> Result<mutable_pair::MutablePair, Box<UstarError>> {
     // BOM auto-detection is controlled by config
     let auto_detect_bom = config::get_auto_detect_bom(config);
     let (encoding, input_clean) = if auto_detect_bom && input.starts_with('\u{FEFF}') {
