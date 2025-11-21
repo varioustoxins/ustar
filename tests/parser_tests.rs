@@ -1455,11 +1455,7 @@ fn parse_mmcif_nef_dictionary() {
         let error_line_idx = line - 1; // Convert to 0-based index
 
         println!("\nContext:");
-        let start = if error_line_idx >= 2 {
-            error_line_idx - 2
-        } else {
-            0
-        };
+        let start = error_line_idx.saturating_sub(2);
         let end = std::cmp::min(error_line_idx + 3, lines.len());
 
         for (i, line_text) in lines[start..end].iter().enumerate() {
@@ -1744,7 +1740,7 @@ fn test_nef_specification_files_can_be_parsed() {
     let mut parse_times = Vec::new();
 
     // Known files with parsing issues (trailing comments, etc.)
-    let known_issue_files = vec!["CCPN_XPLOR_test1.nef"];
+    let known_issue_files = ["CCPN_XPLOR_test1.nef"];
 
     for entry in entries {
         let entry = entry.expect("Failed to read directory entry");

@@ -57,7 +57,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
-        rust: [stable, 1.70.0] # MSRV
+        rust: [stable, 1.83.0] # MSRV
         features: [default, no-default]
         exclude:
           # Only test MSRV on Ubuntu to save CI time
@@ -151,7 +151,7 @@ jobs:
       run: cargo fmt --all -- --check
     
     - name: Run Clippy
-      run: cargo clippy --all-targets --all-features -- -D warnings -A clippy::expect_fun_call -A clippy::single_component_path_imports -A clippy::new_without_default -A clippy::needless_borrows_for_generic_args -A clippy::ptr_arg -A clippy::useless_conversion -A clippy::let_and_return -A clippy::redundant_pattern_matching -A clippy::manual_is_multiple_of -A clippy::needless_range_loop
+      run: cargo clippy --all-targets --all-features -- -D warnings -A clippy::expect_fun_call -A clippy::single_component_path_imports -A clippy::new_without_default -A clippy::needless_borrows_for_generic_args -A clippy::ptr_arg -A clippy::useless_conversion -A clippy::let_and_return -A clippy::redundant_pattern_matching -A clippy::manual_is_multiple_of -A clippy::needless_range_loop -A clippy::implicit_saturating_sub -A clippy::useless_vec
     
     - name: Check documentation
       run: cargo doc --no-deps --document-private-items
