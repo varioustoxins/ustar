@@ -57,8 +57,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
-        # rust: [stable, 1.80.0] # MSRV
-        rust: [stable] # MSRV
+        rust: [stable] # Use stable Rust
         features: [default, no-default]
         # exclude:
         #   # Only test MSRV on Ubuntu to save CI time

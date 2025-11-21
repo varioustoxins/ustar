@@ -1,0 +1,74 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "cargo fmt",
+      "type": "shell",
+      "command": "cargo",
+      "args": ["fmt"],
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "silent",
+        "focus": false,
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "cargo clippy",
+      "type": "shell", 
+      "command": "cargo",
+      "args": [
+        "clippy", 
+        "--all-targets", 
+        "--all-features", 
+        "--", 
+        "-D", "warnings",
+        "-A", "clippy::expect_fun_call",
+        "-A", "clippy::single_component_path_imports", 
+        "-A", "clippy::new_without_default",
+        "-A", "clippy::needless_borrows_for_generic_args",
+        "-A", "clippy::ptr_arg",
+        "-A", "clippy::useless_conversion",
+        "-A", "clippy::let_and_return",
+        "-A", "clippy::redundant_pattern_matching",
+        "-A", "clippy::manual_is_multiple_of",
+        "-A", "clippy::needless_range_loop",
+        "-A", "clippy::implicit_saturating_sub",
+        "-A", "clippy::useless_vec"
+      ],
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": false,
+        "panel": "shared"
+      },
+      "problemMatcher": ["$rustc"]
+    },
+    {
+      "label": "pre-commit",
+      "type": "shell",
+      "command": "uv",
+      "args": ["tool", "run", "pre-commit", "run", "--all-files"],
+      "group": "build",
+      "presentation": {
+        "echo": true,
+        "reveal": "always", 
+        "focus": false,
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "format and lint",
+      "dependsOrder": "sequence",
+      "dependsOn": ["cargo fmt", "cargo clippy"],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    }
+  ]
+}

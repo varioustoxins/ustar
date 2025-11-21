@@ -1,0 +1,43 @@
+{
+  // Auto-format Rust files on save
+  "[rust]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "rust-lang.rust-analyzer"
+  },
+  
+  // Run cargo fmt when saving Rust files
+  "rust-analyzer.rustfmt.overrideCommand": ["cargo", "fmt", "--"],
+  
+  // Auto-fix imports and run clippy on save
+  "rust-analyzer.check.command": "clippy",
+  "rust-analyzer.check.allTargets": true,
+  "rust-analyzer.check.extraArgs": [
+    "--all-features", 
+    "--", 
+    "-D", "warnings",
+    "-A", "clippy::expect_fun_call",
+    "-A", "clippy::single_component_path_imports", 
+    "-A", "clippy::new_without_default",
+    "-A", "clippy::needless_borrows_for_generic_args",
+    "-A", "clippy::ptr_arg",
+    "-A", "clippy::useless_conversion",
+    "-A", "clippy::let_and_return",
+    "-A", "clippy::redundant_pattern_matching",
+    "-A", "clippy::manual_is_multiple_of",
+    "-A", "clippy::needless_range_loop",
+    "-A", "clippy::implicit_saturating_sub",
+    "-A", "clippy::useless_vec"
+  ],
+  
+  // Git integration settings
+  "git.enableCommitSigning": false,
+  "git.alwaysSignOff": false,
+  
+  // Show problems in the problems panel
+  "problems.showCurrentInStatus": true,
+  
+  // Run pre-commit hooks via tasks
+  "git.postCommitCommand": "none",
+  "git.enableSmartCommit": true,
+  "git.confirmSync": false
+}

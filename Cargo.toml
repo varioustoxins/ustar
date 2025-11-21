@@ -2,7 +2,7 @@
 name = "ustar"
 version = "0.1.0"
 edition = "2021"
-rust-version = "1.80.0"
+rust-version = "1.83.0"
 description = "STAR format parser for CIF, mmCIF, NMR-STAR files and other scientific data formats"
 license = "LGPL3"
 repository = "https://github.com/garyt/ustar"
