@@ -255,53 +255,9 @@ fn test_saveframe_walker_output() {
 }
 #[test]
 fn test_comprehensive_example_walker_output() {
-    // Debug platform information
-    eprintln!("DEBUG PLATFORM: OS = {}", std::env::consts::OS);
-    eprintln!("DEBUG PLATFORM: ARCH = {}", std::env::consts::ARCH);
-    
-    // Read the input file from test_data (which has proper .gitattributes coverage)
+    // Read the input file from test_data 
     let input = fs::read_to_string("tests/test_data/comprehensive_example.star")
         .expect("Failed to read comprehensive example file");
-    
-    // Debug input file characteristics
-    eprintln!("DEBUG INPUT: length = {} bytes", input.len());
-    eprintln!("DEBUG INPUT: has_crlf = {}", input.contains("\r\n"));
-    eprintln!("DEBUG INPUT: line_count = {}", input.lines().count());
-    
-    // Calculate checksums to verify if files are identical across platforms
-    use std::collections::hash_map::DefaultHasher;
-    use std::hash::{Hash, Hasher};
-    
-    let mut hasher = DefaultHasher::new();
-    input.hash(&mut hasher);
-    let content_hash = hasher.finish();
-    eprintln!("DEBUG INPUT: content_hash = 0x{:x}", content_hash);
-    
-    // Also hash the raw bytes to detect any binary differences
-    let input_bytes = input.as_bytes();
-    let mut byte_hasher = DefaultHasher::new();
-    input_bytes.hash(&mut byte_hasher);
-    let byte_hash = byte_hasher.finish();
-    eprintln!("DEBUG INPUT: byte_hash = 0x{:x}", byte_hash);
-    
-    // Show first and last few characters with their byte values
-    let first_chars: String = input.chars().take(50).collect();
-    let last_chars: String = input.chars().rev().take(50).collect::<String>().chars().rev().collect();
-    eprintln!("DEBUG INPUT: first_50_chars = {:?}", first_chars);
-    eprintln!("DEBUG INPUT: last_50_chars = {:?}", last_chars);
-    
-    // Show byte representation of line endings in first few lines
-    let first_lines: Vec<&str> = input.lines().take(5).collect();
-    for (i, line) in first_lines.iter().enumerate() {
-        let line_start = input.find(line).unwrap_or(0);
-        let line_end = line_start + line.len();
-        let after_line = if line_end < input.len() { 
-            &input[line_end..std::cmp::min(line_end + 3, input.len())]
-        } else { 
-            "" 
-        };
-        eprintln!("DEBUG INPUT: line[{}] ends with bytes: {:?}", i, after_line.as_bytes());
-    }
 
     // Read the expected output file
     let expected_output_text =
@@ -329,6 +285,7 @@ fn test_comprehensive_example_walker_output() {
     );
 
     // Compare each line with normalization
+    // should really be in a utility function
     for (i, (expected, actual)) in expected_lines.iter().zip(handler.output.iter()).enumerate() {
         let normalized_expected = normalize_whitespace(expected);
         let normalized_actual = normalize_whitespace(actual);
