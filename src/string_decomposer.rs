@@ -34,7 +34,6 @@ pub fn decompose_strings(pair: &mut MutablePair) {
     }
 }
 
-
 /// Decompose delimited string into [delimiter, string, delimiter]
 /// Works for single-char delimiters (quotes) and multi-char delimiters (newline-semicolon)
 /// Tries multiple possible delimiters in order
@@ -45,7 +44,7 @@ fn decompose_delimited_string(pair: &mut MutablePair, delimiters: &[&str], delim
     // Try each delimiter in order
     for delimiter in delimiters {
         let delimiter_len = delimiter.len();
-        
+
         if content.len() >= 2 * delimiter_len
             && content.starts_with(delimiter)
             && content.ends_with(delimiter)

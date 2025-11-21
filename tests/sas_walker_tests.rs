@@ -255,7 +255,7 @@ fn test_saveframe_walker_output() {
 }
 #[test]
 fn test_comprehensive_example_walker_output() {
-    // Read the input file from test_data 
+    // Read the input file from test_data
     let input = fs::read_to_string("tests/test_data/comprehensive_example.star")
         .expect("Failed to read comprehensive example file");
 
