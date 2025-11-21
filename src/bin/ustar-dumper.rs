@@ -1,13 +1,13 @@
 use clap::Parser;
+use pest::iterators::Pairs;
+use pest::Parser as PestParser;
 use std::fs;
 use std::io::{self, Read};
 use std::path::PathBuf;
+use tabled::{settings::Style, Table, Tabled};
 use ustar::dump_extractors::{DumpExtractor, PairExtractor};
-use pest::Parser as PestParser;
-use pest::iterators::Pairs;
-use tabled::{Table, Tabled, settings::Style};
-use ustar::{parse, default_config, get_error_format, get_context_lines};
 use ustar::parsers::ascii::{AsciiParser, Rule};
+use ustar::{default_config, get_context_lines, get_error_format, parse};
 
 #[derive(Parser)]
 #[command(name = "ustar-parser")]
@@ -36,12 +36,22 @@ struct SymbolInfo {
     content: String,
 }
 
-fn display_symbol(symbol: &usize) -> String { format!("#{}", symbol) }
-fn display_level(level: &usize) -> String { format!("[{}]", level) }
-fn display_rule(rule: &String) -> String { rule.clone() }
-fn display_positions(pos: &String) -> String { pos.clone() }
-fn display_line_col(line_col: &String) -> String { line_col.clone() }
-fn display_content(content: &String) -> String { 
+fn display_symbol(symbol: &usize) -> String {
+    format!("#{}", symbol)
+}
+fn display_level(level: &usize) -> String {
+    format!("[{}]", level)
+}
+fn display_rule(rule: &String) -> String {
+    rule.clone()
+}
+fn display_positions(pos: &String) -> String {
+    pos.clone()
+}
+fn display_line_col(line_col: &String) -> String {
+    line_col.clone()
+}
+fn display_content(content: &String) -> String {
     // Return content with quotes - we'll process it in display_parse_tree
     format!("\"{}\"", content)
 }
@@ -51,7 +61,7 @@ fn apply_content_coloring(content_part: &str) -> String {
     let mut result = String::new();
     let mut in_quotes = false;
     let mut chars = content_part.chars().peekable();
-    
+
     while let Some(ch) = chars.next() {
         if ch == '"' {
             in_quotes = !in_quotes;
@@ -59,7 +69,7 @@ fn apply_content_coloring(content_part: &str) -> String {
             result.push(ch);
             continue;
         }
-        
+
         if in_quotes {
             match ch {
                 ' ' => result.push_str("\x1b[38;5;250m·\x1b[0m"), // Very light grey dot for space
@@ -73,7 +83,7 @@ fn apply_content_coloring(content_part: &str) -> String {
                     } else {
                         result.push_str("..");
                     }
-                },
+                }
                 _ => {
                     // Handle escape sequences
                     if ch == '\\' && chars.peek().is_some() {
@@ -95,7 +105,7 @@ fn apply_content_coloring(content_part: &str) -> String {
             result.push(ch);
         }
     }
-    
+
     result
 }
 
@@ -103,7 +113,7 @@ fn apply_content_coloring(content_part: &str) -> String {
 fn get_line_col(input: &str, pos: usize) -> (usize, usize) {
     let mut line = 1;
     let mut col = 1;
-    
+
     for (i, ch) in input.char_indices() {
         if i >= pos {
             break;
@@ -115,7 +125,7 @@ fn get_line_col(input: &str, pos: usize) -> (usize, usize) {
             col += 1;
         }
     }
-    
+
     (line, col)
 }
 
@@ -128,34 +138,41 @@ fn collect_symbol_info(
     symbols: &mut Vec<SymbolInfo>,
 ) {
     let extractor = PairExtractor::new();
-    
+
     for pair in pairs {
         *symbol_counter += 1;
         let current_symbol = *symbol_counter;
-        
+
         let rule_name = extractor.extract_rule_name(&pair);
         let start_pos = extractor.extract_start(&pair);
         let end_pos = extractor.extract_end(&pair);
         let content = extractor.extract_str(&pair);
-        
+
         // Calculate line and column positions
         let (start_line, start_col) = get_line_col(input, start_pos);
         let (end_line, end_col) = get_line_col(input, end_pos);
-        
+
         // Check if this has children (non-terminal)
         let has_children = extractor.has_children(&pair);
-        
+
         // Format content display: apply 30...30 rule to ALL symbols and replace newlines
         let normalized_content = content.replace('\n', "\\n").replace('\r', "\\r");
         let display_content = if normalized_content.len() > 65 {
             // For long content, show first 30 ... last 30 chars
             let first_30: String = normalized_content.chars().take(30).collect();
-            let last_30: String = normalized_content.chars().rev().take(30).collect::<String>().chars().rev().collect();
+            let last_30: String = normalized_content
+                .chars()
+                .rev()
+                .take(30)
+                .collect::<String>()
+                .chars()
+                .rev()
+                .collect();
             format!("{}...{}", first_30, last_30)
         } else {
             normalized_content
         };
-        
+
         // Create symbol info
         let symbol_info = SymbolInfo {
             symbol_number: current_symbol,
@@ -165,12 +182,18 @@ fn collect_symbol_info(
             line_col: format!("{}:{}-{}:{}", start_line, start_col, end_line, end_col),
             content: display_content,
         };
-        
+
         symbols.push(symbol_info);
-        
+
         // Recursively collect inner pairs
         if has_children {
-            collect_symbol_info(extractor.get_children(&pair), input, symbol_counter, indent_level + 1, symbols);
+            collect_symbol_info(
+                extractor.get_children(&pair),
+                input,
+                symbol_counter,
+                indent_level + 1,
+                symbols,
+            );
         }
     }
 }
@@ -180,26 +203,26 @@ fn collect_symbol_info(
 fn display_parse_tree(pairs: Pairs<Rule>, input: &str) -> usize {
     let mut symbol_counter = 0;
     let mut symbols = Vec::new();
-    
+
     collect_symbol_info(pairs, input, &mut symbol_counter, 0, &mut symbols);
-    
+
     let mut table = Table::new(&symbols);
-    table.with(Style::empty());  // Remove all borders but keep headers
-    
+    table.with(Style::empty()); // Remove all borders but keep headers
+
     // Get the table as string to add underlines manually
     let table_output = table.to_string();
     let lines: Vec<&str> = table_output.lines().collect();
-    
+
     if !lines.is_empty() {
         // Print first line (headers) - trim leading space and remove last 2 characters
         let header_line = lines[0].trim_start();
         let trimmed_header = if header_line.len() > 2 {
-            &header_line[..header_line.len()-2]
+            &header_line[..header_line.len() - 2]
         } else {
             header_line
         };
         println!("{}", trimmed_header);
-        
+
         // Add underlines under headers and remove last 2 characters
         let mut underline = String::new();
         for c in trimmed_header.chars() {
@@ -210,39 +233,39 @@ fn display_parse_tree(pairs: Pairs<Rule>, input: &str) -> usize {
             }
         }
         println!("{}", underline);
-        
+
         // Find the content column position from the header
         let content_column_start = header_line.rfind("content").unwrap_or(header_line.len());
-        
+
         // Print rest of the table (data rows) - trim leading space and apply selective coloring
         for line in &lines[1..] {
             let trimmed_line = line.trim_start();
-            
+
             if trimmed_line.len() > content_column_start {
                 // Split the line at the content column position
                 let (prefix, content_part) = trimmed_line.split_at(content_column_start);
-                
+
                 // Remove first and last quotes properly, handling trailing spaces
                 let unquoted_content = if content_part.len() > 1 {
                     // 1. Calculate original string length
                     let original_len = content_part.len();
-                    
+
                     // 2. Right strip all spaces
                     let trimmed = content_part.trim_end();
-                    
+
                     // 3. Calculate trimmed string length
                     let trimmed_len = trimmed.len();
-                    
+
                     // 4. Calculate number of trailing spaces
                     let num_spaces = original_len - trimmed_len;
-                    
+
                     // 5. Remove first and last characters (quotes) from trimmed string
                     let content_without_quotes = if trimmed_len > 1 {
-                        &trimmed[1..trimmed_len-1]
+                        &trimmed[1..trimmed_len - 1]
                     } else {
                         ""
                     };
-                    
+
                     // 6. Add back the trailing spaces
                     let spaces = " ".repeat(num_spaces);
                     format!("{}{}", content_without_quotes, spaces)
@@ -250,14 +273,14 @@ fn display_parse_tree(pairs: Pairs<Rule>, input: &str) -> usize {
                     content_part.to_string()
                 };
                 let colored_content = apply_content_coloring(&unquoted_content);
-                
+
                 println!("{}{}", prefix, colored_content);
             } else {
                 println!("{}", trimmed_line);
             }
         }
     }
-    
+
     symbol_counter
 }
 
@@ -323,9 +346,9 @@ fn main() {
         }
         Err(e) => {
             eprintln!("Syntax error in {}", source_info);
-            
+
             eprintln!();
-            
+
             // Then show the detailed error formatting
             let error_format = get_error_format(&config);
             let context_lines = get_context_lines(&config);

@@ -1,5 +1,3 @@
-
-
 use crate::mutable_pair::MutablePair;
 use crate::sas_interface::SASContentHandler;
 
@@ -54,7 +52,7 @@ impl<'a, T: SASContentHandler> StarWalker<'a, T> {
     }
     pub fn new(handler: &'a mut T, line_starts: Vec<usize>) -> Self {
         StarWalker {
-            line_starts: line_starts,
+            line_starts,
             tag_table: Vec::new(),
             tag_level: 0,
             tag_index: 0,
@@ -72,11 +70,9 @@ impl<'a, T: SASContentHandler> StarWalker<'a, T> {
     pub fn walk_star_tree_buffered(&mut self, node: &MutablePair) -> bool {
         let mut should_stop = false;
         match node.rule_name.as_str() {
-
             "data" => {
-
                 for child in &node.children {
-                     should_stop = self.walk_star_tree_buffered(child);
+                    should_stop = self.walk_star_tree_buffered(child);
                     if should_stop {
                         break;
                     }
@@ -88,14 +84,16 @@ impl<'a, T: SASContentHandler> StarWalker<'a, T> {
             }
             "semi_colon_string" | "double_quote_string" | "single_quote_string" => {
                 let value_node = &node.children[1];
-                let tag =  self.tag_table[self.tag_level][self.tag_index].as_str();
+                let tag = self.tag_table[self.tag_level][self.tag_index].as_str();
                 let tagline = self.tag_lines[self.tag_level][self.tag_index];
                 let valline = offset_to_line(&self.line_starts, value_node.start);
                 let children = &value_node.children;
                 if children.len() == 3 {
                     let delimiter = &children[0].content;
                     let value = &children[1].content;
-                    should_stop =  self.handler.data(tag, tagline, value, valline, delimiter, self.in_loop);
+                    should_stop =
+                        self.handler
+                            .data(tag, tagline, value, valline, delimiter, self.in_loop);
                 } else {
                     let delimiter = &node.content[0..1];
                     let value = if delimiter == ";" {
@@ -103,19 +101,22 @@ impl<'a, T: SASContentHandler> StarWalker<'a, T> {
                     } else {
                         &node.content[1..node.content.len() - 1]
                     };
-                    should_stop = self.handler.data(tag, tagline, value , valline, delimiter, self.in_loop);
+                    should_stop =
+                        self.handler
+                            .data(tag, tagline, value, valline, delimiter, self.in_loop);
                 }
 
                 self.increment_tag_pointers();
-                
             }
-            // TODO: would it be better to make a non_quoted_string decompose to un_quoted_string->string for consistency 
+            // TODO: would it be better to make a non_quoted_string decompose to un_quoted_string->string for consistency
             "non_quoted_string" | "string" => {
-                let tag =  self.tag_table[self.tag_level][self.tag_index].as_str();
+                let tag = self.tag_table[self.tag_level][self.tag_index].as_str();
                 let tagline = self.tag_lines[self.tag_level][self.tag_index];
                 let valline = offset_to_line(&self.line_starts, node.start);
                 let value = node.content.as_str();
-                should_stop = self.handler.data(tag, tagline, value, valline, "", self.in_loop);
+                should_stop = self
+                    .handler
+                    .data(tag, tagline, value, valline, "", self.in_loop);
                 self.increment_tag_pointers();
             }
             "frame_code" => {
@@ -123,7 +124,9 @@ impl<'a, T: SASContentHandler> StarWalker<'a, T> {
                 let tagline = self.tag_lines[self.tag_level][self.tag_index];
                 let value = node.content.as_str();
                 let valline = offset_to_line(&self.line_starts, node.start);
-                should_stop = self.handler.data(tag, tagline, value, valline, "", self.in_loop);
+                should_stop = self
+                    .handler
+                    .data(tag, tagline, value, valline, "", self.in_loop);
                 self.increment_tag_pointers();
             }
             "stop_keyword" => {
@@ -137,7 +140,8 @@ impl<'a, T: SASContentHandler> StarWalker<'a, T> {
             }
 
             "data_loop" => {
-                self.handler.start_loop(offset_to_line(&self.line_starts, node.start));
+                self.handler
+                    .start_loop(offset_to_line(&self.line_starts, node.start));
                 self.in_loop = true;
                 for child in &node.children {
                     should_stop = self.walk_star_tree_buffered(child);
@@ -146,12 +150,12 @@ impl<'a, T: SASContentHandler> StarWalker<'a, T> {
                     }
                 }
                 self.in_loop = false;
-                self.handler.end_loop(offset_to_line(&self.line_starts, node.end));
+                self.handler
+                    .end_loop(offset_to_line(&self.line_starts, node.end));
                 self.tag_table.clear();
                 self.tag_lines.clear();
                 self.tag_level = 0;
                 self.tag_index = 0;
-                
             }
 
             "data_name" => {
@@ -161,13 +165,16 @@ impl<'a, T: SASContentHandler> StarWalker<'a, T> {
                     self.tag_lines[last].push(offset_to_line(&self.line_starts, node.start));
                 } else {
                     self.tag_table.push(vec![node.content.to_string()]);
-                    self.tag_lines.push(vec![offset_to_line(&self.line_starts, node.start)]);
+                    self.tag_lines
+                        .push(vec![offset_to_line(&self.line_starts, node.start)]);
                 }
             }
             "data_block" => {
                 let data_heading = &node.children[0];
                 let data_name = &data_heading.content[5..];
-                should_stop = self.handler.start_data(offset_to_line(&self.line_starts, node.start), data_name);
+                should_stop = self
+                    .handler
+                    .start_data(offset_to_line(&self.line_starts, node.start), data_name);
                 for child in &node.children[1..] {
                     should_stop = self.walk_star_tree_buffered(child);
                     if should_stop {
@@ -175,25 +182,33 @@ impl<'a, T: SASContentHandler> StarWalker<'a, T> {
                     }
                 }
                 if !should_stop {
-                    should_stop = self.handler.end_data(offset_to_line(&self.line_starts, node.end), data_name);
+                    should_stop = self
+                        .handler
+                        .end_data(offset_to_line(&self.line_starts, node.end), data_name);
                 }
             }
             "save_frame" => {
                 let save_heading = &node.children[0];
                 let frame_name = &save_heading.content[5..];
-                should_stop = self.handler.start_saveframe(offset_to_line(&self.line_starts, node.start), frame_name);
+                should_stop = self
+                    .handler
+                    .start_saveframe(offset_to_line(&self.line_starts, node.start), frame_name);
                 for child in &node.children[1..] {
                     should_stop = self.walk_star_tree_buffered(child);
                     if should_stop {
                         break;
                     }
                 }
-                if !should_stop{
-                    should_stop = self.handler.end_saveframe(offset_to_line(&self.line_starts, node.end), frame_name);
+                if !should_stop {
+                    should_stop = self
+                        .handler
+                        .end_saveframe(offset_to_line(&self.line_starts, node.end), frame_name);
                 }
             }
             "comment" => {
-                should_stop = self.handler.comment(offset_to_line(&self.line_starts, node.start), &node.content);
+                should_stop = self
+                    .handler
+                    .comment(offset_to_line(&self.line_starts, node.start), &node.content);
             }
             _ => {
                 for child in &node.children {

@@ -1,27 +1,23 @@
 use std::collections::HashMap;
 
 /// Character encoding mode for the USTAR parser
-#[derive(Debug, Clone, Copy, Hash, PartialEq, Eq)]
+#[derive(Debug, Clone, Copy, Hash, PartialEq, Eq, Default)]
 pub enum EncodingMode {
     /// ASCII-only mode: Characters 0x21-0x7E ('!' to '~')
     /// Whitespace: space (0x20) and tab (0x09)
+    #[default]
     Ascii,
-    
+
     /// Extended ASCII mode: Characters 0x00-0xFF
     /// Whitespace: ASCII whitespace plus non-breaking space (0xA0)
     ExtendedAscii,
-    
+
     /// Full Unicode mode: All Unicode characters
     /// Whitespace: All 25 Unicode whitespace characters
     /// Supports UTF-8 BOM detection
     Unicode,
 }
 
-impl Default for EncodingMode {
-    fn default() -> Self {
-        EncodingMode::Ascii
-    }
-}
 
 /// Error formatting mode for runtime display
 #[derive(Debug, Clone, Copy, Hash, PartialEq, Eq)]
@@ -81,21 +77,21 @@ impl ConfigValue {
             _ => None,
         }
     }
-    
+
     pub fn as_encoding(&self) -> Option<EncodingMode> {
         match self {
             ConfigValue::Encoding(e) => Some(*e),
             _ => None,
         }
     }
-    
+
     pub fn as_error_format(&self) -> Option<ErrorFormatMode> {
         match self {
             ConfigValue::ErrorFormat(f) => Some(*f),
             _ => None,
         }
     }
-    
+
     pub fn as_usize(&self) -> Option<usize> {
         match self {
             ConfigValue::Usize(n) => Some(*n),
@@ -108,9 +104,15 @@ impl ConfigValue {
 pub fn default_config() -> ParserConfig {
     let mut config = HashMap::new();
     config.insert(ConfigKey::DecomposedStrings, ConfigValue::Bool(true));
-    config.insert(ConfigKey::Encoding, ConfigValue::Encoding(EncodingMode::Ascii));
+    config.insert(
+        ConfigKey::Encoding,
+        ConfigValue::Encoding(EncodingMode::Ascii),
+    );
     config.insert(ConfigKey::AutoDetectBom, ConfigValue::Bool(false));
-    config.insert(ConfigKey::ErrorFormat, ConfigValue::ErrorFormat(ErrorFormatMode::default()));
+    config.insert(
+        ConfigKey::ErrorFormat,
+        ConfigValue::ErrorFormat(ErrorFormatMode::default()),
+    );
     config.insert(ConfigKey::ContextLines, ConfigValue::Usize(3)); // Default to 3 lines of context
     config
 }

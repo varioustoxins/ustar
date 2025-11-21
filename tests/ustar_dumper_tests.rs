@@ -6,7 +6,7 @@ fn run_ustar_parser(input_file: &str) -> Result<String, Box<dyn std::error::Erro
     let output = Command::new("cargo")
         .args(&["run", "--bin", "ustar-dumper", "--", input_file])
         .output()?;
-    
+
     if output.status.success() {
         Ok(String::from_utf8(output.stdout)?)
     } else {
@@ -23,15 +23,15 @@ fn run_ustar_parser_stdin(input: &str) -> Result<String, Box<dyn std::error::Err
         .stdout(std::process::Stdio::piped())
         .stderr(std::process::Stdio::piped())
         .spawn()?;
-    
+
     if let Some(stdin) = child.stdin.take() {
         use std::io::Write;
         let mut stdin = stdin;
         stdin.write_all(input.as_bytes())?;
     }
-    
+
     let output = child.wait_with_output()?;
-    
+
     if output.status.success() {
         Ok(String::from_utf8(output.stdout)?)
     } else {
@@ -44,58 +44,79 @@ fn run_ustar_parser_stdin(input: &str) -> Result<String, Box<dyn std::error::Err
 fn test_cli_output_format() {
     let output = run_ustar_parser_stdin("data_test\n_item \"hello world\"\n")
         .expect("Failed to run ustar-dumper");
-    
+
     let expected = std::fs::read_to_string("tests/test_data/simple_example.expected")
         .expect("Failed to read expected output file");
-    
-    assert_eq!(output, expected, "CLI output should match expected format exactly");
+
+    assert_eq!(
+        output, expected,
+        "CLI output should match expected format exactly"
+    );
 }
 
 #[test]
 fn test_cli_whitespace_visualization() {
     let output = run_ustar_parser_stdin("data_test\n_item \"hello world\"\n")
         .expect("Failed to run ustar-dumper");
-    
+
     // Check that spaces in quoted strings are highlighted with dots
     // The dot character is surrounded by ANSI escape sequences, so we check for the parts
-    assert!(output.contains("hello") && output.contains("world"), "Should contain hello and world");
+    assert!(
+        output.contains("hello") && output.contains("world"),
+        "Should contain hello and world"
+    );
     // Check that there's some kind of highlighting between them (ANSI codes)
-    assert!(output.contains("\x1b["), "Should contain ANSI escape sequences for highlighting");
+    assert!(
+        output.contains("\x1b["),
+        "Should contain ANSI escape sequences for highlighting"
+    );
 }
 
 #[test]
 fn test_cli_test_input_star_file() {
     let output = run_ustar_parser("tests/test_data/test_input.star")
         .expect("Failed to run ustar-dumper on test_input.star");
-    
+
     let expected = std::fs::read_to_string("tests/test_data/test_input.star.expected")
         .expect("Failed to read expected output file");
-    
-    assert_eq!(output, expected, "CLI output should match expected format exactly");
+
+    assert_eq!(
+        output, expected,
+        "CLI output should match expected format exactly"
+    );
 }
 
 #[test]
 fn test_cli_simple_star_file() {
     let output = run_ustar_parser("tests/test_data/simple_star_file.star")
         .expect("Failed to run ustar-dumper on simple_star_file.star");
-    
+
     let expected = std::fs::read_to_string("tests/test_data/simple_star_file.star.expected")
         .expect("Failed to read expected output file");
-    
-    assert_eq!(output, expected, "CLI output should match expected format exactly");
+
+    assert_eq!(
+        output, expected,
+        "CLI output should match expected format exactly"
+    );
 }
 
 #[test]
 fn test_cli_semicolon_bounded_file() {
     let output = run_ustar_parser("tests/test_data/semicolon_bounded.star")
         .expect("Failed to run ustar-dumper on semicolon_bounded.star");
-    
+
     // Check source information
-    assert!(output.contains("source: tests/test_data/semicolon_bounded.star"), "Should show correct source file");
-    
+    assert!(
+        output.contains("source: tests/test_data/semicolon_bounded.star"),
+        "Should show correct source file"
+    );
+
     // Should contain semicolon bounded text handling
-    assert!(output.contains("semi_colon_string"), "Should identify semicolon bounded text");
-    
+    assert!(
+        output.contains("semi_colon_string"),
+        "Should identify semicolon bounded text"
+    );
+
     // Should successfully parse
     assert!(output.contains("lines:"), "Should show line count");
     assert!(output.contains("symbols:"), "Should show symbol count");
@@ -105,10 +126,13 @@ fn test_cli_semicolon_bounded_file() {
 fn test_cli_mixed_content_file() {
     let output = run_ustar_parser("tests/test_data/mixed_content.star")
         .expect("Failed to run ustar-dumper on mixed_content.star");
-    
+
     // Check source information
-    assert!(output.contains("source: tests/test_data/mixed_content.star"), "Should show correct source file");
-    
+    assert!(
+        output.contains("source: tests/test_data/mixed_content.star"),
+        "Should show correct source file"
+    );
+
     // Should handle mixed content types
     assert!(output.contains("lines:"), "Should show line count");
     assert!(output.contains("symbols:"), "Should show symbol count");
@@ -117,14 +141,20 @@ fn test_cli_mixed_content_file() {
 #[test]
 fn test_cli_stdin_input() {
     let simple_input = "data_minimal\n_test_item 123\n";
-    let output = run_ustar_parser_stdin(simple_input)
-        .expect("Failed to run ustar-dumper with stdin");
-    
+    let output =
+        run_ustar_parser_stdin(simple_input).expect("Failed to run ustar-dumper with stdin");
+
     // Check stdin is properly identified
-    assert!(output.contains("source: -"), "Should identify stdin as source");
-    
+    assert!(
+        output.contains("source: -"),
+        "Should identify stdin as source"
+    );
+
     // Should parse the minimal input
-    assert!(output.contains("data_minimal"), "Should contain the data block name");
+    assert!(
+        output.contains("data_minimal"),
+        "Should contain the data block name"
+    );
     assert!(output.contains("123"), "Should contain the test value");
     assert!(output.contains("lines:"), "Should show line count");
     assert!(output.contains("symbols:"), "Should show symbol count");
@@ -134,7 +164,7 @@ fn test_cli_stdin_input() {
 fn test_cli_error_handling() {
     // Test with invalid input
     let result = run_ustar_parser_stdin("invalid syntax here");
-    
+
     // Should fail gracefully - we expect this to return an error
     assert!(result.is_err(), "Should fail on invalid syntax");
 }

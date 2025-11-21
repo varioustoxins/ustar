@@ -1,6 +1,6 @@
 use crate::config::EncodingMode;
-use crate::ErrorFormatMode;
 use crate::error_core::ErrorData;
+use crate::ErrorFormatMode;
 use miette::{Diagnostic, SourceSpan};
 
 /// USTAR parsing error types with rich diagnostics
@@ -36,7 +36,7 @@ impl UstarError {
             core,
         }
     }
-    
+
     /// Format error according to specified mode
     pub fn format_error(&self, mode: ErrorFormatMode, context_lines: usize) -> String {
         match mode {
@@ -52,11 +52,13 @@ impl UstarError {
                 let handler = GraphicalReportHandler::new()
                     .with_context_lines(context_lines)
                     .with_theme(GraphicalTheme::unicode());
-                    
+
                 let mut output = String::new();
-                handler.render_report(&mut output, self).unwrap_or_else(|_| {
-                    output.push_str(&format!("{:?}", miette::Report::new(self.clone())));
-                });
+                handler
+                    .render_report(&mut output, self)
+                    .unwrap_or_else(|_| {
+                        output.push_str(&format!("{:?}", miette::Report::new(self.clone())));
+                    });
                 output
             }
         }

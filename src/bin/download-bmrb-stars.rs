@@ -13,10 +13,10 @@ use clap::Parser;
 use rand::seq::SliceRandom;
 use rand::SeedableRng;
 use reqwest;
+use std::collections::HashSet;
 use std::fs;
 use std::io::Write;
 use std::path::PathBuf;
-use std::collections::HashSet;
 
 #[derive(Debug)]
 pub enum BmrbError {
@@ -66,13 +66,17 @@ impl BmrbDownloader {
     pub async fn get_entry_ids(&self) -> Result<Vec<String>, BmrbError> {
         let url = "https://bmrb.io/ftp/pub/bmrb/entry_directories/";
         if self.verbose {
-            println!("Fetching list of available BMRB FTP directories from {}...", url);
+            println!(
+                "Fetching list of available BMRB FTP directories from {}...",
+                url
+            );
         }
         let response = reqwest::get(url).await?;
         if response.status() != reqwest::StatusCode::OK {
-            return Err(BmrbError::DownloadFailed(
-                format!("Failed to fetch FTP directory list: HTTP {}", response.status())
-            ));
+            return Err(BmrbError::DownloadFailed(format!(
+                "Failed to fetch FTP directory list: HTTP {}",
+                response.status()
+            )));
         }
         let html = response.text().await?;
         // Parse directory names like bmr12345/
@@ -118,9 +122,11 @@ impl BmrbDownloader {
             }
             let alt_response = reqwest::get(&alt_url).await?;
             if alt_response.status() != reqwest::StatusCode::OK {
-                return Err(BmrbError::DownloadFailed(
-                    format!("Failed to download entry {}: HTTP {}", bmrb_id, alt_response.status())
-                ));
+                return Err(BmrbError::DownloadFailed(format!(
+                    "Failed to download entry {}: HTTP {}",
+                    bmrb_id,
+                    alt_response.status()
+                )));
             }
             (alt_response.text().await?, false)
         };
@@ -135,12 +141,20 @@ impl BmrbDownloader {
         let mut file = fs::File::create(&filepath)?;
         file.write_all(content.as_bytes())?;
         if self.verbose {
-            println!("Successfully saved {} ({} bytes)", filepath.display(), content.len());
+            println!(
+                "Successfully saved {} ({} bytes)",
+                filepath.display(),
+                content.len()
+            );
         }
         Ok(filepath)
     }
 
-    pub async fn download_unique_random_batch(&self, count: usize, seed: u64) -> Result<Vec<(String, PathBuf)>, BmrbError> {
+    pub async fn download_unique_random_batch(
+        &self,
+        count: usize,
+        seed: u64,
+    ) -> Result<Vec<(String, PathBuf)>, BmrbError> {
         let mut entries = self.get_entry_ids().await?;
         if entries.is_empty() {
             return Err(BmrbError::NoEntriesFound);
@@ -231,25 +245,49 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
                 downloaded_count += 1;
             }
             if cli.verbose {
-                println!("[VERBOSE] {}{}", bmrb_id, if is_downloaded { " [downloaded]" } else { "" });
+                println!(
+                    "[VERBOSE] {}{}",
+                    bmrb_id,
+                    if is_downloaded { " [downloaded]" } else { "" }
+                );
             } else {
-                println!("{}{}", bmrb_id, if is_downloaded { " [downloaded]" } else { "" });
+                println!(
+                    "{}{}",
+                    bmrb_id,
+                    if is_downloaded { " [downloaded]" } else { "" }
+                );
             }
         }
         if cli.verbose {
-            println!("[VERBOSE] Total downloaded: {} / {}", downloaded_count, entries.len());
+            println!(
+                "[VERBOSE] Total downloaded: {} / {}",
+                downloaded_count,
+                entries.len()
+            );
         } else {
-            println!("\nTotal downloaded: {} / {}", downloaded_count, entries.len());
+            println!(
+                "\nTotal downloaded: {} / {}",
+                downloaded_count,
+                entries.len()
+            );
         }
         return Ok(());
     }
 
     if cli.verbose {
-        println!("[VERBOSE] Downloading {} unique random BMRB NMR-STAR files to {}...", cli.count, cli.output_dir);
+        println!(
+            "[VERBOSE] Downloading {} unique random BMRB NMR-STAR files to {}...",
+            cli.count, cli.output_dir
+        );
     } else {
-        println!("Downloading {} unique random BMRB NMR-STAR files to {}...", cli.count, cli.output_dir);
+        println!(
+            "Downloading {} unique random BMRB NMR-STAR files to {}...",
+            cli.count, cli.output_dir
+        );
     }
-    let batch = downloader.download_unique_random_batch(cli.count, cli.seed).await?;
+    let batch = downloader
+        .download_unique_random_batch(cli.count, cli.seed)
+        .await?;
     if cli.verbose {
         println!("[VERBOSE] Downloaded {} files:", batch.len());
         for (id, path) in &batch {

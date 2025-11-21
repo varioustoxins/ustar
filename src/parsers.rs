@@ -1,7 +1,7 @@
 // Each parser needs to be in its own module to avoid Rule enum conflicts
 pub mod ascii {
     use pest_derive::Parser;
-    
+
     #[derive(Parser)]
     #[grammar = "star_ascii.pest"]
     pub struct AsciiParser;
@@ -9,7 +9,7 @@ pub mod ascii {
 
 pub mod extended {
     use pest_derive::Parser;
-    
+
     #[derive(Parser)]
     #[grammar = "star_extended.pest"]
     pub struct ExtendedParser;
@@ -17,7 +17,7 @@ pub mod extended {
 
 pub mod unicode {
     use pest_derive::Parser;
-    
+
     #[derive(Parser)]
     #[grammar = "star_unicode.pest"]
     pub struct UnicodeParser;

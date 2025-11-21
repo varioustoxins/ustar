@@ -1,7 +1,7 @@
-use ustar::sas_interface::{SASContentHandler};
-use ustar::sas_walker::StarWalker;
-use ustar::{parse, default_config, get_error_format, get_context_lines};
 use std::fs;
+use ustar::sas_interface::SASContentHandler;
+use ustar::sas_walker::StarWalker;
+use ustar::{default_config, get_context_lines, get_error_format, parse};
 
 struct DemoHandler {
     depth: usize,
@@ -15,7 +15,9 @@ impl SASContentHandler for DemoHandler {
         false
     }
     fn end_data(&mut self, line: usize, name: &str) -> bool {
-        if self.depth > 0 { self.depth -= 1; }
+        if self.depth > 0 {
+            self.depth -= 1;
+        }
         let indent = "    ".repeat(self.depth);
         println!("{}<end data> [{}] {}", indent, line, name);
         false
@@ -27,7 +29,9 @@ impl SASContentHandler for DemoHandler {
         false
     }
     fn end_saveframe(&mut self, line: usize, name: &str) -> bool {
-        if self.depth > 0 { self.depth -= 1; }
+        if self.depth > 0 {
+            self.depth -= 1;
+        }
         let indent = "    ".repeat(self.depth);
         println!("{}<end saveframe> [{}] {}", indent, line, name);
         false
@@ -39,7 +43,9 @@ impl SASContentHandler for DemoHandler {
         false
     }
     fn end_loop(&mut self, line: usize) -> bool {
-        if self.depth > 0 { self.depth -= 1; }
+        if self.depth > 0 {
+            self.depth -= 1;
+        }
         let indent = "    ".repeat(self.depth);
         println!("{}<end_loop> [{}]", indent, line);
         false
@@ -49,7 +55,15 @@ impl SASContentHandler for DemoHandler {
         println!("{}# [{}] {}", indent, line, text);
         false
     }
-    fn data(&mut self, tag: &str, tagline: usize, value: &str, valline: usize, delimiter: &str, inloop: bool) -> bool {
+    fn data(
+        &mut self,
+        tag: &str,
+        tagline: usize,
+        value: &str,
+        valline: usize,
+        delimiter: &str,
+        inloop: bool,
+    ) -> bool {
         let indent = "    ".repeat(self.depth);
         let tag_prefix = format!("{}<data> ", indent);
         let value_indent = " ".repeat(tag_prefix.len());
@@ -57,7 +71,10 @@ impl SASContentHandler for DemoHandler {
         match delimiter {
             "\n" => {
                 // Print line numbers right after <data>, then tag name
-                println!("{}<data> [t:{},v:{}] {} delimiter: {:?} inloop: {} value:", indent, tagline, valline, tag, delimiter, inloop);
+                println!(
+                    "{}<data> [t:{},v:{}] {} delimiter: {:?} inloop: {} value:",
+                    indent, tagline, valline, tag, delimiter, inloop
+                );
                 // Print each line of the value, indented to the tag_prefix
                 for line in value.lines() {
                     println!("{}{}", value_indent, line);
@@ -65,7 +82,10 @@ impl SASContentHandler for DemoHandler {
             }
             _ => {
                 // Print line numbers right after <data>, then tag name
-                println!("{}<data> [t:{},v:{}] {} delimiter: {} inloop: {} value [multiline]: {}", indent, tagline, valline, tag, delimiter, inloop, value);
+                println!(
+                    "{}<data> [t:{},v:{}] {} delimiter: {} inloop: {} value [multiline]: {}",
+                    indent, tagline, valline, tag, delimiter, inloop, value
+                );
             }
         }
         false

@@ -40,13 +40,13 @@ fn decompose_delimited_string(pair: &mut MutablePair, delimiter: &str, delimiter
     let content = &pair.content;
     let start_pos = pair.start;
     let delimiter_len = delimiter.len();
-    
-    if content.len() >= 2 * delimiter_len 
-        && content.starts_with(delimiter) 
-        && content.ends_with(delimiter) 
+
+    if content.len() >= 2 * delimiter_len
+        && content.starts_with(delimiter)
+        && content.ends_with(delimiter)
     {
         let inner_content = &content[delimiter_len..content.len() - delimiter_len];
-        
+
         // Create three new children
         let opening_delimiter = MutablePair::new(
             delimiter_name,
@@ -54,21 +54,21 @@ fn decompose_delimited_string(pair: &mut MutablePair, delimiter: &str, delimiter
             start_pos,
             start_pos + delimiter_len,
         );
-        
+
         let string_content = MutablePair::new(
             "string",
             inner_content.to_string(),
             start_pos + delimiter_len,
             start_pos + delimiter_len + inner_content.len(),
         );
-        
+
         let closing_delimiter = MutablePair::new(
             delimiter_name,
             delimiter.to_string(),
             start_pos + delimiter_len + inner_content.len(),
             start_pos + content.len(),
         );
-        
+
         // Replace children with decomposed tokens
         pair.children = vec![opening_delimiter, string_content, closing_delimiter];
     }
@@ -77,18 +77,14 @@ fn decompose_delimited_string(pair: &mut MutablePair, delimiter: &str, delimiter
 #[cfg(test)]
 mod tests {
     use super::*;
-    
+
     #[test]
     fn test_decompose_double_quoted() {
-        let mut pair = MutablePair::new(
-            "double_quote_string",
-            "\"hello world\"".to_string(),
-            0,
-            13,
-        );
-        
+        let mut pair =
+            MutablePair::new("double_quote_string", "\"hello world\"".to_string(), 0, 13);
+
         decompose_strings(&mut pair);
-        
+
         let expected = MutablePair::with_children(
             "double_quote_string",
             "\"hello world\"".to_string(),
@@ -100,21 +96,16 @@ mod tests {
                 MutablePair::new("DOUBLE_QUOTE", "\"".to_string(), 12, 13),
             ],
         );
-        
+
         assert_eq!(format!("{}", pair), format!("{}", expected));
     }
-    
+
     #[test]
     fn test_decompose_single_quoted() {
-        let mut pair = MutablePair::new(
-            "single_quote_string",
-            "'test'".to_string(),
-            5,
-            11,
-        );
-        
+        let mut pair = MutablePair::new("single_quote_string", "'test'".to_string(), 5, 11);
+
         decompose_strings(&mut pair);
-        
+
         let expected = MutablePair::with_children(
             "single_quote_string",
             "'test'".to_string(),
@@ -126,31 +117,21 @@ mod tests {
                 MutablePair::new("SINGLE_QUOTE", "'".to_string(), 10, 11),
             ],
         );
-        
+
         assert_eq!(format!("{}", pair), format!("{}", expected));
     }
-    
+
     #[test]
     fn test_convert_non_quoted_to_string() {
-        let mut pair = MutablePair::new(
-            "non_quoted_string",
-            "simple".to_string(),
-            10,
-            16,
-        );
-        
+        let mut pair = MutablePair::new("non_quoted_string", "simple".to_string(), 10, 16);
+
         decompose_strings(&mut pair);
-        
-        let expected = MutablePair::new(
-            "string",
-            "simple".to_string(),
-            10,
-            16,
-        );
-        
+
+        let expected = MutablePair::new("string", "simple".to_string(), 10, 16);
+
         assert_eq!(format!("{}", pair), format!("{}", expected));
     }
-    
+
     #[test]
     fn test_decompose_strings_in_nested_structure() {
         // Simulate a data_loop with nested string values
@@ -168,9 +149,9 @@ mod tests {
                 MutablePair::new("non_quoted_string", "simple".to_string(), 38, 44),
             ],
         );
-        
+
         decompose_strings(&mut loop_pair);
-        
+
         let expected = MutablePair::with_children(
             "data_loop",
             "loop_\n_name1\n_name2\n\"value1\"\n'value2'\nsimple".to_string(),
@@ -205,7 +186,7 @@ mod tests {
                 MutablePair::new("string", "simple".to_string(), 38, 44),
             ],
         );
-        
+
         assert_eq!(format!("{}", loop_pair), format!("{}", expected));
     }
 }

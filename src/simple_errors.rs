@@ -1,6 +1,6 @@
 use crate::config::EncodingMode;
-use crate::ErrorFormatMode;
 use crate::error_core::ErrorData;
+use crate::ErrorFormatMode;
 
 /// USTAR parsing error types (simple version without miette dependencies)
 #[derive(Debug, Clone)]
@@ -29,7 +29,7 @@ impl UstarError {
         let core = ErrorData::from_pest_error(error, encoding, input);
         UstarError::ParseError(core)
     }
-    
+
     /// Format error according to specified mode
     pub fn format_error(&self, mode: ErrorFormatMode, context_lines: usize) -> String {
         match self {
@@ -45,5 +45,4 @@ impl UstarError {
             }
         }
     }
-    
 }

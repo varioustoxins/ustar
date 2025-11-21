@@ -1,8 +1,8 @@
 use pest::Parser as PestParser;
 
-pub mod parsers;
 mod config;
 mod error_core;
+pub mod parsers;
 
 #[cfg(feature = "extended-errors")]
 mod extended_errors;
@@ -16,8 +16,8 @@ pub use extended_errors::UstarError;
 pub use simple_errors::UstarError;
 
 pub use config::{
-    ParserConfig, ConfigKey, ConfigValue, EncodingMode, ErrorFormatMode,
-    default_config, get_decomposed_strings, get_encoding, get_error_format, get_context_lines
+    default_config, get_context_lines, get_decomposed_strings, get_encoding, get_error_format,
+    ConfigKey, ConfigValue, EncodingMode, ErrorFormatMode, ParserConfig,
 };
 pub use parsers::Rule;
 
@@ -64,7 +64,9 @@ fn process_pairs<'a, R>(
 where
     R: pest::RuleType,
 {
-    pairs.map(|p| mutable_pair::MutablePair::from_pest_pair(&p)).collect()
+    pairs
+        .map(|p| mutable_pair::MutablePair::from_pest_pair(&p))
+        .collect()
 }
 
 fn split_pairs_if_requested(pairs: &mut [mutable_pair::MutablePair], config: &ParserConfig) {
@@ -83,10 +85,7 @@ fn split_pairs_if_requested(pairs: &mut [mutable_pair::MutablePair], config: &Pa
 ///
 /// # Returns
 /// * `Result<mutable_pair::MutablePair, UstarError>` - Parsed result as a MutablePair tree, or an error with diagnostics
-pub fn parse(
-    input: &str,
-    config: &ParserConfig,
-) -> Result<mutable_pair::MutablePair, UstarError> {
+pub fn parse(input: &str, config: &ParserConfig) -> Result<mutable_pair::MutablePair, Box<UstarError>> {
     // BOM auto-detection is controlled by config
     let auto_detect_bom = config::get_auto_detect_bom(config);
     let (encoding, input_clean) = if auto_detect_bom && input.starts_with('\u{FEFF}') {
@@ -98,18 +97,25 @@ pub fn parse(
     // Choose the appropriate parser based on encoding mode
     let mut result = match encoding {
         EncodingMode::Ascii => {
-            let pairs = parsers::ascii::AsciiParser::parse(parsers::ascii::Rule::star_file, input_clean)
-                .map_err(|e| UstarError::from_pest_error(e, encoding, input))?;
+            let pairs =
+                parsers::ascii::AsciiParser::parse(parsers::ascii::Rule::star_file, input_clean)
+                    .map_err(|e| Box::new(UstarError::from_pest_error(e, encoding, input)))?;
             process_pairs(pairs)
         }
         EncodingMode::ExtendedAscii => {
-            let pairs = parsers::extended::ExtendedParser::parse(parsers::extended::Rule::star_file, input_clean)
-                .map_err(|e| UstarError::from_pest_error(e, encoding, input))?;
+            let pairs = parsers::extended::ExtendedParser::parse(
+                parsers::extended::Rule::star_file,
+                input_clean,
+            )
+            .map_err(|e| Box::new(UstarError::from_pest_error(e, encoding, input)))?;
             process_pairs(pairs)
         }
         EncodingMode::Unicode => {
-            let pairs = parsers::unicode::UnicodeParser::parse(parsers::unicode::Rule::star_file, input_clean)
-                .map_err(|e| UstarError::from_pest_error(e, encoding, input))?;
+            let pairs = parsers::unicode::UnicodeParser::parse(
+                parsers::unicode::Rule::star_file,
+                input_clean,
+            )
+            .map_err(|e| Box::new(UstarError::from_pest_error(e, encoding, input)))?;
             process_pairs(pairs)
         }
     };
@@ -139,6 +145,6 @@ pub fn parse(
 }
 
 /// Parse with default configuration (ASCII mode, decomposed strings, fancy error formatting)
-pub fn parse_default(input: &str) -> Result<mutable_pair::MutablePair, UstarError> {
+pub fn parse_default(input: &str) -> Result<mutable_pair::MutablePair, Box<UstarError>> {
     parse(input, &default_config())
 }

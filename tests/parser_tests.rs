@@ -3,7 +3,7 @@ extern crate pest;
 
 use pest::Parser;
 use ustar::parsers::ascii::{AsciiParser, Rule as AsciiRule};
-use ustar::parsers::unicode::{UnicodeParser, Rule as UnicodeRule};
+use ustar::parsers::unicode::{Rule as UnicodeRule, UnicodeParser};
 
 // data_name
 #[test]
@@ -25,7 +25,6 @@ fn data_name() {
             data_name(0, 5)
         ]
     }
-
 
     parses_to! {
         parser: AsciiParser,
@@ -66,7 +65,6 @@ fn data_value() {
             non_quoted_string(0, 3)
         ]
     }
-    
 
     parses_to! {
         parser: AsciiParser,
@@ -76,7 +74,6 @@ fn data_value() {
             non_quoted_string(0, 4)
         ]
     }
-    
 
     fails_with! {
         parser: AsciiParser,
@@ -178,7 +175,6 @@ fn data() {
     }
 }
 
-
 // single_quoted_string
 #[test]
 fn single_quoted_string() {
@@ -191,7 +187,7 @@ fn single_quoted_string() {
         ]
     }
 
-     parses_to! {
+    parses_to! {
         parser: AsciiParser,
         input:  "''a'",
         rule:   AsciiRule::single_quote_string,
@@ -208,7 +204,6 @@ fn single_quoted_string() {
             single_quote_string(0, 3)
         ]
     }
-
 
     parses_to! {
         parser: AsciiParser,
@@ -414,7 +409,6 @@ fn data_heading() {
         ]
     }
 
-
     fails_with! {
         parser: AsciiParser,
         input: "data_",
@@ -507,7 +501,7 @@ fn windows_line_ending_basic_parsing() {
 fn mixed_line_endings_handling() {
     // Test handling of mixed Unix and Windows line endings in the same file
     let mixed_input = "data_test\n_unix_item value1\r\n_windows_item value2\n";
-    
+
     parses_to! {
         parser: AsciiParser,
         input: mixed_input,
@@ -531,7 +525,7 @@ fn mixed_line_endings_handling() {
     }
 }
 
-#[test] 
+#[test]
 fn carriage_return_in_whitespace() {
     // Test that Windows line endings (CRLF) are properly handled in whitespace
     parses_to! {
@@ -561,7 +555,7 @@ fn carriage_return_in_whitespace() {
 fn windows_line_endings_in_semicolon_string() {
     // Test that Windows CRLF line endings work correctly inside semicolon-delimited strings
     let input = "data_test\r\n_description\r\n;\r\nThis is line 1 with CRLF\r\nThis is line 2 with CRLF\r\nMixed content here\r\n;\r\n";
-    
+
     parses_to! {
         parser: AsciiParser,
         input: input,
@@ -579,10 +573,10 @@ fn windows_line_endings_in_semicolon_string() {
             ])
         ]
     }
-    
+
     // Also test mixed line endings within semicolon strings (Unix LF and Windows CRLF)
     let mixed_input = "data_mixed\n_text\n;\nUnix line\nWindows line\r\nAnother Unix line\n;\n";
-    
+
     parses_to! {
         parser: AsciiParser,
         input: mixed_input,
@@ -641,7 +635,6 @@ fn save_heading() {
         ]
     }
 
-    
     fails_with! {
         parser: AsciiParser,
         input: "save_",
@@ -650,7 +643,6 @@ fn save_heading() {
         negatives: vec![],
         pos: 0
     }
-        
 }
 
 #[test]
@@ -688,7 +680,7 @@ fn data_loop() {
 
     }
 
-    let test_string =  "loop_                                        \
+    let test_string = "loop_                                        \
                             _atomic_name                                   \
                                 loop_                                      \
                                     _level_scheme                          \
@@ -758,7 +750,6 @@ fn data_loop() {
 
 #[test]
 fn data_block_with_save_frame() {
-
     // data_frame with save_frames from
     // Extensions to the STAR File Syntax Nick Spadaccini* and Sydney R. Hall
     // dx.doi.org/10.1021/ci300074v | J. Chem. Inf. Model. 2012, 52, 1901−1906
@@ -774,7 +765,6 @@ fn data_block_with_save_frame() {
                                 _max_bond_length   1.1         \
                                 _fragment_parent   $fragment_1 \
                             save_                              ";
-
 
     parses_to! {
         parser: AsciiParser,
@@ -822,7 +812,6 @@ fn data_block_with_save_frame() {
                                 _fragment_parent   $fragment_1 \
                             save_                              ";
 
-
     parses_to! {
         parser: AsciiParser,
         input:  test_string,
@@ -863,7 +852,6 @@ fn data_block_with_save_frame() {
                                 _max_bond_length   1.1         \
                                 _fragment_parent   $fragment_1 \
                             save_                              ";
-
 
     parses_to! {
         parser: AsciiParser,
@@ -958,7 +946,6 @@ fn data_block_with_save_frame() {
 
     }
 
-
     // a test with only save frames and interleaved data
     let test_string = "data_experiment                    \
                                                                \
@@ -983,8 +970,6 @@ fn data_block_with_save_frame() {
                                stop_                           \
                             save_                              \
                                                                ";
-
-
 
     parses_to! {
         parser: AsciiParser,
@@ -1035,12 +1020,9 @@ fn data_block_with_save_frame() {
 
 #[test]
 fn global_block() {
-
     let test_string = "global_                  \
                                  _compound.trial 4    \
                                  _compound.source FDA ";
-
-
 
     parses_to! {
         parser: AsciiParser,
@@ -1063,7 +1045,7 @@ fn global_block() {
                                      _max_bond_length   2.7   \
                                  save_                        \
                                  _compound.trial 4            \
-                                 _compound.source FDA"        ;
+                                 _compound.source FDA";
 
     fails_with! {
         parser: AsciiParser,
@@ -1074,7 +1056,6 @@ fn global_block() {
         pos: 33
     }
 
-
     let test_string = "global_                    \
                                  _compound.trial 4     \
                                  _compound.source FDA  \
@@ -1082,7 +1063,6 @@ fn global_block() {
                                      _atom_name        \
                                      hydrogen          \
                                      oxygen           ";
-
 
     parses_to! {
         parser: AsciiParser,
@@ -1114,7 +1094,6 @@ fn global_block() {
 fn semi_colon_bounded_string() {
     let test_string = "\n;a string \n another \n;";
 
-
     parses_to! {
         parser: AsciiParser,
         input:  test_string,
@@ -1127,8 +1106,7 @@ fn semi_colon_bounded_string() {
 
     let test_string = "\n;a string ;\n another \n;";
 
-
-     parses_to! {
+    parses_to! {
         parser: AsciiParser,
         input:  test_string,
         rule:   AsciiRule::semi_colon_string,
@@ -1140,7 +1118,7 @@ fn semi_colon_bounded_string() {
 
     let test_string = "\n ;a string ;\n another \n;";
 
-     fails_with! {
+    fails_with! {
         parser: AsciiParser,
         input: test_string,
         rule: AsciiRule::semi_colon_string,
@@ -1151,7 +1129,7 @@ fn semi_colon_bounded_string() {
 
     let test_string = "\n;a string ;\n another \n;";
 
-     parses_to! {
+    parses_to! {
         parser: AsciiParser,
         input:  test_string,
         rule:   AsciiRule::semi_colon_string,
@@ -1160,7 +1138,6 @@ fn semi_colon_bounded_string() {
          ]
 
     }
-
 }
 
 #[test]
@@ -1327,7 +1304,7 @@ fn semi_colon_bounded_string_full() {
     let file_path = "tests/test_data/simple_comma_string.str";
     let test_string = std::fs::read_to_string(file_path).unwrap();
 
-     let successful_parse = AsciiParser::parse(AsciiRule::star_file, &test_string);
+    let successful_parse = AsciiParser::parse(AsciiRule::star_file, &test_string);
     // println!("{:?}", successful_parse);
     println!("{}", successful_parse.unwrap());
 
@@ -1348,14 +1325,12 @@ fn semi_colon_bounded_string_full() {
             ])
         ]
     }
-
 }
 
 #[test]
 fn semi_colon_bounded_string_full_bad() {
     let file_path = "tests/test_data/simple_comma_string_bad.str";
     let test_string = std::fs::read_to_string(file_path).unwrap();
-
 
     fails_with! {
         parser: AsciiParser,
@@ -1373,18 +1348,19 @@ fn semi_colon_bounded_string_full_bad() {
     }
 }
 
-
-
 #[test]
 fn comment_before_semicolon_string() {
     // Test that a comment between a loop definition and semicolon string works
     // This was previously failing because COMMENT consumed the newline
     let file_path = "tests/test_data/comment_before_semicolon.star";
     let test_string = std::fs::read_to_string(file_path).unwrap();
-    
+
     let successful_parse = AsciiParser::parse(AsciiRule::star_file, &test_string);
-    assert!(successful_parse.is_ok(), "Should parse comment before semicolon string");
-    
+    assert!(
+        successful_parse.is_ok(),
+        "Should parse comment before semicolon string"
+    );
+
     let pairs = successful_parse.unwrap();
     let star_file = pairs.into_iter().next().unwrap();
     assert_eq!(star_file.as_rule(), AsciiRule::star_file);
@@ -1392,43 +1368,49 @@ fn comment_before_semicolon_string() {
 
 #[test]
 fn single_quote_string_closed_with_two_quotes() {
-    // Test that a single-quoted string ending with '' (two quotes before space/EOI) 
+    // Test that a single-quoted string ending with '' (two quotes before space/EOI)
     // is correctly parsed. The '' at the end acts as content + closing quote.
     // Example: 'a'' should parse as opening ', content 'a', content ', closing '
     let file_path = "tests/test_data/invalid_single_quote_unclosed.star";
     let test_string = std::fs::read_to_string(file_path).unwrap();
-    
+
     let parse_result = AsciiParser::parse(AsciiRule::star_file, &test_string);
-    assert!(parse_result.is_ok(), "Should successfully parse single-quoted string ending with ''");
+    assert!(
+        parse_result.is_ok(),
+        "Should successfully parse single-quoted string ending with ''"
+    );
 }
 
 #[test]
 fn double_quote_string_closed_with_two_quotes() {
-    // Test that a double-quoted string ending with "" (two quotes before space/EOI) 
+    // Test that a double-quoted string ending with "" (two quotes before space/EOI)
     // is correctly parsed. The "" at the end acts as content + closing quote.
     // Example: "a"" should parse as opening ", content 'a', content ", closing "
     let file_path = "tests/test_data/double_quote_closed_with_two_quotes.star";
     let test_string = std::fs::read_to_string(file_path).unwrap();
-    
+
     let parse_result = AsciiParser::parse(AsciiRule::star_file, &test_string);
-    assert!(parse_result.is_ok(), "Should successfully parse double-quoted string ending with \"\"");
+    assert!(
+        parse_result.is_ok(),
+        "Should successfully parse double-quoted string ending with \"\""
+    );
 }
 
 #[test]
 fn parse_mmcif_nef_dictionary() {
     let file_path = "tests/test_data/mmcif_nef_v1_1_ascii.dic";
     let test_string = std::fs::read_to_string(file_path).unwrap();
-    
+
     let successful_parse = AsciiParser::parse(AsciiRule::star_file, &test_string);
-    
+
     if let Ok(pairs) = successful_parse {
         println!("Successfully parsed mmcif_nef_v1_1_ascii.dic!");
-        
+
         let star_file = pairs.into_iter().next().unwrap();
-        
+
         // Verify we have a star_file rule
         assert_eq!(star_file.as_rule(), AsciiRule::star_file);
-        
+
         // Verify that the file contains at least one data block
         let mut has_data_block = false;
         for pair in star_file.into_inner() {
@@ -1437,21 +1419,27 @@ fn parse_mmcif_nef_dictionary() {
                 break;
             }
         }
-        assert!(has_data_block, "mmcif_nef_v1_1_ascii.dic should contain at least one data block");
+        assert!(
+            has_data_block,
+            "mmcif_nef_v1_1_ascii.dic should contain at least one data block"
+        );
     } else if let Err(e) = &successful_parse {
         println!("Parse failed with human-readable error:");
-        
+
         // Get line and column info
         let (line, col) = match e.line_col {
             pest::error::LineColLocation::Pos((line, col)) => (line, col),
             pest::error::LineColLocation::Span((line, col), _) => (line, col),
         };
-        
+
         println!("Error at line {}, column {}", line, col);
-        
+
         // Get the error details
         match &e.variant {
-            pest::error::ErrorVariant::ParsingError { positives, negatives } => {
+            pest::error::ErrorVariant::ParsingError {
+                positives,
+                negatives,
+            } => {
                 println!("Expected one of: {:?}", positives);
                 if !negatives.is_empty() {
                     println!("Did not expect: {:?}", negatives);
@@ -1461,15 +1449,19 @@ fn parse_mmcif_nef_dictionary() {
                 println!("Error variant: {:?}", e.variant);
             }
         }
-        
+
         // Show context around the error
         let lines: Vec<&str> = test_string.lines().collect();
         let error_line_idx = line - 1; // Convert to 0-based index
-        
+
         println!("\nContext:");
-        let start = if error_line_idx >= 2 { error_line_idx - 2 } else { 0 };
+        let start = if error_line_idx >= 2 {
+            error_line_idx - 2
+        } else {
+            0
+        };
         let end = std::cmp::min(error_line_idx + 3, lines.len());
-        
+
         for (i, line_text) in lines[start..end].iter().enumerate() {
             let line_num = start + i + 1;
             if line_num == line {
@@ -1479,20 +1471,23 @@ fn parse_mmcif_nef_dictionary() {
                 println!("    {:3}: {}", line_num, line_text);
             }
         }
-        
+
         // Try to parse up to the error point to show what was successfully parsed
         println!("\nAttempting to show parse tree up to failure point:");
-        
+
         // Get the error position in bytes
         let error_pos = match e.location {
             pest::error::InputLocation::Pos(pos) => pos,
             pest::error::InputLocation::Span((start, _)) => start,
         };
-        
+
         // Try parsing just up to before the error
         let partial_string = &test_string[..error_pos.saturating_sub(10)];
         if let Ok(partial_pairs) = AsciiParser::parse(AsciiRule::star_file, partial_string) {
-            println!("Successfully parsed content up to position {}:", error_pos - 10);
+            println!(
+                "Successfully parsed content up to position {}:",
+                error_pos - 10
+            );
             for pair in partial_pairs {
                 println!("{:#?}", pair);
             }
@@ -1500,7 +1495,10 @@ fn parse_mmcif_nef_dictionary() {
             // Try an even smaller section
             let smaller_string = &test_string[..error_pos.saturating_sub(50)];
             if let Ok(smaller_pairs) = AsciiParser::parse(AsciiRule::star_file, smaller_string) {
-                println!("Successfully parsed content up to position {}:", error_pos - 50);
+                println!(
+                    "Successfully parsed content up to position {}:",
+                    error_pos - 50
+                );
                 for pair in smaller_pairs {
                     println!("{:#?}", pair);
                 }
@@ -1508,7 +1506,7 @@ fn parse_mmcif_nef_dictionary() {
                 println!("Could not parse even a smaller section before the error.");
             }
         }
-        
+
         // Don't fail the test, just show the error for analysis
         println!("\nNote: This test shows where the parser currently fails on the real-world mmcif file.");
     }
@@ -1518,13 +1516,19 @@ fn parse_mmcif_nef_dictionary() {
 fn windows_line_endings_compatibility() {
     let file_path = "tests/test_data/simple_star_file_windows.star";
     let test_string = std::fs::read_to_string(file_path).unwrap();
-    
+
     // Verify the file actually has Windows line endings
-    assert!(test_string.contains("\r\n"), "Test file should contain CRLF line endings");
-    
+    assert!(
+        test_string.contains("\r\n"),
+        "Test file should contain CRLF line endings"
+    );
+
     let successful_parse = AsciiParser::parse(AsciiRule::star_file, &test_string);
-    assert!(successful_parse.is_ok(), "Parser should handle Windows line endings correctly");
-    
+    assert!(
+        successful_parse.is_ok(),
+        "Parser should handle Windows line endings correctly"
+    );
+
     parses_to! {
         parser: AsciiParser,
         input:  &test_string,
@@ -1545,7 +1549,7 @@ fn windows_line_endings_compatibility() {
 // Double quote escaping tests now covered comprehensively by parameterized tests above
 // The macro-generated tests provide better coverage with descriptive case names
 
-// Single quote escaping tests now covered comprehensively by parameterized tests above  
+// Single quote escaping tests now covered comprehensively by parameterized tests above
 // The macro-generated tests provide better coverage with descriptive case names
 
 // ====================================================================
@@ -1572,7 +1576,7 @@ macro_rules! generate_quote_tests {
         ) {
             let result = AsciiParser::parse(AsciiRule::single_quote_string, input);
             assert!(result.is_ok(), "Failed to parse single quote string: {}", input);
-            
+
             let parsed = result.unwrap().as_str();
             assert_eq!(
                 parsed, expected,
@@ -1592,7 +1596,7 @@ macro_rules! generate_quote_tests {
         ) {
             let result = AsciiParser::parse(AsciiRule::double_quote_string, input);
             assert!(result.is_ok(), "Failed to parse double quote string: {}", input);
-            
+
             let parsed = result.unwrap().as_str();
             assert_eq!(
                 parsed, expected,
@@ -1630,15 +1634,14 @@ generate_quote_tests! {
 #[case::unterminated_single_quote("'unterminated")]
 #[case::unterminated_double_quote("\"unterminated")]
 #[case::mixed_quote_types("'mixed\"")]
-fn test_invalid_quote_patterns(
-    #[case] input: &str,
-) {
+fn test_invalid_quote_patterns(#[case] input: &str) {
     let single_result = AsciiParser::parse(AsciiRule::single_quote_string, input);
     let double_result = AsciiParser::parse(AsciiRule::double_quote_string, input);
-    
+
     assert!(
         single_result.is_err() && double_result.is_err(),
-        "Expected '{}' to fail parsing, but one succeeded", input
+        "Expected '{}' to fail parsing, but one succeeded",
+        input
     );
 }
 
@@ -1651,8 +1654,12 @@ fn test_invalid_single_quote_with_space_after_double_quote(
     #[case] expected_parsed: &str,
 ) {
     let result = AsciiParser::parse(AsciiRule::single_quote_string, input);
-    assert!(result.is_ok(), "Should parse (but not consume all input): {}", input);
-    
+    assert!(
+        result.is_ok(),
+        "Should parse (but not consume all input): {}",
+        input
+    );
+
     let parsed = result.unwrap().as_str();
     assert_eq!(
         parsed, expected_parsed,
@@ -1670,8 +1677,12 @@ fn test_invalid_double_quote_with_space_after_double_quote(
     #[case] expected_parsed: &str,
 ) {
     let result = AsciiParser::parse(AsciiRule::double_quote_string, input);
-    assert!(result.is_ok(), "Should parse (but not consume all input): {}", input);
-    
+    assert!(
+        result.is_ok(),
+        "Should parse (but not consume all input): {}",
+        input
+    );
+
     let parsed = result.unwrap().as_str();
     assert_eq!(
         parsed, expected_parsed,
@@ -1686,20 +1697,21 @@ fn test_invalid_double_quote_with_space_after_double_quote(
 #[case::double_quote_followed_by_space("\"test\" ", "\"test\"")]
 #[case::single_quote_followed_by_newline("'test'\n", "'test'")]
 #[case::double_quote_followed_by_newline("\"test\"\n", "\"test\"")]
-fn test_quote_termination(
-    #[case] input: &str,
-    #[case] expected: &str,
-) {
+fn test_quote_termination(#[case] input: &str, #[case] expected: &str) {
     // Test both single and double quotes
     let rule = if input.starts_with('\'') {
         AsciiRule::single_quote_string
     } else {
         AsciiRule::double_quote_string
     };
-    
+
     let result = AsciiParser::parse(rule, input);
-    assert!(result.is_ok(), "Failed to parse quote termination: {}", input);
-    
+    assert!(
+        result.is_ok(),
+        "Failed to parse quote termination: {}",
+        input
+    );
+
     let parsed = result.unwrap().as_str();
     assert_eq!(
         parsed, expected,
@@ -1713,64 +1725,64 @@ fn test_nef_specification_files_can_be_parsed() {
     use std::fs;
     use std::path::Path;
     use std::time::Instant;
-    
+
     let ccpn_dir = Path::new("tests/test_data/nef_spec");
-    
+
     // Check if directory exists
     assert!(
         ccpn_dir.exists(),
         "NEF specification test data directory does not exist: {:?}",
         ccpn_dir
     );
-    
+
     // Get all .nef files in the directory
-    let entries = fs::read_dir(ccpn_dir)
-        .expect("Failed to read NEF specification directory");
-    
+    let entries = fs::read_dir(ccpn_dir).expect("Failed to read NEF specification directory");
+
     let mut files_tested = 0;
     let mut failures = Vec::new();
     let mut known_issues = Vec::new();
     let mut parse_times = Vec::new();
-    
+
     // Known files with parsing issues (trailing comments, etc.)
     let known_issue_files = vec!["CCPN_XPLOR_test1.nef"];
-    
+
     for entry in entries {
         let entry = entry.expect("Failed to read directory entry");
         let path = entry.path();
-        
+
         // Only process .nef files
         if path.extension().and_then(|s| s.to_str()) == Some("nef") {
             let file_name = path.file_name().unwrap().to_string_lossy().to_string();
-            
-            let content = fs::read_to_string(&path)
-                .expect(&format!("Failed to read file: {:?}", path));
-            
+
+            let content =
+                fs::read_to_string(&path).expect(&format!("Failed to read file: {:?}", path));
+
             let file_size = content.len();
-            
+
             // Time the parsing
             let start = Instant::now();
             let parse_result = AsciiParser::parse(AsciiRule::star_file, &content);
             let duration = start.elapsed();
-            
+
             match parse_result {
                 Ok(_) => {
                     let duration_ms = duration.as_secs_f64() * 1000.0;
                     let throughput = (file_size as f64) / duration.as_secs_f64() / 1_000_000.0; // MB/s
-                    
-                    println!("✓ {} ({:.2} KB) - {:.2}ms ({:.2} MB/s)", 
-                        file_name, 
+
+                    println!(
+                        "✓ {} ({:.2} KB) - {:.2}ms ({:.2} MB/s)",
+                        file_name,
                         file_size as f64 / 1024.0,
                         duration_ms,
                         throughput
                     );
-                    
+
                     parse_times.push((file_name.clone(), file_size, duration_ms, throughput));
                     files_tested += 1;
                 }
                 Err(e) => {
                     let error_msg = format!("{}: {}", file_name, e);
-                    
+
                     // Check if this is a known issue
                     if known_issue_files.contains(&file_name.as_str()) {
                         println!("⚠ {} has known parsing issue", file_name);
@@ -1783,27 +1795,31 @@ fn test_nef_specification_files_can_be_parsed() {
             }
         }
     }
-    
+
     // Report results
     println!("\n=== NEF Specification Files Parsing Test Results ===");
     println!("Files tested: {}", files_tested);
     println!("Failures: {}", failures.len());
     println!("Known issues: {}", known_issues.len());
-    
+
     if files_tested > 0 {
         // Sort by file size for summary
         parse_times.sort_by(|a, b| a.1.cmp(&b.1));
-        
+
         println!("\n=== Parsing Performance Summary ===");
-        println!("{:<35} {:>12} {:>12} {:>12}", "File", "Size", "Time", "Throughput");
+        println!(
+            "{:<35} {:>12} {:>12} {:>12}",
+            "File", "Size", "Time", "Throughput"
+        );
         println!("{}", "-".repeat(75));
-        
+
         let mut total_size = 0;
         let mut total_time = 0.0;
-        
+
         for (name, size, time_ms, throughput) in &parse_times {
-            println!("{:<35} {:>10.2} KB {:>9.2} ms {:>9.2} MB/s", 
-                name, 
+            println!(
+                "{:<35} {:>10.2} KB {:>9.2} ms {:>9.2} MB/s",
+                name,
                 *size as f64 / 1024.0,
                 time_ms,
                 throughput
@@ -1811,36 +1827,33 @@ fn test_nef_specification_files_can_be_parsed() {
             total_size += size;
             total_time += time_ms;
         }
-        
+
         println!("{}", "-".repeat(75));
-        println!("{:<35} {:>10.2} KB {:>9.2} ms {:>9.2} MB/s",
+        println!(
+            "{:<35} {:>10.2} KB {:>9.2} ms {:>9.2} MB/s",
             "TOTAL",
             total_size as f64 / 1024.0,
             total_time,
             (total_size as f64 / (total_time / 1000.0)) / 1_000_000.0
         );
     }
-    
+
     if !known_issues.is_empty() {
         println!("\nFiles with known issues:");
         for issue in &known_issues {
             println!("  - {}", issue);
         }
     }
-    
+
     if !failures.is_empty() {
         println!("\nFailed files:");
         for failure in &failures {
             println!("  - {}", failure);
         }
     }
-    
-    assert!(
-        files_tested > 0,
-        "No .nef files found in {:?}",
-        ccpn_dir
-    );
-    
+
+    assert!(files_tested > 0, "No .nef files found in {:?}", ccpn_dir);
+
     assert!(
         failures.is_empty(),
         "Failed to parse {} NEF specification file(s) (excluding {} known issue(s))",
@@ -1856,46 +1869,45 @@ fn test_nef_site_files_can_be_parsed(#[case] parser_mode: &str) {
     use std::fs;
     use std::path::Path;
     use std::time::Instant;
-    
+
     let nef_site_dir = Path::new("tests/test_data/nef_spec");
-    
+
     // Check if directory exists
     assert!(
         nef_site_dir.exists(),
         "NEF examples directory does not exist: {:?}",
         nef_site_dir
     );
-    
+
     // Get all .nef files in the directory
-    let entries = fs::read_dir(nef_site_dir)
-        .expect("Failed to read NEF examples directory");
-    
+    let entries = fs::read_dir(nef_site_dir).expect("Failed to read NEF examples directory");
+
     let mut files_tested = 0;
     let mut failures = Vec::new();
     let mut known_failures = Vec::new();
     let mut parse_times = Vec::new();
-    
+
     // Files known to have parsing failures due to quote handling issues (not Unicode-related)
     // These fail in both ASCII and Unicode modes
     let known_quote_failures: Vec<&str> = vec![
-        "CCPN_H1GI_clean.nef",          // Single quote with space inside: '15N HSQC/HMQC'
+        "CCPN_H1GI_clean.nef", // Single quote with space inside: '15N HSQC/HMQC'
         "CCPN_H1GI_clean_extended.nef", // Similar quote issues
-        "CCPN_Sec5Part3.nef",           // Similar quote issues
+        "CCPN_Sec5Part3.nef",  // Similar quote issues
     ];
-    
+
     for entry in entries {
         let entry = entry.expect("Failed to read directory entry");
         let path = entry.path();
-        
+
         // Only process .nef files
         if path.extension().and_then(|s| s.to_str()) == Some("nef") {
             let file_name = path.file_name().unwrap().to_string_lossy().to_string();
-            
-            let content = fs::read_to_string(&path)
-                .expect(&format!("Failed to read file: {:?}", path));
-            
+
+            let content =
+                fs::read_to_string(&path).expect(&format!("Failed to read file: {:?}", path));
+
             let file_size = content.len();
-            
+
             // Time the parsing
             let start = Instant::now();
             let parse_result: Result<(), String> = match parser_mode {
@@ -1908,27 +1920,31 @@ fn test_nef_site_files_can_be_parsed(#[case] parser_mode: &str) {
                 _ => panic!("Unknown parser mode: {}", parser_mode),
             };
             let duration = start.elapsed();
-            
+
             match parse_result {
                 Ok(_) => {
                     let duration_ms = duration.as_secs_f64() * 1000.0;
                     let throughput = (file_size as f64) / duration.as_secs_f64() / 1_000_000.0; // MB/s
-                    
-                    println!("✓ [{}] {} ({:.2} KB) - {:.2}ms ({:.2} MB/s)", 
+
+                    println!(
+                        "✓ [{}] {} ({:.2} KB) - {:.2}ms ({:.2} MB/s)",
                         parser_mode,
-                        file_name, 
+                        file_name,
                         file_size as f64 / 1024.0,
                         duration_ms,
                         throughput
                     );
-                    
+
                     parse_times.push((file_name.clone(), file_size, duration_ms, throughput));
                     files_tested += 1;
                 }
                 Err(e) => {
                     // Check if this is a known failure
                     if known_quote_failures.contains(&file_name.as_str()) {
-                        println!("⚠ [{}] {} (known quote parsing issue)", parser_mode, file_name);
+                        println!(
+                            "⚠ [{}] {} (known quote parsing issue)",
+                            parser_mode, file_name
+                        );
                         known_failures.push(file_name.clone());
                     } else {
                         let error_msg = format!("{}: {}", file_name, e);
@@ -1939,28 +1955,35 @@ fn test_nef_site_files_can_be_parsed(#[case] parser_mode: &str) {
             }
         }
     }
-    
+
     // Report results
-    println!("\n=== NEF Site Files Parsing Test Results ({}) ===", parser_mode);
+    println!(
+        "\n=== NEF Site Files Parsing Test Results ({}) ===",
+        parser_mode
+    );
     println!("Files tested: {}", files_tested);
     println!("Passed: {}", parse_times.len());
     println!("Known failures: {}", known_failures.len());
     println!("Unexpected failures: {}", failures.len());
-    
+
     if files_tested > 0 {
         // Sort by file size for summary
         parse_times.sort_by(|a, b| a.1.cmp(&b.1));
-        
+
         println!("\n=== Parsing Performance Summary ===");
-        println!("{:<35} {:>12} {:>12} {:>12}", "File", "Size", "Time", "Throughput");
+        println!(
+            "{:<35} {:>12} {:>12} {:>12}",
+            "File", "Size", "Time", "Throughput"
+        );
         println!("{}", "-".repeat(75));
-        
+
         let mut total_size = 0;
         let mut total_time = 0.0;
-        
+
         for (name, size, time_ms, throughput) in &parse_times {
-            println!("{:<35} {:>10.2} KB {:>9.2} ms {:>9.2} MB/s", 
-                name, 
+            println!(
+                "{:<35} {:>10.2} KB {:>9.2} ms {:>9.2} MB/s",
+                name,
                 *size as f64 / 1024.0,
                 time_ms,
                 throughput
@@ -1968,36 +1991,37 @@ fn test_nef_site_files_can_be_parsed(#[case] parser_mode: &str) {
             total_size += size;
             total_time += time_ms;
         }
-        
+
         println!("{}", "-".repeat(75));
-        println!("{:<35} {:>10.2} KB {:>9.2} ms {:>9.2} MB/s",
+        println!(
+            "{:<35} {:>10.2} KB {:>9.2} ms {:>9.2} MB/s",
             "TOTAL",
             total_size as f64 / 1024.0,
             total_time,
             (total_size as f64 / (total_time / 1000.0)) / 1_000_000.0
         );
     }
-    
+
     if !known_failures.is_empty() {
         println!("\nFiles with known parsing failures (quote handling):");
         for failure in &known_failures {
             println!("  - {}", failure);
         }
     }
-    
+
     if !failures.is_empty() {
         println!("\nUnexpected failures:");
         for failure in &failures {
             println!("  - {}", failure);
         }
     }
-    
+
     assert!(
         files_tested > 0,
         "No .nef files found in {:?}",
         nef_site_dir
     );
-    
+
     assert!(
         failures.is_empty(),
         "Failed to parse {} NEF site file(s) with {} parser (excluding {} known issue(s))",
@@ -2009,11 +2033,14 @@ fn test_nef_site_files_can_be_parsed(#[case] parser_mode: &str) {
 
 #[test]
 fn test_mmcif_files_can_be_parsed() {
+    use indicatif::HumanBytes;
     use std::fs;
     use std::path::PathBuf;
     use std::time::{Duration, Instant};
-    use indicatif::HumanBytes;
-    use tabled::{Table, Tabled, settings::{Style, Alignment, Modify, object::Columns}};
+    use tabled::{
+        settings::{object::Columns, Alignment, Modify, Style},
+        Table, Tabled,
+    };
 
     #[derive(Tabled)]
     struct ParseResult {
@@ -2040,7 +2067,7 @@ fn test_mmcif_files_can_be_parsed() {
     }
 
     let mmcif_dir: PathBuf = ["tests", "test_data", "mmcif"].iter().collect();
-    
+
     assert!(
         mmcif_dir.exists() && mmcif_dir.is_dir(),
         "mmCIF test directory not found: {:?}",
@@ -2060,34 +2087,35 @@ fn test_mmcif_files_can_be_parsed() {
     for entry in entries {
         let entry = entry.expect("Failed to read directory entry");
         let path = entry.path();
-        
+
         if path.extension().and_then(|s| s.to_str()) == Some("cif") {
             files_tested += 1;
             let filename = path.file_name().unwrap().to_string_lossy().to_string();
-            
+
             print!("{}. {}", files_tested, filename);
-            
+
             let content = fs::read_to_string(&path)
                 .unwrap_or_else(|e| panic!("Failed to read file {:?}: {}", path, e));
-            
+
             let file_size = content.len();
-            
+
             // Time the parsing
             let start = Instant::now();
             match AsciiParser::parse(AsciiRule::star_file, &content) {
                 Ok(_) => {
                     let duration = start.elapsed();
                     let throughput = (file_size as f64 / duration.as_secs_f64()) / 1_000_000.0;
-                    
+
                     let time_str = format_duration(&duration);
-                    
+
                     print!(" ✓ ");
-                    println!(" [{}, {} = {:.2} MB/s", 
+                    println!(
+                        " [{}, {} = {:.2} MB/s",
                         HumanBytes(file_size as u64),
                         time_str,
                         throughput
                     );
-                    
+
                     parse_times.push((filename, file_size, duration, throughput));
                 }
                 Err(e) => {
@@ -2097,22 +2125,22 @@ fn test_mmcif_files_can_be_parsed() {
             }
         }
     }
-    
+
     if !failures.is_empty() {
         println!("\nFailed files:");
         for failure in &failures {
             println!("  - {}", failure);
         }
     }
-    
+
     // Print summary
     if files_tested > 0 && !parse_times.is_empty() {
         println!("\n=== mmCIF Parsing Performance Summary ===\n");
-        
+
         let mut table_data = Vec::new();
         let mut total_size = 0;
         let mut total_duration = Duration::ZERO;
-        
+
         for (name, size, duration, throughput) in &parse_times {
             table_data.push(ParseResult {
                 name: name.clone(),
@@ -2123,32 +2151,31 @@ fn test_mmcif_files_can_be_parsed() {
             total_size += size;
             total_duration += *duration;
         }
-        
+
         // Add total row
         table_data.push(ParseResult {
             name: "TOTAL".to_string(),
             size: format!("{}", HumanBytes(total_size as u64)),
             time: format_duration(&total_duration),
-            throughput: format!("{:.2} MB/s", (total_size as f64 / total_duration.as_secs_f64()) / 1_000_000.0),
+            throughput: format!(
+                "{:.2} MB/s",
+                (total_size as f64 / total_duration.as_secs_f64()) / 1_000_000.0
+            ),
         });
-        
+
         let table = Table::new(table_data)
             .with(Style::rounded())
             .with(Modify::new(Columns::single(1)).with(Alignment::right()))
             .with(Modify::new(Columns::single(2)).with(Alignment::right()))
             .with(Modify::new(Columns::single(3)).with(Alignment::right()))
             .to_string();
-        
+
         println!("{}", table);
         println!();
     }
-    
-    assert!(
-        files_tested > 0,
-        "No .cif files found in {:?}",
-        mmcif_dir
-    );
-    
+
+    assert!(files_tested > 0, "No .cif files found in {:?}", mmcif_dir);
+
     assert!(
         failures.is_empty(),
         "Failed to parse {} mmCIF file(s)",
@@ -2160,11 +2187,14 @@ fn test_mmcif_files_can_be_parsed() {
 #[case::ascii("ascii")]
 #[case::unicode("unicode")]
 fn test_mmcif_dictionaries_can_be_parsed(#[case] parser_mode: &str) {
+    use indicatif::HumanBytes;
     use std::fs;
     use std::path::PathBuf;
     use std::time::{Duration, Instant};
-    use indicatif::HumanBytes;
-    use tabled::{Table, Tabled, settings::{Style, Alignment, Modify, object::Columns}};
+    use tabled::{
+        settings::{object::Columns, Alignment, Modify, Style},
+        Table, Tabled,
+    };
 
     #[derive(Tabled)]
     struct ParseResult {
@@ -2191,14 +2221,17 @@ fn test_mmcif_dictionaries_can_be_parsed(#[case] parser_mode: &str) {
     }
 
     let dicts_dir: PathBuf = ["tests", "test_data", "dicts"].iter().collect();
-    
+
     assert!(
         dicts_dir.exists() && dicts_dir.is_dir(),
         "Dictionaries test directory not found: {:?}",
         dicts_dir
     );
 
-    println!("\n=== Testing mmCIF Dictionaries with {} parser ===", parser_mode);
+    println!(
+        "\n=== Testing mmCIF Dictionaries with {} parser ===",
+        parser_mode
+    );
 
     let mut files_tested = 0;
     let mut failures = Vec::new();
@@ -2209,13 +2242,13 @@ fn test_mmcif_dictionaries_can_be_parsed(#[case] parser_mode: &str) {
     // File known to contain Unicode characters (skip for ASCII mode)
     // Only mmcif_ndb_ntc.dic actually contains Greek letters (α and ɣ)
     let unicode_files: Vec<&str> = vec![
-        "mmcif_ndb_ntc.dic",  // Contains α and ɣ characters
+        "mmcif_ndb_ntc.dic", // Contains α and ɣ characters
     ];
-    
+
     // Files with known parsing failures (grammar issues, not Unicode-related)
     let known_parse_failures: Vec<&str> = vec![
-        "mmcif_img.dic",  // Parsing issue
-        "mmcif_nef.dic",  // Parsing issue
+        "mmcif_img.dic", // Parsing issue
+        "mmcif_nef.dic", // Parsing issue
     ];
 
     // Read all .dic files in the dicts directory
@@ -2225,26 +2258,29 @@ fn test_mmcif_dictionaries_can_be_parsed(#[case] parser_mode: &str) {
     for entry in entries {
         let entry = entry.expect("Failed to read directory entry");
         let path = entry.path();
-        
+
         if path.extension().and_then(|s| s.to_str()) == Some("dic") {
             let filename = path.file_name().unwrap().to_string_lossy().to_string();
-            
+
             // Skip Unicode files when testing with ASCII parser
             if parser_mode == "ascii" && unicode_files.contains(&filename.as_str()) {
                 files_tested += 1;
-                println!("{}. {} ⊘  [skipped - contains Unicode characters]", files_tested, filename);
+                println!(
+                    "{}. {} ⊘  [skipped - contains Unicode characters]",
+                    files_tested, filename
+                );
                 skipped.push(filename);
                 continue;
             }
-            
+
             files_tested += 1;
             print!("{}. {}", files_tested, filename);
-            
+
             let content = fs::read_to_string(&path)
                 .unwrap_or_else(|e| panic!("Failed to read file {:?}: {}", path, e));
-            
+
             let file_size = content.len();
-            
+
             // Time the parsing
             let start = Instant::now();
             let parse_result: Result<(), String> = match parser_mode {
@@ -2256,23 +2292,24 @@ fn test_mmcif_dictionaries_can_be_parsed(#[case] parser_mode: &str) {
                     .map_err(|e| format!("{}", e)),
                 _ => panic!("Unknown parser mode: {}", parser_mode),
             };
-            
+
             match parse_result {
                 Ok(_) => {
                     let duration = start.elapsed();
                     let throughput = (file_size as f64 / duration.as_secs_f64()) / 1_000_000.0;
-                    
+
                     let time_str = format_duration(&duration);
-                    
+
                     print!(" ✓ ");
-                    println!(" [{}, {} = {:.2} MB/s", 
+                    println!(
+                        " [{}, {} = {:.2} MB/s",
                         HumanBytes(file_size as u64),
                         time_str,
                         throughput
                     );
-                    
+
                     parse_times.push((filename, file_size, duration, throughput));
-                },
+                }
                 Err(e) => {
                     // Check if this is a known parsing failure
                     if known_parse_failures.contains(&filename.as_str()) {
@@ -2281,7 +2318,7 @@ fn test_mmcif_dictionaries_can_be_parsed(#[case] parser_mode: &str) {
                     } else {
                         println!(" ✗");
                         println!("  Error: {}", e);
-                        
+
                         // Extract line number from error message
                         let error_str = e.to_string();
                         if let Some(line_start) = error_str.find("-->") {
@@ -2292,7 +2329,7 @@ fn test_mmcif_dictionaries_can_be_parsed(#[case] parser_mode: &str) {
                                     let lines: Vec<&str> = content.lines().collect();
                                     let start_line = line_num.saturating_sub(3).max(1);
                                     let end_line = (line_num + 2).min(lines.len());
-                                    
+
                                     println!("  Context (lines {}-{}):", start_line, end_line);
                                     for i in start_line..=end_line {
                                         let marker = if i == line_num { ">>>" } else { "   " };
@@ -2303,8 +2340,10 @@ fn test_mmcif_dictionaries_can_be_parsed(#[case] parser_mode: &str) {
                                                 .replace('\t', "␉")
                                                 .replace('\r', "␍")
                                                 .replace(' ', "·");
-                                            let display_line = if visible_line.chars().count() > 100 {
-                                                let truncated: String = visible_line.chars().take(97).collect();
+                                            let display_line = if visible_line.chars().count() > 100
+                                            {
+                                                let truncated: String =
+                                                    visible_line.chars().take(97).collect();
                                                 format!("{}...", truncated)
                                             } else {
                                                 visible_line
@@ -2313,45 +2352,54 @@ fn test_mmcif_dictionaries_can_be_parsed(#[case] parser_mode: &str) {
                                         }
                                     }
                                 }
+                            }
                         }
-                    }
-                    
-                    failures.push(filename);
+
+                        failures.push(filename);
                     }
                 }
             }
         }
     }
-    
+
     if !skipped.is_empty() {
-        println!("\n{} file(s) skipped (ASCII mode, contains Unicode):", skipped.len());
+        println!(
+            "\n{} file(s) skipped (ASCII mode, contains Unicode):",
+            skipped.len()
+        );
         for file in &skipped {
             println!("  - {}", file);
         }
     }
-    
+
     if !known_failures.is_empty() {
-        println!("\n{} file(s) with known parsing issues:", known_failures.len());
+        println!(
+            "\n{} file(s) with known parsing issues:",
+            known_failures.len()
+        );
         for file in &known_failures {
             println!("  - {}", file);
         }
     }
-    
+
     if !failures.is_empty() {
         println!("\nUNEXPECTED FAILURES ({} file(s)):", failures.len());
         for file in &failures {
             println!("  - {}", file);
         }
     }
-    
+
     // Print summary
     if files_tested > 0 && !parse_times.is_empty() {
-        println!("\n=== mmCIF Dictionary Parsing Performance Summary ({}) ===\n", parser_mode);
-        
+        println!(
+            "\n=== mmCIF Dictionary Parsing Performance Summary ({}) ===\n",
+            parser_mode
+        );
+
         let mut table_data = Vec::new();
         let mut total_size = 0;
         let mut total_duration = Duration::ZERO;
-        
+
         for (name, size, duration, throughput) in &parse_times {
             table_data.push(ParseResult {
                 name: name.clone(),
@@ -2362,39 +2410,38 @@ fn test_mmcif_dictionaries_can_be_parsed(#[case] parser_mode: &str) {
             total_size += size;
             total_duration += *duration;
         }
-        
+
         // Add total row
         table_data.push(ParseResult {
             name: "TOTAL".to_string(),
             size: format!("{}", HumanBytes(total_size as u64)),
             time: format_duration(&total_duration),
-            throughput: format!("{:.2} MB/s", (total_size as f64 / total_duration.as_secs_f64()) / 1_000_000.0),
+            throughput: format!(
+                "{:.2} MB/s",
+                (total_size as f64 / total_duration.as_secs_f64()) / 1_000_000.0
+            ),
         });
-        
+
         let table = Table::new(table_data)
             .with(Style::rounded())
             .with(Modify::new(Columns::single(1)).with(Alignment::right()))
             .with(Modify::new(Columns::single(2)).with(Alignment::right()))
             .with(Modify::new(Columns::single(3)).with(Alignment::right()))
             .to_string();
-        
+
         println!("{}", table);
         println!();
     }
-    
-    assert!(
-        files_tested > 0,
-        "No .dic files found in {:?}",
-        dicts_dir
-    );
-    
+
+    assert!(files_tested > 0, "No .dic files found in {:?}", dicts_dir);
+
     println!("\n=== Summary for {} parser ===", parser_mode);
     println!("Total files: {}", files_tested);
     println!("Parsed successfully: {}", parse_times.len());
     println!("Skipped (Unicode in ASCII mode): {}", skipped.len());
     println!("Known parsing failures: {}", known_failures.len());
     println!("Unexpected failures: {}", failures.len());
-    
+
     assert!(
         failures.is_empty(),
         "Failed to parse {} dictionary file(s) with {} parser (skipped {}, known failures {})",

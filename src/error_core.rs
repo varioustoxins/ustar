@@ -34,14 +34,18 @@ impl ErrorData {
         };
         let line_content = Self::get_line_content_from_pest(input, &error);
         let pest_error_display = format!("{}", error);
-        
+
         // Extract simple error message for later formatting
         let simple_message = match &error.variant {
-            pest::error::ErrorVariant::ParsingError { positives, negatives: _ } => {
+            pest::error::ErrorVariant::ParsingError {
+                positives,
+                negatives: _,
+            } => {
                 if positives.is_empty() {
                     "Unexpected input".to_string()
                 } else {
-                    let tokens = positives.iter()
+                    let tokens = positives
+                        .iter()
                         .map(|r| format!("{:?}", r))
                         .collect::<Vec<_>>();
                     let joined = tokens.join(", ");
@@ -55,12 +59,10 @@ impl ErrorData {
                     };
                     format!("Expected {}", final_message)
                 }
-            },
-            pest::error::ErrorVariant::CustomError { message } => {
-                message.clone()
             }
+            pest::error::ErrorVariant::CustomError { message } => message.clone(),
         };
-        
+
         #[cfg(feature = "extended-errors")]
         let error_span = match &error.location {
             pest::error::InputLocation::Pos(pos) => (*pos, 0).into(),
@@ -79,60 +81,78 @@ impl ErrorData {
             error_span,
         }
     }
-    
+
     /// Format error in basic format (similar to ASCII but minimal)
     pub fn format_basic(&self) -> String {
         // Use pest-style basic format with minimal context
-        let result = format!("Parse error at l{}:c{} because {}\n", 
-            self.line, self.col, self.message.to_lowercase());
-       
+        let result = format!(
+            "Parse error at l{}:c{} because {}\n",
+            self.line,
+            self.col,
+            self.message.to_lowercase()
+        );
+
         result
     }
-    
+
     /// Format error using Pest-style display with controlled context
     pub fn format_ascii(&self, context_lines: usize) -> String {
         let lines: Vec<&str> = self.src.lines().collect();
-        
+
         // Calculate context range - show context_lines before and after
         let start_line = self.line.saturating_sub(context_lines + 1);
         let end_line = (self.line + context_lines).min(lines.len());
-        
+
         // Calculate the width needed for line numbers
         let max_line_num = end_line;
         let line_num_width = max_line_num.to_string().len();
 
-        let mut result = format!("x {}\n --> {}:{}\n{} |\n", 
-            self.message, self.line, self.col, " ".repeat(line_num_width));
-        
+        let mut result = format!(
+            "x {}\n --> {}:{}\n{} |\n",
+            self.message,
+            self.line,
+            self.col,
+            " ".repeat(line_num_width)
+        );
+
         // Show context lines with Pest-style formatting
         for line_num in start_line..end_line {
             let line_content = lines.get(line_num).unwrap_or(&"");
             let display_line_num = line_num + 1;
-            
-            result.push_str(&format!("{:width$} | {}\n", display_line_num, line_content, width = line_num_width));
-            
+
+            result.push_str(&format!(
+                "{:width$} | {}\n",
+                display_line_num,
+                line_content,
+                width = line_num_width
+            ));
+
             // Add pointer under the error line
             if display_line_num == self.line {
-                result.push_str(&format!("{} | {}^---\n", " ".repeat(line_num_width), " ".repeat(self.col.saturating_sub(1))));
+                result.push_str(&format!(
+                    "{} | {}^---\n",
+                    " ".repeat(line_num_width),
+                    " ".repeat(self.col.saturating_sub(1))
+                ));
             }
         }
-        
-        
-        
+
         result
     }
-    
-    
+
     /// Get line content from pest error
-    fn get_line_content_from_pest(input: &str, pest_error: &pest::error::Error<impl pest::RuleType>) -> String {
+    fn get_line_content_from_pest(
+        input: &str,
+        pest_error: &pest::error::Error<impl pest::RuleType>,
+    ) -> String {
         let offset = match &pest_error.location {
             pest::error::InputLocation::Pos(pos) => *pos,
             pest::error::InputLocation::Span((start, _)) => *start,
         };
-        
+
         let lines: Vec<&str> = input.lines().collect();
         let mut char_count = 0;
-        
+
         for line in lines.iter() {
             let line_end = char_count + line.len() + 1; // +1 for newline
             if offset < line_end {
@@ -140,7 +160,7 @@ impl ErrorData {
             }
             char_count = line_end;
         }
-        
+
         "".to_string()
     }
 }

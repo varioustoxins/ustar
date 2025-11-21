@@ -1,12 +1,11 @@
 use clap::Parser;
 use rand::seq::SliceRandom;
 use rand::SeedableRng;
-use reqwest;
 use serde::Deserialize;
+use std::collections::HashSet;
 use std::fs;
 use std::io::Write;
 use std::path::PathBuf;
-use std::collections::HashSet;
 
 #[derive(Debug)]
 pub enum PdbError {
@@ -67,6 +66,12 @@ pub struct PdbDownloader {
     output_dir: PathBuf,
     verbose: bool,
     compressed: bool,
+}
+
+impl Default for PdbDownloader {
+    fn default() -> Self {
+        Self::new()
+    }
 }
 
 impl PdbDownloader {
@@ -139,9 +144,10 @@ impl PdbDownloader {
                 .send()
                 .await?;
             if response.status() != reqwest::StatusCode::OK {
-                return Err(PdbError::DownloadFailed(
-                    format!("Failed to fetch entry list: HTTP {}", response.status())
-                ));
+                return Err(PdbError::DownloadFailed(format!(
+                    "Failed to fetch entry list: HTTP {}",
+                    response.status()
+                )));
             }
             let search_response: SearchResponse = response.json().await?;
             let count = search_response.result_set.len();
@@ -155,7 +161,7 @@ impl PdbDownloader {
                 search_response
                     .result_set
                     .into_iter()
-                    .map(|entry| entry.identifier)
+                    .map(|entry| entry.identifier),
             );
             if count < page_size {
                 break;
@@ -175,7 +181,6 @@ impl PdbDownloader {
         Ok(all_entries)
     }
 
-
     /// Get current PDB holdings (list of all valid PDB IDs)
     pub async fn get_current_holdings(&self) -> Result<Vec<String>, PdbError> {
         if self.verbose {
@@ -187,9 +192,10 @@ impl PdbDownloader {
         let response = reqwest::get(url).await?;
 
         if response.status() != reqwest::StatusCode::OK {
-            return Err(PdbError::DownloadFailed(
-                format!("Failed to fetch holdings: HTTP {}", response.status())
-            ));
+            return Err(PdbError::DownloadFailed(format!(
+                "Failed to fetch holdings: HTTP {}",
+                response.status()
+            )));
         }
 
         let text = response.text().await?;
@@ -209,7 +215,7 @@ impl PdbDownloader {
     /// Download a specific PDB entry in mmCIF format
     pub async fn download_entry(&self, pdb_id: &str) -> Result<PathBuf, PdbError> {
         let pdb_id = pdb_id.to_lowercase();
-        
+
         // Determine file extension and URL based on compression preference
         let (extension, url) = if self.compressed {
             ("cif.gz", format!("{}/{}.cif.gz", self.base_url, pdb_id))
@@ -218,7 +224,10 @@ impl PdbDownloader {
         };
 
         if self.verbose {
-            println!("[VERBOSE] Downloading PDB entry {} in mmCIF format...", pdb_id);
+            println!(
+                "[VERBOSE] Downloading PDB entry {} in mmCIF format...",
+                pdb_id
+            );
             println!("[VERBOSE] Download URL: {}", url);
         }
 
@@ -228,13 +237,18 @@ impl PdbDownloader {
             // Try alternative URL pattern (sometimes PDB uses different conventions)
             let alt_url = format!("https://files.rcsb.org/view/{}.{}", pdb_id, extension);
             if self.verbose {
-                println!("[VERBOSE] First URL failed, trying alternative: {}", alt_url);
+                println!(
+                    "[VERBOSE] First URL failed, trying alternative: {}",
+                    alt_url
+                );
             }
             let alt_response = reqwest::get(&alt_url).await?;
             if alt_response.status() != reqwest::StatusCode::OK {
-                return Err(PdbError::DownloadFailed(
-                    format!("Failed to download PDB entry {}: HTTP {}", pdb_id, alt_response.status())
-                ));
+                return Err(PdbError::DownloadFailed(format!(
+                    "Failed to download PDB entry {}: HTTP {}",
+                    pdb_id,
+                    alt_response.status()
+                )));
             }
             if self.verbose {
                 println!("[VERBOSE] Downloaded from alternative URL: {}", alt_url);
@@ -246,7 +260,12 @@ impl PdbDownloader {
     }
 
     /// Save the response content to a file
-    async fn save_response(&self, response: reqwest::Response, pdb_id: &str, extension: &str) -> Result<PathBuf, PdbError> {
+    async fn save_response(
+        &self,
+        response: reqwest::Response,
+        pdb_id: &str,
+        extension: &str,
+    ) -> Result<PathBuf, PdbError> {
         let content = response.bytes().await?;
 
         // Create output directory if it doesn't exist
@@ -260,18 +279,25 @@ impl PdbDownloader {
         file.write_all(&content)?;
 
         if self.verbose {
-            println!("Successfully saved {} ({} bytes)", filepath.display(), content.len());
+            println!(
+                "Successfully saved {} ({} bytes)",
+                filepath.display(),
+                content.len()
+            );
         }
 
         Ok(filepath)
     }
 
-
     /// Download unique random mmCIF files, skipping those already in output_dir
-    pub async fn download_unique_random_batch(&self, count: usize, seed: u64) -> Result<Vec<(String, PathBuf)>, PdbError> {
+    pub async fn download_unique_random_batch(
+        &self,
+        count: usize,
+        seed: u64,
+    ) -> Result<Vec<(String, PathBuf)>, PdbError> {
         let mut entries: Vec<String> = match self.get_current_holdings().await {
             Ok(e) => e,
-            Err(_) => self.get_entry_ids(None).await?
+            Err(_) => self.get_entry_ids(None).await?,
         };
         if entries.is_empty() {
             return Err(PdbError::NoEntriesFound);
@@ -307,7 +333,6 @@ impl PdbDownloader {
         }
         Ok(results)
     }
-
 }
 
 /// --- Minimal CLI ---
@@ -346,7 +371,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         // List available mmCIF files and which are downloaded
         let entries = match downloader.get_current_holdings().await {
             Ok(e) => e,
-            Err(_) => downloader.get_entry_ids(Some(10000)).await?
+            Err(_) => downloader.get_entry_ids(Some(10000)).await?,
         };
         let ext = if cli.compressed { "cif.gz" } else { "cif" };
         let mut downloaded = HashSet::new();
@@ -373,25 +398,49 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
                 downloaded_count += 1;
             }
             if cli.verbose {
-                println!("[VERBOSE] {}{}", pdb_id, if is_downloaded { " [downloaded]" } else { "" });
+                println!(
+                    "[VERBOSE] {}{}",
+                    pdb_id,
+                    if is_downloaded { " [downloaded]" } else { "" }
+                );
             } else {
-                println!("{}{}", pdb_id, if is_downloaded { " [downloaded]" } else { "" });
+                println!(
+                    "{}{}",
+                    pdb_id,
+                    if is_downloaded { " [downloaded]" } else { "" }
+                );
             }
         }
         if cli.verbose {
-            println!("[VERBOSE] Total downloaded: {} / {}", downloaded_count, entries.len());
+            println!(
+                "[VERBOSE] Total downloaded: {} / {}",
+                downloaded_count,
+                entries.len()
+            );
         } else {
-            println!("\nTotal downloaded: {} / {}", downloaded_count, entries.len());
+            println!(
+                "\nTotal downloaded: {} / {}",
+                downloaded_count,
+                entries.len()
+            );
         }
         return Ok(());
     }
 
     if cli.verbose {
-        println!("[VERBOSE] Downloading {} unique random mmCIF files to {}...", cli.count, cli.output_dir);
+        println!(
+            "[VERBOSE] Downloading {} unique random mmCIF files to {}...",
+            cli.count, cli.output_dir
+        );
     } else {
-        println!("Downloading {} unique random mmCIF files to {}...", cli.count, cli.output_dir);
+        println!(
+            "Downloading {} unique random mmCIF files to {}...",
+            cli.count, cli.output_dir
+        );
     }
-    let batch = downloader.download_unique_random_batch(cli.count, cli.seed).await?;
+    let batch = downloader
+        .download_unique_random_batch(cli.count, cli.seed)
+        .await?;
     if cli.verbose {
         println!("[VERBOSE] Downloaded {} files:", batch.len());
         for (id, path) in &batch {
