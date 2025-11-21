@@ -100,6 +100,13 @@ jobs:
       if: matrix.features == 'no-default'
       run: cargo build --verbose --all-targets --no-default-features
     
+    - name: Debug walker differences (show stderr output)
+      if: matrix.features == 'default'
+      run: |
+        echo "=== Running debug walker test to show platform differences ==="
+        cargo test test_comprehensive_example_walker_output --test sas_walker_tests --verbose -- --nocapture || true
+        echo "=== End debug output ==="
+    
     - name: Run tests with default features
       if: matrix.features == 'default'
       run: cargo test --verbose

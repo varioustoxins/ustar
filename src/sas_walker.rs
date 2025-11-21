@@ -83,11 +83,24 @@ impl<'a, T: SASContentHandler> StarWalker<'a, T> {
                 }
             }
             "semi_colon_string" | "double_quote_string" | "single_quote_string" => {
+                // Debug output to understand Windows vs Linux differences
+                eprintln!("DEBUG: String node '{}' has {} children", node.rule_name, node.children.len());
+                for (i, child) in node.children.iter().enumerate() {
+                    eprintln!("  child[{}]: rule='{}', content_len={}, children={}", 
+                             i, child.rule_name, child.content.len(), child.children.len());
+                }
+                
+                if node.children.len() < 2 {
+                    eprintln!("DEBUG: UNEXPECTED - String node has < 2 children, skipping");
+                    return false;
+                }
                 let value_node = &node.children[1];
                 let tag = self.tag_table[self.tag_level][self.tag_index].as_str();
                 let tagline = self.tag_lines[self.tag_level][self.tag_index];
                 let valline = offset_to_line(&self.line_starts, value_node.start);
                 let children = &value_node.children;
+                
+                eprintln!("DEBUG: value_node rule='{}', children_len={}", value_node.rule_name, children.len());
                 if children.len() == 3 {
                     let delimiter = &children[0].content;
                     let value = &children[1].content;
@@ -170,6 +183,9 @@ impl<'a, T: SASContentHandler> StarWalker<'a, T> {
                 }
             }
             "data_block" => {
+                if node.children.is_empty() {
+                    return false;
+                }
                 let data_heading = &node.children[0];
                 let data_name = &data_heading.content[5..];
                 should_stop = self
@@ -188,6 +204,9 @@ impl<'a, T: SASContentHandler> StarWalker<'a, T> {
                 }
             }
             "save_frame" => {
+                if node.children.is_empty() {
+                    return false;
+                }
                 let save_heading = &node.children[0];
                 let frame_name = &save_heading.content[5..];
                 should_stop = self

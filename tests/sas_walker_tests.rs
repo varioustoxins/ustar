@@ -255,9 +255,18 @@ fn test_saveframe_walker_output() {
 }
 #[test]
 fn test_comprehensive_example_walker_output() {
+    // Debug platform information
+    eprintln!("DEBUG PLATFORM: OS = {}", std::env::consts::OS);
+    eprintln!("DEBUG PLATFORM: ARCH = {}", std::env::consts::ARCH);
+    
     // Read the input file
     let input = fs::read_to_string("examples/comprehensive_example.star")
         .expect("Failed to read comprehensive example file");
+    
+    // Debug input file characteristics
+    eprintln!("DEBUG INPUT: length = {} bytes", input.len());
+    eprintln!("DEBUG INPUT: has_crlf = {}", input.contains("\r\n"));
+    eprintln!("DEBUG INPUT: line_count = {}", input.lines().count());
 
     // Read the expected output file
     let expected_output_text =
