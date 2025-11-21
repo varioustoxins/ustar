@@ -2,7 +2,7 @@
 name = "ustar"
 version = "0.1.0"
 edition = "2021"
-rust-version = "1.83.0"
+rust-version = "1.80.0"
 description = "STAR format parser for CIF, mmCIF, NMR-STAR files and other scientific data formats"
 license = "LGPL3"
 repository = "https://github.com/garyt/ustar"
@@ -45,11 +45,11 @@ tabled = "0.16"
 clap = { version = "4.5", features = ["derive"] }
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
-reqwest = { version = "0.12", features = ["json", "gzip", "blocking", "stream"] }
+reqwest = { version = "0.11.27", features = ["json", "gzip", "blocking", "stream"] }
 rand = "0.8"
-tokio = { version = "1", features = ["rt-multi-thread", "macros"] }
+tokio = { version = "1.40", features = ["rt-multi-thread", "macros"] }
 flate2 = "1.0"
-scraper = "0.20"
+scraper = "0.19"
 regex = "1"
 miette = { version = "7.2", features = ["fancy"], optional = true }
 thiserror = { version = "2.0", optional = true }
