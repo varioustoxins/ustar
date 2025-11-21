@@ -42,16 +42,21 @@ fn run_ustar_parser_stdin(input: &str) -> Result<String, Box<dyn std::error::Err
 
 #[test]
 fn test_cli_output_format() {
-    let output = run_ustar_parser_stdin("data_test\n_item \"hello world\"\n")
-        .expect("Failed to run ustar-dumper");
+    // Test different line ending formats to ensure cross-platform compatibility
+    let test_cases = [
+        ("lf", "\n", "cli_output_lf"),
+        ("crlf", "\r\n", "cli_output_crlf"),
+    ];
 
-    let expected = std::fs::read_to_string("tests/test_data/simple_example.expected")
-        .expect("Failed to read expected output file");
-
-    assert_eq!(
-        output, expected,
-        "CLI output should match expected format exactly"
-    );
+    for (name, line_ending, snapshot_name) in test_cases {
+        let input = format!(
+            "data_test{}_item \"hello world\"{}",
+            line_ending, line_ending
+        );
+        let output = run_ustar_parser_stdin(&input)
+            .expect(&format!("Failed to run ustar-dumper with {} input", name));
+        insta::assert_snapshot!(snapshot_name, output);
+    }
 }
 
 #[test]
@@ -77,13 +82,7 @@ fn test_cli_test_input_star_file() {
     let output = run_ustar_parser("tests/test_data/test_input.star")
         .expect("Failed to run ustar-dumper on test_input.star");
 
-    let expected = std::fs::read_to_string("tests/test_data/test_input.star.expected")
-        .expect("Failed to read expected output file");
-
-    assert_eq!(
-        output, expected,
-        "CLI output should match expected format exactly"
-    );
+    insta::assert_snapshot!("test_input_star_output", output);
 }
 
 #[test]
@@ -91,13 +90,7 @@ fn test_cli_simple_star_file() {
     let output = run_ustar_parser("tests/test_data/simple_star_file.star")
         .expect("Failed to run ustar-dumper on simple_star_file.star");
 
-    let expected = std::fs::read_to_string("tests/test_data/simple_star_file.star.expected")
-        .expect("Failed to read expected output file");
-
-    assert_eq!(
-        output, expected,
-        "CLI output should match expected format exactly"
-    );
+    insta::assert_snapshot!("simple_star_file_output", output);
 }
 
 #[test]

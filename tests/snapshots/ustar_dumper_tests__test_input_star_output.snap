@@ -1,0 +1,24 @@
+---
+source: tests/ustar_dumper_tests.rs
+assertion_line: 86
+expression: output
+---
+source: tests/test_data/test_input.star
+
+symbol  level  rule name            offsets  line:col  content                                                         
+──────  ─────  ──── ────            ───────  ────────  ───────                                                         
+#1      [0]    star_file            0-92     1:1-8:2   data_test\n_item "hello[38;5;250m·[0mworld"...e text\nwith multiple lines\n; 
+#2      [1]    data_block           0-92     1:1-8:2   data_test\n_item "hello[38;5;250m·[0mworld"...e text\nwith multiple lines\n; 
+#3      [2]    data_heading         0-9      1:1-1:10  data_test                                                       
+#4      [2]    data                 10-29    2:1-2:20  _item "hello[38;5;250m·[0mworld"                                             
+#5      [3]    data_name            10-15    2:1-2:6   _item                                                           
+#6      [3]    double_quote_string  16-29    2:7-2:20  "hello[38;5;250m·[0mworld"                                                   
+#7      [2]    data                 30-39    3:1-3:10  _value 42                                                       
+#8      [3]    data_name            30-36    3:1-3:7   _value                                                          
+#9      [3]    non_quoted_string    37-39    3:8-3:10  42                                                              
+#10     [2]    data                 40-92    4:1-8:2   _long_text\n;\nThis is some text\nwith multiple lines\n;        
+#11     [3]    data_name            40-50    4:1-4:11  _long_text                                                      
+#12     [3]    semi_colon_string    50-92    4:11-8:2  \n;\nThis is some text\nwith multiple lines\n;                  
+#13     [1]    EOI                  92-92    8:2-8:2                                                                   
+
+lines: 8 symbols: 13
