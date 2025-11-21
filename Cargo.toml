@@ -8,6 +8,7 @@ license = "LGPL3"
 repository = "https://github.com/garyt/ustar"
 homepage = "https://github.com/garyt/ustar"
 documentation = "https://docs.rs/ustar"
+
 keywords = ["parser", "star", "cif", "mmcif", "crystallography"]
 categories = ["parsing", "science"]
 readme = "README.md"
@@ -18,6 +19,20 @@ exclude = [
     "target/*",
     "*.tmp"
 ]
+
+[lints.clippy]
+expect_fun_call = "allow"
+single_component_path_imports = "allow" 
+new_without_default = "allow"
+needless_borrows_for_generic_args = "allow"
+ptr_arg = "allow"
+useless_conversion = "allow"
+let_and_return = "allow"
+redundant_pattern_matching = "allow"
+manual_is_multiple_of = "allow"
+needless_range_loop = "allow"
+implicit_saturating_sub = "allow"
+useless_vec = "allow"
 
 [lib]
 name = "ustar"
