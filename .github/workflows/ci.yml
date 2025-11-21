@@ -1,0 +1,319 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+env:
+  CARGO_TERM_COLOR: always
+  RUST_BACKTRACE: 1
+
+jobs:
+  grammar-generation:
+    name: Generate Grammars
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Install Rust
+      uses: dtolnay/rust-toolchain@stable
+    
+    - name: Cache cargo dependencies
+      uses: actions/cache@v3
+      with:
+        path: |
+          ~/.cargo/bin/
+          ~/.cargo/registry/index/
+          ~/.cargo/registry/cache/
+          ~/.cargo/git/db/
+          target/
+        key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+    
+    - name: Generate grammar files
+      run: cargo build --verbose
+    
+    - name: Verify grammar files generated
+      run: |
+        ls -la src/star_*.pest
+        echo "Generated grammar files:"
+        echo "- ASCII: $(wc -l < src/star_ascii.pest) lines"
+        echo "- Extended: $(wc -l < src/star_extended.pest) lines" 
+        echo "- Unicode: $(wc -l < src/star_unicode.pest) lines"
+    
+    - name: Upload grammar artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: generated-grammars
+        path: src/star_*.pest
+
+  test:
+    name: Test Suite
+    runs-on: ${{ matrix.os }}
+    needs: grammar-generation
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        rust: [stable, 1.70.0] # MSRV
+        features: [default, no-default]
+        exclude:
+          # Only test MSRV on Ubuntu to save CI time
+          - os: windows-latest
+            rust: 1.70.0
+          - os: macos-latest
+            rust: 1.70.0
+
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Install Rust ${{ matrix.rust }}
+      uses: dtolnay/rust-toolchain@master
+      with:
+        toolchain: ${{ matrix.rust }}
+    
+    - name: Cache cargo dependencies
+      uses: actions/cache@v3
+      with:
+        path: |
+          ~/.cargo/bin/
+          ~/.cargo/registry/index/
+          ~/.cargo/registry/cache/
+          ~/.cargo/git/db/
+          target/
+        key: ${{ runner.os }}-${{ matrix.rust }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+    
+    - name: Download grammar artifacts
+      uses: actions/download-artifact@v4
+      with:
+        name: generated-grammars
+        path: src/
+    
+    - name: Build with default features
+      if: matrix.features == 'default'
+      run: cargo build --verbose --all-targets
+    
+    - name: Build without default features  
+      if: matrix.features == 'no-default'
+      run: cargo build --verbose --all-targets --no-default-features
+    
+    - name: Run tests with default features
+      if: matrix.features == 'default'
+      run: cargo test --verbose
+    
+    - name: Run tests without default features
+      if: matrix.features == 'no-default' 
+      run: cargo test --verbose --no-default-features
+    
+    - name: Test documentation
+      if: matrix.features == 'default' && matrix.rust == 'stable'
+      run: cargo test --doc
+    
+    - name: Test binaries work
+      if: matrix.features == 'default' && matrix.rust == 'stable'
+      run: |
+        cargo run --bin ustar-dumper -- --help
+        cargo run --bin ustar-benchmark -- --help  
+        cargo run --bin ustar-parse-debugger -- --help
+
+  code-quality:
+    name: Code Quality
+    runs-on: ubuntu-latest
+    needs: grammar-generation
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Install Rust
+      uses: dtolnay/rust-toolchain@stable
+      with:
+        components: clippy, rustfmt
+    
+    - name: Cache cargo dependencies
+      uses: actions/cache@v3
+      with:
+        path: |
+          ~/.cargo/bin/
+          ~/.cargo/registry/index/
+          ~/.cargo/registry/cache/
+          ~/.cargo/git/db/
+          target/
+        key: ${{ runner.os }}-clippy-cargo-${{ hashFiles('**/Cargo.lock') }}
+    
+    - name: Download grammar artifacts
+      uses: actions/download-artifact@v4
+      with:
+        name: generated-grammars
+        path: src/
+    
+    - name: Check formatting
+      run: cargo fmt --all -- --check
+    
+    - name: Run Clippy
+      run: cargo clippy --all-targets --all-features -- -D warnings
+    
+    - name: Check documentation
+      run: cargo doc --no-deps --document-private-items
+
+  integration-tests:
+    name: Integration Tests
+    runs-on: ubuntu-latest
+    needs: grammar-generation
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Install Rust
+      uses: dtolnay/rust-toolchain@stable
+    
+    - name: Cache cargo dependencies
+      uses: actions/cache@v3
+      with:
+        path: |
+          ~/.cargo/bin/
+          ~/.cargo/registry/index/
+          ~/.cargo/registry/cache/
+          ~/.cargo/git/db/
+          target/
+        key: ${{ runner.os }}-integration-cargo-${{ hashFiles('**/Cargo.lock') }}
+    
+    - name: Cache test data
+      uses: actions/cache@v3
+      with:
+        path: tests/test_data/
+        key: ${{ runner.os }}-test-data-${{ hashFiles('tests/test_data/**') }}
+    
+    - name: Download grammar artifacts
+      uses: actions/download-artifact@v4
+      with:
+        name: generated-grammars
+        path: src/
+    
+    - name: Run BMRB integration tests
+      run: cargo test --test parse_bmrb_stars
+    
+    - name: Run COD integration tests
+      run: cargo test --test parse_cod_cifs
+    
+    - name: Run PDB integration tests
+      run: cargo test --test parse_pdb_mmcifs
+    
+    - name: Run snapshot tests
+      run: cargo test error_handling_tests
+    
+    - name: Check for unused snapshots
+      run: |
+        if command -v cargo-insta &> /dev/null; then
+          cargo insta test --unreferenced=reject
+        else
+          echo "cargo-insta not available, skipping unreferenced snapshot check"
+        fi
+
+  release:
+    name: Release to Crates.io
+    runs-on: ubuntu-latest
+    needs: [test, code-quality, integration-tests]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main' && contains(github.event.head_commit.message, '[release]')
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+    
+    - name: Install Rust
+      uses: dtolnay/rust-toolchain@stable
+    
+    - name: Cache cargo dependencies
+      uses: actions/cache@v3
+      with:
+        path: |
+          ~/.cargo/bin/
+          ~/.cargo/registry/index/
+          ~/.cargo/registry/cache/
+          ~/.cargo/git/db/
+          target/
+        key: ${{ runner.os }}-release-cargo-${{ hashFiles('**/Cargo.lock') }}
+    
+    - name: Download grammar artifacts
+      uses: actions/download-artifact@v4
+      with:
+        name: generated-grammars
+        path: src/
+    
+    - name: Verify package can be built for release
+      run: cargo package --verbose
+    
+    - name: Extract version from Cargo.toml
+      id: version
+      run: |
+        VERSION=$(cargo metadata --no-deps --format-version 1 | jq -r '.packages[0].version')
+        echo "version=$VERSION" >> $GITHUB_OUTPUT
+        echo "Version to release: $VERSION"
+    
+    - name: Check if version already exists on crates.io
+      run: |
+        if cargo search ustar --limit 1 | grep -q "ustar = \"${{ steps.version.outputs.version }}\""; then
+          echo "Version ${{ steps.version.outputs.version }} already exists on crates.io"
+          exit 1
+        fi
+    
+    - name: Publish to crates.io
+      run: cargo publish --token ${{ secrets.CARGO_REGISTRY_TOKEN }}
+    
+    - name: Create GitHub release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: v${{ steps.version.outputs.version }}
+        release_name: Release v${{ steps.version.outputs.version }}
+        body: |
+          ## USTAR v${{ steps.version.outputs.version }}
+          
+          STAR format parser library for Rust.
+          
+          ### What's Included
+          - Core parser library published to crates.io as `ustar`
+          - Generated grammar files for ASCII, Extended ASCII, and Unicode modes
+          - Support for CIF, mmCIF, NMR-STAR, and other STAR format variants
+          
+          ### Installation
+          ```toml
+          [dependencies]
+          ustar = "${{ steps.version.outputs.version }}"
+          ```
+          
+          ### Documentation
+          - [Library Documentation](https://docs.rs/ustar/${{ steps.version.outputs.version }})
+          - [Repository](https://github.com/${{ github.repository }})
+        draft: false
+        prerelease: false
+    
+    - name: Upload grammar files to release
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: src/star_ascii.pest
+        asset_name: star_ascii.pest
+        asset_content_type: text/plain
+    
+    - name: Upload extended grammar to release
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: src/star_extended.pest
+        asset_name: star_extended.pest
+        asset_content_type: text/plain
+    
+    - name: Upload unicode grammar to release
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: src/star_unicode.pest
+        asset_name: star_unicode.pest
+        asset_content_type: text/plain

@@ -2,6 +2,21 @@
 name = "ustar"
 version = "0.1.0"
 edition = "2021"
+description = "STAR format parser for CIF, mmCIF, NMR-STAR files and other scientific data formats"
+license = "LGPL3"
+repository = "https://github.com/garyt/ustar"
+homepage = "https://github.com/garyt/ustar"
+documentation = "https://docs.rs/ustar"
+keywords = ["parser", "star", "cif", "mmcif", "crystallography"]
+categories = ["parsing", "science"]
+readme = "README.md"
+exclude = [
+    "tests/test_data/*",
+    "documents/*",
+    "scripts/*",
+    "target/*",
+    "*.tmp"
+]
 
 [lib]
 name = "ustar"
