@@ -13,13 +13,13 @@ use crate::mutable_pair::MutablePair;
 pub fn decompose_strings(pair: &mut MutablePair) {
     match pair.rule_name() {
         "double_quote_string" => {
-            decompose_delimited_string(pair, "\"", "DOUBLE_QUOTE");
+            decompose_delimited_string(pair, &["\""], "DOUBLE_QUOTE");
         }
         "single_quote_string" => {
-            decompose_delimited_string(pair, "'", "SINGLE_QUOTE");
+            decompose_delimited_string(pair, &["'"], "SINGLE_QUOTE");
         }
         "semi_colon_string" => {
-            decompose_delimited_string(pair, "\n;", "NEWLINE_SEMICOLON");
+            decompose_delimited_string(pair, &["\r\n;", "\n;"], "NEWLINE_SEMICOLON");
         }
         "non_quoted_string" => {
             // Convert non_quoted_string to string rule
@@ -34,43 +34,50 @@ pub fn decompose_strings(pair: &mut MutablePair) {
     }
 }
 
+
 /// Decompose delimited string into [delimiter, string, delimiter]
 /// Works for single-char delimiters (quotes) and multi-char delimiters (newline-semicolon)
-fn decompose_delimited_string(pair: &mut MutablePair, delimiter: &str, delimiter_name: &str) {
+/// Tries multiple possible delimiters in order
+fn decompose_delimited_string(pair: &mut MutablePair, delimiters: &[&str], delimiter_name: &str) {
     let content = &pair.content;
     let start_pos = pair.start;
-    let delimiter_len = delimiter.len();
 
-    if content.len() >= 2 * delimiter_len
-        && content.starts_with(delimiter)
-        && content.ends_with(delimiter)
-    {
-        let inner_content = &content[delimiter_len..content.len() - delimiter_len];
+    // Try each delimiter in order
+    for delimiter in delimiters {
+        let delimiter_len = delimiter.len();
+        
+        if content.len() >= 2 * delimiter_len
+            && content.starts_with(delimiter)
+            && content.ends_with(delimiter)
+        {
+            let inner_content = &content[delimiter_len..content.len() - delimiter_len];
 
-        // Create three new children
-        let opening_delimiter = MutablePair::new(
-            delimiter_name,
-            delimiter.to_string(),
-            start_pos,
-            start_pos + delimiter_len,
-        );
+            // Create three new children
+            let opening_delimiter = MutablePair::new(
+                delimiter_name,
+                delimiter.to_string(),
+                start_pos,
+                start_pos + delimiter_len,
+            );
 
-        let string_content = MutablePair::new(
-            "string",
-            inner_content.to_string(),
-            start_pos + delimiter_len,
-            start_pos + delimiter_len + inner_content.len(),
-        );
+            let string_content = MutablePair::new(
+                "string",
+                inner_content.to_string(),
+                start_pos + delimiter_len,
+                start_pos + delimiter_len + inner_content.len(),
+            );
 
-        let closing_delimiter = MutablePair::new(
-            delimiter_name,
-            delimiter.to_string(),
-            start_pos + delimiter_len + inner_content.len(),
-            start_pos + content.len(),
-        );
+            let closing_delimiter = MutablePair::new(
+                delimiter_name,
+                delimiter.to_string(),
+                start_pos + delimiter_len + inner_content.len(),
+                start_pos + content.len(),
+            );
 
-        // Replace children with decomposed tokens
-        pair.children = vec![opening_delimiter, string_content, closing_delimiter];
+            // Replace children with decomposed tokens
+            pair.children = vec![opening_delimiter, string_content, closing_delimiter];
+            return; // Found matching delimiter, stop trying
+        }
     }
 }
 

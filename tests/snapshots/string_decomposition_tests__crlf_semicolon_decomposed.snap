@@ -1,0 +1,79 @@
+---
+source: tests/string_decomposition_tests.rs
+assertion_line: 22
+expression: crlf_mutable
+---
+MutablePair {
+    rule_name: "star_file",
+    content: "data_test\r\n_multiline_text\r\n;\r\nThis is a test string.\r\nIt has multiple lines.\r\n;",
+    start: 0,
+    end: 80,
+    children: [
+        MutablePair {
+            rule_name: "data_block",
+            content: "data_test\r\n_multiline_text\r\n;\r\nThis is a test string.\r\nIt has multiple lines.\r\n;",
+            start: 0,
+            end: 80,
+            children: [
+                MutablePair {
+                    rule_name: "data_heading",
+                    content: "data_test",
+                    start: 0,
+                    end: 9,
+                    children: [],
+                },
+                MutablePair {
+                    rule_name: "data",
+                    content: "_multiline_text\r\n;\r\nThis is a test string.\r\nIt has multiple lines.\r\n;",
+                    start: 11,
+                    end: 80,
+                    children: [
+                        MutablePair {
+                            rule_name: "data_name",
+                            content: "_multiline_text",
+                            start: 11,
+                            end: 26,
+                            children: [],
+                        },
+                        MutablePair {
+                            rule_name: "semi_colon_string",
+                            content: "\r\n;\r\nThis is a test string.\r\nIt has multiple lines.\r\n;",
+                            start: 26,
+                            end: 80,
+                            children: [
+                                MutablePair {
+                                    rule_name: "NEWLINE_SEMICOLON",
+                                    content: "\r\n;",
+                                    start: 26,
+                                    end: 29,
+                                    children: [],
+                                },
+                                MutablePair {
+                                    rule_name: "string",
+                                    content: "\r\nThis is a test string.\r\nIt has multiple lines.",
+                                    start: 29,
+                                    end: 77,
+                                    children: [],
+                                },
+                                MutablePair {
+                                    rule_name: "NEWLINE_SEMICOLON",
+                                    content: "\r\n;",
+                                    start: 77,
+                                    end: 80,
+                                    children: [],
+                                },
+                            ],
+                        },
+                    ],
+                },
+            ],
+        },
+        MutablePair {
+            rule_name: "EOI",
+            content: "",
+            start: 80,
+            end: 80,
+            children: [],
+        },
+    ],
+}

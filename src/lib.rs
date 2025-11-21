@@ -35,8 +35,8 @@ pub mod mutable_pair;
 pub mod sas_interface;
 pub mod sas_walker;
 
-// String decomposer - transforms MutablePairs to decompose strings (internal)
-mod string_decomposer;
+// String decomposer - transforms MutablePair strings to decomposed strings
+pub mod string_decomposer;
 
 /// Configuration options for the USTAR parser
 #[derive(Debug, Clone, Hash, PartialEq, Eq)]
