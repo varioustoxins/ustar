@@ -57,14 +57,15 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
+        # rust: [stable, 1.80.0] # MSRV
         rust: [stable] # MSRV
         features: [default, no-default]
-        exclude:
-          # Only test MSRV on Ubuntu to save CI time
-          - os: windows-latest
-            rust: 1.70.0
-          - os: macos-latest
-            rust: 1.70.0
+        # exclude:
+        #   # Only test MSRV on Ubuntu to save CI time
+        #   - os: windows-latest
+        #     rust: 1.70.0
+        #   - os: macos-latest
+        #     rust: 1.70.0
 
     steps:
     - uses: actions/checkout@v4
