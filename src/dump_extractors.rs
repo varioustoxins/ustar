@@ -1,7 +1,7 @@
 //! Trait-based information extraction for dumping parse trees.
 //!
 //! This provides a uniform interface for extracting dump information
-//! from both real Pair<Rule> objects and mutable structures.
+//! from both real `Pair<Rule>` objects and mutable structures.
 
 use crate::mutable_pair::MutablePair;
 use crate::Rule;
@@ -34,7 +34,7 @@ pub trait DumpExtractor<T: ?Sized> {
     fn get_children(&self, node: &T) -> Self::ChildIter;
 }
 
-/// Extractor for Pair<Rule> objects - stateless!
+/// Extractor for `Pair<Rule>` objects - stateless!
 #[derive(Default)]
 pub struct PairExtractor;
 
@@ -112,7 +112,7 @@ impl DumpExtractor<MutablePair> for MutablePairExtractor {
     }
 }
 
-/// Dump a Pair<Rule> recursively
+/// Dump a `Pair<Rule>` recursively
 pub fn dump_pair(pair: &Pair<Rule>, level: usize) {
     let extractor = PairExtractor::new();
     let indent = "  ".repeat(level);

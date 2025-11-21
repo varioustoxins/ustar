@@ -21,7 +21,7 @@ pub enum EncodingMode {
 /// Error formatting mode for runtime display
 #[derive(Debug, Clone, Copy, Hash, PartialEq, Eq)]
 pub enum ErrorFormatMode {
-    /// Simple [line:col] format
+    /// Simple \[line:col\] format
     Basic,
     /// ASCII pest error report
     Ascii,

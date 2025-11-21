@@ -7,7 +7,7 @@
 use pest::RuleType;
 
 /// A mutable pair-like structure that mimics pest's Pair but with plain strings.
-/// Unlike Pair<Rule>, this can be constructed and modified freely.
+/// Unlike `Pair<Rule>`, this can be constructed and modified freely.
 /// Uses String for rule names to allow synthetic rules not in the grammar.
 #[derive(Debug, Clone, PartialEq)]
 pub struct MutablePair {
