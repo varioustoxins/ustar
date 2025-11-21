@@ -1348,6 +1348,60 @@ fn semi_colon_bounded_string_full_bad() {
     }
 }
 
+
+// Helper function to reduce boilerplate for comprehensive example tests
+fn test_comprehensive_example_with_line_endings(file_name: &str, has_crlf: bool, description: &str) {
+    let file_path = format!("tests/test_data/{}", file_name);
+    let test_string = std::fs::read_to_string(file_path).unwrap();
+
+    // Verify line endings
+    if has_crlf {
+        assert!(test_string.contains("\r\n"), "Test file should have CRLF line endings");
+    } else {
+        assert!(!test_string.contains("\r\n"), "Test file should have Unix LF line endings");
+    }
+    
+    // Should parse successfully - this exercises all major grammar components
+    let parse_result = AsciiParser::parse(AsciiRule::star_file, &test_string);
+    assert!(parse_result.is_ok(), "{}", description);
+    
+    let pairs = parse_result.unwrap();
+    let _star_file_pair = pairs.into_iter().next().unwrap();
+    // Note: Snapshot testing is done in the individual test functions below
+}
+
+#[test]
+fn comprehensive_example() {
+    test_comprehensive_example_with_line_endings(
+        "comprehensive_example.star",
+        false,
+        "Should parse comprehensive example with Unix LF line endings"
+    );
+    
+    // Test-specific snapshot testing
+    let file_path = "tests/test_data/comprehensive_example.star";
+    let test_string = std::fs::read_to_string(file_path).unwrap();
+    let pairs = AsciiParser::parse(AsciiRule::star_file, &test_string).unwrap();
+    let star_file_pair = pairs.into_iter().next().unwrap();
+    insta::assert_debug_snapshot!(star_file_pair);
+}
+
+#[test]
+fn comprehensive_example_crlf() {
+    test_comprehensive_example_with_line_endings(
+        "comprehensive_example_crlf.star",
+        true,
+        "Should parse comprehensive example with Windows CRLF line endings"
+    );
+    
+    // Test-specific snapshot testing
+    let file_path = "tests/test_data/comprehensive_example_crlf.star";
+    let test_string = std::fs::read_to_string(file_path).unwrap();
+    let pairs = AsciiParser::parse(AsciiRule::star_file, &test_string).unwrap();
+    let star_file_pair = pairs.into_iter().next().unwrap();
+    insta::assert_debug_snapshot!(star_file_pair);
+}
+
 #[test]
 fn comment_before_semicolon_string() {
     // Test that a comment between a loop definition and semicolon string works
