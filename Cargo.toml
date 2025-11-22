@@ -1,12 +1,12 @@
 [package]
 name = "ustar-parser"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 rust-version = "1.83.0"
-description = "STAR format parser for CIF, mmCIF, NMR-STAR files and other scientific data formats"
+description = "STAR format parser for CIF, mmCIF, NMR-STAR, cid dictionaries NEF files and other scientific data formats"
 license = "LGPL3"
-repository = "https://github.com/garyt/ustar"
-homepage = "https://github.com/garyt/ustar"
+repository = "https://github.com/varioustoxins/ustar"
+homepage = "https://github.com/varioustoxins/ustar"
 documentation = "https://docs.rs/ustar-parser"
 
 keywords = ["parser", "star", "cif", "mmcif", "crystallography"]
