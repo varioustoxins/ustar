@@ -14,7 +14,7 @@ A Rust parser for STAR (Self-defining Text Archive and Retrieval) format files, 
 
 ```toml
 [dependencies]
-ustar = "0.1"
+ustar-parser = "0.1"
 ```
 
 ```rust
