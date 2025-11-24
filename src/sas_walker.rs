@@ -143,18 +143,27 @@ impl<'a, T: SASContentHandler> StarWalker<'a, T> {
             }
 
             "data_loop" => {
-                self.handler
+                should_stop = self
+                    .handler
                     .start_loop(offset_to_line(&self.line_starts, node.start));
-                self.in_loop = true;
-                for child in &node.children {
-                    should_stop = self.walk_star_tree_buffered(child);
-                    if should_stop {
-                        break;
+
+                if !should_stop {
+                    self.in_loop = true;
+                    for child in &node.children {
+                        should_stop = self.walk_star_tree_buffered(child);
+                        if should_stop {
+                            break;
+                        }
+                    }
+                    self.in_loop = false;
+
+                    if !should_stop {
+                        should_stop = self
+                            .handler
+                            .end_loop(offset_to_line(&self.line_starts, node.end));
                     }
                 }
-                self.in_loop = false;
-                self.handler
-                    .end_loop(offset_to_line(&self.line_starts, node.end));
+
                 self.tag_table.clear();
                 self.tag_lines.clear();
                 self.tag_level = 0;
@@ -178,12 +187,16 @@ impl<'a, T: SASContentHandler> StarWalker<'a, T> {
                 should_stop = self
                     .handler
                     .start_data(offset_to_line(&self.line_starts, node.start), data_name);
-                for child in &node.children[1..] {
-                    should_stop = self.walk_star_tree_buffered(child);
-                    if should_stop {
-                        break;
+
+                if !should_stop {
+                    for child in &node.children[1..] {
+                        should_stop = self.walk_star_tree_buffered(child);
+                        if should_stop {
+                            break;
+                        }
                     }
                 }
+
                 if !should_stop {
                     should_stop = self
                         .handler
@@ -196,12 +209,16 @@ impl<'a, T: SASContentHandler> StarWalker<'a, T> {
                 should_stop = self
                     .handler
                     .start_saveframe(offset_to_line(&self.line_starts, node.start), frame_name);
-                for child in &node.children[1..] {
-                    should_stop = self.walk_star_tree_buffered(child);
-                    if should_stop {
-                        break;
+
+                if !should_stop {
+                    for child in &node.children[1..] {
+                        should_stop = self.walk_star_tree_buffered(child);
+                        if should_stop {
+                            break;
+                        }
                     }
                 }
+
                 if !should_stop {
                     should_stop = self
                         .handler
