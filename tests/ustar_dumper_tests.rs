@@ -15,6 +15,20 @@ fn run_ustar_parser(input_file: &str) -> Result<String, Box<dyn std::error::Erro
     }
 }
 
+/// Test helper to run ustar-dumper with tree flag and capture output
+fn run_ustar_parser_with_tree(input_file: &str) -> Result<String, Box<dyn std::error::Error>> {
+    let output = Command::new("cargo")
+        .args(&["run", "--bin", "ustar-dumper", "--", "--tree", input_file])
+        .output()?;
+
+    if output.status.success() {
+        Ok(String::from_utf8(output.stdout)?)
+    } else {
+        let stderr = String::from_utf8(output.stderr)?;
+        Err(format!("Command failed: {}", stderr).into())
+    }
+}
+
 /// Test helper to run ustar-dumper with stdin and capture output
 fn run_ustar_parser_stdin(input: &str) -> Result<String, Box<dyn std::error::Error>> {
     let mut child = Command::new("cargo")
@@ -160,4 +174,45 @@ fn test_cli_error_handling() {
 
     // Should fail gracefully - we expect this to return an error
     assert!(result.is_err(), "Should fail on invalid syntax");
+}
+
+#[test]
+fn test_cli_comprehensive_example_without_tree() {
+    let output = run_ustar_parser("tests/test_data/comprehensive_example.star")
+        .expect("Failed to run ustar-dumper on comprehensive_example.star");
+
+    insta::assert_snapshot!("comprehensive_example_without_tree", output);
+}
+
+#[test]
+fn test_cli_comprehensive_example_with_tree() {
+    let output = run_ustar_parser_with_tree("tests/test_data/comprehensive_example.star")
+        .expect("Failed to run ustar-dumper with tree on comprehensive_example.star");
+
+    insta::assert_snapshot!("comprehensive_example_with_tree", output);
+}
+
+#[test]
+fn test_cli_simple_example_with_tree() {
+    let input = "data_test _value 'hello world'\n";
+    let mut child = Command::new("cargo")
+        .args(&["run", "--bin", "ustar-dumper", "--", "--tree"])
+        .stdin(std::process::Stdio::piped())
+        .stdout(std::process::Stdio::piped())
+        .stderr(std::process::Stdio::piped())
+        .spawn()
+        .expect("Failed to spawn ustar-dumper");
+
+    if let Some(stdin) = child.stdin.take() {
+        use std::io::Write;
+        let mut stdin = stdin;
+        stdin
+            .write_all(input.as_bytes())
+            .expect("Failed to write to stdin");
+    }
+
+    let output = child.wait_with_output().expect("Failed to wait for output");
+    let output_str = String::from_utf8(output.stdout).expect("Failed to parse stdout");
+
+    insta::assert_snapshot!("simple_example_with_tree", output_str);
 }
