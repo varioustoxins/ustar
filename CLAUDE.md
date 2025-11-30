@@ -89,3 +89,6 @@ The `build.rs` script generates three grammar variants from `src/star.pest_templ
 - String decomposition is optional and controlled via configuration
 - All parsers share identical rule structures but differ in character class definitions
 - The project includes extensive real-world test data for validation
+
+## Version control
+- _ALL_ commits to version control will be made by the user not claude...
