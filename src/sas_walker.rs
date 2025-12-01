@@ -1,26 +1,10 @@
+use crate::line_column_index::LineColumnIndex;
 use crate::mutable_pair::MutablePair;
 use crate::sas_interface::SASContentHandler;
 
-fn compute_line_starts(input: &str) -> Vec<usize> {
-    let mut starts = vec![0];
-    for (i, c) in input.char_indices() {
-        if c == '\n' {
-            starts.push(i + 1);
-        }
-    }
-    starts
-}
-
-fn offset_to_line(line_starts: &[usize], offset: usize) -> usize {
-    match line_starts.binary_search(&offset) {
-        Ok(line) => line + 1, // exact match
-        Err(line) => line,    // line is the first greater, so previous is the line
-    }
-}
-
 /// Walks a MutablePair parse tree and calls the BufferedContentHandler methods.
 pub struct StarWalker<'a, T: SASContentHandler> {
-    pub line_starts: Vec<usize>,
+    line_index: LineColumnIndex, // Fast line/column index (always present)
     pub tag_table: Vec<Vec<String>>,
     pub tag_level: usize,
     pub tag_index: usize,
@@ -50,9 +34,10 @@ impl<'a, T: SASContentHandler> StarWalker<'a, T> {
             }
         }
     }
-    pub fn new(handler: &'a mut T, line_starts: Vec<usize>) -> Self {
+    pub fn from_input(handler: &'a mut T, input: &str) -> Self {
+        let line_index = LineColumnIndex::new(input);
         StarWalker {
-            line_starts,
+            line_index,
             tag_table: Vec::new(),
             tag_level: 0,
             tag_index: 0,
@@ -62,9 +47,9 @@ impl<'a, T: SASContentHandler> StarWalker<'a, T> {
         }
     }
 
-    pub fn from_input(handler: &'a mut T, input: &str) -> Self {
-        let line_starts = compute_line_starts(input);
-        Self::new(handler, line_starts)
+    /// Get line number for a byte offset (private)
+    fn get_line_number(&self, offset: usize) -> usize {
+        self.line_index.offset_to_line_col(offset).0
     }
 
     pub fn walk_star_tree_buffered(&mut self, node: &MutablePair) -> bool {
@@ -89,7 +74,7 @@ impl<'a, T: SASContentHandler> StarWalker<'a, T> {
                 let value_node = &node.children[1];
                 let tag = self.tag_table[self.tag_level][self.tag_index].as_str();
                 let tagline = self.tag_lines[self.tag_level][self.tag_index];
-                let valline = offset_to_line(&self.line_starts, value_node.start);
+                let valline = self.get_line_number(value_node.start);
                 let children = &value_node.children;
                 if children.len() == 3 {
                     let delimiter = &children[0].content;
@@ -115,7 +100,7 @@ impl<'a, T: SASContentHandler> StarWalker<'a, T> {
             "non_quoted_string" | "string" => {
                 let tag = self.tag_table[self.tag_level][self.tag_index].as_str();
                 let tagline = self.tag_lines[self.tag_level][self.tag_index];
-                let valline = offset_to_line(&self.line_starts, node.start);
+                let valline = self.get_line_number(node.start);
                 let value = node.content.as_str();
                 should_stop = self
                     .handler
@@ -126,7 +111,7 @@ impl<'a, T: SASContentHandler> StarWalker<'a, T> {
                 let tag = self.tag_table[self.tag_level][self.tag_index].as_str();
                 let tagline = self.tag_lines[self.tag_level][self.tag_index];
                 let value = node.content.as_str();
-                let valline = offset_to_line(&self.line_starts, node.start);
+                let valline = self.get_line_number(node.start);
                 should_stop = self
                     .handler
                     .data(tag, tagline, value, valline, "", self.in_loop);
@@ -143,9 +128,7 @@ impl<'a, T: SASContentHandler> StarWalker<'a, T> {
             }
 
             "data_loop" => {
-                should_stop = self
-                    .handler
-                    .start_loop(offset_to_line(&self.line_starts, node.start));
+                should_stop = self.handler.start_loop(self.get_line_number(node.start));
 
                 if !should_stop {
                     self.in_loop = true;
@@ -158,9 +141,7 @@ impl<'a, T: SASContentHandler> StarWalker<'a, T> {
                     self.in_loop = false;
 
                     if !should_stop {
-                        should_stop = self
-                            .handler
-                            .end_loop(offset_to_line(&self.line_starts, node.end));
+                        should_stop = self.handler.end_loop(self.get_line_number(node.end));
                     }
                 }
 
@@ -171,14 +152,14 @@ impl<'a, T: SASContentHandler> StarWalker<'a, T> {
             }
 
             "data_name" => {
+                let line_number = self.get_line_number(node.start);
                 if self.in_loop {
                     let last = self.tag_table.len() - 1;
                     self.tag_table[last].push(node.content.to_string());
-                    self.tag_lines[last].push(offset_to_line(&self.line_starts, node.start));
+                    self.tag_lines[last].push(line_number);
                 } else {
                     self.tag_table.push(vec![node.content.to_string()]);
-                    self.tag_lines
-                        .push(vec![offset_to_line(&self.line_starts, node.start)]);
+                    self.tag_lines.push(vec![line_number]);
                 }
             }
             "data_block" => {
@@ -186,7 +167,7 @@ impl<'a, T: SASContentHandler> StarWalker<'a, T> {
                 let data_name = &data_heading.content[5..];
                 should_stop = self
                     .handler
-                    .start_data(offset_to_line(&self.line_starts, node.start), data_name);
+                    .start_data(self.get_line_number(node.start), data_name);
 
                 if !should_stop {
                     for child in &node.children[1..] {
@@ -200,7 +181,7 @@ impl<'a, T: SASContentHandler> StarWalker<'a, T> {
                 if !should_stop {
                     should_stop = self
                         .handler
-                        .end_data(offset_to_line(&self.line_starts, node.end), data_name);
+                        .end_data(self.get_line_number(node.end), data_name);
                 }
             }
             "save_frame" => {
@@ -208,7 +189,7 @@ impl<'a, T: SASContentHandler> StarWalker<'a, T> {
                 let frame_name = &save_heading.content[5..];
                 should_stop = self
                     .handler
-                    .start_saveframe(offset_to_line(&self.line_starts, node.start), frame_name);
+                    .start_saveframe(self.get_line_number(node.start), frame_name);
 
                 if !should_stop {
                     for child in &node.children[1..] {
@@ -222,13 +203,13 @@ impl<'a, T: SASContentHandler> StarWalker<'a, T> {
                 if !should_stop {
                     should_stop = self
                         .handler
-                        .end_saveframe(offset_to_line(&self.line_starts, node.end), frame_name);
+                        .end_saveframe(self.get_line_number(node.end), frame_name);
                 }
             }
             "comment" => {
                 should_stop = self
                     .handler
-                    .comment(offset_to_line(&self.line_starts, node.start), &node.content);
+                    .comment(self.get_line_number(node.start), &node.content);
             }
             _ => {
                 for child in &node.children {

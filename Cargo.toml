@@ -56,6 +56,7 @@ extended-errors = ["miette", "thiserror"]
 [dependencies]
 pest = "2.8"
 pest_derive = { version = "2.8", features = ["grammar-extras"] }
+memchr = "2.7"
 tabled = "0.16"
 clap = { version = "4.5", features = ["derive"] }
 serde = { version = "1.0", features = ["derive"] }

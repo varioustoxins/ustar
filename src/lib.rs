@@ -38,6 +38,9 @@ pub mod sas_walker;
 // String decomposer - transforms MutablePair strings to decomposed strings
 pub mod string_decomposer;
 
+// Fast line/column lookup index
+pub mod line_column_index;
+
 /// Configuration options for the USTAR parser
 #[derive(Debug, Clone, Hash, PartialEq, Eq)]
 pub enum UstarConfiguration {
