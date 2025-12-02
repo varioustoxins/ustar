@@ -1,8 +1,20 @@
+use insta::assert_snapshot;
 use std::collections::HashMap;
 use std::fs;
+use std::path::Path;
+use ustar::line_column_index::LineColumn;
 use ustar::parse_default;
 use ustar::sas_interface::SASContentHandler;
 use ustar::sas_walker::StarWalker;
+
+// Files that are known to fail parsing (or have special handling needs)
+static KNOWN_PARSE_FAILURES: &[&str] = &[
+    "loop3.str",
+    "loop4.str",
+    "loop5.str",
+    "warning.cif",
+    "warning.str",
+];
 
 // Test input constants for early termination tests
 const BASIC_INPUT: &str = "
@@ -143,11 +155,11 @@ impl SASContentHandler for ParameterizedHandler {
     fn data(
         &mut self,
         tag: &str,
-        _tagline: usize,
+        _tag_position: LineColumn,
         value: &str,
-        _valline: usize,
+        _value_position: LineColumn,
         _delimiter: &str,
-        _inloop: bool,
+        _loop_level: usize,
     ) -> bool {
         self.events.push(format!("data({}, {})", tag, value));
         self.increment_and_check(ElementType::Data)
@@ -215,17 +227,23 @@ impl SASContentHandler for ComprehensiveTestHandler {
     fn data(
         &mut self,
         tag: &str,
-        tagline: usize,
+        tag_position: LineColumn,
         value: &str,
-        valline: usize,
+        value_position: LineColumn,
         delimiter: &str,
-        inloop: bool,
+        loop_level: usize,
     ) -> bool {
         match delimiter {
             "\n" => {
                 self.output.push(format!(
-                    "<data> [t:{},v:{}] {} delimiter: {:?} inloop: {} value:",
-                    tagline, valline, tag, delimiter, inloop
+                    "<data> [t:{}:{},v:{}:{}] {} delimiter: {:?} loop_level: {} value:",
+                    tag_position.line,
+                    tag_position.column,
+                    value_position.line,
+                    value_position.column,
+                    tag,
+                    delimiter,
+                    loop_level
                 ));
                 for line in value.lines() {
                     self.output.push(format!("       {}", line));
@@ -233,22 +251,13 @@ impl SASContentHandler for ComprehensiveTestHandler {
             }
             _ => {
                 self.output.push(format!(
-                    "<data> [t:{},v:{}] {} delimiter: {} inloop: {} value [multiline]: {}",
-                    tagline, valline, tag, delimiter, inloop, value
+                    "<data> [t:{}:{},v:{}:{}] {} delimiter: {} loop_level: {} value [multiline]: {}",
+                    tag_position.line, tag_position.column, value_position.line, value_position.column, tag, delimiter, loop_level, value
                 ));
             }
         }
         false
     }
-}
-
-// Utility function to normalize whitespace for comparison
-fn normalize_whitespace(s: &str) -> String {
-    s.lines()
-        .map(|line| line.trim())
-        .filter(|line| !line.is_empty())
-        .collect::<Vec<_>>()
-        .join("\n")
 }
 
 #[test]
@@ -261,35 +270,8 @@ fn test_simple_data_walker_output() {
 
     walker.walk_star_tree_buffered(&tree);
 
-    let expected_output = vec![
-        "<start data> [1] test",
-        "<data> [t:2,v:2] _tag_line_2 delimiter:  inloop: false value [multiline]: value1",
-        "<data> [t:3,v:3] _tag_line_3 delimiter: ' inloop: false value [multiline]: quoted value",
-        "<data> [t:5,v:5] _tag_line_5 delimiter:  inloop: false value [multiline]: value3",
-        "<end data> [5] test",
-    ];
-
-    assert_eq!(
-        handler.output.len(),
-        expected_output.len(),
-        "Output length mismatch. Expected: {:?}, Got: {:?}",
-        expected_output,
-        handler.output
-    );
-
-    for (i, (expected, actual)) in expected_output
-        .iter()
-        .zip(handler.output.iter())
-        .enumerate()
-    {
-        let normalized_expected = normalize_whitespace(expected);
-        let normalized_actual = normalize_whitespace(actual);
-        assert_eq!(
-            normalized_expected, normalized_actual,
-            "Line {} mismatch.\nExpected: '{}'\nActual: '{}'",
-            i, expected, actual
-        );
-    }
+    let output = handler.output.join("\n");
+    assert_snapshot!(output);
 }
 
 #[test]
@@ -302,38 +284,8 @@ fn test_loop_walker_output() {
 
     walker.walk_star_tree_buffered(&tree);
 
-    let expected_output = vec![
-        "<start data> [1] test",
-        "<start_loop> [2]",
-        "<data> [t:3,v:5] _tag1 delimiter:  inloop: true value [multiline]: val1",
-        "<data> [t:4,v:5] _tag2 delimiter:  inloop: true value [multiline]: val2",
-        "<data> [t:3,v:6] _tag1 delimiter:  inloop: true value [multiline]: val3",
-        "<data> [t:4,v:6] _tag2 delimiter:  inloop: true value [multiline]: val4",
-        "<end_loop> [6]",
-        "<end data> [6] test",
-    ];
-
-    assert_eq!(
-        handler.output.len(),
-        expected_output.len(),
-        "Output length mismatch. Expected: {:?}, Got: {:?}",
-        expected_output,
-        handler.output
-    );
-
-    for (i, (expected, actual)) in expected_output
-        .iter()
-        .zip(handler.output.iter())
-        .enumerate()
-    {
-        let normalized_expected = normalize_whitespace(expected);
-        let normalized_actual = normalize_whitespace(actual);
-        assert_eq!(
-            normalized_expected, normalized_actual,
-            "Line {} mismatch.\nExpected: '{}'\nActual: '{}'",
-            i, expected, actual
-        );
-    }
+    let output = handler.output.join("\n");
+    assert_snapshot!(output);
 }
 
 #[test]
@@ -346,37 +298,8 @@ fn test_multiline_and_frame_codes() {
 
     walker.walk_star_tree_buffered(&tree);
 
-    let expected_output = vec![
-        "<start data> [1] test",
-        "<data> [t:2,v:2] _frame_ref delimiter:  inloop: false value [multiline]: $frame1",
-        "<data> [t:3,v:4] _multiline delimiter: \"\\n\" inloop: false value:",
-        "       ;",
-        "       This is multiline",
-        "       text content",
-        "<end data> [7] test",
-    ];
-
-    assert_eq!(
-        handler.output.len(),
-        expected_output.len(),
-        "Output length mismatch. Expected: {:?}, Got: {:?}",
-        expected_output,
-        handler.output
-    );
-
-    for (i, (expected, actual)) in expected_output
-        .iter()
-        .zip(handler.output.iter())
-        .enumerate()
-    {
-        let normalized_expected = normalize_whitespace(expected);
-        let normalized_actual = normalize_whitespace(actual);
-        assert_eq!(
-            normalized_expected, normalized_actual,
-            "Line {} mismatch.\nExpected: '{}'\nActual: '{}'",
-            i, expected, actual
-        );
-    }
+    let output = handler.output.join("\n");
+    assert_snapshot!(output);
 }
 
 #[test]
@@ -389,46 +312,14 @@ fn test_saveframe_walker_output() {
 
     walker.walk_star_tree_buffered(&tree);
 
-    let expected_output = vec![
-        "<start data> [1] test",
-        "<start saveframe> [2] frame1",
-        "<data> [t:3,v:3] _tag delimiter:  inloop: false value [multiline]: value",
-        "<end saveframe> [4] frame1",
-        "<end data> [4] test",
-    ];
-
-    assert_eq!(
-        handler.output.len(),
-        expected_output.len(),
-        "Output length mismatch. Expected: {:?}, Got: {:?}",
-        expected_output,
-        handler.output
-    );
-
-    for (i, (expected, actual)) in expected_output
-        .iter()
-        .zip(handler.output.iter())
-        .enumerate()
-    {
-        let normalized_expected = normalize_whitespace(expected);
-        let normalized_actual = normalize_whitespace(actual);
-        assert_eq!(
-            normalized_expected, normalized_actual,
-            "Line {} mismatch.\nExpected: '{}'\nActual: '{}'",
-            i, expected, actual
-        );
-    }
+    let output = handler.output.join("\n");
+    assert_snapshot!(output);
 }
 #[test]
 fn test_comprehensive_example_walker_output() {
     // Read the input file from test_data
     let input = fs::read_to_string("tests/test_data/comprehensive_example.star")
         .expect("Failed to read comprehensive example file");
-
-    // Read the expected output file
-    let expected_output_text =
-        fs::read_to_string("tests/test_data/comprehensive_example_walker_output.txt")
-            .expect("Failed to read expected output file");
 
     // Parse and walk the input
     let tree = parse_default(&input).expect("Failed to parse comprehensive example");
@@ -437,39 +328,8 @@ fn test_comprehensive_example_walker_output() {
 
     walker.walk_star_tree_buffered(&tree);
 
-    // Convert expected output text to lines
-    let expected_lines: Vec<&str> = expected_output_text.lines().collect();
-
-    // Compare lengths
-    assert_eq!(
-        handler.output.len(),
-        expected_lines.len(),
-        "Output length mismatch. Expected {} lines, got {} lines.\nFirst few actual lines: {:?}",
-        expected_lines.len(),
-        handler.output.len(),
-        handler.output.iter().take(10).collect::<Vec<_>>()
-    );
-
-    // Compare each line with normalization
-    // should really be in a utility function
-    for (i, (expected, actual)) in expected_lines.iter().zip(handler.output.iter()).enumerate() {
-        let normalized_expected = normalize_whitespace(expected);
-        let normalized_actual = normalize_whitespace(actual);
-
-        if normalized_expected != normalized_actual {
-            println!("Mismatch at line {}", i);
-            println!("Expected: '{}'", expected);
-            println!("Actual:   '{}'", actual);
-            println!("Expected normalized: '{}'", normalized_expected);
-            println!("Actual normalized:   '{}'", normalized_actual);
-        }
-
-        assert_eq!(
-            normalized_expected, normalized_actual,
-            "Line {} mismatch.\nExpected: '{}'\nActual: '{}'",
-            i, expected, actual
-        );
-    }
+    let output = handler.output.join("\n");
+    assert_snapshot!(output);
 }
 
 #[test]
@@ -549,4 +409,56 @@ fn test_early_termination_all_methods() {
         BASIC_INPUT,
         &["start_data(test)", "data(_item1, value1)"],
     );
+}
+
+// ============================================================================
+// Snapshot tests for SAS test files
+// ============================================================================
+
+/// Generate a snapshot test for each file in the sas_test_files directory
+/// that can be successfully parsed
+#[test]
+fn test_sas_test_files_walker_output() {
+    let dir = Path::new("tests/test_data/sas_test_files");
+    assert!(
+        dir.exists() && dir.is_dir(),
+        "Directory {:?} does not exist",
+        dir
+    );
+
+    for entry in fs::read_dir(dir).expect("read_dir failed") {
+        let entry = entry.expect("entry failed");
+        let path = entry.path();
+        if let Some(ext) = path.extension() {
+            if ext == "str" || ext == "cif" || ext == "dic" {
+                let filename = path.file_name().unwrap().to_string_lossy().to_string();
+
+                // Skip known parse failures
+                if KNOWN_PARSE_FAILURES.contains(&filename.as_str()) {
+                    continue;
+                }
+
+                let data =
+                    fs::read(&path).unwrap_or_else(|_| panic!("Failed to read file {:?}", path));
+                let content = String::from_utf8_lossy(&data).to_string();
+
+                // Parse and walk the file
+                let tree = parse_default(&content)
+                    .unwrap_or_else(|e| panic!("Failed to parse {:?}: {}", path, e));
+                let mut handler = ComprehensiveTestHandler { output: Vec::new() };
+                let mut walker = StarWalker::from_input(&mut handler, &content);
+
+                walker.walk_star_tree_buffered(&tree);
+
+                let output = handler.output.join("\n");
+
+                // Use insta's dynamic snapshot naming
+                insta::with_settings!({
+                    snapshot_suffix => filename.replace('.', "_"),
+                }, {
+                    assert_snapshot!(output);
+                });
+            }
+        }
+    }
 }
