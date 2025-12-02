@@ -7,6 +7,8 @@ use ustar::parse_default;
 use ustar::sas_interface::SASContentHandler;
 use ustar::sas_walker::StarWalker;
 
+mod snapshot_utils;
+
 // Files that are known to fail parsing (or have special handling needs)
 static KNOWN_PARSE_FAILURES: &[&str] = &[
     "loop3.str",   // loop with no header we should fail this
@@ -271,7 +273,7 @@ fn test_simple_data_walker_output() {
     walker.walk_star_tree_buffered(&tree);
 
     let output = handler.output.join("\n");
-    assert_snapshot!(output);
+    snapshot_utils::assert_snapshot_gz("sas_walker_tests__simple_data_walker_output", &output);
 }
 
 #[test]
@@ -299,7 +301,7 @@ fn test_multiline_and_frame_codes() {
     walker.walk_star_tree_buffered(&tree);
 
     let output = handler.output.join("\n");
-    assert_snapshot!(output);
+    snapshot_utils::assert_snapshot_gz("sas_walker_tests__multiline_and_frame_codes", &output);
 }
 
 #[test]
