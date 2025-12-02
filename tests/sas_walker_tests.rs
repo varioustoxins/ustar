@@ -9,11 +9,11 @@ use ustar::sas_walker::StarWalker;
 
 // Files that are known to fail parsing (or have special handling needs)
 static KNOWN_PARSE_FAILURES: &[&str] = &[
-    "loop3.str",
-    "loop4.str",
-    "loop5.str",
-    "warning.cif",
-    "warning.str",
+    "loop3.str",   // loop with no header we should fail this
+    "loop4.str",   // loop with no body, should we parse this
+    "loop5.str",   // has triple quoted strings
+    "warning.cif", // has triple quoted strings again and tests an error state...
+    "warning.str", // uses triple quoted strings and tests an error state [runaway string]P
 ];
 
 // Test input constants for early termination tests
