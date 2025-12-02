@@ -1,4 +1,4 @@
-use crate::line_column_index::LineColumnIndex;
+use crate::line_column_index::{LineColumn, LineColumnIndex};
 use crate::mutable_pair::MutablePair;
 use crate::sas_interface::SASContentHandler;
 
@@ -8,8 +8,8 @@ pub struct StarWalker<'a, T: SASContentHandler> {
     pub tag_table: Vec<Vec<String>>,
     pub tag_level: usize,
     pub tag_index: usize,
-    pub tag_lines: Vec<Vec<usize>>,
-    pub in_loop: bool,
+    pub tag_positions: Vec<Vec<LineColumn>>,
+    pub loop_level: usize, // 0 = not in loop, 1+ = loop nesting level
     pub handler: &'a mut T,
 }
 
@@ -41,15 +41,20 @@ impl<'a, T: SASContentHandler> StarWalker<'a, T> {
             tag_table: Vec::new(),
             tag_level: 0,
             tag_index: 0,
-            tag_lines: Vec::new(),
-            in_loop: false,
+            tag_positions: Vec::new(),
+            loop_level: 0,
             handler,
         }
     }
 
     /// Get line number for a byte offset (private)
     fn get_line_number(&self, offset: usize) -> usize {
-        self.line_index.offset_to_line_col(offset).0
+        self.line_index.offset_to_line_col(offset).line
+    }
+
+    /// Get line and column for a byte offset (private)
+    fn get_line_column(&self, offset: usize) -> LineColumn {
+        self.line_index.offset_to_line_col(offset)
     }
 
     pub fn walk_star_tree_buffered(&mut self, node: &MutablePair) -> bool {
@@ -62,9 +67,9 @@ impl<'a, T: SASContentHandler> StarWalker<'a, T> {
                         break;
                     }
                 }
-                if !self.in_loop {
+                if self.loop_level == 0 {
                     self.tag_table.clear();
-                    self.tag_lines.clear();
+                    self.tag_positions.clear();
                 }
             }
             "semi_colon_string" | "double_quote_string" | "single_quote_string" => {
@@ -73,15 +78,20 @@ impl<'a, T: SASContentHandler> StarWalker<'a, T> {
                 }
                 let value_node = &node.children[1];
                 let tag = self.tag_table[self.tag_level][self.tag_index].as_str();
-                let tagline = self.tag_lines[self.tag_level][self.tag_index];
-                let valline = self.get_line_number(value_node.start);
+                let tag_position = self.tag_positions[self.tag_level][self.tag_index];
+                let value_position = self.get_line_column(value_node.start);
                 let children = &value_node.children;
                 if children.len() == 3 {
                     let delimiter = &children[0].content;
                     let value = &children[1].content;
-                    should_stop =
-                        self.handler
-                            .data(tag, tagline, value, valline, delimiter, self.in_loop);
+                    should_stop = self.handler.data(
+                        tag,
+                        tag_position,
+                        value,
+                        value_position,
+                        delimiter,
+                        self.loop_level,
+                    );
                 } else {
                     let delimiter = &node.content[0..1];
                     let value = if delimiter == ";" {
@@ -89,9 +99,14 @@ impl<'a, T: SASContentHandler> StarWalker<'a, T> {
                     } else {
                         &node.content[1..node.content.len() - 1]
                     };
-                    should_stop =
-                        self.handler
-                            .data(tag, tagline, value, valline, delimiter, self.in_loop);
+                    should_stop = self.handler.data(
+                        tag,
+                        tag_position,
+                        value,
+                        value_position,
+                        delimiter,
+                        self.loop_level,
+                    );
                 }
 
                 self.increment_tag_pointers();
@@ -99,22 +114,32 @@ impl<'a, T: SASContentHandler> StarWalker<'a, T> {
             // TODO: would it be better to make a non_quoted_string decompose to un_quoted_string->string for consistency
             "non_quoted_string" | "string" => {
                 let tag = self.tag_table[self.tag_level][self.tag_index].as_str();
-                let tagline = self.tag_lines[self.tag_level][self.tag_index];
-                let valline = self.get_line_number(node.start);
+                let tag_position = self.tag_positions[self.tag_level][self.tag_index];
+                let value_position = self.get_line_column(node.start);
                 let value = node.content.as_str();
-                should_stop = self
-                    .handler
-                    .data(tag, tagline, value, valline, "", self.in_loop);
+                should_stop = self.handler.data(
+                    tag,
+                    tag_position,
+                    value,
+                    value_position,
+                    "",
+                    self.loop_level,
+                );
                 self.increment_tag_pointers();
             }
             "frame_code" => {
                 let tag = self.tag_table[self.tag_level][self.tag_index].as_str();
-                let tagline = self.tag_lines[self.tag_level][self.tag_index];
+                let tag_position = self.tag_positions[self.tag_level][self.tag_index];
                 let value = node.content.as_str();
-                let valline = self.get_line_number(node.start);
-                should_stop = self
-                    .handler
-                    .data(tag, tagline, value, valline, "", self.in_loop);
+                let value_position = self.get_line_column(node.start);
+                should_stop = self.handler.data(
+                    tag,
+                    tag_position,
+                    value,
+                    value_position,
+                    "",
+                    self.loop_level,
+                );
                 self.increment_tag_pointers();
             }
             "stop_keyword" => {
@@ -124,21 +149,21 @@ impl<'a, T: SASContentHandler> StarWalker<'a, T> {
             "loop_keyword" => {
                 // Each time a loop keyword is seen, add an empty tag list for this loop level
                 self.tag_table.push(Vec::new());
-                self.tag_lines.push(Vec::new());
+                self.tag_positions.push(Vec::new());
             }
 
             "data_loop" => {
                 should_stop = self.handler.start_loop(self.get_line_number(node.start));
 
                 if !should_stop {
-                    self.in_loop = true;
+                    self.loop_level = 1; // Enter first loop level
                     for child in &node.children {
                         should_stop = self.walk_star_tree_buffered(child);
                         if should_stop {
                             break;
                         }
                     }
-                    self.in_loop = false;
+                    self.loop_level = 0; // Exit loop
 
                     if !should_stop {
                         should_stop = self.handler.end_loop(self.get_line_number(node.end));
@@ -146,20 +171,20 @@ impl<'a, T: SASContentHandler> StarWalker<'a, T> {
                 }
 
                 self.tag_table.clear();
-                self.tag_lines.clear();
+                self.tag_positions.clear();
                 self.tag_level = 0;
                 self.tag_index = 0;
             }
 
             "data_name" => {
-                let line_number = self.get_line_number(node.start);
-                if self.in_loop {
+                let tag_position = self.get_line_column(node.start);
+                if self.loop_level > 0 {
                     let last = self.tag_table.len() - 1;
                     self.tag_table[last].push(node.content.to_string());
-                    self.tag_lines[last].push(line_number);
+                    self.tag_positions[last].push(tag_position);
                 } else {
                     self.tag_table.push(vec![node.content.to_string()]);
-                    self.tag_lines.push(vec![line_number]);
+                    self.tag_positions.push(vec![tag_position]);
                 }
             }
             "data_block" => {

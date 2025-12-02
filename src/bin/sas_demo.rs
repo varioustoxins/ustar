@@ -1,4 +1,5 @@
 use std::fs;
+use ustar::line_column_index::LineColumn;
 use ustar::sas_interface::SASContentHandler;
 use ustar::sas_walker::StarWalker;
 use ustar::{default_config, get_context_lines, get_error_format, parse};
@@ -58,11 +59,11 @@ impl SASContentHandler for DemoHandler {
     fn data(
         &mut self,
         tag: &str,
-        tagline: usize,
+        tag_position: LineColumn,
         value: &str,
-        valline: usize,
+        value_position: LineColumn,
         delimiter: &str,
-        inloop: bool,
+        loop_level: usize,
     ) -> bool {
         let indent = "    ".repeat(self.depth);
         let tag_prefix = format!("{}<data> ", indent);
@@ -72,8 +73,15 @@ impl SASContentHandler for DemoHandler {
             "\n" => {
                 // Print line numbers right after <data>, then tag name
                 println!(
-                    "{}<data> [t:{},v:{}] {} delimiter: {:?} inloop: {} value:",
-                    indent, tagline, valline, tag, delimiter, inloop
+                    "{}<data> [t:{}:{},v:{}:{}] {} delimiter: {:?} loop_level: {} value:",
+                    indent,
+                    tag_position.line,
+                    tag_position.column,
+                    value_position.line,
+                    value_position.column,
+                    tag,
+                    delimiter,
+                    loop_level
                 );
                 // Print each line of the value, indented to the tag_prefix
                 for line in value.lines() {
@@ -83,8 +91,8 @@ impl SASContentHandler for DemoHandler {
             _ => {
                 // Print line numbers right after <data>, then tag name
                 println!(
-                    "{}<data> [t:{},v:{}] {} delimiter: {} inloop: {} value [multiline]: {}",
-                    indent, tagline, valline, tag, delimiter, inloop, value
+                    "{}<data> [t:{}:{},v:{}:{}] {} delimiter: {} loop_level: {} value [multiline]: {}",
+                    indent, tag_position.line, tag_position.column, value_position.line, value_position.column, tag, delimiter, loop_level, value
                 );
             }
         }

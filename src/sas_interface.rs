@@ -1,3 +1,5 @@
+use crate::line_column_index::LineColumn;
+
 /// SAS-style ContentHandler trait for STAR file parsing
 /// Returns true to stop parsing, false to continue (SAS convention)
 pub trait SASContentHandler {
@@ -14,11 +16,11 @@ pub trait SASContentHandler {
     fn data(
         &mut self,
         tag: &str,
-        tagline: usize,
+        tag_position: LineColumn,
         value: &str,
-        valline: usize,
+        value_position: LineColumn,
         delimiter: &str,
-        inloop: bool,
+        loop_level: usize,
     ) -> bool;
 }
 
