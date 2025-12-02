@@ -5,6 +5,8 @@ use pest::Parser;
 use ustar::parsers::ascii::{AsciiParser, Rule as AsciiRule};
 use ustar::parsers::unicode::{Rule as UnicodeRule, UnicodeParser};
 
+mod snapshot_utils;
+
 // data_name
 #[test]
 fn data_name() {
@@ -1392,7 +1394,10 @@ fn comprehensive_example() {
     let test_string = std::fs::read_to_string(file_path).unwrap();
     let pairs = AsciiParser::parse(AsciiRule::star_file, &test_string).unwrap();
     let star_file_pair = pairs.into_iter().next().unwrap();
-    insta::assert_debug_snapshot!(star_file_pair);
+    snapshot_utils::assert_snapshot_gz(
+        "parser_tests__comprehensive_example",
+        &format!("{:#?}", star_file_pair),
+    );
 }
 
 #[test]
@@ -1408,7 +1413,10 @@ fn comprehensive_example_crlf() {
     let test_string = std::fs::read_to_string(file_path).unwrap();
     let pairs = AsciiParser::parse(AsciiRule::star_file, &test_string).unwrap();
     let star_file_pair = pairs.into_iter().next().unwrap();
-    insta::assert_debug_snapshot!(star_file_pair);
+    snapshot_utils::assert_snapshot_gz(
+        "parser_tests__comprehensive_example_crlf",
+        &format!("{:#?}", star_file_pair),
+    );
 }
 
 #[test]

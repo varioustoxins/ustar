@@ -1,5 +1,7 @@
 use ustar::{default_config, parse, ErrorFormatMode};
 
+mod snapshot_utils;
+
 /// Test data with various parsing errors for snapshot testing
 const ERROR_CASES: &[(&str, &str)] = &[
     (
@@ -72,7 +74,10 @@ fn test_error_format_mode(mode: ErrorFormatMode, context_lines: usize, snapshot_
         let error = result.unwrap_err();
         let formatted = error.format_error(mode, context_lines);
 
-        insta::assert_snapshot!(format!("{}_{}", snapshot_prefix, case_name), formatted);
+        snapshot_utils::assert_snapshot_gz(
+            &format!("error_handling_tests__{}_{}", snapshot_prefix, case_name),
+            &formatted,
+        );
     }
 }
 
