@@ -1,0 +1,81 @@
+[package]
+name = "ustar-parser"
+version = "0.1.3"
+edition = "2021"
+rust-version = "1.83.0"
+description = "STAR format parser for CIF, mmCIF, NMR-STAR, cif dictionaries, NEF files and other scientific data formats"
+ license = "LGPL-3.0-only"
+repository = "https://github.com/varioustoxins/ustar"
+homepage = "https://github.com/varioustoxins/ustar"
+documentation = "https://docs.rs/ustar-parser"
+
+keywords = ["parser", "star", "cif", "mmcif", "crystallography"]
+categories = ["parsing", "science"]
+readme = "README.md"
+exclude = [
+    "tests/test_data/*",
+    "documents/*",
+    "scripts/*",
+    "target/*",
+    "*.tmp"
+]
+
+[lints.clippy]
+expect_fun_call = "allow"
+single_component_path_imports = "allow" 
+new_without_default = "allow"
+needless_borrows_for_generic_args = "allow"
+ptr_arg = "allow"
+useless_conversion = "allow"
+let_and_return = "allow"
+redundant_pattern_matching = "allow"
+manual_is_multiple_of = "allow"
+needless_range_loop = "allow"
+implicit_saturating_sub = "allow"
+useless_vec = "allow"
+
+[lib]
+name = "ustar"
+
+[[bin]]
+name = "ustar-dumper"
+path = "src/bin/ustar-dumper.rs"
+
+[[bin]]
+name = "ustar-benchmark"
+path = "src/bin/ustar-benchmark.rs"
+
+[[bin]]
+name = "ustar-parse-debugger"
+path = "src/bin/ustar-parse-debugger.rs"
+
+[features]
+default = ["extended-errors"]
+extended-errors = ["miette", "thiserror"]
+
+[dependencies]
+pest = "2.8"
+pest_derive = { version = "2.8", features = ["grammar-extras"] }
+memchr = "2.7"
+tabled = "0.16"
+clap = { version = "4.5", features = ["derive"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+reqwest = { version = "0.11.27", features = ["json", "gzip", "blocking", "stream"] }
+rand = "0.8"
+tokio = { version = "1.40", features = ["rt-multi-thread", "macros"] }
+flate2 = "1.0"
+scraper = "0.19"
+regex = "1"
+miette = { version = "7.2", features = ["fancy"], optional = true }
+thiserror = { version = "2.0", optional = true }
+text_trees = "0.1"
+
+[dev-dependencies]
+rstest = "0.18"
+indicatif = "0.17"
+insta = "1.34"
+indoc = "2.0"
+
+[profile.release]
+debug = true

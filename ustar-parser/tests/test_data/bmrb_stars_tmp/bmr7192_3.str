@@ -1,0 +1,1798 @@
+data_7192
+
+#######################
+#  Entry information  #
+#######################
+
+save_entry_information
+   _Entry.Sf_category                    entry_information
+   _Entry.Sf_framecode                   entry_information
+   _Entry.ID                             7192
+   _Entry.Title                         
+;
+Backbone 1H, 13C, and 15N Chemical Shift Assignments for Bacillus Subilis YqaI Dimer
+;
+   _Entry.Type                           macromolecule
+   _Entry.Version_type                   original
+   _Entry.Submission_date                2006-06-26
+   _Entry.Accession_date                 2006-06-27
+   _Entry.Last_release_date              .
+   _Entry.Original_release_date          .
+   _Entry.Origination                    author
+   _Entry.NMR_STAR_version               3.1.1.61
+   _Entry.Original_NMR_STAR_version      .
+   _Entry.Experimental_method            NMR
+   _Entry.Experimental_method_subtype    .
+   _Entry.Details                        .
+   _Entry.BMRB_internal_directory_name   .
+
+   loop_
+      _Entry_author.Ordinal
+      _Entry_author.Given_name
+      _Entry_author.Family_name
+      _Entry_author.First_initial
+      _Entry_author.Middle_initials
+      _Entry_author.Family_title
+      _Entry_author.Entry_ID
+
+      1 Theresa Ramelot . A. . 7192 
+      2 Michael Kennedy . A. . 7192 
+
+   stop_
+
+   loop_
+      _Data_set.Type
+      _Data_set.Count
+      _Data_set.Entry_ID
+
+      assigned_chemical_shifts 1 7192 
+
+   stop_
+
+   loop_
+      _Datum.Type
+      _Datum.Count
+      _Datum.Entry_ID
+
+      '13C chemical shifts' 306 7192 
+      '15N chemical shifts'  75 7192 
+      '1H chemical shifts'  482 7192 
+
+   stop_
+
+   loop_
+      _Release.Release_number
+      _Release.Format_type
+      _Release.Format_version
+      _Release.Date
+      _Release.Submission_date
+      _Release.Type
+      _Release.Author
+      _Release.Detail
+      _Release.Entry_ID
+
+      2 . . 2009-06-23 2006-06-26 update   BMRB   'added time domain data' 7192 
+      1 . . 2006-08-11 2006-06-26 original author 'original release'       7192 
+
+   stop_
+
+save_
+
+
+###############
+#  Citations  #
+###############
+
+save_entry_citation
+   _Citation.Sf_category                  citations
+   _Citation.Sf_framecode                 entry_citation
+   _Citation.Entry_ID                     7192
+   _Citation.ID                           1
+   _Citation.Class                       'entry citation'
+   _Citation.CAS_abstract_code            .
+   _Citation.MEDLINE_UI_code              .
+   _Citation.DOI                          .
+   _Citation.PubMed_ID                    .
+   _Citation.Full_citation                .
+   _Citation.Title                       'NMR structure of YqaI from Bacillus sbutilis'
+   _Citation.Status                       published
+   _Citation.Type                        'BMRB only'
+   _Citation.Journal_abbrev               .
+   _Citation.Journal_name_full            .
+   _Citation.Journal_volume               .
+   _Citation.Journal_issue                .
+   _Citation.Journal_ASTM                 .
+   _Citation.Journal_ISSN                 .
+   _Citation.Journal_CSD                  .
+   _Citation.Book_title                   .
+   _Citation.Book_chapter_title           .
+   _Citation.Book_volume                  .
+   _Citation.Book_series                  .
+   _Citation.Book_publisher               .
+   _Citation.Book_publisher_city          .
+   _Citation.Book_ISBN                    .
+   _Citation.Conference_title             .
+   _Citation.Conference_site              .
+   _Citation.Conference_state_province    .
+   _Citation.Conference_country           .
+   _Citation.Conference_start_date        .
+   _Citation.Conference_end_date          .
+   _Citation.Conference_abstract_number   .
+   _Citation.Thesis_institution           .
+   _Citation.Thesis_institution_city      .
+   _Citation.Thesis_institution_country   .
+   _Citation.WWW_URL                      .
+   _Citation.Page_first                   .
+   _Citation.Page_last                    .
+   _Citation.Year                         .
+   _Citation.Details                      .
+
+   loop_
+      _Citation_author.Ordinal
+      _Citation_author.Given_name
+      _Citation_author.Family_name
+      _Citation_author.First_initial
+      _Citation_author.Middle_initials
+      _Citation_author.Family_title
+      _Citation_author.Entry_ID
+      _Citation_author.Citation_ID
+
+      1 Theresa Ramelot . A. . 7192 1 
+      2 Michael Kennedy . A. . 7192 1 
+
+   stop_
+
+save_
+
+
+#############################################
+#  Molecular system (assembly) description  #
+#############################################
+
+save_assembly
+   _Assembly.Sf_category                       assembly
+   _Assembly.Sf_framecode                      assembly
+   _Assembly.Entry_ID                          7192
+   _Assembly.ID                                1
+   _Assembly.Name                              YqaI
+   _Assembly.BMRB_code                         .
+   _Assembly.Number_of_components              2
+   _Assembly.Organic_ligands                   0
+   _Assembly.Metal_ions                        0
+   _Assembly.Non_standard_bonds                .
+   _Assembly.Ambiguous_conformational_states   no
+   _Assembly.Ambiguous_chem_comp_sites         no
+   _Assembly.Molecules_in_chemical_exchange    no
+   _Assembly.Paramagnetic                      no
+   _Assembly.Thiol_state                      'all free'
+   _Assembly.Molecular_mass                    8641
+   _Assembly.Enzyme_commission_number          .
+   _Assembly.Details                           .
+   _Assembly.DB_query_date                     .
+   _Assembly.DB_query_revised_last_date        .
+
+   loop_
+      _Entity_assembly.ID
+      _Entity_assembly.Entity_assembly_name
+      _Entity_assembly.Entity_ID
+      _Entity_assembly.Entity_label
+      _Entity_assembly.Asym_ID
+      _Entity_assembly.PDB_chain_ID
+      _Entity_assembly.Experimental_data_reported
+      _Entity_assembly.Physical_state
+      _Entity_assembly.Conformational_isomer
+      _Entity_assembly.Chemical_exchange_state
+      _Entity_assembly.Magnetic_equivalence_group_code
+      _Entity_assembly.Role
+      _Entity_assembly.Details
+      _Entity_assembly.Entry_ID
+      _Entity_assembly.Assembly_ID
+
+      1 'YqaI, chain 1' 1 $YqaI . . no native no no . . . 7192 1 
+      2 'YqaI, chain 2' 1 $YqaI . . no native no no . . . 7192 1 
+
+   stop_
+
+save_
+
+
+    ####################################
+    #  Biological polymers and ligands #
+    ####################################
+
+save_YqaI
+   _Entity.Sf_category                       entity
+   _Entity.Sf_framecode                      YqaI
+   _Entity.Entry_ID                          7192
+   _Entity.ID                                1
+   _Entity.BMRB_code                         .
+   _Entity.Name                              YqaI
+   _Entity.Type                              polymer
+   _Entity.Polymer_common_type               .
+   _Entity.Polymer_type                      polypeptide(L)
+   _Entity.Polymer_type_details              .
+   _Entity.Polymer_strand_ID                 .
+   _Entity.Polymer_seq_one_letter_code_can   .
+   _Entity.Polymer_seq_one_letter_code      
+;
+MVENPMVINNWHDKLTETDV
+QIDFYGDEVTPVDDYVIDGG
+EIILRENLERYLREQLGFEF
+KNAQLEHHHHHH
+;
+   _Entity.Target_identifier                 .
+   _Entity.Polymer_author_defined_seq        .
+   _Entity.Polymer_author_seq_details       'C-term: LEHHHHHH'
+   _Entity.Ambiguous_conformational_states   no
+   _Entity.Ambiguous_chem_comp_sites         no
+   _Entity.Nstd_monomer                      no
+   _Entity.Nstd_chirality                    no
+   _Entity.Nstd_linkage                      no
+   _Entity.Nonpolymer_comp_ID                .
+   _Entity.Nonpolymer_comp_label             .
+   _Entity.Number_of_monomers                72
+   _Entity.Number_of_nonpolymer_components   .
+   _Entity.Paramagnetic                      no
+   _Entity.Thiol_state                      'all free'
+   _Entity.Src_method                        .
+   _Entity.Parent_entity_ID                  1
+   _Entity.Fragment                          .
+   _Entity.Mutation                          .
+   _Entity.EC_number                         .
+   _Entity.Calc_isoelectric_point            .
+   _Entity.Formula_weight                    .
+   _Entity.Formula_weight_exptl              .
+   _Entity.Formula_weight_exptl_meth         .
+   _Entity.Details                           .
+   _Entity.DB_query_date                     .
+   _Entity.DB_query_revised_last_date        2015-01-28
+
+   loop_
+      _Entity_db_link.Ordinal
+      _Entity_db_link.Author_supplied
+      _Entity_db_link.Database_code
+      _Entity_db_link.Accession_code
+      _Entity_db_link.Entry_mol_code
+      _Entity_db_link.Entry_mol_name
+      _Entity_db_link.Entry_experimental_method
+      _Entity_db_link.Entry_structure_resolution
+      _Entity_db_link.Entry_relation_type
+      _Entity_db_link.Entry_details
+      _Entity_db_link.Chimera_segment_ID
+      _Entity_db_link.Seq_query_to_submitted_percent
+      _Entity_db_link.Seq_subject_length
+      _Entity_db_link.Seq_identity
+      _Entity_db_link.Seq_positive
+      _Entity_db_link.Seq_homology_expectation_val
+      _Entity_db_link.Seq_align_begin
+      _Entity_db_link.Seq_align_end
+      _Entity_db_link.Seq_difference_details
+      _Entity_db_link.Seq_alignment_details
+      _Entity_db_link.Entry_ID
+      _Entity_db_link.Entity_ID
+
+       1 no PDB  2DSM         . "Nmr Structure Of Bacillus Subtilis Protein Yqai, Northeast Structural Genomics Target Sr450"  . . . . . 100.00 72 100.00 100.00 3.32e-44 . . . . 7192 1 
+       2 no DBJ  BAA06923     . "ORF20 [Bacillus subtilis]"                                                                    . . . . .  88.89 64 100.00 100.00 3.81e-38 . . . . 7192 1 
+       3 no DBJ  BAA12384     . "YqaI [Bacillus subtilis]"                                                                     . . . . .  88.89 64 100.00 100.00 3.81e-38 . . . . 7192 1 
+       4 no DBJ  BAM58696     . "hypothetical protein BEST7003_2495 [Bacillus subtilis BEST7003]"                              . . . . .  88.89 74 100.00 100.00 1.82e-38 . . . . 7192 1 
+       5 no EMBL CAB14571     . "hypothetical protein; skin element [Bacillus subtilis subsp. subtilis str. 168]"              . . . . .  88.89 64 100.00 100.00 3.81e-38 . . . . 7192 1 
+       6 no EMBL CEI57855     . "hypothetical protein BS49_28770 [Bacillus subtilis]"                                          . . . . .  88.89 64 100.00 100.00 3.81e-38 . . . . 7192 1 
+       7 no EMBL CEJ78277     . "hypothetical protein BS34A_28770 [Bacillus sp.]"                                              . . . . .  88.89 64 100.00 100.00 3.81e-38 . . . . 7192 1 
+       8 no GB   ADV93390     . "hypothetical protein BSn5_03800 [Bacillus subtilis BSn5]"                                     . . . . .  88.89 64 100.00 100.00 3.81e-38 . . . . 7192 1 
+       9 no GB   AGG62031     . "skin element YqaI [Bacillus subtilis subsp. subtilis 6051-HGW]"                               . . . . .  88.89 64 100.00 100.00 3.81e-38 . . . . 7192 1 
+      10 no GB   AHA78516     . "Uncharacterized protein yqaI [Bacillus subtilis PY79]"                                        . . . . .  88.89 64 100.00 100.00 3.81e-38 . . . . 7192 1 
+      11 no GB   AIC41086     . "hypothetical protein BSUA_02809 [Bacillus subtilis subsp. subtilis str. JH642 substr. AG174]" . . . . .  88.89 64 100.00 100.00 3.81e-38 . . . . 7192 1 
+      12 no GB   AIC45318     . "yqaI [Bacillus subtilis subsp. subtilis str. AG1839]"                                         . . . . .  88.89 64 100.00 100.00 3.81e-38 . . . . 7192 1 
+      13 no REF  NP_390507    . "hypothetical protein BSU26300 [Bacillus subtilis subsp. subtilis str. 168]"                   . . . . .  88.89 64 100.00 100.00 3.81e-38 . . . . 7192 1 
+      14 no REF  WP_003229905 . "hypothetical protein [Bacillus subtilis]"                                                     . . . . .  88.89 64 100.00 100.00 3.81e-38 . . . . 7192 1 
+      15 no REF  WP_021480131 . "hypothetical protein [Bacillus sp. EGD-AK10]"                                                 . . . . .  88.89 64  98.44 100.00 6.56e-38 . . . . 7192 1 
+      16 no REF  YP_004204417 . "hypothetical protein BSn5_03800 [Bacillus subtilis BSn5]"                                     . . . . .  88.89 64 100.00 100.00 3.81e-38 . . . . 7192 1 
+      17 no REF  YP_007534614 . "skin element YqaI [Bacillus subtilis subsp. subtilis 6051-HGW]"                               . . . . .  88.89 64 100.00 100.00 3.81e-38 . . . . 7192 1 
+      18 no SP   P45906       . "RecName: Full=Uncharacterized protein YqaI [Bacillus subtilis subsp. subtilis str. 168]"      . . . . .  88.89 64 100.00 100.00 3.81e-38 . . . . 7192 1 
+
+   stop_
+
+   loop_
+      _Entity_comp_index.ID
+      _Entity_comp_index.Auth_seq_ID
+      _Entity_comp_index.Comp_ID
+      _Entity_comp_index.Comp_label
+      _Entity_comp_index.Entry_ID
+      _Entity_comp_index.Entity_ID
+
+       1  1 MET . 7192 1 
+       2  2 VAL . 7192 1 
+       3  3 GLU . 7192 1 
+       4  4 ASN . 7192 1 
+       5  5 PRO . 7192 1 
+       6  6 MET . 7192 1 
+       7  7 VAL . 7192 1 
+       8  8 ILE . 7192 1 
+       9  9 ASN . 7192 1 
+      10 10 ASN . 7192 1 
+      11 11 TRP . 7192 1 
+      12 12 HIS . 7192 1 
+      13 13 ASP . 7192 1 
+      14 14 LYS . 7192 1 
+      15 15 LEU . 7192 1 
+      16 16 THR . 7192 1 
+      17 17 GLU . 7192 1 
+      18 18 THR . 7192 1 
+      19 19 ASP . 7192 1 
+      20 20 VAL . 7192 1 
+      21 21 GLN . 7192 1 
+      22 22 ILE . 7192 1 
+      23 23 ASP . 7192 1 
+      24 24 PHE . 7192 1 
+      25 25 TYR . 7192 1 
+      26 26 GLY . 7192 1 
+      27 27 ASP . 7192 1 
+      28 28 GLU . 7192 1 
+      29 29 VAL . 7192 1 
+      30 30 THR . 7192 1 
+      31 31 PRO . 7192 1 
+      32 32 VAL . 7192 1 
+      33 33 ASP . 7192 1 
+      34 34 ASP . 7192 1 
+      35 35 TYR . 7192 1 
+      36 36 VAL . 7192 1 
+      37 37 ILE . 7192 1 
+      38 38 ASP . 7192 1 
+      39 39 GLY . 7192 1 
+      40 40 GLY . 7192 1 
+      41 41 GLU . 7192 1 
+      42 42 ILE . 7192 1 
+      43 43 ILE . 7192 1 
+      44 44 LEU . 7192 1 
+      45 45 ARG . 7192 1 
+      46 46 GLU . 7192 1 
+      47 47 ASN . 7192 1 
+      48 48 LEU . 7192 1 
+      49 49 GLU . 7192 1 
+      50 50 ARG . 7192 1 
+      51 51 TYR . 7192 1 
+      52 52 LEU . 7192 1 
+      53 53 ARG . 7192 1 
+      54 54 GLU . 7192 1 
+      55 55 GLN . 7192 1 
+      56 56 LEU . 7192 1 
+      57 57 GLY . 7192 1 
+      58 58 PHE . 7192 1 
+      59 59 GLU . 7192 1 
+      60 60 PHE . 7192 1 
+      61 61 LYS . 7192 1 
+      62 62 ASN . 7192 1 
+      63 63 ALA . 7192 1 
+      64 64 GLN . 7192 1 
+      65 65 LEU . 7192 1 
+      66 66 GLU . 7192 1 
+      67 67 HIS . 7192 1 
+      68 68 HIS . 7192 1 
+      69 69 HIS . 7192 1 
+      70 70 HIS . 7192 1 
+      71 71 HIS . 7192 1 
+      72 72 HIS . 7192 1 
+
+   stop_
+
+   loop_
+      _Entity_poly_seq.Hetero
+      _Entity_poly_seq.Mon_ID
+      _Entity_poly_seq.Num
+      _Entity_poly_seq.Comp_index_ID
+      _Entity_poly_seq.Entry_ID
+      _Entity_poly_seq.Entity_ID
+
+      . MET  1  1 7192 1 
+      . VAL  2  2 7192 1 
+      . GLU  3  3 7192 1 
+      . ASN  4  4 7192 1 
+      . PRO  5  5 7192 1 
+      . MET  6  6 7192 1 
+      . VAL  7  7 7192 1 
+      . ILE  8  8 7192 1 
+      . ASN  9  9 7192 1 
+      . ASN 10 10 7192 1 
+      . TRP 11 11 7192 1 
+      . HIS 12 12 7192 1 
+      . ASP 13 13 7192 1 
+      . LYS 14 14 7192 1 
+      . LEU 15 15 7192 1 
+      . THR 16 16 7192 1 
+      . GLU 17 17 7192 1 
+      . THR 18 18 7192 1 
+      . ASP 19 19 7192 1 
+      . VAL 20 20 7192 1 
+      . GLN 21 21 7192 1 
+      . ILE 22 22 7192 1 
+      . ASP 23 23 7192 1 
+      . PHE 24 24 7192 1 
+      . TYR 25 25 7192 1 
+      . GLY 26 26 7192 1 
+      . ASP 27 27 7192 1 
+      . GLU 28 28 7192 1 
+      . VAL 29 29 7192 1 
+      . THR 30 30 7192 1 
+      . PRO 31 31 7192 1 
+      . VAL 32 32 7192 1 
+      . ASP 33 33 7192 1 
+      . ASP 34 34 7192 1 
+      . TYR 35 35 7192 1 
+      . VAL 36 36 7192 1 
+      . ILE 37 37 7192 1 
+      . ASP 38 38 7192 1 
+      . GLY 39 39 7192 1 
+      . GLY 40 40 7192 1 
+      . GLU 41 41 7192 1 
+      . ILE 42 42 7192 1 
+      . ILE 43 43 7192 1 
+      . LEU 44 44 7192 1 
+      . ARG 45 45 7192 1 
+      . GLU 46 46 7192 1 
+      . ASN 47 47 7192 1 
+      . LEU 48 48 7192 1 
+      . GLU 49 49 7192 1 
+      . ARG 50 50 7192 1 
+      . TYR 51 51 7192 1 
+      . LEU 52 52 7192 1 
+      . ARG 53 53 7192 1 
+      . GLU 54 54 7192 1 
+      . GLN 55 55 7192 1 
+      . LEU 56 56 7192 1 
+      . GLY 57 57 7192 1 
+      . PHE 58 58 7192 1 
+      . GLU 59 59 7192 1 
+      . PHE 60 60 7192 1 
+      . LYS 61 61 7192 1 
+      . ASN 62 62 7192 1 
+      . ALA 63 63 7192 1 
+      . GLN 64 64 7192 1 
+      . LEU 65 65 7192 1 
+      . GLU 66 66 7192 1 
+      . HIS 67 67 7192 1 
+      . HIS 68 68 7192 1 
+      . HIS 69 69 7192 1 
+      . HIS 70 70 7192 1 
+      . HIS 71 71 7192 1 
+      . HIS 72 72 7192 1 
+
+   stop_
+
+save_
+
+
+    ####################
+    #  Natural source  #
+    ####################
+
+save_natural_source
+   _Entity_natural_src_list.Sf_category    natural_source
+   _Entity_natural_src_list.Sf_framecode   natural_source
+   _Entity_natural_src_list.Entry_ID       7192
+   _Entity_natural_src_list.ID             1
+
+   loop_
+      _Entity_natural_src.ID
+      _Entity_natural_src.Entity_ID
+      _Entity_natural_src.Entity_label
+      _Entity_natural_src.Entity_chimera_segment_ID
+      _Entity_natural_src.NCBI_taxonomy_ID
+      _Entity_natural_src.Type
+      _Entity_natural_src.Common
+      _Entity_natural_src.Organism_name_scientific
+      _Entity_natural_src.Organism_name_common
+      _Entity_natural_src.Organism_acronym
+      _Entity_natural_src.ICTVdb_decimal_code
+      _Entity_natural_src.Superkingdom
+      _Entity_natural_src.Kingdom
+      _Entity_natural_src.Genus
+      _Entity_natural_src.Species
+      _Entity_natural_src.Strain
+      _Entity_natural_src.Variant
+      _Entity_natural_src.Subvariant
+      _Entity_natural_src.Organ
+      _Entity_natural_src.Tissue
+      _Entity_natural_src.Tissue_fraction
+      _Entity_natural_src.Cell_line
+      _Entity_natural_src.Cell_type
+      _Entity_natural_src.ATCC_number
+      _Entity_natural_src.Organelle
+      _Entity_natural_src.Cellular_location
+      _Entity_natural_src.Fragment
+      _Entity_natural_src.Fraction
+      _Entity_natural_src.Secretion
+      _Entity_natural_src.Plasmid
+      _Entity_natural_src.Plasmid_details
+      _Entity_natural_src.Gene_mnemonic
+      _Entity_natural_src.Dev_stage
+      _Entity_natural_src.Details
+      _Entity_natural_src.Citation_ID
+      _Entity_natural_src.Citation_label
+      _Entity_natural_src.Entry_ID
+      _Entity_natural_src.Entity_natural_src_list_ID
+
+      1 1 $YqaI . 1423 . no . 'Bacillus subtilis' . . Eubacteria . Bacillus subtilis . . . . . . . . . . . . . . . . . . . . . 7192 1 
+
+   stop_
+
+save_
+
+
+    #########################
+    #  Experimental source  #
+    #########################
+
+save_experimental_source
+   _Entity_experimental_src_list.Sf_category    experimental_source
+   _Entity_experimental_src_list.Sf_framecode   experimental_source
+   _Entity_experimental_src_list.Entry_ID       7192
+   _Entity_experimental_src_list.ID             1
+
+   loop_
+      _Entity_experimental_src.ID
+      _Entity_experimental_src.Entity_ID
+      _Entity_experimental_src.Entity_label
+      _Entity_experimental_src.Entity_chimera_segment_ID
+      _Entity_experimental_src.Production_method
+      _Entity_experimental_src.Host_org_scientific_name
+      _Entity_experimental_src.Host_org_name_common
+      _Entity_experimental_src.Host_org_details
+      _Entity_experimental_src.Host_org_NCBI_taxonomy_ID
+      _Entity_experimental_src.Host_org_genus
+      _Entity_experimental_src.Host_org_species
+      _Entity_experimental_src.Host_org_strain
+      _Entity_experimental_src.Host_org_variant
+      _Entity_experimental_src.Host_org_subvariant
+      _Entity_experimental_src.Host_org_organ
+      _Entity_experimental_src.Host_org_tissue
+      _Entity_experimental_src.Host_org_tissue_fraction
+      _Entity_experimental_src.Host_org_cell_line
+      _Entity_experimental_src.Host_org_cell_type
+      _Entity_experimental_src.Host_org_cellular_location
+      _Entity_experimental_src.Host_org_organelle
+      _Entity_experimental_src.Host_org_gene
+      _Entity_experimental_src.Host_org_culture_collection
+      _Entity_experimental_src.Host_org_ATCC_number
+      _Entity_experimental_src.Vector_type
+      _Entity_experimental_src.PDBview_host_org_vector_name
+      _Entity_experimental_src.PDBview_plasmid_name
+      _Entity_experimental_src.Vector_name
+      _Entity_experimental_src.Vector_details
+      _Entity_experimental_src.Vendor_name
+      _Entity_experimental_src.Host_org_dev_stage
+      _Entity_experimental_src.Details
+      _Entity_experimental_src.Citation_ID
+      _Entity_experimental_src.Citation_label
+      _Entity_experimental_src.Entry_ID
+      _Entity_experimental_src.Entity_experimental_src_list_ID
+
+      1 1 $YqaI . 'recombinant technology' . 'E. coli' 'BL21 (DE3) pMGK' . . . . . . . . . . . . . . . . plasmid . . PET21 . . . . . . 7192 1 
+
+   stop_
+
+save_
+
+
+#####################################
+#  Sample contents and methodology  #
+#####################################
+	 
+    ########################
+    #  Sample description  #
+    ########################
+
+save_sample_1
+   _Sample.Sf_category                      sample
+   _Sample.Sf_framecode                     sample_1
+   _Sample.Entry_ID                         7192
+   _Sample.ID                               1
+   _Sample.Type                             solution
+   _Sample.Sub_type                         .
+   _Sample.Details                          .
+   _Sample.Aggregate_sample_number          .
+   _Sample.Solvent_system                   .
+   _Sample.Preparation_date                 .
+   _Sample.Preparation_expiration_date      .
+   _Sample.Polycrystallization_protocol     .
+   _Sample.Single_crystal_protocol          .
+   _Sample.Crystal_grow_apparatus           .
+   _Sample.Crystal_grow_atmosphere          .
+   _Sample.Crystal_grow_details             .
+   _Sample.Crystal_grow_method              .
+   _Sample.Crystal_grow_method_cit_ID       .
+   _Sample.Crystal_grow_pH                  .
+   _Sample.Crystal_grow_pH_range            .
+   _Sample.Crystal_grow_pressure            .
+   _Sample.Crystal_grow_pressure_esd        .
+   _Sample.Crystal_grow_seeding             .
+   _Sample.Crystal_grow_seeding_cit_ID      .
+   _Sample.Crystal_grow_temp                .
+   _Sample.Crystal_grow_temp_details        .
+   _Sample.Crystal_grow_temp_esd            .
+   _Sample.Crystal_grow_time                .
+   _Sample.Oriented_sample_prep_protocol    .
+   _Sample.Lyophilization_cryo_protectant   .
+   _Sample.Storage_protocol                 .
+
+   loop_
+      _Sample_component.ID
+      _Sample_component.Mol_common_name
+      _Sample_component.Isotopic_labeling
+      _Sample_component.Assembly_ID
+      _Sample_component.Assembly_label
+      _Sample_component.Entity_ID
+      _Sample_component.Entity_label
+      _Sample_component.Product_ID
+      _Sample_component.Type
+      _Sample_component.Concentration_val
+      _Sample_component.Concentration_val_min
+      _Sample_component.Concentration_val_max
+      _Sample_component.Concentration_val_units
+      _Sample_component.Concentration_val_err
+      _Sample_component.Vendor
+      _Sample_component.Vendor_product_name
+      _Sample_component.Vendor_product_code
+      _Sample_component.Entry_ID
+      _Sample_component.Sample_ID
+
+      1 YqaI '[U-100% 13C; U-100% 15N]' . . 1 $YqaI . .   1 . . mM . . . . 7192 1 
+      2 MES   .                         . .  .  .    . .  20 . . mM . . . . 7192 1 
+      3 NaCL  .                         . .  .  .    . . 100 . . mM . . . . 7192 1 
+      4 DTT   .                         . .  .  .    . .  10 . . mM . . . . 7192 1 
+
+   stop_
+
+save_
+
+
+#######################
+#  Sample conditions  #
+#######################
+
+save_conditions_1
+   _Sample_condition_list.Sf_category    sample_conditions
+   _Sample_condition_list.Sf_framecode   conditions_1
+   _Sample_condition_list.Entry_ID       7192
+   _Sample_condition_list.ID             1
+   _Sample_condition_list.Details        .
+
+   loop_
+      _Sample_condition_variable.Type
+      _Sample_condition_variable.Val
+      _Sample_condition_variable.Val_err
+      _Sample_condition_variable.Val_units
+      _Sample_condition_variable.Entry_ID
+      _Sample_condition_variable.Sample_condition_list_ID
+
+      'ionic strength' 100   10   mM 7192 1 
+       pH                6.5  0.1 pH 7192 1 
+       temperature     298    1   K  7192 1 
+
+   stop_
+
+save_
+
+
+#########################
+#  Experimental detail  #
+#########################
+
+    ##################################
+    #  NMR Spectrometer definitions  #
+    ##################################
+
+save_600MHz
+   _NMR_spectrometer.Sf_category      NMR_spectrometer
+   _NMR_spectrometer.Sf_framecode     600MHz
+   _NMR_spectrometer.Entry_ID         7192
+   _NMR_spectrometer.ID               1
+   _NMR_spectrometer.Details          .
+   _NMR_spectrometer.Manufacturer     Varian
+   _NMR_spectrometer.Model            Inova
+   _NMR_spectrometer.Serial_number    .
+   _NMR_spectrometer.Field_strength   600
+
+save_
+
+
+save_750MHz_spectrometer
+   _NMR_spectrometer.Sf_category      NMR_spectrometer
+   _NMR_spectrometer.Sf_framecode     750MHz_spectrometer
+   _NMR_spectrometer.Entry_ID         7192
+   _NMR_spectrometer.ID               2
+   _NMR_spectrometer.Details          .
+   _NMR_spectrometer.Manufacturer     Varian
+   _NMR_spectrometer.Model            Inova
+   _NMR_spectrometer.Serial_number    .
+   _NMR_spectrometer.Field_strength   750
+
+save_
+
+
+    #############################
+    #  NMR applied experiments  #
+    #############################
+
+save_NMR_experiment_list
+   _Experiment_list.Sf_category    experiment_list
+   _Experiment_list.Sf_framecode   NMR_experiment_list
+   _Experiment_list.Entry_ID       7192
+   _Experiment_list.ID             1
+   _Experiment_list.Details        .
+
+   loop_
+      _Experiment.ID
+      _Experiment.Name
+      _Experiment.Raw_data_flag
+      _Experiment.NMR_spec_expt_ID
+      _Experiment.NMR_spec_expt_label
+      _Experiment.MS_expt_ID
+      _Experiment.MS_expt_label
+      _Experiment.SAXS_expt_ID
+      _Experiment.SAXS_expt_label
+      _Experiment.FRET_expt_ID
+      _Experiment.FRET_expt_label
+      _Experiment.EMR_expt_ID
+      _Experiment.EMR_expt_label
+      _Experiment.Sample_ID
+      _Experiment.Sample_label
+      _Experiment.Sample_state
+      _Experiment.Sample_volume
+      _Experiment.Sample_volume_units
+      _Experiment.Sample_condition_list_ID
+      _Experiment.Sample_condition_list_label
+      _Experiment.Sample_spinning_rate
+      _Experiment.Sample_angle
+      _Experiment.NMR_tube_type
+      _Experiment.NMR_spectrometer_ID
+      _Experiment.NMR_spectrometer_label
+      _Experiment.NMR_spectrometer_probe_ID
+      _Experiment.NMR_spectrometer_probe_label
+      _Experiment.NMR_spectral_processing_ID
+      _Experiment.NMR_spectral_processing_label
+      _Experiment.Mass_spectrometer_ID
+      _Experiment.Mass_spectrometer_label
+      _Experiment.Xray_instrument_ID
+      _Experiment.Xray_instrument_label
+      _Experiment.Fluorescence_instrument_ID
+      _Experiment.Fluorescence_instrument_label
+      _Experiment.EMR_instrument_ID
+      _Experiment.EMR_instrument_label
+      _Experiment.Chromatographic_system_ID
+      _Experiment.Chromatographic_system_label
+      _Experiment.Chromatographic_column_ID
+      _Experiment.Chromatographic_column_label
+      _Experiment.Entry_ID
+      _Experiment.Experiment_list_ID
+
+      1 '15N NOESY'                yes 1 . . . . . . . . . 1 $sample_1 . . . 1 $conditions_1 . . . . . . . . . . . . . . . . . . . . . 7192 1 
+      2 '13C NOESY (aliph)'        yes 2 . . . . . . . . . 1 $sample_1 . . . 1 $conditions_1 . . . . . . . . . . . . . . . . . . . . . 7192 1 
+      3 '4D NOESY CC HSQC'         yes 3 . . . . . . . . . 1 $sample_1 . . . 1 $conditions_1 . . . . . . . . . . . . . . . . . . . . . 7192 1 
+      4 '15N NOESY in D2O'         no   . . . . . . . . . . 1 $sample_1 . . . 1 $conditions_1 . . . . . . . . . . . . . . . . . . . . . 7192 1 
+      5 '13C NOESY in D2O (aliph)' yes 4 . . . . . . . . . 1 $sample_1 . . . 1 $conditions_1 . . . . . . . . . . . . . . . . . . . . . 7192 1 
+      6 '13C NOESY (arom)'         yes 5 . . . . . . . . . 1 $sample_1 . . . 1 $conditions_1 . . . . . . . . . . . . . . . . . . . . . 7192 1 
+      7 '13C NOESY in D2O (arom)'  yes 6 . . . . . . . . . 1 $sample_1 . . . 1 $conditions_1 . . . . . . . . . . . . . . . . . . . . . 7192 1 
+
+   stop_
+
+save_
+
+
+####################
+#  NMR parameters  #
+####################
+
+    ##############################
+    #  Assigned chemical shifts  #
+    ##############################
+
+	################################
+	#  Chemical shift referencing  #
+	################################
+
+save_chemical_shift_referencing
+   _Chem_shift_reference.Sf_category    chem_shift_reference
+   _Chem_shift_reference.Sf_framecode   chemical_shift_referencing
+   _Chem_shift_reference.Entry_ID       7192
+   _Chem_shift_reference.ID             1
+   _Chem_shift_reference.Details        .
+
+   loop_
+      _Chem_shift_ref.Atom_type
+      _Chem_shift_ref.Atom_isotope_number
+      _Chem_shift_ref.Mol_common_name
+      _Chem_shift_ref.Atom_group
+      _Chem_shift_ref.Concentration_val
+      _Chem_shift_ref.Concentration_units
+      _Chem_shift_ref.Solvent
+      _Chem_shift_ref.Rank
+      _Chem_shift_ref.Chem_shift_units
+      _Chem_shift_ref.Chem_shift_val
+      _Chem_shift_ref.Ref_method
+      _Chem_shift_ref.Ref_type
+      _Chem_shift_ref.Indirect_shift_ratio
+      _Chem_shift_ref.External_ref_loc
+      _Chem_shift_ref.External_ref_sample_geometry
+      _Chem_shift_ref.External_ref_axis
+      _Chem_shift_ref.Indirect_shift_ratio_cit_ID
+      _Chem_shift_ref.Indirect_shift_ratio_cit_label
+      _Chem_shift_ref.Ref_correction_type
+      _Chem_shift_ref.Correction_val
+      _Chem_shift_ref.Correction_val_cit_ID
+      _Chem_shift_ref.Correction_val_cit_label
+      _Chem_shift_ref.Entry_ID
+      _Chem_shift_ref.Chem_shift_reference_ID
+
+      C 13 DSS 'methyl protons' . . . . ppm 0.0 .        indirect 0.251449530 . . . 1 $entry_citation . . 1 $entry_citation 7192 1 
+      H  1 DSS 'methyl protons' . . . . ppm 0.0 internal direct   1.0         . . . 1 $entry_citation . . 1 $entry_citation 7192 1 
+      N 15 DSS 'methyl protons' . . . . ppm 0.0 .        indirect 0.101329118 . . . 1 $entry_citation . . 1 $entry_citation 7192 1 
+
+   stop_
+
+save_
+
+
+     ###################################
+     #  Assigned chemical shift lists  #
+     ###################################
+
+###################################################################
+#       Chemical Shift Ambiguity Index Value Definitions          #
+#                                                                 #
+# The values other than 1 are used for those atoms with different #
+# chemical shifts that cannot be assigned to stereospecific atoms #
+# or to specific residues or chains.                              #
+#                                                                 #
+#   Index Value            Definition                             #
+#                                                                 #
+#      1             Unique (including isolated methyl protons,   #
+#                         geminal atoms, and geminal methyl       #
+#                         groups with identical chemical shifts)  #
+#                         (e.g. ILE HD11, HD12, HD13 protons)     #
+#      2             Ambiguity of geminal atoms or geminal methyl #
+#                         proton groups (e.g. ASP HB2 and HB3     #
+#                         protons, LEU CD1 and CD2 carbons, or    #
+#                         LEU HD11, HD12, HD13 and HD21, HD22,    #
+#                         HD23 methyl protons)                    #
+#      3             Aromatic atoms on opposite sides of          #
+#                         symmetrical rings (e.g. TYR HE1 and HE2 #
+#                         protons)                                #
+#      4             Intraresidue ambiguities (e.g. LYS HG and    #
+#                         HD protons or TRP HZ2 and HZ3 protons)  #
+#      5             Interresidue ambiguities (LYS 12 vs. LYS 27) #
+#      6             Intermolecular ambiguities (e.g. ASP 31 CA   #
+#                         in monomer 1 and ASP 31 CA in monomer 2 #
+#                         of an asymmetrical homodimer, duplex    #
+#                         DNA assignments, or other assignments   #
+#                         that may apply to atoms in one or more  #
+#                         molecule in the molecular assembly)     #
+#      9             Ambiguous, specific ambiguity not defined    #
+#                                                                 #
+###################################################################
+save_chem_shift_list_1
+   _Assigned_chem_shift_list.Sf_category                   assigned_chemical_shifts
+   _Assigned_chem_shift_list.Sf_framecode                  chem_shift_list_1
+   _Assigned_chem_shift_list.Entry_ID                      7192
+   _Assigned_chem_shift_list.ID                            1
+   _Assigned_chem_shift_list.Sample_condition_list_ID      1
+   _Assigned_chem_shift_list.Sample_condition_list_label  $conditions_1
+   _Assigned_chem_shift_list.Chem_shift_reference_ID       1
+   _Assigned_chem_shift_list.Chem_shift_reference_label   $chemical_shift_referencing
+   _Assigned_chem_shift_list.Chem_shift_1H_err             .
+   _Assigned_chem_shift_list.Chem_shift_13C_err            .
+   _Assigned_chem_shift_list.Chem_shift_15N_err            .
+   _Assigned_chem_shift_list.Chem_shift_31P_err            .
+   _Assigned_chem_shift_list.Chem_shift_2H_err             .
+   _Assigned_chem_shift_list.Chem_shift_19F_err            .
+   _Assigned_chem_shift_list.Error_derivation_method       .
+   _Assigned_chem_shift_list.Details                       .
+   _Assigned_chem_shift_list.Text_data_format              .
+   _Assigned_chem_shift_list.Text_data                     .
+
+   loop_
+      _Chem_shift_experiment.Experiment_ID
+      _Chem_shift_experiment.Experiment_name
+      _Chem_shift_experiment.Sample_ID
+      _Chem_shift_experiment.Sample_label
+      _Chem_shift_experiment.Sample_state
+      _Chem_shift_experiment.Entry_ID
+      _Chem_shift_experiment.Assigned_chem_shift_list_ID
+
+      . . 1 $sample_1 isotropic 7192 1 
+
+   stop_
+
+   loop_
+      _Atom_chem_shift.ID
+      _Atom_chem_shift.Assembly_atom_ID
+      _Atom_chem_shift.Entity_assembly_ID
+      _Atom_chem_shift.Entity_ID
+      _Atom_chem_shift.Comp_index_ID
+      _Atom_chem_shift.Seq_ID
+      _Atom_chem_shift.Comp_ID
+      _Atom_chem_shift.Atom_ID
+      _Atom_chem_shift.Atom_type
+      _Atom_chem_shift.Atom_isotope_number
+      _Atom_chem_shift.Val
+      _Atom_chem_shift.Val_err
+      _Atom_chem_shift.Assign_fig_of_merit
+      _Atom_chem_shift.Ambiguity_code
+      _Atom_chem_shift.Occupancy
+      _Atom_chem_shift.Resonance_ID
+      _Atom_chem_shift.Auth_entity_assembly_ID
+      _Atom_chem_shift.Auth_asym_ID
+      _Atom_chem_shift.Auth_seq_ID
+      _Atom_chem_shift.Auth_comp_ID
+      _Atom_chem_shift.Auth_atom_ID
+      _Atom_chem_shift.Details
+      _Atom_chem_shift.Entry_ID
+      _Atom_chem_shift.Assigned_chem_shift_list_ID
+
+        1 . 1 1  1  1 MET C    C 13 177.2  0.2  . 1 . . . .  1 MET C    . 7192 1 
+        2 . 1 1  2  2 VAL H    H  1   8.10 0.02 . 1 . . . .  2 VAL H    . 7192 1 
+        3 . 1 1  2  2 VAL HA   H  1   4.09 0.02 . 1 . . . .  2 VAL HA   . 7192 1 
+        4 . 1 1  2  2 VAL HB   H  1   2.07 0.02 . 1 . . . .  2 VAL HB   . 7192 1 
+        5 . 1 1  2  2 VAL C    C 13 176.5  0.2  . 1 . . . .  2 VAL C    . 7192 1 
+        6 . 1 1  2  2 VAL CA   C 13  62.3  0.2  . 1 . . . .  2 VAL CA   . 7192 1 
+        7 . 1 1  2  2 VAL CB   C 13  32.7  0.2  . 1 . . . .  2 VAL CB   . 7192 1 
+        8 . 1 1  2  2 VAL N    N 15 124.8  0.2  . 1 . . . .  2 VAL N    . 7192 1 
+        9 . 1 1  3  3 GLU H    H  1   8.50 0.02 . 1 . . . .  3 GLU H    . 7192 1 
+       10 . 1 1  3  3 GLU HA   H  1   4.28 0.02 . 1 . . . .  3 GLU HA   . 7192 1 
+       11 . 1 1  3  3 GLU HB2  H  1   1.91 0.02 . 2 . . . .  3 GLU HB2  . 7192 1 
+       12 . 1 1  3  3 GLU HB3  H  1   1.99 0.02 . 2 . . . .  3 GLU HB3  . 7192 1 
+       13 . 1 1  3  3 GLU HG2  H  1   2.23 0.02 . 1 . . . .  3 GLU HG2  . 7192 1 
+       14 . 1 1  3  3 GLU HG3  H  1   2.23 0.02 . 1 . . . .  3 GLU HG3  . 7192 1 
+       15 . 1 1  3  3 GLU C    C 13 175.9  0.2  . 1 . . . .  3 GLU C    . 7192 1 
+       16 . 1 1  3  3 GLU CA   C 13  56.5  0.2  . 1 . . . .  3 GLU CA   . 7192 1 
+       17 . 1 1  3  3 GLU CB   C 13  30.4  0.2  . 1 . . . .  3 GLU CB   . 7192 1 
+       18 . 1 1  3  3 GLU CG   C 13  36.1  0.2  . 1 . . . .  3 GLU CG   . 7192 1 
+       19 . 1 1  3  3 GLU N    N 15 124.2  0.2  . 1 . . . .  3 GLU N    . 7192 1 
+       20 . 1 1  4  4 ASN H    H  1   8.50 0.02 . 1 . . . .  4 ASN H    . 7192 1 
+       21 . 1 1  4  4 ASN HA   H  1   4.97 0.02 . 1 . . . .  4 ASN HA   . 7192 1 
+       22 . 1 1  4  4 ASN HB2  H  1   2.70 0.02 . 2 . . . .  4 ASN HB2  . 7192 1 
+       23 . 1 1  4  4 ASN HB3  H  1   2.86 0.02 . 2 . . . .  4 ASN HB3  . 7192 1 
+       24 . 1 1  4  4 ASN HD21 H  1   7.66 0.02 . 1 . . . .  4 ASN HD21 . 7192 1 
+       25 . 1 1  4  4 ASN HD22 H  1   6.94 0.02 . 1 . . . .  4 ASN HD22 . 7192 1 
+       26 . 1 1  4  4 ASN CA   C 13  51.2  0.2  . 1 . . . .  4 ASN CA   . 7192 1 
+       27 . 1 1  4  4 ASN CB   C 13  39.0  0.2  . 1 . . . .  4 ASN CB   . 7192 1 
+       28 . 1 1  4  4 ASN N    N 15 120.7  0.2  . 1 . . . .  4 ASN N    . 7192 1 
+       29 . 1 1  4  4 ASN ND2  N 15 113.0  0.2  . 1 . . . .  4 ASN ND2  . 7192 1 
+       30 . 1 1  5  5 PRO HA   H  1   4.39 0.02 . 1 . . . .  5 PRO HA   . 7192 1 
+       31 . 1 1  5  5 PRO HB2  H  1   1.93 0.02 . 2 . . . .  5 PRO HB2  . 7192 1 
+       32 . 1 1  5  5 PRO HB3  H  1   2.27 0.02 . 2 . . . .  5 PRO HB3  . 7192 1 
+       33 . 1 1  5  5 PRO HG2  H  1   2.00 0.02 . 1 . . . .  5 PRO HG2  . 7192 1 
+       34 . 1 1  5  5 PRO HG3  H  1   2.00 0.02 . 1 . . . .  5 PRO HG3  . 7192 1 
+       35 . 1 1  5  5 PRO HD2  H  1   3.77 0.02 . 1 . . . .  5 PRO HD2  . 7192 1 
+       36 . 1 1  5  5 PRO HD3  H  1   3.77 0.02 . 1 . . . .  5 PRO HD3  . 7192 1 
+       37 . 1 1  5  5 PRO C    C 13 176.8  0.2  . 1 . . . .  5 PRO C    . 7192 1 
+       38 . 1 1  5  5 PRO CA   C 13  63.5  0.2  . 1 . . . .  5 PRO CA   . 7192 1 
+       39 . 1 1  5  5 PRO CB   C 13  32.2  0.2  . 1 . . . .  5 PRO CB   . 7192 1 
+       40 . 1 1  5  5 PRO CG   C 13  27.3  0.2  . 1 . . . .  5 PRO CG   . 7192 1 
+       41 . 1 1  5  5 PRO CD   C 13  50.8  0.2  . 1 . . . .  5 PRO CD   . 7192 1 
+       42 . 1 1  6  6 MET H    H  1   8.30 0.02 . 1 . . . .  6 MET H    . 7192 1 
+       43 . 1 1  6  6 MET HA   H  1   4.40 0.02 . 1 . . . .  6 MET HA   . 7192 1 
+       44 . 1 1  6  6 MET HB2  H  1   2.03 0.02 . 1 . . . .  6 MET HB2  . 7192 1 
+       45 . 1 1  6  6 MET HB3  H  1   2.03 0.02 . 1 . . . .  6 MET HB3  . 7192 1 
+       46 . 1 1  6  6 MET HG2  H  1   2.50 0.02 . 2 . . . .  6 MET HG2  . 7192 1 
+       47 . 1 1  6  6 MET HG3  H  1   2.61 0.02 . 2 . . . .  6 MET HG3  . 7192 1 
+       48 . 1 1  6  6 MET HE1  H  1   2.08 0.02 . 1 . . . .  6 MET HE   . 7192 1 
+       49 . 1 1  6  6 MET HE2  H  1   2.08 0.02 . 1 . . . .  6 MET HE   . 7192 1 
+       50 . 1 1  6  6 MET HE3  H  1   2.08 0.02 . 1 . . . .  6 MET HE   . 7192 1 
+       51 . 1 1  6  6 MET C    C 13 176.2  0.2  . 1 . . . .  6 MET C    . 7192 1 
+       52 . 1 1  6  6 MET CA   C 13  55.8  0.2  . 1 . . . .  6 MET CA   . 7192 1 
+       53 . 1 1  6  6 MET CB   C 13  32.6  0.2  . 1 . . . .  6 MET CB   . 7192 1 
+       54 . 1 1  6  6 MET CG   C 13  32.3  0.2  . 1 . . . .  6 MET CG   . 7192 1 
+       55 . 1 1  6  6 MET CE   C 13  17.0  0.2  . 1 . . . .  6 MET CE   . 7192 1 
+       56 . 1 1  6  6 MET N    N 15 119.4  0.2  . 1 . . . .  6 MET N    . 7192 1 
+       57 . 1 1  7  7 VAL H    H  1   7.98 0.02 . 1 . . . .  7 VAL H    . 7192 1 
+       58 . 1 1  7  7 VAL HA   H  1   4.08 0.02 . 1 . . . .  7 VAL HA   . 7192 1 
+       59 . 1 1  7  7 VAL HB   H  1   2.04 0.02 . 1 . . . .  7 VAL HB   . 7192 1 
+       60 . 1 1  7  7 VAL HG11 H  1   0.88 0.02 . 1 . . . .  7 VAL HG1  . 7192 1 
+       61 . 1 1  7  7 VAL HG12 H  1   0.88 0.02 . 1 . . . .  7 VAL HG1  . 7192 1 
+       62 . 1 1  7  7 VAL HG13 H  1   0.88 0.02 . 1 . . . .  7 VAL HG1  . 7192 1 
+       63 . 1 1  7  7 VAL HG21 H  1   0.92 0.02 . 1 . . . .  7 VAL HG2  . 7192 1 
+       64 . 1 1  7  7 VAL HG22 H  1   0.92 0.02 . 1 . . . .  7 VAL HG2  . 7192 1 
+       65 . 1 1  7  7 VAL HG23 H  1   0.92 0.02 . 1 . . . .  7 VAL HG2  . 7192 1 
+       66 . 1 1  7  7 VAL C    C 13 175.8  0.2  . 1 . . . .  7 VAL C    . 7192 1 
+       67 . 1 1  7  7 VAL CA   C 13  62.4  0.2  . 1 . . . .  7 VAL CA   . 7192 1 
+       68 . 1 1  7  7 VAL CB   C 13  32.8  0.2  . 1 . . . .  7 VAL CB   . 7192 1 
+       69 . 1 1  7  7 VAL CG1  C 13  21.2  0.02 . 1 . . . .  7 VAL CG1  . 7192 1 
+       70 . 1 1  7  7 VAL CG2  C 13  20.9  0.02 . 1 . . . .  7 VAL CG2  . 7192 1 
+       71 . 1 1  7  7 VAL N    N 15 121.5  0.2  . 1 . . . .  7 VAL N    . 7192 1 
+       72 . 1 1  8  8 ILE H    H  1   8.14 0.02 . 1 . . . .  8 ILE H    . 7192 1 
+       73 . 1 1  8  8 ILE HA   H  1   4.12 0.02 . 1 . . . .  8 ILE HA   . 7192 1 
+       74 . 1 1  8  8 ILE HB   H  1   1.81 0.02 . 1 . . . .  8 ILE HB   . 7192 1 
+       75 . 1 1  8  8 ILE HG12 H  1   1.14 0.02 . 2 . . . .  8 ILE HG12 . 7192 1 
+       76 . 1 1  8  8 ILE HG13 H  1   1.42 0.02 . 2 . . . .  8 ILE HG13 . 7192 1 
+       77 . 1 1  8  8 ILE HG21 H  1   0.83 0.02 . 1 . . . .  8 ILE HG2  . 7192 1 
+       78 . 1 1  8  8 ILE HG22 H  1   0.83 0.02 . 1 . . . .  8 ILE HG2  . 7192 1 
+       79 . 1 1  8  8 ILE HG23 H  1   0.83 0.02 . 1 . . . .  8 ILE HG2  . 7192 1 
+       80 . 1 1  8  8 ILE HD11 H  1   0.81 0.02 . 1 . . . .  8 ILE HD1  . 7192 1 
+       81 . 1 1  8  8 ILE HD12 H  1   0.81 0.02 . 1 . . . .  8 ILE HD1  . 7192 1 
+       82 . 1 1  8  8 ILE HD13 H  1   0.81 0.02 . 1 . . . .  8 ILE HD1  . 7192 1 
+       83 . 1 1  8  8 ILE C    C 13 175.8  0.2  . 1 . . . .  8 ILE C    . 7192 1 
+       84 . 1 1  8  8 ILE CA   C 13  60.9  0.2  . 1 . . . .  8 ILE CA   . 7192 1 
+       85 . 1 1  8  8 ILE CB   C 13  38.6  0.2  . 1 . . . .  8 ILE CB   . 7192 1 
+       86 . 1 1  8  8 ILE CG1  C 13  27.4  0.2  . 1 . . . .  8 ILE CG1  . 7192 1 
+       87 . 1 1  8  8 ILE CG2  C 13  17.6  0.2  . 1 . . . .  8 ILE CG2  . 7192 1 
+       88 . 1 1  8  8 ILE CD1  C 13  12.9  0.2  . 1 . . . .  8 ILE CD1  . 7192 1 
+       89 . 1 1  8  8 ILE N    N 15 124.5  0.2  . 1 . . . .  8 ILE N    . 7192 1 
+       90 . 1 1  9  9 ASN H    H  1   8.45 0.02 . 1 . . . .  9 ASN H    . 7192 1 
+       91 . 1 1  9  9 ASN HA   H  1   4.63 0.02 . 1 . . . .  9 ASN HA   . 7192 1 
+       92 . 1 1  9  9 ASN HB2  H  1   2.62 0.02 . 1 . . . .  9 ASN HB2  . 7192 1 
+       93 . 1 1  9  9 ASN HB3  H  1   2.62 0.02 . 1 . . . .  9 ASN HB3  . 7192 1 
+       94 . 1 1  9  9 ASN HD21 H  1   7.50 0.02 . 1 . . . .  9 ASN HD21 . 7192 1 
+       95 . 1 1  9  9 ASN HD22 H  1   6.81 0.02 . 1 . . . .  9 ASN HD22 . 7192 1 
+       96 . 1 1  9  9 ASN C    C 13 174.7  0.2  . 1 . . . .  9 ASN C    . 7192 1 
+       97 . 1 1  9  9 ASN CA   C 13  53.2  0.2  . 1 . . . .  9 ASN CA   . 7192 1 
+       98 . 1 1  9  9 ASN CB   C 13  39.0  0.2  . 1 . . . .  9 ASN CB   . 7192 1 
+       99 . 1 1  9  9 ASN N    N 15 122.7  0.2  . 1 . . . .  9 ASN N    . 7192 1 
+      100 . 1 1  9  9 ASN ND2  N 15 112.7  0.2  . 1 . . . .  9 ASN ND2  . 7192 1 
+      101 . 1 1 10 10 ASN H    H  1   8.32 0.02 . 1 . . . . 10 ASN H    . 7192 1 
+      102 . 1 1 10 10 ASN HA   H  1   4.68 0.02 . 1 . . . . 10 ASN HA   . 7192 1 
+      103 . 1 1 10 10 ASN HB2  H  1   2.66 0.02 . 2 . . . . 10 ASN HB2  . 7192 1 
+      104 . 1 1 10 10 ASN HB3  H  1   2.75 0.02 . 2 . . . . 10 ASN HB3  . 7192 1 
+      105 . 1 1 10 10 ASN HD21 H  1   7.54 0.02 . 2 . . . . 10 ASN HD21 . 7192 1 
+      106 . 1 1 10 10 ASN HD22 H  1   6.86 0.02 . 2 . . . . 10 ASN HD22 . 7192 1 
+      107 . 1 1 10 10 ASN C    C 13 175.0  0.2  . 1 . . . . 10 ASN C    . 7192 1 
+      108 . 1 1 10 10 ASN CA   C 13  53.1  0.2  . 1 . . . . 10 ASN CA   . 7192 1 
+      109 . 1 1 10 10 ASN CB   C 13  38.7  0.2  . 1 . . . . 10 ASN CB   . 7192 1 
+      110 . 1 1 10 10 ASN N    N 15 119.6  0.2  . 1 . . . . 10 ASN N    . 7192 1 
+      111 . 1 1 10 10 ASN ND2  N 15 112.7  0.2  . 1 . . . . 10 ASN ND2  . 7192 1 
+      112 . 1 1 11 11 TRP H    H  1   8.06 0.02 . 1 . . . . 11 TRP H    . 7192 1 
+      113 . 1 1 11 11 TRP HA   H  1   4.55 0.02 . 1 . . . . 11 TRP HA   . 7192 1 
+      114 . 1 1 11 11 TRP HB2  H  1   3.23 0.02 . 1 . . . . 11 TRP HB2  . 7192 1 
+      115 . 1 1 11 11 TRP HB3  H  1   3.23 0.02 . 1 . . . . 11 TRP HB3  . 7192 1 
+      116 . 1 1 11 11 TRP HD1  H  1   7.20 0.02 . 1 . . . . 11 TRP HD1  . 7192 1 
+      117 . 1 1 11 11 TRP HE1  H  1  10.12 0.02 . 1 . . . . 11 TRP HE1  . 7192 1 
+      118 . 1 1 11 11 TRP HE3  H  1   7.51 0.02 . 1 . . . . 11 TRP HE3  . 7192 1 
+      119 . 1 1 11 11 TRP HZ2  H  1   7.45 0.02 . 1 . . . . 11 TRP HZ2  . 7192 1 
+      120 . 1 1 11 11 TRP HZ3  H  1   7.10 0.02 . 1 . . . . 11 TRP HZ3  . 7192 1 
+      121 . 1 1 11 11 TRP HH2  H  1   7.19 0.02 . 1 . . . . 11 TRP HH2  . 7192 1 
+      122 . 1 1 11 11 TRP C    C 13 176.2  0.2  . 1 . . . . 11 TRP C    . 7192 1 
+      123 . 1 1 11 11 TRP CA   C 13  57.8  0.2  . 1 . . . . 11 TRP CA   . 7192 1 
+      124 . 1 1 11 11 TRP CB   C 13  29.3  0.2  . 1 . . . . 11 TRP CB   . 7192 1 
+      125 . 1 1 11 11 TRP CD1  C 13 127.2  0.2  . 1 . . . . 11 TRP CD1  . 7192 1 
+      126 . 1 1 11 11 TRP CE3  C 13 120.8  0.2  . 1 . . . . 11 TRP CE3  . 7192 1 
+      127 . 1 1 11 11 TRP CZ2  C 13 114.7  0.2  . 1 . . . . 11 TRP CZ2  . 7192 1 
+      128 . 1 1 11 11 TRP CZ3  C 13 122.0  0.2  . 1 . . . . 11 TRP CZ3  . 7192 1 
+      129 . 1 1 11 11 TRP CH2  C 13 124.6  0.2  . 1 . . . . 11 TRP CH2  . 7192 1 
+      130 . 1 1 11 11 TRP N    N 15 121.2  0.2  . 1 . . . . 11 TRP N    . 7192 1 
+      131 . 1 1 11 11 TRP NE1  N 15 129.5  0.2  . 1 . . . . 11 TRP NE1  . 7192 1 
+      132 . 1 1 12 12 HIS H    H  1   7.98 0.02 . 1 . . . . 12 HIS H    . 7192 1 
+      133 . 1 1 12 12 HIS HA   H  1   4.41 0.02 . 1 . . . . 12 HIS HA   . 7192 1 
+      134 . 1 1 12 12 HIS HB2  H  1   2.95 0.02 . 2 . . . . 12 HIS HB2  . 7192 1 
+      135 . 1 1 12 12 HIS HB3  H  1   3.06 0.02 . 2 . . . . 12 HIS HB3  . 7192 1 
+      136 . 1 1 12 12 HIS HD2  H  1   7.0  0.02 . 1 . . . . 12 HIS HD2  . 7192 1 
+      137 . 1 1 12 12 HIS C    C 13 174.4  0.2  . 1 . . . . 12 HIS C    . 7192 1 
+      138 . 1 1 12 12 HIS CA   C 13  56.2  0.2  . 1 . . . . 12 HIS CA   . 7192 1 
+      139 . 1 1 12 12 HIS CB   C 13  29.6  0.2  . 1 . . . . 12 HIS CB   . 7192 1 
+      140 . 1 1 12 12 HIS CD2  C 13 120.0  0.2  . 1 . . . . 12 HIS CD2  . 7192 1 
+      141 . 1 1 12 12 HIS N    N 15 119.9  0.2  . 1 . . . . 12 HIS N    . 7192 1 
+      142 . 1 1 13 13 ASP H    H  1   8.13 0.02 . 1 . . . . 13 ASP H    . 7192 1 
+      143 . 1 1 13 13 ASP HA   H  1   4.47 0.02 . 1 . . . . 13 ASP HA   . 7192 1 
+      144 . 1 1 13 13 ASP HB2  H  1   2.59 0.02 . 2 . . . . 13 ASP HB2  . 7192 1 
+      145 . 1 1 13 13 ASP HB3  H  1   2.68 0.02 . 2 . . . . 13 ASP HB3  . 7192 1 
+      146 . 1 1 13 13 ASP C    C 13 176.1  0.2  . 1 . . . . 13 ASP C    . 7192 1 
+      147 . 1 1 13 13 ASP CA   C 13  54.7  0.2  . 1 . . . . 13 ASP CA   . 7192 1 
+      148 . 1 1 13 13 ASP CB   C 13  41.1  0.2  . 1 . . . . 13 ASP CB   . 7192 1 
+      149 . 1 1 13 13 ASP N    N 15 120.6  0.2  . 1 . . . . 13 ASP N    . 7192 1 
+      150 . 1 1 14 14 LYS H    H  1   8.15 0.02 . 1 . . . . 14 LYS H    . 7192 1 
+      151 . 1 1 14 14 LYS HA   H  1   4.27 0.02 . 1 . . . . 14 LYS HA   . 7192 1 
+      152 . 1 1 14 14 LYS HB2  H  1   1.75 0.02 . 2 . . . . 14 LYS HB2  . 7192 1 
+      153 . 1 1 14 14 LYS HB3  H  1   1.84 0.02 . 2 . . . . 14 LYS HB3  . 7192 1 
+      154 . 1 1 14 14 LYS HG2  H  1   1.39 0.02 . 1 . . . . 14 LYS HG2  . 7192 1 
+      155 . 1 1 14 14 LYS HG3  H  1   1.39 0.02 . 1 . . . . 14 LYS HG3  . 7192 1 
+      156 . 1 1 14 14 LYS HD2  H  1   1.62 0.02 . 1 . . . . 14 LYS HD2  . 7192 1 
+      157 . 1 1 14 14 LYS HD3  H  1   1.62 0.02 . 1 . . . . 14 LYS HD3  . 7192 1 
+      158 . 1 1 14 14 LYS HE2  H  1   2.95 0.02 . 1 . . . . 14 LYS HE2  . 7192 1 
+      159 . 1 1 14 14 LYS HE3  H  1   2.95 0.02 . 1 . . . . 14 LYS HE3  . 7192 1 
+      160 . 1 1 14 14 LYS C    C 13 176.6  0.2  . 1 . . . . 14 LYS C    . 7192 1 
+      161 . 1 1 14 14 LYS CA   C 13  56.5  0.2  . 1 . . . . 14 LYS CA   . 7192 1 
+      162 . 1 1 14 14 LYS CB   C 13  32.9  0.2  . 1 . . . . 14 LYS CB   . 7192 1 
+      163 . 1 1 14 14 LYS CG   C 13  24.7  0.2  . 1 . . . . 14 LYS CG   . 7192 1 
+      164 . 1 1 14 14 LYS CD   C 13  29.0  0.2  . 1 . . . . 14 LYS CD   . 7192 1 
+      165 . 1 1 14 14 LYS CE   C 13  42.2  0.2  . 1 . . . . 14 LYS CE   . 7192 1 
+      166 . 1 1 14 14 LYS N    N 15 120.9  0.2  . 1 . . . . 14 LYS N    . 7192 1 
+      167 . 1 1 15 15 LEU H    H  1   8.22 0.02 . 1 . . . . 15 LEU H    . 7192 1 
+      168 . 1 1 15 15 LEU HA   H  1   4.36 0.02 . 1 . . . . 15 LEU HA   . 7192 1 
+      169 . 1 1 15 15 LEU HB2  H  1   1.58 0.02 . 2 . . . . 15 LEU HB2  . 7192 1 
+      170 . 1 1 15 15 LEU HB3  H  1   1.68 0.02 . 2 . . . . 15 LEU HB3  . 7192 1 
+      171 . 1 1 15 15 LEU HG   H  1   1.60 0.02 . 1 . . . . 15 LEU HG   . 7192 1 
+      172 . 1 1 15 15 LEU HD11 H  1   0.88 0.02 . 1 . . . . 15 LEU HD1  . 7192 1 
+      173 . 1 1 15 15 LEU HD12 H  1   0.88 0.02 . 1 . . . . 15 LEU HD1  . 7192 1 
+      174 . 1 1 15 15 LEU HD13 H  1   0.88 0.02 . 1 . . . . 15 LEU HD1  . 7192 1 
+      175 . 1 1 15 15 LEU HD21 H  1   0.84 0.02 . 1 . . . . 15 LEU HD2  . 7192 1 
+      176 . 1 1 15 15 LEU HD22 H  1   0.84 0.02 . 1 . . . . 15 LEU HD2  . 7192 1 
+      177 . 1 1 15 15 LEU HD23 H  1   0.84 0.02 . 1 . . . . 15 LEU HD2  . 7192 1 
+      178 . 1 1 15 15 LEU C    C 13 177.6  0.2  . 1 . . . . 15 LEU C    . 7192 1 
+      179 . 1 1 15 15 LEU CA   C 13  55.6  0.2  . 1 . . . . 15 LEU CA   . 7192 1 
+      180 . 1 1 15 15 LEU CB   C 13  42.2  0.2  . 1 . . . . 15 LEU CB   . 7192 1 
+      181 . 1 1 15 15 LEU CG   C 13  27.1  0.2  . 1 . . . . 15 LEU CG   . 7192 1 
+      182 . 1 1 15 15 LEU CD1  C 13  25.1  0.02 . 1 . . . . 15 LEU CD1  . 7192 1 
+      183 . 1 1 15 15 LEU CD2  C 13  23.3  0.02 . 1 . . . . 15 LEU CD2  . 7192 1 
+      184 . 1 1 15 15 LEU N    N 15 122.5  0.2  . 1 . . . . 15 LEU N    . 7192 1 
+      185 . 1 1 16 16 THR H    H  1   8.09 0.02 . 1 . . . . 16 THR H    . 7192 1 
+      186 . 1 1 16 16 THR HA   H  1   4.34 0.02 . 1 . . . . 16 THR HA   . 7192 1 
+      187 . 1 1 16 16 THR HB   H  1   4.24 0.02 . 1 . . . . 16 THR HB   . 7192 1 
+      188 . 1 1 16 16 THR HG21 H  1   1.19 0.02 . 1 . . . . 16 THR HG2  . 7192 1 
+      189 . 1 1 16 16 THR HG22 H  1   1.19 0.02 . 1 . . . . 16 THR HG2  . 7192 1 
+      190 . 1 1 16 16 THR HG23 H  1   1.19 0.02 . 1 . . . . 16 THR HG2  . 7192 1 
+      191 . 1 1 16 16 THR C    C 13 174.7  0.2  . 1 . . . . 16 THR C    . 7192 1 
+      192 . 1 1 16 16 THR CA   C 13  61.7  0.2  . 1 . . . . 16 THR CA   . 7192 1 
+      193 . 1 1 16 16 THR CB   C 13  70.0  0.2  . 1 . . . . 16 THR CB   . 7192 1 
+      194 . 1 1 16 16 THR CG2  C 13  21.8  0.2  . 1 . . . . 16 THR CG2  . 7192 1 
+      195 . 1 1 16 16 THR N    N 15 113.8  0.2  . 1 . . . . 16 THR N    . 7192 1 
+      196 . 1 1 17 17 GLU H    H  1   8.40 0.02 . 1 . . . . 17 GLU H    . 7192 1 
+      197 . 1 1 17 17 GLU HA   H  1   4.33 0.02 . 1 . . . . 17 GLU HA   . 7192 1 
+      198 . 1 1 17 17 GLU HB2  H  1   1.97 0.02 . 2 . . . . 17 GLU HB2  . 7192 1 
+      199 . 1 1 17 17 GLU HB3  H  1   2.09 0.02 . 2 . . . . 17 GLU HB3  . 7192 1 
+      200 . 1 1 17 17 GLU HG2  H  1   2.27 0.02 . 1 . . . . 17 GLU HG2  . 7192 1 
+      201 . 1 1 17 17 GLU HG3  H  1   2.27 0.02 . 1 . . . . 17 GLU HG3  . 7192 1 
+      202 . 1 1 17 17 GLU C    C 13 176.5  0.2  . 1 . . . . 17 GLU C    . 7192 1 
+      203 . 1 1 17 17 GLU CA   C 13  56.9  0.2  . 1 . . . . 17 GLU CA   . 7192 1 
+      204 . 1 1 17 17 GLU CB   C 13  30.2  0.2  . 1 . . . . 17 GLU CB   . 7192 1 
+      205 . 1 1 17 17 GLU CG   C 13  36.3  0.2  . 1 . . . . 17 GLU CG   . 7192 1 
+      206 . 1 1 17 17 GLU N    N 15 122.7  0.2  . 1 . . . . 17 GLU N    . 7192 1 
+      207 . 1 1 18 18 THR H    H  1   8.04 0.02 . 1 . . . . 18 THR H    . 7192 1 
+      208 . 1 1 18 18 THR HA   H  1   4.35 0.02 . 1 . . . . 18 THR HA   . 7192 1 
+      209 . 1 1 18 18 THR HB   H  1   4.23 0.02 . 1 . . . . 18 THR HB   . 7192 1 
+      210 . 1 1 18 18 THR HG21 H  1   1.17 0.02 . 1 . . . . 18 THR HG2  . 7192 1 
+      211 . 1 1 18 18 THR HG22 H  1   1.17 0.02 . 1 . . . . 18 THR HG2  . 7192 1 
+      212 . 1 1 18 18 THR HG23 H  1   1.17 0.02 . 1 . . . . 18 THR HG2  . 7192 1 
+      213 . 1 1 18 18 THR C    C 13 174.0  0.2  . 1 . . . . 18 THR C    . 7192 1 
+      214 . 1 1 18 18 THR CA   C 13  61.7  0.2  . 1 . . . . 18 THR CA   . 7192 1 
+      215 . 1 1 18 18 THR CB   C 13  69.8  0.2  . 1 . . . . 18 THR CB   . 7192 1 
+      216 . 1 1 18 18 THR CG2  C 13  21.5  0.2  . 1 . . . . 18 THR CG2  . 7192 1 
+      217 . 1 1 18 18 THR N    N 15 113.6  0.2  . 1 . . . . 18 THR N    . 7192 1 
+      218 . 1 1 19 19 ASP H    H  1   8.29 0.02 . 1 . . . . 19 ASP H    . 7192 1 
+      219 . 1 1 19 19 ASP HA   H  1   4.64 0.02 . 1 . . . . 19 ASP HA   . 7192 1 
+      220 . 1 1 19 19 ASP HB2  H  1   2.62 0.02 . 2 . . . . 19 ASP HB2  . 7192 1 
+      221 . 1 1 19 19 ASP HB3  H  1   2.69 0.02 . 2 . . . . 19 ASP HB3  . 7192 1 
+      222 . 1 1 19 19 ASP C    C 13 175.5  0.2  . 1 . . . . 19 ASP C    . 7192 1 
+      223 . 1 1 19 19 ASP CA   C 13  54.5  0.2  . 1 . . . . 19 ASP CA   . 7192 1 
+      224 . 1 1 19 19 ASP CB   C 13  41.2  0.2  . 1 . . . . 19 ASP CB   . 7192 1 
+      225 . 1 1 19 19 ASP N    N 15 122.9  0.2  . 1 . . . . 19 ASP N    . 7192 1 
+      226 . 1 1 20 20 VAL H    H  1   7.90 0.02 . 1 . . . . 20 VAL H    . 7192 1 
+      227 . 1 1 20 20 VAL HA   H  1   4.20 0.02 . 1 . . . . 20 VAL HA   . 7192 1 
+      228 . 1 1 20 20 VAL HB   H  1   1.92 0.02 . 1 . . . . 20 VAL HB   . 7192 1 
+      229 . 1 1 20 20 VAL HG11 H  1   0.80 0.02 . 1 . . . . 20 VAL HG1  . 7192 1 
+      230 . 1 1 20 20 VAL HG12 H  1   0.80 0.02 . 1 . . . . 20 VAL HG1  . 7192 1 
+      231 . 1 1 20 20 VAL HG13 H  1   0.80 0.02 . 1 . . . . 20 VAL HG1  . 7192 1 
+      232 . 1 1 20 20 VAL HG21 H  1   0.85 0.02 . 1 . . . . 20 VAL HG2  . 7192 1 
+      233 . 1 1 20 20 VAL HG22 H  1   0.85 0.02 . 1 . . . . 20 VAL HG2  . 7192 1 
+      234 . 1 1 20 20 VAL HG23 H  1   0.85 0.02 . 1 . . . . 20 VAL HG2  . 7192 1 
+      235 . 1 1 20 20 VAL C    C 13 175.4  0.2  . 1 . . . . 20 VAL C    . 7192 1 
+      236 . 1 1 20 20 VAL CA   C 13  61.9  0.2  . 1 . . . . 20 VAL CA   . 7192 1 
+      237 . 1 1 20 20 VAL CB   C 13  33.5  0.2  . 1 . . . . 20 VAL CB   . 7192 1 
+      238 . 1 1 20 20 VAL CG1  C 13  21.3  0.02 . 1 . . . . 20 VAL CG1  . 7192 1 
+      239 . 1 1 20 20 VAL CG2  C 13  20.9  0.02 . 1 . . . . 20 VAL CG2  . 7192 1 
+      240 . 1 1 20 20 VAL N    N 15 119.9  0.2  . 1 . . . . 20 VAL N    . 7192 1 
+      241 . 1 1 21 21 GLN H    H  1   8.49 0.02 . 1 . . . . 21 GLN H    . 7192 1 
+      242 . 1 1 21 21 GLN HA   H  1   4.51 0.02 . 1 . . . . 21 GLN HA   . 7192 1 
+      243 . 1 1 21 21 GLN HB2  H  1   1.67 0.02 . 2 . . . . 21 GLN HB2  . 7192 1 
+      244 . 1 1 21 21 GLN HB3  H  1   1.94 0.02 . 2 . . . . 21 GLN HB3  . 7192 1 
+      245 . 1 1 21 21 GLN HG2  H  1   2.07 0.02 . 1 . . . . 21 GLN HG2  . 7192 1 
+      246 . 1 1 21 21 GLN HG3  H  1   2.07 0.02 . 1 . . . . 21 GLN HG3  . 7192 1 
+      247 . 1 1 21 21 GLN HE21 H  1   7.34 0.02 . 1 . . . . 21 GLN HE21 . 7192 1 
+      248 . 1 1 21 21 GLN HE22 H  1   6.31 0.02 . 1 . . . . 21 GLN HE22 . 7192 1 
+      249 . 1 1 21 21 GLN C    C 13 173.8  0.2  . 1 . . . . 21 GLN C    . 7192 1 
+      250 . 1 1 21 21 GLN CA   C 13  54.7  0.2  . 1 . . . . 21 GLN CA   . 7192 1 
+      251 . 1 1 21 21 GLN CB   C 13  31.6  0.2  . 1 . . . . 21 GLN CB   . 7192 1 
+      252 . 1 1 21 21 GLN CG   C 13  34.3  0.2  . 1 . . . . 21 GLN CG   . 7192 1 
+      253 . 1 1 21 21 GLN N    N 15 124.8  0.2  . 1 . . . . 21 GLN N    . 7192 1 
+      254 . 1 1 21 21 GLN NE2  N 15 110.7  0.2  . 1 . . . . 21 GLN NE2  . 7192 1 
+      255 . 1 1 22 22 ILE H    H  1   8.07 0.02 . 1 . . . . 22 ILE H    . 7192 1 
+      256 . 1 1 22 22 ILE HA   H  1   4.82 0.02 . 1 . . . . 22 ILE HA   . 7192 1 
+      257 . 1 1 22 22 ILE HB   H  1   1.65 0.02 . 1 . . . . 22 ILE HB   . 7192 1 
+      258 . 1 1 22 22 ILE HG12 H  1   1.16 0.02 . 2 . . . . 22 ILE HG12 . 7192 1 
+      259 . 1 1 22 22 ILE HG13 H  1   1.34 0.02 . 2 . . . . 22 ILE HG13 . 7192 1 
+      260 . 1 1 22 22 ILE HG21 H  1   0.83 0.02 . 1 . . . . 22 ILE HG2  . 7192 1 
+      261 . 1 1 22 22 ILE HG22 H  1   0.83 0.02 . 1 . . . . 22 ILE HG2  . 7192 1 
+      262 . 1 1 22 22 ILE HG23 H  1   0.83 0.02 . 1 . . . . 22 ILE HG2  . 7192 1 
+      263 . 1 1 22 22 ILE HD11 H  1   0.72 0.02 . 1 . . . . 22 ILE HD1  . 7192 1 
+      264 . 1 1 22 22 ILE HD12 H  1   0.72 0.02 . 1 . . . . 22 ILE HD1  . 7192 1 
+      265 . 1 1 22 22 ILE HD13 H  1   0.72 0.02 . 1 . . . . 22 ILE HD1  . 7192 1 
+      266 . 1 1 22 22 ILE C    C 13 175.5  0.2  . 1 . . . . 22 ILE C    . 7192 1 
+      267 . 1 1 22 22 ILE CA   C 13  58.7  0.2  . 1 . . . . 22 ILE CA   . 7192 1 
+      268 . 1 1 22 22 ILE CB   C 13  39.8  0.2  . 1 . . . . 22 ILE CB   . 7192 1 
+      269 . 1 1 22 22 ILE CG1  C 13  26.3  0.2  . 1 . . . . 22 ILE CG1  . 7192 1 
+      270 . 1 1 22 22 ILE CG2  C 13  17.8  0.2  . 1 . . . . 22 ILE CG2  . 7192 1 
+      271 . 1 1 22 22 ILE CD1  C 13  12.1  0.2  . 1 . . . . 22 ILE CD1  . 7192 1 
+      272 . 1 1 22 22 ILE N    N 15 120.5  0.2  . 1 . . . . 22 ILE N    . 7192 1 
+      273 . 1 1 23 23 ASP H    H  1   9.34 0.02 . 1 . . . . 23 ASP H    . 7192 1 
+      274 . 1 1 23 23 ASP HA   H  1   4.57 0.02 . 1 . . . . 23 ASP HA   . 7192 1 
+      275 . 1 1 23 23 ASP HB2  H  1   2.41 0.02 . 2 . . . . 23 ASP HB2  . 7192 1 
+      276 . 1 1 23 23 ASP HB3  H  1   3.22 0.02 . 2 . . . . 23 ASP HB3  . 7192 1 
+      277 . 1 1 23 23 ASP C    C 13 178.6  0.2  . 1 . . . . 23 ASP C    . 7192 1 
+      278 . 1 1 23 23 ASP CA   C 13  51.7  0.2  . 1 . . . . 23 ASP CA   . 7192 1 
+      279 . 1 1 23 23 ASP CB   C 13  42.9  0.2  . 1 . . . . 23 ASP CB   . 7192 1 
+      280 . 1 1 23 23 ASP N    N 15 128.0  0.2  . 1 . . . . 23 ASP N    . 7192 1 
+      281 . 1 1 24 24 PHE H    H  1   8.86 0.02 . 1 . . . . 24 PHE H    . 7192 1 
+      282 . 1 1 24 24 PHE HA   H  1   3.96 0.02 . 1 . . . . 24 PHE HA   . 7192 1 
+      283 . 1 1 24 24 PHE HB2  H  1   3.11 0.02 . 2 . . . . 24 PHE HB2  . 7192 1 
+      284 . 1 1 24 24 PHE HB3  H  1   2.24 0.02 . 2 . . . . 24 PHE HB3  . 7192 1 
+      285 . 1 1 24 24 PHE HD1  H  1   6.39 0.02 . 1 . . . . 24 PHE HD1  . 7192 1 
+      286 . 1 1 24 24 PHE HD2  H  1   6.39 0.02 . 1 . . . . 24 PHE HD2  . 7192 1 
+      287 . 1 1 24 24 PHE HE1  H  1   7.11 0.02 . 1 . . . . 24 PHE HE1  . 7192 1 
+      288 . 1 1 24 24 PHE HE2  H  1   7.11 0.02 . 1 . . . . 24 PHE HE2  . 7192 1 
+      289 . 1 1 24 24 PHE HZ   H  1   7.08 0.02 . 1 . . . . 24 PHE HZ   . 7192 1 
+      290 . 1 1 24 24 PHE C    C 13 175.8  0.2  . 1 . . . . 24 PHE C    . 7192 1 
+      291 . 1 1 24 24 PHE CA   C 13  61.6  0.2  . 1 . . . . 24 PHE CA   . 7192 1 
+      292 . 1 1 24 24 PHE CB   C 13  41.8  0.2  . 1 . . . . 24 PHE CB   . 7192 1 
+      293 . 1 1 24 24 PHE CD1  C 13 132.1  0.02 . 1 . . . . 24 PHE CD1  . 7192 1 
+      294 . 1 1 24 24 PHE CD2  C 13 132.1  0.02 . 1 . . . . 24 PHE CD2  . 7192 1 
+      295 . 1 1 24 24 PHE CE1  C 13 131.2  0.02 . 1 . . . . 24 PHE CE1  . 7192 1 
+      296 . 1 1 24 24 PHE CE2  C 13 131.2  0.02 . 1 . . . . 24 PHE CE2  . 7192 1 
+      297 . 1 1 24 24 PHE CZ   C 13 129.8  0.2  . 1 . . . . 24 PHE CZ   . 7192 1 
+      298 . 1 1 24 24 PHE N    N 15 118.5  0.2  . 1 . . . . 24 PHE N    . 7192 1 
+      299 . 1 1 25 25 TYR H    H  1   8.34 0.02 . 1 . . . . 25 TYR H    . 7192 1 
+      300 . 1 1 25 25 TYR HA   H  1   4.40 0.02 . 1 . . . . 25 TYR HA   . 7192 1 
+      301 . 1 1 25 25 TYR HB2  H  1   2.90 0.02 . 2 . . . . 25 TYR HB2  . 7192 1 
+      302 . 1 1 25 25 TYR HB3  H  1   3.44 0.02 . 2 . . . . 25 TYR HB3  . 7192 1 
+      303 . 1 1 25 25 TYR HD1  H  1   7.26 0.02 . 1 . . . . 25 TYR HD1  . 7192 1 
+      304 . 1 1 25 25 TYR HD2  H  1   7.26 0.02 . 1 . . . . 25 TYR HD2  . 7192 1 
+      305 . 1 1 25 25 TYR HE1  H  1   7.03 0.02 . 1 . . . . 25 TYR HE1  . 7192 1 
+      306 . 1 1 25 25 TYR HE2  H  1   7.03 0.02 . 1 . . . . 25 TYR HE2  . 7192 1 
+      307 . 1 1 25 25 TYR C    C 13 175.7  0.2  . 1 . . . . 25 TYR C    . 7192 1 
+      308 . 1 1 25 25 TYR CA   C 13  59.2  0.2  . 1 . . . . 25 TYR CA   . 7192 1 
+      309 . 1 1 25 25 TYR CB   C 13  38.7  0.2  . 1 . . . . 25 TYR CB   . 7192 1 
+      310 . 1 1 25 25 TYR CD1  C 13 132.7  0.02 . 1 . . . . 25 TYR CD1  . 7192 1 
+      311 . 1 1 25 25 TYR CD2  C 13 132.7  0.02 . 1 . . . . 25 TYR CD2  . 7192 1 
+      312 . 1 1 25 25 TYR CE1  C 13 118.2  0.02 . 1 . . . . 25 TYR CE1  . 7192 1 
+      313 . 1 1 25 25 TYR CE2  C 13 118.2  0.02 . 1 . . . . 25 TYR CE2  . 7192 1 
+      314 . 1 1 25 25 TYR N    N 15 114.5  0.2  . 1 . . . . 25 TYR N    . 7192 1 
+      315 . 1 1 26 26 GLY H    H  1   8.46 0.02 . 1 . . . . 26 GLY H    . 7192 1 
+      316 . 1 1 26 26 GLY HA2  H  1   4.23 0.02 . 2 . . . . 26 GLY HA2  . 7192 1 
+      317 . 1 1 26 26 GLY HA3  H  1   3.50 0.02 . 2 . . . . 26 GLY HA3  . 7192 1 
+      318 . 1 1 26 26 GLY C    C 13 174.7  0.2  . 1 . . . . 26 GLY C    . 7192 1 
+      319 . 1 1 26 26 GLY CA   C 13  45.2  0.2  . 1 . . . . 26 GLY CA   . 7192 1 
+      320 . 1 1 26 26 GLY N    N 15 109.7  0.2  . 1 . . . . 26 GLY N    . 7192 1 
+      321 . 1 1 27 27 ASP H    H  1   8.40 0.02 . 1 . . . . 27 ASP H    . 7192 1 
+      322 . 1 1 27 27 ASP HA   H  1   4.33 0.02 . 1 . . . . 27 ASP HA   . 7192 1 
+      323 . 1 1 27 27 ASP HB2  H  1   1.97 0.02 . 2 . . . . 27 ASP HB2  . 7192 1 
+      324 . 1 1 27 27 ASP HB3  H  1   2.09 0.02 . 2 . . . . 27 ASP HB3  . 7192 1 
+      325 . 1 1 27 27 ASP C    C 13 175.7  0.2  . 1 . . . . 27 ASP C    . 7192 1 
+      326 . 1 1 27 27 ASP CA   C 13  56.7  0.2  . 1 . . . . 27 ASP CA   . 7192 1 
+      327 . 1 1 27 27 ASP CB   C 13  30.3  0.2  . 1 . . . . 27 ASP CB   . 7192 1 
+      328 . 1 1 27 27 ASP N    N 15 122.7  0.2  . 1 . . . . 27 ASP N    . 7192 1 
+      329 . 1 1 28 28 GLU H    H  1   7.96 0.02 . 1 . . . . 28 GLU H    . 7192 1 
+      330 . 1 1 28 28 GLU HA   H  1   4.28 0.02 . 1 . . . . 28 GLU HA   . 7192 1 
+      331 . 1 1 28 28 GLU HB2  H  1   1.80 0.02 . 2 . . . . 28 GLU HB2  . 7192 1 
+      332 . 1 1 28 28 GLU HB3  H  1   1.91 0.02 . 2 . . . . 28 GLU HB3  . 7192 1 
+      333 . 1 1 28 28 GLU HG2  H  1   2.05 0.02 . 2 . . . . 28 GLU HG2  . 7192 1 
+      334 . 1 1 28 28 GLU HG3  H  1   2.35 0.02 . 2 . . . . 28 GLU HG3  . 7192 1 
+      335 . 1 1 28 28 GLU C    C 13 175.2  0.2  . 1 . . . . 28 GLU C    . 7192 1 
+      336 . 1 1 28 28 GLU CA   C 13  57.4  0.2  . 1 . . . . 28 GLU CA   . 7192 1 
+      337 . 1 1 28 28 GLU CB   C 13  30.5  0.2  . 1 . . . . 28 GLU CB   . 7192 1 
+      338 . 1 1 28 28 GLU CG   C 13  36.9  0.2  . 1 . . . . 28 GLU CG   . 7192 1 
+      339 . 1 1 28 28 GLU N    N 15 126.1  0.2  . 1 . . . . 28 GLU N    . 7192 1 
+      340 . 1 1 29 29 VAL H    H  1   8.55 0.02 . 1 . . . . 29 VAL H    . 7192 1 
+      341 . 1 1 29 29 VAL HA   H  1   4.18 0.02 . 1 . . . . 29 VAL HA   . 7192 1 
+      342 . 1 1 29 29 VAL HB   H  1   1.62 0.02 . 1 . . . . 29 VAL HB   . 7192 1 
+      343 . 1 1 29 29 VAL HG11 H  1   0.46 0.02 . 1 . . . . 29 VAL HG1  . 7192 1 
+      344 . 1 1 29 29 VAL HG12 H  1   0.46 0.02 . 1 . . . . 29 VAL HG1  . 7192 1 
+      345 . 1 1 29 29 VAL HG13 H  1   0.46 0.02 . 1 . . . . 29 VAL HG1  . 7192 1 
+      346 . 1 1 29 29 VAL HG21 H  1   0.57 0.02 . 1 . . . . 29 VAL HG2  . 7192 1 
+      347 . 1 1 29 29 VAL HG22 H  1   0.57 0.02 . 1 . . . . 29 VAL HG2  . 7192 1 
+      348 . 1 1 29 29 VAL HG23 H  1   0.57 0.02 . 1 . . . . 29 VAL HG2  . 7192 1 
+      349 . 1 1 29 29 VAL C    C 13 176.0  0.2  . 1 . . . . 29 VAL C    . 7192 1 
+      350 . 1 1 29 29 VAL CA   C 13  61.5  0.2  . 1 . . . . 29 VAL CA   . 7192 1 
+      351 . 1 1 29 29 VAL CB   C 13  32.3  0.2  . 1 . . . . 29 VAL CB   . 7192 1 
+      352 . 1 1 29 29 VAL CG1  C 13  21.8  0.02 . 1 . . . . 29 VAL CG1  . 7192 1 
+      353 . 1 1 29 29 VAL CG2  C 13  20.6  0.02 . 1 . . . . 29 VAL CG2  . 7192 1 
+      354 . 1 1 29 29 VAL N    N 15 123.5  0.2  . 1 . . . . 29 VAL N    . 7192 1 
+      355 . 1 1 30 30 THR H    H  1   9.72 0.02 . 1 . . . . 30 THR H    . 7192 1 
+      356 . 1 1 30 30 THR HA   H  1   5.01 0.02 . 1 . . . . 30 THR HA   . 7192 1 
+      357 . 1 1 30 30 THR HB   H  1   4.57 0.02 . 1 . . . . 30 THR HB   . 7192 1 
+      358 . 1 1 30 30 THR HG21 H  1   1.25 0.02 . 1 . . . . 30 THR HG2  . 7192 1 
+      359 . 1 1 30 30 THR HG22 H  1   1.25 0.02 . 1 . . . . 30 THR HG2  . 7192 1 
+      360 . 1 1 30 30 THR HG23 H  1   1.25 0.02 . 1 . . . . 30 THR HG2  . 7192 1 
+      361 . 1 1 30 30 THR CA   C 13  60.8  0.2  . 1 . . . . 30 THR CA   . 7192 1 
+      362 . 1 1 30 30 THR CB   C 13  68.7  0.2  . 1 . . . . 30 THR CB   . 7192 1 
+      363 . 1 1 30 30 THR CG2  C 13  21.4  0.2  . 1 . . . . 30 THR CG2  . 7192 1 
+      364 . 1 1 30 30 THR N    N 15 122.3  0.2  . 1 . . . . 30 THR N    . 7192 1 
+      365 . 1 1 31 31 PRO HA   H  1   4.51 0.02 . 1 . . . . 31 PRO HA   . 7192 1 
+      366 . 1 1 31 31 PRO HB2  H  1   1.82 0.02 . 2 . . . . 31 PRO HB2  . 7192 1 
+      367 . 1 1 31 31 PRO HB3  H  1   2.47 0.02 . 2 . . . . 31 PRO HB3  . 7192 1 
+      368 . 1 1 31 31 PRO HG2  H  1   1.97 0.02 . 2 . . . . 31 PRO HG2  . 7192 1 
+      369 . 1 1 31 31 PRO HG3  H  1   2.08 0.02 . 2 . . . . 31 PRO HG3  . 7192 1 
+      370 . 1 1 31 31 PRO HD2  H  1   3.71 0.02 . 2 . . . . 31 PRO HD2  . 7192 1 
+      371 . 1 1 31 31 PRO HD3  H  1   3.97 0.02 . 2 . . . . 31 PRO HD3  . 7192 1 
+      372 . 1 1 31 31 PRO C    C 13 176.4  0.2  . 1 . . . . 31 PRO C    . 7192 1 
+      373 . 1 1 31 31 PRO CA   C 13  65.2  0.2  . 1 . . . . 31 PRO CA   . 7192 1 
+      374 . 1 1 31 31 PRO CB   C 13  32.6  0.2  . 1 . . . . 31 PRO CB   . 7192 1 
+      375 . 1 1 31 31 PRO CG   C 13  28.1  0.2  . 1 . . . . 31 PRO CG   . 7192 1 
+      376 . 1 1 31 31 PRO CD   C 13  51.6  0.2  . 1 . . . . 31 PRO CD   . 7192 1 
+      377 . 1 1 32 32 VAL H    H  1   6.83 0.02 . 1 . . . . 32 VAL H    . 7192 1 
+      378 . 1 1 32 32 VAL HA   H  1   4.45 0.02 . 1 . . . . 32 VAL HA   . 7192 1 
+      379 . 1 1 32 32 VAL HB   H  1   2.33 0.02 . 1 . . . . 32 VAL HB   . 7192 1 
+      380 . 1 1 32 32 VAL HG11 H  1   0.83 0.02 . 1 . . . . 32 VAL HG1  . 7192 1 
+      381 . 1 1 32 32 VAL HG12 H  1   0.83 0.02 . 1 . . . . 32 VAL HG1  . 7192 1 
+      382 . 1 1 32 32 VAL HG13 H  1   0.83 0.02 . 1 . . . . 32 VAL HG1  . 7192 1 
+      383 . 1 1 32 32 VAL HG21 H  1   0.73 0.02 . 1 . . . . 32 VAL HG2  . 7192 1 
+      384 . 1 1 32 32 VAL HG22 H  1   0.73 0.02 . 1 . . . . 32 VAL HG2  . 7192 1 
+      385 . 1 1 32 32 VAL HG23 H  1   0.73 0.02 . 1 . . . . 32 VAL HG2  . 7192 1 
+      386 . 1 1 32 32 VAL C    C 13 175.7  0.2  . 1 . . . . 32 VAL C    . 7192 1 
+      387 . 1 1 32 32 VAL CA   C 13  60.6  0.2  . 1 . . . . 32 VAL CA   . 7192 1 
+      388 . 1 1 32 32 VAL CB   C 13  31.2  0.2  . 1 . . . . 32 VAL CB   . 7192 1 
+      389 . 1 1 32 32 VAL CG1  C 13  21.4  0.02 . 1 . . . . 32 VAL CG1  . 7192 1 
+      390 . 1 1 32 32 VAL CG2  C 13  18.8  0.02 . 1 . . . . 32 VAL CG2  . 7192 1 
+      391 . 1 1 32 32 VAL N    N 15 105.6  0.2  . 1 . . . . 32 VAL N    . 7192 1 
+      392 . 1 1 33 33 ASP H    H  1   7.80 0.02 . 1 . . . . 33 ASP H    . 7192 1 
+      393 . 1 1 33 33 ASP HA   H  1   4.91 0.02 . 1 . . . . 33 ASP HA   . 7192 1 
+      394 . 1 1 33 33 ASP HB2  H  1   2.70 0.02 . 2 . . . . 33 ASP HB2  . 7192 1 
+      395 . 1 1 33 33 ASP HB3  H  1   2.90 0.02 . 2 . . . . 33 ASP HB3  . 7192 1 
+      396 . 1 1 33 33 ASP C    C 13 174.9  0.2  . 1 . . . . 33 ASP C    . 7192 1 
+      397 . 1 1 33 33 ASP CA   C 13  55.1  0.2  . 1 . . . . 33 ASP CA   . 7192 1 
+      398 . 1 1 33 33 ASP CB   C 13  43.9  0.2  . 1 . . . . 33 ASP CB   . 7192 1 
+      399 . 1 1 33 33 ASP N    N 15 122.1  0.2  . 1 . . . . 33 ASP N    . 7192 1 
+      400 . 1 1 34 34 ASP H    H  1   8.81 0.02 . 1 . . . . 34 ASP H    . 7192 1 
+      401 . 1 1 34 34 ASP HA   H  1   5.06 0.02 . 1 . . . . 34 ASP HA   . 7192 1 
+      402 . 1 1 34 34 ASP HB2  H  1   2.68 0.02 . 2 . . . . 34 ASP HB2  . 7192 1 
+      403 . 1 1 34 34 ASP HB3  H  1   3.09 0.02 . 2 . . . . 34 ASP HB3  . 7192 1 
+      404 . 1 1 34 34 ASP C    C 13 176.5  0.2  . 1 . . . . 34 ASP C    . 7192 1 
+      405 . 1 1 34 34 ASP CA   C 13  53.7  0.2  . 1 . . . . 34 ASP CA   . 7192 1 
+      406 . 1 1 34 34 ASP CB   C 13  41.6  0.2  . 1 . . . . 34 ASP CB   . 7192 1 
+      407 . 1 1 34 34 ASP N    N 15 121.8  0.2  . 1 . . . . 34 ASP N    . 7192 1 
+      408 . 1 1 35 35 TYR H    H  1   8.57 0.02 . 1 . . . . 35 TYR H    . 7192 1 
+      409 . 1 1 35 35 TYR HA   H  1   5.22 0.02 . 1 . . . . 35 TYR HA   . 7192 1 
+      410 . 1 1 35 35 TYR HB2  H  1   2.86 0.02 . 2 . . . . 35 TYR HB2  . 7192 1 
+      411 . 1 1 35 35 TYR HB3  H  1   2.89 0.02 . 2 . . . . 35 TYR HB3  . 7192 1 
+      412 . 1 1 35 35 TYR HD1  H  1   6.84 0.02 . 1 . . . . 35 TYR HD1  . 7192 1 
+      413 . 1 1 35 35 TYR HD2  H  1   6.84 0.02 . 1 . . . . 35 TYR HD2  . 7192 1 
+      414 . 1 1 35 35 TYR HE1  H  1   6.61 0.02 . 1 . . . . 35 TYR HE1  . 7192 1 
+      415 . 1 1 35 35 TYR HE2  H  1   6.61 0.02 . 1 . . . . 35 TYR HE2  . 7192 1 
+      416 . 1 1 35 35 TYR C    C 13 171.8  0.2  . 1 . . . . 35 TYR C    . 7192 1 
+      417 . 1 1 35 35 TYR CA   C 13  56.3  0.2  . 1 . . . . 35 TYR CA   . 7192 1 
+      418 . 1 1 35 35 TYR CB   C 13  40.7  0.2  . 1 . . . . 35 TYR CB   . 7192 1 
+      419 . 1 1 35 35 TYR CD1  C 13 134.5  0.02 . 1 . . . . 35 TYR CD1  . 7192 1 
+      420 . 1 1 35 35 TYR CD2  C 13 134.5  0.02 . 1 . . . . 35 TYR CD2  . 7192 1 
+      421 . 1 1 35 35 TYR CE1  C 13 118.0  0.02 . 1 . . . . 35 TYR CE1  . 7192 1 
+      422 . 1 1 35 35 TYR CE2  C 13 118.0  0.02 . 1 . . . . 35 TYR CE2  . 7192 1 
+      423 . 1 1 35 35 TYR N    N 15 117.9  0.2  . 1 . . . . 35 TYR N    . 7192 1 
+      424 . 1 1 36 36 VAL H    H  1   9.34 0.02 . 1 . . . . 36 VAL H    . 7192 1 
+      425 . 1 1 36 36 VAL HA   H  1   4.66 0.02 . 1 . . . . 36 VAL HA   . 7192 1 
+      426 . 1 1 36 36 VAL HB   H  1   1.73 0.02 . 1 . . . . 36 VAL HB   . 7192 1 
+      427 . 1 1 36 36 VAL HG11 H  1   0.30 0.02 . 1 . . . . 36 VAL HG1  . 7192 1 
+      428 . 1 1 36 36 VAL HG12 H  1   0.30 0.02 . 1 . . . . 36 VAL HG1  . 7192 1 
+      429 . 1 1 36 36 VAL HG13 H  1   0.30 0.02 . 1 . . . . 36 VAL HG1  . 7192 1 
+      430 . 1 1 36 36 VAL HG21 H  1   0.68 0.02 . 1 . . . . 36 VAL HG2  . 7192 1 
+      431 . 1 1 36 36 VAL HG22 H  1   0.68 0.02 . 1 . . . . 36 VAL HG2  . 7192 1 
+      432 . 1 1 36 36 VAL HG23 H  1   0.68 0.02 . 1 . . . . 36 VAL HG2  . 7192 1 
+      433 . 1 1 36 36 VAL C    C 13 173.3  0.2  . 1 . . . . 36 VAL C    . 7192 1 
+      434 . 1 1 36 36 VAL CA   C 13  59.3  0.2  . 1 . . . . 36 VAL CA   . 7192 1 
+      435 . 1 1 36 36 VAL CB   C 13  35.1  0.2  . 1 . . . . 36 VAL CB   . 7192 1 
+      436 . 1 1 36 36 VAL CG1  C 13  22.1  0.02 . 1 . . . . 36 VAL CG1  . 7192 1 
+      437 . 1 1 36 36 VAL CG2  C 13  22.0  0.02 . 1 . . . . 36 VAL CG2  . 7192 1 
+      438 . 1 1 36 36 VAL N    N 15 120.7  0.2  . 1 . . . . 36 VAL N    . 7192 1 
+      439 . 1 1 37 37 ILE H    H  1   8.82 0.02 . 1 . . . . 37 ILE H    . 7192 1 
+      440 . 1 1 37 37 ILE HA   H  1   4.82 0.02 . 1 . . . . 37 ILE HA   . 7192 1 
+      441 . 1 1 37 37 ILE HB   H  1   1.61 0.02 . 1 . . . . 37 ILE HB   . 7192 1 
+      442 . 1 1 37 37 ILE HG12 H  1   0.98 0.02 . 2 . . . . 37 ILE HG12 . 7192 1 
+      443 . 1 1 37 37 ILE HG13 H  1   1.43 0.02 . 2 . . . . 37 ILE HG13 . 7192 1 
+      444 . 1 1 37 37 ILE HG21 H  1   0.77 0.02 . 1 . . . . 37 ILE HG2  . 7192 1 
+      445 . 1 1 37 37 ILE HG22 H  1   0.77 0.02 . 1 . . . . 37 ILE HG2  . 7192 1 
+      446 . 1 1 37 37 ILE HG23 H  1   0.77 0.02 . 1 . . . . 37 ILE HG2  . 7192 1 
+      447 . 1 1 37 37 ILE HD11 H  1   0.82 0.02 . 1 . . . . 37 ILE HD1  . 7192 1 
+      448 . 1 1 37 37 ILE HD12 H  1   0.82 0.02 . 1 . . . . 37 ILE HD1  . 7192 1 
+      449 . 1 1 37 37 ILE HD13 H  1   0.82 0.02 . 1 . . . . 37 ILE HD1  . 7192 1 
+      450 . 1 1 37 37 ILE C    C 13 175.5  0.2  . 1 . . . . 37 ILE C    . 7192 1 
+      451 . 1 1 37 37 ILE CA   C 13  59.7  0.2  . 1 . . . . 37 ILE CA   . 7192 1 
+      452 . 1 1 37 37 ILE CB   C 13  40.6  0.2  . 1 . . . . 37 ILE CB   . 7192 1 
+      453 . 1 1 37 37 ILE CG1  C 13  27.6  0.2  . 1 . . . . 37 ILE CG1  . 7192 1 
+      454 . 1 1 37 37 ILE CG2  C 13  17.9  0.2  . 1 . . . . 37 ILE CG2  . 7192 1 
+      455 . 1 1 37 37 ILE CD1  C 13  14.3  0.2  . 1 . . . . 37 ILE CD1  . 7192 1 
+      456 . 1 1 37 37 ILE N    N 15 124.1  0.2  . 1 . . . . 37 ILE N    . 7192 1 
+      457 . 1 1 38 38 ASP H    H  1   8.28 0.02 . 1 . . . . 38 ASP H    . 7192 1 
+      458 . 1 1 38 38 ASP HA   H  1   4.43 0.02 . 1 . . . . 38 ASP HA   . 7192 1 
+      459 . 1 1 38 38 ASP HB2  H  1   1.98 0.02 . 2 . . . . 38 ASP HB2  . 7192 1 
+      460 . 1 1 38 38 ASP HB3  H  1   0.84 0.02 . 2 . . . . 38 ASP HB3  . 7192 1 
+      461 . 1 1 38 38 ASP C    C 13 177.0  0.2  . 1 . . . . 38 ASP C    . 7192 1 
+      462 . 1 1 38 38 ASP CA   C 13  51.4  0.2  . 1 . . . . 38 ASP CA   . 7192 1 
+      463 . 1 1 38 38 ASP CB   C 13  41.2  0.2  . 1 . . . . 38 ASP CB   . 7192 1 
+      464 . 1 1 38 38 ASP N    N 15 126.6  0.2  . 1 . . . . 38 ASP N    . 7192 1 
+      465 . 1 1 39 39 GLY H    H  1   8.91 0.02 . 1 . . . . 39 GLY H    . 7192 1 
+      466 . 1 1 39 39 GLY HA2  H  1   3.64 0.02 . 2 . . . . 39 GLY HA2  . 7192 1 
+      467 . 1 1 39 39 GLY HA3  H  1   3.85 0.02 . 2 . . . . 39 GLY HA3  . 7192 1 
+      468 . 1 1 39 39 GLY C    C 13 174.5  0.2  . 1 . . . . 39 GLY C    . 7192 1 
+      469 . 1 1 39 39 GLY CA   C 13  47.6  0.2  . 1 . . . . 39 GLY CA   . 7192 1 
+      470 . 1 1 39 39 GLY N    N 15 114.9  0.2  . 1 . . . . 39 GLY N    . 7192 1 
+      471 . 1 1 40 40 GLY H    H  1   8.22 0.02 . 1 . . . . 40 GLY H    . 7192 1 
+      472 . 1 1 40 40 GLY HA2  H  1   3.90 0.02 . 1 . . . . 40 GLY HA2  . 7192 1 
+      473 . 1 1 40 40 GLY HA3  H  1   3.90 0.02 . 1 . . . . 40 GLY HA3  . 7192 1 
+      474 . 1 1 40 40 GLY C    C 13 173.9  0.2  . 1 . . . . 40 GLY C    . 7192 1 
+      475 . 1 1 40 40 GLY CA   C 13  45.0  0.2  . 1 . . . . 40 GLY CA   . 7192 1 
+      476 . 1 1 40 40 GLY N    N 15 112.2  0.2  . 1 . . . . 40 GLY N    . 7192 1 
+      477 . 1 1 41 41 GLU H    H  1   7.77 0.02 . 1 . . . . 41 GLU H    . 7192 1 
+      478 . 1 1 41 41 GLU HA   H  1   4.75 0.02 . 1 . . . . 41 GLU HA   . 7192 1 
+      479 . 1 1 41 41 GLU HB2  H  1   1.79 0.02 . 2 . . . . 41 GLU HB2  . 7192 1 
+      480 . 1 1 41 41 GLU HB3  H  1   1.87 0.02 . 2 . . . . 41 GLU HB3  . 7192 1 
+      481 . 1 1 41 41 GLU HG2  H  1   2.36 0.02 . 2 . . . . 41 GLU HG2  . 7192 1 
+      482 . 1 1 41 41 GLU HG3  H  1   2.43 0.02 . 2 . . . . 41 GLU HG3  . 7192 1 
+      483 . 1 1 41 41 GLU C    C 13 174.8  0.2  . 1 . . . . 41 GLU C    . 7192 1 
+      484 . 1 1 41 41 GLU CA   C 13  54.3  0.2  . 1 . . . . 41 GLU CA   . 7192 1 
+      485 . 1 1 41 41 GLU CB   C 13  30.3  0.2  . 1 . . . . 41 GLU CB   . 7192 1 
+      486 . 1 1 41 41 GLU CG   C 13  34.7  0.2  . 1 . . . . 41 GLU CG   . 7192 1 
+      487 . 1 1 41 41 GLU N    N 15 120.2  0.2  . 1 . . . . 41 GLU N    . 7192 1 
+      488 . 1 1 42 42 ILE H    H  1   8.72 0.02 . 1 . . . . 42 ILE H    . 7192 1 
+      489 . 1 1 42 42 ILE HA   H  1   4.78 0.02 . 1 . . . . 42 ILE HA   . 7192 1 
+      490 . 1 1 42 42 ILE HB   H  1   1.61 0.02 . 1 . . . . 42 ILE HB   . 7192 1 
+      491 . 1 1 42 42 ILE HG12 H  1   1.01 0.02 . 2 . . . . 42 ILE HG12 . 7192 1 
+      492 . 1 1 42 42 ILE HG13 H  1   1.36 0.02 . 2 . . . . 42 ILE HG13 . 7192 1 
+      493 . 1 1 42 42 ILE HG21 H  1   0.56 0.02 . 1 . . . . 42 ILE HG2  . 7192 1 
+      494 . 1 1 42 42 ILE HG22 H  1   0.56 0.02 . 1 . . . . 42 ILE HG2  . 7192 1 
+      495 . 1 1 42 42 ILE HG23 H  1   0.56 0.02 . 1 . . . . 42 ILE HG2  . 7192 1 
+      496 . 1 1 42 42 ILE HD11 H  1   0.51 0.02 . 1 . . . . 42 ILE HD1  . 7192 1 
+      497 . 1 1 42 42 ILE HD12 H  1   0.51 0.02 . 1 . . . . 42 ILE HD1  . 7192 1 
+      498 . 1 1 42 42 ILE HD13 H  1   0.51 0.02 . 1 . . . . 42 ILE HD1  . 7192 1 
+      499 . 1 1 42 42 ILE C    C 13 174.8  0.2  . 1 . . . . 42 ILE C    . 7192 1 
+      500 . 1 1 42 42 ILE CA   C 13  59.2  0.2  . 1 . . . . 42 ILE CA   . 7192 1 
+      501 . 1 1 42 42 ILE CB   C 13  40.3  0.2  . 1 . . . . 42 ILE CB   . 7192 1 
+      502 . 1 1 42 42 ILE CG1  C 13  27.8  0.2  . 1 . . . . 42 ILE CG1  . 7192 1 
+      503 . 1 1 42 42 ILE CG2  C 13  17.6  0.2  . 1 . . . . 42 ILE CG2  . 7192 1 
+      504 . 1 1 42 42 ILE CD1  C 13  13.3  0.2  . 1 . . . . 42 ILE CD1  . 7192 1 
+      505 . 1 1 42 42 ILE N    N 15 122.0  0.2  . 1 . . . . 42 ILE N    . 7192 1 
+      506 . 1 1 43 43 ILE H    H  1   9.23 0.02 . 1 . . . . 43 ILE H    . 7192 1 
+      507 . 1 1 43 43 ILE HA   H  1   4.48 0.02 . 1 . . . . 43 ILE HA   . 7192 1 
+      508 . 1 1 43 43 ILE HB   H  1   1.23 0.02 . 1 . . . . 43 ILE HB   . 7192 1 
+      509 . 1 1 43 43 ILE HG12 H  1  -0.39 0.02 . 2 . . . . 43 ILE HG12 . 7192 1 
+      510 . 1 1 43 43 ILE HG13 H  1   0.66 0.02 . 2 . . . . 43 ILE HG13 . 7192 1 
+      511 . 1 1 43 43 ILE HG21 H  1   0.82 0.02 . 1 . . . . 43 ILE HG2  . 7192 1 
+      512 . 1 1 43 43 ILE HG22 H  1   0.82 0.02 . 1 . . . . 43 ILE HG2  . 7192 1 
+      513 . 1 1 43 43 ILE HG23 H  1   0.82 0.02 . 1 . . . . 43 ILE HG2  . 7192 1 
+      514 . 1 1 43 43 ILE HD11 H  1  -0.21 0.02 . 1 . . . . 43 ILE HD1  . 7192 1 
+      515 . 1 1 43 43 ILE HD12 H  1  -0.21 0.02 . 1 . . . . 43 ILE HD1  . 7192 1 
+      516 . 1 1 43 43 ILE HD13 H  1  -0.21 0.02 . 1 . . . . 43 ILE HD1  . 7192 1 
+      517 . 1 1 43 43 ILE C    C 13 176.4  0.2  . 1 . . . . 43 ILE C    . 7192 1 
+      518 . 1 1 43 43 ILE CA   C 13  61.0  0.2  . 1 . . . . 43 ILE CA   . 7192 1 
+      519 . 1 1 43 43 ILE CB   C 13  42.3  0.2  . 1 . . . . 43 ILE CB   . 7192 1 
+      520 . 1 1 43 43 ILE CG1  C 13  29.4  0.2  . 1 . . . . 43 ILE CG1  . 7192 1 
+      521 . 1 1 43 43 ILE CG2  C 13  21.3  0.2  . 1 . . . . 43 ILE CG2  . 7192 1 
+      522 . 1 1 43 43 ILE CD1  C 13  16.8  0.2  . 1 . . . . 43 ILE CD1  . 7192 1 
+      523 . 1 1 43 43 ILE N    N 15 126.4  0.2  . 1 . . . . 43 ILE N    . 7192 1 
+      524 . 1 1 44 44 LEU H    H  1  10.93 0.02 . 1 . . . . 44 LEU H    . 7192 1 
+      525 . 1 1 44 44 LEU HA   H  1   4.28 0.02 . 1 . . . . 44 LEU HA   . 7192 1 
+      526 . 1 1 44 44 LEU HB2  H  1   1.65 0.02 . 2 . . . . 44 LEU HB2  . 7192 1 
+      527 . 1 1 44 44 LEU HB3  H  1   1.89 0.02 . 2 . . . . 44 LEU HB3  . 7192 1 
+      528 . 1 1 44 44 LEU HG   H  1   1.71 0.02 . 1 . . . . 44 LEU HG   . 7192 1 
+      529 . 1 1 44 44 LEU HD11 H  1   1.06 0.02 . 2 . . . . 44 LEU HD1  . 7192 1 
+      530 . 1 1 44 44 LEU HD12 H  1   1.06 0.02 . 2 . . . . 44 LEU HD1  . 7192 1 
+      531 . 1 1 44 44 LEU HD13 H  1   1.06 0.02 . 2 . . . . 44 LEU HD1  . 7192 1 
+      532 . 1 1 44 44 LEU HD21 H  1   1.06 0.02 . 2 . . . . 44 LEU HD2  . 7192 1 
+      533 . 1 1 44 44 LEU HD22 H  1   1.06 0.02 . 2 . . . . 44 LEU HD2  . 7192 1 
+      534 . 1 1 44 44 LEU HD23 H  1   1.06 0.02 . 2 . . . . 44 LEU HD2  . 7192 1 
+      535 . 1 1 44 44 LEU C    C 13 179.3  0.2  . 1 . . . . 44 LEU C    . 7192 1 
+      536 . 1 1 44 44 LEU CA   C 13  56.5  0.2  . 1 . . . . 44 LEU CA   . 7192 1 
+      537 . 1 1 44 44 LEU CB   C 13  42.6  0.2  . 1 . . . . 44 LEU CB   . 7192 1 
+      538 . 1 1 44 44 LEU CG   C 13  27.8  0.2  . 1 . . . . 44 LEU CG   . 7192 1 
+      539 . 1 1 44 44 LEU CD1  C 13  25.5  0.02 . 1 . . . . 44 LEU CD1  . 7192 1 
+      540 . 1 1 44 44 LEU CD2  C 13  25.5  0.02 . 1 . . . . 44 LEU CD2  . 7192 1 
+      541 . 1 1 44 44 LEU N    N 15 130.9  0.2  . 1 . . . . 44 LEU N    . 7192 1 
+      542 . 1 1 45 45 ARG H    H  1   8.61 0.02 . 1 . . . . 45 ARG H    . 7192 1 
+      543 . 1 1 45 45 ARG HA   H  1   3.89 0.02 . 1 . . . . 45 ARG HA   . 7192 1 
+      544 . 1 1 45 45 ARG HB2  H  1   1.69 0.02 . 2 . . . . 45 ARG HB2  . 7192 1 
+      545 . 1 1 45 45 ARG HB3  H  1   2.02 0.02 . 2 . . . . 45 ARG HB3  . 7192 1 
+      546 . 1 1 45 45 ARG HG2  H  1   1.69 0.02 . 2 . . . . 45 ARG HG2  . 7192 1 
+      547 . 1 1 45 45 ARG HG3  H  1   1.78 0.02 . 2 . . . . 45 ARG HG3  . 7192 1 
+      548 . 1 1 45 45 ARG HD2  H  1   3.28 0.02 . 2 . . . . 45 ARG HD2  . 7192 1 
+      549 . 1 1 45 45 ARG HD3  H  1   3.36 0.02 . 2 . . . . 45 ARG HD3  . 7192 1 
+      550 . 1 1 45 45 ARG HE   H  1   7.76 0.02 . 1 . . . . 45 ARG HE   . 7192 1 
+      551 . 1 1 45 45 ARG C    C 13 179.3  0.2  . 1 . . . . 45 ARG C    . 7192 1 
+      552 . 1 1 45 45 ARG CA   C 13  60.2  0.2  . 1 . . . . 45 ARG CA   . 7192 1 
+      553 . 1 1 45 45 ARG CB   C 13  29.4  0.2  . 1 . . . . 45 ARG CB   . 7192 1 
+      554 . 1 1 45 45 ARG CG   C 13  27.6  0.2  . 1 . . . . 45 ARG CG   . 7192 1 
+      555 . 1 1 45 45 ARG CD   C 13  42.9  0.2  . 1 . . . . 45 ARG CD   . 7192 1 
+      556 . 1 1 45 45 ARG N    N 15 125.4  0.2  . 1 . . . . 45 ARG N    . 7192 1 
+      557 . 1 1 45 45 ARG NE   N 15  83.32 0.2  . 1 . . . . 45 ARG NE   . 7192 1 
+      558 . 1 1 46 46 GLU H    H  1   9.02 0.02 . 1 . . . . 46 GLU H    . 7192 1 
+      559 . 1 1 46 46 GLU HA   H  1   4.21 0.02 . 1 . . . . 46 GLU HA   . 7192 1 
+      560 . 1 1 46 46 GLU HB2  H  1   2.01 0.02 . 1 . . . . 46 GLU HB2  . 7192 1 
+      561 . 1 1 46 46 GLU HB3  H  1   2.01 0.02 . 1 . . . . 46 GLU HB3  . 7192 1 
+      562 . 1 1 46 46 GLU HG2  H  1   2.26 0.02 . 2 . . . . 46 GLU HG2  . 7192 1 
+      563 . 1 1 46 46 GLU HG3  H  1   2.32 0.02 . 2 . . . . 46 GLU HG3  . 7192 1 
+      564 . 1 1 46 46 GLU C    C 13 176.7  0.2  . 1 . . . . 46 GLU C    . 7192 1 
+      565 . 1 1 46 46 GLU CA   C 13  59.0  0.2  . 1 . . . . 46 GLU CA   . 7192 1 
+      566 . 1 1 46 46 GLU CB   C 13  29.6  0.2  . 1 . . . . 46 GLU CB   . 7192 1 
+      567 . 1 1 46 46 GLU CG   C 13  36.4  0.2  . 1 . . . . 46 GLU CG   . 7192 1 
+      568 . 1 1 46 46 GLU N    N 15 117.5  0.2  . 1 . . . . 46 GLU N    . 7192 1 
+      569 . 1 1 47 47 ASN H    H  1   7.87 0.02 . 1 . . . . 47 ASN H    . 7192 1 
+      570 . 1 1 47 47 ASN HA   H  1   5.10 0.02 . 1 . . . . 47 ASN HA   . 7192 1 
+      571 . 1 1 47 47 ASN HB2  H  1   2.96 0.02 . 2 . . . . 47 ASN HB2  . 7192 1 
+      572 . 1 1 47 47 ASN HB3  H  1   3.34 0.02 . 2 . . . . 47 ASN HB3  . 7192 1 
+      573 . 1 1 47 47 ASN C    C 13 175.2  0.2  . 1 . . . . 47 ASN C    . 7192 1 
+      574 . 1 1 47 47 ASN CA   C 13  52.8  0.2  . 1 . . . . 47 ASN CA   . 7192 1 
+      575 . 1 1 47 47 ASN CB   C 13  40.5  0.2  . 1 . . . . 47 ASN CB   . 7192 1 
+      576 . 1 1 47 47 ASN N    N 15 115.9  0.2  . 1 . . . . 47 ASN N    . 7192 1 
+      577 . 1 1 48 48 LEU H    H  1   7.76 0.02 . 1 . . . . 48 LEU H    . 7192 1 
+      578 . 1 1 48 48 LEU HA   H  1   4.06 0.02 . 1 . . . . 48 LEU HA   . 7192 1 
+      579 . 1 1 48 48 LEU HB2  H  1   1.52 0.02 . 2 . . . . 48 LEU HB2  . 7192 1 
+      580 . 1 1 48 48 LEU HB3  H  1   2.16 0.02 . 2 . . . . 48 LEU HB3  . 7192 1 
+      581 . 1 1 48 48 LEU HG   H  1   1.67 0.02 . 1 . . . . 48 LEU HG   . 7192 1 
+      582 . 1 1 48 48 LEU HD11 H  1   1.05 0.02 . 1 . . . . 48 LEU HD1  . 7192 1 
+      583 . 1 1 48 48 LEU HD12 H  1   1.05 0.02 . 1 . . . . 48 LEU HD1  . 7192 1 
+      584 . 1 1 48 48 LEU HD13 H  1   1.05 0.02 . 1 . . . . 48 LEU HD1  . 7192 1 
+      585 . 1 1 48 48 LEU HD21 H  1   1.07 0.02 . 1 . . . . 48 LEU HD2  . 7192 1 
+      586 . 1 1 48 48 LEU HD22 H  1   1.07 0.02 . 1 . . . . 48 LEU HD2  . 7192 1 
+      587 . 1 1 48 48 LEU HD23 H  1   1.07 0.02 . 1 . . . . 48 LEU HD2  . 7192 1 
+      588 . 1 1 48 48 LEU C    C 13 177.2  0.2  . 1 . . . . 48 LEU C    . 7192 1 
+      589 . 1 1 48 48 LEU CA   C 13  59.0  0.2  . 1 . . . . 48 LEU CA   . 7192 1 
+      590 . 1 1 48 48 LEU CB   C 13  42.8  0.2  . 1 . . . . 48 LEU CB   . 7192 1 
+      591 . 1 1 48 48 LEU CG   C 13  27.1  0.2  . 1 . . . . 48 LEU CG   . 7192 1 
+      592 . 1 1 48 48 LEU CD1  C 13  23.5  0.02 . 1 . . . . 48 LEU CD1  . 7192 1 
+      593 . 1 1 48 48 LEU CD2  C 13  25.6  0.02 . 1 . . . . 48 LEU CD2  . 7192 1 
+      594 . 1 1 48 48 LEU N    N 15 122.3  0.2  . 1 . . . . 48 LEU N    . 7192 1 
+      595 . 1 1 49 49 GLU H    H  1   8.77 0.02 . 1 . . . . 49 GLU H    . 7192 1 
+      596 . 1 1 49 49 GLU HA   H  1   3.67 0.02 . 1 . . . . 49 GLU HA   . 7192 1 
+      597 . 1 1 49 49 GLU HB2  H  1   1.56 0.02 . 2 . . . . 49 GLU HB2  . 7192 1 
+      598 . 1 1 49 49 GLU HB3  H  1   1.72 0.02 . 2 . . . . 49 GLU HB3  . 7192 1 
+      599 . 1 1 49 49 GLU HG2  H  1   1.56 0.02 . 2 . . . . 49 GLU HG2  . 7192 1 
+      600 . 1 1 49 49 GLU HG3  H  1   1.61 0.02 . 2 . . . . 49 GLU HG3  . 7192 1 
+      601 . 1 1 49 49 GLU C    C 13 176.2  0.2  . 1 . . . . 49 GLU C    . 7192 1 
+      602 . 1 1 49 49 GLU CA   C 13  61.3  0.2  . 1 . . . . 49 GLU CA   . 7192 1 
+      603 . 1 1 49 49 GLU CB   C 13  28.2  0.2  . 1 . . . . 49 GLU CB   . 7192 1 
+      604 . 1 1 49 49 GLU CG   C 13  36.3  0.2  . 1 . . . . 49 GLU CG   . 7192 1 
+      605 . 1 1 49 49 GLU N    N 15 118.8  0.2  . 1 . . . . 49 GLU N    . 7192 1 
+      606 . 1 1 50 50 ARG H    H  1   8.00 0.02 . 1 . . . . 50 ARG H    . 7192 1 
+      607 . 1 1 50 50 ARG HA   H  1   3.86 0.02 . 1 . . . . 50 ARG HA   . 7192 1 
+      608 . 1 1 50 50 ARG HB2  H  1   1.66 0.02 . 2 . . . . 50 ARG HB2  . 7192 1 
+      609 . 1 1 50 50 ARG HB3  H  1   1.75 0.02 . 2 . . . . 50 ARG HB3  . 7192 1 
+      610 . 1 1 50 50 ARG HG2  H  1   1.53 0.02 . 1 . . . . 50 ARG HG2  . 7192 1 
+      611 . 1 1 50 50 ARG HG3  H  1   1.53 0.02 . 1 . . . . 50 ARG HG3  . 7192 1 
+      612 . 1 1 50 50 ARG HD2  H  1   2.03 0.02 . 2 . . . . 50 ARG HD2  . 7192 1 
+      613 . 1 1 50 50 ARG HD3  H  1   2.74 0.02 . 2 . . . . 50 ARG HD3  . 7192 1 
+      614 . 1 1 50 50 ARG HE   H  1   6.93 0.02 . 1 . . . . 50 ARG HE   . 7192 1 
+      615 . 1 1 50 50 ARG C    C 13 174.1  0.2  . 1 . . . . 50 ARG C    . 7192 1 
+      616 . 1 1 50 50 ARG CA   C 13  60.1  0.2  . 1 . . . . 50 ARG CA   . 7192 1 
+      617 . 1 1 50 50 ARG CB   C 13  29.9  0.2  . 1 . . . . 50 ARG CB   . 7192 1 
+      618 . 1 1 50 50 ARG CG   C 13  26.0  0.2  . 1 . . . . 50 ARG CG   . 7192 1 
+      619 . 1 1 50 50 ARG CD   C 13  44.3  0.2  . 1 . . . . 50 ARG CD   . 7192 1 
+      620 . 1 1 50 50 ARG N    N 15 119.1  0.2  . 1 . . . . 50 ARG N    . 7192 1 
+      621 . 1 1 50 50 ARG NE   N 15  85.3  0.2  . 1 . . . . 50 ARG NE   . 7192 1 
+      622 . 1 1 51 51 TYR H    H  1   8.25 0.02 . 1 . . . . 51 TYR H    . 7192 1 
+      623 . 1 1 51 51 TYR HA   H  1   4.61 0.02 . 1 . . . . 51 TYR HA   . 7192 1 
+      624 . 1 1 51 51 TYR HB2  H  1   3.24 0.02 . 2 . . . . 51 TYR HB2  . 7192 1 
+      625 . 1 1 51 51 TYR HB3  H  1   3.31 0.02 . 2 . . . . 51 TYR HB3  . 7192 1 
+      626 . 1 1 51 51 TYR HD1  H  1   6.47 0.02 . 1 . . . . 51 TYR HD1  . 7192 1 
+      627 . 1 1 51 51 TYR HD2  H  1   6.47 0.02 . 1 . . . . 51 TYR HD2  . 7192 1 
+      628 . 1 1 51 51 TYR HE1  H  1   7.03 0.02 . 1 . . . . 51 TYR HE1  . 7192 1 
+      629 . 1 1 51 51 TYR HE2  H  1   7.03 0.02 . 1 . . . . 51 TYR HE2  . 7192 1 
+      630 . 1 1 51 51 TYR C    C 13 178.5  0.2  . 1 . . . . 51 TYR C    . 7192 1 
+      631 . 1 1 51 51 TYR CA   C 13  61.7  0.2  . 1 . . . . 51 TYR CA   . 7192 1 
+      632 . 1 1 51 51 TYR CB   C 13  40.0  0.2  . 1 . . . . 51 TYR CB   . 7192 1 
+      633 . 1 1 51 51 TYR CD1  C 13 132.2  0.02 . 1 . . . . 51 TYR CD1  . 7192 1 
+      634 . 1 1 51 51 TYR CD2  C 13 132.2  0.02 . 1 . . . . 51 TYR CD2  . 7192 1 
+      635 . 1 1 51 51 TYR CE1  C 13 118.2  0.02 . 1 . . . . 51 TYR CE1  . 7192 1 
+      636 . 1 1 51 51 TYR CE2  C 13 118.2  0.02 . 1 . . . . 51 TYR CE2  . 7192 1 
+      637 . 1 1 51 51 TYR N    N 15 120.4  0.2  . 1 . . . . 51 TYR N    . 7192 1 
+      638 . 1 1 52 52 LEU H    H  1   9.03 0.02 . 1 . . . . 52 LEU H    . 7192 1 
+      639 . 1 1 52 52 LEU HA   H  1   3.69 0.02 . 1 . . . . 52 LEU HA   . 7192 1 
+      640 . 1 1 52 52 LEU HB2  H  1   0.90 0.02 . 2 . . . . 52 LEU HB2  . 7192 1 
+      641 . 1 1 52 52 LEU HB3  H  1   2.13 0.02 . 2 . . . . 52 LEU HB3  . 7192 1 
+      642 . 1 1 52 52 LEU HG   H  1   2.19 0.02 . 1 . . . . 52 LEU HG   . 7192 1 
+      643 . 1 1 52 52 LEU HD11 H  1   0.95 0.02 . 1 . . . . 52 LEU HD1  . 7192 1 
+      644 . 1 1 52 52 LEU HD12 H  1   0.95 0.02 . 1 . . . . 52 LEU HD1  . 7192 1 
+      645 . 1 1 52 52 LEU HD13 H  1   0.95 0.02 . 1 . . . . 52 LEU HD1  . 7192 1 
+      646 . 1 1 52 52 LEU HD21 H  1   0.42 0.02 . 1 . . . . 52 LEU HD2  . 7192 1 
+      647 . 1 1 52 52 LEU HD22 H  1   0.42 0.02 . 1 . . . . 52 LEU HD2  . 7192 1 
+      648 . 1 1 52 52 LEU HD23 H  1   0.42 0.02 . 1 . . . . 52 LEU HD2  . 7192 1 
+      649 . 1 1 52 52 LEU C    C 13 180.0  0.2  . 1 . . . . 52 LEU C    . 7192 1 
+      650 . 1 1 52 52 LEU CA   C 13  57.6  0.2  . 1 . . . . 52 LEU CA   . 7192 1 
+      651 . 1 1 52 52 LEU CB   C 13  40.8  0.2  . 1 . . . . 52 LEU CB   . 7192 1 
+      652 . 1 1 52 52 LEU CG   C 13  26.5  0.2  . 1 . . . . 52 LEU CG   . 7192 1 
+      653 . 1 1 52 52 LEU CD1  C 13  27.3  0.02 . 1 . . . . 52 LEU CD1  . 7192 1 
+      654 . 1 1 52 52 LEU CD2  C 13  22.9  0.02 . 1 . . . . 52 LEU CD2  . 7192 1 
+      655 . 1 1 52 52 LEU N    N 15 118.3  0.2  . 1 . . . . 52 LEU N    . 7192 1 
+      656 . 1 1 53 53 ARG H    H  1   8.53 0.02 . 1 . . . . 53 ARG H    . 7192 1 
+      657 . 1 1 53 53 ARG HA   H  1   4.82 0.02 . 1 . . . . 53 ARG HA   . 7192 1 
+      658 . 1 1 53 53 ARG HB2  H  1   2.07 0.02 . 1 . . . . 53 ARG HB2  . 7192 1 
+      659 . 1 1 53 53 ARG HB3  H  1   2.07 0.02 . 1 . . . . 53 ARG HB3  . 7192 1 
+      660 . 1 1 53 53 ARG HG2  H  1   1.77 0.02 . 2 . . . . 53 ARG HG2  . 7192 1 
+      661 . 1 1 53 53 ARG HG3  H  1   2.04 0.02 . 2 . . . . 53 ARG HG3  . 7192 1 
+      662 . 1 1 53 53 ARG HD2  H  1   3.37 0.02 . 1 . . . . 53 ARG HD2  . 7192 1 
+      663 . 1 1 53 53 ARG HD3  H  1   3.37 0.02 . 1 . . . . 53 ARG HD3  . 7192 1 
+      664 . 1 1 53 53 ARG HE   H  1   7.46 0.02 . 1 . . . . 53 ARG HE   . 7192 1 
+      665 . 1 1 53 53 ARG C    C 13 179.1  0.2  . 1 . . . . 53 ARG C    . 7192 1 
+      666 . 1 1 53 53 ARG CA   C 13  59.3  0.2  . 1 . . . . 53 ARG CA   . 7192 1 
+      667 . 1 1 53 53 ARG CB   C 13  31.9  0.2  . 1 . . . . 53 ARG CB   . 7192 1 
+      668 . 1 1 53 53 ARG CG   C 13  28.1  0.2  . 1 . . . . 53 ARG CG   . 7192 1 
+      669 . 1 1 53 53 ARG CD   C 13  43.9  0.2  . 1 . . . . 53 ARG CD   . 7192 1 
+      670 . 1 1 53 53 ARG N    N 15 119.4  0.2  . 1 . . . . 53 ARG N    . 7192 1 
+      671 . 1 1 53 53 ARG NE   N 15  84.7  0.2  . 1 . . . . 53 ARG NE   . 7192 1 
+      672 . 1 1 54 54 GLU H    H  1   9.09 0.02 . 1 . . . . 54 GLU H    . 7192 1 
+      673 . 1 1 54 54 GLU HA   H  1   4.10 0.02 . 1 . . . . 54 GLU HA   . 7192 1 
+      674 . 1 1 54 54 GLU HB2  H  1   2.15 0.02 . 2 . . . . 54 GLU HB2  . 7192 1 
+      675 . 1 1 54 54 GLU HB3  H  1   2.23 0.02 . 2 . . . . 54 GLU HB3  . 7192 1 
+      676 . 1 1 54 54 GLU HG2  H  1   2.38 0.02 . 2 . . . . 54 GLU HG2  . 7192 1 
+      677 . 1 1 54 54 GLU HG3  H  1   2.72 0.02 . 2 . . . . 54 GLU HG3  . 7192 1 
+      678 . 1 1 54 54 GLU C    C 13 178.7  0.2  . 1 . . . . 54 GLU C    . 7192 1 
+      679 . 1 1 54 54 GLU CA   C 13  59.3  0.2  . 1 . . . . 54 GLU CA   . 7192 1 
+      680 . 1 1 54 54 GLU CB   C 13  31.0  0.2  . 1 . . . . 54 GLU CB   . 7192 1 
+      681 . 1 1 54 54 GLU CG   C 13  37.5  0.2  . 1 . . . . 54 GLU CG   . 7192 1 
+      682 . 1 1 54 54 GLU N    N 15 116.7  0.2  . 1 . . . . 54 GLU N    . 7192 1 
+      683 . 1 1 55 55 GLN H    H  1   8.76 0.02 . 1 . . . . 55 GLN H    . 7192 1 
+      684 . 1 1 55 55 GLN HA   H  1   4.29 0.02 . 1 . . . . 55 GLN HA   . 7192 1 
+      685 . 1 1 55 55 GLN HB2  H  1   1.24 0.02 . 2 . . . . 55 GLN HB2  . 7192 1 
+      686 . 1 1 55 55 GLN HB3  H  1   1.55 0.02 . 2 . . . . 55 GLN HB3  . 7192 1 
+      687 . 1 1 55 55 GLN HG2  H  1   1.70 0.02 . 2 . . . . 55 GLN HG2  . 7192 1 
+      688 . 1 1 55 55 GLN HG3  H  1   1.88 0.02 . 2 . . . . 55 GLN HG3  . 7192 1 
+      689 . 1 1 55 55 GLN HE21 H  1   7.66 0.02 . 1 . . . . 55 GLN HE21 . 7192 1 
+      690 . 1 1 55 55 GLN HE22 H  1   7.14 0.02 . 1 . . . . 55 GLN HE22 . 7192 1 
+      691 . 1 1 55 55 GLN C    C 13 177.7  0.2  . 1 . . . . 55 GLN C    . 7192 1 
+      692 . 1 1 55 55 GLN CA   C 13  55.8  0.2  . 1 . . . . 55 GLN CA   . 7192 1 
+      693 . 1 1 55 55 GLN CB   C 13  28.0  0.2  . 1 . . . . 55 GLN CB   . 7192 1 
+      694 . 1 1 55 55 GLN CG   C 13  34.7  0.2  . 1 . . . . 55 GLN CG   . 7192 1 
+      695 . 1 1 55 55 GLN N    N 15 113.9  0.2  . 1 . . . . 55 GLN N    . 7192 1 
+      696 . 1 1 55 55 GLN NE2  N 15 113.3  0.2  . 1 . . . . 55 GLN NE2  . 7192 1 
+      697 . 1 1 56 56 LEU H    H  1   6.65 0.02 . 1 . . . . 56 LEU H    . 7192 1 
+      698 . 1 1 56 56 LEU HA   H  1   4.70 0.02 . 1 . . . . 56 LEU HA   . 7192 1 
+      699 . 1 1 56 56 LEU HB2  H  1   1.72 0.02 . 2 . . . . 56 LEU HB2  . 7192 1 
+      700 . 1 1 56 56 LEU HB3  H  1   2.03 0.02 . 2 . . . . 56 LEU HB3  . 7192 1 
+      701 . 1 1 56 56 LEU HG   H  1   1.39 0.02 . 1 . . . . 56 LEU HG   . 7192 1 
+      702 . 1 1 56 56 LEU HD11 H  1   0.82 0.02 . 1 . . . . 56 LEU HD1  . 7192 1 
+      703 . 1 1 56 56 LEU HD12 H  1   0.82 0.02 . 1 . . . . 56 LEU HD1  . 7192 1 
+      704 . 1 1 56 56 LEU HD13 H  1   0.82 0.02 . 1 . . . . 56 LEU HD1  . 7192 1 
+      705 . 1 1 56 56 LEU HD21 H  1   0.88 0.02 . 1 . . . . 56 LEU HD2  . 7192 1 
+      706 . 1 1 56 56 LEU HD22 H  1   0.88 0.02 . 1 . . . . 56 LEU HD2  . 7192 1 
+      707 . 1 1 56 56 LEU HD23 H  1   0.88 0.02 . 1 . . . . 56 LEU HD2  . 7192 1 
+      708 . 1 1 56 56 LEU C    C 13 178.0  0.2  . 1 . . . . 56 LEU C    . 7192 1 
+      709 . 1 1 56 56 LEU CA   C 13  55.3  0.2  . 1 . . . . 56 LEU CA   . 7192 1 
+      710 . 1 1 56 56 LEU CB   C 13  43.8  0.2  . 1 . . . . 56 LEU CB   . 7192 1 
+      711 . 1 1 56 56 LEU CG   C 13  29.2  0.2  . 1 . . . . 56 LEU CG   . 7192 1 
+      712 . 1 1 56 56 LEU CD1  C 13  26.2  0.02 . 1 . . . . 56 LEU CD1  . 7192 1 
+      713 . 1 1 56 56 LEU CD2  C 13  24.5  0.02 . 1 . . . . 56 LEU CD2  . 7192 1 
+      714 . 1 1 56 56 LEU N    N 15 116.2  0.2  . 1 . . . . 56 LEU N    . 7192 1 
+      715 . 1 1 57 57 GLY H    H  1   7.16 0.02 . 1 . . . . 57 GLY H    . 7192 1 
+      716 . 1 1 57 57 GLY HA2  H  1   4.07 0.02 . 1 . . . . 57 GLY HA2  . 7192 1 
+      717 . 1 1 57 57 GLY HA3  H  1   4.07 0.02 . 1 . . . . 57 GLY HA3  . 7192 1 
+      718 . 1 1 57 57 GLY C    C 13 175.0  0.2  . 1 . . . . 57 GLY C    . 7192 1 
+      719 . 1 1 57 57 GLY CA   C 13  46.9  0.2  . 1 . . . . 57 GLY CA   . 7192 1 
+      720 . 1 1 57 57 GLY N    N 15 109.0  0.2  . 1 . . . . 57 GLY N    . 7192 1 
+      721 . 1 1 58 58 PHE H    H  1   8.48 0.02 . 1 . . . . 58 PHE H    . 7192 1 
+      722 . 1 1 58 58 PHE HA   H  1   4.69 0.02 . 1 . . . . 58 PHE HA   . 7192 1 
+      723 . 1 1 58 58 PHE HB2  H  1   2.34 0.02 . 2 . . . . 58 PHE HB2  . 7192 1 
+      724 . 1 1 58 58 PHE HB3  H  1   2.72 0.02 . 2 . . . . 58 PHE HB3  . 7192 1 
+      725 . 1 1 58 58 PHE HD1  H  1   6.94 0.02 . 1 . . . . 58 PHE HD1  . 7192 1 
+      726 . 1 1 58 58 PHE HD2  H  1   6.94 0.02 . 1 . . . . 58 PHE HD2  . 7192 1 
+      727 . 1 1 58 58 PHE HE1  H  1   7.12 0.02 . 1 . . . . 58 PHE HE1  . 7192 1 
+      728 . 1 1 58 58 PHE HE2  H  1   7.12 0.02 . 1 . . . . 58 PHE HE2  . 7192 1 
+      729 . 1 1 58 58 PHE HZ   H  1   7.07 0.02 . 1 . . . . 58 PHE HZ   . 7192 1 
+      730 . 1 1 58 58 PHE C    C 13 175.7  0.2  . 1 . . . . 58 PHE C    . 7192 1 
+      731 . 1 1 58 58 PHE CA   C 13  57.9  0.2  . 1 . . . . 58 PHE CA   . 7192 1 
+      732 . 1 1 58 58 PHE CB   C 13  39.5  0.2  . 1 . . . . 58 PHE CB   . 7192 1 
+      733 . 1 1 58 58 PHE CD1  C 13 130.4  0.02 . 1 . . . . 58 PHE CD1  . 7192 1 
+      734 . 1 1 58 58 PHE CD2  C 13 130.4  0.02 . 1 . . . . 58 PHE CD2  . 7192 1 
+      735 . 1 1 58 58 PHE CE1  C 13 130.9  0.02 . 1 . . . . 58 PHE CE1  . 7192 1 
+      736 . 1 1 58 58 PHE CE2  C 13 130.9  0.02 . 1 . . . . 58 PHE CE2  . 7192 1 
+      737 . 1 1 58 58 PHE CZ   C 13 129.3  0.2  . 1 . . . . 58 PHE CZ   . 7192 1 
+      738 . 1 1 58 58 PHE N    N 15 123.1  0.2  . 1 . . . . 58 PHE N    . 7192 1 
+      739 . 1 1 59 59 GLU H    H  1   8.44 0.02 . 1 . . . . 59 GLU H    . 7192 1 
+      740 . 1 1 59 59 GLU HA   H  1   4.82 0.02 . 1 . . . . 59 GLU HA   . 7192 1 
+      741 . 1 1 59 59 GLU HB2  H  1   1.84 0.02 . 2 . . . . 59 GLU HB2  . 7192 1 
+      742 . 1 1 59 59 GLU HB3  H  1   1.96 0.02 . 2 . . . . 59 GLU HB3  . 7192 1 
+      743 . 1 1 59 59 GLU HG2  H  1   2.11 0.02 . 2 . . . . 59 GLU HG2  . 7192 1 
+      744 . 1 1 59 59 GLU HG3  H  1   2.28 0.02 . 2 . . . . 59 GLU HG3  . 7192 1 
+      745 . 1 1 59 59 GLU C    C 13 174.7  0.2  . 1 . . . . 59 GLU C    . 7192 1 
+      746 . 1 1 59 59 GLU CA   C 13  54.6  0.2  . 1 . . . . 59 GLU CA   . 7192 1 
+      747 . 1 1 59 59 GLU CB   C 13  32.8  0.2  . 1 . . . . 59 GLU CB   . 7192 1 
+      748 . 1 1 59 59 GLU CG   C 13  36.2  0.2  . 1 . . . . 59 GLU CG   . 7192 1 
+      749 . 1 1 59 59 GLU N    N 15 118.6  0.2  . 1 . . . . 59 GLU N    . 7192 1 
+      750 . 1 1 60 60 PHE H    H  1   9.11 0.02 . 1 . . . . 60 PHE H    . 7192 1 
+      751 . 1 1 60 60 PHE HA   H  1   4.47 0.02 . 1 . . . . 60 PHE HA   . 7192 1 
+      752 . 1 1 60 60 PHE HB2  H  1   2.95 0.02 . 1 . . . . 60 PHE HB2  . 7192 1 
+      753 . 1 1 60 60 PHE HB3  H  1   2.95 0.02 . 1 . . . . 60 PHE HB3  . 7192 1 
+      754 . 1 1 60 60 PHE HD1  H  1   7.32 0.02 . 1 . . . . 60 PHE HD1  . 7192 1 
+      755 . 1 1 60 60 PHE HD2  H  1   7.32 0.02 . 1 . . . . 60 PHE HD2  . 7192 1 
+      756 . 1 1 60 60 PHE HE1  H  1   7.16 0.02 . 1 . . . . 60 PHE HE1  . 7192 1 
+      757 . 1 1 60 60 PHE HE2  H  1   7.16 0.02 . 1 . . . . 60 PHE HE2  . 7192 1 
+      758 . 1 1 60 60 PHE HZ   H  1   7.22 0.02 . 1 . . . . 60 PHE HZ   . 7192 1 
+      759 . 1 1 60 60 PHE C    C 13 175.1  0.2  . 1 . . . . 60 PHE C    . 7192 1 
+      760 . 1 1 60 60 PHE CA   C 13  58.1  0.2  . 1 . . . . 60 PHE CA   . 7192 1 
+      761 . 1 1 60 60 PHE CB   C 13  39.9  0.2  . 1 . . . . 60 PHE CB   . 7192 1 
+      762 . 1 1 60 60 PHE CD1  C 13 132.3  0.02 . 1 . . . . 60 PHE CD1  . 7192 1 
+      763 . 1 1 60 60 PHE CD2  C 13 132.3  0.02 . 1 . . . . 60 PHE CD2  . 7192 1 
+      764 . 1 1 60 60 PHE CE1  C 13 130.8  0.02 . 1 . . . . 60 PHE CE1  . 7192 1 
+      765 . 1 1 60 60 PHE CE2  C 13 130.8  0.02 . 1 . . . . 60 PHE CE2  . 7192 1 
+      766 . 1 1 60 60 PHE CZ   C 13 128.3  0.2  . 1 . . . . 60 PHE CZ   . 7192 1 
+      767 . 1 1 60 60 PHE N    N 15 124.3  0.2  . 1 . . . . 60 PHE N    . 7192 1 
+      768 . 1 1 61 61 LYS H    H  1   8.51 0.02 . 1 . . . . 61 LYS H    . 7192 1 
+      769 . 1 1 61 61 LYS HA   H  1   4.36 0.02 . 1 . . . . 61 LYS HA   . 7192 1 
+      770 . 1 1 61 61 LYS HB2  H  1   0.35 0.02 . 2 . . . . 61 LYS HB2  . 7192 1 
+      771 . 1 1 61 61 LYS HB3  H  1   1.01 0.02 . 2 . . . . 61 LYS HB3  . 7192 1 
+      772 . 1 1 61 61 LYS HG2  H  1   0.87 0.02 . 2 . . . . 61 LYS HG2  . 7192 1 
+      773 . 1 1 61 61 LYS HG3  H  1   0.99 0.02 . 2 . . . . 61 LYS HG3  . 7192 1 
+      774 . 1 1 61 61 LYS HD2  H  1   1.47 0.02 . 2 . . . . 61 LYS HD2  . 7192 1 
+      775 . 1 1 61 61 LYS HD3  H  1   1.50 0.02 . 2 . . . . 61 LYS HD3  . 7192 1 
+      776 . 1 1 61 61 LYS HE2  H  1   2.75 0.02 . 2 . . . . 61 LYS HE2  . 7192 1 
+      777 . 1 1 61 61 LYS HE3  H  1   2.90 0.02 . 2 . . . . 61 LYS HE3  . 7192 1 
+      778 . 1 1 61 61 LYS C    C 13 174.7  0.2  . 1 . . . . 61 LYS C    . 7192 1 
+      779 . 1 1 61 61 LYS CA   C 13  53.8  0.2  . 1 . . . . 61 LYS CA   . 7192 1 
+      780 . 1 1 61 61 LYS CB   C 13  31.3  0.2  . 1 . . . . 61 LYS CB   . 7192 1 
+      781 . 1 1 61 61 LYS CG   C 13  23.9  0.2  . 1 . . . . 61 LYS CG   . 7192 1 
+      782 . 1 1 61 61 LYS CD   C 13  27.9  0.2  . 1 . . . . 61 LYS CD   . 7192 1 
+      783 . 1 1 61 61 LYS CE   C 13  42.2  0.2  . 1 . . . . 61 LYS CE   . 7192 1 
+      784 . 1 1 61 61 LYS N    N 15 124.9  0.2  . 1 . . . . 61 LYS N    . 7192 1 
+      785 . 1 1 62 62 ASN H    H  1   8.40 0.02 . 1 . . . . 62 ASN H    . 7192 1 
+      786 . 1 1 62 62 ASN HA   H  1   4.91 0.02 . 1 . . . . 62 ASN HA   . 7192 1 
+      787 . 1 1 62 62 ASN HB2  H  1   2.69 0.02 . 2 . . . . 62 ASN HB2  . 7192 1 
+      788 . 1 1 62 62 ASN HB3  H  1   2.80 0.02 . 2 . . . . 62 ASN HB3  . 7192 1 
+      789 . 1 1 62 62 ASN C    C 13 175.5  0.2  . 1 . . . . 62 ASN C    . 7192 1 
+      790 . 1 1 62 62 ASN CA   C 13  52.4  0.2  . 1 . . . . 62 ASN CA   . 7192 1 
+      791 . 1 1 62 62 ASN CB   C 13  39.4  0.2  . 1 . . . . 62 ASN CB   . 7192 1 
+      792 . 1 1 62 62 ASN N    N 15 121.8  0.2  . 1 . . . . 62 ASN N    . 7192 1 
+      793 . 1 1 63 63 ALA H    H  1   8.96 0.02 . 1 . . . . 63 ALA H    . 7192 1 
+      794 . 1 1 63 63 ALA HA   H  1   4.17 0.02 . 1 . . . . 63 ALA HA   . 7192 1 
+      795 . 1 1 63 63 ALA HB1  H  1   1.32 0.02 . 1 . . . . 63 ALA HB   . 7192 1 
+      796 . 1 1 63 63 ALA HB2  H  1   1.32 0.02 . 1 . . . . 63 ALA HB   . 7192 1 
+      797 . 1 1 63 63 ALA HB3  H  1   1.32 0.02 . 1 . . . . 63 ALA HB   . 7192 1 
+      798 . 1 1 63 63 ALA C    C 13 178.2  0.2  . 1 . . . . 63 ALA C    . 7192 1 
+      799 . 1 1 63 63 ALA CA   C 13  53.3  0.2  . 1 . . . . 63 ALA CA   . 7192 1 
+      800 . 1 1 63 63 ALA CB   C 13  19.3  0.2  . 1 . . . . 63 ALA CB   . 7192 1 
+      801 . 1 1 63 63 ALA N    N 15 126.2  0.2  . 1 . . . . 63 ALA N    . 7192 1 
+      802 . 1 1 64 64 GLN H    H  1   8.57 0.02 . 1 . . . . 64 GLN H    . 7192 1 
+      803 . 1 1 64 64 GLN HA   H  1   4.28 0.02 . 1 . . . . 64 GLN HA   . 7192 1 
+      804 . 1 1 64 64 GLN HB2  H  1   2.02 0.02 . 2 . . . . 64 GLN HB2  . 7192 1 
+      805 . 1 1 64 64 GLN HB3  H  1   2.14 0.02 . 2 . . . . 64 GLN HB3  . 7192 1 
+      806 . 1 1 64 64 GLN HG2  H  1   2.41 0.02 . 1 . . . . 64 GLN HG2  . 7192 1 
+      807 . 1 1 64 64 GLN HG3  H  1   2.41 0.02 . 1 . . . . 64 GLN HG3  . 7192 1 
+      808 . 1 1 64 64 GLN HE21 H  1   7.58 0.02 . 1 . . . . 64 GLN HE21 . 7192 1 
+      809 . 1 1 64 64 GLN HE22 H  1   6.90 0.02 . 1 . . . . 64 GLN HE22 . 7192 1 
+      810 . 1 1 64 64 GLN C    C 13 176.2  0.2  . 1 . . . . 64 GLN C    . 7192 1 
+      811 . 1 1 64 64 GLN CA   C 13  56.3  0.2  . 1 . . . . 64 GLN CA   . 7192 1 
+      812 . 1 1 64 64 GLN CB   C 13  29.4  0.2  . 1 . . . . 64 GLN CB   . 7192 1 
+      813 . 1 1 64 64 GLN CG   C 13  34.0  0.2  . 1 . . . . 64 GLN CG   . 7192 1 
+      814 . 1 1 64 64 GLN N    N 15 119.9  0.2  . 1 . . . . 64 GLN N    . 7192 1 
+      815 . 1 1 64 64 GLN NE2  N 15 112.7  0.2  . 1 . . . . 64 GLN NE2  . 7192 1 
+      816 . 1 1 65 65 LEU H    H  1   8.08 0.02 . 1 . . . . 65 LEU H    . 7192 1 
+      817 . 1 1 65 65 LEU HA   H  1   4.32 0.02 . 1 . . . . 65 LEU HA   . 7192 1 
+      818 . 1 1 65 65 LEU HB2  H  1   1.55 0.02 . 1 . . . . 65 LEU HB2  . 7192 1 
+      819 . 1 1 65 65 LEU HB3  H  1   1.55 0.02 . 1 . . . . 65 LEU HB3  . 7192 1 
+      820 . 1 1 65 65 LEU HG   H  1   1.56 0.02 . 1 . . . . 65 LEU HG   . 7192 1 
+      821 . 1 1 65 65 LEU HD11 H  1   0.88 0.02 . 1 . . . . 65 LEU HD1  . 7192 1 
+      822 . 1 1 65 65 LEU HD12 H  1   0.88 0.02 . 1 . . . . 65 LEU HD1  . 7192 1 
+      823 . 1 1 65 65 LEU HD13 H  1   0.88 0.02 . 1 . . . . 65 LEU HD1  . 7192 1 
+      824 . 1 1 65 65 LEU HD21 H  1   0.82 0.02 . 1 . . . . 65 LEU HD2  . 7192 1 
+      825 . 1 1 65 65 LEU HD22 H  1   0.82 0.02 . 1 . . . . 65 LEU HD2  . 7192 1 
+      826 . 1 1 65 65 LEU HD23 H  1   0.82 0.02 . 1 . . . . 65 LEU HD2  . 7192 1 
+      827 . 1 1 65 65 LEU C    C 13 177.2  0.2  . 1 . . . . 65 LEU C    . 7192 1 
+      828 . 1 1 65 65 LEU CA   C 13  55.3  0.2  . 1 . . . . 65 LEU CA   . 7192 1 
+      829 . 1 1 65 65 LEU CB   C 13  42.7  0.2  . 1 . . . . 65 LEU CB   . 7192 1 
+      830 . 1 1 65 65 LEU CG   C 13  27.1  0.2  . 1 . . . . 65 LEU CG   . 7192 1 
+      831 . 1 1 65 65 LEU CD1  C 13  25.1  0.02 . 1 . . . . 65 LEU CD1  . 7192 1 
+      832 . 1 1 65 65 LEU CD2  C 13  23.6  0.02 . 1 . . . . 65 LEU CD2  . 7192 1 
+      833 . 1 1 65 65 LEU N    N 15 121.7  0.2  . 1 . . . . 65 LEU N    . 7192 1 
+      834 . 1 1 66 66 GLU H    H  1   8.29 0.02 . 1 . . . . 66 GLU H    . 7192 1 
+      835 . 1 1 66 66 GLU HA   H  1   4.19 0.02 . 1 . . . . 66 GLU HA   . 7192 1 
+      836 . 1 1 66 66 GLU HB2  H  1   1.89 0.02 . 1 . . . . 66 GLU HB2  . 7192 1 
+      837 . 1 1 66 66 GLU HB3  H  1   1.89 0.02 . 1 . . . . 66 GLU HB3  . 7192 1 
+      838 . 1 1 66 66 GLU HG2  H  1   2.16 0.02 . 2 . . . . 66 GLU HG2  . 7192 1 
+      839 . 1 1 66 66 GLU HG3  H  1   2.21 0.02 . 2 . . . . 66 GLU HG3  . 7192 1 
+      840 . 1 1 66 66 GLU C    C 13 176.3  0.2  . 1 . . . . 66 GLU C    . 7192 1 
+      841 . 1 1 66 66 GLU CA   C 13  56.8  0.2  . 1 . . . . 66 GLU CA   . 7192 1 
+      842 . 1 1 66 66 GLU CB   C 13  30.4  0.2  . 1 . . . . 66 GLU CB   . 7192 1 
+      843 . 1 1 66 66 GLU CG   C 13  36.2  0.2  . 1 . . . . 66 GLU CG   . 7192 1 
+      844 . 1 1 66 66 GLU N    N 15 120.4  0.2  . 1 . . . . 66 GLU N    . 7192 1 
+      845 . 1 1 67 67 HIS H    H  1   8.28 0.02 . 1 . . . . 67 HIS H    . 7192 1 
+      846 . 1 1 67 67 HIS HA   H  1   4.62 0.02 . 1 . . . . 67 HIS HA   . 7192 1 
+      847 . 1 1 67 67 HIS HB2  H  1   3.03 0.02 . 2 . . . . 67 HIS HB2  . 7192 1 
+      848 . 1 1 67 67 HIS HB3  H  1   3.07 0.02 . 2 . . . . 67 HIS HB3  . 7192 1 
+      849 . 1 1 67 67 HIS HD2  H  1   7.09 0.02 . 1 . . . . 67 HIS HD2  . 7192 1 
+      850 . 1 1 67 67 HIS C    C 13 173.9  0.2  . 1 . . . . 67 HIS C    . 7192 1 
+      851 . 1 1 67 67 HIS CA   C 13  55.9  0.2  . 1 . . . . 67 HIS CA   . 7192 1 
+      852 . 1 1 67 67 HIS CB   C 13  30.1  0.2  . 1 . . . . 67 HIS CB   . 7192 1 
+      853 . 1 1 67 67 HIS CD2  C 13 120.2  0.2  . 1 . . . . 67 HIS CD2  . 7192 1 
+      854 . 1 1 67 67 HIS N    N 15 119.3  0.2  . 1 . . . . 67 HIS N    . 7192 1 
+      855 . 1 1 68 68 HIS H    H  1   8.18 0.02 . 1 . . . . 68 HIS H    . 7192 1 
+      856 . 1 1 68 68 HIS HA   H  1   4.44 0.02 . 1 . . . . 68 HIS HA   . 7192 1 
+      857 . 1 1 68 68 HIS HB2  H  1   3.09 0.02 . 2 . . . . 68 HIS HB2  . 7192 1 
+      858 . 1 1 68 68 HIS HB3  H  1   3.21 0.02 . 2 . . . . 68 HIS HB3  . 7192 1 
+      859 . 1 1 68 68 HIS CA   C 13  57.3  0.2  . 1 . . . . 68 HIS CA   . 7192 1 
+      860 . 1 1 68 68 HIS CB   C 13  30.2  0.2  . 1 . . . . 68 HIS CB   . 7192 1 
+      861 . 1 1 68 68 HIS N    N 15 125.3  0.2  . 1 . . . . 68 HIS N    . 7192 1 
+      862 . 1 1 69 69 HIS HD2  H  1   7.00 0.02 . 1 . . . . 69 HIS HD2  . 7192 1 
+      863 . 1 1 69 69 HIS CD2  C 13 119.6  0.2  . 1 . . . . 69 HIS CD2  . 7192 1 
+
+   stop_
+
+save_
+

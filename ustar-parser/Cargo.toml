@@ -1,0 +1,44 @@
+[package]
+name = "ustar-parser"
+description = "Lightweight STAR format parser for CIF, mmCIF, NMR-STAR, and other scientific data formats"
+keywords = ["parser", "star", "cif", "mmcif", "crystallography"]
+categories = ["parsing", "science"]
+readme = "../README.md"
+documentation = "https://docs.rs/ustar-parser"
+
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+homepage.workspace = true
+
+[lints]
+workspace = true
+
+[lib]
+name = "ustar"
+
+[features]
+default = ["extended-errors"]
+extended-errors = ["miette", "thiserror"]
+serde = ["dep:serde", "dep:serde_json"]
+
+[dependencies]
+# Core - always needed
+pest.workspace = true
+pest_derive.workspace = true
+memchr.workspace = true
+
+# Optional features
+serde = { workspace = true, optional = true }
+serde_json = { workspace = true, optional = true }
+miette = { workspace = true, optional = true }
+thiserror = { workspace = true, optional = true }
+
+[dev-dependencies]
+rstest.workspace = true
+insta.workspace = true
+indoc.workspace = true
+tabled.workspace = true
+indicatif.workspace = true

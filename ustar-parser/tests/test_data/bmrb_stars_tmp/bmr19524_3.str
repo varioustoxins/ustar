@@ -1,0 +1,1166 @@
+data_19524
+
+
+#######################
+#  Entry information  #
+#######################
+save_entry_information
+   _Entry.Sf_category                    entry_information
+   _Entry.Sf_framecode                   entry_information
+   _Entry.ID                             19524
+   _Entry.Title
+;
+NMR solution structure of the GS-TAMAPIN MUTATION R7A.
+;
+   _Entry.Type                           macromolecule
+   _Entry.Version_type                   original
+   _Entry.Submission_date                2013-09-24
+   _Entry.Accession_date                 2013-09-24
+   _Entry.Last_release_date              2013-09-27
+   _Entry.Original_release_date          2013-09-27
+   _Entry.Origination                    author
+   _Entry.Format_name                    .
+   _Entry.NMR_STAR_version               3.2.1.32
+   _Entry.NMR_STAR_dict_location         .
+   _Entry.Original_NMR_STAR_version      3.1
+   _Entry.Experimental_method            NMR
+   _Entry.Experimental_method_subtype    'SOLUTION NMR'
+   _Entry.Source_data_format             .
+   _Entry.Source_data_format_version     .
+   _Entry.Generated_software_name        .
+   _Entry.Generated_software_version     .
+   _Entry.Generated_software_ID          .
+   _Entry.Generated_software_label       .
+   _Entry.Generated_date                 .
+   _Entry.DOI                            .
+   _Entry.UUID                           .
+   _Entry.Related_coordinate_file_name   .
+   _Entry.Details                        .
+   _Entry.BMRB_internal_directory_name   .
+
+   loop_
+      _Entry_author.Ordinal
+      _Entry_author.Given_name
+      _Entry_author.Family_name
+      _Entry_author.First_initial
+      _Entry_author.Middle_initials
+      _Entry_author.Family_title
+      _Entry_author.ORCID
+      _Entry_author.Entry_ID
+
+      1   F.   'del Rio-Portilla'   .   .   .   .   19524
+      2   B.   Ramirez-Cordero      .   .   .   .   19524
+   stop_
+
+   loop_
+      _SG_project.SG_project_ID
+      _SG_project.Project_name
+      _SG_project.Full_name_of_center
+      _SG_project.Initial_of_center
+      _SG_project.Entry_ID
+
+      1   'not applicable'   'not applicable'   .   19524
+   stop_
+
+   loop_
+      _Struct_keywords.Keywords
+      _Struct_keywords.Text
+      _Struct_keywords.Entry_ID
+
+      'Scorpion toxin'            .   19524
+      'alpha KTx5.4 mutant R7A'   .   19524
+      tamapin                     .   19524
+   stop_
+
+   loop_
+      _Data_set.Type
+      _Data_set.Count
+      _Data_set.Entry_ID
+
+      assigned_chemical_shifts   1   19524
+   stop_
+
+   loop_
+      _Datum.Type
+      _Datum.Count
+      _Datum.Entry_ID
+
+      '1H chemical shifts'   215   19524
+   stop_
+
+   loop_
+      _Release.Release_number
+      _Release.Format_type
+      _Release.Format_version
+      _Release.Date
+      _Release.Submission_date
+      _Release.Type
+      _Release.Author
+      _Release.Detail
+      _Release.Entry_ID
+
+      2   .   .   2014-06-25   2013-09-24   update     BMRB     'update entry citation'   19524
+      1   .   .   2014-05-27   2013-09-24   original   author   'original release'        19524
+   stop_
+
+   loop_
+      _Related_entries.Database_name
+      _Related_entries.Database_accession_code
+      _Related_entries.Relationship
+      _Related_entries.Entry_ID
+
+      BMRB   19519   'GS-TAMAPIN MUTATION R6A'              19524
+      BMRB   19527   'GS-TAMAPIN MUTATION R13A'             19524
+      BMRB   19528   'DOUBLE GS-TAMAPIN MUTATION R6A R7A'   19524
+   stop_
+save_
+
+
+###############
+#  Citations  #
+###############
+save_entry_citation
+   _Citation.Sf_category                  citations
+   _Citation.Sf_framecode                 entry_citation
+   _Citation.Entry_ID                     19524
+   _Citation.ID                           1
+   _Citation.Name                         .
+   _Citation.Class                        'entry citation'
+   _Citation.CAS_abstract_code            .
+   _Citation.MEDLINE_UI_code              .
+   _Citation.DOI                          .
+   _Citation.PubMed_ID                    24821061
+   _Citation.Full_citation                .
+   _Citation.Title
+;
+Cytotoxicity of recombinant tamapin and related toxin-like peptides on model cell lines.
+;
+   _Citation.Status                       published
+   _Citation.Type                         journal
+   _Citation.Journal_abbrev               'Chem. Res. Toxicol.'
+   _Citation.Journal_name_full            'Chemical research in toxicology'
+   _Citation.Journal_volume               27
+   _Citation.Journal_issue                6
+   _Citation.Journal_ASTM                 .
+   _Citation.Journal_ISSN                 .
+   _Citation.Journal_CSD                  .
+   _Citation.Book_title                   .
+   _Citation.Book_chapter_title           .
+   _Citation.Book_volume                  .
+   _Citation.Book_series                  .
+   _Citation.Book_publisher               .
+   _Citation.Book_publisher_city          .
+   _Citation.Book_ISBN                    .
+   _Citation.Conference_title             .
+   _Citation.Conference_site              .
+   _Citation.Conference_state_province    .
+   _Citation.Conference_country           .
+   _Citation.Conference_start_date        .
+   _Citation.Conference_end_date          .
+   _Citation.Conference_abstract_number   .
+   _Citation.Thesis_institution           .
+   _Citation.Thesis_institution_city      .
+   _Citation.Thesis_institution_country   .
+   _Citation.WWW_URL                      .
+   _Citation.Page_first                   960
+   _Citation.Page_last                    967
+   _Citation.Year                         2014
+   _Citation.Details                      .
+
+   loop_
+      _Citation_author.Ordinal
+      _Citation_author.Given_name
+      _Citation_author.Family_name
+      _Citation_author.First_initial
+      _Citation_author.Middle_initials
+      _Citation_author.Family_title
+      _Citation_author.ORCID
+      _Citation_author.Entry_ID
+      _Citation_author.Citation_ID
+
+      1   Belen      Ramirez-Cordero      .   .    .   .   19524   1
+      2   Yanis      Toledano             .   .    .   .   19524   1
+      3   Patricia   Cano-Sanchez         .   .    .   .   19524   1
+      4   Rogelio    Hernandez-Lopez      .   .    .   .   19524   1
+      5   David      Flores-Solis         .   .    .   .   19524   1
+      6   Alma       Saucedo-Yanez        .   L.   .   .   19524   1
+      7   Isabel     Chavez-Uribe         .   .    .   .   19524   1
+      8   Luis       Brieba               .   G.   .   .   19524   1
+      9   Federico   'Del Rio-Portilla'   .   .    .   .   19524   1
+   stop_
+save_
+
+
+#############################################
+#  Molecular system (assembly) description  #
+#############################################
+save_assembly
+   _Assembly.Sf_category                       assembly
+   _Assembly.Sf_framecode                      assembly
+   _Assembly.Entry_ID                          19524
+   _Assembly.ID                                1
+   _Assembly.Name                              'GS-TAMAPIN MUTATION R7A'
+   _Assembly.BMRB_code                         .
+   _Assembly.Number_of_components              1
+   _Assembly.Organic_ligands                   .
+   _Assembly.Metal_ions                        .
+   _Assembly.Non_standard_bonds                .
+   _Assembly.Ambiguous_conformational_states   .
+   _Assembly.Ambiguous_chem_comp_sites         .
+   _Assembly.Molecules_in_chemical_exchange    .
+   _Assembly.Paramagnetic                      no
+   _Assembly.Thiol_state                       .
+   _Assembly.Molecular_mass                    .
+   _Assembly.Enzyme_commission_number          .
+   _Assembly.Details                           .
+   _Assembly.DB_query_date                     .
+   _Assembly.DB_query_revised_last_date        .
+
+   loop_
+      _Entity_assembly.ID
+      _Entity_assembly.Entity_assembly_name
+      _Entity_assembly.Entity_ID
+      _Entity_assembly.Entity_label
+      _Entity_assembly.Asym_ID
+      _Entity_assembly.PDB_chain_ID
+      _Entity_assembly.Experimental_data_reported
+      _Entity_assembly.Physical_state
+      _Entity_assembly.Conformational_isomer
+      _Entity_assembly.Chemical_exchange_state
+      _Entity_assembly.Magnetic_equivalence_group_code
+      _Entity_assembly.Role
+      _Entity_assembly.Details
+      _Entity_assembly.Entry_ID
+      _Entity_assembly.Assembly_ID
+
+      1   'GS-TAMAPIN MUTATION R7A'   1   $entity   A   .   yes   native   no   no   .   .   .   19524   1
+   stop_
+
+   loop_
+      _Assembly_db_link.Author_supplied
+      _Assembly_db_link.Database_code
+      _Assembly_db_link.Accession_code
+      _Assembly_db_link.Entry_mol_code
+      _Assembly_db_link.Entry_mol_name
+      _Assembly_db_link.Entry_experimental_method
+      _Assembly_db_link.Entry_structure_resolution
+      _Assembly_db_link.Entry_relation_type
+      _Assembly_db_link.Entry_details
+      _Assembly_db_link.Entry_ID
+      _Assembly_db_link.Assembly_ID
+
+      yes   PDB   2MEL   .   .   .   .   'GS-TAMAPIN MUTATION R7A'   .   19524   1
+   stop_
+save_
+
+
+    ####################################
+    #  Biological polymers and ligands #
+    ####################################
+save_entity
+   _Entity.Sf_category                       entity
+   _Entity.Sf_framecode                      entity
+   _Entity.Entry_ID                          19524
+   _Entity.ID                                1
+   _Entity.BMRB_code                         .
+   _Entity.Name                              entity
+   _Entity.Type                              polymer
+   _Entity.Polymer_common_type               .
+   _Entity.Polymer_type                      polypeptide(L)
+   _Entity.Polymer_type_details              .
+   _Entity.Polymer_strand_ID                 A
+   _Entity.Polymer_seq_one_letter_code_can   .
+   _Entity.Polymer_seq_one_letter_code
+;
+SAFCNLRACELSCRSLGLLG
+KCIGEECKCVPY
+;
+   _Entity.Target_identifier                 .
+   _Entity.Polymer_author_defined_seq        .
+   _Entity.Polymer_author_seq_details        .
+   _Entity.Ambiguous_conformational_states   no
+   _Entity.Ambiguous_chem_comp_sites         no
+   _Entity.Nstd_monomer                      no
+   _Entity.Nstd_chirality                    no
+   _Entity.Nstd_linkage                      no
+   _Entity.Nonpolymer_comp_ID                .
+   _Entity.Nonpolymer_comp_label             .
+   _Entity.Number_of_monomers                32
+   _Entity.Number_of_nonpolymer_components   .
+   _Entity.Paramagnetic                      no
+   _Entity.Thiol_state                       .
+   _Entity.Src_method                        man
+   _Entity.Parent_entity_ID                  .
+   _Entity.Fragment                          .
+   _Entity.Mutation                          .
+   _Entity.EC_number                         .
+   _Entity.Calc_isoelectric_point            .
+   _Entity.Formula_weight                    3528.202
+   _Entity.Formula_weight_exptl              .
+   _Entity.Formula_weight_exptl_meth         .
+   _Entity.Details                           .
+   _Entity.DB_query_date                     .
+   _Entity.DB_query_revised_last_date        .
+
+   loop_
+      _Entity_comp_index.ID
+      _Entity_comp_index.Auth_seq_ID
+      _Entity_comp_index.Comp_ID
+      _Entity_comp_index.Comp_label
+      _Entity_comp_index.Entry_ID
+      _Entity_comp_index.Entity_ID
+
+      1    2    SER   .   19524   1
+      2    3    ALA   .   19524   1
+      3    4    PHE   .   19524   1
+      4    5    CYS   .   19524   1
+      5    6    ASN   .   19524   1
+      6    7    LEU   .   19524   1
+      7    8    ARG   .   19524   1
+      8    9    ALA   .   19524   1
+      9    10   CYS   .   19524   1
+      10   11   GLU   .   19524   1
+      11   12   LEU   .   19524   1
+      12   13   SER   .   19524   1
+      13   14   CYS   .   19524   1
+      14   15   ARG   .   19524   1
+      15   16   SER   .   19524   1
+      16   17   LEU   .   19524   1
+      17   18   GLY   .   19524   1
+      18   19   LEU   .   19524   1
+      19   20   LEU   .   19524   1
+      20   21   GLY   .   19524   1
+      21   22   LYS   .   19524   1
+      22   23   CYS   .   19524   1
+      23   24   ILE   .   19524   1
+      24   25   GLY   .   19524   1
+      25   26   GLU   .   19524   1
+      26   27   GLU   .   19524   1
+      27   28   CYS   .   19524   1
+      28   29   LYS   .   19524   1
+      29   30   CYS   .   19524   1
+      30   31   VAL   .   19524   1
+      31   32   PRO   .   19524   1
+      32   33   TYR   .   19524   1
+   stop_
+
+   loop_
+      _Entity_poly_seq.Hetero
+      _Entity_poly_seq.Mon_ID
+      _Entity_poly_seq.Num
+      _Entity_poly_seq.Comp_index_ID
+      _Entity_poly_seq.Entry_ID
+      _Entity_poly_seq.Entity_ID
+
+      .   SER   1    1    19524   1
+      .   ALA   2    2    19524   1
+      .   PHE   3    3    19524   1
+      .   CYS   4    4    19524   1
+      .   ASN   5    5    19524   1
+      .   LEU   6    6    19524   1
+      .   ARG   7    7    19524   1
+      .   ALA   8    8    19524   1
+      .   CYS   9    9    19524   1
+      .   GLU   10   10   19524   1
+      .   LEU   11   11   19524   1
+      .   SER   12   12   19524   1
+      .   CYS   13   13   19524   1
+      .   ARG   14   14   19524   1
+      .   SER   15   15   19524   1
+      .   LEU   16   16   19524   1
+      .   GLY   17   17   19524   1
+      .   LEU   18   18   19524   1
+      .   LEU   19   19   19524   1
+      .   GLY   20   20   19524   1
+      .   LYS   21   21   19524   1
+      .   CYS   22   22   19524   1
+      .   ILE   23   23   19524   1
+      .   GLY   24   24   19524   1
+      .   GLU   25   25   19524   1
+      .   GLU   26   26   19524   1
+      .   CYS   27   27   19524   1
+      .   LYS   28   28   19524   1
+      .   CYS   29   29   19524   1
+      .   VAL   30   30   19524   1
+      .   PRO   31   31   19524   1
+      .   TYR   32   32   19524   1
+   stop_
+save_
+
+
+    ####################
+    #  Natural source  #
+    ####################
+save_natural_source
+   _Entity_natural_src_list.Sf_category    natural_source
+   _Entity_natural_src_list.Sf_framecode   natural_source
+   _Entity_natural_src_list.Entry_ID       19524
+   _Entity_natural_src_list.ID             1
+
+   loop_
+      _Entity_natural_src.ID
+      _Entity_natural_src.Entity_ID
+      _Entity_natural_src.Entity_label
+      _Entity_natural_src.Entity_chimera_segment_ID
+      _Entity_natural_src.NCBI_taxonomy_ID
+      _Entity_natural_src.Type
+      _Entity_natural_src.Common
+      _Entity_natural_src.Organism_name_scientific
+      _Entity_natural_src.Organism_name_common
+      _Entity_natural_src.Organism_acronym
+      _Entity_natural_src.ICTVdb_decimal_code
+      _Entity_natural_src.Superkingdom
+      _Entity_natural_src.Kingdom
+      _Entity_natural_src.Genus
+      _Entity_natural_src.Species
+      _Entity_natural_src.Strain
+      _Entity_natural_src.Variant
+      _Entity_natural_src.Organ
+      _Entity_natural_src.Tissue
+      _Entity_natural_src.Tissue_fraction
+      _Entity_natural_src.Cell_line
+      _Entity_natural_src.Cell_type
+      _Entity_natural_src.ATCC_number
+      _Entity_natural_src.Organelle
+      _Entity_natural_src.Secretion
+      _Entity_natural_src.Plasmid
+      _Entity_natural_src.Gene_mnemonic
+      _Entity_natural_src.Details
+      _Entity_natural_src.Entry_ID
+      _Entity_natural_src.Entity_natural_src_list_ID
+
+      1   1   $entity   .   34647   organism   .   'Mesobuthus tamulus'   scorpions   .   .   Eukaryota   Metazoa   Mesobuthus   tamulus   .   .   .   .   .   .   .   .   .   .   .   .   .   19524   1
+   stop_
+save_
+
+
+    #########################
+    #  Experimental source  #
+    #########################
+save_experimental_source
+   _Entity_experimental_src_list.Sf_category    experimental_source
+   _Entity_experimental_src_list.Sf_framecode   experimental_source
+   _Entity_experimental_src_list.Entry_ID       19524
+   _Entity_experimental_src_list.ID             1
+
+   loop_
+      _Entity_experimental_src.ID
+      _Entity_experimental_src.Entity_ID
+      _Entity_experimental_src.Entity_label
+      _Entity_experimental_src.Entity_chimera_segment_ID
+      _Entity_experimental_src.Production_method
+      _Entity_experimental_src.Host_org_scientific_name
+      _Entity_experimental_src.Host_org_name_common
+      _Entity_experimental_src.Host_org_details
+      _Entity_experimental_src.Host_org_NCBI_taxonomy_ID
+      _Entity_experimental_src.Host_org_genus
+      _Entity_experimental_src.Host_org_species
+      _Entity_experimental_src.Host_org_strain
+      _Entity_experimental_src.Host_org_variant
+      _Entity_experimental_src.Host_org_ATCC_number
+      _Entity_experimental_src.Vector_type
+      _Entity_experimental_src.PDBview_host_org_vector_name
+      _Entity_experimental_src.PDBview_plasmid_name
+      _Entity_experimental_src.Vector_name
+      _Entity_experimental_src.Vector_details
+      _Entity_experimental_src.Vendor_name
+      _Entity_experimental_src.Details
+      _Entity_experimental_src.Entry_ID
+      _Entity_experimental_src.Entity_experimental_src_list_ID
+
+      1   1   $entity   .   'recombinant technology'   'Escherichia coli'   .   .   .   Escherichia   coli   .   .   .   .   .   .   'modified pEt32a'   .   .   .   19524   1
+   stop_
+save_
+
+
+#####################################
+#  Sample contents and methodology  #
+#####################################
+	 
+    ########################
+    #  Sample description  #
+    ########################
+save_sample_1
+   _Sample.Sf_category                      sample
+   _Sample.Sf_framecode                     sample_1
+   _Sample.Entry_ID                         19524
+   _Sample.ID                               1
+   _Sample.Name                             .
+   _Sample.Type                             solution
+   _Sample.Sub_type                         .
+   _Sample.Details                          .
+   _Sample.Aggregate_sample_number          .
+   _Sample.Solvent_system                   '95% H2O/5% D2O'
+   _Sample.Preparation_date                 .
+   _Sample.Preparation_expiration_date      .
+   _Sample.Polycrystallization_protocol     .
+   _Sample.Single_crystal_protocol          .
+   _Sample.Crystal_grow_apparatus           .
+   _Sample.Crystal_grow_atmosphere          .
+   _Sample.Crystal_grow_details             .
+   _Sample.Crystal_grow_method              .
+   _Sample.Crystal_grow_method_cit_ID       .
+   _Sample.Crystal_grow_pH                  .
+   _Sample.Crystal_grow_pH_range            .
+   _Sample.Crystal_grow_pressure            .
+   _Sample.Crystal_grow_pressure_esd        .
+   _Sample.Crystal_grow_seeding             .
+   _Sample.Crystal_grow_seeding_cit_ID      .
+   _Sample.Crystal_grow_temp                .
+   _Sample.Crystal_grow_temp_details        .
+   _Sample.Crystal_grow_temp_esd            .
+   _Sample.Crystal_grow_time                .
+   _Sample.Oriented_sample_prep_protocol    .
+   _Sample.Lyophilization_cryo_protectant   .
+   _Sample.Storage_protocol                 .
+
+   loop_
+      _Sample_component.ID
+      _Sample_component.Mol_common_name
+      _Sample_component.Isotopic_labeling
+      _Sample_component.Assembly_ID
+      _Sample_component.Assembly_label
+      _Sample_component.Entity_ID
+      _Sample_component.Entity_label
+      _Sample_component.Product_ID
+      _Sample_component.Type
+      _Sample_component.Concentration_val
+      _Sample_component.Concentration_val_min
+      _Sample_component.Concentration_val_max
+      _Sample_component.Concentration_val_units
+      _Sample_component.Concentration_val_err
+      _Sample_component.Vendor
+      _Sample_component.Vendor_product_name
+      _Sample_component.Vendor_product_code
+      _Sample_component.Entry_ID
+      _Sample_component.Sample_ID
+
+      1   entity   'natural abundance'   .   .   1   $entity   .   .   2.5   .   .   mM   0.1   .   .   .   19524   1
+      2   H2O      'natural abundance'   .   .   .   .         .   .   95    .   .   %    .     .   .   .   19524   1
+      3   D2O      'natural abundance'   .   .   .   .         .   .   5     .   .   %    .     .   .   .   19524   1
+   stop_
+save_
+
+
+#######################
+#  Sample conditions  #
+#######################
+save_sample_conditions_1
+   _Sample_condition_list.Sf_category    sample_conditions
+   _Sample_condition_list.Sf_framecode   sample_conditions_1
+   _Sample_condition_list.Entry_ID       19524
+   _Sample_condition_list.ID             1
+   _Sample_condition_list.Name           .
+   _Sample_condition_list.Details        .
+
+   loop_
+      _Sample_condition_variable.Type
+      _Sample_condition_variable.Val
+      _Sample_condition_variable.Val_err
+      _Sample_condition_variable.Val_units
+      _Sample_condition_variable.Entry_ID
+      _Sample_condition_variable.Sample_condition_list_ID
+
+      pH            3.35   0.05   pH    19524   1
+      pressure      1      .      atm   19524   1
+      temperature   273    .      K     19524   1
+   stop_
+save_
+
+
+############################
+#  Computer software used  #
+############################
+save_AMBER
+   _Software.Sf_category    software
+   _Software.Sf_framecode   AMBER
+   _Software.Entry_ID       19524
+   _Software.ID             1
+   _Software.Type           .
+   _Software.Name           AMBER
+   _Software.Version        99
+   _Software.DOI            .
+   _Software.Details        .
+
+   loop_
+      _Vendor.Name
+      _Vendor.Address
+      _Vendor.Electronic_address
+      _Vendor.Entry_ID
+      _Vendor.Software_ID
+
+      'Case, Darden, Cheatham, III, Simmerling, Wang, Duke, Luo, ... and Kollman'   .   .   19524   1
+   stop_
+
+   loop_
+      _Task.Software_module
+      _Task.Task
+      _Task.Entry_ID
+      _Task.Software_ID
+
+      .   refinement   19524   1
+   stop_
+save_
+
+save_CYANA
+   _Software.Sf_category    software
+   _Software.Sf_framecode   CYANA
+   _Software.Entry_ID       19524
+   _Software.ID             2
+   _Software.Type           .
+   _Software.Name           CYANA
+   _Software.Version        2.1
+   _Software.DOI            .
+   _Software.Details        .
+
+   loop_
+      _Vendor.Name
+      _Vendor.Address
+      _Vendor.Electronic_address
+      _Vendor.Entry_ID
+      _Vendor.Software_ID
+
+      'Guntert, Mumenthaler and Wuthrich'   .   .   19524   2
+   stop_
+
+   loop_
+      _Task.Software_module
+      _Task.Task
+      _Task.Entry_ID
+      _Task.Software_ID
+
+      .   'structure solution'   19524   2
+   stop_
+save_
+
+save_NMRPipe
+   _Software.Sf_category    software
+   _Software.Sf_framecode   NMRPipe
+   _Software.Entry_ID       19524
+   _Software.ID             3
+   _Software.Type           .
+   _Software.Name           NMRPipe
+   _Software.Version        .
+   _Software.DOI            .
+   _Software.Details        .
+
+   loop_
+      _Vendor.Name
+      _Vendor.Address
+      _Vendor.Electronic_address
+      _Vendor.Entry_ID
+      _Vendor.Software_ID
+
+      'Delaglio, Grzesiek, Vuister, Zhu, Pfeifer and Bax'   .   .   19524   3
+   stop_
+
+   loop_
+      _Task.Software_module
+      _Task.Task
+      _Task.Entry_ID
+      _Task.Software_ID
+
+      .   processing   19524   3
+   stop_
+save_
+
+save_XEASY
+   _Software.Sf_category    software
+   _Software.Sf_framecode   XEASY
+   _Software.Entry_ID       19524
+   _Software.ID             4
+   _Software.Type           .
+   _Software.Name           XEASY
+   _Software.Version        .
+   _Software.DOI            .
+   _Software.Details        .
+
+   loop_
+      _Vendor.Name
+      _Vendor.Address
+      _Vendor.Electronic_address
+      _Vendor.Entry_ID
+      _Vendor.Software_ID
+
+      'Bartels et al.'   .   .   19524   4
+   stop_
+
+   loop_
+      _Task.Software_module
+      _Task.Task
+      _Task.Entry_ID
+      _Task.Software_ID
+
+      .   'chemical shift assignment'   19524   4
+   stop_
+save_
+
+
+#########################
+#  Experimental detail  #
+#########################
+
+    ##################################
+    #  NMR Spectrometer definitions  #
+    ##################################
+save_spectrometer_1
+   _NMR_spectrometer.Sf_category      NMR_spectrometer
+   _NMR_spectrometer.Sf_framecode     spectrometer_1
+   _NMR_spectrometer.Entry_ID         19524
+   _NMR_spectrometer.ID               1
+   _NMR_spectrometer.Name             .
+   _NMR_spectrometer.Details          .
+   _NMR_spectrometer.Manufacturer     Varian
+   _NMR_spectrometer.Model            INOVA
+   _NMR_spectrometer.Serial_number    .
+   _NMR_spectrometer.Field_strength   500
+save_
+
+save_NMR_spectrometer_list
+   _NMR_spectrometer_list.Sf_category    NMR_spectrometer_list
+   _NMR_spectrometer_list.Sf_framecode   NMR_spectrometer_list
+   _NMR_spectrometer_list.Entry_ID       19524
+   _NMR_spectrometer_list.ID             1
+   _NMR_spectrometer_list.Name           .
+
+   loop_
+      _NMR_spectrometer_view.ID
+      _NMR_spectrometer_view.Name
+      _NMR_spectrometer_view.Manufacturer
+      _NMR_spectrometer_view.Model
+      _NMR_spectrometer_view.Serial_number
+      _NMR_spectrometer_view.Field_strength
+      _NMR_spectrometer_view.Details
+      _NMR_spectrometer_view.Citation_ID
+      _NMR_spectrometer_view.Citation_label
+      _NMR_spectrometer_view.Entry_ID
+      _NMR_spectrometer_view.NMR_spectrometer_list_ID
+
+      1   spectrometer_1   Varian   INOVA   .   500   .   .   .   19524   1
+   stop_
+save_
+
+
+    #############################
+    #  NMR applied experiments  #
+    #############################
+save_experiment_list
+   _Experiment_list.Sf_category    experiment_list
+   _Experiment_list.Sf_framecode   experiment_list
+   _Experiment_list.Entry_ID       19524
+   _Experiment_list.ID             1
+   _Experiment_list.Details        .
+
+   loop_
+      _Experiment.ID
+      _Experiment.Name
+      _Experiment.Raw_data_flag
+      _Experiment.NMR_spec_expt_ID
+      _Experiment.NMR_spec_expt_label
+      _Experiment.MS_expt_ID
+      _Experiment.MS_expt_label
+      _Experiment.SAXS_expt_ID
+      _Experiment.SAXS_expt_label
+      _Experiment.FRET_expt_ID
+      _Experiment.FRET_expt_label
+      _Experiment.EMR_expt_ID
+      _Experiment.EMR_expt_label
+      _Experiment.Sample_ID
+      _Experiment.Sample_label
+      _Experiment.Sample_state
+      _Experiment.Sample_volume
+      _Experiment.Sample_volume_units
+      _Experiment.Sample_condition_list_ID
+      _Experiment.Sample_condition_list_label
+      _Experiment.Sample_spinning_rate
+      _Experiment.Sample_angle
+      _Experiment.NMR_tube_type
+      _Experiment.NMR_spectrometer_ID
+      _Experiment.NMR_spectrometer_label
+      _Experiment.NMR_spectrometer_probe_ID
+      _Experiment.NMR_spectrometer_probe_label
+      _Experiment.NMR_spectral_processing_ID
+      _Experiment.NMR_spectral_processing_label
+      _Experiment.Mass_spectrometer_ID
+      _Experiment.Mass_spectrometer_label
+      _Experiment.Xray_instrument_ID
+      _Experiment.Xray_instrument_label
+      _Experiment.Fluorescence_instrument_ID
+      _Experiment.Fluorescence_instrument_label
+      _Experiment.EMR_instrument_ID
+      _Experiment.EMR_instrument_label
+      _Experiment.Chromatographic_system_ID
+      _Experiment.Chromatographic_system_label
+      _Experiment.Chromatographic_column_ID
+      _Experiment.Chromatographic_column_label
+      _Experiment.Entry_ID
+      _Experiment.Experiment_list_ID
+
+      1   '2D 1H-1H TOCSY'   no   .   .   .   .   .   .   .   .   .   .   1   $sample_1   isotropic   .   .   1   $sample_conditions_1   .   .   .   1   $spectrometer_1   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   19524   1
+      2   '2D DQF-COSY'      no   .   .   .   .   .   .   .   .   .   .   1   $sample_1   isotropic   .   .   1   $sample_conditions_1   .   .   .   1   $spectrometer_1   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   19524   1
+      3   '2D 1H-1H NOESY'   no   .   .   .   .   .   .   .   .   .   .   1   $sample_1   isotropic   .   .   1   $sample_conditions_1   .   .   .   1   $spectrometer_1   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   19524   1
+   stop_
+save_
+
+
+####################
+#  NMR parameters  #
+####################
+
+    ##############################
+    #  Assigned chemical shifts  #
+    ##############################
+
+	################################
+	#  Chemical shift referencing  #
+	################################
+save_chemical_shift_reference_1
+   _Chem_shift_reference.Sf_category    chem_shift_reference
+   _Chem_shift_reference.Sf_framecode   chemical_shift_reference_1
+   _Chem_shift_reference.Entry_ID       19524
+   _Chem_shift_reference.ID             1
+   _Chem_shift_reference.Name           .
+   _Chem_shift_reference.Details        .
+
+   loop_
+      _Chem_shift_ref.Atom_type
+      _Chem_shift_ref.Atom_isotope_number
+      _Chem_shift_ref.Mol_common_name
+      _Chem_shift_ref.Atom_group
+      _Chem_shift_ref.Concentration_val
+      _Chem_shift_ref.Concentration_units
+      _Chem_shift_ref.Solvent
+      _Chem_shift_ref.Rank
+      _Chem_shift_ref.Chem_shift_units
+      _Chem_shift_ref.Chem_shift_val
+      _Chem_shift_ref.Ref_method
+      _Chem_shift_ref.Ref_type
+      _Chem_shift_ref.Indirect_shift_ratio
+      _Chem_shift_ref.External_ref_loc
+      _Chem_shift_ref.External_ref_sample_geometry
+      _Chem_shift_ref.External_ref_axis
+      _Chem_shift_ref.Ref_correction_type
+      _Chem_shift_ref.Correction_val
+      _Chem_shift_ref.Entry_ID
+      _Chem_shift_ref.Chem_shift_reference_ID
+
+      H   1   DSS   'methyl protons'   .   .   .   .   ppm   0.00   internal   direct   1.000000000   .   .   .   .   .   19524   1
+   stop_
+save_
+
+
+     ###################################
+     #  Assigned chemical shift lists  #
+     ###################################
+
+###################################################################
+#       Chemical Shift Ambiguity Index Value Definitions          #
+#                                                                 #
+# The values other than 1 are used for those atoms with different #
+# chemical shifts that cannot be assigned to stereospecific atoms #
+# or to specific residues or chains.                              #
+#                                                                 #
+#   Index Value            Definition                             #
+#                                                                 #
+#      1             Unique (including isolated methyl protons,   #
+#                         geminal atoms, and geminal methyl       #
+#                         groups with identical chemical shifts)  #
+#                         (e.g. ILE HD11, HD12, HD13 protons)     #
+#      2             Ambiguity of geminal atoms or geminal methyl #
+#                         proton groups (e.g. ASP HB2 and HB3     #
+#                         protons, LEU CD1 and CD2 carbons, or    #
+#                         LEU HD11, HD12, HD13 and HD21, HD22,    #
+#                         HD23 methyl protons)                    #
+#      3             Aromatic atoms on opposite sides of          #
+#                         symmetrical rings (e.g. TYR HE1 and HE2 #
+#                         protons)                                #
+#      4             Intraresidue ambiguities (e.g. LYS HG and    #
+#                         HD protons or TRP HZ2 and HZ3 protons)  #
+#      5             Interresidue ambiguities (LYS 12 vs. LYS 27) #
+#      6             Intermolecular ambiguities (e.g. ASP 31 CA   #
+#                         in monomer 1 and ASP 31 CA in monomer 2 #
+#                         of an asymmetrical homodimer, duplex    #
+#                         DNA assignments, or other assignments   #
+#                         that may apply to atoms in one or more  #
+#                         molecule in the molecular assembly)     #
+#      9             Ambiguous, specific ambiguity not defined    #
+#                                                                 #
+###################################################################
+save_assigned_chem_shift_list_1
+   _Assigned_chem_shift_list.Sf_category                   assigned_chemical_shifts
+   _Assigned_chem_shift_list.Sf_framecode                  assigned_chem_shift_list_1
+   _Assigned_chem_shift_list.Entry_ID                      19524
+   _Assigned_chem_shift_list.ID                            1
+   _Assigned_chem_shift_list.Name                          .
+   _Assigned_chem_shift_list.Sample_condition_list_ID      1
+   _Assigned_chem_shift_list.Sample_condition_list_label   $sample_conditions_1
+   _Assigned_chem_shift_list.Chem_shift_reference_ID       1
+   _Assigned_chem_shift_list.Chem_shift_reference_label    $chemical_shift_reference_1
+   _Assigned_chem_shift_list.Chem_shift_1H_err             .
+   _Assigned_chem_shift_list.Chem_shift_13C_err            .
+   _Assigned_chem_shift_list.Chem_shift_15N_err            .
+   _Assigned_chem_shift_list.Chem_shift_31P_err            .
+   _Assigned_chem_shift_list.Chem_shift_2H_err             .
+   _Assigned_chem_shift_list.Chem_shift_19F_err            .
+   _Assigned_chem_shift_list.Error_derivation_method       .
+   _Assigned_chem_shift_list.Details                       .
+   _Assigned_chem_shift_list.Text_data_format              .
+   _Assigned_chem_shift_list.Text_data                     .
+
+   loop_
+      _Chem_shift_experiment.Experiment_ID
+      _Chem_shift_experiment.Experiment_name
+      _Chem_shift_experiment.Sample_ID
+      _Chem_shift_experiment.Sample_label
+      _Chem_shift_experiment.Sample_state
+      _Chem_shift_experiment.Entry_ID
+      _Chem_shift_experiment.Assigned_chem_shift_list_ID
+
+      1   '2D 1H-1H TOCSY'   .   .   .   19524   1
+   stop_
+
+   loop_
+      _Atom_chem_shift.ID
+      _Atom_chem_shift.Assembly_atom_ID
+      _Atom_chem_shift.Entity_assembly_ID
+      _Atom_chem_shift.Entity_ID
+      _Atom_chem_shift.Comp_index_ID
+      _Atom_chem_shift.Seq_ID
+      _Atom_chem_shift.Comp_ID
+      _Atom_chem_shift.Atom_ID
+      _Atom_chem_shift.Atom_type
+      _Atom_chem_shift.Atom_isotope_number
+      _Atom_chem_shift.Val
+      _Atom_chem_shift.Val_err
+      _Atom_chem_shift.Assign_fig_of_merit
+      _Atom_chem_shift.Ambiguity_code
+      _Atom_chem_shift.Ambiguity_set_ID
+      _Atom_chem_shift.Occupancy
+      _Atom_chem_shift.Resonance_ID
+      _Atom_chem_shift.Auth_entity_assembly_ID
+      _Atom_chem_shift.Auth_asym_ID
+      _Atom_chem_shift.Auth_seq_ID
+      _Atom_chem_shift.Auth_comp_ID
+      _Atom_chem_shift.Auth_atom_ID
+      _Atom_chem_shift.Details
+      _Atom_chem_shift.Entry_ID
+      _Atom_chem_shift.Assigned_chem_shift_list_ID
+
+      1     .   1   1   1    1    SER   H      H   1   8.631   0.004   .   .   .   .   .   .   A   2    SER   H      .   19524   1
+      2     .   1   1   1    1    SER   HA     H   1   4.519   0.000   .   .   .   .   .   .   A   2    SER   HA     .   19524   1
+      3     .   1   1   1    1    SER   HB2    H   1   3.837   0.000   .   .   .   .   .   .   A   2    SER   HB2    .   19524   1
+      4     .   1   1   1    1    SER   HB3    H   1   3.837   0.000   .   .   .   .   .   .   A   2    SER   HB3    .   19524   1
+      5     .   1   1   2    2    ALA   H      H   1   8.375   0.000   .   .   .   .   .   .   A   3    ALA   H      .   19524   1
+      6     .   1   1   2    2    ALA   HA     H   1   4.398   0.004   .   .   .   .   .   .   A   3    ALA   HA     .   19524   1
+      7     .   1   1   2    2    ALA   HB1    H   1   1.339   0.001   .   .   .   .   .   .   A   3    ALA   HB1    .   19524   1
+      8     .   1   1   2    2    ALA   HB2    H   1   1.339   0.001   .   .   .   .   .   .   A   3    ALA   HB2    .   19524   1
+      9     .   1   1   2    2    ALA   HB3    H   1   1.339   0.001   .   .   .   .   .   .   A   3    ALA   HB3    .   19524   1
+      10    .   1   1   3    3    PHE   H      H   1   8.033   0.000   .   .   .   .   .   .   A   4    PHE   H      .   19524   1
+      11    .   1   1   3    3    PHE   HA     H   1   4.688   0.001   .   .   .   .   .   .   A   4    PHE   HA     .   19524   1
+      12    .   1   1   3    3    PHE   HB2    H   1   3.106   0.005   .   .   .   .   .   .   A   4    PHE   HB2    .   19524   1
+      13    .   1   1   3    3    PHE   HB3    H   1   2.999   0.001   .   .   .   .   .   .   A   4    PHE   HB3    .   19524   1
+      14    .   1   1   3    3    PHE   HD1    H   1   7.372   0.000   .   .   .   .   .   .   A   4    PHE   HD1    .   19524   1
+      15    .   1   1   3    3    PHE   HD2    H   1   7.372   0.000   .   .   .   .   .   .   A   4    PHE   HD2    .   19524   1
+      16    .   1   1   3    3    PHE   HE1    H   1   7.221   0.001   .   .   .   .   .   .   A   4    PHE   HE1    .   19524   1
+      17    .   1   1   3    3    PHE   HE2    H   1   7.221   0.001   .   .   .   .   .   .   A   4    PHE   HE2    .   19524   1
+      18    .   1   1   4    4    CYS   H      H   1   8.130   0.000   .   .   .   .   .   .   A   5    CYS   H      .   19524   1
+      19    .   1   1   4    4    CYS   HA     H   1   4.415   0.004   .   .   .   .   .   .   A   5    CYS   HA     .   19524   1
+      20    .   1   1   4    4    CYS   HB2    H   1   2.780   0.000   .   .   .   .   .   .   A   5    CYS   HB2    .   19524   1
+      21    .   1   1   4    4    CYS   HB3    H   1   2.686   0.000   .   .   .   .   .   .   A   5    CYS   HB3    .   19524   1
+      22    .   1   1   5    5    ASN   H      H   1   8.745   0.000   .   .   .   .   .   .   A   6    ASN   H      .   19524   1
+      23    .   1   1   5    5    ASN   HA     H   1   4.825   0.001   .   .   .   .   .   .   A   6    ASN   HA     .   19524   1
+      24    .   1   1   5    5    ASN   HB2    H   1   2.974   0.002   .   .   .   .   .   .   A   6    ASN   HB2    .   19524   1
+      25    .   1   1   5    5    ASN   HB3    H   1   2.795   0.002   .   .   .   .   .   .   A   6    ASN   HB3    .   19524   1
+      26    .   1   1   5    5    ASN   HD21   H   1   7.857   0.001   .   .   .   .   .   .   A   6    ASN   HD21   .   19524   1
+      27    .   1   1   5    5    ASN   HD22   H   1   7.039   0.000   .   .   .   .   .   .   A   6    ASN   HD22   .   19524   1
+      28    .   1   1   6    6    LEU   H      H   1   8.757   0.000   .   .   .   .   .   .   A   7    LEU   H      .   19524   1
+      29    .   1   1   6    6    LEU   HA     H   1   3.992   0.000   .   .   .   .   .   .   A   7    LEU   HA     .   19524   1
+      30    .   1   1   6    6    LEU   HB2    H   1   1.790   0.001   .   .   .   .   .   .   A   7    LEU   HB2    .   19524   1
+      31    .   1   1   6    6    LEU   HB3    H   1   1.577   0.002   .   .   .   .   .   .   A   7    LEU   HB3    .   19524   1
+      32    .   1   1   6    6    LEU   HG     H   1   1.501   0.005   .   .   .   .   .   .   A   7    LEU   HG     .   19524   1
+      33    .   1   1   6    6    LEU   HD11   H   1   0.966   0.000   .   .   .   .   .   .   A   7    LEU   HD11   .   19524   1
+      34    .   1   1   6    6    LEU   HD12   H   1   0.966   0.000   .   .   .   .   .   .   A   7    LEU   HD12   .   19524   1
+      35    .   1   1   6    6    LEU   HD13   H   1   0.966   0.000   .   .   .   .   .   .   A   7    LEU   HD13   .   19524   1
+      36    .   1   1   6    6    LEU   HD21   H   1   0.966   0.000   .   .   .   .   .   .   A   7    LEU   HD21   .   19524   1
+      37    .   1   1   6    6    LEU   HD22   H   1   0.966   0.000   .   .   .   .   .   .   A   7    LEU   HD22   .   19524   1
+      38    .   1   1   6    6    LEU   HD23   H   1   0.966   0.000   .   .   .   .   .   .   A   7    LEU   HD23   .   19524   1
+      39    .   1   1   7    7    ARG   H      H   1   8.315   0.001   .   .   .   .   .   .   A   8    ARG   H      .   19524   1
+      40    .   1   1   7    7    ARG   HA     H   1   4.057   0.000   .   .   .   .   .   .   A   8    ARG   HA     .   19524   1
+      41    .   1   1   7    7    ARG   HB2    H   1   1.931   0.001   .   .   .   .   .   .   A   8    ARG   HB2    .   19524   1
+      42    .   1   1   7    7    ARG   HB3    H   1   1.769   0.001   .   .   .   .   .   .   A   8    ARG   HB3    .   19524   1
+      43    .   1   1   7    7    ARG   HG2    H   1   1.676   0.006   .   .   .   .   .   .   A   8    ARG   HG2    .   19524   1
+      44    .   1   1   7    7    ARG   HG3    H   1   1.676   0.006   .   .   .   .   .   .   A   8    ARG   HG3    .   19524   1
+      45    .   1   1   7    7    ARG   HD2    H   1   3.239   0.000   .   .   .   .   .   .   A   8    ARG   HD2    .   19524   1
+      46    .   1   1   7    7    ARG   HD3    H   1   3.239   0.000   .   .   .   .   .   .   A   8    ARG   HD3    .   19524   1
+      47    .   1   1   7    7    ARG   HE     H   1   7.283   0.000   .   .   .   .   .   .   A   8    ARG   HE     .   19524   1
+      48    .   1   1   8    8    ALA   H      H   1   7.903   0.000   .   .   .   .   .   .   A   9    ALA   H      .   19524   1
+      49    .   1   1   8    8    ALA   HA     H   1   4.123   0.000   .   .   .   .   .   .   A   9    ALA   HA     .   19524   1
+      50    .   1   1   8    8    ALA   HB1    H   1   1.495   0.000   .   .   .   .   .   .   A   9    ALA   HB1    .   19524   1
+      51    .   1   1   8    8    ALA   HB2    H   1   1.495   0.000   .   .   .   .   .   .   A   9    ALA   HB2    .   19524   1
+      52    .   1   1   8    8    ALA   HB3    H   1   1.495   0.000   .   .   .   .   .   .   A   9    ALA   HB3    .   19524   1
+      53    .   1   1   9    9    CYS   H      H   1   8.687   0.000   .   .   .   .   .   .   A   10   CYS   H      .   19524   1
+      54    .   1   1   9    9    CYS   HA     H   1   4.645   0.000   .   .   .   .   .   .   A   10   CYS   HA     .   19524   1
+      55    .   1   1   9    9    CYS   HB2    H   1   3.238   0.001   .   .   .   .   .   .   A   10   CYS   HB2    .   19524   1
+      56    .   1   1   9    9    CYS   HB3    H   1   2.784   0.000   .   .   .   .   .   .   A   10   CYS   HB3    .   19524   1
+      57    .   1   1   10   10   GLU   H      H   1   9.036   0.000   .   .   .   .   .   .   A   11   GLU   H      .   19524   1
+      58    .   1   1   10   10   GLU   HA     H   1   3.825   0.001   .   .   .   .   .   .   A   11   GLU   HA     .   19524   1
+      59    .   1   1   10   10   GLU   HB2    H   1   2.431   0.001   .   .   .   .   .   .   A   11   GLU   HB2    .   19524   1
+      60    .   1   1   10   10   GLU   HB3    H   1   2.099   0.000   .   .   .   .   .   .   A   11   GLU   HB3    .   19524   1
+      61    .   1   1   10   10   GLU   HG2    H   1   2.685   0.000   .   .   .   .   .   .   A   11   GLU   HG2    .   19524   1
+      62    .   1   1   10   10   GLU   HG3    H   1   2.604   0.000   .   .   .   .   .   .   A   11   GLU   HG3    .   19524   1
+      63    .   1   1   11   11   LEU   H      H   1   8.153   0.001   .   .   .   .   .   .   A   12   LEU   H      .   19524   1
+      64    .   1   1   11   11   LEU   HA     H   1   4.117   0.000   .   .   .   .   .   .   A   12   LEU   HA     .   19524   1
+      65    .   1   1   11   11   LEU   HB2    H   1   1.884   0.001   .   .   .   .   .   .   A   12   LEU   HB2    .   19524   1
+      66    .   1   1   11   11   LEU   HB3    H   1   1.809   0.000   .   .   .   .   .   .   A   12   LEU   HB3    .   19524   1
+      67    .   1   1   11   11   LEU   HG     H   1   1.707   0.001   .   .   .   .   .   .   A   12   LEU   HG     .   19524   1
+      68    .   1   1   11   11   LEU   HD11   H   1   0.935   0.002   .   .   .   .   .   .   A   12   LEU   HD11   .   19524   1
+      69    .   1   1   11   11   LEU   HD12   H   1   0.935   0.002   .   .   .   .   .   .   A   12   LEU   HD12   .   19524   1
+      70    .   1   1   11   11   LEU   HD13   H   1   0.935   0.002   .   .   .   .   .   .   A   12   LEU   HD13   .   19524   1
+      71    .   1   1   11   11   LEU   HD21   H   1   0.935   0.002   .   .   .   .   .   .   A   12   LEU   HD21   .   19524   1
+      72    .   1   1   11   11   LEU   HD22   H   1   0.935   0.002   .   .   .   .   .   .   A   12   LEU   HD22   .   19524   1
+      73    .   1   1   11   11   LEU   HD23   H   1   0.935   0.002   .   .   .   .   .   .   A   12   LEU   HD23   .   19524   1
+      74    .   1   1   12   12   SER   H      H   1   8.396   0.000   .   .   .   .   .   .   A   13   SER   H      .   19524   1
+      75    .   1   1   12   12   SER   HA     H   1   4.306   0.001   .   .   .   .   .   .   A   13   SER   HA     .   19524   1
+      76    .   1   1   12   12   SER   HB2    H   1   4.032   0.000   .   .   .   .   .   .   A   13   SER   HB2    .   19524   1
+      77    .   1   1   12   12   SER   HB3    H   1   4.032   0.000   .   .   .   .   .   .   A   13   SER   HB3    .   19524   1
+      78    .   1   1   13   13   CYS   H      H   1   8.318   0.001   .   .   .   .   .   .   A   14   CYS   H      .   19524   1
+      79    .   1   1   13   13   CYS   HA     H   1   4.500   0.000   .   .   .   .   .   .   A   14   CYS   HA     .   19524   1
+      80    .   1   1   13   13   CYS   HB2    H   1   2.402   0.000   .   .   .   .   .   .   A   14   CYS   HB2    .   19524   1
+      81    .   1   1   13   13   CYS   HB3    H   1   2.402   0.000   .   .   .   .   .   .   A   14   CYS   HB3    .   19524   1
+      82    .   1   1   14   14   ARG   H      H   1   8.329   0.000   .   .   .   .   .   .   A   15   ARG   H      .   19524   1
+      83    .   1   1   14   14   ARG   HA     H   1   4.485   0.001   .   .   .   .   .   .   A   15   ARG   HA     .   19524   1
+      84    .   1   1   14   14   ARG   HB2    H   1   2.244   0.000   .   .   .   .   .   .   A   15   ARG   HB2    .   19524   1
+      85    .   1   1   14   14   ARG   HB3    H   1   2.096   0.002   .   .   .   .   .   .   A   15   ARG   HB3    .   19524   1
+      86    .   1   1   14   14   ARG   HG2    H   1   1.875   0.000   .   .   .   .   .   .   A   15   ARG   HG2    .   19524   1
+      87    .   1   1   14   14   ARG   HG3    H   1   1.875   0.000   .   .   .   .   .   .   A   15   ARG   HG3    .   19524   1
+      88    .   1   1   14   14   ARG   HD2    H   1   3.288   0.003   .   .   .   .   .   .   A   15   ARG   HD2    .   19524   1
+      89    .   1   1   14   14   ARG   HD3    H   1   3.288   0.003   .   .   .   .   .   .   A   15   ARG   HD3    .   19524   1
+      90    .   1   1   14   14   ARG   HE     H   1   7.261   0.002   .   .   .   .   .   .   A   15   ARG   HE     .   19524   1
+      91    .   1   1   15   15   SER   H      H   1   7.731   0.000   .   .   .   .   .   .   A   16   SER   H      .   19524   1
+      92    .   1   1   15   15   SER   HA     H   1   4.397   0.002   .   .   .   .   .   .   A   16   SER   HA     .   19524   1
+      93    .   1   1   15   15   SER   HB2    H   1   4.093   0.000   .   .   .   .   .   .   A   16   SER   HB2    .   19524   1
+      94    .   1   1   15   15   SER   HB3    H   1   4.093   0.000   .   .   .   .   .   .   A   16   SER   HB3    .   19524   1
+      95    .   1   1   16   16   LEU   H      H   1   7.407   0.000   .   .   .   .   .   .   A   17   LEU   H      .   19524   1
+      96    .   1   1   16   16   LEU   HA     H   1   4.576   0.000   .   .   .   .   .   .   A   17   LEU   HA     .   19524   1
+      97    .   1   1   16   16   LEU   HB2    H   1   1.857   0.002   .   .   .   .   .   .   A   17   LEU   HB2    .   19524   1
+      98    .   1   1   16   16   LEU   HB3    H   1   1.857   0.002   .   .   .   .   .   .   A   17   LEU   HB3    .   19524   1
+      99    .   1   1   16   16   LEU   HG     H   1   1.765   0.001   .   .   .   .   .   .   A   17   LEU   HG     .   19524   1
+      100   .   1   1   16   16   LEU   HD11   H   1   1.003   0.000   .   .   .   .   .   .   A   17   LEU   HD11   .   19524   1
+      101   .   1   1   16   16   LEU   HD12   H   1   1.003   0.000   .   .   .   .   .   .   A   17   LEU   HD12   .   19524   1
+      102   .   1   1   16   16   LEU   HD13   H   1   1.003   0.000   .   .   .   .   .   .   A   17   LEU   HD13   .   19524   1
+      103   .   1   1   16   16   LEU   HD21   H   1   0.888   0.000   .   .   .   .   .   .   A   17   LEU   HD21   .   19524   1
+      104   .   1   1   16   16   LEU   HD22   H   1   0.888   0.000   .   .   .   .   .   .   A   17   LEU   HD22   .   19524   1
+      105   .   1   1   16   16   LEU   HD23   H   1   0.888   0.000   .   .   .   .   .   .   A   17   LEU   HD23   .   19524   1
+      106   .   1   1   17   17   GLY   H      H   1   8.175   0.001   .   .   .   .   .   .   A   18   GLY   H      .   19524   1
+      107   .   1   1   17   17   GLY   HA2    H   1   4.176   0.000   .   .   .   .   .   .   A   18   GLY   HA2    .   19524   1
+      108   .   1   1   17   17   GLY   HA3    H   1   4.000   0.001   .   .   .   .   .   .   A   18   GLY   HA3    .   19524   1
+      109   .   1   1   18   18   LEU   H      H   1   7.463   0.000   .   .   .   .   .   .   A   19   LEU   H      .   19524   1
+      110   .   1   1   18   18   LEU   HA     H   1   4.666   0.001   .   .   .   .   .   .   A   19   LEU   HA     .   19524   1
+      111   .   1   1   18   18   LEU   HB2    H   1   1.284   0.000   .   .   .   .   .   .   A   19   LEU   HB2    .   19524   1
+      112   .   1   1   18   18   LEU   HB3    H   1   1.284   0.000   .   .   .   .   .   .   A   19   LEU   HB3    .   19524   1
+      113   .   1   1   18   18   LEU   HG     H   1   1.448   0.000   .   .   .   .   .   .   A   19   LEU   HG     .   19524   1
+      114   .   1   1   18   18   LEU   HD11   H   1   0.749   0.001   .   .   .   .   .   .   A   19   LEU   HD11   .   19524   1
+      115   .   1   1   18   18   LEU   HD12   H   1   0.749   0.001   .   .   .   .   .   .   A   19   LEU   HD12   .   19524   1
+      116   .   1   1   18   18   LEU   HD13   H   1   0.749   0.001   .   .   .   .   .   .   A   19   LEU   HD13   .   19524   1
+      117   .   1   1   18   18   LEU   HD21   H   1   0.749   0.001   .   .   .   .   .   .   A   19   LEU   HD21   .   19524   1
+      118   .   1   1   18   18   LEU   HD22   H   1   0.749   0.001   .   .   .   .   .   .   A   19   LEU   HD22   .   19524   1
+      119   .   1   1   18   18   LEU   HD23   H   1   0.749   0.001   .   .   .   .   .   .   A   19   LEU   HD23   .   19524   1
+      120   .   1   1   19   19   LEU   H      H   1   8.641   0.000   .   .   .   .   .   .   A   20   LEU   H      .   19524   1
+      121   .   1   1   19   19   LEU   HA     H   1   4.317   0.000   .   .   .   .   .   .   A   20   LEU   HA     .   19524   1
+      122   .   1   1   19   19   LEU   HB2    H   1   1.454   0.000   .   .   .   .   .   .   A   20   LEU   HB2    .   19524   1
+      123   .   1   1   19   19   LEU   HB3    H   1   1.454   0.000   .   .   .   .   .   .   A   20   LEU   HB3    .   19524   1
+      124   .   1   1   19   19   LEU   HG     H   1   1.225   0.000   .   .   .   .   .   .   A   20   LEU   HG     .   19524   1
+      125   .   1   1   19   19   LEU   HD11   H   1   0.817   0.000   .   .   .   .   .   .   A   20   LEU   HD11   .   19524   1
+      126   .   1   1   19   19   LEU   HD12   H   1   0.817   0.000   .   .   .   .   .   .   A   20   LEU   HD12   .   19524   1
+      127   .   1   1   19   19   LEU   HD13   H   1   0.817   0.000   .   .   .   .   .   .   A   20   LEU   HD13   .   19524   1
+      128   .   1   1   19   19   LEU   HD21   H   1   0.746   0.002   .   .   .   .   .   .   A   20   LEU   HD21   .   19524   1
+      129   .   1   1   19   19   LEU   HD22   H   1   0.746   0.002   .   .   .   .   .   .   A   20   LEU   HD22   .   19524   1
+      130   .   1   1   19   19   LEU   HD23   H   1   0.746   0.002   .   .   .   .   .   .   A   20   LEU   HD23   .   19524   1
+      131   .   1   1   20   20   GLY   H      H   1   8.023   0.001   .   .   .   .   .   .   A   21   GLY   H      .   19524   1
+      132   .   1   1   20   20   GLY   HA2    H   1   2.993   0.003   .   .   .   .   .   .   A   21   GLY   HA2    .   19524   1
+      133   .   1   1   20   20   GLY   HA3    H   1   5.207   0.000   .   .   .   .   .   .   A   21   GLY   HA3    .   19524   1
+      134   .   1   1   21   21   LYS   H      H   1   8.872   0.000   .   .   .   .   .   .   A   22   LYS   H      .   19524   1
+      135   .   1   1   21   21   LYS   HA     H   1   4.391   0.000   .   .   .   .   .   .   A   22   LYS   HA     .   19524   1
+      136   .   1   1   21   21   LYS   HB2    H   1   1.670   0.003   .   .   .   .   .   .   A   22   LYS   HB2    .   19524   1
+      137   .   1   1   21   21   LYS   HB3    H   1   1.670   0.003   .   .   .   .   .   .   A   22   LYS   HB3    .   19524   1
+      138   .   1   1   21   21   LYS   HG2    H   1   1.291   0.000   .   .   .   .   .   .   A   22   LYS   HG2    .   19524   1
+      139   .   1   1   21   21   LYS   HG3    H   1   1.291   0.000   .   .   .   .   .   .   A   22   LYS   HG3    .   19524   1
+      140   .   1   1   21   21   LYS   HD2    H   1   1.547   0.000   .   .   .   .   .   .   A   22   LYS   HD2    .   19524   1
+      141   .   1   1   21   21   LYS   HD3    H   1   1.547   0.000   .   .   .   .   .   .   A   22   LYS   HD3    .   19524   1
+      142   .   1   1   21   21   LYS   HE2    H   1   2.850   0.003   .   .   .   .   .   .   A   22   LYS   HE2    .   19524   1
+      143   .   1   1   21   21   LYS   HE3    H   1   2.850   0.003   .   .   .   .   .   .   A   22   LYS   HE3    .   19524   1
+      144   .   1   1   22   22   CYS   H      H   1   8.234   0.000   .   .   .   .   .   .   A   23   CYS   H      .   19524   1
+      145   .   1   1   22   22   CYS   HA     H   1   5.297   0.000   .   .   .   .   .   .   A   23   CYS   HA     .   19524   1
+      146   .   1   1   22   22   CYS   HB2    H   1   2.944   0.000   .   .   .   .   .   .   A   23   CYS   HB2    .   19524   1
+      147   .   1   1   22   22   CYS   HB3    H   1   2.842   0.000   .   .   .   .   .   .   A   23   CYS   HB3    .   19524   1
+      148   .   1   1   23   23   ILE   H      H   1   9.047   0.001   .   .   .   .   .   .   A   24   ILE   H      .   19524   1
+      149   .   1   1   23   23   ILE   HA     H   1   4.273   0.000   .   .   .   .   .   .   A   24   ILE   HA     .   19524   1
+      150   .   1   1   23   23   ILE   HB     H   1   1.810   0.000   .   .   .   .   .   .   A   24   ILE   HB     .   19524   1
+      151   .   1   1   23   23   ILE   HG12   H   1   1.417   0.000   .   .   .   .   .   .   A   24   ILE   HG12   .   19524   1
+      152   .   1   1   23   23   ILE   HG13   H   1   1.116   0.000   .   .   .   .   .   .   A   24   ILE   HG13   .   19524   1
+      153   .   1   1   23   23   ILE   HG21   H   1   0.876   0.002   .   .   .   .   .   .   A   24   ILE   HG21   .   19524   1
+      154   .   1   1   23   23   ILE   HG22   H   1   0.876   0.002   .   .   .   .   .   .   A   24   ILE   HG22   .   19524   1
+      155   .   1   1   23   23   ILE   HG23   H   1   0.876   0.002   .   .   .   .   .   .   A   24   ILE   HG23   .   19524   1
+      156   .   1   1   23   23   ILE   HD11   H   1   0.799   0.000   .   .   .   .   .   .   A   24   ILE   HD11   .   19524   1
+      157   .   1   1   23   23   ILE   HD12   H   1   0.799   0.000   .   .   .   .   .   .   A   24   ILE   HD12   .   19524   1
+      158   .   1   1   23   23   ILE   HD13   H   1   0.799   0.000   .   .   .   .   .   .   A   24   ILE   HD13   .   19524   1
+      159   .   1   1   24   24   GLY   H      H   1   9.017   0.000   .   .   .   .   .   .   A   25   GLY   H      .   19524   1
+      160   .   1   1   24   24   GLY   HA2    H   1   3.723   0.001   .   .   .   .   .   .   A   25   GLY   HA2    .   19524   1
+      161   .   1   1   24   24   GLY   HA3    H   1   3.948   0.003   .   .   .   .   .   .   A   25   GLY   HA3    .   19524   1
+      162   .   1   1   25   25   GLU   H      H   1   8.825   0.000   .   .   .   .   .   .   A   26   GLU   H      .   19524   1
+      163   .   1   1   25   25   GLU   HA     H   1   4.168   0.000   .   .   .   .   .   .   A   26   GLU   HA     .   19524   1
+      164   .   1   1   25   25   GLU   HB2    H   1   1.970   0.000   .   .   .   .   .   .   A   26   GLU   HB2    .   19524   1
+      165   .   1   1   25   25   GLU   HB3    H   1   1.970   0.000   .   .   .   .   .   .   A   26   GLU   HB3    .   19524   1
+      166   .   1   1   25   25   GLU   HG2    H   1   2.259   0.000   .   .   .   .   .   .   A   26   GLU   HG2    .   19524   1
+      167   .   1   1   25   25   GLU   HG3    H   1   2.438   0.002   .   .   .   .   .   .   A   26   GLU   HG3    .   19524   1
+      168   .   1   1   26   26   GLU   H      H   1   7.717   0.000   .   .   .   .   .   .   A   27   GLU   H      .   19524   1
+      169   .   1   1   26   26   GLU   HA     H   1   4.545   0.001   .   .   .   .   .   .   A   27   GLU   HA     .   19524   1
+      170   .   1   1   26   26   GLU   HB2    H   1   2.081   0.000   .   .   .   .   .   .   A   27   GLU   HB2    .   19524   1
+      171   .   1   1   26   26   GLU   HB3    H   1   1.999   0.001   .   .   .   .   .   .   A   27   GLU   HB3    .   19524   1
+      172   .   1   1   26   26   GLU   HG2    H   1   2.427   0.008   .   .   .   .   .   .   A   27   GLU   HG2    .   19524   1
+      173   .   1   1   26   26   GLU   HG3    H   1   2.368   0.000   .   .   .   .   .   .   A   27   GLU   HG3    .   19524   1
+      174   .   1   1   27   27   CYS   H      H   1   8.707   0.001   .   .   .   .   .   .   A   28   CYS   H      .   19524   1
+      175   .   1   1   27   27   CYS   HA     H   1   5.037   0.000   .   .   .   .   .   .   A   28   CYS   HA     .   19524   1
+      176   .   1   1   27   27   CYS   HB2    H   1   3.083   0.001   .   .   .   .   .   .   A   28   CYS   HB2    .   19524   1
+      177   .   1   1   27   27   CYS   HB3    H   1   2.697   0.001   .   .   .   .   .   .   A   28   CYS   HB3    .   19524   1
+      178   .   1   1   28   28   LYS   H      H   1   9.491   0.000   .   .   .   .   .   .   A   29   LYS   H      .   19524   1
+      179   .   1   1   28   28   LYS   HA     H   1   4.683   0.001   .   .   .   .   .   .   A   29   LYS   HA     .   19524   1
+      180   .   1   1   28   28   LYS   HB2    H   1   1.739   0.001   .   .   .   .   .   .   A   29   LYS   HB2    .   19524   1
+      181   .   1   1   28   28   LYS   HB3    H   1   1.646   0.000   .   .   .   .   .   .   A   29   LYS   HB3    .   19524   1
+      182   .   1   1   28   28   LYS   HG2    H   1   1.341   0.001   .   .   .   .   .   .   A   29   LYS   HG2    .   19524   1
+      183   .   1   1   28   28   LYS   HG3    H   1   1.341   0.001   .   .   .   .   .   .   A   29   LYS   HG3    .   19524   1
+      184   .   1   1   28   28   LYS   HD2    H   1   1.428   0.000   .   .   .   .   .   .   A   29   LYS   HD2    .   19524   1
+      185   .   1   1   28   28   LYS   HD3    H   1   1.428   0.000   .   .   .   .   .   .   A   29   LYS   HD3    .   19524   1
+      186   .   1   1   28   28   LYS   HE2    H   1   2.927   0.000   .   .   .   .   .   .   A   29   LYS   HE2    .   19524   1
+      187   .   1   1   28   28   LYS   HE3    H   1   2.927   0.000   .   .   .   .   .   .   A   29   LYS   HE3    .   19524   1
+      188   .   1   1   29   29   CYS   H      H   1   8.538   0.000   .   .   .   .   .   .   A   30   CYS   H      .   19524   1
+      189   .   1   1   29   29   CYS   HA     H   1   5.702   0.001   .   .   .   .   .   .   A   30   CYS   HA     .   19524   1
+      190   .   1   1   29   29   CYS   HB2    H   1   2.955   0.000   .   .   .   .   .   .   A   30   CYS   HB2    .   19524   1
+      191   .   1   1   29   29   CYS   HB3    H   1   2.660   0.000   .   .   .   .   .   .   A   30   CYS   HB3    .   19524   1
+      192   .   1   1   30   30   VAL   H      H   1   9.518   0.000   .   .   .   .   .   .   A   31   VAL   H      .   19524   1
+      193   .   1   1   30   30   VAL   HA     H   1   4.949   0.001   .   .   .   .   .   .   A   31   VAL   HA     .   19524   1
+      194   .   1   1   30   30   VAL   HB     H   1   2.292   0.001   .   .   .   .   .   .   A   31   VAL   HB     .   19524   1
+      195   .   1   1   30   30   VAL   HG11   H   1   0.857   0.000   .   .   .   .   .   .   A   31   VAL   HG11   .   19524   1
+      196   .   1   1   30   30   VAL   HG12   H   1   0.857   0.000   .   .   .   .   .   .   A   31   VAL   HG12   .   19524   1
+      197   .   1   1   30   30   VAL   HG13   H   1   0.857   0.000   .   .   .   .   .   .   A   31   VAL   HG13   .   19524   1
+      198   .   1   1   30   30   VAL   HG21   H   1   0.748   0.001   .   .   .   .   .   .   A   31   VAL   HG21   .   19524   1
+      199   .   1   1   30   30   VAL   HG22   H   1   0.748   0.001   .   .   .   .   .   .   A   31   VAL   HG22   .   19524   1
+      200   .   1   1   30   30   VAL   HG23   H   1   0.748   0.001   .   .   .   .   .   .   A   31   VAL   HG23   .   19524   1
+      201   .   1   1   31   31   PRO   HA     H   1   4.557   0.002   .   .   .   .   .   .   A   32   PRO   HA     .   19524   1
+      202   .   1   1   31   31   PRO   HB2    H   1   2.342   0.000   .   .   .   .   .   .   A   32   PRO   HB2    .   19524   1
+      203   .   1   1   31   31   PRO   HB3    H   1   2.056   0.003   .   .   .   .   .   .   A   32   PRO   HB3    .   19524   1
+      204   .   1   1   31   31   PRO   HG2    H   1   1.954   0.000   .   .   .   .   .   .   A   32   PRO   HG2    .   19524   1
+      205   .   1   1   31   31   PRO   HG3    H   1   1.954   0.000   .   .   .   .   .   .   A   32   PRO   HG3    .   19524   1
+      206   .   1   1   31   31   PRO   HD2    H   1   3.819   0.000   .   .   .   .   .   .   A   32   PRO   HD2    .   19524   1
+      207   .   1   1   31   31   PRO   HD3    H   1   3.641   0.000   .   .   .   .   .   .   A   32   PRO   HD3    .   19524   1
+      208   .   1   1   32   32   TYR   H      H   1   8.364   0.000   .   .   .   .   .   .   A   33   TYR   H      .   19524   1
+      209   .   1   1   32   32   TYR   HA     H   1   4.265   0.000   .   .   .   .   .   .   A   33   TYR   HA     .   19524   1
+      210   .   1   1   32   32   TYR   HB2    H   1   3.118   0.000   .   .   .   .   .   .   A   33   TYR   HB2    .   19524   1
+      211   .   1   1   32   32   TYR   HB3    H   1   2.935   0.000   .   .   .   .   .   .   A   33   TYR   HB3    .   19524   1
+      212   .   1   1   32   32   TYR   HD1    H   1   7.239   0.000   .   .   .   .   .   .   A   33   TYR   HD1    .   19524   1
+      213   .   1   1   32   32   TYR   HD2    H   1   7.239   0.000   .   .   .   .   .   .   A   33   TYR   HD2    .   19524   1
+      214   .   1   1   32   32   TYR   HE1    H   1   6.732   0.000   .   .   .   .   .   .   A   33   TYR   HE1    .   19524   1
+      215   .   1   1   32   32   TYR   HE2    H   1   6.732   0.000   .   .   .   .   .   .   A   33   TYR   HE2    .   19524   1
+   stop_
+save_
+

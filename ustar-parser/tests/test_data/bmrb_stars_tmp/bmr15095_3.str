@@ -1,0 +1,1142 @@
+data_15095
+
+#######################
+#  Entry information  #
+#######################
+
+
+save_entry_information
+  _Entry.Sf_category                   entry_information
+  _Entry.Sf_framecode                  entry_information
+  _Entry.ID                            15095
+  _Entry.Title                         
+;
+Solution Structure of a Dodecapeptide from Alpha-Synuclein Bound with Synphilin-1
+;
+  _Entry.Type                          macromolecule
+  _Entry.Version_type                  original
+  _Entry.Submission_date               2007-01-04
+  _Entry.Accession_date                2007-01-04
+  _Entry.Last_release_date             .
+  _Entry.Original_release_date         .
+  _Entry.Origination                   author
+  _Entry.NMR_STAR_version              3.1.1.61
+  _Entry.Original_NMR_STAR_version     .
+  _Entry.Experimental_method           NMR
+  _Entry.Experimental_method_subtype   solution
+  _Entry.Details                       .
+  _Entry.BMRB_internal_directory_name  .
+
+  loop_
+    _Entry_author.Ordinal
+    _Entry_author.Given_name
+    _Entry_author.Family_name
+    _Entry_author.First_initial
+    _Entry_author.Middle_initials
+    _Entry_author.Family_title
+    _Entry_author.Entry_ID
+
+    1    Chen-Jie    Zhou    .   .   .   15095    
+    2    Hong-Yu     Hu      .   .   .   15095    
+    3    Dong-Hai    Lin     .   .   .   15095    
+  stop_
+
+  loop_
+    _SG_project.SG_project_ID
+    _SG_project.Project_name
+    _SG_project.Full_name_of_center
+    _SG_project.Initial_of_center
+    _SG_project.Entry_ID
+
+    1    'not applicable'  'not applicable'  .   15095    
+  stop_
+
+  loop_
+    _Struct_keywords.Keywords
+    _Struct_keywords.Text
+    _Struct_keywords.Entry_ID
+
+    Alpha-Synuclein    .   15095    
+    dodecapeptide      .   15095    
+    N-terminus         .   15095    
+    Synphilin-1        .   15095    
+  stop_
+
+  loop_
+    _Data_set.Type
+    _Data_set.Count
+    _Data_set.Entry_ID
+
+    assigned_chemical_shifts    1    15095    
+  stop_
+
+  loop_
+    _Datum.Type
+    _Datum.Count
+    _Datum.Entry_ID
+
+    '1H chemical shifts'  73    15095    
+  stop_
+
+  loop_
+    _Release.Release_number
+    _Release.Format_type
+    _Release.Format_version
+    _Release.Date
+    _Release.Submission_date
+    _Release.Type
+    _Release.Author
+    _Release.Detail
+    _Release.Entry_ID
+
+    3    .   .   2010-05-25    2007-01-04    update      BMRB      'update entity name'       15095    
+    2    .   .   2010-01-26    2007-01-04    update      BMRB      'complete entry citation'  15095    
+    1    .   .   2009-09-29    2007-01-04    original    author    'original release'         15095    
+  stop_
+
+  loop_
+    _Related_entries.Database_name
+    _Related_entries.Database_accession_code
+    _Related_entries.Relationship
+    _Related_entries.Entry_ID
+
+    PDB    2JN5    'BMRB Entry Tracking System'  15095    
+  stop_
+
+save_
+
+###############
+#  Citations  #
+###############
+
+
+save_entry_citation
+  _Citation.Sf_category                 citations
+  _Citation.Sf_framecode                entry_citation
+  _Citation.Entry_ID                    15095
+  _Citation.ID                          1
+  _Citation.Class                       'entry citation'
+  _Citation.CAS_abstract_code           .
+  _Citation.MEDLINE_UI_code             .
+  _Citation.DOI                         .
+  _Citation.PubMed_ID                   19762560
+  _Citation.Full_citation               .
+  _Citation.Title                       'Interaction with synphilin-1 promotes inclusion formation of alpha-synuclein: mechanistic insights and pathological implication.'
+  _Citation.Status                      published
+  _Citation.Type                        journal
+  _Citation.Journal_abbrev              'FASEB J.'
+  _Citation.Journal_name_full           'The FASEB journal : official publication of the Federation of American Societies for Experimental Biology'
+  _Citation.Journal_volume              24
+  _Citation.Journal_issue               1
+  _Citation.Journal_ASTM                .
+  _Citation.Journal_ISSN                .
+  _Citation.Journal_CSD                 .
+  _Citation.Book_title                  .
+  _Citation.Book_chapter_title          .
+  _Citation.Book_volume                 .
+  _Citation.Book_series                 .
+  _Citation.Book_publisher              .
+  _Citation.Book_publisher_city         .
+  _Citation.Book_ISBN                   .
+  _Citation.Conference_title            .
+  _Citation.Conference_site             .
+  _Citation.Conference_state_province   .
+  _Citation.Conference_country          .
+  _Citation.Conference_start_date       .
+  _Citation.Conference_end_date         .
+  _Citation.Conference_abstract_number  .
+  _Citation.Thesis_institution          .
+  _Citation.Thesis_institution_city     .
+  _Citation.Thesis_institution_country  .
+  _Citation.WWW_URL                     .
+  _Citation.Page_first                  196
+  _Citation.Page_last                   205
+  _Citation.Year                        2010
+  _Citation.Details                     .
+
+  loop_
+    _Citation_author.Ordinal
+    _Citation_author.Given_name
+    _Citation_author.Family_name
+    _Citation_author.First_initial
+    _Citation_author.Middle_initials
+    _Citation_author.Family_title
+    _Citation_author.Entry_ID
+    _Citation_author.Citation_ID
+
+    1    Yuan-Yuan    Xie     .   .   .   15095    1    
+    2    Chen-Jie     Zhou    .   .   .   15095    1    
+    3    Zi-Ren       Zhou    .   .   .   15095    1    
+    4    Jing         Hong    .   .   .   15095    1    
+    5    Mei-Xia      Che     .   .   .   15095    1    
+    6    Qing-Shan    Fu      .   .   .   15095    1    
+    7    Ai-Xin       Song    .   .   .   15095    1    
+    8    Dong-Hai     Lin     .   .   .   15095    1    
+    9    Hong-Yu      Hu      .   .   .   15095    1    
+  stop_
+
+save_
+
+#############################################
+#  Molecular system (assembly) description  #
+#############################################
+
+
+save_assembly
+  _Assembly.Sf_category                      assembly
+  _Assembly.Sf_framecode                     assembly
+  _Assembly.Entry_ID                         15095
+  _Assembly.ID                               1
+  _Assembly.Name                             'Alpha-Syn12 bound with Synphilin-1'
+  _Assembly.BMRB_code                        .
+  _Assembly.Number_of_components             2
+  _Assembly.Organic_ligands                  .
+  _Assembly.Metal_ions                       .
+  _Assembly.Non_standard_bonds               .
+  _Assembly.Ambiguous_conformational_states  .
+  _Assembly.Ambiguous_chem_comp_sites        .
+  _Assembly.Molecules_in_chemical_exchange   .
+  _Assembly.Paramagnetic                     .
+  _Assembly.Thiol_state                      .
+  _Assembly.Molecular_mass                   .
+  _Assembly.Enzyme_commission_number         .
+  _Assembly.Details                          .
+  _Assembly.DB_query_date                    .
+  _Assembly.DB_query_revised_last_date       .
+
+  loop_
+    _Entity_assembly.ID
+    _Entity_assembly.Entity_assembly_name
+    _Entity_assembly.Entity_ID
+    _Entity_assembly.Entity_label
+    _Entity_assembly.Asym_ID
+    _Entity_assembly.PDB_chain_ID
+    _Entity_assembly.Experimental_data_reported
+    _Entity_assembly.Physical_state
+    _Entity_assembly.Conformational_isomer
+    _Entity_assembly.Chemical_exchange_state
+    _Entity_assembly.Magnetic_equivalence_group_code
+    _Entity_assembly.Role
+    _Entity_assembly.Details
+    _Entity_assembly.Entry_ID
+    _Entity_assembly.Assembly_ID
+
+    1    Alpha-Syn12    1    $entity      A    .   yes    native    no    no    .   .   .   15095    1    
+    2    Synphilin-1    2    $Synphilin   A    .   no     native    no    no    .   .   .   15095    1    
+  stop_
+
+save_
+
+    ####################################
+    #  Biological polymers and ligands #
+    ####################################
+
+
+save_entity
+  _Entity.Sf_category                      entity
+  _Entity.Sf_framecode                     entity
+  _Entity.Entry_ID                         15095
+  _Entity.ID                               1
+  _Entity.BMRB_code                        .
+  _Entity.Name                             Alpha-Syn12
+  _Entity.Type                             polymer
+  _Entity.Polymer_common_type              .
+  _Entity.Polymer_type                     polypeptide(L)
+  _Entity.Polymer_type_details             .
+  _Entity.Polymer_strand_ID                A
+  _Entity.Polymer_seq_one_letter_code_can  .
+  _Entity.Polymer_seq_one_letter_code      MDVFMKGLSKAK
+  _Entity.Target_identifier                .
+  _Entity.Polymer_author_defined_seq       .
+  _Entity.Polymer_author_seq_details       .
+  _Entity.Ambiguous_conformational_states  no
+  _Entity.Ambiguous_chem_comp_sites        no
+  _Entity.Nstd_monomer                     no
+  _Entity.Nstd_chirality                   no
+  _Entity.Nstd_linkage                     no
+  _Entity.Nonpolymer_comp_ID               .
+  _Entity.Nonpolymer_comp_label            .
+  _Entity.Number_of_monomers               12
+  _Entity.Number_of_nonpolymer_components  .
+  _Entity.Paramagnetic                     no
+  _Entity.Thiol_state                      'not present'
+  _Entity.Src_method                       man
+  _Entity.Parent_entity_ID                 1
+  _Entity.Fragment                         .
+  _Entity.Mutation                         .
+  _Entity.EC_number                        .
+  _Entity.Calc_isoelectric_point           .
+  _Entity.Formula_weight                   1357.708
+  _Entity.Formula_weight_exptl             .
+  _Entity.Formula_weight_exptl_meth        .
+  _Entity.Details                          .
+  _Entity.DB_query_date                    .
+  _Entity.DB_query_revised_last_date       .
+
+  loop_
+    _Entity_comp_index.ID
+    _Entity_comp_index.Auth_seq_ID
+    _Entity_comp_index.Comp_ID
+    _Entity_comp_index.Comp_label
+    _Entity_comp_index.Entry_ID
+    _Entity_comp_index.Entity_ID
+
+    1     .   MET    .   15095    1    
+    2     .   ASP    .   15095    1    
+    3     .   VAL    .   15095    1    
+    4     .   PHE    .   15095    1    
+    5     .   MET    .   15095    1    
+    6     .   LYS    .   15095    1    
+    7     .   GLY    .   15095    1    
+    8     .   LEU    .   15095    1    
+    9     .   SER    .   15095    1    
+    10    .   LYS    .   15095    1    
+    11    .   ALA    .   15095    1    
+    12    .   LYS    .   15095    1    
+  stop_
+
+  loop_
+    _Entity_poly_seq.Hetero
+    _Entity_poly_seq.Mon_ID
+    _Entity_poly_seq.Num
+    _Entity_poly_seq.Comp_index_ID
+    _Entity_poly_seq.Entry_ID
+    _Entity_poly_seq.Entity_ID
+
+    .   MET    1     1     15095    1    
+    .   ASP    2     2     15095    1    
+    .   VAL    3     3     15095    1    
+    .   PHE    4     4     15095    1    
+    .   MET    5     5     15095    1    
+    .   LYS    6     6     15095    1    
+    .   GLY    7     7     15095    1    
+    .   LEU    8     8     15095    1    
+    .   SER    9     9     15095    1    
+    .   LYS    10    10    15095    1    
+    .   ALA    11    11    15095    1    
+    .   LYS    12    12    15095    1    
+  stop_
+
+save_
+
+save_Synphilin
+  _Entity.Sf_category                      entity
+  _Entity.Sf_framecode                     Synphilin
+  _Entity.Entry_ID                         15095
+  _Entity.ID                               2
+  _Entity.BMRB_code                        .
+  _Entity.Name                             Synphilin
+  _Entity.Type                             non-polymer
+  _Entity.Polymer_common_type              .
+  _Entity.Polymer_type                     .
+  _Entity.Polymer_type_details             .
+  _Entity.Polymer_strand_ID                .
+  _Entity.Polymer_seq_one_letter_code_can  .
+  _Entity.Polymer_seq_one_letter_code      .
+  _Entity.Target_identifier                .
+  _Entity.Polymer_author_defined_seq       .
+  _Entity.Polymer_author_seq_details       .
+  _Entity.Ambiguous_conformational_states  .
+  _Entity.Ambiguous_chem_comp_sites        .
+  _Entity.Nstd_monomer                     .
+  _Entity.Nstd_chirality                   .
+  _Entity.Nstd_linkage                     .
+  _Entity.Nonpolymer_comp_ID               Synphilin
+  _Entity.Nonpolymer_comp_label            $chem_comp_Synphilin
+  _Entity.Number_of_monomers               .
+  _Entity.Number_of_nonpolymer_components  .
+  _Entity.Paramagnetic                     .
+  _Entity.Thiol_state                      .
+  _Entity.Src_method                       .
+  _Entity.Parent_entity_ID                 2
+  _Entity.Fragment                         .
+  _Entity.Mutation                         .
+  _Entity.EC_number                        .
+  _Entity.Calc_isoelectric_point           .
+  _Entity.Formula_weight                   .
+  _Entity.Formula_weight_exptl             .
+  _Entity.Formula_weight_exptl_meth        .
+  _Entity.Details                          .
+  _Entity.DB_query_date                    .
+  _Entity.DB_query_revised_last_date       .
+
+  loop_
+    _Entity_comp_index.ID
+    _Entity_comp_index.Auth_seq_ID
+    _Entity_comp_index.Comp_ID
+    _Entity_comp_index.Comp_label
+    _Entity_comp_index.Entry_ID
+    _Entity_comp_index.Entity_ID
+
+    1    .   Synphilin    .   15095    2    
+  stop_
+
+save_
+
+    ####################
+    #  Natural source  #
+    ####################
+
+
+save_natural_source
+  _Entity_natural_src_list.Sf_category   natural_source
+  _Entity_natural_src_list.Sf_framecode  natural_source
+  _Entity_natural_src_list.Entry_ID      15095
+  _Entity_natural_src_list.ID            1
+
+  loop_
+    _Entity_natural_src.ID
+    _Entity_natural_src.Entity_ID
+    _Entity_natural_src.Entity_label
+    _Entity_natural_src.Entity_chimera_segment_ID
+    _Entity_natural_src.NCBI_taxonomy_ID
+    _Entity_natural_src.Type
+    _Entity_natural_src.Common
+    _Entity_natural_src.Organism_name_scientific
+    _Entity_natural_src.Organism_name_common
+    _Entity_natural_src.Organism_acronym
+    _Entity_natural_src.ICTVdb_decimal_code
+    _Entity_natural_src.Superkingdom
+    _Entity_natural_src.Kingdom
+    _Entity_natural_src.Genus
+    _Entity_natural_src.Species
+    _Entity_natural_src.Strain
+    _Entity_natural_src.Variant
+    _Entity_natural_src.Subvariant
+    _Entity_natural_src.Organ
+    _Entity_natural_src.Tissue
+    _Entity_natural_src.Tissue_fraction
+    _Entity_natural_src.Cell_line
+    _Entity_natural_src.Cell_type
+    _Entity_natural_src.ATCC_number
+    _Entity_natural_src.Organelle
+    _Entity_natural_src.Cellular_location
+    _Entity_natural_src.Fragment
+    _Entity_natural_src.Fraction
+    _Entity_natural_src.Secretion
+    _Entity_natural_src.Plasmid
+    _Entity_natural_src.Plasmid_details
+    _Entity_natural_src.Gene_mnemonic
+    _Entity_natural_src.Dev_stage
+    _Entity_natural_src.Details
+    _Entity_natural_src.Citation_ID
+    _Entity_natural_src.Citation_label
+    _Entity_natural_src.Entry_ID
+    _Entity_natural_src.Entity_natural_src_list_ID
+
+    1    1    $entity      .   9606    organism    .   'Homo sapiens'  Human    .   .   Eukaryota    Metazoa    Homo    sapiens    .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   'The N-terminal 12 residues of alpha-synuclein'  .   .   15095    1    
+    2    2    $Synphilin   .   9606    organism    .   'Homo sapiens'  Human    .   .   Eukaryota    Metazoa    Homo    sapiens    .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   'The middle part of Synphilin-1 fused with GB1'  .   .   15095    1    
+  stop_
+
+save_
+
+    #########################
+    #  Experimental source  #
+    #########################
+
+
+save_experimental_source
+  _Entity_experimental_src_list.Sf_category   experimental_source
+  _Entity_experimental_src_list.Sf_framecode  experimental_source
+  _Entity_experimental_src_list.Entry_ID      15095
+  _Entity_experimental_src_list.ID            1
+
+  loop_
+    _Entity_experimental_src.ID
+    _Entity_experimental_src.Entity_ID
+    _Entity_experimental_src.Entity_label
+    _Entity_experimental_src.Entity_chimera_segment_ID
+    _Entity_experimental_src.Production_method
+    _Entity_experimental_src.Host_org_scientific_name
+    _Entity_experimental_src.Host_org_name_common
+    _Entity_experimental_src.Host_org_details
+    _Entity_experimental_src.Host_org_NCBI_taxonomy_ID
+    _Entity_experimental_src.Host_org_genus
+    _Entity_experimental_src.Host_org_species
+    _Entity_experimental_src.Host_org_strain
+    _Entity_experimental_src.Host_org_variant
+    _Entity_experimental_src.Host_org_subvariant
+    _Entity_experimental_src.Host_org_organ
+    _Entity_experimental_src.Host_org_tissue
+    _Entity_experimental_src.Host_org_tissue_fraction
+    _Entity_experimental_src.Host_org_cell_line
+    _Entity_experimental_src.Host_org_cell_type
+    _Entity_experimental_src.Host_org_cellular_location
+    _Entity_experimental_src.Host_org_organelle
+    _Entity_experimental_src.Host_org_gene
+    _Entity_experimental_src.Host_org_culture_collection
+    _Entity_experimental_src.Host_org_ATCC_number
+    _Entity_experimental_src.Vector_type
+    _Entity_experimental_src.PDBview_host_org_vector_name
+    _Entity_experimental_src.PDBview_plasmid_name
+    _Entity_experimental_src.Vector_name
+    _Entity_experimental_src.Vector_details
+    _Entity_experimental_src.Vendor_name
+    _Entity_experimental_src.Host_org_dev_stage
+    _Entity_experimental_src.Details
+    _Entity_experimental_src.Citation_ID
+    _Entity_experimental_src.Citation_label
+    _Entity_experimental_src.Entry_ID
+    _Entity_experimental_src.Entity_experimental_src_list_ID
+
+    1    1    $entity      .   'chemical synthesis'      .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   'The N-terminal 12 residues of alpha-synuclein'  .   .   15095    1    
+    2    2    $Synphilin   .   'recombinant technology'  .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   'The middle part of Synphilin-1 fused with GB1'  .   .   15095    1    
+  stop_
+
+save_
+
+    #################################
+    #  Polymer residues and ligands #
+    #################################
+
+
+save_chem_comp_Synphilin
+  _Chem_comp.Sf_category                      chem_comp
+  _Chem_comp.Sf_framecode                     chem_comp_Synphilin
+  _Chem_comp.Entry_ID                         15095
+  _Chem_comp.ID                               Synphilin
+  _Chem_comp.Provenance                       .
+  _Chem_comp.Name                             Synphilin-1
+  _Chem_comp.Type                             non-polymer
+  _Chem_comp.BMRB_code                        .
+  _Chem_comp.PDB_code                         Synphilin
+  _Chem_comp.Ambiguous_flag                   .
+  _Chem_comp.Initial_date                     .
+  _Chem_comp.Modified_date                    .
+  _Chem_comp.Release_status                   .
+  _Chem_comp.Replaced_by                      .
+  _Chem_comp.Replaces                         .
+  _Chem_comp.One_letter_code                  .
+  _Chem_comp.Three_letter_code                .
+  _Chem_comp.Number_atoms_all                 .
+  _Chem_comp.Number_atoms_nh                  .
+  _Chem_comp.PubChem_code                     .
+  _Chem_comp.Subcomponent_list                .
+  _Chem_comp.InChI_code                       .
+  _Chem_comp.Mon_nstd_flag                    .
+  _Chem_comp.Mon_nstd_class                   .
+  _Chem_comp.Mon_nstd_details                 .
+  _Chem_comp.Mon_nstd_parent                  .
+  _Chem_comp.Mon_nstd_parent_comp_ID          .
+  _Chem_comp.Std_deriv_one_letter_code        .
+  _Chem_comp.Std_deriv_three_letter_code      .
+  _Chem_comp.Std_deriv_BMRB_code              .
+  _Chem_comp.Std_deriv_PDB_code               .
+  _Chem_comp.Std_deriv_chem_comp_name         .
+  _Chem_comp.Synonyms                         .
+  _Chem_comp.Formal_charge                    0
+  _Chem_comp.Paramagnetic                     .
+  _Chem_comp.Aromatic                         .
+  _Chem_comp.Formula                          .
+  _Chem_comp.Formula_weight                   .
+  _Chem_comp.Formula_mono_iso_wt_nat          .
+  _Chem_comp.Formula_mono_iso_wt_13C          .
+  _Chem_comp.Formula_mono_iso_wt_15N          .
+  _Chem_comp.Formula_mono_iso_wt_13C_15N      .
+  _Chem_comp.Image_file_name                  .
+  _Chem_comp.Image_file_format                .
+  _Chem_comp.Topo_file_name                   .
+  _Chem_comp.Topo_file_format                 .
+  _Chem_comp.Struct_file_name                 .
+  _Chem_comp.Struct_file_format               .
+  _Chem_comp.Stereochem_param_file_name       .
+  _Chem_comp.Stereochem_param_file_format     .
+  _Chem_comp.Model_details                    .
+  _Chem_comp.Model_erf                        .
+  _Chem_comp.Model_source                     .
+  _Chem_comp.Model_coordinates_details        .
+  _Chem_comp.Model_coordinates_missing_flag   .
+  _Chem_comp.Ideal_coordinates_details        .
+  _Chem_comp.Ideal_coordinates_missing_flag   .
+  _Chem_comp.Model_coordinates_db_code        .
+  _Chem_comp.Processing_site                  .
+  _Chem_comp.Vendor                           .
+  _Chem_comp.Vendor_product_code              .
+  _Chem_comp.Details                          .
+  _Chem_comp.DB_query_date                    .
+  _Chem_comp.DB_last_query_revised_last_date  .
+
+  loop_
+    _Chem_comp_atom.Atom_ID
+    _Chem_comp_atom.BMRB_code
+    _Chem_comp_atom.PDB_atom_ID
+    _Chem_comp_atom.Alt_atom_ID
+    _Chem_comp_atom.Auth_atom_ID
+    _Chem_comp_atom.Type_symbol
+    _Chem_comp_atom.Isotope_number
+    _Chem_comp_atom.Chirality
+    _Chem_comp_atom.Stereo_config
+    _Chem_comp_atom.Charge
+    _Chem_comp_atom.Partial_charge
+    _Chem_comp_atom.Oxidation_number
+    _Chem_comp_atom.Unpaired_electron_number
+    _Chem_comp_atom.Align
+    _Chem_comp_atom.Aromatic_flag
+    _Chem_comp_atom.Leaving_atom_flag
+    _Chem_comp_atom.Substruct_code
+    _Chem_comp_atom.Ionizable
+    _Chem_comp_atom.Drawing_2D_coord_x
+    _Chem_comp_atom.Drawing_2D_coord_y
+    _Chem_comp_atom.Model_Cartn_x
+    _Chem_comp_atom.Model_Cartn_x_esd
+    _Chem_comp_atom.Model_Cartn_y
+    _Chem_comp_atom.Model_Cartn_y_esd
+    _Chem_comp_atom.Model_Cartn_z
+    _Chem_comp_atom.Model_Cartn_z_esd
+    _Chem_comp_atom.Model_Cartn_x_ideal
+    _Chem_comp_atom.Model_Cartn_y_ideal
+    _Chem_comp_atom.Model_Cartn_z_ideal
+    _Chem_comp_atom.PDBX_ordinal
+    _Chem_comp_atom.Details
+    _Chem_comp_atom.Entry_ID
+    _Chem_comp_atom.Comp_ID
+
+    .   .   .   .   .   .   .   .   .   0    .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   15095    Synphilin    
+  stop_
+
+  loop_
+    _Chem_comp_bond.ID
+    _Chem_comp_bond.Type
+    _Chem_comp_bond.Value_order
+    _Chem_comp_bond.Atom_ID_1
+    _Chem_comp_bond.Atom_ID_2
+    _Chem_comp_bond.Aromatic_flag
+    _Chem_comp_bond.Stereo_config
+    _Chem_comp_bond.Ordinal
+    _Chem_comp_bond.Details
+    _Chem_comp_bond.Entry_ID
+    _Chem_comp_bond.Comp_ID
+
+    1    .   SING    .   .   .   .   1    .   15095    Synphilin    
+    2    .   DOUB    .   .   .   .   2    .   15095    Synphilin    
+  stop_
+
+save_
+
+#####################################
+#  Sample contents and methodology  #
+#####################################
+	 
+    ########################
+    #  Sample description  #
+    ########################
+
+
+save_sample_1
+  _Sample.Sf_category                     sample
+  _Sample.Sf_framecode                    sample_1
+  _Sample.Entry_ID                        15095
+  _Sample.ID                              1
+  _Sample.Type                            solution
+  _Sample.Sub_type                        .
+  _Sample.Details                         .
+  _Sample.Aggregate_sample_number         .
+  _Sample.Solvent_system                  '90% H2O/10% D2O'
+  _Sample.Preparation_date                .
+  _Sample.Preparation_expiration_date     .
+  _Sample.Polycrystallization_protocol    .
+  _Sample.Single_crystal_protocol         .
+  _Sample.Crystal_grow_apparatus          .
+  _Sample.Crystal_grow_atmosphere         .
+  _Sample.Crystal_grow_details            .
+  _Sample.Crystal_grow_method             .
+  _Sample.Crystal_grow_method_cit_ID      .
+  _Sample.Crystal_grow_pH                 .
+  _Sample.Crystal_grow_pH_range           .
+  _Sample.Crystal_grow_pressure           .
+  _Sample.Crystal_grow_pressure_esd       .
+  _Sample.Crystal_grow_seeding            .
+  _Sample.Crystal_grow_seeding_cit_ID     .
+  _Sample.Crystal_grow_temp               .
+  _Sample.Crystal_grow_temp_details       .
+  _Sample.Crystal_grow_temp_esd           .
+  _Sample.Crystal_grow_time               .
+  _Sample.Oriented_sample_prep_protocol   .
+  _Sample.Lyophilization_cryo_protectant  .
+  _Sample.Storage_protocol                .
+
+  loop_
+    _Sample_component.ID
+    _Sample_component.Mol_common_name
+    _Sample_component.Isotopic_labeling
+    _Sample_component.Assembly_ID
+    _Sample_component.Assembly_label
+    _Sample_component.Entity_ID
+    _Sample_component.Entity_label
+    _Sample_component.Product_ID
+    _Sample_component.Type
+    _Sample_component.Concentration_val
+    _Sample_component.Concentration_val_min
+    _Sample_component.Concentration_val_max
+    _Sample_component.Concentration_val_units
+    _Sample_component.Concentration_val_err
+    _Sample_component.Vendor
+    _Sample_component.Vendor_product_name
+    _Sample_component.Vendor_product_code
+    _Sample_component.Entry_ID
+    _Sample_component.Sample_ID
+
+    1    entity              'natural abundance'  .   .   1    $entity      .   .   1      .   .   mM    .   .   .   .   15095    1    
+    2    'sodium phosphate'  'natural abundance'  .   .   .    .            .   .   20     .   .   mM    .   .   .   .   15095    1    
+    3    'sodium chloride'   'natural abundance'  .   .   .    .            .   .   50     .   .   mM    .   .   .   .   15095    1    
+    4    Synphilin-1         'natural abundance'  .   .   2    $Synphilin   .   .   0.1    .   .   mM    .   .   .   .   15095    1    
+  stop_
+
+save_
+
+#######################
+#  Sample conditions  #
+#######################
+
+
+save_sample_conditions_1
+  _Sample_condition_list.Sf_category   sample_conditions
+  _Sample_condition_list.Sf_framecode  sample_conditions_1
+  _Sample_condition_list.Entry_ID      15095
+  _Sample_condition_list.ID            1
+  _Sample_condition_list.Details       .
+
+  loop_
+    _Sample_condition_variable.Type
+    _Sample_condition_variable.Val
+    _Sample_condition_variable.Val_err
+    _Sample_condition_variable.Val_units
+    _Sample_condition_variable.Entry_ID
+    _Sample_condition_variable.Sample_condition_list_ID
+
+    pH             6.5    .   pH     15095    1    
+    pressure       1      .   atm    15095    1    
+    temperature    298    .   K      15095    1    
+  stop_
+
+save_
+
+############################
+#  Computer software used  #
+############################
+
+
+save_NMRDraw
+  _Software.Sf_category   software
+  _Software.Sf_framecode  NMRDraw
+  _Software.Entry_ID      15095
+  _Software.ID            1
+  _Software.Name          NMRDraw
+  _Software.Version       2.3
+  _Software.Details       .
+
+  loop_
+    _Vendor.Name
+    _Vendor.Address
+    _Vendor.Electronic_address
+    _Vendor.Entry_ID
+    _Vendor.Software_ID
+
+    'Delaglio, Grzesiek, Vuister, Zhu, Pfeifer and Bax'  .   .   15095    1    
+  stop_
+
+  loop_
+    _Task.Task
+    _Task.Entry_ID
+    _Task.Software_ID
+
+    processing    15095    1    
+  stop_
+
+save_
+
+save_SPARKY
+  _Software.Sf_category   software
+  _Software.Sf_framecode  SPARKY
+  _Software.Entry_ID      15095
+  _Software.ID            2
+  _Software.Name          SPARKY
+  _Software.Version       3.110
+  _Software.Details       .
+
+  loop_
+    _Vendor.Name
+    _Vendor.Address
+    _Vendor.Electronic_address
+    _Vendor.Entry_ID
+    _Vendor.Software_ID
+
+    Goddard    .   .   15095    2    
+  stop_
+
+  loop_
+    _Task.Task
+    _Task.Entry_ID
+    _Task.Software_ID
+
+    'chemical shift assignment'  15095    2    
+    'peak picking'               15095    2    
+  stop_
+
+save_
+
+save_ARIA
+  _Software.Sf_category   software
+  _Software.Sf_framecode  ARIA
+  _Software.Entry_ID      15095
+  _Software.ID            3
+  _Software.Name          ARIA
+  _Software.Version       2.0
+  _Software.Details       .
+
+  loop_
+    _Vendor.Name
+    _Vendor.Address
+    _Vendor.Electronic_address
+    _Vendor.Entry_ID
+    _Vendor.Software_ID
+
+    'Linge, O'Donoghue and Nilges'  .   .   15095    3    
+  stop_
+
+  loop_
+    _Task.Task
+    _Task.Entry_ID
+    _Task.Software_ID
+
+    'data analysis'       15095    3    
+    refinement            15095    3    
+    'structure solution'  15095    3    
+  stop_
+
+save_
+
+#########################
+#  Experimental detail  #
+#########################
+
+    ##################################
+    #  NMR Spectrometer definitions  #
+    ##################################
+
+
+save_spectrometer_1
+  _NMR_spectrometer.Sf_category     NMR_spectrometer
+  _NMR_spectrometer.Sf_framecode    spectrometer_1
+  _NMR_spectrometer.Entry_ID        15095
+  _NMR_spectrometer.ID              1
+  _NMR_spectrometer.Details         .
+  _NMR_spectrometer.Manufacturer    Varian
+  _NMR_spectrometer.Model           INOVA
+  _NMR_spectrometer.Serial_number   .
+  _NMR_spectrometer.Field_strength  600
+
+save_
+
+save_NMR_spectrometer_list
+  _NMR_spectrometer_list.Sf_category   NMR_spectrometer_list
+  _NMR_spectrometer_list.Sf_framecode  NMR_spectrometer_list
+  _NMR_spectrometer_list.Entry_ID      15095
+  _NMR_spectrometer_list.ID            1
+
+  loop_
+    _NMR_spectrometer_view.ID
+    _NMR_spectrometer_view.Name
+    _NMR_spectrometer_view.Manufacturer
+    _NMR_spectrometer_view.Model
+    _NMR_spectrometer_view.Serial_number
+    _NMR_spectrometer_view.Field_strength
+    _NMR_spectrometer_view.Details
+    _NMR_spectrometer_view.Citation_ID
+    _NMR_spectrometer_view.Citation_label
+    _NMR_spectrometer_view.Entry_ID
+    _NMR_spectrometer_view.NMR_spectrometer_list_ID
+
+    1    spectrometer_1    Varian    INOVA    .   600    .   .   .   15095    1    
+  stop_
+
+save_
+
+    #############################
+    #  NMR applied experiments  #
+    #############################
+
+
+save_experiment_list
+  _Experiment_list.Sf_category   experiment_list
+  _Experiment_list.Sf_framecode  experiment_list
+  _Experiment_list.Entry_ID      15095
+  _Experiment_list.ID            1
+  _Experiment_list.Details       .
+
+  loop_
+    _Experiment.ID
+    _Experiment.Name
+    _Experiment.Raw_data_flag
+    _Experiment.NMR_spec_expt_ID
+    _Experiment.NMR_spec_expt_label
+    _Experiment.MS_expt_ID
+    _Experiment.MS_expt_label
+    _Experiment.SAXS_expt_ID
+    _Experiment.SAXS_expt_label
+    _Experiment.FRET_expt_ID
+    _Experiment.FRET_expt_label
+    _Experiment.EMR_expt_ID
+    _Experiment.EMR_expt_label
+    _Experiment.Sample_ID
+    _Experiment.Sample_label
+    _Experiment.Sample_state
+    _Experiment.Sample_volume
+    _Experiment.Sample_volume_units
+    _Experiment.Sample_condition_list_ID
+    _Experiment.Sample_condition_list_label
+    _Experiment.Sample_spinning_rate
+    _Experiment.Sample_angle
+    _Experiment.NMR_tube_type
+    _Experiment.NMR_spectrometer_ID
+    _Experiment.NMR_spectrometer_label
+    _Experiment.NMR_spectrometer_probe_ID
+    _Experiment.NMR_spectrometer_probe_label
+    _Experiment.NMR_spectral_processing_ID
+    _Experiment.NMR_spectral_processing_label
+    _Experiment.Mass_spectrometer_ID
+    _Experiment.Mass_spectrometer_label
+    _Experiment.Xray_instrument_ID
+    _Experiment.Xray_instrument_label
+    _Experiment.Fluorescence_instrument_ID
+    _Experiment.Fluorescence_instrument_label
+    _Experiment.EMR_instrument_ID
+    _Experiment.EMR_instrument_label
+    _Experiment.Chromatographic_system_ID
+    _Experiment.Chromatographic_system_label
+    _Experiment.Chromatographic_column_ID
+    _Experiment.Chromatographic_column_label
+    _Experiment.Entry_ID
+    _Experiment.Experiment_list_ID
+
+    1    '2D 1H-1H TOCSY'  no    .   .   .   .   .   .   .   .   .   .   1    $sample_1   isotropic    .   .   1    $sample_conditions_1   .   .   .   1    $spectrometer_1   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   15095    1    
+    2    '2D 1H-1H NOESY'  no    .   .   .   .   .   .   .   .   .   .   1    $sample_1   isotropic    .   .   1    $sample_conditions_1   .   .   .   1    $spectrometer_1   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   15095    1    
+  stop_
+
+save_
+
+####################
+#  NMR parameters  #
+####################
+
+    ##############################
+    #  Assigned chemical shifts  #
+    ##############################
+
+	################################
+	#  Chemical shift referencing  #
+	################################
+
+
+save_chemical_shift_reference_1
+  _Chem_shift_reference.Sf_category   chem_shift_reference
+  _Chem_shift_reference.Sf_framecode  chemical_shift_reference_1
+  _Chem_shift_reference.Entry_ID      15095
+  _Chem_shift_reference.ID            1
+  _Chem_shift_reference.Details       .
+
+  loop_
+    _Chem_shift_ref.Atom_type
+    _Chem_shift_ref.Atom_isotope_number
+    _Chem_shift_ref.Mol_common_name
+    _Chem_shift_ref.Atom_group
+    _Chem_shift_ref.Concentration_val
+    _Chem_shift_ref.Concentration_units
+    _Chem_shift_ref.Solvent
+    _Chem_shift_ref.Rank
+    _Chem_shift_ref.Chem_shift_units
+    _Chem_shift_ref.Chem_shift_val
+    _Chem_shift_ref.Ref_method
+    _Chem_shift_ref.Ref_type
+    _Chem_shift_ref.Indirect_shift_ratio
+    _Chem_shift_ref.External_ref_loc
+    _Chem_shift_ref.External_ref_sample_geometry
+    _Chem_shift_ref.External_ref_axis
+    _Chem_shift_ref.Indirect_shift_ratio_cit_ID
+    _Chem_shift_ref.Indirect_shift_ratio_cit_label
+    _Chem_shift_ref.Ref_correction_type
+    _Chem_shift_ref.Correction_val
+    _Chem_shift_ref.Correction_val_cit_ID
+    _Chem_shift_ref.Correction_val_cit_label
+    _Chem_shift_ref.Entry_ID
+    _Chem_shift_ref.Chem_shift_reference_ID
+
+    H    1    DSS    'methyl protons'  .   .   .   .   ppm    0.00    internal    direct    1.000000000    .   .   .   1    $entry_citation   .   .   1    $entry_citation   15095    1    
+  stop_
+
+save_
+
+     ###################################
+     #  Assigned chemical shift lists  #
+     ###################################
+
+###################################################################
+#       Chemical Shift Ambiguity Index Value Definitions          #
+#                                                                 #
+# The values other than 1 are used for those atoms with different #
+# chemical shifts that cannot be assigned to stereospecific atoms #
+# or to specific residues or chains.                              #
+#                                                                 #
+#   Index Value            Definition                             #
+#                                                                 #
+#      1             Unique (including isolated methyl protons,   #
+#                         geminal atoms, and geminal methyl       #
+#                         groups with identical chemical shifts)  #
+#                         (e.g. ILE HD11, HD12, HD13 protons)     #
+#      2             Ambiguity of geminal atoms or geminal methyl #
+#                         proton groups (e.g. ASP HB2 and HB3     #
+#                         protons, LEU CD1 and CD2 carbons, or    #
+#                         LEU HD11, HD12, HD13 and HD21, HD22,    #
+#                         HD23 methyl protons)                    #
+#      3             Aromatic atoms on opposite sides of          #
+#                         symmetrical rings (e.g. TYR HE1 and HE2 #
+#                         protons)                                #
+#      4             Intraresidue ambiguities (e.g. LYS HG and    #
+#                         HD protons or TRP HZ2 and HZ3 protons)  #
+#      5             Interresidue ambiguities (LYS 12 vs. LYS 27) #
+#      6             Intermolecular ambiguities (e.g. ASP 31 CA   #
+#                         in monomer 1 and ASP 31 CA in monomer 2 #
+#                         of an asymmetrical homodimer, duplex    #
+#                         DNA assignments, or other assignments   #
+#                         that may apply to atoms in one or more  #
+#                         molecule in the molecular assembly)     #
+#      9             Ambiguous, specific ambiguity not defined    #
+#                                                                 #
+###################################################################
+
+save_assigned_chem_shift_list_1
+  _Assigned_chem_shift_list.Sf_category                  assigned_chemical_shifts
+  _Assigned_chem_shift_list.Sf_framecode                 assigned_chem_shift_list_1
+  _Assigned_chem_shift_list.Entry_ID                     15095
+  _Assigned_chem_shift_list.ID                           1
+  _Assigned_chem_shift_list.Sample_condition_list_ID     1
+  _Assigned_chem_shift_list.Sample_condition_list_label  $sample_conditions_1
+  _Assigned_chem_shift_list.Chem_shift_reference_ID      1
+  _Assigned_chem_shift_list.Chem_shift_reference_label   $chemical_shift_reference_1
+  _Assigned_chem_shift_list.Chem_shift_1H_err            .
+  _Assigned_chem_shift_list.Chem_shift_13C_err           .
+  _Assigned_chem_shift_list.Chem_shift_15N_err           .
+  _Assigned_chem_shift_list.Chem_shift_31P_err           .
+  _Assigned_chem_shift_list.Chem_shift_2H_err            .
+  _Assigned_chem_shift_list.Chem_shift_19F_err           .
+  _Assigned_chem_shift_list.Error_derivation_method      .
+  _Assigned_chem_shift_list.Details                      .
+  _Assigned_chem_shift_list.Text_data_format             .
+  _Assigned_chem_shift_list.Text_data                    .
+
+  loop_
+    _Chem_shift_experiment.Experiment_ID
+    _Chem_shift_experiment.Experiment_name
+    _Chem_shift_experiment.Sample_ID
+    _Chem_shift_experiment.Sample_label
+    _Chem_shift_experiment.Sample_state
+    _Chem_shift_experiment.Entry_ID
+    _Chem_shift_experiment.Assigned_chem_shift_list_ID
+
+    1    '2D 1H-1H TOCSY'  .   .   .   15095    1    
+    2    '2D 1H-1H NOESY'  .   .   .   15095    1    
+  stop_
+
+  loop_
+    _Atom_chem_shift.ID
+    _Atom_chem_shift.Assembly_atom_ID
+    _Atom_chem_shift.Entity_assembly_ID
+    _Atom_chem_shift.Entity_ID
+    _Atom_chem_shift.Comp_index_ID
+    _Atom_chem_shift.Seq_ID
+    _Atom_chem_shift.Comp_ID
+    _Atom_chem_shift.Atom_ID
+    _Atom_chem_shift.Atom_type
+    _Atom_chem_shift.Atom_isotope_number
+    _Atom_chem_shift.Val
+    _Atom_chem_shift.Val_err
+    _Atom_chem_shift.Assign_fig_of_merit
+    _Atom_chem_shift.Ambiguity_code
+    _Atom_chem_shift.Occupancy
+    _Atom_chem_shift.Resonance_ID
+    _Atom_chem_shift.Auth_entity_assembly_ID
+    _Atom_chem_shift.Auth_asym_ID
+    _Atom_chem_shift.Auth_seq_ID
+    _Atom_chem_shift.Auth_comp_ID
+    _Atom_chem_shift.Auth_atom_ID
+    _Atom_chem_shift.Details
+    _Atom_chem_shift.Entry_ID
+    _Atom_chem_shift.Assigned_chem_shift_list_ID
+
+    1     .   1    1    1     1     MET    HA      H    1    4.064    0.003    .   .   .   .   .   .   1     MET    HA     .   15095    1    
+    2     .   1    1    1     1     MET    HB2     H    1    2.112    0.012    .   .   .   .   .   .   1     MET    HB2    .   15095    1    
+    3     .   1    1    1     1     MET    HG2     H    1    2.571    0.001    .   .   .   .   .   .   1     MET    HG2    .   15095    1    
+    4     .   1    1    1     1     MET    HG3     H    1    2.564    0.005    .   .   .   .   .   .   1     MET    HG3    .   15095    1    
+    5     .   1    1    2     2     ASP    H       H    1    7.877    0.000    .   .   .   .   .   .   2     ASP    HN     .   15095    1    
+    6     .   1    1    2     2     ASP    HA      H    1    4.700    0.007    .   .   .   .   .   .   2     ASP    HA     .   15095    1    
+    7     .   1    1    2     2     ASP    HB2     H    1    2.614    0.000    .   .   .   .   .   .   2     ASP    HB2    .   15095    1    
+    8     .   1    1    2     2     ASP    HB3     H    1    2.553    0.010    .   .   .   .   .   .   2     ASP    HB3    .   15095    1    
+    9     .   1    1    3     3     VAL    H       H    1    8.209    0.005    .   .   .   .   .   .   3     VAL    HN     .   15095    1    
+    10    .   1    1    3     3     VAL    HA      H    1    4.023    0.004    .   .   .   .   .   .   3     VAL    HA     .   15095    1    
+    11    .   1    1    3     3     VAL    HB      H    1    2.013    0.004    .   .   .   .   .   .   3     VAL    HB     .   15095    1    
+    12    .   1    1    3     3     VAL    HG11    H    1    0.832    0.005    .   .   .   .   .   .   3     VAL    HG1    .   15095    1    
+    13    .   1    1    3     3     VAL    HG12    H    1    0.832    0.005    .   .   .   .   .   .   3     VAL    HG1    .   15095    1    
+    14    .   1    1    3     3     VAL    HG13    H    1    0.832    0.005    .   .   .   .   .   .   3     VAL    HG1    .   15095    1    
+    15    .   1    1    4     4     PHE    H       H    1    8.307    0.007    .   .   .   .   .   .   4     PHE    HN     .   15095    1    
+    16    .   1    1    4     4     PHE    HA      H    1    4.611    0.004    .   .   .   .   .   .   4     PHE    HA     .   15095    1    
+    17    .   1    1    4     4     PHE    HB2     H    1    3.118    0.008    .   .   .   .   .   .   4     PHE    HB2    .   15095    1    
+    18    .   1    1    4     4     PHE    HB3     H    1    3.057    0.007    .   .   .   .   .   .   4     PHE    HB3    .   15095    1    
+    19    .   1    1    4     4     PHE    HD2     H    1    7.267    0.008    .   .   .   .   .   .   4     PHE    HD2    .   15095    1    
+    20    .   1    1    4     4     PHE    HE2     H    1    7.348    0.008    .   .   .   .   .   .   4     PHE    HE2    .   15095    1    
+    21    .   1    1    4     4     PHE    HZ      H    1    7.298    0.011    .   .   .   .   .   .   4     PHE    HZ     .   15095    1    
+    22    .   1    1    5     5     MET    H       H    1    8.181    0.010    .   .   .   .   .   .   5     MET    HN     .   15095    1    
+    23    .   1    1    5     5     MET    HA      H    1    4.393    0.006    .   .   .   .   .   .   5     MET    HA     .   15095    1    
+    24    .   1    1    5     5     MET    HB2     H    1    2.073    0.026    .   .   .   .   .   .   5     MET    HB2    .   15095    1    
+    25    .   1    1    5     5     MET    HB3     H    1    1.963    0.011    .   .   .   .   .   .   5     MET    HB3    .   15095    1    
+    26    .   1    1    5     5     MET    HG2     H    1    2.534    0.007    .   .   .   .   .   .   5     MET    HG2    .   15095    1    
+    27    .   1    1    5     5     MET    HG3     H    1    2.467    0.007    .   .   .   .   .   .   5     MET    HG3    .   15095    1    
+    28    .   1    1    6     6     LYS    H       H    1    8.233    0.005    .   .   .   .   .   .   6     LYS    HN     .   15095    1    
+    29    .   1    1    6     6     LYS    HA      H    1    4.209    0.005    .   .   .   .   .   .   6     LYS    HA     .   15095    1    
+    30    .   1    1    6     6     LYS    HB2     H    1    1.835    0.005    .   .   .   .   .   .   6     LYS    HB2    .   15095    1    
+    31    .   1    1    6     6     LYS    HG2     H    1    1.467    0.000    .   .   .   .   .   .   6     LYS    HG2    .   15095    1    
+    32    .   1    1    6     6     LYS    HD2     H    1    1.774    0.010    .   .   .   .   .   .   6     LYS    HD2    .   15095    1    
+    33    .   1    1    6     6     LYS    HE2     H    1    2.996    0.000    .   .   .   .   .   .   6     LYS    HE2    .   15095    1    
+    34    .   1    1    6     6     LYS    HE3     H    1    3.001    0.002    .   .   .   .   .   .   6     LYS    HE3    .   15095    1    
+    35    .   1    1    7     7     GLY    H       H    1    8.387    0.005    .   .   .   .   .   .   7     GLY    HN     .   15095    1    
+    36    .   1    1    7     7     GLY    HA2     H    1    3.938    0.006    .   .   .   .   .   .   7     GLY    HA2    .   15095    1    
+    37    .   1    1    7     7     GLY    HA3     H    1    3.860    0.000    .   .   .   .   .   .   7     GLY    HA3    .   15095    1    
+    38    .   1    1    8     8     LEU    H       H    1    8.033    0.003    .   .   .   .   .   .   8     LEU    HN     .   15095    1    
+    39    .   1    1    8     8     LEU    HA      H    1    4.385    0.005    .   .   .   .   .   .   8     LEU    HA     .   15095    1    
+    40    .   1    1    8     8     LEU    HB2     H    1    1.616    0.004    .   .   .   .   .   .   8     LEU    HB2    .   15095    1    
+    41    .   1    1    8     8     LEU    HD11    H    1    0.915    0.007    .   .   .   .   .   .   8     LEU    HD1    .   15095    1    
+    42    .   1    1    8     8     LEU    HD12    H    1    0.915    0.007    .   .   .   .   .   .   8     LEU    HD1    .   15095    1    
+    43    .   1    1    8     8     LEU    HD13    H    1    0.915    0.007    .   .   .   .   .   .   8     LEU    HD1    .   15095    1    
+    44    .   1    1    8     8     LEU    HD21    H    1    0.870    0.008    .   .   .   .   .   .   8     LEU    HD2    .   15095    1    
+    45    .   1    1    8     8     LEU    HD22    H    1    0.870    0.008    .   .   .   .   .   .   8     LEU    HD2    .   15095    1    
+    46    .   1    1    8     8     LEU    HD23    H    1    0.870    0.008    .   .   .   .   .   .   8     LEU    HD2    .   15095    1    
+    47    .   1    1    9     9     SER    H       H    1    8.294    0.007    .   .   .   .   .   .   9     SER    HN     .   15095    1    
+    48    .   1    1    9     9     SER    HA      H    1    4.423    0.010    .   .   .   .   .   .   9     SER    HA     .   15095    1    
+    49    .   1    1    9     9     SER    HB2     H    1    3.845    0.003    .   .   .   .   .   .   9     SER    HB2    .   15095    1    
+    50    .   1    1    10    10    LYS    H       H    1    8.306    0.006    .   .   .   .   .   .   10    LYS    HN     .   15095    1    
+    51    .   1    1    10    10    LYS    HA      H    1    4.339    0.006    .   .   .   .   .   .   10    LYS    HA     .   15095    1    
+    52    .   1    1    10    10    LYS    HB2     H    1    1.850    0.009    .   .   .   .   .   .   10    LYS    HB2    .   15095    1    
+    53    .   1    1    10    10    LYS    HG2     H    1    1.434    0.008    .   .   .   .   .   .   10    LYS    HG2    .   15095    1    
+    54    .   1    1    10    10    LYS    HG3     H    1    1.392    0.002    .   .   .   .   .   .   10    LYS    HG3    .   15095    1    
+    55    .   1    1    10    10    LYS    HD2     H    1    1.712    0.008    .   .   .   .   .   .   10    LYS    HD2    .   15095    1    
+    56    .   1    1    10    10    LYS    HD3     H    1    1.696    0.006    .   .   .   .   .   .   10    LYS    HD3    .   15095    1    
+    57    .   1    1    10    10    LYS    HE2     H    1    3.048    0.026    .   .   .   .   .   .   10    LYS    HE2    .   15095    1    
+    58    .   1    1    10    10    LYS    HE3     H    1    2.992    0.003    .   .   .   .   .   .   10    LYS    HE3    .   15095    1    
+    59    .   1    1    11    11    ALA    H       H    1    8.301    0.001    .   .   .   .   .   .   11    ALA    HN     .   15095    1    
+    60    .   1    1    11    11    ALA    HA      H    1    4.292    0.007    .   .   .   .   .   .   11    ALA    HA     .   15095    1    
+    61    .   1    1    11    11    ALA    HB1     H    1    1.386    0.002    .   .   .   .   .   .   11    ALA    HB2    .   15095    1    
+    62    .   1    1    11    11    ALA    HB2     H    1    1.386    0.002    .   .   .   .   .   .   11    ALA    HB2    .   15095    1    
+    63    .   1    1    11    11    ALA    HB3     H    1    1.386    0.002    .   .   .   .   .   .   11    ALA    HB2    .   15095    1    
+    64    .   1    1    12    12    LYS    H       H    1    7.885    0.005    .   .   .   .   .   .   12    LYS    HN     .   15095    1    
+    65    .   1    1    12    12    LYS    HA      H    1    4.124    0.004    .   .   .   .   .   .   12    LYS    HA     .   15095    1    
+    66    .   1    1    12    12    LYS    HB2     H    1    1.805    0.007    .   .   .   .   .   .   12    LYS    HB2    .   15095    1    
+    67    .   1    1    12    12    LYS    HB3     H    1    1.808    0.000    .   .   .   .   .   .   12    LYS    HB3    .   15095    1    
+    68    .   1    1    12    12    LYS    HG2     H    1    1.404    0.009    .   .   .   .   .   .   12    LYS    HG2    .   15095    1    
+    69    .   1    1    12    12    LYS    HG3     H    1    1.391    0.004    .   .   .   .   .   .   12    LYS    HG3    .   15095    1    
+    70    .   1    1    12    12    LYS    HD2     H    1    1.702    0.006    .   .   .   .   .   .   12    LYS    HD2    .   15095    1    
+    71    .   1    1    12    12    LYS    HD3     H    1    1.686    0.006    .   .   .   .   .   .   12    LYS    HD3    .   15095    1    
+    72    .   1    1    12    12    LYS    HE2     H    1    3.001    0.002    .   .   .   .   .   .   12    LYS    HE2    .   15095    1    
+    73    .   1    1    12    12    LYS    HE3     H    1    2.985    0.009    .   .   .   .   .   .   12    LYS    HE3    .   15095    1    
+  stop_
+
+save_
+

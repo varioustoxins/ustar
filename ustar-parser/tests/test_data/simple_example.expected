@@ -1,0 +1,13 @@
+source: -
+
+symbol  level  rule name            offsets  line:col  content                          
+──────  ─────  ──── ────            ───────  ────────  ───────                          
+#1      [0]    star_file            0-30     1:1-3:1   data_test\n_item "hello[38;5;250m·[0mworld"\n 
+#2      [1]    data_block           0-29     1:1-2:20  data_test\n_item "hello[38;5;250m·[0mworld"   
+#3      [2]    data_heading         0-9      1:1-1:10  data_test                        
+#4      [2]    data                 10-29    2:1-2:20  _item "hello[38;5;250m·[0mworld"              
+#5      [3]    data_name            10-15    2:1-2:6   _item                            
+#6      [3]    double_quote_string  16-29    2:7-2:20  "hello[38;5;250m·[0mworld"                    
+#7      [1]    EOI                  30-30    3:1-3:1                                    
+
+lines: 2 symbols: 7

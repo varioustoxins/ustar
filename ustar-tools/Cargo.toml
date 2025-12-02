@@ -1,0 +1,69 @@
+[package]
+name = "ustar-tools"
+description = "Command-line tools for STAR format parsing and processing"
+keywords = ["cli", "star", "cif", "mmcif", "tools"]
+categories = ["command-line-utilities", "science"]
+readme = "../README.md"
+documentation = "https://docs.rs/ustar-tools"
+
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+homepage.workspace = true
+
+[lints]
+workspace = true
+
+[[bin]]
+name = "ustar-dumper"
+path = "src/bin/ustar-dumper.rs"
+
+[[bin]]
+name = "ustar-benchmark"
+path = "src/bin/ustar-benchmark.rs"
+
+[[bin]]
+name = "ustar-parse-debugger"
+path = "src/bin/ustar-parse-debugger.rs"
+
+[[bin]]
+name = "download-bmrb-stars"
+path = "src/bin/download-bmrb-stars.rs"
+
+[[bin]]
+name = "download-cod-cifs"
+path = "src/bin/download-cod-cifs.rs"
+
+[[bin]]
+name = "download-pdbs"
+path = "src/bin/download-pdbs.rs"
+
+[[bin]]
+name = "sas-demo"
+path = "src/bin/sas_demo.rs"
+
+[dependencies]
+# Core parser
+ustar_parser = { package = "ustar-parser", path = "../ustar-parser", features = ["serde", "extended-errors"] }
+
+# CLI and utilities
+clap.workspace = true
+tabled.workspace = true
+pest.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+reqwest.workspace = true
+tokio.workspace = true
+flate2.workspace = true
+scraper.workspace = true
+regex.workspace = true
+rand.workspace = true
+text_trees.workspace = true
+
+[dev-dependencies]
+rstest.workspace = true
+indicatif.workspace = true
+insta.workspace = true
+indoc.workspace = true

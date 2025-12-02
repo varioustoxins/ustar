@@ -33,21 +33,21 @@ jobs:
         key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
     
     - name: Generate grammar files
-      run: cargo build --verbose
+      run: cargo build --verbose -p ustar-parser
     
     - name: Verify grammar files generated
       run: |
-        ls -la src/star_*.pest
+        ls -la ustar-parser/src/star_*.pest
         echo "Generated grammar files:"
-        echo "- ASCII: $(wc -l < src/star_ascii.pest) lines"
-        echo "- Extended: $(wc -l < src/star_extended.pest) lines" 
-        echo "- Unicode: $(wc -l < src/star_unicode.pest) lines"
+        echo "- ASCII: $(wc -l < ustar-parser/src/star_ascii.pest) lines"
+        echo "- Extended: $(wc -l < ustar-parser/src/star_extended.pest) lines" 
+        echo "- Unicode: $(wc -l < ustar-parser/src/star_unicode.pest) lines"
     
     - name: Upload grammar artifacts
       uses: actions/upload-artifact@v4
       with:
         name: generated-grammars
-        path: src/star_*.pest
+        path: ustar-parser/src/star_*.pest
 
   test:
     name: Test Suite
@@ -58,13 +58,8 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
         rust: [stable] # Use stable Rust
+        package: [ustar-parser, ustar-tools]
         features: [default, no-default]
-        # exclude:
-        #   # Only test MSRV on Ubuntu to save CI time
-        #   - os: windows-latest
-        #     rust: 1.70.0
-        #   - os: macos-latest
-        #     rust: 1.70.0
 
     steps:
     - uses: actions/checkout@v4
@@ -86,40 +81,41 @@ jobs:
         key: ${{ runner.os }}-${{ matrix.rust }}-cargo-${{ hashFiles('**/Cargo.lock') }}
     
     - name: Download grammar artifacts
+      if: matrix.package == 'ustar-parser'
       uses: actions/download-artifact@v4
       with:
         name: generated-grammars
-        path: src/
+        path: ustar-parser/src/
     
     - name: Build with default features
       if: matrix.features == 'default'
-      run: cargo build --verbose --all-targets
+      run: cargo build --verbose --all-targets -p ${{ matrix.package }}
     
     - name: Build without default features  
       if: matrix.features == 'no-default'
-      run: cargo build --verbose --all-targets --no-default-features
+      run: cargo build --verbose --all-targets --no-default-features -p ${{ matrix.package }}
     
     - name: Debug walker differences (show stderr output)
-      if: matrix.features == 'default'
+      if: matrix.features == 'default' && matrix.package == 'ustar-parser'
       run: |
         echo "=== Running debug walker test to show platform differences ==="
-        cargo test test_comprehensive_example_walker_output --test sas_walker_tests --verbose -- --nocapture || true
+        cargo test test_comprehensive_example_walker_output --test sas_walker_tests --verbose -p ustar-parser -- --nocapture || true
         echo "=== End debug output ==="
     
     - name: Run tests with default features
       if: matrix.features == 'default'
-      run: cargo test --verbose
+      run: cargo test --verbose -p ${{ matrix.package }}
     
     - name: Run tests without default features
       if: matrix.features == 'no-default' 
-      run: cargo test --verbose --no-default-features
+      run: cargo test --verbose --no-default-features -p ${{ matrix.package }}
     
     - name: Test documentation
       if: matrix.features == 'default' && matrix.rust == 'stable'
-      run: cargo test --doc
+      run: cargo test --doc -p ${{ matrix.package }}
     
     - name: Test binaries work
-      if: matrix.features == 'default' && matrix.rust == 'stable'
+      if: matrix.features == 'default' && matrix.rust == 'stable' && matrix.package == 'ustar-tools'
       run: |
         cargo run --bin ustar-dumper -- --help
         cargo run --bin ustar-benchmark -- --help  
@@ -152,16 +148,22 @@ jobs:
       uses: actions/download-artifact@v4
       with:
         name: generated-grammars
-        path: src/
+        path: ustar-parser/src/
     
     - name: Check formatting
       run: cargo fmt --all -- --check
     
-    - name: Run Clippy
-      run: cargo clippy --all-targets --all-features -- -D warnings
+    - name: Run Clippy for ustar-parser
+      run: cargo clippy --all-targets --all-features -p ustar-parser -- -D warnings
     
-    - name: Check documentation
-      run: cargo doc --no-deps --document-private-items
+    - name: Run Clippy for ustar-tools
+      run: cargo clippy --all-targets --all-features -p ustar-tools -- -D warnings
+    
+    - name: Check documentation for ustar-parser
+      run: cargo doc --no-deps --document-private-items -p ustar-parser
+    
+    - name: Check documentation for ustar-tools
+      run: cargo doc --no-deps --document-private-items -p ustar-tools
 
   integration-tests:
     name: Integration Tests
@@ -187,26 +189,26 @@ jobs:
     - name: Cache test data
       uses: actions/cache@v3
       with:
-        path: tests/test_data/
-        key: ${{ runner.os }}-test-data-${{ hashFiles('tests/test_data/**') }}
+        path: ustar-parser/tests/test_data/
+        key: ${{ runner.os }}-test-data-${{ hashFiles('ustar-parser/tests/test_data/**') }}
     
     - name: Download grammar artifacts
       uses: actions/download-artifact@v4
       with:
         name: generated-grammars
-        path: src/
+        path: ustar-parser/src/
     
     - name: Run BMRB integration tests
-      run: cargo test --test parse_bmrb_stars
+      run: cargo test --test parse_bmrb_stars -p ustar-parser
     
     - name: Run COD integration tests
-      run: cargo test --test parse_cod_cifs
+      run: cargo test --test parse_cod_cifs -p ustar-parser
     
     - name: Run PDB integration tests
-      run: cargo test --test parse_pdb_mmcifs
+      run: cargo test --test parse_pdb_mmcifs -p ustar-parser
     
     - name: Run snapshot tests
-      run: cargo test error_handling_tests
+      run: cargo test error_handling_tests -p ustar-parser
     
     - name: Check for unused snapshots
       run: |
@@ -221,6 +223,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: [test, code-quality, integration-tests]
     if: (github.event_name == 'push' && github.ref == 'refs/heads/main' && contains(github.event.head_commit.message, '[release]')) || github.event_name == 'workflow_dispatch'
+    strategy:
+      matrix:
+        package: [ustar-parser, ustar-tools]
     steps:
     - uses: actions/checkout@v4
       with:
@@ -241,30 +246,52 @@ jobs:
         key: ${{ runner.os }}-release-cargo-${{ hashFiles('**/Cargo.lock') }}
     
     - name: Download grammar artifacts
+      if: matrix.package == 'ustar-parser'
       uses: actions/download-artifact@v4
       with:
         name: generated-grammars
-        path: src/
+        path: ustar-parser/src/
     
     - name: Verify package can be built for release
-      run: cargo package --verbose
+      run: cargo package --verbose -p ${{ matrix.package }}
     
-    - name: Extract version from Cargo.toml
+    - name: Extract version from package
       id: version
       run: |
-        VERSION=$(cargo metadata --no-deps --format-version 1 | jq -r '.packages[0].version')
+        VERSION=$(cargo metadata --no-deps --format-version 1 | jq -r '.packages[] | select(.name == "${{ matrix.package }}") | .version')
         echo "version=$VERSION" >> $GITHUB_OUTPUT
-        echo "Version to release: $VERSION"
+        echo "Version to release for ${{ matrix.package }}: $VERSION"
     
     - name: Check if version already exists on crates.io
       run: |
-        if cargo search ustar-parser --limit 1 | grep -q "ustar-parser = \"${{ steps.version.outputs.version }}\""; then
-          echo "Version ${{ steps.version.outputs.version }} already exists on crates.io"
+        if cargo search ${{ matrix.package }} --limit 1 | grep -q "${{ matrix.package }} = \"${{ steps.version.outputs.version }}\""; then
+          echo "Version ${{ steps.version.outputs.version }} already exists on crates.io for ${{ matrix.package }}"
           exit 1
         fi
     
     - name: Publish to crates.io
-      run: cargo publish --token ${{ secrets.CARGO_REGISTRY_TOKEN }}
+      run: cargo publish --token ${{ secrets.CARGO_REGISTRY_TOKEN }} -p ${{ matrix.package }}
+    
+  create-release:
+    name: Create GitHub Release
+    runs-on: ubuntu-latest
+    needs: [release]
+    if: (github.event_name == 'push' && github.ref == 'refs/heads/main' && contains(github.event.head_commit.message, '[release]')) || github.event_name == 'workflow_dispatch'
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Download grammar artifacts
+      uses: actions/download-artifact@v4
+      with:
+        name: generated-grammars
+        path: ustar-parser/src/
+    
+    - name: Extract version from ustar-parser
+      id: version
+      run: |
+        VERSION=$(cargo metadata --no-deps --format-version 1 | jq -r '.packages[] | select(.name == "ustar-parser") | .version')
+        echo "version=$VERSION" >> $GITHUB_OUTPUT
+        echo "Release version: $VERSION"
     
     - name: Create GitHub release
       uses: actions/create-release@v1
@@ -276,21 +303,27 @@ jobs:
         body: |
           ## USTAR v${{ steps.version.outputs.version }}
           
-          STAR format parser library for Rust.
+          STAR format parser library and tools for Rust.
           
           ### What's Included
           - Core parser library published to crates.io as `ustar-parser`
+          - Command-line tools published to crates.io as `ustar-tools`
           - Generated grammar files for ASCII, Extended ASCII, and Unicode modes
           - Support for CIF, mmCIF, NMR-STAR, and other STAR format variants
           
           ### Installation
           ```toml
+          # Parser library
           [dependencies]
           ustar-parser = "${{ steps.version.outputs.version }}"
+          
+          # Command-line tools
+          cargo install ustar-tools
           ```
           
           ### Documentation
-          - [Library Documentation](https://docs.rs/ustar-parser/${{ steps.version.outputs.version }})
+          - [Parser Documentation](https://docs.rs/ustar-parser/${{ steps.version.outputs.version }})
+          - [Tools Documentation](https://docs.rs/ustar-tools)
           - [Repository](https://github.com/${{ github.repository }})
         draft: false
         prerelease: false
@@ -301,7 +334,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: src/star_ascii.pest
+        asset_path: ustar-parser/src/star_ascii.pest
         asset_name: star_ascii.pest
         asset_content_type: text/plain
     
@@ -311,7 +344,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: src/star_extended.pest
+        asset_path: ustar-parser/src/star_extended.pest
         asset_name: star_extended.pest
         asset_content_type: text/plain
     
@@ -321,6 +354,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: src/star_unicode.pest
+        asset_path: ustar-parser/src/star_unicode.pest
         asset_name: star_unicode.pest
         asset_content_type: text/plain
