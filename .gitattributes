@@ -5,12 +5,25 @@ tests/test_data/*.cif text eol=lf
 tests/test_data/*.nef text eol=lf
 tests/test_data/*.mmcif text eol=lf
 
+# ustar-parser test data
+ustar-parser/tests/test_data/*.str text eol=lf
+ustar-parser/tests/test_data/*.star text eol=lf
+ustar-parser/tests/test_data/*.cif text eol=lf
+ustar-parser/tests/test_data/*.nef text eol=lf
+ustar-parser/tests/test_data/*.mmcif text eol=lf
+
 # Windows CRLF test files - preserve CRLF line endings for cross-platform testing
 tests/test_data/*_crlf.str text eol=crlf
 tests/test_data/*_crlf.star text eol=crlf
 tests/test_data/*_crlf.cif text eol=crlf
 tests/test_data/*_crlf.nef text eol=crlf
 tests/test_data/*_crlf.mmcif text eol=crlf
+
+ustar-parser/tests/test_data/*_crlf.str text eol=crlf
+ustar-parser/tests/test_data/*_crlf.star text eol=crlf
+ustar-parser/tests/test_data/*_crlf.cif text eol=crlf
+ustar-parser/tests/test_data/*_crlf.nef text eol=crlf
+ustar-parser/tests/test_data/*_crlf.mmcif text eol=crlf
 
 # Preserve line endings for grammar template files
 src/*.pest_template text eol=lf
