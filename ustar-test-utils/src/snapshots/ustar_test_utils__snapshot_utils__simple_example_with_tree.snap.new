@@ -1,0 +1,21 @@
+---
+source: ustar-test-utils/src/snapshot_utils.rs
+assertion_line: 66
+expression: value
+---
+source: -
+
+symbol  level  rule name                        offsets  line:col     content                        
+──────  ─────  ──── ────                        ───────  ────────     ───────                        
+#1      [0]    star_file                        0-31     1:1  - 2:1   data_test[38;5;250m·[0m_value[38;5;250m·[0m'hello[38;5;250m·[0mworld'[38;5;250m␊[0m
+#2      [1]    ├── data_block                   0-30     1:1  - 1:31  data_test[38;5;250m·[0m_value[38;5;250m·[0m'hello[38;5;250m·[0mworld'
+#3      [2]    │   ├── data_heading             0-9      1:1  - 1:10  data_test
+#4      [2]    │   └── data                     10-30    1:11 - 1:31  _value[38;5;250m·[0m'hello[38;5;250m·[0mworld'
+#5      [3]    │       ├── data_name            10-16    1:11 - 1:17  _value
+#6      [3]    │       └── single_quote_string  17-30    1:18 - 1:31  'hello[38;5;250m·[0mworld'
+#7      [4]    │           ├── SINGLE_QUOTE     17-18    1:18 - 1:19  '
+#8      [4]    │           ├── string           18-29    1:19 - 1:30  hello[38;5;250m·[0mworld
+#9      [4]    │           └── SINGLE_QUOTE     29-30    1:30 - 1:31  '
+#10     [1]    └── EOI                          31-31    2:1  - 2:1                                    
+
+lines: 1 symbols: 10

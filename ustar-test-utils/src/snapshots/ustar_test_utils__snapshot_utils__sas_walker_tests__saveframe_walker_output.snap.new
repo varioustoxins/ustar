@@ -1,0 +1,10 @@
+---
+source: ustar-test-utils/src/snapshot_utils.rs
+assertion_line: 67
+expression: value
+---
+<start data> [1] test
+<start saveframe> [2] frame1
+<data> [t:3:1,v:3:6] _tag delimiter:  loop_level: 0 value [multiline]: value
+<end saveframe> [4] frame1
+<end data> [4] test

@@ -1,0 +1,16 @@
+[package]
+name = "ustar-test-utils"
+description = "Shared test utilities for ustar crates"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+homepage.workspace = true
+
+# This crate is not published - it's only for internal testing
+publish = false
+
+[dependencies]
+flate2.workspace = true
+insta.workspace = true

@@ -1,5 +1,6 @@
 use std::process::Command;
 use std::str;
+use ustar_test_utils::assert_snapshot_gz;
 
 /// Test helper to run ustar-dumper and capture output
 fn run_ustar_parser(input_file: &str) -> Result<String, Box<dyn std::error::Error>> {
@@ -69,7 +70,7 @@ fn test_cli_output_format() {
         );
         let output = run_ustar_parser_stdin(&input)
             .expect(&format!("Failed to run ustar-dumper with {} input", name));
-        insta::assert_snapshot!(snapshot_name, output);
+        assert_snapshot_gz(&format!("ustar_dumper_tests__{}", snapshot_name), &output);
     }
 }
 
@@ -96,7 +97,7 @@ fn test_cli_test_input_star_file() {
     let output = run_ustar_parser("tests/test_data/test_input.star")
         .expect("Failed to run ustar-dumper on test_input.star");
 
-    insta::assert_snapshot!("test_input_star_output", output);
+    assert_snapshot_gz("ustar_dumper_tests__test_input_star_output", &output);
 }
 
 #[test]
@@ -104,7 +105,7 @@ fn test_cli_simple_star_file() {
     let output = run_ustar_parser("tests/test_data/simple_star_file.star")
         .expect("Failed to run ustar-dumper on simple_star_file.star");
 
-    insta::assert_snapshot!("simple_star_file_output", output);
+    assert_snapshot_gz("ustar_dumper_tests__simple_star_file_output", &output);
 }
 
 #[test]
@@ -181,7 +182,10 @@ fn test_cli_comprehensive_example_without_tree() {
     let output = run_ustar_parser("tests/test_data/comprehensive_example.star")
         .expect("Failed to run ustar-dumper on comprehensive_example.star");
 
-    insta::assert_snapshot!("comprehensive_example_without_tree", output);
+    assert_snapshot_gz(
+        "ustar_dumper_tests__comprehensive_example_without_tree",
+        &output,
+    );
 }
 
 #[test]
@@ -189,7 +193,10 @@ fn test_cli_comprehensive_example_with_tree() {
     let output = run_ustar_parser_with_tree("tests/test_data/comprehensive_example.star")
         .expect("Failed to run ustar-dumper with tree on comprehensive_example.star");
 
-    insta::assert_snapshot!("comprehensive_example_with_tree", output);
+    assert_snapshot_gz(
+        "ustar_dumper_tests__comprehensive_example_with_tree",
+        &output,
+    );
 }
 
 #[test]
@@ -214,5 +221,5 @@ fn test_cli_simple_example_with_tree() {
     let output = child.wait_with_output().expect("Failed to wait for output");
     let output_str = String::from_utf8(output.stdout).expect("Failed to parse stdout");
 
-    insta::assert_snapshot!("simple_example_with_tree", output_str);
+    assert_snapshot_gz("ustar_dumper_tests__simple_example_with_tree", &output_str);
 }

@@ -1,0 +1,12 @@
+---
+source: ustar-test-utils/src/snapshot_utils.rs
+assertion_line: 67
+expression: value
+---
+<start data> [1] test
+<data> [t:2:1,v:2:12] _frame_ref delimiter:  loop_level: 0 value [multiline]: $frame1
+<data> [t:3:1,v:4:2] _multiline delimiter: "\n" loop_level: 0 value:
+       ;
+       This is multiline
+       text content
+<end data> [7] test

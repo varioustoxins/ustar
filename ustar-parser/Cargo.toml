@@ -43,3 +43,4 @@ indoc.workspace = true
 tabled.workspace = true
 indicatif.workspace = true
 flate2.workspace = true
+ustar-test-utils = { path = "../ustar-test-utils" }

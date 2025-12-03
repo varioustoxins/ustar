@@ -1,0 +1,1762 @@
+data_30999
+
+
+#######################
+#  Entry information  #
+#######################
+save_entry_information
+   _Entry.Sf_category                    entry_information
+   _Entry.Sf_framecode                   entry_information
+   _Entry.ID                             30999
+   _Entry.Title
+;
+Solution NMR structure of 8-residue Rosetta-designed cyclic peptide D8.21 in d6-DMSO with cis/trans switching
+;
+   _Entry.Type                           macromolecule
+   _Entry.Version_type                   original
+   _Entry.Submission_date                2022-03-14
+   _Entry.Accession_date                 2022-03-14
+   _Entry.Last_release_date              2022-04-18
+   _Entry.Original_release_date          2022-04-18
+   _Entry.Origination                    author
+   _Entry.Format_name                    .
+   _Entry.NMR_STAR_version               3.2.14.0
+   _Entry.NMR_STAR_dict_location         .
+   _Entry.Original_NMR_STAR_version      3.1
+   _Entry.Experimental_method            NMR
+   _Entry.Experimental_method_subtype    'SOLUTION NMR'
+   _Entry.Source_data_format             .
+   _Entry.Source_data_format_version     .
+   _Entry.Generated_software_name        .
+   _Entry.Generated_software_version     .
+   _Entry.Generated_software_ID          .
+   _Entry.Generated_software_label       .
+   _Entry.Generated_date                 .
+   _Entry.DOI                            .
+   _Entry.UUID                           .
+   _Entry.Related_coordinate_file_name   .
+   _Entry.Details                        .
+   _Entry.BMRB_internal_directory_name   .
+
+   loop_
+      _Entry_author.Ordinal
+      _Entry_author.Given_name
+      _Entry_author.Family_name
+      _Entry_author.First_initial
+      _Entry_author.Middle_initials
+      _Entry_author.Family_title
+      _Entry_author.ORCID
+      _Entry_author.Entry_ID
+
+      1   T.   Ramelot      T.   A.   .   .   30999
+      2   R.   Tejero       R.   .    .   .   30999
+      3   G.   Montelione   G.   T.   .   .   30999
+   stop_
+
+   loop_
+      _Struct_keywords.Keywords
+      _Struct_keywords.Text
+      _Struct_keywords.Entry_ID
+
+      'DE NOVO PROTEIN'           .   30999
+      cis/trans                   .   30999
+      'cyclic peptide'            .   30999
+      'de novo design'            .   30999
+      'membrane permeability'     .   30999
+      'non natural amino acids'   .   30999
+      'switch peptides'           .   30999
+   stop_
+
+   loop_
+      _Data_set.Type
+      _Data_set.Count
+      _Data_set.Entry_ID
+
+      assigned_chemical_shifts   1   30999
+      spectral_peak_list         1   30999
+   stop_
+
+   loop_
+      _Datum.Type
+      _Datum.Count
+      _Datum.Entry_ID
+
+      '13C chemical shifts'   19   30999
+      '15N chemical shifts'   2    30999
+      '1H chemical shifts'    28   30999
+   stop_
+
+   loop_
+      _Release.Release_number
+      _Release.Format_type
+      _Release.Format_version
+      _Release.Date
+      _Release.Submission_date
+      _Release.Type
+      _Release.Author
+      _Release.Detail
+      _Release.Entry_ID
+
+      2   .   .   2022-11-01   2022-03-14   update     BMRB     'update entry citation'   30999
+      1   .   .   2022-09-08   2022-03-14   original   author   'original release'        30999
+   stop_
+
+   loop_
+      _Related_entries.Database_name
+      _Related_entries.Database_accession_code
+      _Related_entries.Relationship
+      _Related_entries.Entry_ID
+
+      PDB   7UBE   'BMRB Entry Tracking System'   30999
+   stop_
+save_
+
+
+###############
+#  Citations  #
+###############
+save_citation_1
+   _Citation.Sf_category                  citations
+   _Citation.Sf_framecode                 citation_1
+   _Citation.Entry_ID                     30999
+   _Citation.ID                           1
+   _Citation.Name                         .
+   _Citation.Class                        'entry citation'
+   _Citation.CAS_abstract_code            .
+   _Citation.MEDLINE_UI_code              .
+   _Citation.PubMed_ID                    36041435
+   _Citation.DOI                          .
+   _Citation.Full_citation                .
+   _Citation.Title
+;
+Accurate de novo design of membrane-traversing macrocycles
+;
+   _Citation.Status                       published
+   _Citation.Type                         journal
+   _Citation.Journal_abbrev               Cell
+   _Citation.Journal_name_full            Cell
+   _Citation.Journal_volume               185
+   _Citation.Journal_issue                19
+   _Citation.Journal_ASTM                 .
+   _Citation.Journal_ISSN                 1097-4172
+   _Citation.Journal_CSD                  .
+   _Citation.Book_title                   .
+   _Citation.Book_chapter_title           .
+   _Citation.Book_volume                  .
+   _Citation.Book_series                  .
+   _Citation.Book_publisher               .
+   _Citation.Book_publisher_city          .
+   _Citation.Book_ISBN                    .
+   _Citation.Conference_title             .
+   _Citation.Conference_site              .
+   _Citation.Conference_state_province    .
+   _Citation.Conference_country           .
+   _Citation.Conference_start_date        .
+   _Citation.Conference_end_date          .
+   _Citation.Conference_abstract_number   .
+   _Citation.Thesis_institution           .
+   _Citation.Thesis_institution_city      .
+   _Citation.Thesis_institution_country   .
+   _Citation.WWW_URL                      .
+   _Citation.Page_first                   3520
+   _Citation.Page_last                    3532
+   _Citation.Year                         2022
+   _Citation.Details                      .
+
+   loop_
+      _Citation_author.Ordinal
+      _Citation_author.Given_name
+      _Citation_author.Family_name
+      _Citation_author.First_initial
+      _Citation_author.Middle_initials
+      _Citation_author.Family_title
+      _Citation_author.ORCID
+      _Citation_author.Entry_ID
+      _Citation_author.Citation_ID
+
+      1    G.   Bhardwaj        G.   .    .   .   30999   1
+      2    J.   O'Connor        J.   .    .   .   30999   1
+      3    S.   Rettie          S.   .    .   .   30999   1
+      4    Y.   Huang           Y.   H.   .   .   30999   1
+      5    T.   Ramelot         T.   A.   .   .   30999   1
+      6    V.   Mulligan        V.   K.   .   .   30999   1
+      7    G.   Alpkilic        G.   G.   .   .   30999   1
+      8    J.   Palmer          J.   .    .   .   30999   1
+      9    A.   Bera            A.   K.   .   .   30999   1
+      10   M.   Bick            M.   .    .   .   30999   1
+      11   M.   'Di Piazza'     M.   .    .   .   30999   1
+      12   X.   Li              X.   .    .   .   30999   1
+      13   P.   Hosseinzadeh    P.   .    .   .   30999   1
+      14   T.   Craven          T.   W.   .   .   30999   1
+      15   R.   Tejero          R.   .    .   .   30999   1
+      16   A.   Lauko           A.   .    .   .   30999   1
+      17   R.   Choi            R.   .    .   .   30999   1
+      18   C.   Glynn           C.   .    .   .   30999   1
+      19   L.   Dong            L.   L.   .   .   30999   1
+      20   R.   Griffin         R.   .    .   .   30999   1
+      21   W.   'van Voorhis'   W.   .    .   .   30999   1
+      22   J.   Rodriguez       J.   .    .   .   30999   1
+      23   L.   Stewart         L.   .    .   .   30999   1
+      24   G.   Montelione      G.   T.   .   .   30999   1
+      25   D.   Craik           D.   .    .   .   30999   1
+      26   D.   Baker           D.   .    .   .   30999   1
+   stop_
+save_
+
+
+#############################################
+#  Molecular system (assembly) description  #
+#############################################
+save_assembly
+   _Assembly.Sf_category                       assembly
+   _Assembly.Sf_framecode                      assembly
+   _Assembly.Entry_ID                          30999
+   _Assembly.ID                                1
+   _Assembly.Name                              DVA-MLE-DPR-LEU-DVA-MLE-DPR-LEU
+   _Assembly.BMRB_code                         .
+   _Assembly.Number_of_components              .
+   _Assembly.Organic_ligands                   .
+   _Assembly.Metal_ions                        .
+   _Assembly.Non_standard_bonds                .
+   _Assembly.Ambiguous_conformational_states   .
+   _Assembly.Ambiguous_chem_comp_sites         .
+   _Assembly.Molecules_in_chemical_exchange    .
+   _Assembly.Paramagnetic                      no
+   _Assembly.Thiol_state                       .
+   _Assembly.Molecular_mass                    .
+   _Assembly.Enzyme_commission_number          .
+   _Assembly.Details                           .
+   _Assembly.DB_query_date                     .
+   _Assembly.DB_query_revised_last_date        .
+
+   loop_
+      _Entity_assembly.ID
+      _Entity_assembly.Entity_assembly_name
+      _Entity_assembly.Entity_ID
+      _Entity_assembly.Entity_label
+      _Entity_assembly.Asym_ID
+      _Entity_assembly.PDB_chain_ID
+      _Entity_assembly.Experimental_data_reported
+      _Entity_assembly.Physical_state
+      _Entity_assembly.Conformational_isomer
+      _Entity_assembly.Chemical_exchange_state
+      _Entity_assembly.Magnetic_equivalence_group_code
+      _Entity_assembly.Role
+      _Entity_assembly.Details
+      _Entity_assembly.Entry_ID
+      _Entity_assembly.Assembly_ID
+
+      1   unit_1   1   $entity_1   A   A   yes   .   .   .   .   .   .   30999   1
+   stop_
+save_
+
+
+    ####################################
+    #  Biological polymers and ligands #
+    ####################################
+save_entity_1
+   _Entity.Sf_category                       entity
+   _Entity.Sf_framecode                      entity_1
+   _Entity.Entry_ID                          30999
+   _Entity.ID                                1
+   _Entity.BMRB_code                         .
+   _Entity.Name                              entity_1
+   _Entity.Type                              polymer
+   _Entity.Polymer_common_type               .
+   _Entity.Polymer_type                      polypeptide(D)
+   _Entity.Polymer_type_details              .
+   _Entity.Polymer_strand_ID                 A
+   _Entity.Polymer_seq_one_letter_code_can   .
+   _Entity.Polymer_seq_one_letter_code
+;
+XXXLXXXL
+;
+   _Entity.Target_identifier                 .
+   _Entity.Polymer_author_defined_seq        .
+   _Entity.Polymer_author_seq_details        .
+   _Entity.Ambiguous_conformational_states   .
+   _Entity.Ambiguous_chem_comp_sites         .
+   _Entity.Nstd_monomer                      yes
+   _Entity.Nstd_chirality                    .
+   _Entity.Nstd_linkage                      no
+   _Entity.Nonpolymer_comp_ID                .
+   _Entity.Nonpolymer_comp_label             .
+   _Entity.Number_of_monomers                8
+   _Entity.Number_of_nonpolymer_components   .
+   _Entity.Paramagnetic                      no
+   _Entity.Thiol_state                       'not present'
+   _Entity.Src_method                        syn
+   _Entity.Parent_entity_ID                  1
+   _Entity.Fragment                          .
+   _Entity.Mutation                          .
+   _Entity.EC_number                         .
+   _Entity.Calc_isoelectric_point            .
+   _Entity.Formula_weight                    891.190
+   _Entity.Formula_weight_exptl              .
+   _Entity.Formula_weight_exptl_meth         .
+   _Entity.Details                           .
+   _Entity.DB_query_date                     .
+   _Entity.DB_query_revised_last_date        .
+
+   loop_
+      _Entity_comp_index.ID
+      _Entity_comp_index.Auth_seq_ID
+      _Entity_comp_index.Comp_ID
+      _Entity_comp_index.Comp_label
+      _Entity_comp_index.Entry_ID
+      _Entity_comp_index.Entity_ID
+
+      1   .   DVA   .   30999   1
+      2   .   MLE   .   30999   1
+      3   .   DPR   .   30999   1
+      4   .   LEU   .   30999   1
+      5   .   DVA   .   30999   1
+      6   .   MLE   .   30999   1
+      7   .   DPR   .   30999   1
+      8   .   LEU   .   30999   1
+   stop_
+
+   loop_
+      _Entity_poly_seq.Hetero
+      _Entity_poly_seq.Mon_ID
+      _Entity_poly_seq.Num
+      _Entity_poly_seq.Comp_index_ID
+      _Entity_poly_seq.Entry_ID
+      _Entity_poly_seq.Entity_ID
+
+      .   DVA   1   1   30999   1
+      .   MLE   2   2   30999   1
+      .   DPR   3   3   30999   1
+      .   LEU   4   4   30999   1
+      .   DVA   5   5   30999   1
+      .   MLE   6   6   30999   1
+      .   DPR   7   7   30999   1
+      .   LEU   8   8   30999   1
+   stop_
+save_
+
+
+    ####################
+    #  Natural source  #
+    ####################
+save_natural_source
+   _Entity_natural_src_list.Sf_category    natural_source
+   _Entity_natural_src_list.Sf_framecode   natural_source
+   _Entity_natural_src_list.Entry_ID       30999
+   _Entity_natural_src_list.ID             1
+
+   loop_
+      _Entity_natural_src.ID
+      _Entity_natural_src.Entity_ID
+      _Entity_natural_src.Entity_label
+      _Entity_natural_src.Entity_chimera_segment_ID
+      _Entity_natural_src.NCBI_taxonomy_ID
+      _Entity_natural_src.Type
+      _Entity_natural_src.Common
+      _Entity_natural_src.Organism_name_scientific
+      _Entity_natural_src.Organism_name_common
+      _Entity_natural_src.Organism_acronym
+      _Entity_natural_src.ICTVdb_decimal_code
+      _Entity_natural_src.Superkingdom
+      _Entity_natural_src.Kingdom
+      _Entity_natural_src.Genus
+      _Entity_natural_src.Species
+      _Entity_natural_src.Strain
+      _Entity_natural_src.Variant
+      _Entity_natural_src.Organ
+      _Entity_natural_src.Tissue
+      _Entity_natural_src.Tissue_fraction
+      _Entity_natural_src.Cell_line
+      _Entity_natural_src.Cell_type
+      _Entity_natural_src.ATCC_number
+      _Entity_natural_src.Organelle
+      _Entity_natural_src.Secretion
+      _Entity_natural_src.Plasmid
+      _Entity_natural_src.Gene_mnemonic
+      _Entity_natural_src.Details
+      _Entity_natural_src.Entry_ID
+      _Entity_natural_src.Entity_natural_src_list_ID
+
+      1   1   $entity_1   .   32630   'no natural source'   .   'synthetic construct'   .   .   .   .   .   synthetic   construct   .   .   .   .   .   .   .   .   .   .   .   .   .   30999   1
+   stop_
+save_
+
+
+    #########################
+    #  Experimental source  #
+    #########################
+save_experimental_source
+   _Entity_experimental_src_list.Sf_category    experimental_source
+   _Entity_experimental_src_list.Sf_framecode   experimental_source
+   _Entity_experimental_src_list.Entry_ID       30999
+   _Entity_experimental_src_list.ID             1
+
+   loop_
+      _Entity_experimental_src.ID
+      _Entity_experimental_src.Entity_ID
+      _Entity_experimental_src.Entity_label
+      _Entity_experimental_src.Entity_chimera_segment_ID
+      _Entity_experimental_src.Production_method
+      _Entity_experimental_src.Host_org_scientific_name
+      _Entity_experimental_src.Host_org_name_common
+      _Entity_experimental_src.Host_org_details
+      _Entity_experimental_src.Host_org_NCBI_taxonomy_ID
+      _Entity_experimental_src.Host_org_genus
+      _Entity_experimental_src.Host_org_species
+      _Entity_experimental_src.Host_org_strain
+      _Entity_experimental_src.Host_org_variant
+      _Entity_experimental_src.Host_org_ATCC_number
+      _Entity_experimental_src.Vector_type
+      _Entity_experimental_src.PDBview_host_org_vector_name
+      _Entity_experimental_src.PDBview_plasmid_name
+      _Entity_experimental_src.Vector_name
+      _Entity_experimental_src.Vector_details
+      _Entity_experimental_src.Vendor_name
+      _Entity_experimental_src.Details
+      _Entity_experimental_src.Entry_ID
+      _Entity_experimental_src.Entity_experimental_src_list_ID
+
+      1   1   $entity_1   .   'chemical synthesis'   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   30999   1
+   stop_
+save_
+
+
+    #################################
+    #  Polymer residues and ligands #
+    #################################
+save_chem_comp_DPR
+   _Chem_comp.Sf_category                       chem_comp
+   _Chem_comp.Sf_framecode                      chem_comp_DPR
+   _Chem_comp.Entry_ID                          30999
+   _Chem_comp.ID                                DPR
+   _Chem_comp.Provenance                        PDB
+   _Chem_comp.Name                              D-PROLINE
+   _Chem_comp.Type                              'D-PEPTIDE LINKING'
+   _Chem_comp.BMRB_code                         DPR
+   _Chem_comp.PDB_code                          DPR
+   _Chem_comp.Ambiguous_flag                    no
+   _Chem_comp.Initial_date                      2020-07-10
+   _Chem_comp.Modified_date                     2020-07-10
+   _Chem_comp.Release_status                    REL
+   _Chem_comp.Replaced_by                       .
+   _Chem_comp.Replaces                          .
+   _Chem_comp.One_letter_code                   P
+   _Chem_comp.Three_letter_code                 DPR
+   _Chem_comp.Number_atoms_all                  17
+   _Chem_comp.Number_atoms_nh                   8
+   _Chem_comp.Atom_nomenclature_source          .
+   _Chem_comp.PubChem_code                      .
+   _Chem_comp.Subcomponent_list                 .
+   _Chem_comp.InChI_code                        InChI=1S/C5H9NO2/c7-5(8)4-2-1-3-6-4/h4,6H,1-3H2,(H,7,8)/t4-/m1/s1
+   _Chem_comp.Mon_nstd_flag                     no
+   _Chem_comp.Mon_nstd_class                    .
+   _Chem_comp.Mon_nstd_details                  .
+   _Chem_comp.Mon_nstd_parent                   .
+   _Chem_comp.Mon_nstd_parent_comp_ID           .
+   _Chem_comp.Std_deriv_one_letter_code         .
+   _Chem_comp.Std_deriv_three_letter_code       .
+   _Chem_comp.Std_deriv_BMRB_code               .
+   _Chem_comp.Std_deriv_PDB_code                .
+   _Chem_comp.Std_deriv_chem_comp_name          .
+   _Chem_comp.Synonyms                          .
+   _Chem_comp.Formal_charge                     0
+   _Chem_comp.Paramagnetic                      .
+   _Chem_comp.Aromatic                          no
+   _Chem_comp.Formula                           'C5 H9 N O2'
+   _Chem_comp.Formula_weight                    115.130
+   _Chem_comp.Formula_mono_iso_wt_nat           .
+   _Chem_comp.Formula_mono_iso_wt_13C           .
+   _Chem_comp.Formula_mono_iso_wt_15N           .
+   _Chem_comp.Formula_mono_iso_wt_13C_15N       .
+   _Chem_comp.Image_file_name                   .
+   _Chem_comp.Image_file_format                 .
+   _Chem_comp.Topo_file_name                    .
+   _Chem_comp.Topo_file_format                  .
+   _Chem_comp.Struct_file_name                  .
+   _Chem_comp.Struct_file_format                .
+   _Chem_comp.Stereochem_param_file_name        .
+   _Chem_comp.Stereochem_param_file_format      .
+   _Chem_comp.Model_details                     .
+   _Chem_comp.Model_erf                         .
+   _Chem_comp.Model_source                      .
+   _Chem_comp.Model_coordinates_details         .
+   _Chem_comp.Model_coordinates_missing_flag    yes
+   _Chem_comp.Ideal_coordinates_details         Corina
+   _Chem_comp.Ideal_coordinates_missing_flag    no
+   _Chem_comp.Model_coordinates_db_code         .
+   _Chem_comp.Processing_site                   EBI
+   _Chem_comp.Vendor                            .
+   _Chem_comp.Vendor_product_code               .
+   _Chem_comp.Details                           .
+   _Chem_comp.DB_query_date                     .
+   _Chem_comp.DB_last_query_revised_last_date   .
+
+   loop_
+      _Chem_comp_descriptor.Descriptor
+      _Chem_comp_descriptor.Type
+      _Chem_comp_descriptor.Program
+      _Chem_comp_descriptor.Program_version
+      _Chem_comp_descriptor.Entry_ID
+      _Chem_comp_descriptor.Comp_ID
+
+      C1CC(NC1)C(=O)O                                                     SMILES             'OpenEye OEToolkits'   1.7.0   30999   DPR
+      C1C[C@@H](NC1)C(=O)O                                                SMILES_CANONICAL   'OpenEye OEToolkits'   1.7.0   30999   DPR
+      InChI=1S/C5H9NO2/c7-5(8)4-2-1-3-6-4/h4,6H,1-3H2,(H,7,8)/t4-/m1/s1   InChI              InChI                  1.03    30999   DPR
+      O=C(O)C1NCCC1                                                       SMILES             ACDLabs                12.01   30999   DPR
+      OC(=O)[C@H]1CCCN1                                                   SMILES_CANONICAL   CACTVS                 3.370   30999   DPR
+      OC(=O)[CH]1CCCN1                                                    SMILES             CACTVS                 3.370   30999   DPR
+      ONIBWKKTOPOVIA-SCSAIBSYSA-N                                         InChIKey           InChI                  1.03    30999   DPR
+   stop_
+
+   loop_
+      _Chem_comp_identifier.Identifier
+      _Chem_comp_identifier.Type
+      _Chem_comp_identifier.Program
+      _Chem_comp_identifier.Program_version
+      _Chem_comp_identifier.Entry_ID
+      _Chem_comp_identifier.Comp_ID
+
+      '(2R)-pyrrolidine-2-carboxylic acid'   'SYSTEMATIC NAME'   'OpenEye OEToolkits'   1.7.0   30999   DPR
+      D-proline                              'SYSTEMATIC NAME'   ACDLabs                12.01   30999   DPR
+   stop_
+
+   loop_
+      _Chem_comp_atom.Atom_ID
+      _Chem_comp_atom.BMRB_code
+      _Chem_comp_atom.PDB_atom_ID
+      _Chem_comp_atom.Alt_atom_ID
+      _Chem_comp_atom.Auth_atom_ID
+      _Chem_comp_atom.Type_symbol
+      _Chem_comp_atom.Isotope_number
+      _Chem_comp_atom.Chirality
+      _Chem_comp_atom.Stereo_config
+      _Chem_comp_atom.Charge
+      _Chem_comp_atom.Partial_charge
+      _Chem_comp_atom.Oxidation_number
+      _Chem_comp_atom.Unpaired_electron_number
+      _Chem_comp_atom.Align
+      _Chem_comp_atom.Aromatic_flag
+      _Chem_comp_atom.Leaving_atom_flag
+      _Chem_comp_atom.Substruct_code
+      _Chem_comp_atom.Ionizable
+      _Chem_comp_atom.Drawing_2D_coord_x
+      _Chem_comp_atom.Drawing_2D_coord_y
+      _Chem_comp_atom.Model_Cartn_x
+      _Chem_comp_atom.Model_Cartn_x_esd
+      _Chem_comp_atom.Model_Cartn_y
+      _Chem_comp_atom.Model_Cartn_y_esd
+      _Chem_comp_atom.Model_Cartn_z
+      _Chem_comp_atom.Model_Cartn_z_esd
+      _Chem_comp_atom.Model_Cartn_x_ideal
+      _Chem_comp_atom.Model_Cartn_y_ideal
+      _Chem_comp_atom.Model_Cartn_z_ideal
+      _Chem_comp_atom.PDBX_ordinal
+      _Chem_comp_atom.Details
+      _Chem_comp_atom.Entry_ID
+      _Chem_comp_atom.Comp_ID
+
+      N     N     N     N     .   N   .   .   N   0   .   .   .   1   N   N   .   .   .   .   -4.206   .   7.451    .   -17.843   .   0.814    0.974    0.670    1    .   30999   DPR
+      CA    CA    CA    CA    .   C   .   .   R   0   .   .   .   1   N   N   .   .   .   .   -3.893   .   8.671    .   -18.566   .   -0.014   -0.244   0.598    2    .   30999   DPR
+      CB    CB    CB    CB    .   C   .   .   N   0   .   .   .   1   N   N   .   .   .   .   -5.242   .   9.255    .   -18.952   .   0.728    -1.247   -0.310   3    .   30999   DPR
+      CG    CG    CG    CG    .   C   .   .   N   0   .   .   .   1   N   N   .   .   .   .   -6.239   .   8.113    .   -18.840   .   2.199    -0.759   -0.242   4    .   30999   DPR
+      CD    CD    CD    CD    .   C   .   .   N   0   .   .   .   1   N   N   .   .   .   .   -5.571   .   6.986    .   -18.070   .   2.016    0.777    -0.168   5    .   30999   DPR
+      C     C     C     C     .   C   .   .   N   0   .   .   .   1   N   N   .   .   .   .   -2.999   .   8.379    .   -19.774   .   -1.360   0.086    0.006    6    .   30999   DPR
+      O     O     O     O     .   O   .   .   N   0   .   .   .   1   N   N   .   .   .   .   -3.431   .   7.734    .   -20.727   .   -1.509   1.105    -0.626   7    .   30999   DPR
+      OXT   OXT   OXT   OXT   .   O   .   .   N   0   .   .   .   1   N   Y   .   .   .   .   .        .   .        .   .         .   -2.393   -0.753   0.180    8    .   30999   DPR
+      H     H     H     HT1   .   H   .   .   N   0   .   .   .   1   N   Y   .   .   .   .   -3.576   .   6.736    .   -18.147   .   0.293    1.784    0.370    9    .   30999   DPR
+      HA    HA    HA    HA    .   H   .   .   N   0   .   .   .   1   N   N   .   .   .   .   -3.318   .   9.388    .   -17.962   .   -0.138   -0.667   1.595    10   .   30999   DPR
+      HB2   HB2   HB2   HB1   .   H   .   .   N   0   .   .   .   1   N   N   .   .   .   .   -5.517   .   10.078   .   -18.276   .   0.639    -2.260   0.083    11   .   30999   DPR
+      HB3   HB3   HB3   HB2   .   H   .   .   N   0   .   .   .   1   N   N   .   .   .   .   -5.215   .   9.648    .   -19.979   .   0.351    -1.194   -1.331   12   .   30999   DPR
+      HG2   HG2   HG2   HG1   .   H   .   .   N   0   .   .   .   1   N   N   .   .   .   .   -7.140   .   8.451    .   -18.307   .   2.695    -1.137   0.653    13   .   30999   DPR
+      HG3   HG3   HG3   HG2   .   H   .   .   N   0   .   .   .   1   N   N   .   .   .   .   -6.527   .   7.765    .   -19.843   .   2.747    -1.045   -1.140   14   .   30999   DPR
+      HD2   HD2   HD2   HD1   .   H   .   .   N   0   .   .   .   1   N   N   .   .   .   .   -5.580   .   6.051    .   -18.650   .   1.855    1.188    -1.165   15   .   30999   DPR
+      HD3   HD3   HD3   HD2   .   H   .   .   N   0   .   .   .   1   N   N   .   .   .   .   -6.088   .   6.796    .   -17.118   .   2.885    1.241    0.299    16   .   30999   DPR
+      HXT   HXT   HXT   HXT   .   H   .   .   N   0   .   .   .   1   N   Y   .   .   .   .   .        .   .        .   .         .   -3.237   -0.500   -0.219   17   .   30999   DPR
+   stop_
+
+   loop_
+      _Chem_comp_bond.ID
+      _Chem_comp_bond.Type
+      _Chem_comp_bond.Value_order
+      _Chem_comp_bond.Atom_ID_1
+      _Chem_comp_bond.Atom_ID_2
+      _Chem_comp_bond.Aromatic_flag
+      _Chem_comp_bond.Stereo_config
+      _Chem_comp_bond.Ordinal
+      _Chem_comp_bond.Details
+      _Chem_comp_bond.Entry_ID
+      _Chem_comp_bond.Comp_ID
+
+      1    .   SING   N     CA    N   N   1    .   30999   DPR
+      2    .   SING   N     CD    N   N   2    .   30999   DPR
+      3    .   SING   N     H     N   N   3    .   30999   DPR
+      4    .   SING   CA    CB    N   N   4    .   30999   DPR
+      5    .   SING   CA    C     N   N   5    .   30999   DPR
+      6    .   SING   CA    HA    N   N   6    .   30999   DPR
+      7    .   SING   CB    CG    N   N   7    .   30999   DPR
+      8    .   SING   CB    HB2   N   N   8    .   30999   DPR
+      9    .   SING   CB    HB3   N   N   9    .   30999   DPR
+      10   .   SING   CG    CD    N   N   10   .   30999   DPR
+      11   .   SING   CG    HG2   N   N   11   .   30999   DPR
+      12   .   SING   CG    HG3   N   N   12   .   30999   DPR
+      13   .   SING   CD    HD2   N   N   13   .   30999   DPR
+      14   .   SING   CD    HD3   N   N   14   .   30999   DPR
+      15   .   DOUB   C     O     N   N   15   .   30999   DPR
+      16   .   SING   C     OXT   N   N   16   .   30999   DPR
+      17   .   SING   OXT   HXT   N   N   17   .   30999   DPR
+   stop_
+save_
+
+save_chem_comp_DVA
+   _Chem_comp.Sf_category                       chem_comp
+   _Chem_comp.Sf_framecode                      chem_comp_DVA
+   _Chem_comp.Entry_ID                          30999
+   _Chem_comp.ID                                DVA
+   _Chem_comp.Provenance                        PDB
+   _Chem_comp.Name                              D-VALINE
+   _Chem_comp.Type                              'D-PEPTIDE LINKING'
+   _Chem_comp.BMRB_code                         DVA
+   _Chem_comp.PDB_code                          DVA
+   _Chem_comp.Ambiguous_flag                    no
+   _Chem_comp.Initial_date                      2020-07-10
+   _Chem_comp.Modified_date                     2020-07-10
+   _Chem_comp.Release_status                    REL
+   _Chem_comp.Replaced_by                       .
+   _Chem_comp.Replaces                          .
+   _Chem_comp.One_letter_code                   V
+   _Chem_comp.Three_letter_code                 DVA
+   _Chem_comp.Number_atoms_all                  19
+   _Chem_comp.Number_atoms_nh                   8
+   _Chem_comp.Atom_nomenclature_source          .
+   _Chem_comp.PubChem_code                      .
+   _Chem_comp.Subcomponent_list                 .
+   _Chem_comp.InChI_code                        InChI=1S/C5H11NO2/c1-3(2)4(6)5(7)8/h3-4H,6H2,1-2H3,(H,7,8)/t4-/m1/s1
+   _Chem_comp.Mon_nstd_flag                     no
+   _Chem_comp.Mon_nstd_class                    .
+   _Chem_comp.Mon_nstd_details                  .
+   _Chem_comp.Mon_nstd_parent                   .
+   _Chem_comp.Mon_nstd_parent_comp_ID           .
+   _Chem_comp.Std_deriv_one_letter_code         .
+   _Chem_comp.Std_deriv_three_letter_code       .
+   _Chem_comp.Std_deriv_BMRB_code               .
+   _Chem_comp.Std_deriv_PDB_code                .
+   _Chem_comp.Std_deriv_chem_comp_name          .
+   _Chem_comp.Synonyms                          .
+   _Chem_comp.Formal_charge                     0
+   _Chem_comp.Paramagnetic                      .
+   _Chem_comp.Aromatic                          no
+   _Chem_comp.Formula                           'C5 H11 N O2'
+   _Chem_comp.Formula_weight                    117.146
+   _Chem_comp.Formula_mono_iso_wt_nat           .
+   _Chem_comp.Formula_mono_iso_wt_13C           .
+   _Chem_comp.Formula_mono_iso_wt_15N           .
+   _Chem_comp.Formula_mono_iso_wt_13C_15N       .
+   _Chem_comp.Image_file_name                   .
+   _Chem_comp.Image_file_format                 .
+   _Chem_comp.Topo_file_name                    .
+   _Chem_comp.Topo_file_format                  .
+   _Chem_comp.Struct_file_name                  .
+   _Chem_comp.Struct_file_format                .
+   _Chem_comp.Stereochem_param_file_name        .
+   _Chem_comp.Stereochem_param_file_format      .
+   _Chem_comp.Model_details                     .
+   _Chem_comp.Model_erf                         .
+   _Chem_comp.Model_source                      .
+   _Chem_comp.Model_coordinates_details         .
+   _Chem_comp.Model_coordinates_missing_flag    no
+   _Chem_comp.Ideal_coordinates_details         .
+   _Chem_comp.Ideal_coordinates_missing_flag    no
+   _Chem_comp.Model_coordinates_db_code         1A7Y
+   _Chem_comp.Processing_site                   EBI
+   _Chem_comp.Vendor                            .
+   _Chem_comp.Vendor_product_code               .
+   _Chem_comp.Details                           .
+   _Chem_comp.DB_query_date                     .
+   _Chem_comp.DB_last_query_revised_last_date   .
+
+   loop_
+      _Chem_comp_descriptor.Descriptor
+      _Chem_comp_descriptor.Type
+      _Chem_comp_descriptor.Program
+      _Chem_comp_descriptor.Program_version
+      _Chem_comp_descriptor.Entry_ID
+      _Chem_comp_descriptor.Comp_ID
+
+      CC(C)C(C(=O)O)N                                                        SMILES             'OpenEye OEToolkits'   1.5.0   30999   DVA
+      CC(C)[C@@H](N)C(O)=O                                                   SMILES_CANONICAL   CACTVS                 3.341   30999   DVA
+      CC(C)[C@H](C(=O)O)N                                                    SMILES_CANONICAL   'OpenEye OEToolkits'   1.5.0   30999   DVA
+      CC(C)[CH](N)C(O)=O                                                     SMILES             CACTVS                 3.341   30999   DVA
+      InChI=1S/C5H11NO2/c1-3(2)4(6)5(7)8/h3-4H,6H2,1-2H3,(H,7,8)/t4-/m1/s1   InChI              InChI                  1.03    30999   DVA
+      KZSNJWFQEVHDMF-SCSAIBSYSA-N                                            InChIKey           InChI                  1.03    30999   DVA
+      O=C(O)C(N)C(C)C                                                        SMILES             ACDLabs                10.04   30999   DVA
+   stop_
+
+   loop_
+      _Chem_comp_identifier.Identifier
+      _Chem_comp_identifier.Type
+      _Chem_comp_identifier.Program
+      _Chem_comp_identifier.Program_version
+      _Chem_comp_identifier.Entry_ID
+      _Chem_comp_identifier.Comp_ID
+
+      '(2R)-2-amino-3-methyl-butanoic acid'   'SYSTEMATIC NAME'   'OpenEye OEToolkits'   1.5.0   30999   DVA
+      D-valine                                'SYSTEMATIC NAME'   ACDLabs                10.04   30999   DVA
+   stop_
+
+   loop_
+      _Chem_comp_atom.Atom_ID
+      _Chem_comp_atom.BMRB_code
+      _Chem_comp_atom.PDB_atom_ID
+      _Chem_comp_atom.Alt_atom_ID
+      _Chem_comp_atom.Auth_atom_ID
+      _Chem_comp_atom.Type_symbol
+      _Chem_comp_atom.Isotope_number
+      _Chem_comp_atom.Chirality
+      _Chem_comp_atom.Stereo_config
+      _Chem_comp_atom.Charge
+      _Chem_comp_atom.Partial_charge
+      _Chem_comp_atom.Oxidation_number
+      _Chem_comp_atom.Unpaired_electron_number
+      _Chem_comp_atom.Align
+      _Chem_comp_atom.Aromatic_flag
+      _Chem_comp_atom.Leaving_atom_flag
+      _Chem_comp_atom.Substruct_code
+      _Chem_comp_atom.Ionizable
+      _Chem_comp_atom.Drawing_2D_coord_x
+      _Chem_comp_atom.Drawing_2D_coord_y
+      _Chem_comp_atom.Model_Cartn_x
+      _Chem_comp_atom.Model_Cartn_x_esd
+      _Chem_comp_atom.Model_Cartn_y
+      _Chem_comp_atom.Model_Cartn_y_esd
+      _Chem_comp_atom.Model_Cartn_z
+      _Chem_comp_atom.Model_Cartn_z_esd
+      _Chem_comp_atom.Model_Cartn_x_ideal
+      _Chem_comp_atom.Model_Cartn_y_ideal
+      _Chem_comp_atom.Model_Cartn_z_ideal
+      _Chem_comp_atom.PDBX_ordinal
+      _Chem_comp_atom.Details
+      _Chem_comp_atom.Entry_ID
+      _Chem_comp_atom.Comp_ID
+
+      N      N      N      N      .   N   .   .   N   0   .   .   .   1   N   N   .   .   .   .   13.977   .   9.697    .   9.219   .   -1.897   -0.306   0.229    1    .   30999   DVA
+      CA     CA     CA     CA     .   C   .   .   R   0   .   .   .   1   N   N   .   .   .   .   14.400   .   10.046   .   7.850   .   -0.441   -0.465   0.124    2    .   30999   DVA
+      CB     CB     CB     CB     .   C   .   .   N   0   .   .   .   1   N   N   .   .   .   .   15.381   .   8.997    .   7.328   .   0.243    0.390    1.191    3    .   30999   DVA
+      CG1    CG1    CG1    CG1    .   C   .   .   N   0   .   .   .   1   N   N   .   .   .   .   14.845   .   7.571    .   7.461   .   -0.219   -0.056   2.579    4    .   30999   DVA
+      CG2    CG2    CG2    CG2    .   C   .   .   N   0   .   .   .   1   N   N   .   .   .   .   15.687   .   9.292    .   5.851   .   1.760    0.224    1.082    5    .   30999   DVA
+      C      C      C      C      .   C   .   .   N   0   .   .   .   1   N   N   .   .   .   .   15.062   .   11.430   .   7.851   .   0.015    -0.025   -1.242   6    .   30999   DVA
+      O      O      O      O      .   O   .   .   N   0   .   .   .   1   N   N   .   .   .   .   16.133   .   11.611   .   8.444   .   -0.591   0.836    -1.833   7    .   30999   DVA
+      OXT    OXT    OXT    OXT    .   O   .   .   N   0   .   .   .   1   N   Y   .   .   .   .   14.478   .   12.426   .   7.155   .   1.096    -0.590   -1.803   8    .   30999   DVA
+      H      H      H      1HN    .   H   .   .   N   0   .   .   .   1   N   N   .   .   .   .   13.322   .   10.397   .   9.567   .   -2.300   -0.801   -0.552   9    .   30999   DVA
+      H2     H2     H2     2HN    .   H   .   .   N   0   .   .   .   1   N   Y   .   .   .   .   14.771   .   9.570    .   9.845   .   -2.093   0.673    0.083    10   .   30999   DVA
+      HA     HA     HA     HA     .   H   .   .   N   0   .   .   .   1   N   N   .   .   .   .   13.506   .   10.069   .   7.183   .   -0.178   -1.512   0.275    11   .   30999   DVA
+      HB     HB     HB     HB     .   H   .   .   N   0   .   .   .   1   N   N   .   .   .   .   16.305   .   9.060    .   7.948   .   -0.018   1.437    1.040    12   .   30999   DVA
+      HG11   HG11   HG11   1HG1   .   H   .   .   N   0   .   .   .   0   N   N   .   .   .   .   15.560   .   6.805    .   7.080   .   0.268    0.554    3.339    13   .   30999   DVA
+      HG12   HG12   HG12   2HG1   .   H   .   .   N   0   .   .   .   0   N   N   .   .   .   .   14.547   .   7.351    .   8.512   .   -1.300   0.062    2.656    14   .   30999   DVA
+      HG13   HG13   HG13   3HG1   .   H   .   .   N   0   .   .   .   0   N   N   .   .   .   .   13.850   .   7.469    .   6.967   .   0.042    -1.103   2.730    15   .   30999   DVA
+      HG21   HG21   HG21   1HG2   .   H   .   .   N   0   .   .   .   0   N   N   .   .   .   .   16.402   .   8.526    .   5.470   .   2.023    -0.822   1.233    16   .   30999   DVA
+      HG22   HG22   HG22   2HG2   .   H   .   .   N   0   .   .   .   0   N   N   .   .   .   .   14.763   .   9.356    .   5.230   .   2.091    0.542    0.093    17   .   30999   DVA
+      HG23   HG23   HG23   3HG2   .   H   .   .   N   0   .   .   .   0   N   N   .   .   .   .   16.053   .   10.333   .   5.692   .   2.248    0.834    1.842    18   .   30999   DVA
+      HXT    HXT    HXT    HXT    .   H   .   .   N   0   .   .   .   1   N   Y   .   .   .   .   14.887   .   13.283   .   7.155   .   1.389    -0.308   -2.680   19   .   30999   DVA
+   stop_
+
+   loop_
+      _Chem_comp_bond.ID
+      _Chem_comp_bond.Type
+      _Chem_comp_bond.Value_order
+      _Chem_comp_bond.Atom_ID_1
+      _Chem_comp_bond.Atom_ID_2
+      _Chem_comp_bond.Aromatic_flag
+      _Chem_comp_bond.Stereo_config
+      _Chem_comp_bond.Ordinal
+      _Chem_comp_bond.Details
+      _Chem_comp_bond.Entry_ID
+      _Chem_comp_bond.Comp_ID
+
+      1    .   SING   N     CA     N   N   1    .   30999   DVA
+      2    .   SING   N     H      N   N   2    .   30999   DVA
+      3    .   SING   N     H2     N   N   3    .   30999   DVA
+      4    .   SING   CA    CB     N   N   4    .   30999   DVA
+      5    .   SING   CA    C      N   N   5    .   30999   DVA
+      6    .   SING   CA    HA     N   N   6    .   30999   DVA
+      7    .   SING   CB    CG1    N   N   7    .   30999   DVA
+      8    .   SING   CB    CG2    N   N   8    .   30999   DVA
+      9    .   SING   CB    HB     N   N   9    .   30999   DVA
+      10   .   SING   CG1   HG11   N   N   10   .   30999   DVA
+      11   .   SING   CG1   HG12   N   N   11   .   30999   DVA
+      12   .   SING   CG1   HG13   N   N   12   .   30999   DVA
+      13   .   SING   CG2   HG21   N   N   13   .   30999   DVA
+      14   .   SING   CG2   HG22   N   N   14   .   30999   DVA
+      15   .   SING   CG2   HG23   N   N   15   .   30999   DVA
+      16   .   DOUB   C     O      N   N   16   .   30999   DVA
+      17   .   SING   C     OXT    N   N   17   .   30999   DVA
+      18   .   SING   OXT   HXT    N   N   18   .   30999   DVA
+   stop_
+save_
+
+save_chem_comp_MLE
+   _Chem_comp.Sf_category                       chem_comp
+   _Chem_comp.Sf_framecode                      chem_comp_MLE
+   _Chem_comp.Entry_ID                          30999
+   _Chem_comp.ID                                MLE
+   _Chem_comp.Provenance                        PDB
+   _Chem_comp.Name                              N-METHYLLEUCINE
+   _Chem_comp.Type                              'L-PEPTIDE LINKING'
+   _Chem_comp.BMRB_code                         MLE
+   _Chem_comp.PDB_code                          MLE
+   _Chem_comp.Ambiguous_flag                    no
+   _Chem_comp.Initial_date                      2020-07-10
+   _Chem_comp.Modified_date                     2020-07-10
+   _Chem_comp.Release_status                    REL
+   _Chem_comp.Replaced_by                       .
+   _Chem_comp.Replaces                          .
+   _Chem_comp.One_letter_code                   L
+   _Chem_comp.Three_letter_code                 MLE
+   _Chem_comp.Number_atoms_all                  25
+   _Chem_comp.Number_atoms_nh                   10
+   _Chem_comp.Atom_nomenclature_source          .
+   _Chem_comp.PubChem_code                      .
+   _Chem_comp.Subcomponent_list                 .
+   _Chem_comp.InChI_code                        InChI=1S/C7H15NO2/c1-5(2)4-6(8-3)7(9)10/h5-6,8H,4H2,1-3H3,(H,9,10)/t6-/m0/s1
+   _Chem_comp.Mon_nstd_flag                     no
+   _Chem_comp.Mon_nstd_class                    .
+   _Chem_comp.Mon_nstd_details                  .
+   _Chem_comp.Mon_nstd_parent                   .
+   _Chem_comp.Mon_nstd_parent_comp_ID           LEU
+   _Chem_comp.Std_deriv_one_letter_code         .
+   _Chem_comp.Std_deriv_three_letter_code       .
+   _Chem_comp.Std_deriv_BMRB_code               .
+   _Chem_comp.Std_deriv_PDB_code                .
+   _Chem_comp.Std_deriv_chem_comp_name          .
+   _Chem_comp.Synonyms                          .
+   _Chem_comp.Formal_charge                     0
+   _Chem_comp.Paramagnetic                      .
+   _Chem_comp.Aromatic                          no
+   _Chem_comp.Formula                           'C7 H15 N O2'
+   _Chem_comp.Formula_weight                    145.199
+   _Chem_comp.Formula_mono_iso_wt_nat           .
+   _Chem_comp.Formula_mono_iso_wt_13C           .
+   _Chem_comp.Formula_mono_iso_wt_15N           .
+   _Chem_comp.Formula_mono_iso_wt_13C_15N       .
+   _Chem_comp.Image_file_name                   .
+   _Chem_comp.Image_file_format                 .
+   _Chem_comp.Topo_file_name                    .
+   _Chem_comp.Topo_file_format                  .
+   _Chem_comp.Struct_file_name                  .
+   _Chem_comp.Struct_file_format                .
+   _Chem_comp.Stereochem_param_file_name        .
+   _Chem_comp.Stereochem_param_file_format      .
+   _Chem_comp.Model_details                     .
+   _Chem_comp.Model_erf                         .
+   _Chem_comp.Model_source                      .
+   _Chem_comp.Model_coordinates_details         .
+   _Chem_comp.Model_coordinates_missing_flag    no
+   _Chem_comp.Ideal_coordinates_details         Corina
+   _Chem_comp.Ideal_coordinates_missing_flag    no
+   _Chem_comp.Model_coordinates_db_code         .
+   _Chem_comp.Processing_site                   RCSB
+   _Chem_comp.Vendor                            .
+   _Chem_comp.Vendor_product_code               .
+   _Chem_comp.Details                           .
+   _Chem_comp.DB_query_date                     .
+   _Chem_comp.DB_last_query_revised_last_date   .
+
+   loop_
+      _Chem_comp_descriptor.Descriptor
+      _Chem_comp_descriptor.Type
+      _Chem_comp_descriptor.Program
+      _Chem_comp_descriptor.Program_version
+      _Chem_comp_descriptor.Entry_ID
+      _Chem_comp_descriptor.Comp_ID
+
+      CC(C)CC(C(=O)O)NC                                                              SMILES             'OpenEye OEToolkits'   1.7.0   30999   MLE
+      CC(C)C[C@@H](C(=O)O)NC                                                         SMILES_CANONICAL   'OpenEye OEToolkits'   1.7.0   30999   MLE
+      CN[C@@H](CC(C)C)C(O)=O                                                         SMILES_CANONICAL   CACTVS                 3.370   30999   MLE
+      CN[CH](CC(C)C)C(O)=O                                                           SMILES             CACTVS                 3.370   30999   MLE
+      InChI=1S/C7H15NO2/c1-5(2)4-6(8-3)7(9)10/h5-6,8H,4H2,1-3H3,(H,9,10)/t6-/m0/s1   InChI              InChI                  1.03    30999   MLE
+      O=C(O)C(NC)CC(C)C                                                              SMILES             ACDLabs                12.01   30999   MLE
+      XJODGRWDFZVTKW-LURJTMIESA-N                                                    InChIKey           InChI                  1.03    30999   MLE
+   stop_
+
+   loop_
+      _Chem_comp_identifier.Identifier
+      _Chem_comp_identifier.Type
+      _Chem_comp_identifier.Program
+      _Chem_comp_identifier.Program_version
+      _Chem_comp_identifier.Entry_ID
+      _Chem_comp_identifier.Comp_ID
+
+      '(2S)-4-methyl-2-(methylamino)pentanoic acid'   'SYSTEMATIC NAME'   'OpenEye OEToolkits'   1.7.0   30999   MLE
+      N-methyl-L-leucine                              'SYSTEMATIC NAME'   ACDLabs                12.01   30999   MLE
+   stop_
+
+   loop_
+      _Chem_comp_atom.Atom_ID
+      _Chem_comp_atom.BMRB_code
+      _Chem_comp_atom.PDB_atom_ID
+      _Chem_comp_atom.Alt_atom_ID
+      _Chem_comp_atom.Auth_atom_ID
+      _Chem_comp_atom.Type_symbol
+      _Chem_comp_atom.Isotope_number
+      _Chem_comp_atom.Chirality
+      _Chem_comp_atom.Stereo_config
+      _Chem_comp_atom.Charge
+      _Chem_comp_atom.Partial_charge
+      _Chem_comp_atom.Oxidation_number
+      _Chem_comp_atom.Unpaired_electron_number
+      _Chem_comp_atom.Align
+      _Chem_comp_atom.Aromatic_flag
+      _Chem_comp_atom.Leaving_atom_flag
+      _Chem_comp_atom.Substruct_code
+      _Chem_comp_atom.Ionizable
+      _Chem_comp_atom.Drawing_2D_coord_x
+      _Chem_comp_atom.Drawing_2D_coord_y
+      _Chem_comp_atom.Model_Cartn_x
+      _Chem_comp_atom.Model_Cartn_x_esd
+      _Chem_comp_atom.Model_Cartn_y
+      _Chem_comp_atom.Model_Cartn_y_esd
+      _Chem_comp_atom.Model_Cartn_z
+      _Chem_comp_atom.Model_Cartn_z_esd
+      _Chem_comp_atom.Model_Cartn_x_ideal
+      _Chem_comp_atom.Model_Cartn_y_ideal
+      _Chem_comp_atom.Model_Cartn_z_ideal
+      _Chem_comp_atom.PDBX_ordinal
+      _Chem_comp_atom.Details
+      _Chem_comp_atom.Entry_ID
+      _Chem_comp_atom.Comp_ID
+
+      N      N      N      N      .   N   .   .   N   0   .   .   .   1   N   N   .   .   .   .   51.861   .   48.436   .   17.324   .   -0.519   -1.417   -0.519   1    .   30999   MLE
+      CN     CN     CN     CN     .   C   .   .   N   0   .   .   .   1   N   N   .   .   .   .   50.979   .   48.816   .   16.164   .   -1.155   -2.413   0.354    2    .   30999   MLE
+      CA     CA     CA     CA     .   C   .   .   S   0   .   .   .   1   N   N   .   .   .   .   52.977   .   47.516   .   17.110   .   -0.394   -0.122   0.163    3    .   30999   MLE
+      CB     CB     CB     CB     .   C   .   .   N   0   .   .   .   1   N   N   .   .   .   .   52.370   .   46.213   .   16.570   .   0.777    0.659    -0.436   4    .   30999   MLE
+      CG     CG     CG     CG     .   C   .   .   N   0   .   .   .   1   N   N   .   .   .   .   51.273   .   45.532   .   17.410   .   2.086    -0.071   -0.132   5    .   30999   MLE
+      CD1    CD1    CD1    CD1    .   C   .   .   N   0   .   .   .   1   N   N   .   .   .   .   50.705   .   44.360   .   16.658   .   3.241    0.631    -0.850   6    .   30999   MLE
+      CD2    CD2    CD2    CD2    .   C   .   .   N   0   .   .   .   1   N   N   .   .   .   .   51.839   .   45.133   .   18.760   .   2.340    -0.058   1.376    7    .   30999   MLE
+      C      C      C      C      .   C   .   .   N   0   .   .   .   1   N   N   .   .   .   .   54.055   .   48.096   .   16.204   .   -1.667   0.665    -0.014   8    .   30999   MLE
+      O      O      O      O      .   O   .   .   N   0   .   .   .   1   N   N   .   .   .   .   53.968   .   49.218   .   15.705   .   -2.364   0.475    -0.982   9    .   30999   MLE
+      OXT    OXT    OXT    OXT    .   O   .   .   N   0   .   .   .   1   N   Y   .   .   .   .   55.144   .   47.362   .   15.998   .   -2.025   1.577    0.903    10   .   30999   MLE
+      H      H      H      HN     .   H   .   .   N   0   .   .   .   1   N   Y   .   .   .   .   52.262   .   49.288   .   17.662   .   0.378    -1.742   -0.845   11   .   30999   MLE
+      HN1    HN1    HN1    HN1    .   H   .   .   N   0   .   .   .   1   N   N   .   .   .   .   50.198   .   49.510   .   16.508   .   -0.510   -2.609   1.211    12   .   30999   MLE
+      HN2    HN2    HN2    HN2    .   H   .   .   N   0   .   .   .   1   N   N   .   .   .   .   51.586   .   49.303   .   15.386   .   -2.115   -2.032   0.701    13   .   30999   MLE
+      HN3    HN3    HN3    HN3    .   H   .   .   N   0   .   .   .   1   N   N   .   .   .   .   50.509   .   47.912   .   15.750   .   -1.311   -3.337   -0.203   14   .   30999   MLE
+      HA     HA     HA     HA     .   H   .   .   N   0   .   .   .   1   N   N   .   .   .   .   53.509   .   47.325   .   18.054   .   -0.214   -0.287   1.226    15   .   30999   MLE
+      HB2    HB2    HB2    HB1    .   H   .   .   N   0   .   .   .   1   N   N   .   .   .   .   51.922   .   46.451   .   15.594   .   0.647    0.737    -1.516   16   .   30999   MLE
+      HB3    HB3    HB3    HB2    .   H   .   .   N   0   .   .   .   1   N   N   .   .   .   .   53.195   .   45.491   .   16.479   .   0.808    1.658    -0.001   17   .   30999   MLE
+      HG     HG     HG     HG     .   H   .   .   N   0   .   .   .   1   N   N   .   .   .   .   50.446   .   46.234   .   17.592   .   2.017    -1.102   -0.480   18   .   30999   MLE
+      HD11   HD11   HD11   HD11   .   H   .   .   N   0   .   .   .   0   N   N   .   .   .   .   49.923   .   43.879   .   17.264   .   4.160    0.065    -0.700   19   .   30999   MLE
+      HD12   HD12   HD12   HD12   .   H   .   .   N   0   .   .   .   0   N   N   .   .   .   .   50.271   .   44.709   .   15.709   .   3.022    0.694    -1.916   20   .   30999   MLE
+      HD13   HD13   HD13   HD13   .   H   .   .   N   0   .   .   .   0   N   N   .   .   .   .   51.506   .   43.635   .   16.451   .   3.363    1.636    -0.444   21   .   30999   MLE
+      HD21   HD21   HD21   HD21   .   H   .   .   N   0   .   .   .   0   N   N   .   .   .   .   51.054   .   44.647   .   19.358   .   1.518    -0.558   1.888    22   .   30999   MLE
+      HD22   HD22   HD22   HD22   .   H   .   .   N   0   .   .   .   0   N   N   .   .   .   .   52.675   .   44.433   .   18.615   .   3.273    -0.578   1.593    23   .   30999   MLE
+      HD23   HD23   HD23   HD23   .   H   .   .   N   0   .   .   .   0   N   N   .   .   .   .   52.198   .   46.030   .   19.286   .   2.410    0.973    1.724    24   .   30999   MLE
+      HXT    HXT    HXT    HXT    .   H   .   .   N   0   .   .   .   1   N   Y   .   .   .   .   55.752   .   47.844   .   15.450   .   -2.850   2.057    0.746    25   .   30999   MLE
+   stop_
+
+   loop_
+      _Chem_comp_bond.ID
+      _Chem_comp_bond.Type
+      _Chem_comp_bond.Value_order
+      _Chem_comp_bond.Atom_ID_1
+      _Chem_comp_bond.Atom_ID_2
+      _Chem_comp_bond.Aromatic_flag
+      _Chem_comp_bond.Stereo_config
+      _Chem_comp_bond.Ordinal
+      _Chem_comp_bond.Details
+      _Chem_comp_bond.Entry_ID
+      _Chem_comp_bond.Comp_ID
+
+      1    .   SING   N     CN     N   N   1    .   30999   MLE
+      2    .   SING   N     CA     N   N   2    .   30999   MLE
+      3    .   SING   N     H      N   N   3    .   30999   MLE
+      4    .   SING   CN    HN1    N   N   4    .   30999   MLE
+      5    .   SING   CN    HN2    N   N   5    .   30999   MLE
+      6    .   SING   CN    HN3    N   N   6    .   30999   MLE
+      7    .   SING   CA    CB     N   N   7    .   30999   MLE
+      8    .   SING   CA    C      N   N   8    .   30999   MLE
+      9    .   SING   CA    HA     N   N   9    .   30999   MLE
+      10   .   SING   CB    CG     N   N   10   .   30999   MLE
+      11   .   SING   CB    HB2    N   N   11   .   30999   MLE
+      12   .   SING   CB    HB3    N   N   12   .   30999   MLE
+      13   .   SING   CG    CD1    N   N   13   .   30999   MLE
+      14   .   SING   CG    CD2    N   N   14   .   30999   MLE
+      15   .   SING   CG    HG     N   N   15   .   30999   MLE
+      16   .   SING   CD1   HD11   N   N   16   .   30999   MLE
+      17   .   SING   CD1   HD12   N   N   17   .   30999   MLE
+      18   .   SING   CD1   HD13   N   N   18   .   30999   MLE
+      19   .   SING   CD2   HD21   N   N   19   .   30999   MLE
+      20   .   SING   CD2   HD22   N   N   20   .   30999   MLE
+      21   .   SING   CD2   HD23   N   N   21   .   30999   MLE
+      22   .   DOUB   C     O      N   N   22   .   30999   MLE
+      23   .   SING   C     OXT    N   N   23   .   30999   MLE
+      24   .   SING   OXT   HXT    N   N   24   .   30999   MLE
+   stop_
+save_
+
+
+#####################################
+#  Sample contents and methodology  #
+#####################################
+	 
+    ########################
+    #  Sample description  #
+    ########################
+save_sample_1
+   _Sample.Sf_category                      sample
+   _Sample.Sf_framecode                     sample_1
+   _Sample.Entry_ID                         30999
+   _Sample.ID                               1
+   _Sample.Name                             .
+   _Sample.Type                             solution
+   _Sample.Sub_type                         .
+   _Sample.Details                          '6 mg/mL peptide, 0.03 % TMS, DMSO'
+   _Sample.Aggregate_sample_number          .
+   _Sample.Solvent_system                   DMSO
+   _Sample.Preparation_date                 .
+   _Sample.Preparation_expiration_date      .
+   _Sample.Polycrystallization_protocol     .
+   _Sample.Single_crystal_protocol          .
+   _Sample.Crystal_grow_apparatus           .
+   _Sample.Crystal_grow_atmosphere          .
+   _Sample.Crystal_grow_details             .
+   _Sample.Crystal_grow_method              .
+   _Sample.Crystal_grow_method_cit_ID       .
+   _Sample.Crystal_grow_pH                  .
+   _Sample.Crystal_grow_pH_range            .
+   _Sample.Crystal_grow_pressure            .
+   _Sample.Crystal_grow_pressure_esd        .
+   _Sample.Crystal_grow_seeding             .
+   _Sample.Crystal_grow_seeding_cit_ID      .
+   _Sample.Crystal_grow_temp                .
+   _Sample.Crystal_grow_temp_details        .
+   _Sample.Crystal_grow_temp_esd            .
+   _Sample.Crystal_grow_time                .
+   _Sample.Oriented_sample_prep_protocol    .
+   _Sample.Lyophilization_cryo_protectant   .
+   _Sample.Storage_protocol                 .
+
+   loop_
+      _Sample_component.ID
+      _Sample_component.Mol_common_name
+      _Sample_component.Isotopic_labeling
+      _Sample_component.Assembly_ID
+      _Sample_component.Assembly_label
+      _Sample_component.Entity_ID
+      _Sample_component.Entity_label
+      _Sample_component.Product_ID
+      _Sample_component.Type
+      _Sample_component.Concentration_val
+      _Sample_component.Concentration_val_min
+      _Sample_component.Concentration_val_max
+      _Sample_component.Concentration_val_units
+      _Sample_component.Concentration_val_err
+      _Sample_component.Vendor
+      _Sample_component.Vendor_product_name
+      _Sample_component.Vendor_product_code
+      _Sample_component.Entry_ID
+      _Sample_component.Sample_ID
+
+      1   peptide   'natural abundance'   .   .   1   $entity_1   .   .   6      .   .   mg/mL   2       .   .   .   30999   1
+      2   TMS       'natural abundance'   .   .   .   .           .   .   0.03   .   .   %       0.003   .   .   .   30999   1
+   stop_
+save_
+
+
+#######################
+#  Sample conditions  #
+#######################
+save_sample_conditions_1
+   _Sample_condition_list.Sf_category    sample_conditions
+   _Sample_condition_list.Sf_framecode   sample_conditions_1
+   _Sample_condition_list.Entry_ID       30999
+   _Sample_condition_list.ID             1
+   _Sample_condition_list.Name           .
+   _Sample_condition_list.Details        .
+
+   loop_
+      _Sample_condition_variable.Type
+      _Sample_condition_variable.Val
+      _Sample_condition_variable.Val_err
+      _Sample_condition_variable.Val_units
+      _Sample_condition_variable.Entry_ID
+      _Sample_condition_variable.Sample_condition_list_ID
+
+      'ionic strength'   0     .   'Not defined'   30999   1
+      pressure           1     .   atm             30999   1
+      temperature        293   1   K               30999   1
+   stop_
+save_
+
+
+############################
+#  Computer software used  #
+############################
+save_software_1
+   _Software.Sf_category    software
+   _Software.Sf_framecode   software_1
+   _Software.Entry_ID       30999
+   _Software.ID             1
+   _Software.Type           .
+   _Software.Name           CYANA
+   _Software.Version        3.98.13
+   _Software.DOI            .
+   _Software.Details        .
+
+   loop_
+      _Vendor.Name
+      _Vendor.Address
+      _Vendor.Electronic_address
+      _Vendor.Entry_ID
+      _Vendor.Software_ID
+
+      'Guntert, Mumenthaler and Wuthrich'   .   .   30999   1
+   stop_
+
+   loop_
+      _Task.Task
+      _Task.Software_module
+      _Task.Entry_ID
+      _Task.Software_ID
+
+      refinement                .   30999   1
+      'structure calculation'   .   30999   1
+   stop_
+save_
+
+save_software_2
+   _Software.Sf_category    software
+   _Software.Sf_framecode   software_2
+   _Software.Entry_ID       30999
+   _Software.ID             2
+   _Software.Type           .
+   _Software.Name           NMRFAM-SPARKY
+   _Software.Version        1.370
+   _Software.DOI            .
+   _Software.Details        .
+
+   loop_
+      _Vendor.Name
+      _Vendor.Address
+      _Vendor.Electronic_address
+      _Vendor.Entry_ID
+      _Vendor.Software_ID
+
+      'Lee, Tonelli, Markley'   .   .   30999   2
+   stop_
+
+   loop_
+      _Task.Task
+      _Task.Software_module
+      _Task.Entry_ID
+      _Task.Software_ID
+
+      'peak picking'   .   30999   2
+   stop_
+save_
+
+save_software_3
+   _Software.Sf_category    software
+   _Software.Sf_framecode   software_3
+   _Software.Entry_ID       30999
+   _Software.ID             3
+   _Software.Type           .
+   _Software.Name           NMRPipe
+   _Software.Version        10.9
+   _Software.DOI            .
+   _Software.Details        .
+
+   loop_
+      _Vendor.Name
+      _Vendor.Address
+      _Vendor.Electronic_address
+      _Vendor.Entry_ID
+      _Vendor.Software_ID
+
+      'Delaglio, Grzesiek, Vuister, Zhu, Pfeifer and Bax'   .   .   30999   3
+   stop_
+
+   loop_
+      _Task.Task
+      _Task.Software_module
+      _Task.Entry_ID
+      _Task.Software_ID
+
+      processing   .   30999   3
+   stop_
+save_
+
+save_software_4
+   _Software.Sf_category    software
+   _Software.Sf_framecode   software_4
+   _Software.Entry_ID       30999
+   _Software.ID             4
+   _Software.Type           .
+   _Software.Name           TopSpin
+   _Software.Version        4.0.9
+   _Software.DOI            .
+   _Software.Details        .
+
+   loop_
+      _Vendor.Name
+      _Vendor.Address
+      _Vendor.Electronic_address
+      _Vendor.Entry_ID
+      _Vendor.Software_ID
+
+      'Bruker Biospin'   .   .   30999   4
+   stop_
+
+   loop_
+      _Task.Task
+      _Task.Software_module
+      _Task.Entry_ID
+      _Task.Software_ID
+
+      'data analysis'   .   30999   4
+   stop_
+save_
+
+save_software_5
+   _Software.Sf_category    software
+   _Software.Sf_framecode   software_5
+   _Software.Entry_ID       30999
+   _Software.ID             5
+   _Software.Type           .
+   _Software.Name           PdbStat
+   _Software.Version        5.21.6
+   _Software.DOI            .
+   _Software.Details        .
+
+   loop_
+      _Vendor.Name
+      _Vendor.Address
+      _Vendor.Electronic_address
+      _Vendor.Entry_ID
+      _Vendor.Software_ID
+
+      'Tejero, Snyder, Mao, Aramini, Montelione'   .   .   30999   5
+   stop_
+
+   loop_
+      _Task.Task
+      _Task.Software_module
+      _Task.Entry_ID
+      _Task.Software_ID
+
+      'data analysis'   .   30999   5
+   stop_
+save_
+
+
+#########################
+#  Experimental detail  #
+#########################
+
+    ##################################
+    #  NMR Spectrometer definitions  #
+    ##################################
+save_NMR_spectrometer_1
+   _NMR_spectrometer.Sf_category      NMR_spectrometer
+   _NMR_spectrometer.Sf_framecode     NMR_spectrometer_1
+   _NMR_spectrometer.Entry_ID         30999
+   _NMR_spectrometer.ID               1
+   _NMR_spectrometer.Name             .
+   _NMR_spectrometer.Details          'CP-TCI - Pharaoh - RPI'
+   _NMR_spectrometer.Manufacturer     Bruker
+   _NMR_spectrometer.Model            'AVANCE III'
+   _NMR_spectrometer.Serial_number    .
+   _NMR_spectrometer.Field_strength   600
+save_
+
+save_NMR_spectrometer_list
+   _NMR_spectrometer_list.Sf_category    NMR_spectrometer_list
+   _NMR_spectrometer_list.Sf_framecode   NMR_spectrometer_list
+   _NMR_spectrometer_list.Entry_ID       30999
+   _NMR_spectrometer_list.ID             1
+   _NMR_spectrometer_list.Name           .
+
+   loop_
+      _NMR_spectrometer_view.ID
+      _NMR_spectrometer_view.Name
+      _NMR_spectrometer_view.Manufacturer
+      _NMR_spectrometer_view.Model
+      _NMR_spectrometer_view.Serial_number
+      _NMR_spectrometer_view.Field_strength
+      _NMR_spectrometer_view.Details
+      _NMR_spectrometer_view.Citation_ID
+      _NMR_spectrometer_view.Citation_label
+      _NMR_spectrometer_view.Entry_ID
+      _NMR_spectrometer_view.NMR_spectrometer_list_ID
+
+      1   NMR_spectrometer_1   Bruker   'AVANCE III'   .   600   .   .   .   30999   1
+   stop_
+save_
+
+
+    #############################
+    #  NMR applied experiments  #
+    #############################
+save_experiment_list
+   _Experiment_list.Sf_category    experiment_list
+   _Experiment_list.Sf_framecode   experiment_list
+   _Experiment_list.Entry_ID       30999
+   _Experiment_list.ID             1
+   _Experiment_list.Details        .
+
+   loop_
+      _Experiment.ID
+      _Experiment.Name
+      _Experiment.Raw_data_flag
+      _Experiment.NUS_flag
+      _Experiment.Interleaved_flag
+      _Experiment.NMR_spec_expt_ID
+      _Experiment.NMR_spec_expt_label
+      _Experiment.MS_expt_ID
+      _Experiment.MS_expt_label
+      _Experiment.SAXS_expt_ID
+      _Experiment.SAXS_expt_label
+      _Experiment.FRET_expt_ID
+      _Experiment.FRET_expt_label
+      _Experiment.EMR_expt_ID
+      _Experiment.EMR_expt_label
+      _Experiment.Sample_ID
+      _Experiment.Sample_label
+      _Experiment.Sample_state
+      _Experiment.Sample_volume
+      _Experiment.Sample_volume_units
+      _Experiment.Sample_condition_list_ID
+      _Experiment.Sample_condition_list_label
+      _Experiment.Sample_spinning_rate
+      _Experiment.Sample_angle
+      _Experiment.NMR_tube_type
+      _Experiment.NMR_spectrometer_ID
+      _Experiment.NMR_spectrometer_label
+      _Experiment.NMR_spectrometer_probe_ID
+      _Experiment.NMR_spectrometer_probe_label
+      _Experiment.NMR_spectral_processing_ID
+      _Experiment.NMR_spectral_processing_label
+      _Experiment.Mass_spectrometer_ID
+      _Experiment.Mass_spectrometer_label
+      _Experiment.Xray_instrument_ID
+      _Experiment.Xray_instrument_label
+      _Experiment.Fluorescence_instrument_ID
+      _Experiment.Fluorescence_instrument_label
+      _Experiment.EMR_instrument_ID
+      _Experiment.EMR_instrument_label
+      _Experiment.Chromatographic_system_ID
+      _Experiment.Chromatographic_system_label
+      _Experiment.Chromatographic_column_ID
+      _Experiment.Chromatographic_column_label
+      _Experiment.Details
+      _Experiment.Entry_ID
+      _Experiment.Experiment_list_ID
+
+      1   '2D 1H-1H NOESY'         no   .   .   .   .   .   .   .   .   .   .   .   .   1   $sample_1   isotropic   .   .   1   $sample_conditions_1   .   .   .   1   $NMR_spectrometer_1   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   30999   1
+      2   '1D 1H'                  no   .   .   .   .   .   .   .   .   .   .   .   .   1   $sample_1   isotropic   .   .   1   $sample_conditions_1   .   .   .   1   $NMR_spectrometer_1   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   30999   1
+      3   '2D 1H-1H TOCSY'         no   .   .   .   .   .   .   .   .   .   .   .   .   1   $sample_1   isotropic   .   .   1   $sample_conditions_1   .   .   .   1   $NMR_spectrometer_1   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   30999   1
+      4   '2D 1H-13C HSQC-ed'      no   .   .   .   .   .   .   .   .   .   .   .   .   1   $sample_1   isotropic   .   .   1   $sample_conditions_1   .   .   .   1   $NMR_spectrometer_1   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   30999   1
+      5   '2D DQF-COSY'            no   .   .   .   .   .   .   .   .   .   .   .   .   1   $sample_1   isotropic   .   .   1   $sample_conditions_1   .   .   .   1   $NMR_spectrometer_1   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   30999   1
+      6   '2D 1H-15N HSQC'         no   .   .   .   .   .   .   .   .   .   .   .   .   1   $sample_1   isotropic   .   .   1   $sample_conditions_1   .   .   .   1   $NMR_spectrometer_1   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   30999   1
+      7   '2D 1H-13C HMBC'         no   .   .   .   .   .   .   .   .   .   .   .   .   1   $sample_1   isotropic   .   .   1   $sample_conditions_1   .   .   .   1   $NMR_spectrometer_1   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   30999   1
+      8   '2D 1H-13C HSQC-TOCSY'   no   .   .   .   .   .   .   .   .   .   .   .   .   1   $sample_1   isotropic   .   .   1   $sample_conditions_1   .   .   .   1   $NMR_spectrometer_1   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   30999   1
+   stop_
+save_
+
+
+####################
+#  NMR parameters  #
+####################
+
+    ##############################
+    #  Assigned chemical shifts  #
+    ##############################
+
+	################################
+	#  Chemical shift referencing  #
+	################################
+save_chem_shift_reference_1
+   _Chem_shift_reference.Sf_category    chem_shift_reference
+   _Chem_shift_reference.Sf_framecode   chem_shift_reference_1
+   _Chem_shift_reference.Entry_ID       30999
+   _Chem_shift_reference.ID             1
+   _Chem_shift_reference.Name           .
+   _Chem_shift_reference.Details        TMS
+
+   loop_
+      _Chem_shift_ref.Atom_type
+      _Chem_shift_ref.Atom_isotope_number
+      _Chem_shift_ref.Mol_common_name
+      _Chem_shift_ref.Atom_group
+      _Chem_shift_ref.Concentration_val
+      _Chem_shift_ref.Concentration_units
+      _Chem_shift_ref.Solvent
+      _Chem_shift_ref.Rank
+      _Chem_shift_ref.Chem_shift_units
+      _Chem_shift_ref.Chem_shift_val
+      _Chem_shift_ref.Ref_method
+      _Chem_shift_ref.Ref_type
+      _Chem_shift_ref.Indirect_shift_ratio
+      _Chem_shift_ref.External_ref_loc
+      _Chem_shift_ref.External_ref_sample_geometry
+      _Chem_shift_ref.External_ref_axis
+      _Chem_shift_ref.Ref_correction_type
+      _Chem_shift_ref.Correction_val
+      _Chem_shift_ref.Entry_ID
+      _Chem_shift_ref.Chem_shift_reference_ID
+
+      C   13   TMS   'methyl protons'   .   .   .   .   ppm   0.000   internal   indirect   0.251449530   .   .   .   .   .   30999   1
+      H   1    TMS   'methyl protons'   .   .   .   .   ppm   0.000   internal   direct     1.0           .   .   .   .   .   30999   1
+      N   15   TMS   'methyl protons'   .   .   .   .   ppm   0.000   internal   indirect   0.101329118   .   .   .   .   .   30999   1
+   stop_
+save_
+
+
+     ###################################
+     #  Assigned chemical shift lists  #
+     ###################################
+
+###################################################################
+#       Chemical Shift Ambiguity Index Value Definitions          #
+#                                                                 #
+# The values other than 1 are used for those atoms with different #
+# chemical shifts that cannot be assigned to stereospecific atoms #
+# or to specific residues or chains.                              #
+#                                                                 #
+#   Index Value            Definition                             #
+#                                                                 #
+#      1             Unique (including isolated methyl protons,   #
+#                         geminal atoms, and geminal methyl       #
+#                         groups with identical chemical shifts)  #
+#                         (e.g. ILE HD11, HD12, HD13 protons)     #
+#      2             Ambiguity of geminal atoms or geminal methyl #
+#                         proton groups (e.g. ASP HB2 and HB3     #
+#                         protons, LEU CD1 and CD2 carbons, or    #
+#                         LEU HD11, HD12, HD13 and HD21, HD22,    #
+#                         HD23 methyl protons)                    #
+#      3             Aromatic atoms on opposite sides of          #
+#                         symmetrical rings (e.g. TYR HE1 and HE2 #
+#                         protons)                                #
+#      4             Intraresidue ambiguities (e.g. LYS HG and    #
+#                         HD protons or TRP HZ2 and HZ3 protons)  #
+#      5             Interresidue ambiguities (LYS 12 vs. LYS 27) #
+#      6             Intermolecular ambiguities (e.g. ASP 31 CA   #
+#                         in monomer 1 and ASP 31 CA in monomer 2 #
+#                         of an asymmetrical homodimer, duplex    #
+#                         DNA assignments, or other assignments   #
+#                         that may apply to atoms in one or more  #
+#                         molecule in the molecular assembly)     #
+#      9             Ambiguous, specific ambiguity not defined    #
+#                                                                 #
+###################################################################
+save_assigned_chemical_shifts_1
+   _Assigned_chem_shift_list.Sf_category                   assigned_chemical_shifts
+   _Assigned_chem_shift_list.Sf_framecode                  assigned_chemical_shifts_1
+   _Assigned_chem_shift_list.Entry_ID                      30999
+   _Assigned_chem_shift_list.ID                            1
+   _Assigned_chem_shift_list.Name                          .
+   _Assigned_chem_shift_list.Sample_condition_list_ID      1
+   _Assigned_chem_shift_list.Sample_condition_list_label   $sample_conditions_1
+   _Assigned_chem_shift_list.Chem_shift_reference_ID       1
+   _Assigned_chem_shift_list.Chem_shift_reference_label    $chem_shift_reference_1
+   _Assigned_chem_shift_list.Chem_shift_1H_err             0.02
+   _Assigned_chem_shift_list.Chem_shift_13C_err            0.2
+   _Assigned_chem_shift_list.Chem_shift_15N_err            0.2
+   _Assigned_chem_shift_list.Chem_shift_31P_err            .
+   _Assigned_chem_shift_list.Chem_shift_2H_err             .
+   _Assigned_chem_shift_list.Chem_shift_19F_err            .
+   _Assigned_chem_shift_list.Error_derivation_method       .
+   _Assigned_chem_shift_list.Details                       .
+   _Assigned_chem_shift_list.Text_data_format              .
+   _Assigned_chem_shift_list.Text_data                     .
+
+   loop_
+      _Chem_shift_experiment.Experiment_ID
+      _Chem_shift_experiment.Experiment_name
+      _Chem_shift_experiment.Sample_ID
+      _Chem_shift_experiment.Sample_label
+      _Chem_shift_experiment.Sample_state
+      _Chem_shift_experiment.Entry_ID
+      _Chem_shift_experiment.Assigned_chem_shift_list_ID
+
+      1   '2D 1H-1H NOESY'         .   .   .   30999   1
+      2   '1D 1H'                  .   .   .   30999   1
+      3   '2D 1H-1H TOCSY'         .   .   .   30999   1
+      4   '2D 1H-13C HSQC-ed'      .   .   .   30999   1
+      5   '2D DQF-COSY'            .   .   .   30999   1
+      6   '2D 1H-15N HSQC'         .   .   .   30999   1
+      7   '2D 1H-13C HMBC'         .   .   .   30999   1
+      8   '2D 1H-13C HSQC-TOCSY'   .   .   .   30999   1
+   stop_
+
+   loop_
+      _Atom_chem_shift.ID
+      _Atom_chem_shift.Assembly_atom_ID
+      _Atom_chem_shift.Entity_assembly_ID
+      _Atom_chem_shift.Entity_assembly_asym_ID
+      _Atom_chem_shift.Entity_ID
+      _Atom_chem_shift.Comp_index_ID
+      _Atom_chem_shift.Seq_ID
+      _Atom_chem_shift.Comp_ID
+      _Atom_chem_shift.Atom_ID
+      _Atom_chem_shift.Atom_type
+      _Atom_chem_shift.Atom_isotope_number
+      _Atom_chem_shift.Val
+      _Atom_chem_shift.Val_err
+      _Atom_chem_shift.Assign_fig_of_merit
+      _Atom_chem_shift.Ambiguity_code
+      _Atom_chem_shift.Ambiguity_set_ID
+      _Atom_chem_shift.Occupancy
+      _Atom_chem_shift.Resonance_ID
+      _Atom_chem_shift.Auth_entity_assembly_ID
+      _Atom_chem_shift.Auth_asym_ID
+      _Atom_chem_shift.Auth_seq_ID
+      _Atom_chem_shift.Auth_comp_ID
+      _Atom_chem_shift.Auth_atom_ID
+      _Atom_chem_shift.Details
+      _Atom_chem_shift.Entry_ID
+      _Atom_chem_shift.Assigned_chem_shift_list_ID
+
+      1    .   1   .   1   1   1   DVA   H1     H   1    8.57    0.02   .   .   .   .   .   .   A   1   DVA   H1     .   30999   1
+      2    .   1   .   1   1   1   DVA   N      N   15   121.0   0.2    .   .   .   .   .   .   A   1   DVA   N      .   30999   1
+      3    .   1   .   1   1   1   DVA   CA     C   13   54.8    0.2    .   .   .   .   .   .   A   1   DVA   CA     .   30999   1
+      4    .   1   .   1   1   1   DVA   CB     C   13   30.3    0.2    .   .   .   .   .   .   A   1   DVA   CB     .   30999   1
+      5    .   1   .   1   1   1   DVA   CG1    C   13   19.2    0.2    .   .   .   .   .   .   A   1   DVA   CG1    .   30999   1
+      6    .   1   .   1   1   1   DVA   CG2    C   13   19.1    0.2    .   .   .   .   .   .   A   1   DVA   CG2    .   30999   1
+      7    .   1   .   1   1   1   DVA   HA     H   1    4.34    0.02   .   .   .   .   .   .   A   1   DVA   HA     .   30999   1
+      8    .   1   .   1   1   1   DVA   HB     H   1    2.00    0.02   .   .   .   .   .   .   A   1   DVA   HB     .   30999   1
+      9    .   1   .   1   1   1   DVA   HG11   H   1    0.86    0.02   .   .   .   .   .   .   A   1   DVA   HG11   .   30999   1
+      10   .   1   .   1   1   1   DVA   HG21   H   1    0.89    0.02   .   .   .   .   .   .   A   1   DVA   HG21   .   30999   1
+      11   .   1   .   1   2   2   MLE   CA     C   13   52.6    0.2    .   .   .   .   .   .   A   2   MLE   CA     .   30999   1
+      12   .   1   .   1   2   2   MLE   CB     C   13   37.7    0.2    .   .   .   .   .   .   A   2   MLE   CB     .   30999   1
+      13   .   1   .   1   2   2   MLE   CD1    C   13   23.9    0.2    .   .   .   .   .   .   A   2   MLE   CD1    .   30999   1
+      14   .   1   .   1   2   2   MLE   CD2    C   13   22.5    0.2    .   .   .   .   .   .   A   2   MLE   CD2    .   30999   1
+      15   .   1   .   1   2   2   MLE   CG     C   13   24.3    0.2    .   .   .   .   .   .   A   2   MLE   CG     .   30999   1
+      16   .   1   .   1   2   2   MLE   CN     C   13   30.9    0.2    .   .   .   .   .   .   A   2   MLE   CN     .   30999   1
+      17   .   1   .   1   2   2   MLE   HA     H   1    5.35    0.02   .   .   .   .   .   .   A   2   MLE   HA     .   30999   1
+      18   .   1   .   1   2   2   MLE   HB2    H   1    1.52    0.02   .   .   .   .   .   .   A   2   MLE   HB2    .   30999   1
+      19   .   1   .   1   2   2   MLE   HD11   H   1    0.90    0.02   .   .   .   .   .   .   A   2   MLE   HD11   .   30999   1
+      20   .   1   .   1   2   2   MLE   HD21   H   1    0.87    0.02   .   .   .   .   .   .   A   2   MLE   HD21   .   30999   1
+      21   .   1   .   1   2   2   MLE   HG     H   1    1.39    0.02   .   .   .   .   .   .   A   2   MLE   HG     .   30999   1
+      22   .   1   .   1   2   2   MLE   HN1    H   1    3.01    0.02   .   .   .   .   .   .   A   2   MLE   HN1    .   30999   1
+      23   .   1   .   1   3   3   DPR   CA     C   13   61.0    0.2    .   .   .   .   .   .   A   3   DPR   CA     .   30999   1
+      24   .   1   .   1   3   3   DPR   CB     C   13   28.4    0.2    .   .   .   .   .   .   A   3   DPR   CB     .   30999   1
+      25   .   1   .   1   3   3   DPR   CD     C   13   47.3    0.2    .   .   .   .   .   .   A   3   DPR   CD     .   30999   1
+      26   .   1   .   1   3   3   DPR   CG     C   13   25.2    0.2    .   .   .   .   .   .   A   3   DPR   CG     .   30999   1
+      27   .   1   .   1   3   3   DPR   HA     H   1    4.31    0.02   .   .   .   .   .   .   A   3   DPR   HA     .   30999   1
+      28   .   1   .   1   3   3   DPR   HB2    H   1    2.01    0.02   .   .   .   .   .   .   A   3   DPR   HB2    .   30999   1
+      29   .   1   .   1   3   3   DPR   HB3    H   1    1.74    0.02   .   .   .   .   .   .   A   3   DPR   HB3    .   30999   1
+      30   .   1   .   1   3   3   DPR   HD2    H   1    3.48    0.02   .   .   .   .   .   .   A   3   DPR   HD2    .   30999   1
+      31   .   1   .   1   3   3   DPR   HD3    H   1    3.02    0.02   .   .   .   .   .   .   A   3   DPR   HD3    .   30999   1
+      32   .   1   .   1   3   3   DPR   HG2    H   1    1.69    0.02   .   .   .   .   .   .   A   3   DPR   HG2    .   30999   1
+      33   .   1   .   1   4   4   LEU   H      H   1    7.04    0.02   .   .   .   .   .   .   A   4   LEU   H      .   30999   1
+      34   .   1   .   1   4   4   LEU   HA     H   1    4.54    0.02   .   .   .   .   .   .   A   4   LEU   HA     .   30999   1
+      35   .   1   .   1   4   4   LEU   HB2    H   1    1.36    0.02   .   .   .   .   .   .   A   4   LEU   HB2    .   30999   1
+      36   .   1   .   1   4   4   LEU   HB3    H   1    1.36    0.02   .   .   .   .   .   .   A   4   LEU   HB3    .   30999   1
+      37   .   1   .   1   4   4   LEU   HG     H   1    1.58    0.02   .   .   .   .   .   .   A   4   LEU   HG     .   30999   1
+      38   .   1   .   1   4   4   LEU   HD11   H   1    0.83    0.02   .   .   .   .   .   .   A   4   LEU   HD11   .   30999   1
+      39   .   1   .   1   4   4   LEU   HD12   H   1    0.83    0.02   .   .   .   .   .   .   A   4   LEU   HD12   .   30999   1
+      40   .   1   .   1   4   4   LEU   HD13   H   1    0.83    0.02   .   .   .   .   .   .   A   4   LEU   HD13   .   30999   1
+      41   .   1   .   1   4   4   LEU   HD21   H   1    0.87    0.02   .   .   .   .   .   .   A   4   LEU   HD21   .   30999   1
+      42   .   1   .   1   4   4   LEU   HD22   H   1    0.87    0.02   .   .   .   .   .   .   A   4   LEU   HD22   .   30999   1
+      43   .   1   .   1   4   4   LEU   HD23   H   1    0.87    0.02   .   .   .   .   .   .   A   4   LEU   HD23   .   30999   1
+      44   .   1   .   1   4   4   LEU   CA     C   13   50.5    0.2    .   .   .   .   .   .   A   4   LEU   CA     .   30999   1
+      45   .   1   .   1   4   4   LEU   CB     C   13   43.4    0.2    .   .   .   .   .   .   A   4   LEU   CB     .   30999   1
+      46   .   1   .   1   4   4   LEU   CG     C   13   24.3    0.2    .   .   .   .   .   .   A   4   LEU   CG     .   30999   1
+      47   .   1   .   1   4   4   LEU   CD1    C   13   23.6    0.2    .   .   .   .   .   .   A   4   LEU   CD1    .   30999   1
+      48   .   1   .   1   4   4   LEU   CD2    C   13   22.5    0.2    .   .   .   .   .   .   A   4   LEU   CD2    .   30999   1
+      49   .   1   .   1   4   4   LEU   N      N   15   113.4   0.2    .   .   .   .   .   .   A   4   LEU   N      .   30999   1
+   stop_
+save_
+
+
+    #########################
+    #  Spectral peak lists  #
+    #########################
+save_spectral_peak_list_1
+   _Spectral_peak_list.Sf_category                      spectral_peak_list
+   _Spectral_peak_list.Sf_framecode                     spectral_peak_list_1
+   _Spectral_peak_list.Entry_ID                         30999
+   _Spectral_peak_list.ID                               1
+   _Spectral_peak_list.Name                             .
+   _Spectral_peak_list.Sample_ID                        1
+   _Spectral_peak_list.Sample_label                     $sample_1
+   _Spectral_peak_list.Sample_condition_list_ID         1
+   _Spectral_peak_list.Sample_condition_list_label      $sample_conditions_1
+   _Spectral_peak_list.Chem_shift_reference_ID          1
+   _Spectral_peak_list.Chem_shift_reference_label       $chem_shift_reference_1
+   _Spectral_peak_list.Experiment_ID                    1
+   _Spectral_peak_list.Experiment_name                  '2D 1H-1H NOESY'
+   _Spectral_peak_list.Experiment_class                 .
+   _Spectral_peak_list.Experiment_type                  .
+   _Spectral_peak_list.Number_of_spectral_dimensions    2
+   _Spectral_peak_list.Chemical_shift_list              .
+   _Spectral_peak_list.Assigned_chem_shift_list_ID      1
+   _Spectral_peak_list.Assigned_chem_shift_list_label   $assigned_chemical_shifts_1
+   _Spectral_peak_list.Details                          'modified for non-standard amino acids and cyclic peptide analysis'
+   _Spectral_peak_list.Text_data_format                 text
+   _Spectral_peak_list.Text_data
+;
+# Number of dimensions 2
+# Number of peaks 133
+#FORMAT xeasy2D
+#INAME 1 H1
+#INAME 2 H2
+#SPECTRUM NOESY H1 H2
+   1   3.014   8.571 1 U           4.54e+06         0 e   0    0    0 0
+   2   4.311   7.032 1 U           5.96e+06         0 e   0    0    0 0
+   3   4.335   8.572 1 U           2.31e+07         0 e   0    0    0 0
+   4   4.539   7.037 1 U           1.36e+07         0 e   0    0    0 0
+   5   0.864   4.536 1 U           6.25e+06         0 e   0    0    0 0
+   6   0.812   4.538 1 U           1.01e+06         0 e   0    0    0 0
+   7   1.360   4.535 1 U           1.79e+07         0 e   0    0    0 0
+   8   1.576   4.541 1 U           4.21e+06         0 e   0    0    0 0
+   9   2.860   4.536 1 U           1.26e+06         0 e   0    0    0 0
+  10   3.014   4.536 1 U           2.57e+06         0 e   0    0    0 0
+  11   7.034   4.546 1 U           5.62e+06         0 e   0    0    0 0
+  12   7.039   4.312 1 U           8.54e+06         0 e   0    0    0 0
+  13   8.573   4.536 1 U           3.56e+07         0 e   0    0    0 0
+  14   8.574   4.341 1 U           1.29e+07         0 e   0    0    0 0
+  15   7.039   8.570 1 U           2.45e+06         0 e   0    0    0 0
+  16   5.352   8.570 1 U           4.83e+05         0 e   0    0    0 0
+  17   4.537   8.570 1 U           3.07e+07         0 e   0    0    0 0
+  18   3.477   8.577 1 U           9.57e+05         0 e   0    0    0 0
+  19   1.994   8.570 1 U           9.81e+06         0 e   0    0    0 0
+  20   1.358   8.570 1 U           4.17e+06         0 e   0    0    0 0
+  21   0.894   8.570 1 U           8.74e+06         0 e   0    0    0 0
+  22   0.863   8.570 1 U           3.02e+06         0 e   0    0    0 0
+  23   5.344   7.033 1 U           9.97e+05         0 e   0    0    0 0
+  24   3.477   7.032 1 U           1.28e+06         0 e   0    0    0 0
+  25   3.014   7.032 1 U           1.83e+07         0 e   0    0    0 0
+  26   2.027   7.045 1 U            6.8e+05         0 e   0    0    0 0
+  27   1.738   7.032 1 U           1.86e+06         0 e   0    0    0 0
+  28   1.681   7.045 1 U           1.36e+06         0 e   0    0    0 0
+  29   1.574   7.044 1 U           2.06e+06         0 e   0    0    0 0
+  30   1.354   7.046 1 U           5.59e+06         0 e   0    0    0 0
+  31   0.873   7.032 1 U            7.1e+05         0 e   0    0    0 0
+  32   0.840   7.032 1 U           7.44e+05         0 e   0    0    0 0
+  33   1.993   4.336 1 U           9.28e+06         0 e   0    0    0 0
+  34   1.993   0.860 1 U           1.41e+07         0 e   0    0    0 0
+  35   1.992   0.898 1 U           1.54e+07         0 e   0    0    0 0
+  36   3.013   0.856 1 U           1.81e+07         0 e   0    0    0 0
+  37   3.013   0.892 1 U           1.05e+07         0 e   0    0    0 0
+  38   3.476   0.886 1 U           1.51e+06         0 e   0    0    0 0
+  39   4.335   0.893 1 U            1.3e+07         0 e   0    0    0 0
+  40   4.335   0.856 1 U            1.2e+07         0 e   0    0    0 0
+  41   4.537   0.863 1 U           5.79e+06         0 e   0    0    0 0
+  42   5.345   0.884 1 U            9.9e+06         0 e   0    0    0 0
+  43   8.573   0.895 1 U           1.02e+07         0 e   0    0    0 0
+  44   8.574   0.860 1 U            3.6e+06         0 e   0    0    0 0
+  45   7.040   0.861 1 U           1.13e+06         0 e   0    0    0 0
+  46   7.039   0.840 1 U           1.01e+06         0 e   0    0    0 0
+  47   1.363   0.840 1 U           3.72e+06         0 e   0    0    0 0
+  48   1.364   0.861 1 U           4.25e+06         0 e   0    0    0 0
+  49   0.885   5.346 1 U           1.01e+07         0 e   0    0    0 0
+  50   0.860   5.347 1 U           1.73e+06         0 e   0    0    0 0
+  51   4.307   1.734 1 U           1.61e+06         0 e   0    0    0 0
+  52   4.316   2.016 1 U            3.5e+06         0 e   0    0    0 0
+  53   7.039   1.577 1 U           3.02e+06         0 e   0    0    0 0
+  54   7.039   1.680 1 U           2.04e+06         0 e   0    0    0 0
+  55   7.040   1.737 1 U           2.22e+06         0 e   0    0    0 0
+  56   7.039   1.356 1 U           6.63e+06         0 e   0    0    0 0
+  57   7.040   2.027 1 U           7.79e+05         0 e   0    0    0 0
+  58   4.307   1.691 1 U           8.33e+05         0 e   0    0    0 0
+  59   3.477   1.687 1 U           3.55e+06         0 e   0    0    0 0
+  60   3.022   1.678 1 U           9.53e+06         0 e   0    0    0 0
+  61   3.478   2.018 1 U           2.49e+06         0 e   0    0    0 0
+  62   3.013   2.000 1 U           4.46e+06         0 e   0    0    0 0
+  63   3.475   1.733 1 U            4.3e+06         0 e   0    0    0 0
+  64   3.020   1.737 1 U           4.37e+06         0 e   0    0    0 0
+  65   2.014   1.680 1 U           3.64e+06         0 e   0    0    0 0
+  66   2.014   1.739 1 U           1.88e+07         0 e   0    0    0 0
+  67   1.727   2.023 1 U           1.97e+07         0 e   0    0    0 0
+  68   1.699   2.020 1 U           8.75e+06         0 e   0    0    0 0
+  69   0.898   1.990 1 U           1.64e+07         0 e   0    0    0 0
+  70   0.858   1.993 1 U           1.55e+07         0 e   0    0    0 0
+  71   4.536   1.355 1 U           1.22e+07         0 e   0    0    0 0
+  72   5.344   1.522 1 U           2.13e+07         0 e   0    0    0 0
+  73   8.573   1.357 1 U           4.72e+06         0 e   0    0    0 0
+  74   8.573   1.994 1 U           1.19e+07         0 e   0    0    0 0
+  75   3.013   1.523 1 U           2.31e+07         0 e   0    0    0 0
+  76   3.013   1.362 1 U           6.52e+06         0 e   0    0    0 0
+  77   3.477   1.521 1 U           1.57e+06         0 e   0    0    0 0
+  78   4.334   1.354 1 U           1.07e+06         0 e   0    0    0 0
+  79   4.323   1.525 1 U           8.02e+05         0 e   0    0    0 0
+  80   5.351   1.385 1 U          -1.57e+06         0 e   0    0    0 0
+  81   5.348   4.314 1 U           1.11e+06         0 e   0    0    0 0
+  82   3.013   4.336 1 U           8.45e+07         0 e   0    0    0 0
+  83   3.470   4.317 1 U           1.26e+06         0 e   0    0    0 0
+  84   1.359   4.335 1 U           1.28e+06         0 e   0    0    0 0
+  85   0.856   4.336 1 U           1.55e+07         0 e   0    0    0 0
+  86   0.894   4.336 1 U            1.3e+07         0 e   0    0    0 0
+  87   3.016   5.347 1 U           1.35e+07         0 e   0    0    0 0
+  88   3.478   5.347 1 U           3.04e+07         0 e   0    0    0 0
+  89   1.707   5.347 1 U           1.11e+06         0 e   0    0    0 0
+  90   1.745   5.350 1 U           1.19e+06         0 e   0    0    0 0
+  91   1.689   4.311 1 U           3.52e+06         0 e   0    0    0 0
+  92   1.741   4.309 1 U           8.94e+06         0 e   0    0    0 0
+  93   1.736   4.536 1 U           6.64e+05         0 e   0    0    0 0
+  94   1.997   4.534 1 U           5.73e+05         0 e   0    0    0 0
+  95   1.523   4.320 1 U           9.73e+05         0 e   0    0    0 0
+  96   1.578   4.310 1 U           7.11e+05         0 e   0    0    0 0
+  97   0.855   3.012 1 U           2.24e+07         0 e   0    0    0 0
+  98   0.894   3.012 1 U           1.01e+07         0 e   0    0    0 0
+  99   1.361   3.012 1 U           7.49e+06         0 e   0    0    0 0
+ 100   1.523   3.012 1 U            3.2e+07         0 e   0    0    0 0
+ 101   1.677   3.017 1 U           6.84e+06         0 e   0    0    0 0
+ 102   1.747   3.022 1 U           6.27e+06         0 e   0    0    0 0
+ 103   1.994   3.012 1 U           4.88e+06         0 e   0    0    0 0
+ 104   2.022   3.473 1 U           1.97e+06         0 e   0    0    0 0
+ 105   1.706   3.480 1 U           6.95e+06         0 e   0    0    0 0
+ 106   1.524   3.485 1 U           1.33e+06         0 e   0    0    0 0
+ 107   3.023   3.479 1 U           8.96e+07         0 e   0    0    0 0
+ 108   3.478   3.021 1 U           8.37e+07         0 e   0    0    0 0
+ 109   4.335   3.012 1 U           9.01e+07         0 e   0    0    0 0
+ 110   4.538   3.012 1 U           2.74e+06         0 e   0    0    0 0
+ 111   4.344   3.475 1 U           8.97e+05         0 e   0    0    0 0
+ 112   5.346   3.013 1 U           1.41e+07         0 e   0    0    0 0
+ 113   5.345   3.480 1 U           2.83e+07         0 e   0    0    0 0
+ 114   7.040   3.012 1 U           2.47e+07         0 e   0    0    0 0
+ 115   8.574   3.012 1 U           6.04e+06         0 e   0    0    0 0
+ 116   4.321   5.347 1 U           9.22e+05         0 e   0    0    0 0
+ 117   8.573   7.046 1 U           2.14e+06         0 e   0    0    0 0
+ 118   7.040   5.346 1 U           1.17e+06         0 e   0    0    0 0
+ 119   8.573   5.348 1 U           5.87e+05         0 e   0    0    0 0
+ 120   2.031   4.307 1 U           1.14e+07         0 e   0    0    0 0
+ 121   1.574   8.580 1 U           5.04e+05         0 e   0    0    0 0
+ 122   1.745   8.568 1 U           3.38e+05         0 e   0    0    0 0
+ 123   8.568   3.490 1 U           9.05e+05         0 e   0    0    0 0
+ 124   8.565   1.736 1 U            4.1e+05         0 e   0    0    0 0
+ 125   8.574   1.579 1 U           4.03e+05         0 e   0    0    0 0
+ 126   8.574   1.685 1 U           4.45e+05         0 e   0    0    0 0
+ 127   2.671   0.248 1 U          -2.55e+04         0 e   0    0    0 0
+ 128   3.031   1.362 1 U            4.5e+05         0 e   0    0    0 0
+ 129   3.475   4.540 1 U           4.66e+05         0 e   0    0    0 0
+ 130   1.524   0.894 1 U           7.84e+06         0 e   0    0    0 0
+ 131   0.897   1.519 1 U           8.26e+06         0 e   0    0    0 0
+ 132   0.900   1.383 1 U           1.88e+07         0 e   0    0    0 0
+ 133   1.389   0.903 1 U           1.45e+07         0 e   0    0    0 0
+;
+
+   loop_
+      _Spectral_dim.ID
+      _Spectral_dim.Axis_code
+      _Spectral_dim.Spectrometer_frequency
+      _Spectral_dim.Atom_type
+      _Spectral_dim.Atom_isotope_number
+      _Spectral_dim.Spectral_region
+      _Spectral_dim.Magnetization_linkage_ID
+      _Spectral_dim.Under_sampling_type
+      _Spectral_dim.Sweep_width
+      _Spectral_dim.Sweep_width_units
+      _Spectral_dim.Value_first_point
+      _Spectral_dim.Absolute_peak_positions
+      _Spectral_dim.Acquisition
+      _Spectral_dim.Center_frequency_offset
+      _Spectral_dim.Encoding_code
+      _Spectral_dim.Encoded_reduced_dimension_ID
+      _Spectral_dim.Entry_ID
+      _Spectral_dim.Spectral_peak_list_ID
+
+      1   .   .   H   1   H   .   .   7211.5   Hz   .   .   .   4.97   .   2   30999   1
+      2   .   .   H   1   H   .   .   6596     Hz   .   .   .   4.97   .   1   30999   1
+   stop_
+save_
+

@@ -1,0 +1,6 @@
+---
+source: ustar-test-utils/src/snapshot_utils.rs
+assertion_line: 67
+expression: value
+---
+Parse error at l3:c32 because expected non_quoted_string, double_quote_string, single_quote_string, frame_code or semi_colon_string

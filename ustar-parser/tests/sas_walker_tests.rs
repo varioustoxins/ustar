@@ -1,4 +1,3 @@
-use insta::assert_snapshot;
 use std::collections::HashMap;
 use std::fs;
 use std::path::Path;
@@ -273,7 +272,10 @@ fn test_simple_data_walker_output() {
     walker.walk_star_tree_buffered(&tree);
 
     let output = handler.output.join("\n");
-    snapshot_utils::assert_snapshot_gz("sas_walker_tests__simple_data_walker_output", &output);
+    snapshot_utils::assert_snapshot_gz(
+        "sas_walker_tests__snapshot_utils__sas_walker_tests__simple_data_walker_output",
+        &output,
+    );
 }
 
 #[test]
@@ -287,7 +289,7 @@ fn test_loop_walker_output() {
     walker.walk_star_tree_buffered(&tree);
 
     let output = handler.output.join("\n");
-    assert_snapshot!(output);
+    snapshot_utils::assert_snapshot_gz("sas_walker_tests__loop_walker_output", &output);
 }
 
 #[test]
@@ -301,7 +303,10 @@ fn test_multiline_and_frame_codes() {
     walker.walk_star_tree_buffered(&tree);
 
     let output = handler.output.join("\n");
-    snapshot_utils::assert_snapshot_gz("sas_walker_tests__multiline_and_frame_codes", &output);
+    snapshot_utils::assert_snapshot_gz(
+        "sas_walker_tests__snapshot_utils__sas_walker_tests__multiline_and_frame_codes",
+        &output,
+    );
 }
 
 #[test]
@@ -315,7 +320,7 @@ fn test_saveframe_walker_output() {
     walker.walk_star_tree_buffered(&tree);
 
     let output = handler.output.join("\n");
-    assert_snapshot!(output);
+    snapshot_utils::assert_snapshot_gz("sas_walker_tests__saveframe_walker_output", &output);
 }
 #[test]
 fn test_comprehensive_example_walker_output() {
@@ -331,7 +336,10 @@ fn test_comprehensive_example_walker_output() {
     walker.walk_star_tree_buffered(&tree);
 
     let output = handler.output.join("\n");
-    assert_snapshot!(output);
+    snapshot_utils::assert_snapshot_gz(
+        "sas_walker_tests__comprehensive_example_walker_output",
+        &output,
+    );
 }
 
 #[test]
@@ -454,12 +462,12 @@ fn test_sas_test_files_walker_output() {
 
                 let output = handler.output.join("\n");
 
-                // Use insta's dynamic snapshot naming
-                insta::with_settings!({
-                    snapshot_suffix => filename.replace('.', "_"),
-                }, {
-                    assert_snapshot!(output);
-                });
+                // Use our compressed snapshot function with dynamic naming
+                let snapshot_name = format!(
+                    "sas_walker_tests__sas_test_files_walker_output@{}",
+                    filename.replace('.', "_")
+                );
+                snapshot_utils::assert_snapshot_gz(&snapshot_name, &output);
             }
         }
     }

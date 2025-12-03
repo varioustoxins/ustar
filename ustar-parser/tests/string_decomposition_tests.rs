@@ -1,6 +1,8 @@
 use std::fs;
 use ustar::{parse_default, string_decomposer::decompose_strings};
 
+mod snapshot_utils;
+
 #[test]
 fn test_semicolon_string_decomposition_lf_vs_crlf() {
     // Test LF version
@@ -16,8 +18,14 @@ fn test_semicolon_string_decomposition_lf_vs_crlf() {
     decompose_strings(&mut crlf_mutable);
 
     // Snapshot the LF structure after decomposition
-    insta::assert_debug_snapshot!("lf_semicolon_decomposed", lf_mutable);
+    snapshot_utils::assert_snapshot_gz(
+        "string_decomposition_tests__lf_semicolon_decomposed",
+        &format!("{:#?}", lf_mutable),
+    );
 
     // Snapshot the CRLF structure after decomposition
-    insta::assert_debug_snapshot!("crlf_semicolon_decomposed", crlf_mutable);
+    snapshot_utils::assert_snapshot_gz(
+        "string_decomposition_tests__crlf_semicolon_decomposed",
+        &format!("{:#?}", crlf_mutable),
+    );
 }

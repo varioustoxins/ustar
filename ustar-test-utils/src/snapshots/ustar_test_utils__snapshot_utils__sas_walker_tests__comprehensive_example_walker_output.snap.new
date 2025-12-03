@@ -1,0 +1,142 @@
+---
+source: ustar-test-utils/src/snapshot_utils.rs
+assertion_line: 67
+expression: value
+---
+<start data> [5] comprehensive_example
+<data> [t:8:1,v:8:25] _simple_text_value delimiter:  loop_level: 0 value [multiline]: hello_world
+<data> [t:9:1,v:9:24] _numeric_value delimiter:  loop_level: 0 value [multiline]: 42.5
+<data> [t:10:1,v:10:24] _boolean_value delimiter:  loop_level: 0 value [multiline]: true
+<data> [t:11:1,v:11:25] _quoted_underscore delimiter: ' loop_level: 0 value [multiline]: _another_name
+<data> [t:14:1,v:14:25] _single_quoted delimiter: ' loop_level: 0 value [multiline]: Hello "world" with spaces
+<data> [t:15:1,v:15:25] _single_quote_escapes delimiter: ' loop_level: 0 value [multiline]: Don''t forget the apostrophe''s
+<data> [t:16:1,v:16:25] _single_quote_complex delimiter: ' loop_level: 0 value [multiline]: Mix of "quotes" and ''escapes''
+<data> [t:19:1,v:19:25] _double_quoted delimiter: " loop_level: 0 value [multiline]: Hello 'world' with spaces
+<data> [t:20:1,v:20:25] _double_quote_escapes delimiter: " loop_level: 0 value [multiline]: She said ""Hello""to me
+<data> [t:21:1,v:21:25] _double_quote_complex delimiter: " loop_level: 0 value [multiline]: Mix of 'quotes' and ""escapes""
+<data> [t:24:1,v:24:24] _frame_code_simple delimiter:  loop_level: 0 value [multiline]: $frame1
+<data> [t:25:1,v:25:24] _frame_code_complex delimiter:  loop_level: 0 value [multiline]: $my_complex_frame_123
+<data> [t:28:1,v:29:2] _multiline_text delimiter: "\n" loop_level: 0 value:
+       ;
+       This is a multiline text string.
+       It can contain semicolons; like this one.
+       It can span multiple lines.
+       Even blank lines are preserved.
+       
+       Special characters: !@#$%^&*()
+<start_loop> [39]
+<data> [t:40:5,v:45:5] _atom_site_label delimiter:  loop_level: 1 value [multiline]: C1
+<data> [t:41:5,v:45:9] _atom_site_type_symbol delimiter:  loop_level: 1 value [multiline]: C
+<data> [t:42:5,v:45:12] _atom_site_fract_x delimiter:  loop_level: 1 value [multiline]: 0.1234
+<data> [t:43:5,v:45:20] _atom_site_fract_y delimiter:  loop_level: 1 value [multiline]: 0.5678
+<data> [t:44:5,v:45:28] _atom_site_fract_z delimiter:  loop_level: 1 value [multiline]: 0.9012
+<data> [t:40:5,v:46:5] _atom_site_label delimiter:  loop_level: 1 value [multiline]: N1
+<data> [t:41:5,v:46:9] _atom_site_type_symbol delimiter:  loop_level: 1 value [multiline]: N
+<data> [t:42:5,v:46:12] _atom_site_fract_x delimiter:  loop_level: 1 value [multiline]: 0.2345
+<data> [t:43:5,v:46:20] _atom_site_fract_y delimiter:  loop_level: 1 value [multiline]: 0.6789
+<data> [t:44:5,v:46:28] _atom_site_fract_z delimiter:  loop_level: 1 value [multiline]: 0.0123
+<data> [t:40:5,v:47:5] _atom_site_label delimiter:  loop_level: 1 value [multiline]: O1
+<data> [t:41:5,v:47:9] _atom_site_type_symbol delimiter:  loop_level: 1 value [multiline]: O
+<data> [t:42:5,v:47:12] _atom_site_fract_x delimiter:  loop_level: 1 value [multiline]: 0.3456
+<data> [t:43:5,v:47:20] _atom_site_fract_y delimiter:  loop_level: 1 value [multiline]: 0.7890
+<data> [t:44:5,v:47:28] _atom_site_fract_z delimiter:  loop_level: 1 value [multiline]: 0.1234
+<data> [t:40:5,v:48:5] _atom_site_label delimiter:  loop_level: 1 value [multiline]: H1
+<data> [t:41:5,v:48:9] _atom_site_type_symbol delimiter:  loop_level: 1 value [multiline]: H
+<data> [t:42:5,v:48:12] _atom_site_fract_x delimiter:  loop_level: 1 value [multiline]: 0.4567
+<data> [t:43:5,v:48:20] _atom_site_fract_y delimiter:  loop_level: 1 value [multiline]: 0.8901
+<data> [t:44:5,v:48:28] _atom_site_fract_z delimiter:  loop_level: 1 value [multiline]: 0.2345
+<end_loop> [49]
+<start_loop> [52]
+<data> [t:53:5,v:58:5] _struct_conf_type_id delimiter:  loop_level: 1 value [multiline]: HELX_P1
+<data> [t:55:9,v:59:9] _struct_conf_atom_site_label delimiter:  loop_level: 1 value [multiline]: CA
+<data> [t:56:9,v:59:13] _struct_conf_atom_site_auth_seq_id delimiter:  loop_level: 1 value [multiline]: 123
+<data> [t:55:9,v:60:9] _struct_conf_atom_site_label delimiter:  loop_level: 1 value [multiline]: CB
+<data> [t:56:9,v:60:13] _struct_conf_atom_site_auth_seq_id delimiter:  loop_level: 1 value [multiline]: 124
+<data> [t:55:9,v:61:9] _struct_conf_atom_site_label delimiter:  loop_level: 1 value [multiline]: CG
+<data> [t:56:9,v:61:13] _struct_conf_atom_site_auth_seq_id delimiter:  loop_level: 1 value [multiline]: 125
+<data> [t:53:5,v:63:5] _struct_conf_type_id delimiter:  loop_level: 1 value [multiline]: STRN_S1
+<data> [t:55:9,v:64:9] _struct_conf_atom_site_label delimiter:  loop_level: 1 value [multiline]: CA
+<data> [t:56:9,v:64:13] _struct_conf_atom_site_auth_seq_id delimiter:  loop_level: 1 value [multiline]: 456
+<data> [t:55:9,v:65:9] _struct_conf_atom_site_label delimiter:  loop_level: 1 value [multiline]: CB
+<data> [t:56:9,v:65:13] _struct_conf_atom_site_auth_seq_id delimiter:  loop_level: 1 value [multiline]: 457
+<end_loop> [67]
+<start saveframe> [70] frame_example_1
+<data> [t:72:5,v:72:30] _save_frame_category delimiter:  loop_level: 0 value [multiline]: molecular_structure
+<data> [t:73:5,v:73:30] _description delimiter: ' loop_level: 0 value [multiline]: This is a save frame example
+<data> [t:74:5,v:74:29] _created_by delimiter:  loop_level: 0 value [multiline]: ustar_parser
+<data> [t:77:5,v:77:29] _temperature delimiter:  loop_level: 0 value [multiline]: 298.15
+<data> [t:78:5,v:78:29] _pressure delimiter: ' loop_level: 0 value [multiline]: atmospheric
+<start_loop> [81]
+<data> [t:82:9,v:85:9] _bond_atom_1 delimiter:  loop_level: 1 value [multiline]: C1
+<data> [t:83:9,v:85:13] _bond_atom_2 delimiter:  loop_level: 1 value [multiline]: C2
+<data> [t:84:9,v:85:17] _bond_length delimiter:  loop_level: 1 value [multiline]: 1.54
+<data> [t:82:9,v:86:9] _bond_atom_1 delimiter:  loop_level: 1 value [multiline]: C2
+<data> [t:83:9,v:86:13] _bond_atom_2 delimiter:  loop_level: 1 value [multiline]: C3
+<data> [t:84:9,v:86:17] _bond_length delimiter:  loop_level: 1 value [multiline]: 1.52
+<data> [t:82:9,v:87:9] _bond_atom_1 delimiter:  loop_level: 1 value [multiline]: N1
+<data> [t:83:9,v:87:13] _bond_atom_2 delimiter:  loop_level: 1 value [multiline]: C1
+<data> [t:84:9,v:87:17] _bond_length delimiter:  loop_level: 1 value [multiline]: 1.47
+<end_loop> [88]
+<end saveframe> [90] frame_example_1
+<start saveframe> [92] frame_example_2
+<data> [t:94:5,v:94:29] _another_category delimiter:  loop_level: 0 value [multiline]: experimental_data
+<data> [t:95:5,v:95:29] _methodology delimiter: " loop_level: 0 value [multiline]: X-ray crystallography
+<data> [t:98:5,v:99:2] _experimental_details delimiter: "\n" loop_level: 0 value:
+       ;
+       The crystal structure was determined using
+       X-ray crystallography at 100K.
+       
+       Data collection parameters:
+       - Wavelength: 0.71073 Angstrom
+       - Temperature: 100(2) K  
+       - Crystal system: Monoclinic
+<end saveframe> [109] frame_example_2
+<end data> [109] comprehensive_example
+<data> [t:115:1,v:115:26] _global_version delimiter:  loop_level: 0 value [multiline]: 2.1
+<data> [t:116:1,v:116:26] _global_format delimiter: ' loop_level: 0 value [multiline]: STAR
+<data> [t:117:1,v:117:26] _global_software delimiter: ' loop_level: 0 value [multiline]: ustar parser
+<start_loop> [120]
+<data> [t:121:5,v:124:5] _software_name delimiter:  loop_level: 1 value [multiline]: ustar
+<data> [t:122:5,v:124:26] _software_version delimiter: " loop_level: 1 value [multiline]: 1.0
+<data> [t:123:5,v:124:39] _software_author delimiter: " loop_level: 1 value [multiline]: Gary Thompson
+<data> [t:121:5,v:125:5] _software_name delimiter:  loop_level: 1 value [multiline]: crystallography
+<data> [t:122:5,v:125:26] _software_version delimiter: " loop_level: 1 value [multiline]: 2024.1
+<data> [t:123:5,v:125:39] _software_author delimiter: " loop_level: 1 value [multiline]: Various Authors
+<end_loop> [126]
+<start data> [129] second_example
+<data> [t:132:1,v:132:26] _special_chars delimiter: ' loop_level: 0 value [multiline]: !@#$%^&*()_+-=[]{}|;:,.<>?
+<data> [t:133:1,v:133:25] _ascii_only delimiter: ' loop_level: 0 value [multiline]: standard_ascii_text
+<data> [t:134:1,v:134:25] _mixed_case_VALUE delimiter:  loop_level: 0 value [multiline]: MixedCaseValue
+<data> [t:135:1,v:135:25] _hyphenated_value delimiter:  loop_level: 0 value [multiline]: some-hyphenated-text
+<data> [t:136:1,v:136:24] _dotted_value delimiter:  loop_level: 0 value [multiline]: some.dotted.value
+<data> [t:139:1,v:139:26] _keyword_as_value delimiter: ' loop_level: 0 value [multiline]: data_
+<data> [t:140:1,v:140:25] _another_keyword delimiter: ' loop_level: 0 value [multiline]: loop_
+<data> [t:141:1,v:141:25] _save_keyword delimiter: ' loop_level: 0 value [multiline]: save_
+<data> [t:142:1,v:142:25] _stop_keyword delimiter: ' loop_level: 0 value [multiline]: stop_
+<data> [t:143:1,v:143:25] _global_keyword delimiter: ' loop_level: 0 value [multiline]: global_
+<data> [t:146:1,v:146:24] _integer delimiter:  loop_level: 0 value [multiline]: 123
+<data> [t:147:1,v:147:24] _float delimiter:  loop_level: 0 value [multiline]: 123.456
+<data> [t:148:1,v:148:24] _scientific delimiter:  loop_level: 0 value [multiline]: 1.23e-4
+<data> [t:149:1,v:149:24] _negative delimiter:  loop_level: 0 value [multiline]: -456.789
+<data> [t:152:1,v:152:24] _reference_frame delimiter:  loop_level: 0 value [multiline]: $reference_structure
+<data> [t:153:1,v:153:24] _molecular_frame delimiter:  loop_level: 0 value [multiline]: $molecule_001
+<data> [t:156:1,v:156:24] _minimal_value delimiter:  loop_level: 0 value [multiline]: .
+<data> [t:157:1,v:157:24] _question_mark delimiter:  loop_level: 0 value [multiline]: ?
+<data> [t:158:1,v:158:24] _single_char delimiter:  loop_level: 0 value [multiline]: x
+<data> [t:161:1,v:161:25] _complex_quotes delimiter: ' loop_level: 0 value [multiline]: She said "He replied ''Yes ''to the question"
+<data> [t:162:1,v:162:24] _more_complex delimiter: " loop_level: 0 value [multiline]: It's a ""complex ""situation with 'mixed 'quotes
+<data> [t:165:1,v:166:2] _final_multiline delimiter: "\n" loop_level: 0 value:
+       ;
+       This is the final demonstration of semicolon-bounded text.
+       
+       It can contain:
+       - Multiple paragraphs
+       - Special characters: !@#$%^&*()
+       - Quotation marks: 'single' and "double"
+       - Even semicolons in the middle; like this
+       - Frame references: $frame_ref
+       - Underscores: _like_this
+       - And keywords: data_ loop_ save_ stop_ global_
+       
+       The text continues until a line starting with semicolon.
+<end data> [179] second_example

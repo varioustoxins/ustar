@@ -1,9 +1,0 @@
-data_publication
-     _author.details            'A.B.Smith'
-     _author.laboratory         'LLNL'
-     _journal.page              1901-1906
-     _abstract
-;
-the experimental results
-...
-;

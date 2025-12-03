@@ -75,7 +75,10 @@ fn test_error_format_mode(mode: ErrorFormatMode, context_lines: usize, snapshot_
         let formatted = error.format_error(mode, context_lines);
 
         snapshot_utils::assert_snapshot_gz(
-            &format!("error_handling_tests__{}_{}", snapshot_prefix, case_name),
+            &format!(
+                "error_handling_tests__snapshot_utils__error_handling_tests__{}_{}",
+                snapshot_prefix, case_name
+            ),
             &formatted,
         );
     }

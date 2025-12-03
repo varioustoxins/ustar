@@ -1,3 +1,8 @@
+## 0.1.3
+- added fast line number and column lookup
+- use snapshots for testing
+- split project into a tools crate and library crate
+
 ## 0.1.2
 - fixed a bug in SASWalker preventing early extit from parsing by the user
 

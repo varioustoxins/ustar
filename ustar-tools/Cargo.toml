@@ -67,3 +67,4 @@ rstest.workspace = true
 indicatif.workspace = true
 insta.workspace = true
 indoc.workspace = true
+ustar-test-utils = { path = "../ustar-test-utils" }

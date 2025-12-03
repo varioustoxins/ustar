@@ -1,0 +1,1355 @@
+data_7289
+
+#######################
+#  Entry information  #
+#######################
+
+save_entry_information
+   _Entry.Sf_category                    entry_information
+   _Entry.Sf_framecode                   entry_information
+   _Entry.ID                             7289
+   _Entry.Title                         
+;
+Structural characterization and oligomerization of PB1-F2, a pro-apoptotic influenza A virus protein
+;
+   _Entry.Type                           macromolecule
+   _Entry.Version_type                   original
+   _Entry.Submission_date                2006-09-06
+   _Entry.Accession_date                 2006-09-06
+   _Entry.Last_release_date              .
+   _Entry.Original_release_date          .
+   _Entry.Origination                    author
+   _Entry.NMR_STAR_version               3.1.1.61
+   _Entry.Original_NMR_STAR_version      .
+   _Entry.Experimental_method            NMR
+   _Entry.Experimental_method_subtype    .
+   _Entry.Details                       'Assigned 1H chemical shifts of the N-terminal fragment PB(1-40) of the PB1-F2 protein'
+   _Entry.BMRB_internal_directory_name   .
+
+   loop_
+      _Entry_author.Ordinal
+      _Entry_author.Given_name
+      _Entry_author.Family_name
+      _Entry_author.First_initial
+      _Entry_author.Middle_initials
+      _Entry_author.Family_title
+      _Entry_author.Entry_ID
+
+       1 Karsten Bruns       . . . 7289 
+       2 Nicole  Studtrucker . . . 7289 
+       3 Alok    Sharma      . . . 7289 
+       4 Torgils Fossen      . . . 7289 
+       5 David   Mitzner     . . . 7289 
+       6 Andre   Eissmann    . . . 7289 
+       7 Uwe     Tessmer     . . . 7289 
+       8 Peter   Henklein    . . . 7289 
+       9 Victor  Wray        . . . 7289 
+      10 Ulrich  Schubert    . . . 7289 
+
+   stop_
+
+   loop_
+      _Entry_src.ID
+      _Entry_src.Project_name
+      _Entry_src.Organization_full_name
+      _Entry_src.Organization_initials
+      _Entry_src.Entry_ID
+
+      . . 'Helmholtz Centre for Infection Research, Division of Structural Biology'         . 7289 
+      . . 'University of Erlangen-Nuremberg, Institute for Clinical and Molecular Virology' . 7289 
+
+   stop_
+
+   loop_
+      _Data_set.Type
+      _Data_set.Count
+      _Data_set.Entry_ID
+
+      assigned_chemical_shifts 1 7289 
+
+   stop_
+
+   loop_
+      _Datum.Type
+      _Datum.Count
+      _Datum.Entry_ID
+
+      '1H chemical shifts' 289 7289 
+
+   stop_
+
+   loop_
+      _Release.Release_number
+      _Release.Format_type
+      _Release.Format_version
+      _Release.Date
+      _Release.Submission_date
+      _Release.Type
+      _Release.Author
+      _Release.Detail
+      _Release.Entry_ID
+
+      2 . . 2007-01-08 2006-09-06 update   author 'update the entry citation' 7289 
+      1 . . 2006-10-31 2006-09-06 original author 'original release'          7289 
+
+   stop_
+
+   loop_
+      _Related_entries.Database_name
+      _Related_entries.Database_accession_code
+      _Related_entries.Relationship
+      _Related_entries.Entry_ID
+
+      BMRB 7258 'NMR data of the C-terminal fragment PB(50-87) of the PB1-F2 protein' 7289 
+      BMRB 7290 'NMR data of the central fragment PB(30-70) of the PB1-F2 protein'    7289 
+
+   stop_
+
+save_
+
+
+###############
+#  Citations  #
+###############
+
+save_entry_citation
+   _Citation.Sf_category                  citations
+   _Citation.Sf_framecode                 entry_citation
+   _Citation.Entry_ID                     7289
+   _Citation.ID                           1
+   _Citation.Class                       'entry citation'
+   _Citation.CAS_abstract_code            .
+   _Citation.MEDLINE_UI_code              .
+   _Citation.DOI                          .
+   _Citation.PubMed_ID                    17052982
+   _Citation.Full_citation                .
+   _Citation.Title                       'Structural characterization and oligomerization of PB1-F2, a pro-apoptotic influenza A virus protein'
+   _Citation.Status                       published
+   _Citation.Type                         journal
+   _Citation.Journal_abbrev              'J. Biol. Chem.'
+   _Citation.Journal_name_full            .
+   _Citation.Journal_volume               282
+   _Citation.Journal_issue                1
+   _Citation.Journal_ASTM                 .
+   _Citation.Journal_ISSN                 .
+   _Citation.Journal_CSD                  .
+   _Citation.Book_title                   .
+   _Citation.Book_chapter_title           .
+   _Citation.Book_volume                  .
+   _Citation.Book_series                  .
+   _Citation.Book_publisher               .
+   _Citation.Book_publisher_city          .
+   _Citation.Book_ISBN                    .
+   _Citation.Conference_title             .
+   _Citation.Conference_site              .
+   _Citation.Conference_state_province    .
+   _Citation.Conference_country           .
+   _Citation.Conference_start_date        .
+   _Citation.Conference_end_date          .
+   _Citation.Conference_abstract_number   .
+   _Citation.Thesis_institution           .
+   _Citation.Thesis_institution_city      .
+   _Citation.Thesis_institution_country   .
+   _Citation.WWW_URL                      .
+   _Citation.Page_first                   353
+   _Citation.Page_last                    363
+   _Citation.Year                         2006
+   _Citation.Details                      .
+
+   loop_
+      _Citation_author.Ordinal
+      _Citation_author.Given_name
+      _Citation_author.Family_name
+      _Citation_author.First_initial
+      _Citation_author.Middle_initials
+      _Citation_author.Family_title
+      _Citation_author.Entry_ID
+      _Citation_author.Citation_ID
+
+       1 Karsten Bruns       . . . 7289 1 
+       2 Nicole  Studtrucker . . . 7289 1 
+       3 Alok    Sharma      . . . 7289 1 
+       4 Torgils Fossen      . . . 7289 1 
+       5 David   Mitzner     . . . 7289 1 
+       6 Andre   Eissmann    . . . 7289 1 
+       7 Uwe     Tessmer     . . . 7289 1 
+       8 R.      Roder       . . . 7289 1 
+       9 Peter   Henklein    . . . 7289 1 
+      10 Victor  Wray        . . . 7289 1 
+      11 Ulrich  Schubert    . . . 7289 1 
+
+   stop_
+
+   loop_
+      _Citation_keyword.Keyword
+      _Citation_keyword.Entry_ID
+      _Citation_keyword.Citation_ID
+
+      'Influenza A virus'             7289 1 
+       PB1-F2                         7289 1 
+      'Structure and oligomerization' 7289 1 
+
+   stop_
+
+save_
+
+
+#############################################
+#  Molecular system (assembly) description  #
+#############################################
+
+save_assembly
+   _Assembly.Sf_category                       assembly
+   _Assembly.Sf_framecode                      assembly
+   _Assembly.Entry_ID                          7289
+   _Assembly.ID                                1
+   _Assembly.Name                              PB(1-40)
+   _Assembly.BMRB_code                         .
+   _Assembly.Number_of_components              1
+   _Assembly.Organic_ligands                   0
+   _Assembly.Metal_ions                        0
+   _Assembly.Non_standard_bonds                .
+   _Assembly.Ambiguous_conformational_states   no
+   _Assembly.Ambiguous_chem_comp_sites         no
+   _Assembly.Molecules_in_chemical_exchange    no
+   _Assembly.Paramagnetic                      no
+   _Assembly.Thiol_state                      'not present'
+   _Assembly.Molecular_mass                    4592
+   _Assembly.Enzyme_commission_number          .
+   _Assembly.Details                          'N-terminal fragment of influenza A virus PB1-F2 protein'
+   _Assembly.DB_query_date                     .
+   _Assembly.DB_query_revised_last_date        .
+
+   loop_
+      _Assembly_type.Type
+      _Assembly_type.Entry_ID
+      _Assembly_type.Assembly_ID
+
+      protein 7289 1 
+
+   stop_
+
+   loop_
+      _Entity_assembly.ID
+      _Entity_assembly.Entity_assembly_name
+      _Entity_assembly.Entity_ID
+      _Entity_assembly.Entity_label
+      _Entity_assembly.Asym_ID
+      _Entity_assembly.PDB_chain_ID
+      _Entity_assembly.Experimental_data_reported
+      _Entity_assembly.Physical_state
+      _Entity_assembly.Conformational_isomer
+      _Entity_assembly.Chemical_exchange_state
+      _Entity_assembly.Magnetic_equivalence_group_code
+      _Entity_assembly.Role
+      _Entity_assembly.Details
+      _Entity_assembly.Entry_ID
+      _Entity_assembly.Assembly_ID
+
+      1 PB(1-40) 1 $PB(1-40) . . yes native no no . . . 7289 1 
+
+   stop_
+
+   loop_
+      _Assembly_db_link.Author_supplied
+      _Assembly_db_link.Database_code
+      _Assembly_db_link.Accession_code
+      _Assembly_db_link.Entry_mol_code
+      _Assembly_db_link.Entry_mol_name
+      _Assembly_db_link.Entry_experimental_method
+      _Assembly_db_link.Entry_structure_resolution
+      _Assembly_db_link.Entry_relation_type
+      _Assembly_db_link.Entry_details
+      _Assembly_db_link.Entry_ID
+      _Assembly_db_link.Assembly_ID
+
+      . NCBI 211044 . . . . 'source organism' 'Influenza A virus (A/Puerto Rico/8/34(H1N1))'                   7289 1 
+      . NCBI P0C0U1  . . . . 'PB1-F2 protein'  'PB1-F2 protein of Influenza A virus (A/Puerto Rico/8/34(H1N1))' 7289 1 
+
+   stop_
+
+save_
+
+
+    ####################################
+    #  Biological polymers and ligands #
+    ####################################
+
+save_PB(1-40)
+   _Entity.Sf_category                       entity
+   _Entity.Sf_framecode                      PB(1-40)
+   _Entity.Entry_ID                          7289
+   _Entity.ID                                1
+   _Entity.BMRB_code                         .
+   _Entity.Name                              PB(1-40)
+   _Entity.Type                              polymer
+   _Entity.Polymer_common_type               .
+   _Entity.Polymer_type                      polypeptide(L)
+   _Entity.Polymer_type_details              .
+   _Entity.Polymer_strand_ID                 .
+   _Entity.Polymer_seq_one_letter_code_can   .
+   _Entity.Polymer_seq_one_letter_code      
+;
+MGQEQDTPWILSTGHISTQK
+RQDGQQTPKLEHRNSTRLMG
+
+;
+   _Entity.Target_identifier                 .
+   _Entity.Polymer_author_defined_seq        .
+   _Entity.Polymer_author_seq_details       'N-terminal fragment PB(1-40) of the PB1-F2 protein comprising amino acid residues Met-1 to Gly-40'
+   _Entity.Ambiguous_conformational_states   no
+   _Entity.Ambiguous_chem_comp_sites         no
+   _Entity.Nstd_monomer                      no
+   _Entity.Nstd_chirality                    no
+   _Entity.Nstd_linkage                      no
+   _Entity.Nonpolymer_comp_ID                .
+   _Entity.Nonpolymer_comp_label             .
+   _Entity.Number_of_monomers                40
+   _Entity.Number_of_nonpolymer_components   .
+   _Entity.Paramagnetic                      no
+   _Entity.Thiol_state                      'not present'
+   _Entity.Src_method                        .
+   _Entity.Parent_entity_ID                  1
+   _Entity.Fragment                          .
+   _Entity.Mutation                          .
+   _Entity.EC_number                         .
+   _Entity.Calc_isoelectric_point            .
+   _Entity.Formula_weight                    4592
+   _Entity.Formula_weight_exptl              .
+   _Entity.Formula_weight_exptl_meth         .
+   _Entity.Details                           .
+   _Entity.DB_query_date                     .
+   _Entity.DB_query_revised_last_date        2015-01-28
+
+   loop_
+      _Entity_db_link.Ordinal
+      _Entity_db_link.Author_supplied
+      _Entity_db_link.Database_code
+      _Entity_db_link.Accession_code
+      _Entity_db_link.Entry_mol_code
+      _Entity_db_link.Entry_mol_name
+      _Entity_db_link.Entry_experimental_method
+      _Entity_db_link.Entry_structure_resolution
+      _Entity_db_link.Entry_relation_type
+      _Entity_db_link.Entry_details
+      _Entity_db_link.Chimera_segment_ID
+      _Entity_db_link.Seq_query_to_submitted_percent
+      _Entity_db_link.Seq_subject_length
+      _Entity_db_link.Seq_identity
+      _Entity_db_link.Seq_positive
+      _Entity_db_link.Seq_homology_expectation_val
+      _Entity_db_link.Seq_align_begin
+      _Entity_db_link.Seq_align_end
+      _Entity_db_link.Seq_difference_details
+      _Entity_db_link.Seq_alignment_details
+      _Entity_db_link.Entry_ID
+      _Entity_db_link.Entity_ID
+
+      1 no GB  ABD77684  . "PB1-F2 protein [Influenza A virus (A/Puerto Rico/8/1934(H1N1))]"                                         . . . . . 100.00 87  97.50 100.00 4.29e-19 . . . . 7289 1 
+      2 no GB  ABN59421  . "PB1-F2 protein [Influenza A virus (A/Alaska/1935(H1N1))]"                                                . . . . . 100.00 87  97.50 100.00 4.29e-19 . . . . 7289 1 
+      3 no GB  ABO21707  . "PB1-F2 protein [Influenza A virus (A/Puerto Rico/8/1934(H1N1))]"                                         . . . . . 100.00 87  97.50 100.00 4.29e-19 . . . . 7289 1 
+      4 no GB  ACF41843  . "PB1-F2 protein [Influenza A virus (A/Puerto Rico/8/1934(H1N1))]"                                         . . . . . 100.00 87  97.50 100.00 4.29e-19 . . . . 7289 1 
+      5 no GB  ACF54596  . "PB1-F2 protein [Influenza A virus (A/NYMC X-163(NYMC X-157-St. Petersburg/8/2006)(H1N1))]"               . . . . . 100.00 87  97.50 100.00 3.65e-19 . . . . 7289 1 
+      6 no REF YP_418248 . "PB1-F2 protein [Influenza A virus (A/Puerto Rico/8/34(H1N1))]"                                           . . . . . 100.00 87 100.00 100.00 1.53e-19 . . . . 7289 1 
+      7 no SP  B4URE5    . "RecName: Full=Protein PB1-F2 [Influenza A virus (A/Nymc X-163(Nymc X-157-St. Petersburg/8/2006)(H1N1))]" . . . . . 100.00 87  97.50 100.00 3.65e-19 . . . . 7289 1 
+      8 no SP  P0C0U1    . "RecName: Full=Protein PB1-F2 [Influenza A virus (A/Puerto Rico/8/1934(H1N1))]"                           . . . . . 100.00 87 100.00 100.00 1.53e-19 . . . . 7289 1 
+
+   stop_
+
+   loop_
+      _Entity_comp_index.ID
+      _Entity_comp_index.Auth_seq_ID
+      _Entity_comp_index.Comp_ID
+      _Entity_comp_index.Comp_label
+      _Entity_comp_index.Entry_ID
+      _Entity_comp_index.Entity_ID
+
+       1 . MET . 7289 1 
+       2 . GLY . 7289 1 
+       3 . GLN . 7289 1 
+       4 . GLU . 7289 1 
+       5 . GLN . 7289 1 
+       6 . ASP . 7289 1 
+       7 . THR . 7289 1 
+       8 . PRO . 7289 1 
+       9 . TRP . 7289 1 
+      10 . ILE . 7289 1 
+      11 . LEU . 7289 1 
+      12 . SER . 7289 1 
+      13 . THR . 7289 1 
+      14 . GLY . 7289 1 
+      15 . HIS . 7289 1 
+      16 . ILE . 7289 1 
+      17 . SER . 7289 1 
+      18 . THR . 7289 1 
+      19 . GLN . 7289 1 
+      20 . LYS . 7289 1 
+      21 . ARG . 7289 1 
+      22 . GLN . 7289 1 
+      23 . ASP . 7289 1 
+      24 . GLY . 7289 1 
+      25 . GLN . 7289 1 
+      26 . GLN . 7289 1 
+      27 . THR . 7289 1 
+      28 . PRO . 7289 1 
+      29 . LYS . 7289 1 
+      30 . LEU . 7289 1 
+      31 . GLU . 7289 1 
+      32 . HIS . 7289 1 
+      33 . ARG . 7289 1 
+      34 . ASN . 7289 1 
+      35 . SER . 7289 1 
+      36 . THR . 7289 1 
+      37 . ARG . 7289 1 
+      38 . LEU . 7289 1 
+      39 . MET . 7289 1 
+      40 . GLY . 7289 1 
+
+   stop_
+
+   loop_
+      _Entity_poly_seq.Hetero
+      _Entity_poly_seq.Mon_ID
+      _Entity_poly_seq.Num
+      _Entity_poly_seq.Comp_index_ID
+      _Entity_poly_seq.Entry_ID
+      _Entity_poly_seq.Entity_ID
+
+      . MET  1  1 7289 1 
+      . GLY  2  2 7289 1 
+      . GLN  3  3 7289 1 
+      . GLU  4  4 7289 1 
+      . GLN  5  5 7289 1 
+      . ASP  6  6 7289 1 
+      . THR  7  7 7289 1 
+      . PRO  8  8 7289 1 
+      . TRP  9  9 7289 1 
+      . ILE 10 10 7289 1 
+      . LEU 11 11 7289 1 
+      . SER 12 12 7289 1 
+      . THR 13 13 7289 1 
+      . GLY 14 14 7289 1 
+      . HIS 15 15 7289 1 
+      . ILE 16 16 7289 1 
+      . SER 17 17 7289 1 
+      . THR 18 18 7289 1 
+      . GLN 19 19 7289 1 
+      . LYS 20 20 7289 1 
+      . ARG 21 21 7289 1 
+      . GLN 22 22 7289 1 
+      . ASP 23 23 7289 1 
+      . GLY 24 24 7289 1 
+      . GLN 25 25 7289 1 
+      . GLN 26 26 7289 1 
+      . THR 27 27 7289 1 
+      . PRO 28 28 7289 1 
+      . LYS 29 29 7289 1 
+      . LEU 30 30 7289 1 
+      . GLU 31 31 7289 1 
+      . HIS 32 32 7289 1 
+      . ARG 33 33 7289 1 
+      . ASN 34 34 7289 1 
+      . SER 35 35 7289 1 
+      . THR 36 36 7289 1 
+      . ARG 37 37 7289 1 
+      . LEU 38 38 7289 1 
+      . MET 39 39 7289 1 
+      . GLY 40 40 7289 1 
+
+   stop_
+
+save_
+
+
+    ####################
+    #  Natural source  #
+    ####################
+
+save_natural_source
+   _Entity_natural_src_list.Sf_category    natural_source
+   _Entity_natural_src_list.Sf_framecode   natural_source
+   _Entity_natural_src_list.Entry_ID       7289
+   _Entity_natural_src_list.ID             1
+
+   loop_
+      _Entity_natural_src.ID
+      _Entity_natural_src.Entity_ID
+      _Entity_natural_src.Entity_label
+      _Entity_natural_src.Entity_chimera_segment_ID
+      _Entity_natural_src.NCBI_taxonomy_ID
+      _Entity_natural_src.Type
+      _Entity_natural_src.Common
+      _Entity_natural_src.Organism_name_scientific
+      _Entity_natural_src.Organism_name_common
+      _Entity_natural_src.Organism_acronym
+      _Entity_natural_src.ICTVdb_decimal_code
+      _Entity_natural_src.Superkingdom
+      _Entity_natural_src.Kingdom
+      _Entity_natural_src.Genus
+      _Entity_natural_src.Species
+      _Entity_natural_src.Strain
+      _Entity_natural_src.Variant
+      _Entity_natural_src.Subvariant
+      _Entity_natural_src.Organ
+      _Entity_natural_src.Tissue
+      _Entity_natural_src.Tissue_fraction
+      _Entity_natural_src.Cell_line
+      _Entity_natural_src.Cell_type
+      _Entity_natural_src.ATCC_number
+      _Entity_natural_src.Organelle
+      _Entity_natural_src.Cellular_location
+      _Entity_natural_src.Fragment
+      _Entity_natural_src.Fraction
+      _Entity_natural_src.Secretion
+      _Entity_natural_src.Plasmid
+      _Entity_natural_src.Plasmid_details
+      _Entity_natural_src.Gene_mnemonic
+      _Entity_natural_src.Dev_stage
+      _Entity_natural_src.Details
+      _Entity_natural_src.Citation_ID
+      _Entity_natural_src.Citation_label
+      _Entity_natural_src.Entry_ID
+      _Entity_natural_src.Entity_natural_src_list_ID
+
+      1 1 $PB(1-40) . 211044 virus no . 'Influenza A virus' . . Viruses 'Not applicable' 'Influenzavirus A' 'Influenza A virus' 'A/Puerto Rico/8/34(H1N1)' . . . . . . . . . . . . . . . . . . . . 7289 1 
+
+   stop_
+
+save_
+
+
+    #########################
+    #  Experimental source  #
+    #########################
+
+save_experimental_source
+   _Entity_experimental_src_list.Sf_category    experimental_source
+   _Entity_experimental_src_list.Sf_framecode   experimental_source
+   _Entity_experimental_src_list.Entry_ID       7289
+   _Entity_experimental_src_list.ID             1
+
+   loop_
+      _Entity_experimental_src.ID
+      _Entity_experimental_src.Entity_ID
+      _Entity_experimental_src.Entity_label
+      _Entity_experimental_src.Entity_chimera_segment_ID
+      _Entity_experimental_src.Production_method
+      _Entity_experimental_src.Host_org_scientific_name
+      _Entity_experimental_src.Host_org_name_common
+      _Entity_experimental_src.Host_org_details
+      _Entity_experimental_src.Host_org_NCBI_taxonomy_ID
+      _Entity_experimental_src.Host_org_genus
+      _Entity_experimental_src.Host_org_species
+      _Entity_experimental_src.Host_org_strain
+      _Entity_experimental_src.Host_org_variant
+      _Entity_experimental_src.Host_org_subvariant
+      _Entity_experimental_src.Host_org_organ
+      _Entity_experimental_src.Host_org_tissue
+      _Entity_experimental_src.Host_org_tissue_fraction
+      _Entity_experimental_src.Host_org_cell_line
+      _Entity_experimental_src.Host_org_cell_type
+      _Entity_experimental_src.Host_org_cellular_location
+      _Entity_experimental_src.Host_org_organelle
+      _Entity_experimental_src.Host_org_gene
+      _Entity_experimental_src.Host_org_culture_collection
+      _Entity_experimental_src.Host_org_ATCC_number
+      _Entity_experimental_src.Vector_type
+      _Entity_experimental_src.PDBview_host_org_vector_name
+      _Entity_experimental_src.PDBview_plasmid_name
+      _Entity_experimental_src.Vector_name
+      _Entity_experimental_src.Vector_details
+      _Entity_experimental_src.Vendor_name
+      _Entity_experimental_src.Host_org_dev_stage
+      _Entity_experimental_src.Details
+      _Entity_experimental_src.Citation_ID
+      _Entity_experimental_src.Citation_label
+      _Entity_experimental_src.Entry_ID
+      _Entity_experimental_src.Entity_experimental_src_list_ID
+
+      1 1 $PB(1-40) . 'chemical synthesis' . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 7289 1 
+
+   stop_
+
+save_
+
+
+#####################################
+#  Sample contents and methodology  #
+#####################################
+	 
+    ########################
+    #  Sample description  #
+    ########################
+
+save_sample_1
+   _Sample.Sf_category                      sample
+   _Sample.Sf_framecode                     sample_1
+   _Sample.Entry_ID                         7289
+   _Sample.ID                               1
+   _Sample.Type                             solution
+   _Sample.Sub_type                         .
+   _Sample.Details                          .
+   _Sample.Aggregate_sample_number          .
+   _Sample.Solvent_system                   .
+   _Sample.Preparation_date                 .
+   _Sample.Preparation_expiration_date      .
+   _Sample.Polycrystallization_protocol     .
+   _Sample.Single_crystal_protocol          .
+   _Sample.Crystal_grow_apparatus           .
+   _Sample.Crystal_grow_atmosphere          .
+   _Sample.Crystal_grow_details             .
+   _Sample.Crystal_grow_method              .
+   _Sample.Crystal_grow_method_cit_ID       .
+   _Sample.Crystal_grow_pH                  .
+   _Sample.Crystal_grow_pH_range            .
+   _Sample.Crystal_grow_pressure            .
+   _Sample.Crystal_grow_pressure_esd        .
+   _Sample.Crystal_grow_seeding             .
+   _Sample.Crystal_grow_seeding_cit_ID      .
+   _Sample.Crystal_grow_temp                .
+   _Sample.Crystal_grow_temp_details        .
+   _Sample.Crystal_grow_temp_esd            .
+   _Sample.Crystal_grow_time                .
+   _Sample.Oriented_sample_prep_protocol    .
+   _Sample.Lyophilization_cryo_protectant   .
+   _Sample.Storage_protocol                 .
+
+   loop_
+      _Sample_component.ID
+      _Sample_component.Mol_common_name
+      _Sample_component.Isotopic_labeling
+      _Sample_component.Assembly_ID
+      _Sample_component.Assembly_label
+      _Sample_component.Entity_ID
+      _Sample_component.Entity_label
+      _Sample_component.Product_ID
+      _Sample_component.Type
+      _Sample_component.Concentration_val
+      _Sample_component.Concentration_val_min
+      _Sample_component.Concentration_val_max
+      _Sample_component.Concentration_val_units
+      _Sample_component.Concentration_val_err
+      _Sample_component.Vendor
+      _Sample_component.Vendor_product_name
+      _Sample_component.Vendor_product_code
+      _Sample_component.Entry_ID
+      _Sample_component.Sample_ID
+
+      1 PB(1-40)         . . . 1 $PB(1-40) . protein  2 . .  mM     . . . . 7289 1 
+      2 Trifluoroethanol . . .  .  .        . solvent 50 . . '% v/v' . . . . 7289 1 
+      3 water            . . .  .  .        . solvent 50 . . '% v/v' . . . . 7289 1 
+
+   stop_
+
+save_
+
+
+#######################
+#  Sample conditions  #
+#######################
+
+save_conditions_1
+   _Sample_condition_list.Sf_category    sample_conditions
+   _Sample_condition_list.Sf_framecode   conditions_1
+   _Sample_condition_list.Entry_ID       7289
+   _Sample_condition_list.ID             1
+   _Sample_condition_list.Details        .
+
+   loop_
+      _Sample_condition_variable.Type
+      _Sample_condition_variable.Val
+      _Sample_condition_variable.Val_err
+      _Sample_condition_variable.Val_units
+      _Sample_condition_variable.Entry_ID
+      _Sample_condition_variable.Sample_condition_list_ID
+
+      'ionic strength'   0 0 mM  7289 1 
+       pH                3 0 pH  7289 1 
+       pressure          1 0 atm 7289 1 
+       temperature     300 0 K   7289 1 
+
+   stop_
+
+save_
+
+
+############################
+#  Computer software used  #
+############################
+
+save_software_1
+   _Software.Sf_category    software
+   _Software.Sf_framecode   software_1
+   _Software.Entry_ID       7289
+   _Software.ID             1
+   _Software.Name           XWIN-NMR
+   _Software.Version        3.1
+   _Software.Details        .
+
+   loop_
+      _Vendor.Name
+      _Vendor.Address
+      _Vendor.Electronic_address
+      _Vendor.Entry_ID
+      _Vendor.Software_ID
+
+      Bruker 'Bruker BioSpin GmbH, Silberstreifen 4, 76287 Rheinstetten, Germany' http://www.bruker-biospin.de/NMR/index.html 7289 1 
+
+   stop_
+
+save_
+
+
+#########################
+#  Experimental detail  #
+#########################
+
+    ##################################
+    #  NMR Spectrometer definitions  #
+    ##################################
+
+save_600_MHz_spectrometer
+   _NMR_spectrometer.Sf_category      NMR_spectrometer
+   _NMR_spectrometer.Sf_framecode     600_MHz_spectrometer
+   _NMR_spectrometer.Entry_ID         7289
+   _NMR_spectrometer.ID               1
+   _NMR_spectrometer.Details          .
+   _NMR_spectrometer.Manufacturer     Bruker
+   _NMR_spectrometer.Model            DMX
+   _NMR_spectrometer.Serial_number    .
+   _NMR_spectrometer.Field_strength   600
+
+save_
+
+
+    #############################
+    #  NMR applied experiments  #
+    #############################
+
+save_NMR_experiment_list
+   _Experiment_list.Sf_category    experiment_list
+   _Experiment_list.Sf_framecode   NMR_experiment_list
+   _Experiment_list.Entry_ID       7289
+   _Experiment_list.ID             1
+   _Experiment_list.Details        .
+
+   loop_
+      _Experiment.ID
+      _Experiment.Name
+      _Experiment.Raw_data_flag
+      _Experiment.NMR_spec_expt_ID
+      _Experiment.NMR_spec_expt_label
+      _Experiment.MS_expt_ID
+      _Experiment.MS_expt_label
+      _Experiment.SAXS_expt_ID
+      _Experiment.SAXS_expt_label
+      _Experiment.FRET_expt_ID
+      _Experiment.FRET_expt_label
+      _Experiment.EMR_expt_ID
+      _Experiment.EMR_expt_label
+      _Experiment.Sample_ID
+      _Experiment.Sample_label
+      _Experiment.Sample_state
+      _Experiment.Sample_volume
+      _Experiment.Sample_volume_units
+      _Experiment.Sample_condition_list_ID
+      _Experiment.Sample_condition_list_label
+      _Experiment.Sample_spinning_rate
+      _Experiment.Sample_angle
+      _Experiment.NMR_tube_type
+      _Experiment.NMR_spectrometer_ID
+      _Experiment.NMR_spectrometer_label
+      _Experiment.NMR_spectrometer_probe_ID
+      _Experiment.NMR_spectrometer_probe_label
+      _Experiment.NMR_spectral_processing_ID
+      _Experiment.NMR_spectral_processing_label
+      _Experiment.Mass_spectrometer_ID
+      _Experiment.Mass_spectrometer_label
+      _Experiment.Xray_instrument_ID
+      _Experiment.Xray_instrument_label
+      _Experiment.Fluorescence_instrument_ID
+      _Experiment.Fluorescence_instrument_label
+      _Experiment.EMR_instrument_ID
+      _Experiment.EMR_instrument_label
+      _Experiment.Chromatographic_system_ID
+      _Experiment.Chromatographic_system_label
+      _Experiment.Chromatographic_column_ID
+      _Experiment.Chromatographic_column_label
+      _Experiment.Entry_ID
+      _Experiment.Experiment_list_ID
+
+      1 '1D 1H'          no . . . . . . . . . . 1 $sample_1 . . . 1 $conditions_1 . . . 1 $600_MHz_spectrometer . . . . . . . . . . . . . . . . 7289 1 
+      2 '2D 1H,1H COSY'  no . . . . . . . . . . 1 $sample_1 . . . 1 $conditions_1 . . . 1 $600_MHz_spectrometer . . . . . . . . . . . . . . . . 7289 1 
+      3 '2D 1H,1H TOCSY' no . . . . . . . . . . 1 $sample_1 . . . 1 $conditions_1 . . . 1 $600_MHz_spectrometer . . . . . . . . . . . . . . . . 7289 1 
+      4 '2D 1H,1H NOESY' no . . . . . . . . . . 1 $sample_1 . . . 1 $conditions_1 . . . 1 $600_MHz_spectrometer . . . . . . . . . . . . . . . . 7289 1 
+
+   stop_
+
+save_
+
+
+save_1D_1H
+   _NMR_spec_expt.Sf_category                     NMR_spectrometer_expt
+   _NMR_spec_expt.Sf_framecode                    1D_1H
+   _NMR_spec_expt.Entry_ID                        7289
+   _NMR_spec_expt.ID                              1
+   _NMR_spec_expt.Name                           '1D 1H'
+   _NMR_spec_expt.Type                            .
+   _NMR_spec_expt.Sample_volume                   .
+   _NMR_spec_expt.Sample_volume_units             .
+   _NMR_spec_expt.NMR_tube_type                   .
+   _NMR_spec_expt.Sample_spinning_rate            .
+   _NMR_spec_expt.Sample_angle                    .
+   _NMR_spec_expt.NMR_spectrometer_ID             1
+   _NMR_spec_expt.NMR_spectrometer_label         $600_MHz_spectrometer
+   _NMR_spec_expt.NMR_spectrometer_probe_ID       .
+   _NMR_spec_expt.NMR_spectrometer_probe_label    .
+   _NMR_spec_expt.Carrier_freq_switch_time        .
+   _NMR_spec_expt.Software_ID                     1
+   _NMR_spec_expt.Software_label                 $software_1
+   _NMR_spec_expt.Method_ID                       .
+   _NMR_spec_expt.Method_label                    .
+   _NMR_spec_expt.Pulse_seq_accession_BMRB_code   .
+   _NMR_spec_expt.Details                         .
+
+save_
+
+
+save_2D_1H_1H_COSY
+   _NMR_spec_expt.Sf_category                     NMR_spectrometer_expt
+   _NMR_spec_expt.Sf_framecode                    2D_1H_1H_COSY
+   _NMR_spec_expt.Entry_ID                        7289
+   _NMR_spec_expt.ID                              2
+   _NMR_spec_expt.Name                           '2D 1H,1H COSY'
+   _NMR_spec_expt.Type                            .
+   _NMR_spec_expt.Sample_volume                   .
+   _NMR_spec_expt.Sample_volume_units             .
+   _NMR_spec_expt.NMR_tube_type                   .
+   _NMR_spec_expt.Sample_spinning_rate            .
+   _NMR_spec_expt.Sample_angle                    .
+   _NMR_spec_expt.NMR_spectrometer_ID             1
+   _NMR_spec_expt.NMR_spectrometer_label         $600_MHz_spectrometer
+   _NMR_spec_expt.NMR_spectrometer_probe_ID       .
+   _NMR_spec_expt.NMR_spectrometer_probe_label    .
+   _NMR_spec_expt.Carrier_freq_switch_time        .
+   _NMR_spec_expt.Software_ID                     1
+   _NMR_spec_expt.Software_label                 $software_1
+   _NMR_spec_expt.Method_ID                       .
+   _NMR_spec_expt.Method_label                    .
+   _NMR_spec_expt.Pulse_seq_accession_BMRB_code   .
+   _NMR_spec_expt.Details                         .
+
+save_
+
+
+save_2D_1H_1H_TOCSY
+   _NMR_spec_expt.Sf_category                     NMR_spectrometer_expt
+   _NMR_spec_expt.Sf_framecode                    2D_1H_1H_TOCSY
+   _NMR_spec_expt.Entry_ID                        7289
+   _NMR_spec_expt.ID                              3
+   _NMR_spec_expt.Name                           '2D 1H,1H TOCSY'
+   _NMR_spec_expt.Type                            .
+   _NMR_spec_expt.Sample_volume                   .
+   _NMR_spec_expt.Sample_volume_units             .
+   _NMR_spec_expt.NMR_tube_type                   .
+   _NMR_spec_expt.Sample_spinning_rate            .
+   _NMR_spec_expt.Sample_angle                    .
+   _NMR_spec_expt.NMR_spectrometer_ID             1
+   _NMR_spec_expt.NMR_spectrometer_label         $600_MHz_spectrometer
+   _NMR_spec_expt.NMR_spectrometer_probe_ID       .
+   _NMR_spec_expt.NMR_spectrometer_probe_label    .
+   _NMR_spec_expt.Carrier_freq_switch_time        .
+   _NMR_spec_expt.Software_ID                     1
+   _NMR_spec_expt.Software_label                 $software_1
+   _NMR_spec_expt.Method_ID                       .
+   _NMR_spec_expt.Method_label                    .
+   _NMR_spec_expt.Pulse_seq_accession_BMRB_code   .
+   _NMR_spec_expt.Details                         .
+
+save_
+
+
+save_2D_1H_1H_NOESY
+   _NMR_spec_expt.Sf_category                     NMR_spectrometer_expt
+   _NMR_spec_expt.Sf_framecode                    2D_1H_1H_NOESY
+   _NMR_spec_expt.Entry_ID                        7289
+   _NMR_spec_expt.ID                              4
+   _NMR_spec_expt.Name                           '2D 1H,1H NOESY'
+   _NMR_spec_expt.Type                            .
+   _NMR_spec_expt.Sample_volume                   .
+   _NMR_spec_expt.Sample_volume_units             .
+   _NMR_spec_expt.NMR_tube_type                   .
+   _NMR_spec_expt.Sample_spinning_rate            .
+   _NMR_spec_expt.Sample_angle                    .
+   _NMR_spec_expt.NMR_spectrometer_ID             1
+   _NMR_spec_expt.NMR_spectrometer_label         $600_MHz_spectrometer
+   _NMR_spec_expt.NMR_spectrometer_probe_ID       .
+   _NMR_spec_expt.NMR_spectrometer_probe_label    .
+   _NMR_spec_expt.Carrier_freq_switch_time        .
+   _NMR_spec_expt.Software_ID                     1
+   _NMR_spec_expt.Software_label                 $software_1
+   _NMR_spec_expt.Method_ID                       .
+   _NMR_spec_expt.Method_label                    .
+   _NMR_spec_expt.Pulse_seq_accession_BMRB_code   .
+   _NMR_spec_expt.Details                         .
+
+save_
+
+
+####################
+#  NMR parameters  #
+####################
+
+    ##############################
+    #  Assigned chemical shifts  #
+    ##############################
+
+	################################
+	#  Chemical shift referencing  #
+	################################
+
+save_chemical_shift_referencing
+   _Chem_shift_reference.Sf_category    chem_shift_reference
+   _Chem_shift_reference.Sf_framecode   chemical_shift_referencing
+   _Chem_shift_reference.Entry_ID       7289
+   _Chem_shift_reference.ID             1
+   _Chem_shift_reference.Details        .
+
+   loop_
+      _Chem_shift_ref.Atom_type
+      _Chem_shift_ref.Atom_isotope_number
+      _Chem_shift_ref.Mol_common_name
+      _Chem_shift_ref.Atom_group
+      _Chem_shift_ref.Concentration_val
+      _Chem_shift_ref.Concentration_units
+      _Chem_shift_ref.Solvent
+      _Chem_shift_ref.Rank
+      _Chem_shift_ref.Chem_shift_units
+      _Chem_shift_ref.Chem_shift_val
+      _Chem_shift_ref.Ref_method
+      _Chem_shift_ref.Ref_type
+      _Chem_shift_ref.Indirect_shift_ratio
+      _Chem_shift_ref.External_ref_loc
+      _Chem_shift_ref.External_ref_sample_geometry
+      _Chem_shift_ref.External_ref_axis
+      _Chem_shift_ref.Indirect_shift_ratio_cit_ID
+      _Chem_shift_ref.Indirect_shift_ratio_cit_label
+      _Chem_shift_ref.Ref_correction_type
+      _Chem_shift_ref.Correction_val
+      _Chem_shift_ref.Correction_val_cit_ID
+      _Chem_shift_ref.Correction_val_cit_label
+      _Chem_shift_ref.Entry_ID
+      _Chem_shift_ref.Chem_shift_reference_ID
+
+      H 1 Trifuoroethanol 'methylene protons' . . . . ppm 3.95 internal direct 1.0 . . . 1 $entry_citation . . 1 $entry_citation 7289 1 
+
+   stop_
+
+save_
+
+
+     ###################################
+     #  Assigned chemical shift lists  #
+     ###################################
+
+###################################################################
+#       Chemical Shift Ambiguity Index Value Definitions          #
+#                                                                 #
+# The values other than 1 are used for those atoms with different #
+# chemical shifts that cannot be assigned to stereospecific atoms #
+# or to specific residues or chains.                              #
+#                                                                 #
+#   Index Value            Definition                             #
+#                                                                 #
+#      1             Unique (including isolated methyl protons,   #
+#                         geminal atoms, and geminal methyl       #
+#                         groups with identical chemical shifts)  #
+#                         (e.g. ILE HD11, HD12, HD13 protons)     #
+#      2             Ambiguity of geminal atoms or geminal methyl #
+#                         proton groups (e.g. ASP HB2 and HB3     #
+#                         protons, LEU CD1 and CD2 carbons, or    #
+#                         LEU HD11, HD12, HD13 and HD21, HD22,    #
+#                         HD23 methyl protons)                    #
+#      3             Aromatic atoms on opposite sides of          #
+#                         symmetrical rings (e.g. TYR HE1 and HE2 #
+#                         protons)                                #
+#      4             Intraresidue ambiguities (e.g. LYS HG and    #
+#                         HD protons or TRP HZ2 and HZ3 protons)  #
+#      5             Interresidue ambiguities (LYS 12 vs. LYS 27) #
+#      6             Intermolecular ambiguities (e.g. ASP 31 CA   #
+#                         in monomer 1 and ASP 31 CA in monomer 2 #
+#                         of an asymmetrical homodimer, duplex    #
+#                         DNA assignments, or other assignments   #
+#                         that may apply to atoms in one or more  #
+#                         molecule in the molecular assembly)     #
+#      9             Ambiguous, specific ambiguity not defined    #
+#                                                                 #
+###################################################################
+save_chem_shift_list_1
+   _Assigned_chem_shift_list.Sf_category                   assigned_chemical_shifts
+   _Assigned_chem_shift_list.Sf_framecode                  chem_shift_list_1
+   _Assigned_chem_shift_list.Entry_ID                      7289
+   _Assigned_chem_shift_list.ID                            1
+   _Assigned_chem_shift_list.Sample_condition_list_ID      1
+   _Assigned_chem_shift_list.Sample_condition_list_label  $conditions_1
+   _Assigned_chem_shift_list.Chem_shift_reference_ID       1
+   _Assigned_chem_shift_list.Chem_shift_reference_label   $chemical_shift_referencing
+   _Assigned_chem_shift_list.Chem_shift_1H_err             0
+   _Assigned_chem_shift_list.Chem_shift_13C_err            .
+   _Assigned_chem_shift_list.Chem_shift_15N_err            .
+   _Assigned_chem_shift_list.Chem_shift_31P_err            .
+   _Assigned_chem_shift_list.Chem_shift_2H_err             .
+   _Assigned_chem_shift_list.Chem_shift_19F_err            .
+   _Assigned_chem_shift_list.Error_derivation_method       .
+   _Assigned_chem_shift_list.Details                      'assigned 1H chemical shifts'
+   _Assigned_chem_shift_list.Text_data_format              .
+   _Assigned_chem_shift_list.Text_data                     .
+
+   loop_
+      _Chem_shift_experiment.Experiment_ID
+      _Chem_shift_experiment.Experiment_name
+      _Chem_shift_experiment.Sample_ID
+      _Chem_shift_experiment.Sample_label
+      _Chem_shift_experiment.Sample_state
+      _Chem_shift_experiment.Entry_ID
+      _Chem_shift_experiment.Assigned_chem_shift_list_ID
+
+      1 '1D 1H'          1 $sample_1 isotropic 7289 1 
+      2 '2D 1H,1H COSY'  1 $sample_1 isotropic 7289 1 
+      3 '2D 1H,1H TOCSY' 1 $sample_1 isotropic 7289 1 
+      4 '2D 1H,1H NOESY' 1 $sample_1 isotropic 7289 1 
+
+   stop_
+
+   loop_
+      _Chem_shift_software.Software_ID
+      _Chem_shift_software.Software_label
+      _Chem_shift_software.Method_ID
+      _Chem_shift_software.Method_label
+      _Chem_shift_software.Entry_ID
+      _Chem_shift_software.Assigned_chem_shift_list_ID
+
+      1 $software_1 . . 7289 1 
+
+   stop_
+
+   loop_
+      _Atom_chem_shift.ID
+      _Atom_chem_shift.Assembly_atom_ID
+      _Atom_chem_shift.Entity_assembly_ID
+      _Atom_chem_shift.Entity_ID
+      _Atom_chem_shift.Comp_index_ID
+      _Atom_chem_shift.Seq_ID
+      _Atom_chem_shift.Comp_ID
+      _Atom_chem_shift.Atom_ID
+      _Atom_chem_shift.Atom_type
+      _Atom_chem_shift.Atom_isotope_number
+      _Atom_chem_shift.Val
+      _Atom_chem_shift.Val_err
+      _Atom_chem_shift.Assign_fig_of_merit
+      _Atom_chem_shift.Ambiguity_code
+      _Atom_chem_shift.Occupancy
+      _Atom_chem_shift.Resonance_ID
+      _Atom_chem_shift.Auth_entity_assembly_ID
+      _Atom_chem_shift.Auth_asym_ID
+      _Atom_chem_shift.Auth_seq_ID
+      _Atom_chem_shift.Auth_comp_ID
+      _Atom_chem_shift.Auth_atom_ID
+      _Atom_chem_shift.Details
+      _Atom_chem_shift.Entry_ID
+      _Atom_chem_shift.Assigned_chem_shift_list_ID
+
+        1 . 1 1  1  1 MET HA   H 1 4.234 0 . 1 . . . .  1 MET HA   . 7289 1 
+        2 . 1 1  1  1 MET HB2  H 1 2.239 0 . 1 . . . .  1 MET HB2  . 7289 1 
+        3 . 1 1  1  1 MET HB3  H 1 2.239 0 . 1 . . . .  1 MET HB3  . 7289 1 
+        4 . 1 1  1  1 MET HG2  H 1 2.688 0 . 1 . . . .  1 MET HG2  . 7289 1 
+        5 . 1 1  1  1 MET HG3  H 1 2.688 0 . 1 . . . .  1 MET HG3  . 7289 1 
+        6 . 1 1  1  1 MET HE1  H 1 2.239 0 . 1 . . . .  1 MET HE   . 7289 1 
+        7 . 1 1  1  1 MET HE2  H 1 2.239 0 . 1 . . . .  1 MET HE   . 7289 1 
+        8 . 1 1  1  1 MET HE3  H 1 2.239 0 . 1 . . . .  1 MET HE   . 7289 1 
+        9 . 1 1  2  2 GLY H    H 1 8.665 0 . 1 . . . .  2 GLY H    . 7289 1 
+       10 . 1 1  2  2 GLY HA2  H 1 4.006 0 . 2 . . . .  2 GLY HA2  . 7289 1 
+       11 . 1 1  2  2 GLY HA3  H 1 4.152 0 . 2 . . . .  2 GLY HA3  . 7289 1 
+       12 . 1 1  3  3 GLN H    H 1 8.389 0 . 1 . . . .  3 GLN H    . 7289 1 
+       13 . 1 1  3  3 GLN HA   H 1 4.408 0 . 1 . . . .  3 GLN HA   . 7289 1 
+       14 . 1 1  3  3 GLN HB2  H 1 2.035 0 . 2 . . . .  3 GLN HB2  . 7289 1 
+       15 . 1 1  3  3 GLN HB3  H 1 2.189 0 . 2 . . . .  3 GLN HB3  . 7289 1 
+       16 . 1 1  3  3 GLN HG2  H 1 2.407 0 . 1 . . . .  3 GLN HG2  . 7289 1 
+       17 . 1 1  3  3 GLN HG3  H 1 2.407 0 . 1 . . . .  3 GLN HG3  . 7289 1 
+       18 . 1 1  3  3 GLN HE21 H 1 6.673 0 . 2 . . . .  3 GLN HE21 . 7289 1 
+       19 . 1 1  3  3 GLN HE22 H 1 7.372 0 . 2 . . . .  3 GLN HE22 . 7289 1 
+       20 . 1 1  4  4 GLU H    H 1 8.432 0 . 1 . . . .  4 GLU H    . 7289 1 
+       21 . 1 1  4  4 GLU HA   H 1 4.337 0 . 1 . . . .  4 GLU HA   . 7289 1 
+       22 . 1 1  4  4 GLU HB2  H 1 2.089 0 . 2 . . . .  4 GLU HB2  . 7289 1 
+       23 . 1 1  4  4 GLU HB3  H 1 2.176 0 . 2 . . . .  4 GLU HB3  . 7289 1 
+       24 . 1 1  4  4 GLU HG2  H 1 2.535 0 . 1 . . . .  4 GLU HG2  . 7289 1 
+       25 . 1 1  4  4 GLU HG3  H 1 2.535 0 . 1 . . . .  4 GLU HG3  . 7289 1 
+       26 . 1 1  5  5 GLN H    H 1 8.438 0 . 1 . . . .  5 GLN H    . 7289 1 
+       27 . 1 1  5  5 GLN HA   H 1 4.395 0 . 1 . . . .  5 GLN HA   . 7289 1 
+       28 . 1 1  5  5 GLN HB2  H 1 2.087 0 . 2 . . . .  5 GLN HB2  . 7289 1 
+       29 . 1 1  5  5 GLN HB3  H 1 2.195 0 . 2 . . . .  5 GLN HB3  . 7289 1 
+       30 . 1 1  5  5 GLN HG2  H 1 2.423 0 . 1 . . . .  5 GLN HG2  . 7289 1 
+       31 . 1 1  5  5 GLN HG3  H 1 2.423 0 . 1 . . . .  5 GLN HG3  . 7289 1 
+       32 . 1 1  5  5 GLN HE21 H 1 6.682 0 . 2 . . . .  5 GLN HE21 . 7289 1 
+       33 . 1 1  5  5 GLN HE22 H 1 7.379 0 . 2 . . . .  5 GLN HE22 . 7289 1 
+       34 . 1 1  6  6 ASP H    H 1 8.279 0 . 1 . . . .  6 ASP H    . 7289 1 
+       35 . 1 1  6  6 ASP HA   H 1 4.908 0 . 1 . . . .  6 ASP HA   . 7289 1 
+       36 . 1 1  6  6 ASP HB2  H 1 2.968 0 . 2 . . . .  6 ASP HB2  . 7289 1 
+       37 . 1 1  6  6 ASP HB3  H 1 3.017 0 . 2 . . . .  6 ASP HB3  . 7289 1 
+       38 . 1 1  7  7 THR H    H 1 7.91  0 . 1 . . . .  7 THR H    . 7289 1 
+       39 . 1 1  7  7 THR HA   H 1 4.29  0 . 1 . . . .  7 THR HA   . 7289 1 
+       40 . 1 1  7  7 THR HB   H 1 4.126 0 . 1 . . . .  7 THR HB   . 7289 1 
+       41 . 1 1  7  7 THR HG21 H 1 1.249 0 . 1 . . . .  7 THR HG2  . 7289 1 
+       42 . 1 1  7  7 THR HG22 H 1 1.249 0 . 1 . . . .  7 THR HG2  . 7289 1 
+       43 . 1 1  7  7 THR HG23 H 1 1.249 0 . 1 . . . .  7 THR HG2  . 7289 1 
+       44 . 1 1  8  8 PRO HA   H 1 4.348 0 . 1 . . . .  8 PRO HA   . 7289 1 
+       45 . 1 1  8  8 PRO HB2  H 1 1.87  0 . 2 . . . .  8 PRO HB2  . 7289 1 
+       46 . 1 1  8  8 PRO HB3  H 1 2.33  0 . 2 . . . .  8 PRO HB3  . 7289 1 
+       47 . 1 1  8  8 PRO HG2  H 1 2.007 0 . 2 . . . .  8 PRO HG2  . 7289 1 
+       48 . 1 1  8  8 PRO HG3  H 1 2.083 0 . 2 . . . .  8 PRO HG3  . 7289 1 
+       49 . 1 1  8  8 PRO HD2  H 1 3.72  0 . 2 . . . .  8 PRO HD2  . 7289 1 
+       50 . 1 1  8  8 PRO HD3  H 1 3.764 0 . 2 . . . .  8 PRO HD3  . 7289 1 
+       51 . 1 1  9  9 TRP H    H 1 7.595 0 . 1 . . . .  9 TRP H    . 7289 1 
+       52 . 1 1  9  9 TRP HA   H 1 4.465 0 . 1 . . . .  9 TRP HA   . 7289 1 
+       53 . 1 1  9  9 TRP HB2  H 1 3.412 0 . 1 . . . .  9 TRP HB2  . 7289 1 
+       54 . 1 1  9  9 TRP HB3  H 1 3.412 0 . 1 . . . .  9 TRP HB3  . 7289 1 
+       55 . 1 1  9  9 TRP HD1  H 1 7.255 0 . 1 . . . .  9 TRP HD1  . 7289 1 
+       56 . 1 1  9  9 TRP HE1  H 1 9.828 0 . 1 . . . .  9 TRP HE1  . 7289 1 
+       57 . 1 1  9  9 TRP HE3  H 1 7.557 0 . 1 . . . .  9 TRP HE3  . 7289 1 
+       58 . 1 1  9  9 TRP HZ2  H 1 7.487 0 . 1 . . . .  9 TRP HZ2  . 7289 1 
+       59 . 1 1  9  9 TRP HZ3  H 1 7.142 0 . 1 . . . .  9 TRP HZ3  . 7289 1 
+       60 . 1 1  9  9 TRP HH2  H 1 7.237 0 . 1 . . . .  9 TRP HH2  . 7289 1 
+       61 . 1 1 10 10 ILE H    H 1 7.689 0 . 1 . . . . 10 ILE H    . 7289 1 
+       62 . 1 1 10 10 ILE HA   H 1 3.729 0 . 1 . . . . 10 ILE HA   . 7289 1 
+       63 . 1 1 10 10 ILE HB   H 1 1.881 0 . 1 . . . . 10 ILE HB   . 7289 1 
+       64 . 1 1 10 10 ILE HG12 H 1 1.211 0 . 2 . . . . 10 ILE HG12 . 7289 1 
+       65 . 1 1 10 10 ILE HG13 H 1 1.605 0 . 2 . . . . 10 ILE HG13 . 7289 1 
+       66 . 1 1 10 10 ILE HG21 H 1 0.899 0 . 1 . . . . 10 ILE HG2  . 7289 1 
+       67 . 1 1 10 10 ILE HG22 H 1 0.899 0 . 1 . . . . 10 ILE HG2  . 7289 1 
+       68 . 1 1 10 10 ILE HG23 H 1 0.899 0 . 1 . . . . 10 ILE HG2  . 7289 1 
+       69 . 1 1 10 10 ILE HD11 H 1 0.899 0 . 1 . . . . 10 ILE HD1  . 7289 1 
+       70 . 1 1 10 10 ILE HD12 H 1 0.899 0 . 1 . . . . 10 ILE HD1  . 7289 1 
+       71 . 1 1 10 10 ILE HD13 H 1 0.899 0 . 1 . . . . 10 ILE HD1  . 7289 1 
+       72 . 1 1 11 11 LEU H    H 1 7.998 0 . 1 . . . . 11 LEU H    . 7289 1 
+       73 . 1 1 11 11 LEU HA   H 1 4.23  0 . 1 . . . . 11 LEU HA   . 7289 1 
+       74 . 1 1 11 11 LEU HB2  H 1 1.75  0 . 2 . . . . 11 LEU HB2  . 7289 1 
+       75 . 1 1 11 11 LEU HB3  H 1 1.818 0 . 2 . . . . 11 LEU HB3  . 7289 1 
+       76 . 1 1 11 11 LEU HG   H 1 1.573 0 . 1 . . . . 11 LEU HG   . 7289 1 
+       77 . 1 1 11 11 LEU HD11 H 1 0.902 0 . 1 . . . . 11 LEU HD1  . 7289 1 
+       78 . 1 1 11 11 LEU HD12 H 1 0.902 0 . 1 . . . . 11 LEU HD1  . 7289 1 
+       79 . 1 1 11 11 LEU HD13 H 1 0.902 0 . 1 . . . . 11 LEU HD1  . 7289 1 
+       80 . 1 1 11 11 LEU HD21 H 1 0.902 0 . 1 . . . . 11 LEU HD2  . 7289 1 
+       81 . 1 1 11 11 LEU HD22 H 1 0.902 0 . 1 . . . . 11 LEU HD2  . 7289 1 
+       82 . 1 1 11 11 LEU HD23 H 1 0.902 0 . 1 . . . . 11 LEU HD2  . 7289 1 
+       83 . 1 1 12 12 SER H    H 1 8.05  0 . 1 . . . . 12 SER H    . 7289 1 
+       84 . 1 1 12 12 SER HA   H 1 4.349 0 . 1 . . . . 12 SER HA   . 7289 1 
+       85 . 1 1 12 12 SER HB2  H 1 3.961 0 . 2 . . . . 12 SER HB2  . 7289 1 
+       86 . 1 1 12 12 SER HB3  H 1 4.046 0 . 2 . . . . 12 SER HB3  . 7289 1 
+       87 . 1 1 13 13 THR H    H 1 7.969 0 . 1 . . . . 13 THR H    . 7289 1 
+       88 . 1 1 13 13 THR HA   H 1 4.091 0 . 1 . . . . 13 THR HA   . 7289 1 
+       89 . 1 1 13 13 THR HB   H 1 4.151 0 . 1 . . . . 13 THR HB   . 7289 1 
+       90 . 1 1 13 13 THR HG21 H 1 1.099 0 . 1 . . . . 13 THR HG2  . 7289 1 
+       91 . 1 1 13 13 THR HG22 H 1 1.099 0 . 1 . . . . 13 THR HG2  . 7289 1 
+       92 . 1 1 13 13 THR HG23 H 1 1.099 0 . 1 . . . . 13 THR HG2  . 7289 1 
+       93 . 1 1 14 14 GLY H    H 1 8.273 0 . 1 . . . . 14 GLY H    . 7289 1 
+       94 . 1 1 14 14 GLY HA2  H 1 3.924 0 . 1 . . . . 14 GLY HA2  . 7289 1 
+       95 . 1 1 14 14 GLY HA3  H 1 3.924 0 . 1 . . . . 14 GLY HA3  . 7289 1 
+       96 . 1 1 15 15 HIS H    H 1 8.173 0 . 1 . . . . 15 HIS H    . 7289 1 
+       97 . 1 1 15 15 HIS HA   H 1 4.604 0 . 1 . . . . 15 HIS HA   . 7289 1 
+       98 . 1 1 15 15 HIS HB2  H 1 3.318 0 . 2 . . . . 15 HIS HB2  . 7289 1 
+       99 . 1 1 15 15 HIS HB3  H 1 3.403 0 . 2 . . . . 15 HIS HB3  . 7289 1 
+      100 . 1 1 15 15 HIS HD2  H 1 7.309 0 . 1 . . . . 15 HIS HD2  . 7289 1 
+      101 . 1 1 15 15 HIS HE1  H 1 8.541 0 . 1 . . . . 15 HIS HE1  . 7289 1 
+      102 . 1 1 16 16 ILE H    H 1 8.168 0 . 1 . . . . 16 ILE H    . 7289 1 
+      103 . 1 1 16 16 ILE HA   H 1 3.997 0 . 1 . . . . 16 ILE HA   . 7289 1 
+      104 . 1 1 16 16 ILE HB   H 1 1.944 0 . 1 . . . . 16 ILE HB   . 7289 1 
+      105 . 1 1 16 16 ILE HG12 H 1 1.233 0 . 2 . . . . 16 ILE HG12 . 7289 1 
+      106 . 1 1 16 16 ILE HG13 H 1 1.655 0 . 2 . . . . 16 ILE HG13 . 7289 1 
+      107 . 1 1 16 16 ILE HG21 H 1 0.968 0 . 1 . . . . 16 ILE HG2  . 7289 1 
+      108 . 1 1 16 16 ILE HG22 H 1 0.968 0 . 1 . . . . 16 ILE HG2  . 7289 1 
+      109 . 1 1 16 16 ILE HG23 H 1 0.968 0 . 1 . . . . 16 ILE HG2  . 7289 1 
+      110 . 1 1 16 16 ILE HD11 H 1 0.895 0 . 1 . . . . 16 ILE HD1  . 7289 1 
+      111 . 1 1 16 16 ILE HD12 H 1 0.895 0 . 1 . . . . 16 ILE HD1  . 7289 1 
+      112 . 1 1 16 16 ILE HD13 H 1 0.895 0 . 1 . . . . 16 ILE HD1  . 7289 1 
+      113 . 1 1 17 17 SER H    H 1 8.269 0 . 1 . . . . 17 SER H    . 7289 1 
+      114 . 1 1 17 17 SER HA   H 1 4.35  0 . 1 . . . . 17 SER HA   . 7289 1 
+      115 . 1 1 17 17 SER HB2  H 1 3.972 0 . 2 . . . . 17 SER HB2  . 7289 1 
+      116 . 1 1 17 17 SER HB3  H 1 4.046 0 . 2 . . . . 17 SER HB3  . 7289 1 
+      117 . 1 1 18 18 THR H    H 1 7.945 0 . 1 . . . . 18 THR H    . 7289 1 
+      118 . 1 1 18 18 THR HA   H 1 4.195 0 . 1 . . . . 18 THR HA   . 7289 1 
+      119 . 1 1 18 18 THR HB   H 1 4.364 0 . 1 . . . . 18 THR HB   . 7289 1 
+      120 . 1 1 18 18 THR HG21 H 1 1.294 0 . 1 . . . . 18 THR HG2  . 7289 1 
+      121 . 1 1 18 18 THR HG22 H 1 1.294 0 . 1 . . . . 18 THR HG2  . 7289 1 
+      122 . 1 1 18 18 THR HG23 H 1 1.294 0 . 1 . . . . 18 THR HG2  . 7289 1 
+      123 . 1 1 19 19 GLN H    H 1 8.056 0 . 1 . . . . 19 GLN H    . 7289 1 
+      124 . 1 1 19 19 GLN HA   H 1 4.219 0 . 1 . . . . 19 GLN HA   . 7289 1 
+      125 . 1 1 19 19 GLN HB2  H 1 2.126 0 . 2 . . . . 19 GLN HB2  . 7289 1 
+      126 . 1 1 19 19 GLN HB3  H 1 2.183 0 . 2 . . . . 19 GLN HB3  . 7289 1 
+      127 . 1 1 19 19 GLN HG2  H 1 2.412 0 . 1 . . . . 19 GLN HG2  . 7289 1 
+      128 . 1 1 19 19 GLN HG3  H 1 2.412 0 . 1 . . . . 19 GLN HG3  . 7289 1 
+      129 . 1 1 19 19 GLN HE21 H 1 6.671 0 . 2 . . . . 19 GLN HE21 . 7289 1 
+      130 . 1 1 19 19 GLN HE22 H 1 7.32  0 . 2 . . . . 19 GLN HE22 . 7289 1 
+      131 . 1 1 20 20 LYS H    H 1 8.232 0 . 1 . . . . 20 LYS H    . 7289 1 
+      132 . 1 1 20 20 LYS HA   H 1 4.243 0 . 1 . . . . 20 LYS HA   . 7289 1 
+      133 . 1 1 20 20 LYS HB2  H 1 1.919 0 . 1 . . . . 20 LYS HB2  . 7289 1 
+      134 . 1 1 20 20 LYS HB3  H 1 1.919 0 . 1 . . . . 20 LYS HB3  . 7289 1 
+      135 . 1 1 20 20 LYS HG2  H 1 1.506 0 . 2 . . . . 20 LYS HG2  . 7289 1 
+      136 . 1 1 20 20 LYS HG3  H 1 1.593 0 . 2 . . . . 20 LYS HG3  . 7289 1 
+      137 . 1 1 20 20 LYS HD2  H 1 1.736 0 . 1 . . . . 20 LYS HD2  . 7289 1 
+      138 . 1 1 20 20 LYS HD3  H 1 1.736 0 . 1 . . . . 20 LYS HD3  . 7289 1 
+      139 . 1 1 20 20 LYS HE2  H 1 3.023 0 . 1 . . . . 20 LYS HE2  . 7289 1 
+      140 . 1 1 20 20 LYS HE3  H 1 3.023 0 . 1 . . . . 20 LYS HE3  . 7289 1 
+      141 . 1 1 20 20 LYS HZ1  H 1 7.603 0 . 1 . . . . 20 LYS HZ   . 7289 1 
+      142 . 1 1 20 20 LYS HZ2  H 1 7.603 0 . 1 . . . . 20 LYS HZ   . 7289 1 
+      143 . 1 1 20 20 LYS HZ3  H 1 7.603 0 . 1 . . . . 20 LYS HZ   . 7289 1 
+      144 . 1 1 21 21 ARG H    H 1 8.027 0 . 1 . . . . 21 ARG H    . 7289 1 
+      145 . 1 1 21 21 ARG HA   H 1 4.288 0 . 1 . . . . 21 ARG HA   . 7289 1 
+      146 . 1 1 21 21 ARG HB2  H 1 1.93  0 . 2 . . . . 21 ARG HB2  . 7289 1 
+      147 . 1 1 21 21 ARG HB3  H 1 1.965 0 . 2 . . . . 21 ARG HB3  . 7289 1 
+      148 . 1 1 21 21 ARG HG2  H 1 1.692 0 . 2 . . . . 21 ARG HG2  . 7289 1 
+      149 . 1 1 21 21 ARG HG3  H 1 1.792 0 . 2 . . . . 21 ARG HG3  . 7289 1 
+      150 . 1 1 21 21 ARG HD2  H 1 3.248 0 . 1 . . . . 21 ARG HD2  . 7289 1 
+      151 . 1 1 21 21 ARG HD3  H 1 3.248 0 . 1 . . . . 21 ARG HD3  . 7289 1 
+      152 . 1 1 21 21 ARG HE   H 1 7.204 0 . 1 . . . . 21 ARG HE   . 7289 1 
+      153 . 1 1 22 22 GLN H    H 1 8.255 0 . 1 . . . . 22 GLN H    . 7289 1 
+      154 . 1 1 22 22 GLN HA   H 1 4.324 0 . 1 . . . . 22 GLN HA   . 7289 1 
+      155 . 1 1 22 22 GLN HB2  H 1 2.126 0 . 2 . . . . 22 GLN HB2  . 7289 1 
+      156 . 1 1 22 22 GLN HB3  H 1 2.195 0 . 2 . . . . 22 GLN HB3  . 7289 1 
+      157 . 1 1 22 22 GLN HG2  H 1 2.44  0 . 2 . . . . 22 GLN HG2  . 7289 1 
+      158 . 1 1 22 22 GLN HG3  H 1 2.481 0 . 2 . . . . 22 GLN HG3  . 7289 1 
+      159 . 1 1 22 22 GLN HE21 H 1 6.647 0 . 2 . . . . 22 GLN HE21 . 7289 1 
+      160 . 1 1 22 22 GLN HE22 H 1 7.326 0 . 2 . . . . 22 GLN HE22 . 7289 1 
+      161 . 1 1 23 23 ASP H    H 1 8.372 0 . 1 . . . . 23 ASP H    . 7289 1 
+      162 . 1 1 23 23 ASP HA   H 1 4.757 0 . 1 . . . . 23 ASP HA   . 7289 1 
+      163 . 1 1 23 23 ASP HB2  H 1 2.993 0 . 1 . . . . 23 ASP HB2  . 7289 1 
+      164 . 1 1 23 23 ASP HB3  H 1 2.993 0 . 1 . . . . 23 ASP HB3  . 7289 1 
+      165 . 1 1 24 24 GLY H    H 1 8.267 0 . 1 . . . . 24 GLY H    . 7289 1 
+      166 . 1 1 24 24 GLY HA2  H 1 4.026 0 . 1 . . . . 24 GLY HA2  . 7289 1 
+      167 . 1 1 24 24 GLY HA3  H 1 4.026 0 . 1 . . . . 24 GLY HA3  . 7289 1 
+      168 . 1 1 25 25 GLN H    H 1 8.082 0 . 1 . . . . 25 GLN H    . 7289 1 
+      169 . 1 1 25 25 GLN HA   H 1 4.387 0 . 1 . . . . 25 GLN HA   . 7289 1 
+      170 . 1 1 25 25 GLN HB2  H 1 2.111 0 . 2 . . . . 25 GLN HB2  . 7289 1 
+      171 . 1 1 25 25 GLN HB3  H 1 2.218 0 . 2 . . . . 25 GLN HB3  . 7289 1 
+      172 . 1 1 25 25 GLN HG2  H 1 2.446 0 . 1 . . . . 25 GLN HG2  . 7289 1 
+      173 . 1 1 25 25 GLN HG3  H 1 2.446 0 . 1 . . . . 25 GLN HG3  . 7289 1 
+      174 . 1 1 25 25 GLN HE21 H 1 6.692 0 . 2 . . . . 25 GLN HE21 . 7289 1 
+      175 . 1 1 25 25 GLN HE22 H 1 7.387 0 . 2 . . . . 25 GLN HE22 . 7289 1 
+      176 . 1 1 26 26 GLN H    H 1 8.29  0 . 1 . . . . 26 GLN H    . 7289 1 
+      177 . 1 1 26 26 GLN HA   H 1 4.488 0 . 1 . . . . 26 GLN HA   . 7289 1 
+      178 . 1 1 26 26 GLN HB2  H 1 2.065 0 . 2 . . . . 26 GLN HB2  . 7289 1 
+      179 . 1 1 26 26 GLN HB3  H 1 2.22  0 . 2 . . . . 26 GLN HB3  . 7289 1 
+      180 . 1 1 26 26 GLN HG2  H 1 2.447 0 . 1 . . . . 26 GLN HG2  . 7289 1 
+      181 . 1 1 26 26 GLN HG3  H 1 2.447 0 . 1 . . . . 26 GLN HG3  . 7289 1 
+      182 . 1 1 26 26 GLN HE21 H 1 6.684 0 . 2 . . . . 26 GLN HE21 . 7289 1 
+      183 . 1 1 26 26 GLN HE22 H 1 7.439 0 . 2 . . . . 26 GLN HE22 . 7289 1 
+      184 . 1 1 27 27 THR H    H 1 7.951 0 . 1 . . . . 27 THR H    . 7289 1 
+      185 . 1 1 27 27 THR HA   H 1 4.57  0 . 1 . . . . 27 THR HA   . 7289 1 
+      186 . 1 1 27 27 THR HB   H 1 4.312 0 . 1 . . . . 27 THR HB   . 7289 1 
+      187 . 1 1 27 27 THR HG21 H 1 1.307 0 . 1 . . . . 27 THR HG2  . 7289 1 
+      188 . 1 1 27 27 THR HG22 H 1 1.307 0 . 1 . . . . 27 THR HG2  . 7289 1 
+      189 . 1 1 27 27 THR HG23 H 1 1.307 0 . 1 . . . . 27 THR HG2  . 7289 1 
+      190 . 1 1 28 28 PRO HA   H 1 4.442 0 . 1 . . . . 28 PRO HA   . 7289 1 
+      191 . 1 1 28 28 PRO HB2  H 1 1.926 0 . 2 . . . . 28 PRO HB2  . 7289 1 
+      192 . 1 1 28 28 PRO HB3  H 1 2.364 0 . 2 . . . . 28 PRO HB3  . 7289 1 
+      193 . 1 1 28 28 PRO HG2  H 1 2.043 0 . 2 . . . . 28 PRO HG2  . 7289 1 
+      194 . 1 1 28 28 PRO HG3  H 1 2.114 0 . 2 . . . . 28 PRO HG3  . 7289 1 
+      195 . 1 1 28 28 PRO HD2  H 1 3.738 0 . 2 . . . . 28 PRO HD2  . 7289 1 
+      196 . 1 1 28 28 PRO HD3  H 1 3.859 0 . 2 . . . . 28 PRO HD3  . 7289 1 
+      197 . 1 1 29 29 LYS H    H 1 7.984 0 . 1 . . . . 29 LYS H    . 7289 1 
+      198 . 1 1 29 29 LYS HA   H 1 4.278 0 . 1 . . . . 29 LYS HA   . 7289 1 
+      199 . 1 1 29 29 LYS HB2  H 1 1.887 0 . 1 . . . . 29 LYS HB2  . 7289 1 
+      200 . 1 1 29 29 LYS HB3  H 1 1.887 0 . 1 . . . . 29 LYS HB3  . 7289 1 
+      201 . 1 1 29 29 LYS HG2  H 1 1.479 0 . 2 . . . . 29 LYS HG2  . 7289 1 
+      202 . 1 1 29 29 LYS HG3  H 1 1.575 0 . 2 . . . . 29 LYS HG3  . 7289 1 
+      203 . 1 1 29 29 LYS HD2  H 1 1.755 0 . 1 . . . . 29 LYS HD2  . 7289 1 
+      204 . 1 1 29 29 LYS HD3  H 1 1.755 0 . 1 . . . . 29 LYS HD3  . 7289 1 
+      205 . 1 1 29 29 LYS HE2  H 1 3.049 0 . 1 . . . . 29 LYS HE2  . 7289 1 
+      206 . 1 1 29 29 LYS HE3  H 1 3.049 0 . 1 . . . . 29 LYS HE3  . 7289 1 
+      207 . 1 1 29 29 LYS HZ1  H 1 7.603 0 . 1 . . . . 29 LYS HZ   . 7289 1 
+      208 . 1 1 29 29 LYS HZ2  H 1 7.603 0 . 1 . . . . 29 LYS HZ   . 7289 1 
+      209 . 1 1 29 29 LYS HZ3  H 1 7.603 0 . 1 . . . . 29 LYS HZ   . 7289 1 
+      210 . 1 1 30 30 LEU H    H 1 7.84  0 . 1 . . . . 30 LEU H    . 7289 1 
+      211 . 1 1 30 30 LEU HA   H 1 4.324 0 . 1 . . . . 30 LEU HA   . 7289 1 
+      212 . 1 1 30 30 LEU HB2  H 1 1.658 0 . 2 . . . . 30 LEU HB2  . 7289 1 
+      213 . 1 1 30 30 LEU HB3  H 1 1.731 0 . 2 . . . . 30 LEU HB3  . 7289 1 
+      214 . 1 1 30 30 LEU HG   H 1 1.658 0 . 1 . . . . 30 LEU HG   . 7289 1 
+      215 . 1 1 30 30 LEU HD11 H 1 0.921 0 . 2 . . . . 30 LEU HD1  . 7289 1 
+      216 . 1 1 30 30 LEU HD12 H 1 0.921 0 . 2 . . . . 30 LEU HD1  . 7289 1 
+      217 . 1 1 30 30 LEU HD13 H 1 0.921 0 . 2 . . . . 30 LEU HD1  . 7289 1 
+      218 . 1 1 30 30 LEU HD21 H 1 0.971 0 . 2 . . . . 30 LEU HD2  . 7289 1 
+      219 . 1 1 30 30 LEU HD22 H 1 0.971 0 . 2 . . . . 30 LEU HD2  . 7289 1 
+      220 . 1 1 30 30 LEU HD23 H 1 0.971 0 . 2 . . . . 30 LEU HD2  . 7289 1 
+      221 . 1 1 31 31 GLU H    H 1 8.056 0 . 1 . . . . 31 GLU H    . 7289 1 
+      222 . 1 1 31 31 GLU HA   H 1 4.324 0 . 1 . . . . 31 GLU HA   . 7289 1 
+      223 . 1 1 31 31 GLU HB2  H 1 2.11  0 . 2 . . . . 31 GLU HB2  . 7289 1 
+      224 . 1 1 31 31 GLU HB3  H 1 2.203 0 . 2 . . . . 31 GLU HB3  . 7289 1 
+      225 . 1 1 31 31 GLU HG2  H 1 2.47  0 . 1 . . . . 31 GLU HG2  . 7289 1 
+      226 . 1 1 31 31 GLU HG3  H 1 2.47  0 . 1 . . . . 31 GLU HG3  . 7289 1 
+      227 . 1 1 32 32 HIS H    H 1 8.29  0 . 1 . . . . 32 HIS H    . 7289 1 
+      228 . 1 1 32 32 HIS HA   H 1 4.686 0 . 1 . . . . 32 HIS HA   . 7289 1 
+      229 . 1 1 32 32 HIS HB2  H 1 3.259 0 . 2 . . . . 32 HIS HB2  . 7289 1 
+      230 . 1 1 32 32 HIS HB3  H 1 3.38  0 . 2 . . . . 32 HIS HB3  . 7289 1 
+      231 . 1 1 32 32 HIS HD2  H 1 7.343 0 . 1 . . . . 32 HIS HD2  . 7289 1 
+      232 . 1 1 32 32 HIS HE1  H 1 8.588 0 . 1 . . . . 32 HIS HE1  . 7289 1 
+      233 . 1 1 33 33 ARG H    H 1 8.262 0 . 1 . . . . 33 ARG H    . 7289 1 
+      234 . 1 1 33 33 ARG HA   H 1 4.351 0 . 1 . . . . 33 ARG HA   . 7289 1 
+      235 . 1 1 33 33 ARG HB2  H 1 1.883 0 . 2 . . . . 33 ARG HB2  . 7289 1 
+      236 . 1 1 33 33 ARG HB3  H 1 1.955 0 . 2 . . . . 33 ARG HB3  . 7289 1 
+      237 . 1 1 33 33 ARG HG2  H 1 1.69  0 . 2 . . . . 33 ARG HG2  . 7289 1 
+      238 . 1 1 33 33 ARG HG3  H 1 1.736 0 . 2 . . . . 33 ARG HG3  . 7289 1 
+      239 . 1 1 33 33 ARG HD2  H 1 3.237 0 . 1 . . . . 33 ARG HD2  . 7289 1 
+      240 . 1 1 33 33 ARG HD3  H 1 3.237 0 . 1 . . . . 33 ARG HD3  . 7289 1 
+      241 . 1 1 33 33 ARG HE   H 1 7.194 0 . 1 . . . . 33 ARG HE   . 7289 1 
+      242 . 1 1 34 34 ASN H    H 1 8.466 0 . 1 . . . . 34 ASN H    . 7289 1 
+      243 . 1 1 34 34 ASN HA   H 1 4.779 0 . 1 . . . . 34 ASN HA   . 7289 1 
+      244 . 1 1 34 34 ASN HB2  H 1 2.866 0 . 2 . . . . 34 ASN HB2  . 7289 1 
+      245 . 1 1 34 34 ASN HB3  H 1 2.908 0 . 2 . . . . 34 ASN HB3  . 7289 1 
+      246 . 1 1 34 34 ASN HD21 H 1 6.771 0 . 2 . . . . 34 ASN HD21 . 7289 1 
+      247 . 1 1 34 34 ASN HD22 H 1 7.507 0 . 2 . . . . 34 ASN HD22 . 7289 1 
+      248 . 1 1 35 35 SER H    H 1 8.214 0 . 1 . . . . 35 SER H    . 7289 1 
+      249 . 1 1 35 35 SER HA   H 1 4.511 0 . 1 . . . . 35 SER HA   . 7289 1 
+      250 . 1 1 35 35 SER HB2  H 1 3.936 0 . 2 . . . . 35 SER HB2  . 7289 1 
+      251 . 1 1 35 35 SER HB3  H 1 4.034 0 . 2 . . . . 35 SER HB3  . 7289 1 
+      252 . 1 1 36 36 THR H    H 1 8.028 0 . 1 . . . . 36 THR H    . 7289 1 
+      253 . 1 1 36 36 THR HA   H 1 4.337 0 . 1 . . . . 36 THR HA   . 7289 1 
+      254 . 1 1 36 36 THR HB   H 1 4.337 0 . 1 . . . . 36 THR HB   . 7289 1 
+      255 . 1 1 36 36 THR HG21 H 1 1.274 0 . 1 . . . . 36 THR HG2  . 7289 1 
+      256 . 1 1 36 36 THR HG22 H 1 1.274 0 . 1 . . . . 36 THR HG2  . 7289 1 
+      257 . 1 1 36 36 THR HG23 H 1 1.274 0 . 1 . . . . 36 THR HG2  . 7289 1 
+      258 . 1 1 37 37 ARG H    H 1 8.074 0 . 1 . . . . 37 ARG H    . 7289 1 
+      259 . 1 1 37 37 ARG HA   H 1 4.361 0 . 1 . . . . 37 ARG HA   . 7289 1 
+      260 . 1 1 37 37 ARG HB2  H 1 1.846 0 . 2 . . . . 37 ARG HB2  . 7289 1 
+      261 . 1 1 37 37 ARG HB3  H 1 1.942 0 . 2 . . . . 37 ARG HB3  . 7289 1 
+      262 . 1 1 37 37 ARG HG2  H 1 1.702 0 . 1 . . . . 37 ARG HG2  . 7289 1 
+      263 . 1 1 37 37 ARG HG3  H 1 1.702 0 . 1 . . . . 37 ARG HG3  . 7289 1 
+      264 . 1 1 37 37 ARG HD2  H 1 3.237 0 . 1 . . . . 37 ARG HD2  . 7289 1 
+      265 . 1 1 37 37 ARG HD3  H 1 3.237 0 . 1 . . . . 37 ARG HD3  . 7289 1 
+      266 . 1 1 37 37 ARG HE   H 1 7.187 0 . 1 . . . . 37 ARG HE   . 7289 1 
+      267 . 1 1 38 38 LEU H    H 1 7.957 0 . 1 . . . . 38 LEU H    . 7289 1 
+      268 . 1 1 38 38 LEU HA   H 1 4.359 0 . 1 . . . . 38 LEU HA   . 7289 1 
+      269 . 1 1 38 38 LEU HB2  H 1 1.729 0 . 1 . . . . 38 LEU HB2  . 7289 1 
+      270 . 1 1 38 38 LEU HB3  H 1 1.729 0 . 1 . . . . 38 LEU HB3  . 7289 1 
+      271 . 1 1 38 38 LEU HG   H 1 1.67  0 . 1 . . . . 38 LEU HG   . 7289 1 
+      272 . 1 1 38 38 LEU HD11 H 1 0.922 0 . 2 . . . . 38 LEU HD1  . 7289 1 
+      273 . 1 1 38 38 LEU HD12 H 1 0.922 0 . 2 . . . . 38 LEU HD1  . 7289 1 
+      274 . 1 1 38 38 LEU HD13 H 1 0.922 0 . 2 . . . . 38 LEU HD1  . 7289 1 
+      275 . 1 1 38 38 LEU HD21 H 1 0.972 0 . 2 . . . . 38 LEU HD2  . 7289 1 
+      276 . 1 1 38 38 LEU HD22 H 1 0.972 0 . 2 . . . . 38 LEU HD2  . 7289 1 
+      277 . 1 1 38 38 LEU HD23 H 1 0.972 0 . 2 . . . . 38 LEU HD2  . 7289 1 
+      278 . 1 1 39 39 MET H    H 1 8.004 0 . 1 . . . . 39 MET H    . 7289 1 
+      279 . 1 1 39 39 MET HA   H 1 4.5   0 . 1 . . . . 39 MET HA   . 7289 1 
+      280 . 1 1 39 39 MET HB2  H 1 2.088 0 . 2 . . . . 39 MET HB2  . 7289 1 
+      281 . 1 1 39 39 MET HB3  H 1 2.194 0 . 2 . . . . 39 MET HB3  . 7289 1 
+      282 . 1 1 39 39 MET HG2  H 1 2.586 0 . 2 . . . . 39 MET HG2  . 7289 1 
+      283 . 1 1 39 39 MET HG3  H 1 2.646 0 . 2 . . . . 39 MET HG3  . 7289 1 
+      284 . 1 1 39 39 MET HE1  H 1 2.194 0 . 1 . . . . 39 MET HE   . 7289 1 
+      285 . 1 1 39 39 MET HE2  H 1 2.194 0 . 1 . . . . 39 MET HE   . 7289 1 
+      286 . 1 1 39 39 MET HE3  H 1 2.194 0 . 1 . . . . 39 MET HE   . 7289 1 
+      287 . 1 1 40 40 GLY H    H 1 8.08  0 . 1 . . . . 40 GLY H    . 7289 1 
+      288 . 1 1 40 40 GLY HA2  H 1 3.925 0 . 2 . . . . 40 GLY HA2  . 7289 1 
+      289 . 1 1 40 40 GLY HA3  H 1 3.987 0 . 2 . . . . 40 GLY HA3  . 7289 1 
+
+   stop_
+
+save_
+

@@ -1,0 +1,2638 @@
+data_52810
+
+
+#######################
+#  Entry information  #
+#######################
+save_entry_information_1
+   _Entry.Sf_category                    entry_information
+   _Entry.Sf_framecode                   entry_information_1
+   _Entry.ID                             52810
+   _Entry.Title
+;
+Abl 1b isoform wild type SH3-SH2-KD (aa 83-534) in complex with PD166326
+;
+   _Entry.Type                           macromolecule
+   _Entry.Version_type                   original
+   _Entry.Submission_date                2025-01-09
+   _Entry.Accession_date                 2025-01-09
+   _Entry.Last_release_date              2025-01-10
+   _Entry.Original_release_date          2025-01-10
+   _Entry.Origination                    author
+   _Entry.Format_name                    .
+   _Entry.NMR_STAR_version               3.2.14.0
+   _Entry.NMR_STAR_dict_location         .
+   _Entry.Original_NMR_STAR_version      3.1
+   _Entry.Experimental_method            NMR
+   _Entry.Experimental_method_subtype    solution
+   _Entry.Source_data_format             .
+   _Entry.Source_data_format_version     .
+   _Entry.Generated_software_name        .
+   _Entry.Generated_software_version     .
+   _Entry.Generated_software_ID          .
+   _Entry.Generated_software_label       .
+   _Entry.Generated_date                 .
+   _Entry.DOI                            .
+   _Entry.UUID                           .
+   _Entry.Related_coordinate_file_name   .
+   _Entry.Details                        .
+   _Entry.BMRB_internal_directory_name   .
+
+   loop_
+      _Entry_author.Ordinal
+      _Entry_author.Given_name
+      _Entry_author.Family_name
+      _Entry_author.First_initial
+      _Entry_author.Middle_initials
+      _Entry_author.Family_title
+      _Entry_author.ORCID
+      _Entry_author.Entry_ID
+
+      1   Judith     Habazettl   .   M.   .   0000-0002-7976-768X   52810
+      2   Johannes   Paladini    .   .    .   0000-0001-7920-2219   52810
+      3   Rajesh     Sonti       .   .    .   0000-0001-7631-5605   52810
+      4   Ines       Hertel      .   .    .   .                     52810
+      5   Stephan    Grzesiek    .   .    .   0000-0003-1998-4225   52810
+   stop_
+
+   loop_
+      _Entry_src.ID
+      _Entry_src.Project_name
+      _Entry_src.Organization_full_name
+      _Entry_src.Organization_initials
+      _Entry_src.Entry_ID
+
+      1   .   'Biozentrum University Basel'   .   52810
+   stop_
+
+   loop_
+      _Data_set.Type
+      _Data_set.Count
+      _Data_set.Entry_ID
+
+      assigned_chemical_shifts   1   52810
+   stop_
+
+   loop_
+      _Datum.Type
+      _Datum.Count
+      _Datum.Entry_ID
+
+      '15N chemical shifts'   187   52810
+      '1H chemical shifts'    187   52810
+   stop_
+
+   loop_
+      _Release.Release_number
+      _Release.Format_type
+      _Release.Format_version
+      _Release.Date
+      _Release.Submission_date
+      _Release.Type
+      _Release.Author
+      _Release.Detail
+      _Release.Entry_ID
+
+      1   .   .   2025-09-05   .   original   BMRB   .   52810
+   stop_
+
+   loop_
+      _Related_entries.Database_name
+      _Related_entries.Database_accession_code
+      _Related_entries.Relationship
+      _Related_entries.Entry_ID
+
+      BMRB   52797   'Abl 1b isoform wild type SH3-SH2-KD (aa 83-534) in complex with nilotinib'                                 52810
+      BMRB   52798   'Abl 1b isoform wild type SH3-SH2-KD (aa 83-534) in complex with ponatinib'                                 52810
+      BMRB   52799   'Abl 1b isoform wild type SH3-SH2-KD (aa 83-534) in complex with rebastinib'                                52810
+      BMRB   52800   'Abl 1b isoform wild type SH3-SH2-KD (aa 83-534) in complex with bafetinib'                                 52810
+      BMRB   52802   'Abl 1b isoform wild type SH3-SH2-KD (aa 83-534) in complex with PD180970'                                  52810
+      BMRB   52803   'Abl 1b isoform wild type SH3-SH2-KD (aa 83-534) in complex with axitinib'                                  52810
+      BMRB   52804   'Abl 1b isoform wild type SH3-SH2-KD (aa 83-534) in complex with dasatinib'                                 52810
+      BMRB   52805   'Abl 1b isoform wild type SH3-SH2-KD (aa 83-534) in complex with staurosporine'                             52810
+      BMRB   52806   'Abl 1b isoform wild type SH3-SH2-KD (aa 83-534) in complex with danusertib'                                52810
+      BMRB   52807   'Abl 1b isoform wild type SH3-SH2-KD (aa 83-534) in complex with tozasertib'                                52810
+      BMRB   52808   'Abl 1b isoform wild type SH3-SH2-KD (aa 83-534) in complex with bosutinib'                                 52810
+      BMRB   52809   'Abl 1b isoform wild type SH3-SH2-KD (aa 83-534) in complex with AMP-PNP'                                   52810
+      BMRB   52811   'Abl 1b isoform wild type SH3-SH2-KD (aa 83-534) apo'                                                       52810
+      BMRB   52812   'Abl 1b isoform Gatekeeper (T334I) SH3-SH2-KD (aa 83-534) in complex with ponatinib'                        52810
+      BMRB   52813   'Abl 1b isoform Gatekeeper (T334I) SH3-SH2-KD (aa 83-534) in complex with GNF-5'                            52810
+      BMRB   52814   'Abl 1b isoform Gatekeeper (T334I) SH3-SH2-KD (aa 83-534) in complex with axitinib'                         52810
+      BMRB   52815   'Abl 1b isoform Gatekeeper (T334I) SH3-SH2-KD (aa 83-534) in complex with rebastinib'                       52810
+      BMRB   52816   'Abl 1b isoform Getekeeper (T334I) SH3-SH2-KD (aa 83-534) in complex with danusertib'                       52810
+      BMRB   52817   'Abl 1b isoform Gatekeeper (T334I) SH3-SH2-KD (aa 83-534) in complex with AMP-PNP'                          52810
+      BMRB   52818   'Abl 1b isoform Gatekeeper (T334I) SH3-SH2-KD (aa 83-534) apo'                                              52810
+      BMRB   52819   'Abl 1b isoform K313E SH3-SH2-KD (aa 83-534) in complex with imatinib'                                      52810
+      BMRB   52820   'Abl 1b isoform P242EP249E SH3-SH2-KD (aa 83-534) apo'                                                      52810
+      BMRB   52821   'Abl 1b isoform P242EP249E SH3-SH2-KD (aa 83-534) in complex with imatinib'                                 52810
+      BMRB   52822   'Abl 1b isoform P242EP249E SH3-SH2-KD (aa 83-534) in complex with GNF-5'                                    52810
+      BMRB   52823   'Abl 1b isoform E117K-K313E SH3-SH2-KD (aa 83-534) apo'                                                     52810
+      BMRB   52824   'Abl 1b isoform E117K-K313E SH3-SH2-KD (aa 83-534) in complex with imatinib'                                52810
+      BMRB   52825   'Abl 1b isoform E117K-K313E SH3-SH2-KD (aa 83-534) in complex with GNF-5'                                   52810
+      BMRB   52831   'Abl 1b isoform D382N pS69 myristoylated Cap-SH3-SH2-KD (aa 2-531) apo'                                     52810
+      BMRB   52832   'Abl 1b isoform D382N pS69 myristoiyated Cap-SH3-SH2-KD (aa 2-531) in complex with imatinib'                52810
+      BMRB   52833   'Abl 1b isoform D382N myristoylated Cap-SH3-SH2-KD (aa 2-531) apo, dephosphorylated'                        52810
+      BMRB   52834   'Abl 1b isoform D382N myristoylated Cap-SH3-SH2-KD (aa 2-531) in complex with imatinib; dephosphorylated'   52810
+      BMRB   52835   'Abl 1b isoform wild type SH3-SH2-KD (aa 83-534) in complex with Src inhibitor-1'                           52810
+      BMRB   52836   'Abl 1b isoform wild type SH3-SH2-KD (aa 83-534) in complex with Src inhibitor-1 and asciminib'             52810
+      BMRB   52837   'Abl 1b isoform wild type SH3-SH2-KD (aa 83-534) in complex with ponatinib and GNF-5'                       52810
+      BMRB   52838   'Abl 1b isoform wild type SH3-SH2-KD (aa 83-534) in complex with imatinib and GNF-5'                        52810
+      BMRB   52839   'Abl 1b isoform wild type SH3-SH2-KD (aa 83-534) in complex with dasatinib and GNF-5'                       52810
+      BMRB   52840   'Abl 1b isoform wild type SH3-SH2-KD (aa 83-534) in complex with dasatinib and asciminib'                   52810
+      BMRB   52841   'Abl 1b isoform wild type KD (aa 249-534) in complex with imatinib'                                         52810
+      BMRB   52842   'Abl 1b isoform wild type KD (aa 249-534) in complex with dasatinib'                                        52810
+      BMRB   52843   'Abl 1b isoform wild type KD (aa 249-534) apo'                                                              52810
+      BMRB   52844   'Abl 1b isoform wild type KD (aa 249-534) in complex with asciminib'                                        52810
+      BMRB   52845   'Abl 1b isoform wild type SH3 (aa 83-139) apo'                                                              52810
+      BMRB   52846   'Abl 1b isoform wild type SH2 (aa 138-247) apo'                                                             52810
+      BMRB   52849   'Abl 1b isoform T231R SH3-SH2-KD (aa 83-534) apo'                                                           52810
+      BMRB   52850   'Abl 1b isoform T231R SH3-SH2-KD (aa 83-534) in complex with GNF-5'                                         52810
+      BMRB   52851   'Abl 1b isoform T231R SH3-SH2-KD (aa 83-534) in complex with imatinib'                                      52810
+      BMRB   52852   'Abl 1b isoform T231R SH3-SH2-KD (aa 83-534) in complex with imatinib and GNF-5'                            52810
+      BMRB   52853   'Abl 1b isoform I164E SH3-SH2-KD (aa 83-534) apo'                                                           52810
+      BMRB   52854   'Abl 1b isoform I164E SH3-SH2-KD (aa 83-534) in complex with GNF-5'                                         52810
+      BMRB   52855   'Abl 1b isoform I164E SH3-SH2-KD (aa 83-534) in complex with imatinib and GNF-5'                            52810
+      BMRB   52856   'Abl 1b isoform I164E SH3-SH2-KD (aa 83-534) in complex with imatinib'                                      52810
+   stop_
+save_
+
+
+###############
+#  Citations  #
+###############
+save_citations_1
+   _Citation.Sf_category                  citations
+   _Citation.Sf_framecode                 citations_1
+   _Citation.Entry_ID                     52810
+   _Citation.ID                           1
+   _Citation.Name                         .
+   _Citation.Class                        'entry citation'
+   _Citation.CAS_abstract_code            .
+   _Citation.MEDLINE_UI_code              .
+   _Citation.PubMed_ID                    29319304
+   _Citation.DOI                          10.1021/jacs.7b12430
+   _Citation.Full_citation                .
+   _Citation.Title
+;
+ATP Site Ligands Determine the Assembly State of the Abelson Kinase Regulatory Core via the Activation Loop Conformation.
+;
+   _Citation.Status                       published
+   _Citation.Type                         journal
+   _Citation.Journal_abbrev               'J. Am. Chem. Soc.'
+   _Citation.Journal_name_full            'Journal of the American Chemical Society'
+   _Citation.Journal_volume               140
+   _Citation.Journal_issue                5
+   _Citation.Journal_ASTM                 .
+   _Citation.Journal_ISSN                 1520-5126
+   _Citation.Journal_CSD                  .
+   _Citation.Book_title                   .
+   _Citation.Book_chapter_title           .
+   _Citation.Book_volume                  .
+   _Citation.Book_series                  .
+   _Citation.Book_publisher               .
+   _Citation.Book_publisher_city          .
+   _Citation.Book_ISBN                    .
+   _Citation.Conference_title             .
+   _Citation.Conference_site              .
+   _Citation.Conference_state_province    .
+   _Citation.Conference_country           .
+   _Citation.Conference_start_date        .
+   _Citation.Conference_end_date          .
+   _Citation.Conference_abstract_number   .
+   _Citation.Thesis_institution           .
+   _Citation.Thesis_institution_city      .
+   _Citation.Thesis_institution_country   .
+   _Citation.WWW_URL                      .
+   _Citation.Page_first                   1863
+   _Citation.Page_last                    1869
+   _Citation.Year                         2018
+   _Citation.Details                      .
+
+   loop_
+      _Citation_author.Ordinal
+      _Citation_author.Given_name
+      _Citation_author.Family_name
+      _Citation_author.First_initial
+      _Citation_author.Middle_initials
+      _Citation_author.Family_title
+      _Citation_author.ORCID
+      _Citation_author.Entry_ID
+      _Citation_author.Citation_ID
+
+      1   Rajesh            Sonti           R.   .    .   .   52810   1
+      2   Ines              Hertel-Hering   I.   .    .   .   52810   1
+      3   'Allan Joaquim'   Lamontanara     A.   J.   .   .   52810   1
+      4   Oliver            Hantschel       O.   .    .   .   52810   1
+      5   Stephan           Grzesiek        S.   .    .   .   52810   1
+   stop_
+save_
+
+save_citations_2
+   _Citation.Sf_category                  citations
+   _Citation.Sf_framecode                 citations_2
+   _Citation.Entry_ID                     52810
+   _Citation.ID                           2
+   _Citation.Name                         .
+   _Citation.Class                        'reference citation'
+   _Citation.CAS_abstract_code            .
+   _Citation.MEDLINE_UI_code              .
+   _Citation.PubMed_ID                    38588001
+   _Citation.DOI                          10.7554/eLife.92324
+   _Citation.Full_citation                .
+   _Citation.Title
+;
+The molecular basis of Abelson kinase regulation by its aI-helix.
+;
+   _Citation.Status                       published
+   _Citation.Type                         journal
+   _Citation.Journal_abbrev               Elife
+   _Citation.Journal_name_full            eLife
+   _Citation.Journal_volume               12
+   _Citation.Journal_issue                .
+   _Citation.Journal_ASTM                 .
+   _Citation.Journal_ISSN                 2050-084X
+   _Citation.Journal_CSD                  .
+   _Citation.Book_title                   .
+   _Citation.Book_chapter_title           .
+   _Citation.Book_volume                  .
+   _Citation.Book_series                  .
+   _Citation.Book_publisher               .
+   _Citation.Book_publisher_city          .
+   _Citation.Book_ISBN                    .
+   _Citation.Conference_title             .
+   _Citation.Conference_site              .
+   _Citation.Conference_state_province    .
+   _Citation.Conference_country           .
+   _Citation.Conference_start_date        .
+   _Citation.Conference_end_date          .
+   _Citation.Conference_abstract_number   .
+   _Citation.Thesis_institution           .
+   _Citation.Thesis_institution_city      .
+   _Citation.Thesis_institution_country   .
+   _Citation.WWW_URL                      .
+   _Citation.Page_first                   .
+   _Citation.Page_last                    .
+   _Citation.Year                         2024
+   _Citation.Details                      .
+
+   loop_
+      _Citation_author.Ordinal
+      _Citation_author.Given_name
+      _Citation_author.Family_name
+      _Citation_author.First_initial
+      _Citation_author.Middle_initials
+      _Citation_author.Family_title
+      _Citation_author.ORCID
+      _Citation_author.Entry_ID
+      _Citation_author.Citation_ID
+
+      1   Johannes         Paladini    J.   .    .   .   52810   2
+      2   Annalena         Maier       A.   .    .   .   52810   2
+      3   'Judith Maria'   Habazettl   J.   M.   .   .   52810   2
+      4   Ines             Hertel      I.   .    .   .   52810   2
+      5   Rajesh           Sonti       R.   .    .   .   52810   2
+      6   Stephan          Grzesiek    S.   .    .   .   52810   2
+   stop_
+save_
+
+
+#############################################
+#  Molecular system (assembly) description  #
+#############################################
+save_assembly_1
+   _Assembly.Sf_category                       assembly
+   _Assembly.Sf_framecode                      assembly_1
+   _Assembly.Entry_ID                          52810
+   _Assembly.ID                                1
+   _Assembly.Name                              'SH3SH2KD(83-534) in complex with PD166326'
+   _Assembly.BMRB_code                         .
+   _Assembly.Number_of_components              2
+   _Assembly.Organic_ligands                   1
+   _Assembly.Metal_ions                        0
+   _Assembly.Non_standard_bonds                no
+   _Assembly.Ambiguous_conformational_states   yes
+   _Assembly.Ambiguous_chem_comp_sites         .
+   _Assembly.Molecules_in_chemical_exchange    no
+   _Assembly.Paramagnetic                      no
+   _Assembly.Thiol_state                       .
+   _Assembly.Molecular_mass                    52123.87
+   _Assembly.Enzyme_commission_number          2.7.10.2
+   _Assembly.Details                           'ABL1 regulatory core SH3-SH2-Kinase domain (83-534) in complex with PD166326'
+   _Assembly.DB_query_date                     .
+   _Assembly.DB_query_revised_last_date        .
+
+   loop_
+      _Entity_assembly.ID
+      _Entity_assembly.Entity_assembly_name
+      _Entity_assembly.Entity_ID
+      _Entity_assembly.Entity_label
+      _Entity_assembly.Asym_ID
+      _Entity_assembly.PDB_chain_ID
+      _Entity_assembly.Experimental_data_reported
+      _Entity_assembly.Physical_state
+      _Entity_assembly.Conformational_isomer
+      _Entity_assembly.Chemical_exchange_state
+      _Entity_assembly.Magnetic_equivalence_group_code
+      _Entity_assembly.Role
+      _Entity_assembly.Details
+      _Entity_assembly.Entry_ID
+      _Entity_assembly.Assembly_ID
+
+      1   SH3SH2KD   1   $entity_1     .   .   yes   native   no   no   .   'catalytic unit'     .   52810   1
+      2   P16        2   $entity_P16   .   .   no    native   no   no   .   'kinase inhibitor'   .   52810   1
+   stop_
+
+   loop_
+      _Assembly_db_link.Author_supplied
+      _Assembly_db_link.Database_code
+      _Assembly_db_link.Accession_code
+      _Assembly_db_link.Entry_mol_code
+      _Assembly_db_link.Entry_mol_name
+      _Assembly_db_link.Entry_experimental_method
+      _Assembly_db_link.Entry_structure_resolution
+      _Assembly_db_link.Entry_relation_type
+      _Assembly_db_link.Entry_details
+      _Assembly_db_link.Entry_ID
+      _Assembly_db_link.Assembly_ID
+
+      yes   PDB   1opk   .   .   X-ray   1.8    'Abl N-CAP, with myristic acid and P16'   .   52810   1
+      yes   PDB   2fo0   .   .   X-ray   2.27   'Abl N-CAP, with myristic acid and P16'   .   52810   1
+      yes   PDB   2g2h   .   .   X-ray   2.0    'Abl kinase domain in complex with P16'   .   52810   1
+   stop_
+
+   loop_
+      _Assembly_interaction.ID
+      _Assembly_interaction.Entity_assembly_ID_1
+      _Assembly_interaction.Entity_assembly_ID_2
+      _Assembly_interaction.Mol_interaction_type
+      _Assembly_interaction.Entry_ID
+      _Assembly_interaction.Assembly_ID
+
+      1   1   2   'Extremely slow exchange'   52810   1
+   stop_
+
+   loop_
+      _Assembly_bio_function.Biological_function
+      _Assembly_bio_function.Entry_ID
+      _Assembly_bio_function.Assembly_ID
+
+      'inhibited tyrosin kinase'   52810   1
+   stop_
+save_
+
+
+    ####################################
+    #  Biological polymers and ligands #
+    ####################################
+save_entity_1
+   _Entity.Sf_category                       entity
+   _Entity.Sf_framecode                      entity_1
+   _Entity.Entry_ID                          52810
+   _Entity.ID                                1
+   _Entity.BMRB_code                         .
+   _Entity.Name                              entity_1
+   _Entity.Type                              polymer
+   _Entity.Polymer_common_type               .
+   _Entity.Polymer_type                      polypeptide(L)
+   _Entity.Polymer_type_details              .
+   _Entity.Polymer_strand_ID                 .
+   _Entity.Polymer_seq_one_letter_code_can   .
+   _Entity.Polymer_seq_one_letter_code
+;
+GPNLFVALYDFVASGDNTLS
+ITKGEKLRVLGYNHNGEWCE
+AQTKNGQGWVPSNYITPVNS
+LEKHSWYHGPVSRNAAEYLL
+SSGINGSFLVRESESSPGQR
+SISLRYEGRVYHYRINTASD
+GKLYVSSESRFNTLAELVHH
+HSTVADGLITTLHYPAPKRN
+KPTVYGVSPNYDKWEMERTD
+ITMKHKLGGGQYGEVYEGVW
+KKYSLTVAVKTLKEDTMEVE
+EFLKEAAVMKEIKHPNLVQL
+LGVCTREPPFYIITEFMTYG
+NLLDYLRECNRQEVNAVVLL
+YMATQISSAMEYLEKKNFIH
+RDLAARNCLVGENHLVKVAD
+FGLSRLMTGDTYTAHAGAKF
+PIKWTAPESLAYNKFSIKSD
+VWAFGVLLWEIATYGMSPYP
+GIDLSQVYELLEKDYRMERP
+EGCPEKVYELMRACWQWNPS
+DRPSFAEIHQAFETMFQESS
+ISDEVEKELGKQGV
+;
+   _Entity.Target_identifier                 .
+   _Entity.Polymer_author_defined_seq        .
+   _Entity.Polymer_author_seq_details        'first two amino acids (GP) from cleavage site'
+   _Entity.Ambiguous_conformational_states   no
+   _Entity.Ambiguous_chem_comp_sites         no
+   _Entity.Nstd_monomer                      no
+   _Entity.Nstd_chirality                    no
+   _Entity.Nstd_linkage                      no
+   _Entity.Nonpolymer_comp_ID                .
+   _Entity.Nonpolymer_comp_label             .
+   _Entity.Number_of_monomers                454
+   _Entity.Number_of_nonpolymer_components   .
+   _Entity.Paramagnetic                      no
+   _Entity.Thiol_state                       'all free'
+   _Entity.Src_method                        .
+   _Entity.Parent_entity_ID                  1
+   _Entity.Fragment                          'ABL1 SH3-SH2-Kinase Domain (residues 83-534, isoform 1b)'
+   _Entity.Mutation                          .
+   _Entity.EC_number                         2.7.10.2
+   _Entity.Calc_isoelectric_point            .
+   _Entity.Formula_weight                    51696.57
+   _Entity.Formula_weight_exptl              .
+   _Entity.Formula_weight_exptl_meth         .
+   _Entity.Details                           .
+   _Entity.DB_query_date                     .
+   _Entity.DB_query_revised_last_date        .
+
+   loop_
+      _Entity_db_link.Ordinal
+      _Entity_db_link.Author_supplied
+      _Entity_db_link.Database_code
+      _Entity_db_link.Accession_code
+      _Entity_db_link.Entry_mol_code
+      _Entity_db_link.Entry_mol_name
+      _Entity_db_link.Entry_experimental_method
+      _Entity_db_link.Entry_structure_resolution
+      _Entity_db_link.Entry_relation_type
+      _Entity_db_link.Entry_details
+      _Entity_db_link.Chimera_segment_ID
+      _Entity_db_link.Seq_query_to_submitted_percent
+      _Entity_db_link.Seq_subject_length
+      _Entity_db_link.Seq_identity
+      _Entity_db_link.Seq_positive
+      _Entity_db_link.Seq_homology_expectation_val
+      _Entity_db_link.Seq_align_begin
+      _Entity_db_link.Seq_align_end
+      _Entity_db_link.Seq_difference_details
+      _Entity_db_link.Seq_alignment_details
+      _Entity_db_link.Entry_ID
+      _Entity_db_link.Entity_ID
+
+      1   yes   UniProt   P00519   .   ABL1_HUMAN   .   .   .   .   .   .   .   .   .   .   .   .   .   .   52810   1
+   stop_
+
+   loop_
+      _Entity_biological_function.Biological_function
+      _Entity_biological_function.Entry_ID
+      _Entity_biological_function.Entity_ID
+
+      Apoptosis                   52810   1
+      Autophagy                   52810   1
+      'Cell adhesion'             52810   1
+      'DNA damage'                52810   1
+      'DNA repair'                52810   1
+      DNA-binding                 52810   1
+      Endocytosis                 52810   1
+      Kinase                      52810   1
+      Transferase                 52810   1
+      'Tyrosine-protein kinase'   52810   1
+   stop_
+
+   loop_
+      _Entity_comp_index.ID
+      _Entity_comp_index.Auth_seq_ID
+      _Entity_comp_index.Comp_ID
+      _Entity_comp_index.Comp_label
+      _Entity_comp_index.Entry_ID
+      _Entity_comp_index.Entity_ID
+
+      1     81    GLY   .   52810   1
+      2     82    PRO   .   52810   1
+      3     83    ASN   .   52810   1
+      4     84    LEU   .   52810   1
+      5     85    PHE   .   52810   1
+      6     86    VAL   .   52810   1
+      7     87    ALA   .   52810   1
+      8     88    LEU   .   52810   1
+      9     89    TYR   .   52810   1
+      10    90    ASP   .   52810   1
+      11    91    PHE   .   52810   1
+      12    92    VAL   .   52810   1
+      13    93    ALA   .   52810   1
+      14    94    SER   .   52810   1
+      15    95    GLY   .   52810   1
+      16    96    ASP   .   52810   1
+      17    97    ASN   .   52810   1
+      18    98    THR   .   52810   1
+      19    99    LEU   .   52810   1
+      20    100   SER   .   52810   1
+      21    101   ILE   .   52810   1
+      22    102   THR   .   52810   1
+      23    103   LYS   .   52810   1
+      24    104   GLY   .   52810   1
+      25    105   GLU   .   52810   1
+      26    106   LYS   .   52810   1
+      27    107   LEU   .   52810   1
+      28    108   ARG   .   52810   1
+      29    109   VAL   .   52810   1
+      30    110   LEU   .   52810   1
+      31    111   GLY   .   52810   1
+      32    112   TYR   .   52810   1
+      33    113   ASN   .   52810   1
+      34    114   HIS   .   52810   1
+      35    115   ASN   .   52810   1
+      36    116   GLY   .   52810   1
+      37    117   GLU   .   52810   1
+      38    118   TRP   .   52810   1
+      39    119   CYS   .   52810   1
+      40    120   GLU   .   52810   1
+      41    121   ALA   .   52810   1
+      42    122   GLN   .   52810   1
+      43    123   THR   .   52810   1
+      44    124   LYS   .   52810   1
+      45    125   ASN   .   52810   1
+      46    126   GLY   .   52810   1
+      47    127   GLN   .   52810   1
+      48    128   GLY   .   52810   1
+      49    129   TRP   .   52810   1
+      50    130   VAL   .   52810   1
+      51    131   PRO   .   52810   1
+      52    132   SER   .   52810   1
+      53    133   ASN   .   52810   1
+      54    134   TYR   .   52810   1
+      55    135   ILE   .   52810   1
+      56    136   THR   .   52810   1
+      57    137   PRO   .   52810   1
+      58    138   VAL   .   52810   1
+      59    139   ASN   .   52810   1
+      60    140   SER   .   52810   1
+      61    141   LEU   .   52810   1
+      62    142   GLU   .   52810   1
+      63    143   LYS   .   52810   1
+      64    144   HIS   .   52810   1
+      65    145   SER   .   52810   1
+      66    146   TRP   .   52810   1
+      67    147   TYR   .   52810   1
+      68    148   HIS   .   52810   1
+      69    149   GLY   .   52810   1
+      70    150   PRO   .   52810   1
+      71    151   VAL   .   52810   1
+      72    152   SER   .   52810   1
+      73    153   ARG   .   52810   1
+      74    154   ASN   .   52810   1
+      75    155   ALA   .   52810   1
+      76    156   ALA   .   52810   1
+      77    157   GLU   .   52810   1
+      78    158   TYR   .   52810   1
+      79    159   LEU   .   52810   1
+      80    160   LEU   .   52810   1
+      81    161   SER   .   52810   1
+      82    162   SER   .   52810   1
+      83    163   GLY   .   52810   1
+      84    164   ILE   .   52810   1
+      85    165   ASN   .   52810   1
+      86    166   GLY   .   52810   1
+      87    167   SER   .   52810   1
+      88    168   PHE   .   52810   1
+      89    169   LEU   .   52810   1
+      90    170   VAL   .   52810   1
+      91    171   ARG   .   52810   1
+      92    172   GLU   .   52810   1
+      93    173   SER   .   52810   1
+      94    174   GLU   .   52810   1
+      95    175   SER   .   52810   1
+      96    176   SER   .   52810   1
+      97    177   PRO   .   52810   1
+      98    178   GLY   .   52810   1
+      99    179   GLN   .   52810   1
+      100   180   ARG   .   52810   1
+      101   181   SER   .   52810   1
+      102   182   ILE   .   52810   1
+      103   183   SER   .   52810   1
+      104   184   LEU   .   52810   1
+      105   185   ARG   .   52810   1
+      106   186   TYR   .   52810   1
+      107   187   GLU   .   52810   1
+      108   188   GLY   .   52810   1
+      109   189   ARG   .   52810   1
+      110   190   VAL   .   52810   1
+      111   191   TYR   .   52810   1
+      112   192   HIS   .   52810   1
+      113   193   TYR   .   52810   1
+      114   194   ARG   .   52810   1
+      115   195   ILE   .   52810   1
+      116   196   ASN   .   52810   1
+      117   197   THR   .   52810   1
+      118   198   ALA   .   52810   1
+      119   199   SER   .   52810   1
+      120   200   ASP   .   52810   1
+      121   201   GLY   .   52810   1
+      122   202   LYS   .   52810   1
+      123   203   LEU   .   52810   1
+      124   204   TYR   .   52810   1
+      125   205   VAL   .   52810   1
+      126   206   SER   .   52810   1
+      127   207   SER   .   52810   1
+      128   208   GLU   .   52810   1
+      129   209   SER   .   52810   1
+      130   210   ARG   .   52810   1
+      131   211   PHE   .   52810   1
+      132   212   ASN   .   52810   1
+      133   213   THR   .   52810   1
+      134   214   LEU   .   52810   1
+      135   215   ALA   .   52810   1
+      136   216   GLU   .   52810   1
+      137   217   LEU   .   52810   1
+      138   218   VAL   .   52810   1
+      139   219   HIS   .   52810   1
+      140   220   HIS   .   52810   1
+      141   221   HIS   .   52810   1
+      142   222   SER   .   52810   1
+      143   223   THR   .   52810   1
+      144   224   VAL   .   52810   1
+      145   225   ALA   .   52810   1
+      146   226   ASP   .   52810   1
+      147   227   GLY   .   52810   1
+      148   228   LEU   .   52810   1
+      149   229   ILE   .   52810   1
+      150   230   THR   .   52810   1
+      151   231   THR   .   52810   1
+      152   232   LEU   .   52810   1
+      153   233   HIS   .   52810   1
+      154   234   TYR   .   52810   1
+      155   235   PRO   .   52810   1
+      156   236   ALA   .   52810   1
+      157   237   PRO   .   52810   1
+      158   238   LYS   .   52810   1
+      159   239   ARG   .   52810   1
+      160   240   ASN   .   52810   1
+      161   241   LYS   .   52810   1
+      162   242   PRO   .   52810   1
+      163   243   THR   .   52810   1
+      164   244   VAL   .   52810   1
+      165   245   TYR   .   52810   1
+      166   246   GLY   .   52810   1
+      167   247   VAL   .   52810   1
+      168   248   SER   .   52810   1
+      169   249   PRO   .   52810   1
+      170   250   ASN   .   52810   1
+      171   251   TYR   .   52810   1
+      172   252   ASP   .   52810   1
+      173   253   LYS   .   52810   1
+      174   254   TRP   .   52810   1
+      175   255   GLU   .   52810   1
+      176   256   MET   .   52810   1
+      177   257   GLU   .   52810   1
+      178   258   ARG   .   52810   1
+      179   259   THR   .   52810   1
+      180   260   ASP   .   52810   1
+      181   261   ILE   .   52810   1
+      182   262   THR   .   52810   1
+      183   263   MET   .   52810   1
+      184   264   LYS   .   52810   1
+      185   265   HIS   .   52810   1
+      186   266   LYS   .   52810   1
+      187   267   LEU   .   52810   1
+      188   268   GLY   .   52810   1
+      189   269   GLY   .   52810   1
+      190   270   GLY   .   52810   1
+      191   271   GLN   .   52810   1
+      192   272   TYR   .   52810   1
+      193   273   GLY   .   52810   1
+      194   274   GLU   .   52810   1
+      195   275   VAL   .   52810   1
+      196   276   TYR   .   52810   1
+      197   277   GLU   .   52810   1
+      198   278   GLY   .   52810   1
+      199   279   VAL   .   52810   1
+      200   280   TRP   .   52810   1
+      201   281   LYS   .   52810   1
+      202   282   LYS   .   52810   1
+      203   283   TYR   .   52810   1
+      204   284   SER   .   52810   1
+      205   285   LEU   .   52810   1
+      206   286   THR   .   52810   1
+      207   287   VAL   .   52810   1
+      208   288   ALA   .   52810   1
+      209   289   VAL   .   52810   1
+      210   290   LYS   .   52810   1
+      211   291   THR   .   52810   1
+      212   292   LEU   .   52810   1
+      213   293   LYS   .   52810   1
+      214   294   GLU   .   52810   1
+      215   295   ASP   .   52810   1
+      216   296   THR   .   52810   1
+      217   297   MET   .   52810   1
+      218   298   GLU   .   52810   1
+      219   299   VAL   .   52810   1
+      220   300   GLU   .   52810   1
+      221   301   GLU   .   52810   1
+      222   302   PHE   .   52810   1
+      223   303   LEU   .   52810   1
+      224   304   LYS   .   52810   1
+      225   305   GLU   .   52810   1
+      226   306   ALA   .   52810   1
+      227   307   ALA   .   52810   1
+      228   308   VAL   .   52810   1
+      229   309   MET   .   52810   1
+      230   310   LYS   .   52810   1
+      231   311   GLU   .   52810   1
+      232   312   ILE   .   52810   1
+      233   313   LYS   .   52810   1
+      234   314   HIS   .   52810   1
+      235   315   PRO   .   52810   1
+      236   316   ASN   .   52810   1
+      237   317   LEU   .   52810   1
+      238   318   VAL   .   52810   1
+      239   319   GLN   .   52810   1
+      240   320   LEU   .   52810   1
+      241   321   LEU   .   52810   1
+      242   322   GLY   .   52810   1
+      243   323   VAL   .   52810   1
+      244   324   CYS   .   52810   1
+      245   325   THR   .   52810   1
+      246   326   ARG   .   52810   1
+      247   327   GLU   .   52810   1
+      248   328   PRO   .   52810   1
+      249   329   PRO   .   52810   1
+      250   330   PHE   .   52810   1
+      251   331   TYR   .   52810   1
+      252   332   ILE   .   52810   1
+      253   333   ILE   .   52810   1
+      254   334   THR   .   52810   1
+      255   335   GLU   .   52810   1
+      256   336   PHE   .   52810   1
+      257   337   MET   .   52810   1
+      258   338   THR   .   52810   1
+      259   339   TYR   .   52810   1
+      260   340   GLY   .   52810   1
+      261   341   ASN   .   52810   1
+      262   342   LEU   .   52810   1
+      263   343   LEU   .   52810   1
+      264   344   ASP   .   52810   1
+      265   345   TYR   .   52810   1
+      266   346   LEU   .   52810   1
+      267   347   ARG   .   52810   1
+      268   348   GLU   .   52810   1
+      269   349   CYS   .   52810   1
+      270   350   ASN   .   52810   1
+      271   351   ARG   .   52810   1
+      272   352   GLN   .   52810   1
+      273   353   GLU   .   52810   1
+      274   354   VAL   .   52810   1
+      275   355   ASN   .   52810   1
+      276   356   ALA   .   52810   1
+      277   357   VAL   .   52810   1
+      278   358   VAL   .   52810   1
+      279   359   LEU   .   52810   1
+      280   360   LEU   .   52810   1
+      281   361   TYR   .   52810   1
+      282   362   MET   .   52810   1
+      283   363   ALA   .   52810   1
+      284   364   THR   .   52810   1
+      285   365   GLN   .   52810   1
+      286   366   ILE   .   52810   1
+      287   367   SER   .   52810   1
+      288   368   SER   .   52810   1
+      289   369   ALA   .   52810   1
+      290   370   MET   .   52810   1
+      291   371   GLU   .   52810   1
+      292   372   TYR   .   52810   1
+      293   373   LEU   .   52810   1
+      294   374   GLU   .   52810   1
+      295   375   LYS   .   52810   1
+      296   376   LYS   .   52810   1
+      297   377   ASN   .   52810   1
+      298   378   PHE   .   52810   1
+      299   379   ILE   .   52810   1
+      300   380   HIS   .   52810   1
+      301   381   ARG   .   52810   1
+      302   382   ASP   .   52810   1
+      303   383   LEU   .   52810   1
+      304   384   ALA   .   52810   1
+      305   385   ALA   .   52810   1
+      306   386   ARG   .   52810   1
+      307   387   ASN   .   52810   1
+      308   388   CYS   .   52810   1
+      309   389   LEU   .   52810   1
+      310   390   VAL   .   52810   1
+      311   391   GLY   .   52810   1
+      312   392   GLU   .   52810   1
+      313   393   ASN   .   52810   1
+      314   394   HIS   .   52810   1
+      315   395   LEU   .   52810   1
+      316   396   VAL   .   52810   1
+      317   397   LYS   .   52810   1
+      318   398   VAL   .   52810   1
+      319   399   ALA   .   52810   1
+      320   400   ASP   .   52810   1
+      321   401   PHE   .   52810   1
+      322   402   GLY   .   52810   1
+      323   403   LEU   .   52810   1
+      324   404   SER   .   52810   1
+      325   405   ARG   .   52810   1
+      326   406   LEU   .   52810   1
+      327   407   MET   .   52810   1
+      328   408   THR   .   52810   1
+      329   409   GLY   .   52810   1
+      330   410   ASP   .   52810   1
+      331   411   THR   .   52810   1
+      332   412   TYR   .   52810   1
+      333   413   THR   .   52810   1
+      334   414   ALA   .   52810   1
+      335   415   HIS   .   52810   1
+      336   416   ALA   .   52810   1
+      337   417   GLY   .   52810   1
+      338   418   ALA   .   52810   1
+      339   419   LYS   .   52810   1
+      340   420   PHE   .   52810   1
+      341   421   PRO   .   52810   1
+      342   422   ILE   .   52810   1
+      343   423   LYS   .   52810   1
+      344   424   TRP   .   52810   1
+      345   425   THR   .   52810   1
+      346   426   ALA   .   52810   1
+      347   427   PRO   .   52810   1
+      348   428   GLU   .   52810   1
+      349   429   SER   .   52810   1
+      350   430   LEU   .   52810   1
+      351   431   ALA   .   52810   1
+      352   432   TYR   .   52810   1
+      353   433   ASN   .   52810   1
+      354   434   LYS   .   52810   1
+      355   435   PHE   .   52810   1
+      356   436   SER   .   52810   1
+      357   437   ILE   .   52810   1
+      358   438   LYS   .   52810   1
+      359   439   SER   .   52810   1
+      360   440   ASP   .   52810   1
+      361   441   VAL   .   52810   1
+      362   442   TRP   .   52810   1
+      363   443   ALA   .   52810   1
+      364   444   PHE   .   52810   1
+      365   445   GLY   .   52810   1
+      366   446   VAL   .   52810   1
+      367   447   LEU   .   52810   1
+      368   448   LEU   .   52810   1
+      369   449   TRP   .   52810   1
+      370   450   GLU   .   52810   1
+      371   451   ILE   .   52810   1
+      372   452   ALA   .   52810   1
+      373   453   THR   .   52810   1
+      374   454   TYR   .   52810   1
+      375   455   GLY   .   52810   1
+      376   456   MET   .   52810   1
+      377   457   SER   .   52810   1
+      378   458   PRO   .   52810   1
+      379   459   TYR   .   52810   1
+      380   460   PRO   .   52810   1
+      381   461   GLY   .   52810   1
+      382   462   ILE   .   52810   1
+      383   463   ASP   .   52810   1
+      384   464   LEU   .   52810   1
+      385   465   SER   .   52810   1
+      386   466   GLN   .   52810   1
+      387   467   VAL   .   52810   1
+      388   468   TYR   .   52810   1
+      389   469   GLU   .   52810   1
+      390   470   LEU   .   52810   1
+      391   471   LEU   .   52810   1
+      392   472   GLU   .   52810   1
+      393   473   LYS   .   52810   1
+      394   474   ASP   .   52810   1
+      395   475   TYR   .   52810   1
+      396   476   ARG   .   52810   1
+      397   477   MET   .   52810   1
+      398   478   GLU   .   52810   1
+      399   479   ARG   .   52810   1
+      400   480   PRO   .   52810   1
+      401   481   GLU   .   52810   1
+      402   482   GLY   .   52810   1
+      403   483   CYS   .   52810   1
+      404   484   PRO   .   52810   1
+      405   485   GLU   .   52810   1
+      406   486   LYS   .   52810   1
+      407   487   VAL   .   52810   1
+      408   488   TYR   .   52810   1
+      409   489   GLU   .   52810   1
+      410   490   LEU   .   52810   1
+      411   491   MET   .   52810   1
+      412   492   ARG   .   52810   1
+      413   493   ALA   .   52810   1
+      414   494   CYS   .   52810   1
+      415   495   TRP   .   52810   1
+      416   496   GLN   .   52810   1
+      417   497   TRP   .   52810   1
+      418   498   ASN   .   52810   1
+      419   499   PRO   .   52810   1
+      420   500   SER   .   52810   1
+      421   501   ASP   .   52810   1
+      422   502   ARG   .   52810   1
+      423   503   PRO   .   52810   1
+      424   504   SER   .   52810   1
+      425   505   PHE   .   52810   1
+      426   506   ALA   .   52810   1
+      427   507   GLU   .   52810   1
+      428   508   ILE   .   52810   1
+      429   509   HIS   .   52810   1
+      430   510   GLN   .   52810   1
+      431   511   ALA   .   52810   1
+      432   512   PHE   .   52810   1
+      433   513   GLU   .   52810   1
+      434   514   THR   .   52810   1
+      435   515   MET   .   52810   1
+      436   516   PHE   .   52810   1
+      437   517   GLN   .   52810   1
+      438   518   GLU   .   52810   1
+      439   519   SER   .   52810   1
+      440   520   SER   .   52810   1
+      441   521   ILE   .   52810   1
+      442   522   SER   .   52810   1
+      443   523   ASP   .   52810   1
+      444   524   GLU   .   52810   1
+      445   525   VAL   .   52810   1
+      446   526   GLU   .   52810   1
+      447   527   LYS   .   52810   1
+      448   528   GLU   .   52810   1
+      449   529   LEU   .   52810   1
+      450   530   GLY   .   52810   1
+      451   531   LYS   .   52810   1
+      452   532   GLN   .   52810   1
+      453   533   GLY   .   52810   1
+      454   534   VAL   .   52810   1
+   stop_
+
+   loop_
+      _Entity_poly_seq.Hetero
+      _Entity_poly_seq.Mon_ID
+      _Entity_poly_seq.Num
+      _Entity_poly_seq.Comp_index_ID
+      _Entity_poly_seq.Entry_ID
+      _Entity_poly_seq.Entity_ID
+
+      .   GLY   1     1     52810   1
+      .   PRO   2     2     52810   1
+      .   ASN   3     3     52810   1
+      .   LEU   4     4     52810   1
+      .   PHE   5     5     52810   1
+      .   VAL   6     6     52810   1
+      .   ALA   7     7     52810   1
+      .   LEU   8     8     52810   1
+      .   TYR   9     9     52810   1
+      .   ASP   10    10    52810   1
+      .   PHE   11    11    52810   1
+      .   VAL   12    12    52810   1
+      .   ALA   13    13    52810   1
+      .   SER   14    14    52810   1
+      .   GLY   15    15    52810   1
+      .   ASP   16    16    52810   1
+      .   ASN   17    17    52810   1
+      .   THR   18    18    52810   1
+      .   LEU   19    19    52810   1
+      .   SER   20    20    52810   1
+      .   ILE   21    21    52810   1
+      .   THR   22    22    52810   1
+      .   LYS   23    23    52810   1
+      .   GLY   24    24    52810   1
+      .   GLU   25    25    52810   1
+      .   LYS   26    26    52810   1
+      .   LEU   27    27    52810   1
+      .   ARG   28    28    52810   1
+      .   VAL   29    29    52810   1
+      .   LEU   30    30    52810   1
+      .   GLY   31    31    52810   1
+      .   TYR   32    32    52810   1
+      .   ASN   33    33    52810   1
+      .   HIS   34    34    52810   1
+      .   ASN   35    35    52810   1
+      .   GLY   36    36    52810   1
+      .   GLU   37    37    52810   1
+      .   TRP   38    38    52810   1
+      .   CYS   39    39    52810   1
+      .   GLU   40    40    52810   1
+      .   ALA   41    41    52810   1
+      .   GLN   42    42    52810   1
+      .   THR   43    43    52810   1
+      .   LYS   44    44    52810   1
+      .   ASN   45    45    52810   1
+      .   GLY   46    46    52810   1
+      .   GLN   47    47    52810   1
+      .   GLY   48    48    52810   1
+      .   TRP   49    49    52810   1
+      .   VAL   50    50    52810   1
+      .   PRO   51    51    52810   1
+      .   SER   52    52    52810   1
+      .   ASN   53    53    52810   1
+      .   TYR   54    54    52810   1
+      .   ILE   55    55    52810   1
+      .   THR   56    56    52810   1
+      .   PRO   57    57    52810   1
+      .   VAL   58    58    52810   1
+      .   ASN   59    59    52810   1
+      .   SER   60    60    52810   1
+      .   LEU   61    61    52810   1
+      .   GLU   62    62    52810   1
+      .   LYS   63    63    52810   1
+      .   HIS   64    64    52810   1
+      .   SER   65    65    52810   1
+      .   TRP   66    66    52810   1
+      .   TYR   67    67    52810   1
+      .   HIS   68    68    52810   1
+      .   GLY   69    69    52810   1
+      .   PRO   70    70    52810   1
+      .   VAL   71    71    52810   1
+      .   SER   72    72    52810   1
+      .   ARG   73    73    52810   1
+      .   ASN   74    74    52810   1
+      .   ALA   75    75    52810   1
+      .   ALA   76    76    52810   1
+      .   GLU   77    77    52810   1
+      .   TYR   78    78    52810   1
+      .   LEU   79    79    52810   1
+      .   LEU   80    80    52810   1
+      .   SER   81    81    52810   1
+      .   SER   82    82    52810   1
+      .   GLY   83    83    52810   1
+      .   ILE   84    84    52810   1
+      .   ASN   85    85    52810   1
+      .   GLY   86    86    52810   1
+      .   SER   87    87    52810   1
+      .   PHE   88    88    52810   1
+      .   LEU   89    89    52810   1
+      .   VAL   90    90    52810   1
+      .   ARG   91    91    52810   1
+      .   GLU   92    92    52810   1
+      .   SER   93    93    52810   1
+      .   GLU   94    94    52810   1
+      .   SER   95    95    52810   1
+      .   SER   96    96    52810   1
+      .   PRO   97    97    52810   1
+      .   GLY   98    98    52810   1
+      .   GLN   99    99    52810   1
+      .   ARG   100   100   52810   1
+      .   SER   101   101   52810   1
+      .   ILE   102   102   52810   1
+      .   SER   103   103   52810   1
+      .   LEU   104   104   52810   1
+      .   ARG   105   105   52810   1
+      .   TYR   106   106   52810   1
+      .   GLU   107   107   52810   1
+      .   GLY   108   108   52810   1
+      .   ARG   109   109   52810   1
+      .   VAL   110   110   52810   1
+      .   TYR   111   111   52810   1
+      .   HIS   112   112   52810   1
+      .   TYR   113   113   52810   1
+      .   ARG   114   114   52810   1
+      .   ILE   115   115   52810   1
+      .   ASN   116   116   52810   1
+      .   THR   117   117   52810   1
+      .   ALA   118   118   52810   1
+      .   SER   119   119   52810   1
+      .   ASP   120   120   52810   1
+      .   GLY   121   121   52810   1
+      .   LYS   122   122   52810   1
+      .   LEU   123   123   52810   1
+      .   TYR   124   124   52810   1
+      .   VAL   125   125   52810   1
+      .   SER   126   126   52810   1
+      .   SER   127   127   52810   1
+      .   GLU   128   128   52810   1
+      .   SER   129   129   52810   1
+      .   ARG   130   130   52810   1
+      .   PHE   131   131   52810   1
+      .   ASN   132   132   52810   1
+      .   THR   133   133   52810   1
+      .   LEU   134   134   52810   1
+      .   ALA   135   135   52810   1
+      .   GLU   136   136   52810   1
+      .   LEU   137   137   52810   1
+      .   VAL   138   138   52810   1
+      .   HIS   139   139   52810   1
+      .   HIS   140   140   52810   1
+      .   HIS   141   141   52810   1
+      .   SER   142   142   52810   1
+      .   THR   143   143   52810   1
+      .   VAL   144   144   52810   1
+      .   ALA   145   145   52810   1
+      .   ASP   146   146   52810   1
+      .   GLY   147   147   52810   1
+      .   LEU   148   148   52810   1
+      .   ILE   149   149   52810   1
+      .   THR   150   150   52810   1
+      .   THR   151   151   52810   1
+      .   LEU   152   152   52810   1
+      .   HIS   153   153   52810   1
+      .   TYR   154   154   52810   1
+      .   PRO   155   155   52810   1
+      .   ALA   156   156   52810   1
+      .   PRO   157   157   52810   1
+      .   LYS   158   158   52810   1
+      .   ARG   159   159   52810   1
+      .   ASN   160   160   52810   1
+      .   LYS   161   161   52810   1
+      .   PRO   162   162   52810   1
+      .   THR   163   163   52810   1
+      .   VAL   164   164   52810   1
+      .   TYR   165   165   52810   1
+      .   GLY   166   166   52810   1
+      .   VAL   167   167   52810   1
+      .   SER   168   168   52810   1
+      .   PRO   169   169   52810   1
+      .   ASN   170   170   52810   1
+      .   TYR   171   171   52810   1
+      .   ASP   172   172   52810   1
+      .   LYS   173   173   52810   1
+      .   TRP   174   174   52810   1
+      .   GLU   175   175   52810   1
+      .   MET   176   176   52810   1
+      .   GLU   177   177   52810   1
+      .   ARG   178   178   52810   1
+      .   THR   179   179   52810   1
+      .   ASP   180   180   52810   1
+      .   ILE   181   181   52810   1
+      .   THR   182   182   52810   1
+      .   MET   183   183   52810   1
+      .   LYS   184   184   52810   1
+      .   HIS   185   185   52810   1
+      .   LYS   186   186   52810   1
+      .   LEU   187   187   52810   1
+      .   GLY   188   188   52810   1
+      .   GLY   189   189   52810   1
+      .   GLY   190   190   52810   1
+      .   GLN   191   191   52810   1
+      .   TYR   192   192   52810   1
+      .   GLY   193   193   52810   1
+      .   GLU   194   194   52810   1
+      .   VAL   195   195   52810   1
+      .   TYR   196   196   52810   1
+      .   GLU   197   197   52810   1
+      .   GLY   198   198   52810   1
+      .   VAL   199   199   52810   1
+      .   TRP   200   200   52810   1
+      .   LYS   201   201   52810   1
+      .   LYS   202   202   52810   1
+      .   TYR   203   203   52810   1
+      .   SER   204   204   52810   1
+      .   LEU   205   205   52810   1
+      .   THR   206   206   52810   1
+      .   VAL   207   207   52810   1
+      .   ALA   208   208   52810   1
+      .   VAL   209   209   52810   1
+      .   LYS   210   210   52810   1
+      .   THR   211   211   52810   1
+      .   LEU   212   212   52810   1
+      .   LYS   213   213   52810   1
+      .   GLU   214   214   52810   1
+      .   ASP   215   215   52810   1
+      .   THR   216   216   52810   1
+      .   MET   217   217   52810   1
+      .   GLU   218   218   52810   1
+      .   VAL   219   219   52810   1
+      .   GLU   220   220   52810   1
+      .   GLU   221   221   52810   1
+      .   PHE   222   222   52810   1
+      .   LEU   223   223   52810   1
+      .   LYS   224   224   52810   1
+      .   GLU   225   225   52810   1
+      .   ALA   226   226   52810   1
+      .   ALA   227   227   52810   1
+      .   VAL   228   228   52810   1
+      .   MET   229   229   52810   1
+      .   LYS   230   230   52810   1
+      .   GLU   231   231   52810   1
+      .   ILE   232   232   52810   1
+      .   LYS   233   233   52810   1
+      .   HIS   234   234   52810   1
+      .   PRO   235   235   52810   1
+      .   ASN   236   236   52810   1
+      .   LEU   237   237   52810   1
+      .   VAL   238   238   52810   1
+      .   GLN   239   239   52810   1
+      .   LEU   240   240   52810   1
+      .   LEU   241   241   52810   1
+      .   GLY   242   242   52810   1
+      .   VAL   243   243   52810   1
+      .   CYS   244   244   52810   1
+      .   THR   245   245   52810   1
+      .   ARG   246   246   52810   1
+      .   GLU   247   247   52810   1
+      .   PRO   248   248   52810   1
+      .   PRO   249   249   52810   1
+      .   PHE   250   250   52810   1
+      .   TYR   251   251   52810   1
+      .   ILE   252   252   52810   1
+      .   ILE   253   253   52810   1
+      .   THR   254   254   52810   1
+      .   GLU   255   255   52810   1
+      .   PHE   256   256   52810   1
+      .   MET   257   257   52810   1
+      .   THR   258   258   52810   1
+      .   TYR   259   259   52810   1
+      .   GLY   260   260   52810   1
+      .   ASN   261   261   52810   1
+      .   LEU   262   262   52810   1
+      .   LEU   263   263   52810   1
+      .   ASP   264   264   52810   1
+      .   TYR   265   265   52810   1
+      .   LEU   266   266   52810   1
+      .   ARG   267   267   52810   1
+      .   GLU   268   268   52810   1
+      .   CYS   269   269   52810   1
+      .   ASN   270   270   52810   1
+      .   ARG   271   271   52810   1
+      .   GLN   272   272   52810   1
+      .   GLU   273   273   52810   1
+      .   VAL   274   274   52810   1
+      .   ASN   275   275   52810   1
+      .   ALA   276   276   52810   1
+      .   VAL   277   277   52810   1
+      .   VAL   278   278   52810   1
+      .   LEU   279   279   52810   1
+      .   LEU   280   280   52810   1
+      .   TYR   281   281   52810   1
+      .   MET   282   282   52810   1
+      .   ALA   283   283   52810   1
+      .   THR   284   284   52810   1
+      .   GLN   285   285   52810   1
+      .   ILE   286   286   52810   1
+      .   SER   287   287   52810   1
+      .   SER   288   288   52810   1
+      .   ALA   289   289   52810   1
+      .   MET   290   290   52810   1
+      .   GLU   291   291   52810   1
+      .   TYR   292   292   52810   1
+      .   LEU   293   293   52810   1
+      .   GLU   294   294   52810   1
+      .   LYS   295   295   52810   1
+      .   LYS   296   296   52810   1
+      .   ASN   297   297   52810   1
+      .   PHE   298   298   52810   1
+      .   ILE   299   299   52810   1
+      .   HIS   300   300   52810   1
+      .   ARG   301   301   52810   1
+      .   ASP   302   302   52810   1
+      .   LEU   303   303   52810   1
+      .   ALA   304   304   52810   1
+      .   ALA   305   305   52810   1
+      .   ARG   306   306   52810   1
+      .   ASN   307   307   52810   1
+      .   CYS   308   308   52810   1
+      .   LEU   309   309   52810   1
+      .   VAL   310   310   52810   1
+      .   GLY   311   311   52810   1
+      .   GLU   312   312   52810   1
+      .   ASN   313   313   52810   1
+      .   HIS   314   314   52810   1
+      .   LEU   315   315   52810   1
+      .   VAL   316   316   52810   1
+      .   LYS   317   317   52810   1
+      .   VAL   318   318   52810   1
+      .   ALA   319   319   52810   1
+      .   ASP   320   320   52810   1
+      .   PHE   321   321   52810   1
+      .   GLY   322   322   52810   1
+      .   LEU   323   323   52810   1
+      .   SER   324   324   52810   1
+      .   ARG   325   325   52810   1
+      .   LEU   326   326   52810   1
+      .   MET   327   327   52810   1
+      .   THR   328   328   52810   1
+      .   GLY   329   329   52810   1
+      .   ASP   330   330   52810   1
+      .   THR   331   331   52810   1
+      .   TYR   332   332   52810   1
+      .   THR   333   333   52810   1
+      .   ALA   334   334   52810   1
+      .   HIS   335   335   52810   1
+      .   ALA   336   336   52810   1
+      .   GLY   337   337   52810   1
+      .   ALA   338   338   52810   1
+      .   LYS   339   339   52810   1
+      .   PHE   340   340   52810   1
+      .   PRO   341   341   52810   1
+      .   ILE   342   342   52810   1
+      .   LYS   343   343   52810   1
+      .   TRP   344   344   52810   1
+      .   THR   345   345   52810   1
+      .   ALA   346   346   52810   1
+      .   PRO   347   347   52810   1
+      .   GLU   348   348   52810   1
+      .   SER   349   349   52810   1
+      .   LEU   350   350   52810   1
+      .   ALA   351   351   52810   1
+      .   TYR   352   352   52810   1
+      .   ASN   353   353   52810   1
+      .   LYS   354   354   52810   1
+      .   PHE   355   355   52810   1
+      .   SER   356   356   52810   1
+      .   ILE   357   357   52810   1
+      .   LYS   358   358   52810   1
+      .   SER   359   359   52810   1
+      .   ASP   360   360   52810   1
+      .   VAL   361   361   52810   1
+      .   TRP   362   362   52810   1
+      .   ALA   363   363   52810   1
+      .   PHE   364   364   52810   1
+      .   GLY   365   365   52810   1
+      .   VAL   366   366   52810   1
+      .   LEU   367   367   52810   1
+      .   LEU   368   368   52810   1
+      .   TRP   369   369   52810   1
+      .   GLU   370   370   52810   1
+      .   ILE   371   371   52810   1
+      .   ALA   372   372   52810   1
+      .   THR   373   373   52810   1
+      .   TYR   374   374   52810   1
+      .   GLY   375   375   52810   1
+      .   MET   376   376   52810   1
+      .   SER   377   377   52810   1
+      .   PRO   378   378   52810   1
+      .   TYR   379   379   52810   1
+      .   PRO   380   380   52810   1
+      .   GLY   381   381   52810   1
+      .   ILE   382   382   52810   1
+      .   ASP   383   383   52810   1
+      .   LEU   384   384   52810   1
+      .   SER   385   385   52810   1
+      .   GLN   386   386   52810   1
+      .   VAL   387   387   52810   1
+      .   TYR   388   388   52810   1
+      .   GLU   389   389   52810   1
+      .   LEU   390   390   52810   1
+      .   LEU   391   391   52810   1
+      .   GLU   392   392   52810   1
+      .   LYS   393   393   52810   1
+      .   ASP   394   394   52810   1
+      .   TYR   395   395   52810   1
+      .   ARG   396   396   52810   1
+      .   MET   397   397   52810   1
+      .   GLU   398   398   52810   1
+      .   ARG   399   399   52810   1
+      .   PRO   400   400   52810   1
+      .   GLU   401   401   52810   1
+      .   GLY   402   402   52810   1
+      .   CYS   403   403   52810   1
+      .   PRO   404   404   52810   1
+      .   GLU   405   405   52810   1
+      .   LYS   406   406   52810   1
+      .   VAL   407   407   52810   1
+      .   TYR   408   408   52810   1
+      .   GLU   409   409   52810   1
+      .   LEU   410   410   52810   1
+      .   MET   411   411   52810   1
+      .   ARG   412   412   52810   1
+      .   ALA   413   413   52810   1
+      .   CYS   414   414   52810   1
+      .   TRP   415   415   52810   1
+      .   GLN   416   416   52810   1
+      .   TRP   417   417   52810   1
+      .   ASN   418   418   52810   1
+      .   PRO   419   419   52810   1
+      .   SER   420   420   52810   1
+      .   ASP   421   421   52810   1
+      .   ARG   422   422   52810   1
+      .   PRO   423   423   52810   1
+      .   SER   424   424   52810   1
+      .   PHE   425   425   52810   1
+      .   ALA   426   426   52810   1
+      .   GLU   427   427   52810   1
+      .   ILE   428   428   52810   1
+      .   HIS   429   429   52810   1
+      .   GLN   430   430   52810   1
+      .   ALA   431   431   52810   1
+      .   PHE   432   432   52810   1
+      .   GLU   433   433   52810   1
+      .   THR   434   434   52810   1
+      .   MET   435   435   52810   1
+      .   PHE   436   436   52810   1
+      .   GLN   437   437   52810   1
+      .   GLU   438   438   52810   1
+      .   SER   439   439   52810   1
+      .   SER   440   440   52810   1
+      .   ILE   441   441   52810   1
+      .   SER   442   442   52810   1
+      .   ASP   443   443   52810   1
+      .   GLU   444   444   52810   1
+      .   VAL   445   445   52810   1
+      .   GLU   446   446   52810   1
+      .   LYS   447   447   52810   1
+      .   GLU   448   448   52810   1
+      .   LEU   449   449   52810   1
+      .   GLY   450   450   52810   1
+      .   LYS   451   451   52810   1
+      .   GLN   452   452   52810   1
+      .   GLY   453   453   52810   1
+      .   VAL   454   454   52810   1
+   stop_
+save_
+
+save_entity_P16
+   _Entity.Sf_category                       entity
+   _Entity.Sf_framecode                      entity_P16
+   _Entity.Entry_ID                          52810
+   _Entity.ID                                2
+   _Entity.BMRB_code                         P16
+   _Entity.Name                              entity_P16
+   _Entity.Type                              non-polymer
+   _Entity.Polymer_common_type               .
+   _Entity.Polymer_type                      .
+   _Entity.Polymer_type_details              .
+   _Entity.Polymer_strand_ID                 .
+   _Entity.Polymer_seq_one_letter_code_can   .
+   _Entity.Polymer_seq_one_letter_code       .
+   _Entity.Target_identifier                 .
+   _Entity.Polymer_author_defined_seq        .
+   _Entity.Polymer_author_seq_details        .
+   _Entity.Ambiguous_conformational_states   .
+   _Entity.Ambiguous_chem_comp_sites         .
+   _Entity.Nstd_monomer                      .
+   _Entity.Nstd_chirality                    .
+   _Entity.Nstd_linkage                      .
+   _Entity.Nonpolymer_comp_ID                P16
+   _Entity.Nonpolymer_comp_label             $chem_comp_P16
+   _Entity.Number_of_monomers                .
+   _Entity.Number_of_nonpolymer_components   1
+   _Entity.Paramagnetic                      .
+   _Entity.Thiol_state                       .
+   _Entity.Src_method                        .
+   _Entity.Parent_entity_ID                  2
+   _Entity.Fragment                          .
+   _Entity.Mutation                          .
+   _Entity.EC_number                         .
+   _Entity.Calc_isoelectric_point            .
+   _Entity.Formula_weight                    427.283
+   _Entity.Formula_weight_exptl              .
+   _Entity.Formula_weight_exptl_meth         .
+   _Entity.Details                           .
+   _Entity.DB_query_date                     .
+   _Entity.DB_query_revised_last_date        .
+
+   loop_
+      _Entity_common_name.Name
+      _Entity_common_name.Type
+      _Entity_common_name.Entry_ID
+      _Entity_common_name.Entity_ID
+
+      6-(2,6-DICHLOROPHENYL)-2-{[3-(HYDROXYMETHYL)PHENYL]AMINO}-8-METHYLPYRIDO[2,3-D]PYRIMIDIN-7(8H)-ONE   BMRB   52810   2
+   stop_
+
+   loop_
+      _Entity_systematic_name.Name
+      _Entity_systematic_name.Naming_system
+      _Entity_systematic_name.Entry_ID
+      _Entity_systematic_name.Entity_ID
+
+      6-(2,6-DICHLOROPHENYL)-2-{[3-(HYDROXYMETHYL)PHENYL]AMINO}-8-METHYLPYRIDO[2,3-D]PYRIMIDIN-7(8H)-ONE   BMRB                  52810   2
+      P16                                                                                                  'Three letter code'   52810   2
+   stop_
+
+   loop_
+      _Entity_comp_index.ID
+      _Entity_comp_index.Auth_seq_ID
+      _Entity_comp_index.Comp_ID
+      _Entity_comp_index.Comp_label
+      _Entity_comp_index.Entry_ID
+      _Entity_comp_index.Entity_ID
+
+      1   1   P16   $chem_comp_P16   52810   2
+   stop_
+save_
+
+
+    ####################
+    #  Natural source  #
+    ####################
+save_natural_source_1
+   _Entity_natural_src_list.Sf_category    natural_source
+   _Entity_natural_src_list.Sf_framecode   natural_source_1
+   _Entity_natural_src_list.Entry_ID       52810
+   _Entity_natural_src_list.ID             1
+
+   loop_
+      _Entity_natural_src.ID
+      _Entity_natural_src.Entity_ID
+      _Entity_natural_src.Entity_label
+      _Entity_natural_src.Entity_chimera_segment_ID
+      _Entity_natural_src.NCBI_taxonomy_ID
+      _Entity_natural_src.Type
+      _Entity_natural_src.Common
+      _Entity_natural_src.Organism_name_scientific
+      _Entity_natural_src.Organism_name_common
+      _Entity_natural_src.Organism_acronym
+      _Entity_natural_src.ICTVdb_decimal_code
+      _Entity_natural_src.Superkingdom
+      _Entity_natural_src.Kingdom
+      _Entity_natural_src.Genus
+      _Entity_natural_src.Species
+      _Entity_natural_src.Strain
+      _Entity_natural_src.Variant
+      _Entity_natural_src.Organ
+      _Entity_natural_src.Tissue
+      _Entity_natural_src.Tissue_fraction
+      _Entity_natural_src.Cell_line
+      _Entity_natural_src.Cell_type
+      _Entity_natural_src.ATCC_number
+      _Entity_natural_src.Organelle
+      _Entity_natural_src.Secretion
+      _Entity_natural_src.Plasmid
+      _Entity_natural_src.Gene_mnemonic
+      _Entity_natural_src.Details
+      _Entity_natural_src.Entry_ID
+      _Entity_natural_src.Entity_natural_src_list_ID
+
+      1   1   $entity_1   .   9606   organism   .   'Homo sapiens'   Human   .   .   Eukaryota   Metazoa   Homo   sapiens   .   'isoform 1B'   .   .   .   .   .   .   .   .   .   ABL1   .   52810   1
+   stop_
+save_
+
+
+    #########################
+    #  Experimental source  #
+    #########################
+save_experimental_source_1
+   _Entity_experimental_src_list.Sf_category    experimental_source
+   _Entity_experimental_src_list.Sf_framecode   experimental_source_1
+   _Entity_experimental_src_list.Entry_ID       52810
+   _Entity_experimental_src_list.ID             1
+
+   loop_
+      _Entity_experimental_src.ID
+      _Entity_experimental_src.Entity_ID
+      _Entity_experimental_src.Entity_label
+      _Entity_experimental_src.Entity_chimera_segment_ID
+      _Entity_experimental_src.Production_method
+      _Entity_experimental_src.Host_org_scientific_name
+      _Entity_experimental_src.Host_org_name_common
+      _Entity_experimental_src.Host_org_details
+      _Entity_experimental_src.Host_org_NCBI_taxonomy_ID
+      _Entity_experimental_src.Host_org_genus
+      _Entity_experimental_src.Host_org_species
+      _Entity_experimental_src.Host_org_strain
+      _Entity_experimental_src.Host_org_variant
+      _Entity_experimental_src.Host_org_ATCC_number
+      _Entity_experimental_src.Vector_type
+      _Entity_experimental_src.PDBview_host_org_vector_name
+      _Entity_experimental_src.PDBview_plasmid_name
+      _Entity_experimental_src.Vector_name
+      _Entity_experimental_src.Vector_details
+      _Entity_experimental_src.Vendor_name
+      _Entity_experimental_src.Details
+      _Entity_experimental_src.Entry_ID
+      _Entity_experimental_src.Entity_experimental_src_list_ID
+
+      1   1   $entity_1   .   'recombinant technology'   'Escherichia coli'   .   .   .   Escherichia   coli   BL21(DE3)   .   .   plasmid   .   .   pXI646   .   .   'co-expression with phosphatase PTP1 plus a separate plasmid that expresses lamda phosphatase (LPP)'   52810   1
+   stop_
+save_
+
+
+    #################################
+    #  Polymer residues and ligands #
+    #################################
+save_chem_comp_P16
+   _Chem_comp.Sf_category                       chem_comp
+   _Chem_comp.Sf_framecode                      chem_comp_P16
+   _Chem_comp.Entry_ID                          52810
+   _Chem_comp.ID                                P16
+   _Chem_comp.Provenance                        PDB
+   _Chem_comp.Name                              6-(2,6-DICHLOROPHENYL)-2-{[3-(HYDROXYMETHYL)PHENYL]AMINO}-8-METHYLPYRIDO[2,3-D]PYRIMIDIN-7(8H)-ONE
+   _Chem_comp.Type                              NON-POLYMER
+   _Chem_comp.BMRB_code                         P16
+   _Chem_comp.PDB_code                          P16
+   _Chem_comp.Ambiguous_flag                    no
+   _Chem_comp.Initial_date                      2020-07-10
+   _Chem_comp.Modified_date                     2020-07-10
+   _Chem_comp.Release_status                    REL
+   _Chem_comp.Replaced_by                       .
+   _Chem_comp.Replaces                          .
+   _Chem_comp.One_letter_code                   .
+   _Chem_comp.Three_letter_code                 P16
+   _Chem_comp.Number_atoms_all                  45
+   _Chem_comp.Number_atoms_nh                   29
+   _Chem_comp.Atom_nomenclature_source          .
+   _Chem_comp.PubChem_code                      .
+   _Chem_comp.Subcomponent_list                 .
+   _Chem_comp.InChI_code
+;
+InChI=1S/C21H16Cl2N4O2/c1-27-19-13(9-15(20(27)29)18-16(22)6-3-7-17(18)23)10-24-21(26-19)25-14-5-2-4-12(8-14)11-28/h2-10,28H,11H2,1H3,(H,24,25,26)
+;
+   _Chem_comp.Mon_nstd_flag                     no
+   _Chem_comp.Mon_nstd_class                    .
+   _Chem_comp.Mon_nstd_details                  .
+   _Chem_comp.Mon_nstd_parent                   .
+   _Chem_comp.Mon_nstd_parent_comp_ID           .
+   _Chem_comp.Std_deriv_one_letter_code         .
+   _Chem_comp.Std_deriv_three_letter_code       .
+   _Chem_comp.Std_deriv_BMRB_code               .
+   _Chem_comp.Std_deriv_PDB_code                .
+   _Chem_comp.Std_deriv_chem_comp_name          .
+   _Chem_comp.Synonyms                          PD166326
+   _Chem_comp.Formal_charge                     0
+   _Chem_comp.Paramagnetic                      .
+   _Chem_comp.Aromatic                          no
+   _Chem_comp.Formula                           'C21 H16 Cl2 N4 O2'
+   _Chem_comp.Formula_weight                    427.283
+   _Chem_comp.Formula_mono_iso_wt_nat           .
+   _Chem_comp.Formula_mono_iso_wt_13C           .
+   _Chem_comp.Formula_mono_iso_wt_15N           .
+   _Chem_comp.Formula_mono_iso_wt_13C_15N       .
+   _Chem_comp.Image_file_name                   .
+   _Chem_comp.Image_file_format                 .
+   _Chem_comp.Topo_file_name                    .
+   _Chem_comp.Topo_file_format                  .
+   _Chem_comp.Struct_file_name                  .
+   _Chem_comp.Struct_file_format                .
+   _Chem_comp.Stereochem_param_file_name        .
+   _Chem_comp.Stereochem_param_file_format      .
+   _Chem_comp.Model_details                     .
+   _Chem_comp.Model_erf                         .
+   _Chem_comp.Model_source                      .
+   _Chem_comp.Model_coordinates_details         .
+   _Chem_comp.Model_coordinates_missing_flag    no
+   _Chem_comp.Ideal_coordinates_details         .
+   _Chem_comp.Ideal_coordinates_missing_flag    no
+   _Chem_comp.Model_coordinates_db_code         1OPK
+   _Chem_comp.Processing_site                   RCSB
+   _Chem_comp.Vendor                            .
+   _Chem_comp.Vendor_product_code               .
+   _Chem_comp.Details                           .
+   _Chem_comp.DB_query_date                     .
+   _Chem_comp.DB_last_query_revised_last_date   .
+
+   loop_
+      _Chem_comp_descriptor.Descriptor
+      _Chem_comp_descriptor.Type
+      _Chem_comp_descriptor.Program
+      _Chem_comp_descriptor.Program_version
+      _Chem_comp_descriptor.Entry_ID
+      _Chem_comp_descriptor.Comp_ID
+
+      CN1C(=O)C(=Cc2cnc(Nc3cccc(CO)c3)nc12)c4c(Cl)cccc4Cl   SMILES             CACTVS                 3.341   52810   P16
+      CN1C(=O)C(=Cc2cnc(Nc3cccc(CO)c3)nc12)c4c(Cl)cccc4Cl   SMILES_CANONICAL   CACTVS                 3.341   52810   P16
+      CN1c2c(cnc(n2)Nc3cccc(c3)CO)C=C(C1=O)c4c(cccc4Cl)Cl   SMILES             'OpenEye OEToolkits'   1.5.0   52810   P16
+      CN1c2c(cnc(n2)Nc3cccc(c3)CO)C=C(C1=O)c4c(cccc4Cl)Cl   SMILES_CANONICAL   'OpenEye OEToolkits'   1.5.0   52810   P16
+      Clc4cccc(Cl)c4C3=Cc1c(nc(nc1)Nc2cc(ccc2)CO)N(C3=O)C   SMILES             ACDLabs                10.04   52810   P16
+
+;
+InChI=1S/C21H16Cl2N4O2/c1-27-19-13(9-15(20(27)29)18-16(22)6-3-7-17(18)23)10-24-21(26-19)25-14-5-2-4-12(8-14)11-28/h2-10,28H,11H2,1H3,(H,24,25,26)
+;
+                                                            InChI              InChI                  1.03    52810   P16
+      ZIQFYVPVJZEOFS-UHFFFAOYSA-N                           InChIKey           InChI                  1.03    52810   P16
+   stop_
+
+   loop_
+      _Chem_comp_identifier.Identifier
+      _Chem_comp_identifier.Type
+      _Chem_comp_identifier.Program
+      _Chem_comp_identifier.Program_version
+      _Chem_comp_identifier.Entry_ID
+      _Chem_comp_identifier.Comp_ID
+
+      6-(2,6-dichlorophenyl)-2-[[3-(hydroxymethyl)phenyl]amino]-8-methyl-pyrido[6,5-d]pyrimidin-7-one      'SYSTEMATIC NAME'   'OpenEye OEToolkits'   1.5.0   52810   P16
+      6-(2,6-dichlorophenyl)-2-{[3-(hydroxymethyl)phenyl]amino}-8-methylpyrido[2,3-d]pyrimidin-7(8H)-one   'SYSTEMATIC NAME'   ACDLabs                10.04   52810   P16
+   stop_
+
+   loop_
+      _Chem_comp_atom.Atom_ID
+      _Chem_comp_atom.BMRB_code
+      _Chem_comp_atom.PDB_atom_ID
+      _Chem_comp_atom.Alt_atom_ID
+      _Chem_comp_atom.Auth_atom_ID
+      _Chem_comp_atom.Type_symbol
+      _Chem_comp_atom.Isotope_number
+      _Chem_comp_atom.Chirality
+      _Chem_comp_atom.Stereo_config
+      _Chem_comp_atom.Charge
+      _Chem_comp_atom.Partial_charge
+      _Chem_comp_atom.Oxidation_number
+      _Chem_comp_atom.Unpaired_electron_number
+      _Chem_comp_atom.Align
+      _Chem_comp_atom.Aromatic_flag
+      _Chem_comp_atom.Leaving_atom_flag
+      _Chem_comp_atom.Substruct_code
+      _Chem_comp_atom.Ionizable
+      _Chem_comp_atom.Drawing_2D_coord_x
+      _Chem_comp_atom.Drawing_2D_coord_y
+      _Chem_comp_atom.Model_Cartn_x
+      _Chem_comp_atom.Model_Cartn_x_esd
+      _Chem_comp_atom.Model_Cartn_y
+      _Chem_comp_atom.Model_Cartn_y_esd
+      _Chem_comp_atom.Model_Cartn_z
+      _Chem_comp_atom.Model_Cartn_z_esd
+      _Chem_comp_atom.Model_Cartn_x_ideal
+      _Chem_comp_atom.Model_Cartn_y_ideal
+      _Chem_comp_atom.Model_Cartn_z_ideal
+      _Chem_comp_atom.PDBX_ordinal
+      _Chem_comp_atom.Details
+      _Chem_comp_atom.Entry_ID
+      _Chem_comp_atom.Comp_ID
+
+      O1     O1     O1     O1     .   O    .   .   N   0   .   .   .   1   N   N   .   .   .   .   49.980   .   11.093   .   14.944   .   0.435    0.289    -9.039   1    .   52810   P16
+      C2     C2     C2     C2     .   C    .   .   N   0   .   .   .   1   N   N   .   .   .   .   49.596   .   11.894   .   13.862   .   0.632    -0.842   -8.190   2    .   52810   P16
+      C3     C3     C3     C3     .   C    .   .   N   0   .   .   .   1   Y   N   .   .   .   .   49.221   .   13.309   .   14.274   .   -0.076   -0.618   -6.880   3    .   52810   P16
+      C4     C4     C4     C4     .   C    .   .   N   0   .   .   .   1   Y   N   .   .   .   .   50.147   .   14.393   .   14.073   .   -1.390   -1.023   -6.727   4    .   52810   P16
+      C5     C5     C5     C5     .   C    .   .   N   0   .   .   .   1   Y   N   .   .   .   .   49.804   .   15.704   .   14.461   .   -2.044   -0.819   -5.526   5    .   52810   P16
+      C6     C6     C6     C6     .   C    .   .   N   0   .   .   .   1   Y   N   .   .   .   .   48.535   .   15.974   .   15.061   .   -1.388   -0.209   -4.475   6    .   52810   P16
+      C7     C7     C7     C7     .   C    .   .   N   0   .   .   .   1   Y   N   .   .   .   .   47.604   .   14.903   .   15.264   .   -0.069   0.198    -4.625   7    .   52810   P16
+      N9     N9     N9     N9     .   N    .   .   N   0   .   .   .   1   N   N   .   .   .   .   46.330   .   15.046   .   15.874   .   0.598    0.816    -3.563   8    .   52810   P16
+      C10    C10    C10    C10    .   C    .   .   N   0   .   .   .   1   Y   N   .   .   .   .   45.897   .   16.061   .   16.681   .   0.317    0.445    -2.262   9    .   52810   P16
+      N11    N11    N11    N11    .   N    .   .   N   0   .   .   .   1   Y   N   .   .   .   .   44.614   .   15.902   .   17.177   .   -0.505   -0.576   -2.051   10   .   52810   P16
+      C12    C12    C12    C12    .   C    .   .   N   0   .   .   .   1   Y   N   .   .   .   .   44.155   .   16.860   .   18.002   .   -0.805   -0.970   -0.828   11   .   52810   P16
+      C13    C13    C13    C13    .   C    .   .   N   0   .   .   .   1   Y   N   .   .   .   .   44.925   .   17.997   .   18.377   .   -0.235   -0.286   0.256    12   .   52810   P16
+      C16    C16    C16    C16    .   C    .   .   N   0   .   .   .   1   Y   N   .   .   .   .   44.452   .   19.026   .   19.259   .   -0.519   -0.662   1.589    13   .   52810   P16
+      C17    C17    C17    C17    .   C    .   .   N   0   .   .   .   1   Y   N   .   .   .   .   45.243   .   20.091   .   19.576   .   0.061    0.037    2.613    14   .   52810   P16
+      C18    C18    C18    C18    .   C    .   .   N   0   .   .   .   1   Y   N   .   .   .   .   46.622   .   20.233   .   18.978   .   0.958    1.152    2.304    15   .   52810   P16
+      O21    O21    O21    O21    .   O    .   .   N   0   .   .   .   1   N   N   .   .   .   .   47.405   .   21.159   .   19.199   .   1.479    1.779    3.209    16   .   52810   P16
+      N19    N19    N19    N19    .   N    .   .   N   0   .   .   .   1   Y   N   .   .   .   .   47.062   .   19.177   .   18.103   .   1.210    1.488    1.025    17   .   52810   P16
+      C14    C14    C14    C14    .   C    .   .   N   0   .   .   .   1   Y   N   .   .   .   .   46.242   .   18.092   .   17.788   .   0.629    0.797    -0.007   18   .   52810   P16
+      N15    N15    N15    N15    .   N    .   .   N   0   .   .   .   1   Y   N   .   .   .   .   46.706   .   17.115   .   16.968   .   0.878    1.120    -1.271   19   .   52810   P16
+      C20    C20    C20    C20    .   C    .   .   N   0   .   .   .   1   N   N   .   .   .   .   48.407   .   19.246   .   17.479   .   2.110    2.607    0.732    20   .   52810   P16
+      C22    C22    C22    C22    .   C    .   .   N   0   .   .   .   1   Y   N   .   .   .   .   44.799   .   21.160   .   20.495   .   -0.215   -0.331   4.021    21   .   52810   P16
+      C27    C27    C27    C27    .   C    .   .   N   0   .   .   .   1   Y   N   .   .   .   .   44.264   .   22.389   .   20.017   .   0.591    -1.265   4.673    22   .   52810   P16
+      CL28   CL28   CL28   CL28   .   CL   .   .   N   0   .   .   .   0   N   N   .   .   .   .   44.060   .   22.644   .   18.299   .   1.924    -1.997   3.835    23   .   52810   P16
+      C26    C26    C26    C26    .   C    .   .   N   0   .   .   .   1   Y   N   .   .   .   .   43.857   .   23.419   .   20.929   .   0.328    -1.604   5.986    24   .   52810   P16
+      C25    C25    C25    C25    .   C    .   .   N   0   .   .   .   1   Y   N   .   .   .   .   44.014   .   23.232   .   22.333   .   -0.732   -1.020   6.654    25   .   52810   P16
+      C24    C24    C24    C24    .   C    .   .   N   0   .   .   .   1   Y   N   .   .   .   .   44.543   .   22.010   .   22.844   .   -1.536   -0.095   6.014    26   .   52810   P16
+      C23    C23    C23    C23    .   C    .   .   N   0   .   .   .   1   Y   N   .   .   .   .   44.943   .   20.998   .   21.916   .   -1.281   0.256    4.703    27   .   52810   P16
+      CL29   CL29   CL29   CL29   .   CL   .   .   N   0   .   .   .   0   N   N   .   .   .   .   45.584   .   19.511   .   22.554   .   -2.291   1.418    3.902    28   .   52810   P16
+      C8     C8     C8     C8     .   C    .   .   N   0   .   .   .   1   Y   N   .   .   .   .   47.962   .   13.570   .   14.866   .   0.583    -0.002   -5.835   29   .   52810   P16
+      HO1    HO1    HO1    HO1    .   H    .   .   N   0   .   .   .   1   N   N   .   .   .   .   50.214   .   10.209   .   14.686   .   0.904    0.105    -9.864   30   .   52810   P16
+      H21    H21    H21    1H2    .   H    .   .   N   0   .   .   .   1   N   N   .   .   .   .   50.385   .   11.904   .   13.074   .   1.698    -0.978   -8.008   31   .   52810   P16
+      H22    H22    H22    2H2    .   H    .   .   N   0   .   .   .   1   N   N   .   .   .   .   48.770   .   11.415   .   13.285   .   0.230    -1.733   -8.673   32   .   52810   P16
+      H4     H4     H4     H4     .   H    .   .   N   0   .   .   .   1   N   N   .   .   .   .   51.134   .   14.216   .   13.614   .   -1.905   -1.499   -7.548   33   .   52810   P16
+      H5     H5     H5     H5     .   H    .   .   N   0   .   .   .   1   N   N   .   .   .   .   50.528   .   16.518   .   14.295   .   -3.070   -1.137   -5.410   34   .   52810   P16
+      H6     H6     H6     H6     .   H    .   .   N   0   .   .   .   1   N   N   .   .   .   .   48.275   .   17.002   .   15.365   .   -1.900   -0.051   -3.537   35   .   52810   P16
+      HN9    HN9    HN9    HN9    .   H    .   .   N   0   .   .   .   1   N   N   .   .   .   .   46.176   .   14.186   .   16.402   .   1.257    1.505    -3.740   36   .   52810   P16
+      H12    H12    H12    H12    .   H    .   .   N   0   .   .   .   1   N   N   .   .   .   .   43.128   .   16.710   .   18.377   .   -1.474   -1.802   -0.665   37   .   52810   P16
+      H16    H16    H16    H16    .   H    .   .   N   0   .   .   .   1   N   N   .   .   .   .   43.445   .   18.997   .   19.709   .   -1.183   -1.487   1.797    38   .   52810   P16
+      H201   H201   H201   1H20   .   H    .   .   N   0   .   .   .   0   N   N   .   .   .   .   48.747   .   18.428   .   16.801   .   2.471    3.036    1.667    39   .   52810   P16
+      H202   H202   H202   2H20   .   H    .   .   N   0   .   .   .   0   N   N   .   .   .   .   48.494   .   20.215   .   16.935   .   2.956    2.249    0.146    40   .   52810   P16
+      H203   H203   H203   3H20   .   H    .   .   N   0   .   .   .   0   N   N   .   .   .   .   49.165   .   19.374   .   18.286   .   1.572    3.367    0.167    41   .   52810   P16
+      H26    H26    H26    H26    .   H    .   .   N   0   .   .   .   1   N   N   .   .   .   .   43.421   .   24.358   .   20.549   .   0.952    -2.326   6.491    42   .   52810   P16
+      H25    H25    H25    H25    .   H    .   .   N   0   .   .   .   1   N   N   .   .   .   .   43.724   .   24.037   .   23.028   .   -0.934   -1.289   7.681    43   .   52810   P16
+      H24    H24    H24    H24    .   H    .   .   N   0   .   .   .   1   N   N   .   .   .   .   44.640   .   21.851   .   23.931   .   -2.364   0.355    6.542    44   .   52810   P16
+      H8     H8     H8     H8     .   H    .   .   N   0   .   .   .   1   N   N   .   .   .   .   47.259   .   12.733   .   15.017   .   1.609    0.313    -5.954   45   .   52810   P16
+   stop_
+
+   loop_
+      _Chem_comp_bond.ID
+      _Chem_comp_bond.Type
+      _Chem_comp_bond.Value_order
+      _Chem_comp_bond.Atom_ID_1
+      _Chem_comp_bond.Atom_ID_2
+      _Chem_comp_bond.Aromatic_flag
+      _Chem_comp_bond.Stereo_config
+      _Chem_comp_bond.Ordinal
+      _Chem_comp_bond.Details
+      _Chem_comp_bond.Entry_ID
+      _Chem_comp_bond.Comp_ID
+
+      1    .   SING   O1    C2     N   N   1    .   52810   P16
+      2    .   SING   O1    HO1    N   N   2    .   52810   P16
+      3    .   SING   C2    C3     N   N   3    .   52810   P16
+      4    .   SING   C2    H21    N   N   4    .   52810   P16
+      5    .   SING   C2    H22    N   N   5    .   52810   P16
+      6    .   DOUB   C3    C4     Y   N   6    .   52810   P16
+      7    .   SING   C3    C8     Y   N   7    .   52810   P16
+      8    .   SING   C4    C5     Y   N   8    .   52810   P16
+      9    .   SING   C4    H4     N   N   9    .   52810   P16
+      10   .   DOUB   C5    C6     Y   N   10   .   52810   P16
+      11   .   SING   C5    H5     N   N   11   .   52810   P16
+      12   .   SING   C6    C7     Y   N   12   .   52810   P16
+      13   .   SING   C6    H6     N   N   13   .   52810   P16
+      14   .   SING   C7    N9     N   N   14   .   52810   P16
+      15   .   DOUB   C7    C8     Y   N   15   .   52810   P16
+      16   .   SING   N9    C10    N   N   16   .   52810   P16
+      17   .   SING   N9    HN9    N   N   17   .   52810   P16
+      18   .   DOUB   C10   N11    Y   N   18   .   52810   P16
+      19   .   SING   C10   N15    Y   N   19   .   52810   P16
+      20   .   SING   N11   C12    Y   N   20   .   52810   P16
+      21   .   DOUB   C12   C13    Y   N   21   .   52810   P16
+      22   .   SING   C12   H12    N   N   22   .   52810   P16
+      23   .   SING   C13   C16    Y   N   23   .   52810   P16
+      24   .   SING   C13   C14    Y   N   24   .   52810   P16
+      25   .   DOUB   C16   C17    Y   N   25   .   52810   P16
+      26   .   SING   C16   H16    N   N   26   .   52810   P16
+      27   .   SING   C17   C18    Y   N   27   .   52810   P16
+      28   .   SING   C17   C22    Y   N   28   .   52810   P16
+      29   .   DOUB   C18   O21    N   N   29   .   52810   P16
+      30   .   SING   C18   N19    Y   N   30   .   52810   P16
+      31   .   SING   N19   C14    Y   N   31   .   52810   P16
+      32   .   SING   N19   C20    N   N   32   .   52810   P16
+      33   .   DOUB   C14   N15    Y   N   33   .   52810   P16
+      34   .   SING   C20   H201   N   N   34   .   52810   P16
+      35   .   SING   C20   H202   N   N   35   .   52810   P16
+      36   .   SING   C20   H203   N   N   36   .   52810   P16
+      37   .   DOUB   C22   C27    Y   N   37   .   52810   P16
+      38   .   SING   C22   C23    Y   N   38   .   52810   P16
+      39   .   SING   C27   CL28   N   N   39   .   52810   P16
+      40   .   SING   C27   C26    Y   N   40   .   52810   P16
+      41   .   DOUB   C26   C25    Y   N   41   .   52810   P16
+      42   .   SING   C26   H26    N   N   42   .   52810   P16
+      43   .   SING   C25   C24    Y   N   43   .   52810   P16
+      44   .   SING   C25   H25    N   N   44   .   52810   P16
+      45   .   DOUB   C24   C23    Y   N   45   .   52810   P16
+      46   .   SING   C24   H24    N   N   46   .   52810   P16
+      47   .   SING   C23   CL29   N   N   47   .   52810   P16
+      48   .   SING   C8    H8     N   N   48   .   52810   P16
+   stop_
+save_
+
+
+#####################################
+#  Sample contents and methodology  #
+#####################################
+	 
+    ########################
+    #  Sample description  #
+    ########################
+save_sample_1
+   _Sample.Sf_category                      sample
+   _Sample.Sf_framecode                     sample_1
+   _Sample.Entry_ID                         52810
+   _Sample.ID                               1
+   _Sample.Name                             'sample 1'
+   _Sample.Type                             solution
+   _Sample.Sub_type                         .
+   _Sample.Details                          .
+   _Sample.Aggregate_sample_number          1
+   _Sample.Solvent_system                   '95% H2O/5% D2O'
+   _Sample.Preparation_date                 .
+   _Sample.Preparation_expiration_date      .
+   _Sample.Polycrystallization_protocol     .
+   _Sample.Single_crystal_protocol          .
+   _Sample.Crystal_grow_apparatus           .
+   _Sample.Crystal_grow_atmosphere          .
+   _Sample.Crystal_grow_details             .
+   _Sample.Crystal_grow_method              .
+   _Sample.Crystal_grow_method_cit_ID       .
+   _Sample.Crystal_grow_pH                  .
+   _Sample.Crystal_grow_pH_range            .
+   _Sample.Crystal_grow_pressure            .
+   _Sample.Crystal_grow_pressure_esd        .
+   _Sample.Crystal_grow_seeding             .
+   _Sample.Crystal_grow_seeding_cit_ID      .
+   _Sample.Crystal_grow_temp                .
+   _Sample.Crystal_grow_temp_details        .
+   _Sample.Crystal_grow_temp_esd            .
+   _Sample.Crystal_grow_time                .
+   _Sample.Oriented_sample_prep_protocol    .
+   _Sample.Lyophilization_cryo_protectant   .
+   _Sample.Storage_protocol                 .
+
+   loop_
+      _Sample_component.ID
+      _Sample_component.Mol_common_name
+      _Sample_component.Isotopic_labeling
+      _Sample_component.Assembly_ID
+      _Sample_component.Assembly_label
+      _Sample_component.Entity_ID
+      _Sample_component.Entity_label
+      _Sample_component.Product_ID
+      _Sample_component.Type
+      _Sample_component.Concentration_val
+      _Sample_component.Concentration_val_min
+      _Sample_component.Concentration_val_max
+      _Sample_component.Concentration_val_units
+      _Sample_component.Concentration_val_err
+      _Sample_component.Vendor
+      _Sample_component.Vendor_product_name
+      _Sample_component.Vendor_product_code
+      _Sample_component.Entry_ID
+      _Sample_component.Sample_ID
+
+      1   'Abl1 SH3-SH2-Kinase Domain (residues 83-534, isoform 1b)'   '[U-99% 15N]'         .   .   1   $entity_1   .   .   85     .   .   uM        5    .   .   .   52810   1
+      2   D2O                                                          [U-2H]                .   .   .   .           .   .   5      .   .   %         .    .   .   .   52810   1
+      3   TRIS                                                         'natural abundance'   .   .   .   .           .   .   10     .   .   mM        .    .   .   .   52810   1
+      4   'sodium chloride'                                            'natural abundance'   .   .   .   .           .   .   100    .   .   mM        .    .   .   .   52810   1
+      5   EDTA                                                         'natural abundance'   .   .   .   .           .   .   2      .   .   mM        .    .   .   .   52810   1
+      6   TCEP                                                         'natural abundance'   .   .   .   .           .   .   2      .   .   mM        .    .   .   .   52810   1
+      7   'sodium azide'                                               'natural abundance'   .   .   .   .           .   .   0.02   .   .   '% w/v'   .    .   .   .   52810   1
+      8   H2O                                                          'natural abundance'   .   .   .   .           .   .   95     .   .   %         .    .   .   .   52810   1
+      9   PD166326                                                     'natural abundance'   .   .   .   .           .   .   255    .   .   uM        10   .   .   .   52810   1
+   stop_
+save_
+
+
+#######################
+#  Sample conditions  #
+#######################
+save_sample_conditions_1
+   _Sample_condition_list.Sf_category    sample_conditions
+   _Sample_condition_list.Sf_framecode   sample_conditions_1
+   _Sample_condition_list.Entry_ID       52810
+   _Sample_condition_list.ID             1
+   _Sample_condition_list.Name           'Main Buffer ABL 1'
+   _Sample_condition_list.Details        .
+
+   loop_
+      _Sample_condition_variable.Type
+      _Sample_condition_variable.Val
+      _Sample_condition_variable.Val_err
+      _Sample_condition_variable.Val_units
+      _Sample_condition_variable.Entry_ID
+      _Sample_condition_variable.Sample_condition_list_ID
+
+      pH            8     .   pH    52810   1
+      pressure      1     .   atm   52810   1
+      temperature   303   .   K     52810   1
+   stop_
+save_
+
+
+############################
+#  Computer software used  #
+############################
+save_software_1
+   _Software.Sf_category    software
+   _Software.Sf_framecode   software_1
+   _Software.Entry_ID       52810
+   _Software.ID             1
+   _Software.Type           .
+   _Software.Name           TOPSPIN
+   _Software.Version        3.6.2
+   _Software.DOI            .
+   _Software.Details        .
+
+   loop_
+      _Task.Task
+      _Task.Software_module
+      _Task.Entry_ID
+      _Task.Software_ID
+
+      collection   .   52810   1
+   stop_
+save_
+
+save_software_2
+   _Software.Sf_category    software
+   _Software.Sf_framecode   software_2
+   _Software.Entry_ID       52810
+   _Software.ID             2
+   _Software.Type           .
+   _Software.Name           NMRPipe
+   _Software.Version        .
+   _Software.DOI            .
+   _Software.Details        .
+
+   loop_
+      _Task.Task
+      _Task.Software_module
+      _Task.Entry_ID
+      _Task.Software_ID
+
+      processing   .   52810   2
+   stop_
+save_
+
+save_software_3
+   _Software.Sf_category    software
+   _Software.Sf_framecode   software_3
+   _Software.Entry_ID       52810
+   _Software.ID             3
+   _Software.Type           .
+   _Software.Name           NMRFAM-SPARKY
+   _Software.Version        .
+   _Software.DOI            .
+   _Software.Details        .
+
+   loop_
+      _Task.Task
+      _Task.Software_module
+      _Task.Entry_ID
+      _Task.Software_ID
+
+      'data analysis'   .   52810   3
+   stop_
+save_
+
+
+#########################
+#  Experimental detail  #
+#########################
+
+    ##################################
+    #  NMR Spectrometer definitions  #
+    ##################################
+save_NMR_spectrometer_1
+   _NMR_spectrometer.Sf_category      NMR_spectrometer
+   _NMR_spectrometer.Sf_framecode     NMR_spectrometer_1
+   _NMR_spectrometer.Entry_ID         52810
+   _NMR_spectrometer.ID               1
+   _NMR_spectrometer.Name             'Bruker 900'
+   _NMR_spectrometer.Details          'TCI probe head'
+   _NMR_spectrometer.Manufacturer     Bruker
+   _NMR_spectrometer.Model            'AVANCE III'
+   _NMR_spectrometer.Serial_number    .
+   _NMR_spectrometer.Field_strength   900
+save_
+
+
+    #############################
+    #  NMR applied experiments  #
+    #############################
+save_experiment_list_1
+   _Experiment_list.Sf_category    experiment_list
+   _Experiment_list.Sf_framecode   experiment_list_1
+   _Experiment_list.Entry_ID       52810
+   _Experiment_list.ID             1
+   _Experiment_list.Details        .
+
+   loop_
+      _Experiment.ID
+      _Experiment.Name
+      _Experiment.Raw_data_flag
+      _Experiment.NUS_flag
+      _Experiment.Interleaved_flag
+      _Experiment.NMR_spec_expt_ID
+      _Experiment.NMR_spec_expt_label
+      _Experiment.MS_expt_ID
+      _Experiment.MS_expt_label
+      _Experiment.SAXS_expt_ID
+      _Experiment.SAXS_expt_label
+      _Experiment.FRET_expt_ID
+      _Experiment.FRET_expt_label
+      _Experiment.EMR_expt_ID
+      _Experiment.EMR_expt_label
+      _Experiment.Sample_ID
+      _Experiment.Sample_label
+      _Experiment.Sample_state
+      _Experiment.Sample_volume
+      _Experiment.Sample_volume_units
+      _Experiment.Sample_condition_list_ID
+      _Experiment.Sample_condition_list_label
+      _Experiment.Sample_spinning_rate
+      _Experiment.Sample_angle
+      _Experiment.NMR_tube_type
+      _Experiment.NMR_spectrometer_ID
+      _Experiment.NMR_spectrometer_label
+      _Experiment.NMR_spectrometer_probe_ID
+      _Experiment.NMR_spectrometer_probe_label
+      _Experiment.NMR_spectral_processing_ID
+      _Experiment.NMR_spectral_processing_label
+      _Experiment.Mass_spectrometer_ID
+      _Experiment.Mass_spectrometer_label
+      _Experiment.Xray_instrument_ID
+      _Experiment.Xray_instrument_label
+      _Experiment.Fluorescence_instrument_ID
+      _Experiment.Fluorescence_instrument_label
+      _Experiment.EMR_instrument_ID
+      _Experiment.EMR_instrument_label
+      _Experiment.Chromatographic_system_ID
+      _Experiment.Chromatographic_system_label
+      _Experiment.Chromatographic_column_ID
+      _Experiment.Chromatographic_column_label
+      _Experiment.Details
+      _Experiment.Entry_ID
+      _Experiment.Experiment_list_ID
+
+      1   '2D 1H-15N TROSY'   yes   no   no   .   .   .   .   .   .   .   .   .   .   1   $sample_1   isotropic   .   .   1   $sample_conditions_1   .   .   .   1   $NMR_spectrometer_1   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   .   52810   1
+   stop_
+
+   loop_
+      _Experiment_file.Experiment_ID
+      _Experiment_file.Experiment_name
+      _Experiment_file.Name
+      _Experiment_file.Type
+      _Experiment_file.Content
+      _Experiment_file.Directory_path
+      _Experiment_file.Details
+      _Experiment_file.Entry_ID
+      _Experiment_file.Experiment_list_ID
+
+      1   '2D 1H-15N TROSY'   289.zip   .   'NMR experiment directory'   .   'subdirectory nmr_p has NMRPipe processing file and subdirectory add_files contains all Bruker list files and the pulse program'   52810   1
+      1   '2D 1H-15N TROSY'   290.zip   .   'NMR experiment directory'   .   'needs to be added to 289'                                                                                                         52810   1
+   stop_
+save_
+
+
+####################
+#  NMR parameters  #
+####################
+
+    ##############################
+    #  Assigned chemical shifts  #
+    ##############################
+
+	################################
+	#  Chemical shift referencing  #
+	################################
+save_chem_shift_reference_1
+   _Chem_shift_reference.Sf_category    chem_shift_reference
+   _Chem_shift_reference.Sf_framecode   chem_shift_reference_1
+   _Chem_shift_reference.Entry_ID       52810
+   _Chem_shift_reference.ID             1
+   _Chem_shift_reference.Name           H2O
+   _Chem_shift_reference.Details        .
+
+   loop_
+      _Chem_shift_ref.Atom_type
+      _Chem_shift_ref.Atom_isotope_number
+      _Chem_shift_ref.Mol_common_name
+      _Chem_shift_ref.Atom_group
+      _Chem_shift_ref.Concentration_val
+      _Chem_shift_ref.Concentration_units
+      _Chem_shift_ref.Solvent
+      _Chem_shift_ref.Rank
+      _Chem_shift_ref.Chem_shift_units
+      _Chem_shift_ref.Chem_shift_val
+      _Chem_shift_ref.Ref_method
+      _Chem_shift_ref.Ref_type
+      _Chem_shift_ref.Indirect_shift_ratio
+      _Chem_shift_ref.External_ref_loc
+      _Chem_shift_ref.External_ref_sample_geometry
+      _Chem_shift_ref.External_ref_axis
+      _Chem_shift_ref.Ref_correction_type
+      _Chem_shift_ref.Correction_val
+      _Chem_shift_ref.Entry_ID
+      _Chem_shift_ref.Chem_shift_reference_ID
+
+      H   1    water   protons   .   .   .   .   ppm   4.75   internal   direct     1             .   .   .   .   .   52810   1
+      N   15   water   protons   .   .   .   .   ppm   4.75   internal   indirect   0.101329118   .   .   .   .   .   52810   1
+   stop_
+save_
+
+
+     ###################################
+     #  Assigned chemical shift lists  #
+     ###################################
+
+###################################################################
+#       Chemical Shift Ambiguity Index Value Definitions          #
+#                                                                 #
+# The values other than 1 are used for those atoms with different #
+# chemical shifts that cannot be assigned to stereospecific atoms #
+# or to specific residues or chains.                              #
+#                                                                 #
+#   Index Value            Definition                             #
+#                                                                 #
+#      1             Unique (including isolated methyl protons,   #
+#                         geminal atoms, and geminal methyl       #
+#                         groups with identical chemical shifts)  #
+#                         (e.g. ILE HD11, HD12, HD13 protons)     #
+#      2             Ambiguity of geminal atoms or geminal methyl #
+#                         proton groups (e.g. ASP HB2 and HB3     #
+#                         protons, LEU CD1 and CD2 carbons, or    #
+#                         LEU HD11, HD12, HD13 and HD21, HD22,    #
+#                         HD23 methyl protons)                    #
+#      3             Aromatic atoms on opposite sides of          #
+#                         symmetrical rings (e.g. TYR HE1 and HE2 #
+#                         protons)                                #
+#      4             Intraresidue ambiguities (e.g. LYS HG and    #
+#                         HD protons or TRP HZ2 and HZ3 protons)  #
+#      5             Interresidue ambiguities (LYS 12 vs. LYS 27) #
+#      6             Intermolecular ambiguities (e.g. ASP 31 CA   #
+#                         in monomer 1 and ASP 31 CA in monomer 2 #
+#                         of an asymmetrical homodimer, duplex    #
+#                         DNA assignments, or other assignments   #
+#                         that may apply to atoms in one or more  #
+#                         molecule in the molecular assembly)     #
+#      9             Ambiguous, specific ambiguity not defined    #
+#                                                                 #
+###################################################################
+save_assigned_chemical_shifts_1
+   _Assigned_chem_shift_list.Sf_category                   assigned_chemical_shifts
+   _Assigned_chem_shift_list.Sf_framecode                  assigned_chemical_shifts_1
+   _Assigned_chem_shift_list.Entry_ID                      52810
+   _Assigned_chem_shift_list.ID                            1
+   _Assigned_chem_shift_list.Name                          'Abl SH3SH2KD in complex with PD166326'
+   _Assigned_chem_shift_list.Sample_condition_list_ID      1
+   _Assigned_chem_shift_list.Sample_condition_list_label   $sample_conditions_1
+   _Assigned_chem_shift_list.Chem_shift_reference_ID       1
+   _Assigned_chem_shift_list.Chem_shift_reference_label    $chem_shift_reference_1
+   _Assigned_chem_shift_list.Chem_shift_1H_err             .
+   _Assigned_chem_shift_list.Chem_shift_13C_err            .
+   _Assigned_chem_shift_list.Chem_shift_15N_err            .
+   _Assigned_chem_shift_list.Chem_shift_31P_err            .
+   _Assigned_chem_shift_list.Chem_shift_2H_err             .
+   _Assigned_chem_shift_list.Chem_shift_19F_err            .
+   _Assigned_chem_shift_list.Error_derivation_method       .
+   _Assigned_chem_shift_list.Details                       .
+   _Assigned_chem_shift_list.Text_data_format              .
+   _Assigned_chem_shift_list.Text_data                     .
+
+   loop_
+      _Chem_shift_experiment.Experiment_ID
+      _Chem_shift_experiment.Experiment_name
+      _Chem_shift_experiment.Sample_ID
+      _Chem_shift_experiment.Sample_label
+      _Chem_shift_experiment.Sample_state
+      _Chem_shift_experiment.Entry_ID
+      _Chem_shift_experiment.Assigned_chem_shift_list_ID
+
+      1   '2D 1H-15N TROSY'   .   .   .   52810   1
+   stop_
+
+   loop_
+      _Chem_shift_software.Software_ID
+      _Chem_shift_software.Software_label
+      _Chem_shift_software.Method_ID
+      _Chem_shift_software.Method_label
+      _Chem_shift_software.Entry_ID
+      _Chem_shift_software.Assigned_chem_shift_list_ID
+
+      1   $software_1   .   .   52810   1
+      2   $software_2   .   .   52810   1
+      3   $software_3   .   .   52810   1
+   stop_
+
+   loop_
+      _Atom_chem_shift.ID
+      _Atom_chem_shift.Assembly_atom_ID
+      _Atom_chem_shift.Entity_assembly_ID
+      _Atom_chem_shift.Entity_assembly_asym_ID
+      _Atom_chem_shift.Entity_ID
+      _Atom_chem_shift.Comp_index_ID
+      _Atom_chem_shift.Seq_ID
+      _Atom_chem_shift.Comp_ID
+      _Atom_chem_shift.Atom_ID
+      _Atom_chem_shift.Atom_type
+      _Atom_chem_shift.Atom_isotope_number
+      _Atom_chem_shift.Val
+      _Atom_chem_shift.Val_err
+      _Atom_chem_shift.Assign_fig_of_merit
+      _Atom_chem_shift.Ambiguity_code
+      _Atom_chem_shift.Ambiguity_set_ID
+      _Atom_chem_shift.Occupancy
+      _Atom_chem_shift.Resonance_ID
+      _Atom_chem_shift.Auth_entity_assembly_ID
+      _Atom_chem_shift.Auth_asym_ID
+      _Atom_chem_shift.Auth_seq_ID
+      _Atom_chem_shift.Auth_comp_ID
+      _Atom_chem_shift.Auth_atom_ID
+      _Atom_chem_shift.Details
+      _Atom_chem_shift.Entry_ID
+      _Atom_chem_shift.Assigned_chem_shift_list_ID
+
+      1     .   1   .   1   4     4     LEU   H   H   1    8.306     .   .   1   .   .   .   .   .   84    LEU   H   .   52810   1
+      2     .   1   .   1   4     4     LEU   N   N   15   123.933   .   .   1   .   .   .   .   .   84    LEU   N   .   52810   1
+      3     .   1   .   1   5     5     PHE   H   H   1    9.359     .   .   1   .   .   .   .   .   85    PHE   H   .   52810   1
+      4     .   1   .   1   5     5     PHE   N   N   15   126.502   .   .   1   .   .   .   .   .   85    PHE   N   .   52810   1
+      5     .   1   .   1   6     6     VAL   H   H   1    9.471     .   .   1   .   .   .   .   .   86    VAL   H   .   52810   1
+      6     .   1   .   1   6     6     VAL   N   N   15   117.496   .   .   1   .   .   .   .   .   86    VAL   N   .   52810   1
+      7     .   1   .   1   7     7     ALA   H   H   1    8.455     .   .   1   .   .   .   .   .   87    ALA   H   .   52810   1
+      8     .   1   .   1   7     7     ALA   N   N   15   127.359   .   .   1   .   .   .   .   .   87    ALA   N   .   52810   1
+      9     .   1   .   1   8     8     LEU   H   H   1    9.425     .   .   1   .   .   .   .   .   88    LEU   H   .   52810   1
+      10    .   1   .   1   8     8     LEU   N   N   15   126.994   .   .   1   .   .   .   .   .   88    LEU   N   .   52810   1
+      11    .   1   .   1   9     9     TYR   H   H   1    7.047     .   .   1   .   .   .   .   .   89    TYR   H   .   52810   1
+      12    .   1   .   1   9     9     TYR   N   N   15   113.004   .   .   1   .   .   .   .   .   89    TYR   N   .   52810   1
+      13    .   1   .   1   10    10    ASP   H   H   1    8.179     .   .   1   .   .   .   .   .   90    ASP   H   .   52810   1
+      14    .   1   .   1   10    10    ASP   N   N   15   117.940   .   .   1   .   .   .   .   .   90    ASP   N   .   52810   1
+      15    .   1   .   1   11    11    PHE   H   H   1    8.836     .   .   1   .   .   .   .   .   91    PHE   H   .   52810   1
+      16    .   1   .   1   11    11    PHE   N   N   15   122.744   .   .   1   .   .   .   .   .   91    PHE   N   .   52810   1
+      17    .   1   .   1   12    12    VAL   H   H   1    7.878     .   .   1   .   .   .   .   .   92    VAL   H   .   52810   1
+      18    .   1   .   1   12    12    VAL   N   N   15   129.645   .   .   1   .   .   .   .   .   92    VAL   N   .   52810   1
+      19    .   1   .   1   18    18    THR   H   H   1    7.809     .   .   1   .   .   .   .   .   98    THR   H   .   52810   1
+      20    .   1   .   1   18    18    THR   N   N   15   109.323   .   .   1   .   .   .   .   .   98    THR   N   .   52810   1
+      21    .   1   .   1   19    19    LEU   H   H   1    8.196     .   .   1   .   .   .   .   .   99    LEU   H   .   52810   1
+      22    .   1   .   1   19    19    LEU   N   N   15   126.097   .   .   1   .   .   .   .   .   99    LEU   N   .   52810   1
+      23    .   1   .   1   20    20    SER   H   H   1    8.145     .   .   1   .   .   .   .   .   100   SER   H   .   52810   1
+      24    .   1   .   1   20    20    SER   N   N   15   121.194   .   .   1   .   .   .   .   .   100   SER   N   .   52810   1
+      25    .   1   .   1   21    21    ILE   H   H   1    9.023     .   .   1   .   .   .   .   .   101   ILE   H   .   52810   1
+      26    .   1   .   1   21    21    ILE   N   N   15   117.478   .   .   1   .   .   .   .   .   101   ILE   N   .   52810   1
+      27    .   1   .   1   22    22    THR   H   H   1    8.993     .   .   1   .   .   .   .   .   102   THR   H   .   52810   1
+      28    .   1   .   1   22    22    THR   N   N   15   119.442   .   .   1   .   .   .   .   .   102   THR   N   .   52810   1
+      29    .   1   .   1   24    24    GLY   H   H   1    8.907     .   .   1   .   .   .   .   .   104   GLY   H   .   52810   1
+      30    .   1   .   1   24    24    GLY   N   N   15   115.005   .   .   1   .   .   .   .   .   104   GLY   N   .   52810   1
+      31    .   1   .   1   26    26    LYS   H   H   1    8.292     .   .   1   .   .   .   .   .   106   LYS   H   .   52810   1
+      32    .   1   .   1   26    26    LYS   N   N   15   122.377   .   .   1   .   .   .   .   .   106   LYS   N   .   52810   1
+      33    .   1   .   1   27    27    LEU   H   H   1    9.025     .   .   1   .   .   .   .   .   107   LEU   H   .   52810   1
+      34    .   1   .   1   27    27    LEU   N   N   15   119.910   .   .   1   .   .   .   .   .   107   LEU   N   .   52810   1
+      35    .   1   .   1   29    29    VAL   H   H   1    8.500     .   .   1   .   .   .   .   .   109   VAL   H   .   52810   1
+      36    .   1   .   1   29    29    VAL   N   N   15   125.045   .   .   1   .   .   .   .   .   109   VAL   N   .   52810   1
+      37    .   1   .   1   30    30    LEU   H   H   1    9.223     .   .   1   .   .   .   .   .   110   LEU   H   .   52810   1
+      38    .   1   .   1   30    30    LEU   N   N   15   129.033   .   .   1   .   .   .   .   .   110   LEU   N   .   52810   1
+      39    .   1   .   1   31    31    GLY   H   H   1    6.925     .   .   1   .   .   .   .   .   111   GLY   H   .   52810   1
+      40    .   1   .   1   31    31    GLY   N   N   15   106.051   .   .   1   .   .   .   .   .   111   GLY   N   .   52810   1
+      41    .   1   .   1   32    32    TYR   H   H   1    8.728     .   .   1   .   .   .   .   .   112   TYR   H   .   52810   1
+      42    .   1   .   1   32    32    TYR   N   N   15   117.458   .   .   1   .   .   .   .   .   112   TYR   N   .   52810   1
+      43    .   1   .   1   33    33    ASN   H   H   1    8.879     .   .   1   .   .   .   .   .   113   ASN   H   .   52810   1
+      44    .   1   .   1   33    33    ASN   N   N   15   120.853   .   .   1   .   .   .   .   .   113   ASN   N   .   52810   1
+      45    .   1   .   1   35    35    ASN   H   H   1    6.337     .   .   1   .   .   .   .   .   115   ASN   H   .   52810   1
+      46    .   1   .   1   35    35    ASN   N   N   15   113.656   .   .   1   .   .   .   .   .   115   ASN   N   .   52810   1
+      47    .   1   .   1   36    36    GLY   H   H   1    7.597     .   .   1   .   .   .   .   .   116   GLY   H   .   52810   1
+      48    .   1   .   1   36    36    GLY   N   N   15   108.152   .   .   1   .   .   .   .   .   116   GLY   N   .   52810   1
+      49    .   1   .   1   37    37    GLU   H   H   1    8.448     .   .   1   .   .   .   .   .   117   GLU   H   .   52810   1
+      50    .   1   .   1   37    37    GLU   N   N   15   122.681   .   .   1   .   .   .   .   .   117   GLU   N   .   52810   1
+      51    .   1   .   1   38    38    TRP   H   H   1    8.426     .   .   1   .   .   .   .   .   118   TRP   H   .   52810   1
+      52    .   1   .   1   38    38    TRP   N   N   15   119.979   .   .   1   .   .   .   .   .   118   TRP   N   .   52810   1
+      53    .   1   .   1   39    39    CYS   H   H   1    9.722     .   .   1   .   .   .   .   .   119   CYS   H   .   52810   1
+      54    .   1   .   1   39    39    CYS   N   N   15   118.126   .   .   1   .   .   .   .   .   119   CYS   N   .   52810   1
+      55    .   1   .   1   40    40    GLU   H   H   1    7.987     .   .   1   .   .   .   .   .   120   GLU   H   .   52810   1
+      56    .   1   .   1   40    40    GLU   N   N   15   128.323   .   .   1   .   .   .   .   .   120   GLU   N   .   52810   1
+      57    .   1   .   1   41    41    ALA   H   H   1    9.013     .   .   1   .   .   .   .   .   121   ALA   H   .   52810   1
+      58    .   1   .   1   41    41    ALA   N   N   15   130.963   .   .   1   .   .   .   .   .   121   ALA   N   .   52810   1
+      59    .   1   .   1   42    42    GLN   H   H   1    8.728     .   .   1   .   .   .   .   .   122   GLN   H   .   52810   1
+      60    .   1   .   1   42    42    GLN   N   N   15   117.458   .   .   1   .   .   .   .   .   122   GLN   N   .   52810   1
+      61    .   1   .   1   43    43    THR   H   H   1    9.052     .   .   1   .   .   .   .   .   123   THR   H   .   52810   1
+      62    .   1   .   1   43    43    THR   N   N   15   118.032   .   .   1   .   .   .   .   .   123   THR   N   .   52810   1
+      63    .   1   .   1   45    45    ASN   H   H   1    8.213     .   .   1   .   .   .   .   .   125   ASN   H   .   52810   1
+      64    .   1   .   1   45    45    ASN   N   N   15   114.380   .   .   1   .   .   .   .   .   125   ASN   N   .   52810   1
+      65    .   1   .   1   46    46    GLY   H   H   1    7.462     .   .   1   .   .   .   .   .   126   GLY   H   .   52810   1
+      66    .   1   .   1   46    46    GLY   N   N   15   108.764   .   .   1   .   .   .   .   .   126   GLY   N   .   52810   1
+      67    .   1   .   1   47    47    GLN   H   H   1    8.227     .   .   1   .   .   .   .   .   127   GLN   H   .   52810   1
+      68    .   1   .   1   47    47    GLN   N   N   15   120.159   .   .   1   .   .   .   .   .   127   GLN   N   .   52810   1
+      69    .   1   .   1   48    48    GLY   H   H   1    8.658     .   .   1   .   .   .   .   .   128   GLY   H   .   52810   1
+      70    .   1   .   1   48    48    GLY   N   N   15   112.912   .   .   1   .   .   .   .   .   128   GLY   N   .   52810   1
+      71    .   1   .   1   49    49    TRP   H   H   1    8.927     .   .   1   .   .   .   .   .   129   TRP   H   .   52810   1
+      72    .   1   .   1   49    49    TRP   N   N   15   121.641   .   .   1   .   .   .   .   .   129   TRP   N   .   52810   1
+      73    .   1   .   1   50    50    VAL   H   H   1    9.611     .   .   1   .   .   .   .   .   130   VAL   H   .   52810   1
+      74    .   1   .   1   50    50    VAL   N   N   15   115.748   .   .   1   .   .   .   .   .   130   VAL   N   .   52810   1
+      75    .   1   .   1   52    52    SER   H   H   1    8.446     .   .   1   .   .   .   .   .   132   SER   H   .   52810   1
+      76    .   1   .   1   52    52    SER   N   N   15   121.537   .   .   1   .   .   .   .   .   132   SER   N   .   52810   1
+      77    .   1   .   1   53    53    ASN   H   H   1    8.261     .   .   1   .   .   .   .   .   133   ASN   H   .   52810   1
+      78    .   1   .   1   53    53    ASN   N   N   15   113.914   .   .   1   .   .   .   .   .   133   ASN   N   .   52810   1
+      79    .   1   .   1   54    54    TYR   H   H   1    7.808     .   .   1   .   .   .   .   .   134   TYR   H   .   52810   1
+      80    .   1   .   1   54    54    TYR   N   N   15   119.375   .   .   1   .   .   .   .   .   134   TYR   N   .   52810   1
+      81    .   1   .   1   55    55    ILE   H   H   1    7.324     .   .   1   .   .   .   .   .   135   ILE   H   .   52810   1
+      82    .   1   .   1   55    55    ILE   N   N   15   112.043   .   .   1   .   .   .   .   .   135   ILE   N   .   52810   1
+      83    .   1   .   1   56    56    THR   H   H   1    8.585     .   .   1   .   .   .   .   .   136   THR   H   .   52810   1
+      84    .   1   .   1   56    56    THR   N   N   15   115.676   .   .   1   .   .   .   .   .   136   THR   N   .   52810   1
+      85    .   1   .   1   66    66    TRP   H   H   1    6.389     .   .   1   .   .   .   .   .   146   TRP   H   .   52810   1
+      86    .   1   .   1   66    66    TRP   N   N   15   110.915   .   .   1   .   .   .   .   .   146   TRP   N   .   52810   1
+      87    .   1   .   1   68    68    HIS   H   H   1    8.780     .   .   1   .   .   .   .   .   148   HIS   H   .   52810   1
+      88    .   1   .   1   68    68    HIS   N   N   15   127.599   .   .   1   .   .   .   .   .   148   HIS   N   .   52810   1
+      89    .   1   .   1   69    69    GLY   H   H   1    5.862     .   .   1   .   .   .   .   .   149   GLY   H   .   52810   1
+      90    .   1   .   1   69    69    GLY   N   N   15   105.802   .   .   1   .   .   .   .   .   149   GLY   N   .   52810   1
+      91    .   1   .   1   71    71    VAL   H   H   1    8.060     .   .   1   .   .   .   .   .   151   VAL   H   .   52810   1
+      92    .   1   .   1   71    71    VAL   N   N   15   126.932   .   .   1   .   .   .   .   .   151   VAL   N   .   52810   1
+      93    .   1   .   1   72    72    SER   H   H   1    8.591     .   .   1   .   .   .   .   .   152   SER   H   .   52810   1
+      94    .   1   .   1   72    72    SER   N   N   15   123.293   .   .   1   .   .   .   .   .   152   SER   N   .   52810   1
+      95    .   1   .   1   76    76    ALA   H   H   1    8.613     .   .   1   .   .   .   .   .   156   ALA   H   .   52810   1
+      96    .   1   .   1   76    76    ALA   N   N   15   121.593   .   .   1   .   .   .   .   .   156   ALA   N   .   52810   1
+      97    .   1   .   1   80    80    LEU   H   H   1    7.472     .   .   1   .   .   .   .   .   160   LEU   H   .   52810   1
+      98    .   1   .   1   80    80    LEU   N   N   15   116.531   .   .   1   .   .   .   .   .   160   LEU   N   .   52810   1
+      99    .   1   .   1   86    86    GLY   H   H   1    9.273     .   .   1   .   .   .   .   .   166   GLY   H   .   52810   1
+      100   .   1   .   1   86    86    GLY   N   N   15   109.549   .   .   1   .   .   .   .   .   166   GLY   N   .   52810   1
+      101   .   1   .   1   88    88    PHE   H   H   1    8.779     .   .   1   .   .   .   .   .   168   PHE   H   .   52810   1
+      102   .   1   .   1   88    88    PHE   N   N   15   121.168   .   .   1   .   .   .   .   .   168   PHE   N   .   52810   1
+      103   .   1   .   1   90    90    VAL   H   H   1    9.220     .   .   1   .   .   .   .   .   170   VAL   H   .   52810   1
+      104   .   1   .   1   90    90    VAL   N   N   15   121.360   .   .   1   .   .   .   .   .   170   VAL   N   .   52810   1
+      105   .   1   .   1   91    91    ARG   H   H   1    9.114     .   .   1   .   .   .   .   .   171   ARG   H   .   52810   1
+      106   .   1   .   1   91    91    ARG   N   N   15   123.282   .   .   1   .   .   .   .   .   171   ARG   N   .   52810   1
+      107   .   1   .   1   92    92    GLU   H   H   1    8.164     .   .   1   .   .   .   .   .   172   GLU   H   .   52810   1
+      108   .   1   .   1   92    92    GLU   N   N   15   121.602   .   .   1   .   .   .   .   .   172   GLU   N   .   52810   1
+      109   .   1   .   1   93    93    SER   H   H   1    8.078     .   .   1   .   .   .   .   .   173   SER   H   .   52810   1
+      110   .   1   .   1   93    93    SER   N   N   15   117.471   .   .   1   .   .   .   .   .   173   SER   N   .   52810   1
+      111   .   1   .   1   99    99    GLN   H   H   1    8.047     .   .   1   .   .   .   .   .   179   GLN   H   .   52810   1
+      112   .   1   .   1   99    99    GLN   N   N   15   121.809   .   .   1   .   .   .   .   .   179   GLN   N   .   52810   1
+      113   .   1   .   1   100   100   ARG   H   H   1    9.154     .   .   1   .   .   .   .   .   180   ARG   H   .   52810   1
+      114   .   1   .   1   100   100   ARG   N   N   15   126.906   .   .   1   .   .   .   .   .   180   ARG   N   .   52810   1
+      115   .   1   .   1   101   101   SER   H   H   1    8.984     .   .   1   .   .   .   .   .   181   SER   H   .   52810   1
+      116   .   1   .   1   101   101   SER   N   N   15   115.122   .   .   1   .   .   .   .   .   181   SER   N   .   52810   1
+      117   .   1   .   1   102   102   ILE   H   H   1    9.518     .   .   1   .   .   .   .   .   182   ILE   H   .   52810   1
+      118   .   1   .   1   102   102   ILE   N   N   15   123.037   .   .   1   .   .   .   .   .   182   ILE   N   .   52810   1
+      119   .   1   .   1   103   103   SER   H   H   1    9.077     .   .   1   .   .   .   .   .   183   SER   H   .   52810   1
+      120   .   1   .   1   103   103   SER   N   N   15   124.514   .   .   1   .   .   .   .   .   183   SER   N   .   52810   1
+      121   .   1   .   1   104   104   LEU   H   H   1    9.331     .   .   1   .   .   .   .   .   184   LEU   H   .   52810   1
+      122   .   1   .   1   104   104   LEU   N   N   15   127.370   .   .   1   .   .   .   .   .   184   LEU   N   .   52810   1
+      123   .   1   .   1   107   107   GLU   H   H   1    9.326     .   .   1   .   .   .   .   .   187   GLU   H   .   52810   1
+      124   .   1   .   1   107   107   GLU   N   N   15   129.173   .   .   1   .   .   .   .   .   187   GLU   N   .   52810   1
+      125   .   1   .   1   108   108   GLY   H   H   1    8.385     .   .   1   .   .   .   .   .   188   GLY   H   .   52810   1
+      126   .   1   .   1   108   108   GLY   N   N   15   103.240   .   .   1   .   .   .   .   .   188   GLY   N   .   52810   1
+      127   .   1   .   1   109   109   ARG   H   H   1    7.768     .   .   1   .   .   .   .   .   189   ARG   H   .   52810   1
+      128   .   1   .   1   109   109   ARG   N   N   15   120.940   .   .   1   .   .   .   .   .   189   ARG   N   .   52810   1
+      129   .   1   .   1   110   110   VAL   H   H   1    8.258     .   .   1   .   .   .   .   .   190   VAL   H   .   52810   1
+      130   .   1   .   1   110   110   VAL   N   N   15   121.326   .   .   1   .   .   .   .   .   190   VAL   N   .   52810   1
+      131   .   1   .   1   111   111   TYR   H   H   1    9.435     .   .   1   .   .   .   .   .   191   TYR   H   .   52810   1
+      132   .   1   .   1   111   111   TYR   N   N   15   129.529   .   .   1   .   .   .   .   .   191   TYR   N   .   52810   1
+      133   .   1   .   1   112   112   HIS   H   H   1    8.381     .   .   1   .   .   .   .   .   192   HIS   H   .   52810   1
+      134   .   1   .   1   112   112   HIS   N   N   15   120.716   .   .   1   .   .   .   .   .   192   HIS   N   .   52810   1
+      135   .   1   .   1   113   113   TYR   H   H   1    9.660     .   .   1   .   .   .   .   .   193   TYR   H   .   52810   1
+      136   .   1   .   1   113   113   TYR   N   N   15   122.094   .   .   1   .   .   .   .   .   193   TYR   N   .   52810   1
+      137   .   1   .   1   114   114   ARG   H   H   1    8.793     .   .   1   .   .   .   .   .   194   ARG   H   .   52810   1
+      138   .   1   .   1   114   114   ARG   N   N   15   125.629   .   .   1   .   .   .   .   .   194   ARG   N   .   52810   1
+      139   .   1   .   1   115   115   ILE   H   H   1    8.274     .   .   1   .   .   .   .   .   195   ILE   H   .   52810   1
+      140   .   1   .   1   115   115   ILE   N   N   15   123.254   .   .   1   .   .   .   .   .   195   ILE   N   .   52810   1
+      141   .   1   .   1   116   116   ASN   H   H   1    8.742     .   .   1   .   .   .   .   .   196   ASN   H   .   52810   1
+      142   .   1   .   1   116   116   ASN   N   N   15   128.983   .   .   1   .   .   .   .   .   196   ASN   N   .   52810   1
+      143   .   1   .   1   117   117   THR   H   H   1    8.306     .   .   1   .   .   .   .   .   197   THR   H   .   52810   1
+      144   .   1   .   1   117   117   THR   N   N   15   114.536   .   .   1   .   .   .   .   .   197   THR   N   .   52810   1
+      145   .   1   .   1   118   118   ALA   H   H   1    9.663     .   .   1   .   .   .   .   .   198   ALA   H   .   52810   1
+      146   .   1   .   1   118   118   ALA   N   N   15   130.096   .   .   1   .   .   .   .   .   198   ALA   N   .   52810   1
+      147   .   1   .   1   120   120   ASP   H   H   1    7.811     .   .   1   .   .   .   .   .   200   ASP   H   .   52810   1
+      148   .   1   .   1   120   120   ASP   N   N   15   118.547   .   .   1   .   .   .   .   .   200   ASP   N   .   52810   1
+      149   .   1   .   1   121   121   GLY   H   H   1    8.128     .   .   1   .   .   .   .   .   201   GLY   H   .   52810   1
+      150   .   1   .   1   121   121   GLY   N   N   15   108.586   .   .   1   .   .   .   .   .   201   GLY   N   .   52810   1
+      151   .   1   .   1   122   122   LYS   H   H   1    7.502     .   .   1   .   .   .   .   .   202   LYS   H   .   52810   1
+      152   .   1   .   1   122   122   LYS   N   N   15   119.695   .   .   1   .   .   .   .   .   202   LYS   N   .   52810   1
+      153   .   1   .   1   123   123   LEU   H   H   1    9.179     .   .   1   .   .   .   .   .   203   LEU   H   .   52810   1
+      154   .   1   .   1   123   123   LEU   N   N   15   120.264   .   .   1   .   .   .   .   .   203   LEU   N   .   52810   1
+      155   .   1   .   1   124   124   TYR   H   H   1    8.694     .   .   1   .   .   .   .   .   204   TYR   H   .   52810   1
+      156   .   1   .   1   124   124   TYR   N   N   15   114.967   .   .   1   .   .   .   .   .   204   TYR   N   .   52810   1
+      157   .   1   .   1   126   126   SER   H   H   1    9.214     .   .   1   .   .   .   .   .   206   SER   H   .   52810   1
+      158   .   1   .   1   126   126   SER   N   N   15   118.166   .   .   1   .   .   .   .   .   206   SER   N   .   52810   1
+      159   .   1   .   1   128   128   GLU   H   H   1    8.425     .   .   1   .   .   .   .   .   208   GLU   H   .   52810   1
+      160   .   1   .   1   128   128   GLU   N   N   15   117.188   .   .   1   .   .   .   .   .   208   GLU   N   .   52810   1
+      161   .   1   .   1   130   130   ARG   H   H   1    7.573     .   .   1   .   .   .   .   .   210   ARG   H   .   52810   1
+      162   .   1   .   1   130   130   ARG   N   N   15   120.530   .   .   1   .   .   .   .   .   210   ARG   N   .   52810   1
+      163   .   1   .   1   131   131   PHE   H   H   1    9.113     .   .   1   .   .   .   .   .   211   PHE   H   .   52810   1
+      164   .   1   .   1   131   131   PHE   N   N   15   118.458   .   .   1   .   .   .   .   .   211   PHE   N   .   52810   1
+      165   .   1   .   1   133   133   THR   H   H   1    7.396     .   .   1   .   .   .   .   .   213   THR   H   .   52810   1
+      166   .   1   .   1   133   133   THR   N   N   15   105.228   .   .   1   .   .   .   .   .   213   THR   N   .   52810   1
+      167   .   1   .   1   135   135   ALA   H   H   1    8.892     .   .   1   .   .   .   .   .   215   ALA   H   .   52810   1
+      168   .   1   .   1   135   135   ALA   N   N   15   120.280   .   .   1   .   .   .   .   .   215   ALA   N   .   52810   1
+      169   .   1   .   1   137   137   LEU   H   H   1    7.201     .   .   1   .   .   .   .   .   217   LEU   H   .   52810   1
+      170   .   1   .   1   137   137   LEU   N   N   15   123.885   .   .   1   .   .   .   .   .   217   LEU   N   .   52810   1
+      171   .   1   .   1   138   138   VAL   H   H   1    8.076     .   .   1   .   .   .   .   .   218   VAL   H   .   52810   1
+      172   .   1   .   1   138   138   VAL   N   N   15   120.107   .   .   1   .   .   .   .   .   218   VAL   N   .   52810   1
+      173   .   1   .   1   139   139   HIS   H   H   1    7.894     .   .   1   .   .   .   .   .   219   HIS   H   .   52810   1
+      174   .   1   .   1   139   139   HIS   N   N   15   119.080   .   .   1   .   .   .   .   .   219   HIS   N   .   52810   1
+      175   .   1   .   1   140   140   HIS   H   H   1    7.904     .   .   1   .   .   .   .   .   220   HIS   H   .   52810   1
+      176   .   1   .   1   140   140   HIS   N   N   15   121.111   .   .   1   .   .   .   .   .   220   HIS   N   .   52810   1
+      177   .   1   .   1   141   141   HIS   H   H   1    7.695     .   .   1   .   .   .   .   .   221   HIS   H   .   52810   1
+      178   .   1   .   1   141   141   HIS   N   N   15   116.028   .   .   1   .   .   .   .   .   221   HIS   N   .   52810   1
+      179   .   1   .   1   142   142   SER   H   H   1    7.555     .   .   1   .   .   .   .   .   222   SER   H   .   52810   1
+      180   .   1   .   1   142   142   SER   N   N   15   116.022   .   .   1   .   .   .   .   .   222   SER   N   .   52810   1
+      181   .   1   .   1   143   143   THR   H   H   1    7.398     .   .   1   .   .   .   .   .   223   THR   H   .   52810   1
+      182   .   1   .   1   143   143   THR   N   N   15   114.553   .   .   1   .   .   .   .   .   223   THR   N   .   52810   1
+      183   .   1   .   1   144   144   VAL   H   H   1    7.620     .   .   1   .   .   .   .   .   224   VAL   H   .   52810   1
+      184   .   1   .   1   144   144   VAL   N   N   15   121.419   .   .   1   .   .   .   .   .   224   VAL   N   .   52810   1
+      185   .   1   .   1   145   145   ALA   H   H   1    8.247     .   .   1   .   .   .   .   .   225   ALA   H   .   52810   1
+      186   .   1   .   1   145   145   ALA   N   N   15   128.271   .   .   1   .   .   .   .   .   225   ALA   N   .   52810   1
+      187   .   1   .   1   146   146   ASP   H   H   1    8.339     .   .   1   .   .   .   .   .   226   ASP   H   .   52810   1
+      188   .   1   .   1   146   146   ASP   N   N   15   116.909   .   .   1   .   .   .   .   .   226   ASP   N   .   52810   1
+      189   .   1   .   1   147   147   GLY   H   H   1    8.187     .   .   1   .   .   .   .   .   227   GLY   H   .   52810   1
+      190   .   1   .   1   147   147   GLY   N   N   15   105.878   .   .   1   .   .   .   .   .   227   GLY   N   .   52810   1
+      191   .   1   .   1   148   148   LEU   H   H   1    7.220     .   .   1   .   .   .   .   .   228   LEU   H   .   52810   1
+      192   .   1   .   1   148   148   LEU   N   N   15   120.220   .   .   1   .   .   .   .   .   228   LEU   N   .   52810   1
+      193   .   1   .   1   149   149   ILE   H   H   1    7.100     .   .   1   .   .   .   .   .   229   ILE   H   .   52810   1
+      194   .   1   .   1   149   149   ILE   N   N   15   118.783   .   .   1   .   .   .   .   .   229   ILE   N   .   52810   1
+      195   .   1   .   1   150   150   THR   H   H   1    6.761     .   .   1   .   .   .   .   .   230   THR   H   .   52810   1
+      196   .   1   .   1   150   150   THR   N   N   15   111.669   .   .   1   .   .   .   .   .   230   THR   N   .   52810   1
+      197   .   1   .   1   151   151   THR   H   H   1    7.243     .   .   1   .   .   .   .   .   231   THR   H   .   52810   1
+      198   .   1   .   1   151   151   THR   N   N   15   107.087   .   .   1   .   .   .   .   .   231   THR   N   .   52810   1
+      199   .   1   .   1   152   152   LEU   H   H   1    7.523     .   .   1   .   .   .   .   .   232   LEU   H   .   52810   1
+      200   .   1   .   1   152   152   LEU   N   N   15   118.217   .   .   1   .   .   .   .   .   232   LEU   N   .   52810   1
+      201   .   1   .   1   153   153   HIS   H   H   1    8.372     .   .   1   .   .   .   .   .   233   HIS   H   .   52810   1
+      202   .   1   .   1   153   153   HIS   N   N   15   123.998   .   .   1   .   .   .   .   .   233   HIS   N   .   52810   1
+      203   .   1   .   1   156   156   ALA   H   H   1    8.749     .   .   1   .   .   .   .   .   236   ALA   H   .   52810   1
+      204   .   1   .   1   156   156   ALA   N   N   15   130.436   .   .   1   .   .   .   .   .   236   ALA   N   .   52810   1
+      205   .   1   .   1   175   175   GLU   H   H   1    7.445     .   .   1   .   .   .   .   .   255   GLU   H   .   52810   1
+      206   .   1   .   1   175   175   GLU   N   N   15   120.891   .   .   1   .   .   .   .   .   255   GLU   N   .   52810   1
+      207   .   1   .   1   182   182   THR   H   H   1    8.916     .   .   1   .   .   .   .   .   262   THR   H   .   52810   1
+      208   .   1   .   1   182   182   THR   N   N   15   124.309   .   .   1   .   .   .   .   .   262   THR   N   .   52810   1
+      209   .   1   .   1   191   191   GLN   H   H   1    7.422     .   .   1   .   .   .   .   .   271   GLN   H   .   52810   1
+      210   .   1   .   1   191   191   GLN   N   N   15   120.534   .   .   1   .   .   .   .   .   271   GLN   N   .   52810   1
+      211   .   1   .   1   198   198   GLY   H   H   1    9.048     .   .   1   .   .   .   .   .   278   GLY   H   .   52810   1
+      212   .   1   .   1   198   198   GLY   N   N   15   114.855   .   .   1   .   .   .   .   .   278   GLY   N   .   52810   1
+      213   .   1   .   1   199   199   VAL   H   H   1    8.702     .   .   1   .   .   .   .   .   279   VAL   H   .   52810   1
+      214   .   1   .   1   199   199   VAL   N   N   15   118.599   .   .   1   .   .   .   .   .   279   VAL   N   .   52810   1
+      215   .   1   .   1   200   200   TRP   H   H   1    9.583     .   .   1   .   .   .   .   .   280   TRP   H   .   52810   1
+      216   .   1   .   1   200   200   TRP   N   N   15   129.947   .   .   1   .   .   .   .   .   280   TRP   N   .   52810   1
+      217   .   1   .   1   203   203   TYR   H   H   1    5.794     .   .   1   .   .   .   .   .   283   TYR   H   .   52810   1
+      218   .   1   .   1   203   203   TYR   N   N   15   111.883   .   .   1   .   .   .   .   .   283   TYR   N   .   52810   1
+      219   .   1   .   1   204   204   SER   H   H   1    7.738     .   .   1   .   .   .   .   .   284   SER   H   .   52810   1
+      220   .   1   .   1   204   204   SER   N   N   15   115.668   .   .   1   .   .   .   .   .   284   SER   N   .   52810   1
+      221   .   1   .   1   205   205   LEU   H   H   1    7.166     .   .   1   .   .   .   .   .   285   LEU   H   .   52810   1
+      222   .   1   .   1   205   205   LEU   N   N   15   120.189   .   .   1   .   .   .   .   .   285   LEU   N   .   52810   1
+      223   .   1   .   1   206   206   THR   H   H   1    8.899     .   .   1   .   .   .   .   .   286   THR   H   .   52810   1
+      224   .   1   .   1   206   206   THR   N   N   15   126.416   .   .   1   .   .   .   .   .   286   THR   N   .   52810   1
+      225   .   1   .   1   208   208   ALA   H   H   1    8.566     .   .   1   .   .   .   .   .   288   ALA   H   .   52810   1
+      226   .   1   .   1   208   208   ALA   N   N   15   123.335   .   .   1   .   .   .   .   .   288   ALA   N   .   52810   1
+      227   .   1   .   1   224   224   LYS   H   H   1    8.095     .   .   1   .   .   .   .   .   304   LYS   H   .   52810   1
+      228   .   1   .   1   224   224   LYS   N   N   15   122.739   .   .   1   .   .   .   .   .   304   LYS   N   .   52810   1
+      229   .   1   .   1   239   239   GLN   H   H   1    9.247     .   .   1   .   .   .   .   .   319   GLN   H   .   52810   1
+      230   .   1   .   1   239   239   GLN   N   N   15   127.840   .   .   1   .   .   .   .   .   319   GLN   N   .   52810   1
+      231   .   1   .   1   254   254   THR   H   H   1    9.585     .   .   1   .   .   .   .   .   334   THR   H   .   52810   1
+      232   .   1   .   1   254   254   THR   N   N   15   119.051   .   .   1   .   .   .   .   .   334   THR   N   .   52810   1
+      233   .   1   .   1   256   256   PHE   H   H   1    8.691     .   .   1   .   .   .   .   .   336   PHE   H   .   52810   1
+      234   .   1   .   1   256   256   PHE   N   N   15   123.137   .   .   1   .   .   .   .   .   336   PHE   N   .   52810   1
+      235   .   1   .   1   259   259   TYR   H   H   1    7.916     .   .   1   .   .   .   .   .   339   TYR   H   .   52810   1
+      236   .   1   .   1   259   259   TYR   N   N   15   116.232   .   .   1   .   .   .   .   .   339   TYR   N   .   52810   1
+      237   .   1   .   1   260   260   GLY   H   H   1    7.418     .   .   1   .   .   .   .   .   340   GLY   H   .   52810   1
+      238   .   1   .   1   260   260   GLY   N   N   15   107.062   .   .   1   .   .   .   .   .   340   GLY   N   .   52810   1
+      239   .   1   .   1   263   263   LEU   H   H   1    7.274     .   .   1   .   .   .   .   .   343   LEU   H   .   52810   1
+      240   .   1   .   1   263   263   LEU   N   N   15   121.008   .   .   1   .   .   .   .   .   343   LEU   N   .   52810   1
+      241   .   1   .   1   268   268   GLU   H   H   1    7.430     .   .   1   .   .   .   .   .   348   GLU   H   .   52810   1
+      242   .   1   .   1   268   268   GLU   N   N   15   115.275   .   .   1   .   .   .   .   .   348   GLU   N   .   52810   1
+      243   .   1   .   1   269   269   CYS   H   H   1    7.111     .   .   1   .   .   .   .   .   349   CYS   H   .   52810   1
+      244   .   1   .   1   269   269   CYS   N   N   15   117.214   .   .   1   .   .   .   .   .   349   CYS   N   .   52810   1
+      245   .   1   .   1   271   271   ARG   H   H   1    8.892     .   .   1   .   .   .   .   .   351   ARG   H   .   52810   1
+      246   .   1   .   1   271   271   ARG   N   N   15   128.065   .   .   1   .   .   .   .   .   351   ARG   N   .   52810   1
+      247   .   1   .   1   272   272   GLN   H   H   1    8.009     .   .   1   .   .   .   .   .   352   GLN   H   .   52810   1
+      248   .   1   .   1   272   272   GLN   N   N   15   116.479   .   .   1   .   .   .   .   .   352   GLN   N   .   52810   1
+      249   .   1   .   1   273   273   GLU   H   H   1    7.162     .   .   1   .   .   .   .   .   353   GLU   H   .   52810   1
+      250   .   1   .   1   273   273   GLU   N   N   15   118.948   .   .   1   .   .   .   .   .   353   GLU   N   .   52810   1
+      251   .   1   .   1   274   274   VAL   H   H   1    8.411     .   .   1   .   .   .   .   .   354   VAL   H   .   52810   1
+      252   .   1   .   1   274   274   VAL   N   N   15   122.686   .   .   1   .   .   .   .   .   354   VAL   N   .   52810   1
+      253   .   1   .   1   275   275   ASN   H   H   1    6.732     .   .   1   .   .   .   .   .   355   ASN   H   .   52810   1
+      254   .   1   .   1   275   275   ASN   N   N   15   120.835   .   .   1   .   .   .   .   .   355   ASN   N   .   52810   1
+      255   .   1   .   1   292   292   TYR   H   H   1    7.325     .   .   1   .   .   .   .   .   372   TYR   H   .   52810   1
+      256   .   1   .   1   292   292   TYR   N   N   15   122.522   .   .   1   .   .   .   .   .   372   TYR   N   .   52810   1
+      257   .   1   .   1   303   303   LEU   H   H   1    9.471     .   .   1   .   .   .   .   .   383   LEU   H   .   52810   1
+      258   .   1   .   1   303   303   LEU   N   N   15   126.202   .   .   1   .   .   .   .   .   383   LEU   N   .   52810   1
+      259   .   1   .   1   304   304   ALA   H   H   1    6.621     .   .   1   .   .   .   .   .   384   ALA   H   .   52810   1
+      260   .   1   .   1   304   304   ALA   N   N   15   121.325   .   .   1   .   .   .   .   .   384   ALA   N   .   52810   1
+      261   .   1   .   1   310   310   VAL   H   H   1    8.306     .   .   1   .   .   .   .   .   390   VAL   H   .   52810   1
+      262   .   1   .   1   310   310   VAL   N   N   15   120.889   .   .   1   .   .   .   .   .   390   VAL   N   .   52810   1
+      263   .   1   .   1   312   312   GLU   H   H   1    8.472     .   .   1   .   .   .   .   .   392   GLU   H   .   52810   1
+      264   .   1   .   1   312   312   GLU   N   N   15   119.405   .   .   1   .   .   .   .   .   392   GLU   N   .   52810   1
+      265   .   1   .   1   315   315   LEU   H   H   1    6.597     .   .   1   .   .   .   .   .   395   LEU   H   .   52810   1
+      266   .   1   .   1   315   315   LEU   N   N   15   120.169   .   .   1   .   .   .   .   .   395   LEU   N   .   52810   1
+      267   .   1   .   1   316   316   VAL   H   H   1    8.362     .   .   1   .   .   .   .   .   396   VAL   H   .   52810   1
+      268   .   1   .   1   316   316   VAL   N   N   15   125.398   .   .   1   .   .   .   .   .   396   VAL   N   .   52810   1
+      269   .   1   .   1   320   320   ASP   H   H   1    7.321     .   .   1   .   .   .   .   .   400   ASP   H   .   52810   1
+      270   .   1   .   1   320   320   ASP   N   N   15   116.670   .   .   1   .   .   .   .   .   400   ASP   N   .   52810   1
+      271   .   1   .   1   321   321   PHE   H   H   1    7.848     .   .   1   .   .   .   .   .   401   PHE   H   .   52810   1
+      272   .   1   .   1   321   321   PHE   N   N   15   122.955   .   .   1   .   .   .   .   .   401   PHE   N   .   52810   1
+      273   .   1   .   1   322   322   GLY   H   H   1    8.332     .   .   1   .   .   .   .   .   402   GLY   H   .   52810   1
+      274   .   1   .   1   322   322   GLY   N   N   15   110.943   .   .   1   .   .   .   .   .   402   GLY   N   .   52810   1
+      275   .   1   .   1   337   337   GLY   H   H   1    8.347     .   .   1   .   .   .   .   .   417   GLY   H   .   52810   1
+      276   .   1   .   1   337   337   GLY   N   N   15   107.255   .   .   1   .   .   .   .   .   417   GLY   N   .   52810   1
+      277   .   1   .   1   345   345   THR   H   H   1    7.467     .   .   1   .   .   .   .   .   425   THR   H   .   52810   1
+      278   .   1   .   1   345   345   THR   N   N   15   117.253   .   .   1   .   .   .   .   .   425   THR   N   .   52810   1
+      279   .   1   .   1   346   346   ALA   H   H   1    8.520     .   .   1   .   .   .   .   .   426   ALA   H   .   52810   1
+      280   .   1   .   1   346   346   ALA   N   N   15   129.600   .   .   1   .   .   .   .   .   426   ALA   N   .   52810   1
+      281   .   1   .   1   348   348   GLU   H   H   1    9.699     .   .   1   .   .   .   .   .   428   GLU   H   .   52810   1
+      282   .   1   .   1   348   348   GLU   N   N   15   117.692   .   .   1   .   .   .   .   .   428   GLU   N   .   52810   1
+      283   .   1   .   1   349   349   SER   H   H   1    6.913     .   .   1   .   .   .   .   .   429   SER   H   .   52810   1
+      284   .   1   .   1   349   349   SER   N   N   15   123.179   .   .   1   .   .   .   .   .   429   SER   N   .   52810   1
+      285   .   1   .   1   351   351   ALA   H   H   1    8.055     .   .   1   .   .   .   .   .   431   ALA   H   .   52810   1
+      286   .   1   .   1   351   351   ALA   N   N   15   117.818   .   .   1   .   .   .   .   .   431   ALA   N   .   52810   1
+      287   .   1   .   1   352   352   TYR   H   H   1    7.021     .   .   1   .   .   .   .   .   432   TYR   H   .   52810   1
+      288   .   1   .   1   352   352   TYR   N   N   15   112.088   .   .   1   .   .   .   .   .   432   TYR   N   .   52810   1
+      289   .   1   .   1   357   357   ILE   H   H   1    9.143     .   .   1   .   .   .   .   .   437   ILE   H   .   52810   1
+      290   .   1   .   1   357   357   ILE   N   N   15   124.926   .   .   1   .   .   .   .   .   437   ILE   N   .   52810   1
+      291   .   1   .   1   361   361   VAL   H   H   1    8.084     .   .   1   .   .   .   .   .   441   VAL   H   .   52810   1
+      292   .   1   .   1   361   361   VAL   N   N   15   123.498   .   .   1   .   .   .   .   .   441   VAL   N   .   52810   1
+      293   .   1   .   1   363   363   ALA   H   H   1    7.984     .   .   1   .   .   .   .   .   443   ALA   H   .   52810   1
+      294   .   1   .   1   363   363   ALA   N   N   15   122.428   .   .   1   .   .   .   .   .   443   ALA   N   .   52810   1
+      295   .   1   .   1   364   364   PHE   H   H   1    9.412     .   .   1   .   .   .   .   .   444   PHE   H   .   52810   1
+      296   .   1   .   1   364   364   PHE   N   N   15   120.565   .   .   1   .   .   .   .   .   444   PHE   N   .   52810   1
+      297   .   1   .   1   374   374   TYR   H   H   1    7.881     .   .   1   .   .   .   .   .   454   TYR   H   .   52810   1
+      298   .   1   .   1   374   374   TYR   N   N   15   117.085   .   .   1   .   .   .   .   .   454   TYR   N   .   52810   1
+      299   .   1   .   1   375   375   GLY   H   H   1    9.457     .   .   1   .   .   .   .   .   455   GLY   H   .   52810   1
+      300   .   1   .   1   375   375   GLY   N   N   15   104.156   .   .   1   .   .   .   .   .   455   GLY   N   .   52810   1
+      301   .   1   .   1   377   377   SER   H   H   1    8.238     .   .   1   .   .   .   .   .   457   SER   H   .   52810   1
+      302   .   1   .   1   377   377   SER   N   N   15   117.692   .   .   1   .   .   .   .   .   457   SER   N   .   52810   1
+      303   .   1   .   1   379   379   TYR   H   H   1    7.090     .   .   1   .   .   .   .   .   459   TYR   H   .   52810   1
+      304   .   1   .   1   379   379   TYR   N   N   15   115.379   .   .   1   .   .   .   .   .   459   TYR   N   .   52810   1
+      305   .   1   .   1   382   382   ILE   H   H   1    7.325     .   .   1   .   .   .   .   .   462   ILE   H   .   52810   1
+      306   .   1   .   1   382   382   ILE   N   N   15   120.257   .   .   1   .   .   .   .   .   462   ILE   N   .   52810   1
+      307   .   1   .   1   383   383   ASP   H   H   1    8.559     .   .   1   .   .   .   .   .   463   ASP   H   .   52810   1
+      308   .   1   .   1   383   383   ASP   N   N   15   128.096   .   .   1   .   .   .   .   .   463   ASP   N   .   52810   1
+      309   .   1   .   1   384   384   LEU   H   H   1    8.505     .   .   1   .   .   .   .   .   464   LEU   H   .   52810   1
+      310   .   1   .   1   384   384   LEU   N   N   15   126.149   .   .   1   .   .   .   .   .   464   LEU   N   .   52810   1
+      311   .   1   .   1   385   385   SER   H   H   1    8.450     .   .   1   .   .   .   .   .   465   SER   H   .   52810   1
+      312   .   1   .   1   385   385   SER   N   N   15   112.912   .   .   1   .   .   .   .   .   465   SER   N   .   52810   1
+      313   .   1   .   1   386   386   GLN   H   H   1    7.911     .   .   1   .   .   .   .   .   466   GLN   H   .   52810   1
+      314   .   1   .   1   386   386   GLN   N   N   15   120.369   .   .   1   .   .   .   .   .   466   GLN   N   .   52810   1
+      315   .   1   .   1   387   387   VAL   H   H   1    6.893     .   .   1   .   .   .   .   .   467   VAL   H   .   52810   1
+      316   .   1   .   1   387   387   VAL   N   N   15   119.560   .   .   1   .   .   .   .   .   467   VAL   N   .   52810   1
+      317   .   1   .   1   388   388   TYR   H   H   1    8.703     .   .   1   .   .   .   .   .   468   TYR   H   .   52810   1
+      318   .   1   .   1   388   388   TYR   N   N   15   119.977   .   .   1   .   .   .   .   .   468   TYR   N   .   52810   1
+      319   .   1   .   1   389   389   GLU   H   H   1    8.212     .   .   1   .   .   .   .   .   469   GLU   H   .   52810   1
+      320   .   1   .   1   389   389   GLU   N   N   15   117.978   .   .   1   .   .   .   .   .   469   GLU   N   .   52810   1
+      321   .   1   .   1   391   391   LEU   H   H   1    8.547     .   .   1   .   .   .   .   .   471   LEU   H   .   52810   1
+      322   .   1   .   1   391   391   LEU   N   N   15   121.151   .   .   1   .   .   .   .   .   471   LEU   N   .   52810   1
+      323   .   1   .   1   393   393   LYS   H   H   1    7.202     .   .   1   .   .   .   .   .   473   LYS   H   .   52810   1
+      324   .   1   .   1   393   393   LYS   N   N   15   118.711   .   .   1   .   .   .   .   .   473   LYS   N   .   52810   1
+      325   .   1   .   1   394   394   ASP   H   H   1    7.677     .   .   1   .   .   .   .   .   474   ASP   H   .   52810   1
+      326   .   1   .   1   394   394   ASP   N   N   15   113.253   .   .   1   .   .   .   .   .   474   ASP   N   .   52810   1
+      327   .   1   .   1   395   395   TYR   H   H   1    8.087     .   .   1   .   .   .   .   .   475   TYR   H   .   52810   1
+      328   .   1   .   1   395   395   TYR   N   N   15   121.463   .   .   1   .   .   .   .   .   475   TYR   N   .   52810   1
+      329   .   1   .   1   396   396   ARG   H   H   1    6.834     .   .   1   .   .   .   .   .   476   ARG   H   .   52810   1
+      330   .   1   .   1   396   396   ARG   N   N   15   125.898   .   .   1   .   .   .   .   .   476   ARG   N   .   52810   1
+      331   .   1   .   1   397   397   MET   H   H   1    7.223     .   .   1   .   .   .   .   .   477   MET   H   .   52810   1
+      332   .   1   .   1   397   397   MET   N   N   15   117.073   .   .   1   .   .   .   .   .   477   MET   N   .   52810   1
+      333   .   1   .   1   398   398   GLU   H   H   1    8.596     .   .   1   .   .   .   .   .   478   GLU   H   .   52810   1
+      334   .   1   .   1   398   398   GLU   N   N   15   120.895   .   .   1   .   .   .   .   .   478   GLU   N   .   52810   1
+      335   .   1   .   1   399   399   ARG   H   H   1    8.226     .   .   1   .   .   .   .   .   479   ARG   H   .   52810   1
+      336   .   1   .   1   399   399   ARG   N   N   15   125.043   .   .   1   .   .   .   .   .   479   ARG   N   .   52810   1
+      337   .   1   .   1   408   408   TYR   H   H   1    7.677     .   .   1   .   .   .   .   .   488   TYR   H   .   52810   1
+      338   .   1   .   1   408   408   TYR   N   N   15   122.282   .   .   1   .   .   .   .   .   488   TYR   N   .   52810   1
+      339   .   1   .   1   410   410   LEU   H   H   1    6.864     .   .   1   .   .   .   .   .   490   LEU   H   .   52810   1
+      340   .   1   .   1   410   410   LEU   N   N   15   121.828   .   .   1   .   .   .   .   .   490   LEU   N   .   52810   1
+      341   .   1   .   1   413   413   ALA   H   H   1    7.604     .   .   1   .   .   .   .   .   493   ALA   H   .   52810   1
+      342   .   1   .   1   413   413   ALA   N   N   15   124.850   .   .   1   .   .   .   .   .   493   ALA   N   .   52810   1
+      343   .   1   .   1   415   415   TRP   H   H   1    6.706     .   .   1   .   .   .   .   .   495   TRP   H   .   52810   1
+      344   .   1   .   1   415   415   TRP   N   N   15   112.526   .   .   1   .   .   .   .   .   495   TRP   N   .   52810   1
+      345   .   1   .   1   416   416   GLN   H   H   1    6.930     .   .   1   .   .   .   .   .   496   GLN   H   .   52810   1
+      346   .   1   .   1   416   416   GLN   N   N   15   119.906   .   .   1   .   .   .   .   .   496   GLN   N   .   52810   1
+      347   .   1   .   1   417   417   TRP   H   H   1    9.505     .   .   1   .   .   .   .   .   497   TRP   H   .   52810   1
+      348   .   1   .   1   417   417   TRP   N   N   15   125.796   .   .   1   .   .   .   .   .   497   TRP   N   .   52810   1
+      349   .   1   .   1   418   418   ASN   H   H   1    8.887     .   .   1   .   .   .   .   .   498   ASN   H   .   52810   1
+      350   .   1   .   1   418   418   ASN   N   N   15   116.905   .   .   1   .   .   .   .   .   498   ASN   N   .   52810   1
+      351   .   1   .   1   420   420   SER   H   H   1    7.786     .   .   1   .   .   .   .   .   500   SER   H   .   52810   1
+      352   .   1   .   1   420   420   SER   N   N   15   108.935   .   .   1   .   .   .   .   .   500   SER   N   .   52810   1
+      353   .   1   .   1   421   421   ASP   H   H   1    7.771     .   .   1   .   .   .   .   .   501   ASP   H   .   52810   1
+      354   .   1   .   1   421   421   ASP   N   N   15   119.651   .   .   1   .   .   .   .   .   501   ASP   N   .   52810   1
+      355   .   1   .   1   422   422   ARG   H   H   1    7.313     .   .   1   .   .   .   .   .   502   ARG   H   .   52810   1
+      356   .   1   .   1   422   422   ARG   N   N   15   121.047   .   .   1   .   .   .   .   .   502   ARG   N   .   52810   1
+      357   .   1   .   1   424   424   SER   H   H   1    7.923     .   .   1   .   .   .   .   .   504   SER   H   .   52810   1
+      358   .   1   .   1   424   424   SER   N   N   15   110.874   .   .   1   .   .   .   .   .   504   SER   N   .   52810   1
+      359   .   1   .   1   425   425   PHE   H   H   1    11.318    .   .   1   .   .   .   .   .   505   PHE   H   .   52810   1
+      360   .   1   .   1   425   425   PHE   N   N   15   123.161   .   .   1   .   .   .   .   .   505   PHE   N   .   52810   1
+      361   .   1   .   1   426   426   ALA   H   H   1    8.882     .   .   1   .   .   .   .   .   506   ALA   H   .   52810   1
+      362   .   1   .   1   426   426   ALA   N   N   15   124.638   .   .   1   .   .   .   .   .   506   ALA   N   .   52810   1
+      363   .   1   .   1   427   427   GLU   H   H   1    7.835     .   .   1   .   .   .   .   .   507   GLU   H   .   52810   1
+      364   .   1   .   1   427   427   GLU   N   N   15   119.854   .   .   1   .   .   .   .   .   507   GLU   N   .   52810   1
+      365   .   1   .   1   430   430   GLN   H   H   1    7.669     .   .   1   .   .   .   .   .   510   GLN   H   .   52810   1
+      366   .   1   .   1   430   430   GLN   N   N   15   117.130   .   .   1   .   .   .   .   .   510   GLN   N   .   52810   1
+      367   .   1   .   1   431   431   ALA   H   H   1    8.277     .   .   1   .   .   .   .   .   511   ALA   H   .   52810   1
+      368   .   1   .   1   431   431   ALA   N   N   15   124.309   .   .   1   .   .   .   .   .   511   ALA   N   .   52810   1
+      369   .   1   .   1   446   446   GLU   H   H   1    8.386     .   .   1   .   .   .   .   .   526   GLU   H   .   52810   1
+      370   .   1   .   1   446   446   GLU   N   N   15   124.341   .   .   1   .   .   .   .   .   526   GLU   N   .   52810   1
+      371   .   1   .   1   450   450   GLY   H   H   1    7.956     .   .   1   .   .   .   .   .   530   GLY   H   .   52810   1
+      372   .   1   .   1   450   450   GLY   N   N   15   107.579   .   .   1   .   .   .   .   .   530   GLY   N   .   52810   1
+      373   .   1   .   1   454   454   VAL   H   H   1    7.514     .   .   1   .   .   .   .   .   534   VAL   H   .   52810   1
+      374   .   1   .   1   454   454   VAL   N   N   15   123.237   .   .   1   .   .   .   .   .   534   VAL   N   .   52810   1
+   stop_
+save_
+

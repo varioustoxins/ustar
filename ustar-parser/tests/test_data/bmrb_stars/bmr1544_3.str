@@ -1,0 +1,1075 @@
+data_1544
+
+#######################
+#  Entry information  #
+#######################
+
+save_entry_information
+   _Entry.Sf_category                    entry_information
+   _Entry.Sf_framecode                   entry_information
+   _Entry.ID                             1544
+   _Entry.Title                         
+;
+A 1H NMR Study of Human Calcitonin in Solution
+;
+   _Entry.Type                           macromolecule
+   _Entry.Version_type                   update
+   _Entry.Submission_date                1995-07-31
+   _Entry.Accession_date                 1996-03-25
+   _Entry.Last_release_date              .
+   _Entry.Original_release_date          .
+   _Entry.Origination                    BMRB
+   _Entry.NMR_STAR_version               3.1.1.61
+   _Entry.Original_NMR_STAR_version      2.1
+   _Entry.Experimental_method            NMR
+   _Entry.Experimental_method_subtype    .
+   _Entry.Details                        .
+   _Entry.BMRB_internal_directory_name   .
+
+   loop_
+      _Entry_author.Ordinal
+      _Entry_author.Given_name
+      _Entry_author.Family_name
+      _Entry_author.First_initial
+      _Entry_author.Middle_initials
+      _Entry_author.Family_title
+      _Entry_author.Entry_ID
+
+      1 Andrea Motta    . .      . 1544 
+      2 Piero  Temussi  . Andrea . 1544 
+      3 Erich  Wuensch  . .      . 1544 
+      4 Gunter Boverman . .      . 1544 
+
+   stop_
+
+   loop_
+      _Data_set.Type
+      _Data_set.Count
+      _Data_set.Entry_ID
+
+      assigned_chemical_shifts 1 1544 
+
+   stop_
+
+   loop_
+      _Datum.Type
+      _Datum.Count
+      _Datum.Entry_ID
+
+      '1H chemical shifts' 213 1544 
+
+   stop_
+
+   loop_
+      _Release.Release_number
+      _Release.Format_type
+      _Release.Format_version
+      _Release.Date
+      _Release.Submission_date
+      _Release.Type
+      _Release.Author
+      _Release.Detail
+      _Release.Entry_ID
+
+      4 . . 2010-06-15 . revision BMRB 'Complete natural source information'                    1544 
+      3 . . 1999-06-14 . revision BMRB 'Converted to BMRB NMR-STAR V 2.1 format'                1544 
+      2 . . 1996-03-25 . reformat BMRB 'Converted to the BMRB 1996-03-01 STAR flat-file format' 1544 
+      1 . . 1995-07-31 . original BMRB 'Last release in original BMRB flat-file format'         1544 
+
+   stop_
+
+save_
+
+
+###############
+#  Citations  #
+###############
+
+save_entry_citation
+   _Citation.Sf_category                  citations
+   _Citation.Sf_framecode                 entry_citation
+   _Citation.Entry_ID                     1544
+   _Citation.ID                           1
+   _Citation.Class                       'entry citation'
+   _Citation.CAS_abstract_code            .
+   _Citation.MEDLINE_UI_code              .
+   _Citation.DOI                          .
+   _Citation.PubMed_ID                    .
+   _Citation.Full_citation               
+;
+ Motta, Andrea, Temussi, Piero Andrea, Wuensch, Erich, Boverman, Gunter, 
+ "A 1H NMR Study of Human Calcitonin in Solution,"
+ Biochemistry 30 (9), 2364-2371 (1991).
+;
+   _Citation.Title                       'A 1H NMR Study of Human Calcitonin in Solution'
+   _Citation.Status                       published
+   _Citation.Type                         journal
+   _Citation.Journal_abbrev               Biochemistry
+   _Citation.Journal_name_full            .
+   _Citation.Journal_volume               30
+   _Citation.Journal_issue                9
+   _Citation.Journal_ASTM                 .
+   _Citation.Journal_ISSN                 .
+   _Citation.Journal_CSD                  .
+   _Citation.Book_title                   .
+   _Citation.Book_chapter_title           .
+   _Citation.Book_volume                  .
+   _Citation.Book_series                  .
+   _Citation.Book_publisher               .
+   _Citation.Book_publisher_city          .
+   _Citation.Book_ISBN                    .
+   _Citation.Conference_title             .
+   _Citation.Conference_site              .
+   _Citation.Conference_state_province    .
+   _Citation.Conference_country           .
+   _Citation.Conference_start_date        .
+   _Citation.Conference_end_date          .
+   _Citation.Conference_abstract_number   .
+   _Citation.Thesis_institution           .
+   _Citation.Thesis_institution_city      .
+   _Citation.Thesis_institution_country   .
+   _Citation.WWW_URL                      .
+   _Citation.Page_first                   2364
+   _Citation.Page_last                    2371
+   _Citation.Year                         1991
+   _Citation.Details                      .
+
+   loop_
+      _Citation_author.Ordinal
+      _Citation_author.Given_name
+      _Citation_author.Family_name
+      _Citation_author.First_initial
+      _Citation_author.Middle_initials
+      _Citation_author.Family_title
+      _Citation_author.Entry_ID
+      _Citation_author.Citation_ID
+
+      1 Andrea Motta    . .      . 1544 1 
+      2 Piero  Temussi  . Andrea . 1544 1 
+      3 Erich  Wuensch  . .      . 1544 1 
+      4 Gunter Boverman . .      . 1544 1 
+
+   stop_
+
+save_
+
+
+#############################################
+#  Molecular system (assembly) description  #
+#############################################
+
+save_system_calcitonin_C
+   _Assembly.Sf_category                       assembly
+   _Assembly.Sf_framecode                      system_calcitonin_C
+   _Assembly.Entry_ID                          1544
+   _Assembly.ID                                1
+   _Assembly.Name                             'calcitonin C'
+   _Assembly.BMRB_code                         .
+   _Assembly.Number_of_components              .
+   _Assembly.Organic_ligands                   .
+   _Assembly.Metal_ions                        .
+   _Assembly.Non_standard_bonds                .
+   _Assembly.Ambiguous_conformational_states   .
+   _Assembly.Ambiguous_chem_comp_sites         .
+   _Assembly.Molecules_in_chemical_exchange    .
+   _Assembly.Paramagnetic                      .
+   _Assembly.Thiol_state                       .
+   _Assembly.Molecular_mass                    .
+   _Assembly.Enzyme_commission_number          .
+   _Assembly.Details                           .
+   _Assembly.DB_query_date                     .
+   _Assembly.DB_query_revised_last_date        .
+
+   loop_
+      _Entity_assembly.ID
+      _Entity_assembly.Entity_assembly_name
+      _Entity_assembly.Entity_ID
+      _Entity_assembly.Entity_label
+      _Entity_assembly.Asym_ID
+      _Entity_assembly.PDB_chain_ID
+      _Entity_assembly.Experimental_data_reported
+      _Entity_assembly.Physical_state
+      _Entity_assembly.Conformational_isomer
+      _Entity_assembly.Chemical_exchange_state
+      _Entity_assembly.Magnetic_equivalence_group_code
+      _Entity_assembly.Role
+      _Entity_assembly.Details
+      _Entity_assembly.Entry_ID
+      _Entity_assembly.Assembly_ID
+
+      1 'calcitonin C' 1 $calcitonin_C . . . . . . . . . 1544 1 
+
+   stop_
+
+   loop_
+      _Assembly_common_name.Name
+      _Assembly_common_name.Type
+      _Assembly_common_name.Entry_ID
+      _Assembly_common_name.Assembly_ID
+
+      'calcitonin C' system 1544 1 
+
+   stop_
+
+save_
+
+
+    ####################################
+    #  Biological polymers and ligands #
+    ####################################
+
+save_calcitonin_C
+   _Entity.Sf_category                       entity
+   _Entity.Sf_framecode                      calcitonin_C
+   _Entity.Entry_ID                          1544
+   _Entity.ID                                1
+   _Entity.BMRB_code                         .
+   _Entity.Name                             'calcitonin C'
+   _Entity.Type                              polymer
+   _Entity.Polymer_common_type               .
+   _Entity.Polymer_type                      polypeptide(L)
+   _Entity.Polymer_type_details              .
+   _Entity.Polymer_strand_ID                 .
+   _Entity.Polymer_seq_one_letter_code_can  
+;
+CGNLSTCMLGTYTQDFNKFH
+TFPQTAIGVGAP
+;
+   _Entity.Polymer_seq_one_letter_code      
+;
+CGNLSTCMLGTYTQDFNKFH
+TFPQTAIGVGAP
+;
+   _Entity.Target_identifier                 .
+   _Entity.Polymer_author_defined_seq        .
+   _Entity.Polymer_author_seq_details        .
+   _Entity.Ambiguous_conformational_states   .
+   _Entity.Ambiguous_chem_comp_sites         .
+   _Entity.Nstd_monomer                      .
+   _Entity.Nstd_chirality                    .
+   _Entity.Nstd_linkage                      .
+   _Entity.Nonpolymer_comp_ID                .
+   _Entity.Nonpolymer_comp_label             .
+   _Entity.Number_of_monomers                32
+   _Entity.Number_of_nonpolymer_components   .
+   _Entity.Paramagnetic                      .
+   _Entity.Thiol_state                       .
+   _Entity.Src_method                        .
+   _Entity.Parent_entity_ID                  1
+   _Entity.Fragment                          .
+   _Entity.Mutation                          .
+   _Entity.EC_number                         .
+   _Entity.Calc_isoelectric_point            .
+   _Entity.Formula_weight                    .
+   _Entity.Formula_weight_exptl              .
+   _Entity.Formula_weight_exptl_meth         .
+   _Entity.Details                           .
+   _Entity.DB_query_date                     .
+   _Entity.DB_query_revised_last_date        2015-11-26
+
+   loop_
+      _Entity_db_link.Ordinal
+      _Entity_db_link.Author_supplied
+      _Entity_db_link.Database_code
+      _Entity_db_link.Accession_code
+      _Entity_db_link.Entry_mol_code
+      _Entity_db_link.Entry_mol_name
+      _Entity_db_link.Entry_experimental_method
+      _Entity_db_link.Entry_structure_resolution
+      _Entity_db_link.Entry_relation_type
+      _Entity_db_link.Entry_details
+      _Entity_db_link.Chimera_segment_ID
+      _Entity_db_link.Seq_query_to_submitted_percent
+      _Entity_db_link.Seq_subject_length
+      _Entity_db_link.Seq_identity
+      _Entity_db_link.Seq_positive
+      _Entity_db_link.Seq_homology_expectation_val
+      _Entity_db_link.Seq_align_begin
+      _Entity_db_link.Seq_align_end
+      _Entity_db_link.Seq_difference_details
+      _Entity_db_link.Seq_alignment_details
+      _Entity_db_link.Entry_ID
+      _Entity_db_link.Entity_ID
+
+       1 no BMRB         1538 . "calcitonin C"                                                                                                                    . . . . . 100.00  32 100.00 100.00 4.30e-14 . . . . 1544 1 
+       2 no BMRB         1539 . "calcitonin C"                                                                                                                    . . . . . 100.00  32 100.00 100.00 4.30e-14 . . . . 1544 1 
+       3 no BMRB         1543 . "calcitonin C"                                                                                                                    . . . . . 100.00  32 100.00 100.00 4.30e-14 . . . . 1544 1 
+       4 no BMRB         1545 . "calcitonin C"                                                                                                                    . . . . . 100.00  32 100.00 100.00 4.30e-14 . . . . 1544 1 
+       5 no BMRB         1546 . "calcitonin C"                                                                                                                    . . . . . 100.00  32 100.00 100.00 4.30e-14 . . . . 1544 1 
+       6 no EMBL CAA25103      . "preprocalcitonin [Homo sapiens]"                                                                                                 . . . . . 100.00 141 100.00 100.00 6.89e-16 . . . . 1544 1 
+       7 no EMBL CAA26189      . "calcitonin [Homo sapiens]"                                                                                                       . . . . . 100.00  93 100.00 100.00 4.06e-15 . . . . 1544 1 
+       8 no EMBL CAA27299      . "unnamed protein product [Homo sapiens]"                                                                                          . . . . . 100.00 141 100.00 100.00 6.89e-16 . . . . 1544 1 
+       9 no GB   AAA35501      . "calcitonin precursor [Homo sapiens]"                                                                                             . . . . . 100.00 141 100.00 100.00 6.89e-16 . . . . 1544 1 
+      10 no GB   AAA58403      . "calcitonin [Homo sapiens]"                                                                                                       . . . . . 100.00 141 100.00 100.00 8.15e-16 . . . . 1544 1 
+      11 no GB   AAH69684      . "Calcitonin-related polypeptide alpha [Homo sapiens]"                                                                             . . . . . 100.00 141 100.00 100.00 6.89e-16 . . . . 1544 1 
+      12 no GB   AAH69704      . "Calcitonin-related polypeptide alpha [Homo sapiens]"                                                                             . . . . . 100.00 141 100.00 100.00 6.89e-16 . . . . 1544 1 
+      13 no GB   AAH69760      . "Calcitonin-related polypeptide alpha [Homo sapiens]"                                                                             . . . . . 100.00 141 100.00 100.00 6.89e-16 . . . . 1544 1 
+      14 no PRF  0802187A      . "calcitonin precursor"                                                                                                            . . . . . 100.00  93 100.00 100.00 4.06e-15 . . . . 1544 1 
+      15 no REF  NP_001029124  . "calcitonin isoform CT preproprotein [Homo sapiens]"                                                                              . . . . . 100.00 141 100.00 100.00 6.89e-16 . . . . 1544 1 
+      16 no REF  NP_001732     . "calcitonin isoform CT preproprotein [Homo sapiens]"                                                                              . . . . . 100.00 141 100.00 100.00 6.89e-16 . . . . 1544 1 
+      17 no REF  XP_001088995  . "PREDICTED: calcitonin-like [Macaca mulatta]"                                                                                     . . . . . 100.00 140 100.00 100.00 5.59e-16 . . . . 1544 1 
+      18 no REF  XP_003312977  . "PREDICTED: calcitonin isoform X1 [Pan troglodytes]"                                                                              . . . . . 100.00 141 100.00 100.00 5.41e-16 . . . . 1544 1 
+      19 no REF  XP_003312978  . "PREDICTED: calcitonin isoform X1 [Pan troglodytes]"                                                                              . . . . . 100.00 141 100.00 100.00 5.41e-16 . . . . 1544 1 
+      20 no SP   P01258        . "RecName: Full=Calcitonin; Contains: RecName: Full=Calcitonin; Contains: RecName: Full=Katacalcin; AltName: Full=Calcitonin carb" . . . . . 100.00 141 100.00 100.00 9.05e-16 . . . . 1544 1 
+
+   stop_
+
+   loop_
+      _Entity_common_name.Name
+      _Entity_common_name.Type
+      _Entity_common_name.Entry_ID
+      _Entity_common_name.Entity_ID
+
+      'calcitonin C' common 1544 1 
+
+   stop_
+
+   loop_
+      _Entity_comp_index.ID
+      _Entity_comp_index.Auth_seq_ID
+      _Entity_comp_index.Comp_ID
+      _Entity_comp_index.Comp_label
+      _Entity_comp_index.Entry_ID
+      _Entity_comp_index.Entity_ID
+
+       1 . CYS . 1544 1 
+       2 . GLY . 1544 1 
+       3 . ASN . 1544 1 
+       4 . LEU . 1544 1 
+       5 . SER . 1544 1 
+       6 . THR . 1544 1 
+       7 . CYS . 1544 1 
+       8 . MET . 1544 1 
+       9 . LEU . 1544 1 
+      10 . GLY . 1544 1 
+      11 . THR . 1544 1 
+      12 . TYR . 1544 1 
+      13 . THR . 1544 1 
+      14 . GLN . 1544 1 
+      15 . ASP . 1544 1 
+      16 . PHE . 1544 1 
+      17 . ASN . 1544 1 
+      18 . LYS . 1544 1 
+      19 . PHE . 1544 1 
+      20 . HIS . 1544 1 
+      21 . THR . 1544 1 
+      22 . PHE . 1544 1 
+      23 . PRO . 1544 1 
+      24 . GLN . 1544 1 
+      25 . THR . 1544 1 
+      26 . ALA . 1544 1 
+      27 . ILE . 1544 1 
+      28 . GLY . 1544 1 
+      29 . VAL . 1544 1 
+      30 . GLY . 1544 1 
+      31 . ALA . 1544 1 
+      32 . PRO . 1544 1 
+
+   stop_
+
+   loop_
+      _Entity_poly_seq.Hetero
+      _Entity_poly_seq.Mon_ID
+      _Entity_poly_seq.Num
+      _Entity_poly_seq.Comp_index_ID
+      _Entity_poly_seq.Entry_ID
+      _Entity_poly_seq.Entity_ID
+
+      . CYS  1  1 1544 1 
+      . GLY  2  2 1544 1 
+      . ASN  3  3 1544 1 
+      . LEU  4  4 1544 1 
+      . SER  5  5 1544 1 
+      . THR  6  6 1544 1 
+      . CYS  7  7 1544 1 
+      . MET  8  8 1544 1 
+      . LEU  9  9 1544 1 
+      . GLY 10 10 1544 1 
+      . THR 11 11 1544 1 
+      . TYR 12 12 1544 1 
+      . THR 13 13 1544 1 
+      . GLN 14 14 1544 1 
+      . ASP 15 15 1544 1 
+      . PHE 16 16 1544 1 
+      . ASN 17 17 1544 1 
+      . LYS 18 18 1544 1 
+      . PHE 19 19 1544 1 
+      . HIS 20 20 1544 1 
+      . THR 21 21 1544 1 
+      . PHE 22 22 1544 1 
+      . PRO 23 23 1544 1 
+      . GLN 24 24 1544 1 
+      . THR 25 25 1544 1 
+      . ALA 26 26 1544 1 
+      . ILE 27 27 1544 1 
+      . GLY 28 28 1544 1 
+      . VAL 29 29 1544 1 
+      . GLY 30 30 1544 1 
+      . ALA 31 31 1544 1 
+      . PRO 32 32 1544 1 
+
+   stop_
+
+save_
+
+
+    ####################
+    #  Natural source  #
+    ####################
+
+save_natural_source
+   _Entity_natural_src_list.Sf_category    natural_source
+   _Entity_natural_src_list.Sf_framecode   natural_source
+   _Entity_natural_src_list.Entry_ID       1544
+   _Entity_natural_src_list.ID             1
+
+   loop_
+      _Entity_natural_src.ID
+      _Entity_natural_src.Entity_ID
+      _Entity_natural_src.Entity_label
+      _Entity_natural_src.Entity_chimera_segment_ID
+      _Entity_natural_src.NCBI_taxonomy_ID
+      _Entity_natural_src.Type
+      _Entity_natural_src.Common
+      _Entity_natural_src.Organism_name_scientific
+      _Entity_natural_src.Organism_name_common
+      _Entity_natural_src.Organism_acronym
+      _Entity_natural_src.ICTVdb_decimal_code
+      _Entity_natural_src.Superkingdom
+      _Entity_natural_src.Kingdom
+      _Entity_natural_src.Genus
+      _Entity_natural_src.Species
+      _Entity_natural_src.Strain
+      _Entity_natural_src.Variant
+      _Entity_natural_src.Subvariant
+      _Entity_natural_src.Organ
+      _Entity_natural_src.Tissue
+      _Entity_natural_src.Tissue_fraction
+      _Entity_natural_src.Cell_line
+      _Entity_natural_src.Cell_type
+      _Entity_natural_src.ATCC_number
+      _Entity_natural_src.Organelle
+      _Entity_natural_src.Cellular_location
+      _Entity_natural_src.Fragment
+      _Entity_natural_src.Fraction
+      _Entity_natural_src.Secretion
+      _Entity_natural_src.Plasmid
+      _Entity_natural_src.Plasmid_details
+      _Entity_natural_src.Gene_mnemonic
+      _Entity_natural_src.Dev_stage
+      _Entity_natural_src.Details
+      _Entity_natural_src.Citation_ID
+      _Entity_natural_src.Citation_label
+      _Entity_natural_src.Entry_ID
+      _Entity_natural_src.Entity_natural_src_list_ID
+
+      1 1 $calcitonin_C . 9606 organism . 'Homo sapiens' Human . . Eukaryota Metazoa Homo sapiens . . . . . . . . . . . . . . . . . . . . . 1544 1 
+
+   stop_
+
+save_
+
+
+    #########################
+    #  Experimental source  #
+    #########################
+
+save_experimental_source
+   _Entity_experimental_src_list.Sf_category    experimental_source
+   _Entity_experimental_src_list.Sf_framecode   experimental_source
+   _Entity_experimental_src_list.Entry_ID       1544
+   _Entity_experimental_src_list.ID             1
+
+   loop_
+      _Entity_experimental_src.ID
+      _Entity_experimental_src.Entity_ID
+      _Entity_experimental_src.Entity_label
+      _Entity_experimental_src.Entity_chimera_segment_ID
+      _Entity_experimental_src.Production_method
+      _Entity_experimental_src.Host_org_scientific_name
+      _Entity_experimental_src.Host_org_name_common
+      _Entity_experimental_src.Host_org_details
+      _Entity_experimental_src.Host_org_NCBI_taxonomy_ID
+      _Entity_experimental_src.Host_org_genus
+      _Entity_experimental_src.Host_org_species
+      _Entity_experimental_src.Host_org_strain
+      _Entity_experimental_src.Host_org_variant
+      _Entity_experimental_src.Host_org_subvariant
+      _Entity_experimental_src.Host_org_organ
+      _Entity_experimental_src.Host_org_tissue
+      _Entity_experimental_src.Host_org_tissue_fraction
+      _Entity_experimental_src.Host_org_cell_line
+      _Entity_experimental_src.Host_org_cell_type
+      _Entity_experimental_src.Host_org_cellular_location
+      _Entity_experimental_src.Host_org_organelle
+      _Entity_experimental_src.Host_org_gene
+      _Entity_experimental_src.Host_org_culture_collection
+      _Entity_experimental_src.Host_org_ATCC_number
+      _Entity_experimental_src.Vector_type
+      _Entity_experimental_src.PDBview_host_org_vector_name
+      _Entity_experimental_src.PDBview_plasmid_name
+      _Entity_experimental_src.Vector_name
+      _Entity_experimental_src.Vector_details
+      _Entity_experimental_src.Vendor_name
+      _Entity_experimental_src.Host_org_dev_stage
+      _Entity_experimental_src.Details
+      _Entity_experimental_src.Citation_ID
+      _Entity_experimental_src.Citation_label
+      _Entity_experimental_src.Entry_ID
+      _Entity_experimental_src.Entity_experimental_src_list_ID
+
+      1 1 $calcitonin_C . 'not available' . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 1544 1 
+
+   stop_
+
+save_
+
+
+#####################################
+#  Sample contents and methodology  #
+#####################################
+	 
+    ########################
+    #  Sample description  #
+    ########################
+
+save_sample_one
+   _Sample.Sf_category                      sample
+   _Sample.Sf_framecode                     sample_one
+   _Sample.Entry_ID                         1544
+   _Sample.ID                               1
+   _Sample.Type                             solution
+   _Sample.Sub_type                         .
+   _Sample.Details                          .
+   _Sample.Aggregate_sample_number          .
+   _Sample.Solvent_system                   .
+   _Sample.Preparation_date                 .
+   _Sample.Preparation_expiration_date      .
+   _Sample.Polycrystallization_protocol     .
+   _Sample.Single_crystal_protocol          .
+   _Sample.Crystal_grow_apparatus           .
+   _Sample.Crystal_grow_atmosphere          .
+   _Sample.Crystal_grow_details             .
+   _Sample.Crystal_grow_method              .
+   _Sample.Crystal_grow_method_cit_ID       .
+   _Sample.Crystal_grow_pH                  .
+   _Sample.Crystal_grow_pH_range            .
+   _Sample.Crystal_grow_pressure            .
+   _Sample.Crystal_grow_pressure_esd        .
+   _Sample.Crystal_grow_seeding             .
+   _Sample.Crystal_grow_seeding_cit_ID      .
+   _Sample.Crystal_grow_temp                .
+   _Sample.Crystal_grow_temp_details        .
+   _Sample.Crystal_grow_temp_esd            .
+   _Sample.Crystal_grow_time                .
+   _Sample.Oriented_sample_prep_protocol    .
+   _Sample.Lyophilization_cryo_protectant   .
+   _Sample.Storage_protocol                 .
+
+save_
+
+
+#######################
+#  Sample conditions  #
+#######################
+
+save_sample_condition_set_one
+   _Sample_condition_list.Sf_category    sample_conditions
+   _Sample_condition_list.Sf_framecode   sample_condition_set_one
+   _Sample_condition_list.Entry_ID       1544
+   _Sample_condition_list.ID             1
+   _Sample_condition_list.Details        .
+
+   loop_
+      _Sample_condition_variable.Type
+      _Sample_condition_variable.Val
+      _Sample_condition_variable.Val_err
+      _Sample_condition_variable.Val_units
+      _Sample_condition_variable.Entry_ID
+      _Sample_condition_variable.Sample_condition_list_ID
+
+      pH            7.8 . na 1544 1 
+      temperature 310   . K  1544 1 
+
+   stop_
+
+save_
+
+
+#########################
+#  Experimental detail  #
+#########################
+
+    ##################################
+    #  NMR Spectrometer definitions  #
+    ##################################
+
+save_spectrometer_list
+   _NMR_spectrometer.Sf_category      NMR_spectrometer
+   _NMR_spectrometer.Sf_framecode     spectrometer_list
+   _NMR_spectrometer.Entry_ID         1544
+   _NMR_spectrometer.ID               1
+   _NMR_spectrometer.Details         'spectrometer information not available'
+   _NMR_spectrometer.Manufacturer     unknown
+   _NMR_spectrometer.Model            unknown
+   _NMR_spectrometer.Serial_number    .
+   _NMR_spectrometer.Field_strength   0
+
+save_
+
+
+save_NMR_spectrometer_list
+   _NMR_spectrometer_list.Sf_category    NMR_spectrometer_list
+   _NMR_spectrometer_list.Sf_framecode   NMR_spectrometer_list
+   _NMR_spectrometer_list.Entry_ID       1544
+   _NMR_spectrometer_list.ID             1
+
+   loop_
+      _NMR_spectrometer_view.ID
+      _NMR_spectrometer_view.Name
+      _NMR_spectrometer_view.Manufacturer
+      _NMR_spectrometer_view.Model
+      _NMR_spectrometer_view.Serial_number
+      _NMR_spectrometer_view.Field_strength
+      _NMR_spectrometer_view.Details
+      _NMR_spectrometer_view.Citation_ID
+      _NMR_spectrometer_view.Citation_label
+      _NMR_spectrometer_view.Entry_ID
+      _NMR_spectrometer_view.NMR_spectrometer_list_ID
+
+      1 spectrometer_1 unknown unknown . 0 'spectrometer information not available' . . 1544 1 
+
+   stop_
+
+save_
+
+
+    #############################
+    #  NMR applied experiments  #
+    #############################
+
+save_experiment_list
+   _Experiment_list.Sf_category    experiment_list
+   _Experiment_list.Sf_framecode   experiment_list
+   _Experiment_list.Entry_ID       1544
+   _Experiment_list.ID             1
+   _Experiment_list.Details        .
+
+   loop_
+      _Experiment.ID
+      _Experiment.Name
+      _Experiment.Raw_data_flag
+      _Experiment.NMR_spec_expt_ID
+      _Experiment.NMR_spec_expt_label
+      _Experiment.MS_expt_ID
+      _Experiment.MS_expt_label
+      _Experiment.SAXS_expt_ID
+      _Experiment.SAXS_expt_label
+      _Experiment.FRET_expt_ID
+      _Experiment.FRET_expt_label
+      _Experiment.EMR_expt_ID
+      _Experiment.EMR_expt_label
+      _Experiment.Sample_ID
+      _Experiment.Sample_label
+      _Experiment.Sample_state
+      _Experiment.Sample_volume
+      _Experiment.Sample_volume_units
+      _Experiment.Sample_condition_list_ID
+      _Experiment.Sample_condition_list_label
+      _Experiment.Sample_spinning_rate
+      _Experiment.Sample_angle
+      _Experiment.NMR_tube_type
+      _Experiment.NMR_spectrometer_ID
+      _Experiment.NMR_spectrometer_label
+      _Experiment.NMR_spectrometer_probe_ID
+      _Experiment.NMR_spectrometer_probe_label
+      _Experiment.NMR_spectral_processing_ID
+      _Experiment.NMR_spectral_processing_label
+      _Experiment.Mass_spectrometer_ID
+      _Experiment.Mass_spectrometer_label
+      _Experiment.Xray_instrument_ID
+      _Experiment.Xray_instrument_label
+      _Experiment.Fluorescence_instrument_ID
+      _Experiment.Fluorescence_instrument_label
+      _Experiment.EMR_instrument_ID
+      _Experiment.EMR_instrument_label
+      _Experiment.Chromatographic_system_ID
+      _Experiment.Chromatographic_system_label
+      _Experiment.Chromatographic_column_ID
+      _Experiment.Chromatographic_column_label
+      _Experiment.Entry_ID
+      _Experiment.Experiment_list_ID
+
+      1 . . . . . . . . . . . . 1 $sample_one . . . 1 $sample_condition_set_one . . . 1 $spectrometer_list . . . . . . . . . . . . . . . . 1544 1 
+
+   stop_
+
+save_
+
+
+####################
+#  NMR parameters  #
+####################
+
+    ##############################
+    #  Assigned chemical shifts  #
+    ##############################
+
+	################################
+	#  Chemical shift referencing  #
+	################################
+
+save_chem_shift_reference_par_set_one
+   _Chem_shift_reference.Sf_category    chem_shift_reference
+   _Chem_shift_reference.Sf_framecode   chem_shift_reference_par_set_one
+   _Chem_shift_reference.Entry_ID       1544
+   _Chem_shift_reference.ID             1
+   _Chem_shift_reference.Details        .
+
+   loop_
+      _Chem_shift_ref.Atom_type
+      _Chem_shift_ref.Atom_isotope_number
+      _Chem_shift_ref.Mol_common_name
+      _Chem_shift_ref.Atom_group
+      _Chem_shift_ref.Concentration_val
+      _Chem_shift_ref.Concentration_units
+      _Chem_shift_ref.Solvent
+      _Chem_shift_ref.Rank
+      _Chem_shift_ref.Chem_shift_units
+      _Chem_shift_ref.Chem_shift_val
+      _Chem_shift_ref.Ref_method
+      _Chem_shift_ref.Ref_type
+      _Chem_shift_ref.Indirect_shift_ratio
+      _Chem_shift_ref.External_ref_loc
+      _Chem_shift_ref.External_ref_sample_geometry
+      _Chem_shift_ref.External_ref_axis
+      _Chem_shift_ref.Indirect_shift_ratio_cit_ID
+      _Chem_shift_ref.Indirect_shift_ratio_cit_label
+      _Chem_shift_ref.Ref_correction_type
+      _Chem_shift_ref.Correction_val
+      _Chem_shift_ref.Correction_val_cit_ID
+      _Chem_shift_ref.Correction_val_cit_label
+      _Chem_shift_ref.Entry_ID
+      _Chem_shift_ref.Chem_shift_reference_ID
+
+      H . DMSO-d6 'residual CD2H' . . . . ppm 2.5 . . . . . . 1 $entry_citation . . 1 $entry_citation 1544 1 
+
+   stop_
+
+save_
+
+
+     ###################################
+     #  Assigned chemical shift lists  #
+     ###################################
+
+###################################################################
+#       Chemical Shift Ambiguity Index Value Definitions          #
+#                                                                 #
+# The values other than 1 are used for those atoms with different #
+# chemical shifts that cannot be assigned to stereospecific atoms #
+# or to specific residues or chains.                              #
+#                                                                 #
+#   Index Value            Definition                             #
+#                                                                 #
+#      1             Unique (including isolated methyl protons,   #
+#                         geminal atoms, and geminal methyl       #
+#                         groups with identical chemical shifts)  #
+#                         (e.g. ILE HD11, HD12, HD13 protons)     #
+#      2             Ambiguity of geminal atoms or geminal methyl #
+#                         proton groups (e.g. ASP HB2 and HB3     #
+#                         protons, LEU CD1 and CD2 carbons, or    #
+#                         LEU HD11, HD12, HD13 and HD21, HD22,    #
+#                         HD23 methyl protons)                    #
+#      3             Aromatic atoms on opposite sides of          #
+#                         symmetrical rings (e.g. TYR HE1 and HE2 #
+#                         protons)                                #
+#      4             Intraresidue ambiguities (e.g. LYS HG and    #
+#                         HD protons or TRP HZ2 and HZ3 protons)  #
+#      5             Interresidue ambiguities (LYS 12 vs. LYS 27) #
+#      6             Intermolecular ambiguities (e.g. ASP 31 CA   #
+#                         in monomer 1 and ASP 31 CA in monomer 2 #
+#                         of an asymmetrical homodimer, duplex    #
+#                         DNA assignments, or other assignments   #
+#                         that may apply to atoms in one or more  #
+#                         molecule in the molecular assembly)     #
+#      9             Ambiguous, specific ambiguity not defined    #
+#                                                                 #
+###################################################################
+save_chemical_shift_assignment_data_set_one
+   _Assigned_chem_shift_list.Sf_category                   assigned_chemical_shifts
+   _Assigned_chem_shift_list.Sf_framecode                 'chemical_shift_assignment_data_set_one'
+   _Assigned_chem_shift_list.Entry_ID                      1544
+   _Assigned_chem_shift_list.ID                            1
+   _Assigned_chem_shift_list.Sample_condition_list_ID      1
+   _Assigned_chem_shift_list.Sample_condition_list_label  $sample_condition_set_one
+   _Assigned_chem_shift_list.Chem_shift_reference_ID       1
+   _Assigned_chem_shift_list.Chem_shift_reference_label   $chem_shift_reference_par_set_one
+   _Assigned_chem_shift_list.Chem_shift_1H_err             .
+   _Assigned_chem_shift_list.Chem_shift_13C_err            .
+   _Assigned_chem_shift_list.Chem_shift_15N_err            .
+   _Assigned_chem_shift_list.Chem_shift_31P_err            .
+   _Assigned_chem_shift_list.Chem_shift_2H_err             .
+   _Assigned_chem_shift_list.Chem_shift_19F_err            .
+   _Assigned_chem_shift_list.Error_derivation_method       .
+   _Assigned_chem_shift_list.Details                       .
+   _Assigned_chem_shift_list.Text_data_format              .
+   _Assigned_chem_shift_list.Text_data                     .
+
+   loop_
+      _Chem_shift_experiment.Experiment_ID
+      _Chem_shift_experiment.Experiment_name
+      _Chem_shift_experiment.Sample_ID
+      _Chem_shift_experiment.Sample_label
+      _Chem_shift_experiment.Sample_state
+      _Chem_shift_experiment.Entry_ID
+      _Chem_shift_experiment.Assigned_chem_shift_list_ID
+
+      . . 1 $sample_one . 1544 1 
+
+   stop_
+
+   loop_
+      _Atom_chem_shift.ID
+      _Atom_chem_shift.Assembly_atom_ID
+      _Atom_chem_shift.Entity_assembly_ID
+      _Atom_chem_shift.Entity_ID
+      _Atom_chem_shift.Comp_index_ID
+      _Atom_chem_shift.Seq_ID
+      _Atom_chem_shift.Comp_ID
+      _Atom_chem_shift.Atom_ID
+      _Atom_chem_shift.Atom_type
+      _Atom_chem_shift.Atom_isotope_number
+      _Atom_chem_shift.Val
+      _Atom_chem_shift.Val_err
+      _Atom_chem_shift.Assign_fig_of_merit
+      _Atom_chem_shift.Ambiguity_code
+      _Atom_chem_shift.Occupancy
+      _Atom_chem_shift.Resonance_ID
+      _Atom_chem_shift.Auth_entity_assembly_ID
+      _Atom_chem_shift.Auth_asym_ID
+      _Atom_chem_shift.Auth_seq_ID
+      _Atom_chem_shift.Auth_comp_ID
+      _Atom_chem_shift.Auth_atom_ID
+      _Atom_chem_shift.Details
+      _Atom_chem_shift.Entry_ID
+      _Atom_chem_shift.Assigned_chem_shift_list_ID
+
+        1 . 1 1  1  1 CYS HA   H 1 3.91 . . 1 . . . . . . . . 1544 1 
+        2 . 1 1  1  1 CYS HB2  H 1 2.96 . . 2 . . . . . . . . 1544 1 
+        3 . 1 1  1  1 CYS HB3  H 1 3.15 . . 2 . . . . . . . . 1544 1 
+        4 . 1 1  2  2 GLY H    H 1 8.05 . . 1 . . . . . . . . 1544 1 
+        5 . 1 1  2  2 GLY HA2  H 1 3.57 . . 2 . . . . . . . . 1544 1 
+        6 . 1 1  2  2 GLY HA3  H 1 3.79 . . 2 . . . . . . . . 1544 1 
+        7 . 1 1  3  3 ASN H    H 1 8.27 . . 1 . . . . . . . . 1544 1 
+        8 . 1 1  3  3 ASN HA   H 1 4.56 . . 1 . . . . . . . . 1544 1 
+        9 . 1 1  3  3 ASN HB2  H 1 2.61 . . 2 . . . . . . . . 1544 1 
+       10 . 1 1  3  3 ASN HB3  H 1 2.85 . . 2 . . . . . . . . 1544 1 
+       11 . 1 1  3  3 ASN HD21 H 1 6.9  . . 2 . . . . . . . . 1544 1 
+       12 . 1 1  3  3 ASN HD22 H 1 7.35 . . 2 . . . . . . . . 1544 1 
+       13 . 1 1  4  4 LEU H    H 1 8.58 . . 1 . . . . . . . . 1544 1 
+       14 . 1 1  4  4 LEU HA   H 1 4.2  . . 1 . . . . . . . . 1544 1 
+       15 . 1 1  4  4 LEU HB2  H 1 1.55 . . 2 . . . . . . . . 1544 1 
+       16 . 1 1  4  4 LEU HB3  H 1 1.68 . . 2 . . . . . . . . 1544 1 
+       17 . 1 1  4  4 LEU HG   H 1 1.62 . . 1 . . . . . . . . 1544 1 
+       18 . 1 1  4  4 LEU HD11 H 1  .83 . . 2 . . . . . . . . 1544 1 
+       19 . 1 1  4  4 LEU HD12 H 1  .83 . . 2 . . . . . . . . 1544 1 
+       20 . 1 1  4  4 LEU HD13 H 1  .83 . . 2 . . . . . . . . 1544 1 
+       21 . 1 1  4  4 LEU HD21 H 1  .87 . . 2 . . . . . . . . 1544 1 
+       22 . 1 1  4  4 LEU HD22 H 1  .87 . . 2 . . . . . . . . 1544 1 
+       23 . 1 1  4  4 LEU HD23 H 1  .87 . . 2 . . . . . . . . 1544 1 
+       24 . 1 1  5  5 SER H    H 1 8.01 . . 1 . . . . . . . . 1544 1 
+       25 . 1 1  5  5 SER HA   H 1 4.39 . . 1 . . . . . . . . 1544 1 
+       26 . 1 1  5  5 SER HB2  H 1 3.69 . . 1 . . . . . . . . 1544 1 
+       27 . 1 1  5  5 SER HB3  H 1 3.69 . . 1 . . . . . . . . 1544 1 
+       28 . 1 1  5  5 SER HG   H 1 4.97 . . 1 . . . . . . . . 1544 1 
+       29 . 1 1  6  6 THR H    H 1 7.91 . . 1 . . . . . . . . 1544 1 
+       30 . 1 1  6  6 THR HA   H 1 4.17 . . 1 . . . . . . . . 1544 1 
+       31 . 1 1  6  6 THR HB   H 1 3.98 . . 1 . . . . . . . . 1544 1 
+       32 . 1 1  6  6 THR HG1  H 1 4.89 . . 1 . . . . . . . . 1544 1 
+       33 . 1 1  6  6 THR HG21 H 1 1.08 . . 1 . . . . . . . . 1544 1 
+       34 . 1 1  6  6 THR HG22 H 1 1.08 . . 1 . . . . . . . . 1544 1 
+       35 . 1 1  6  6 THR HG23 H 1 1.08 . . 1 . . . . . . . . 1544 1 
+       36 . 1 1  7  7 CYS H    H 1 8.24 . . 1 . . . . . . . . 1544 1 
+       37 . 1 1  7  7 CYS HA   H 1 4.52 . . 1 . . . . . . . . 1544 1 
+       38 . 1 1  7  7 CYS HB2  H 1 2.89 . . 2 . . . . . . . . 1544 1 
+       39 . 1 1  7  7 CYS HB3  H 1 3.13 . . 2 . . . . . . . . 1544 1 
+       40 . 1 1  8  8 MET H    H 1 8.02 . . 1 . . . . . . . . 1544 1 
+       41 . 1 1  8  8 MET HA   H 1 4.32 . . 1 . . . . . . . . 1544 1 
+       42 . 1 1  8  8 MET HB2  H 1 1.83 . . 2 . . . . . . . . 1544 1 
+       43 . 1 1  8  8 MET HB3  H 1 1.95 . . 2 . . . . . . . . 1544 1 
+       44 . 1 1  8  8 MET HG2  H 1 2.43 . . 1 . . . . . . . . 1544 1 
+       45 . 1 1  8  8 MET HG3  H 1 2.43 . . 1 . . . . . . . . 1544 1 
+       46 . 1 1  8  8 MET HE1  H 1 2.12 . . 1 . . . . . . . . 1544 1 
+       47 . 1 1  8  8 MET HE2  H 1 2.12 . . 1 . . . . . . . . 1544 1 
+       48 . 1 1  8  8 MET HE3  H 1 2.12 . . 1 . . . . . . . . 1544 1 
+       49 . 1 1  9  9 LEU H    H 1 7.86 . . 1 . . . . . . . . 1544 1 
+       50 . 1 1  9  9 LEU HA   H 1 4.27 . . 1 . . . . . . . . 1544 1 
+       51 . 1 1  9  9 LEU HB2  H 1 1.49 . . 2 . . . . . . . . 1544 1 
+       52 . 1 1  9  9 LEU HB3  H 1 1.52 . . 2 . . . . . . . . 1544 1 
+       53 . 1 1  9  9 LEU HG   H 1 1.62 . . 1 . . . . . . . . 1544 1 
+       54 . 1 1  9  9 LEU HD11 H 1  .83 . . 2 . . . . . . . . 1544 1 
+       55 . 1 1  9  9 LEU HD12 H 1  .83 . . 2 . . . . . . . . 1544 1 
+       56 . 1 1  9  9 LEU HD13 H 1  .83 . . 2 . . . . . . . . 1544 1 
+       57 . 1 1  9  9 LEU HD21 H 1  .86 . . 2 . . . . . . . . 1544 1 
+       58 . 1 1  9  9 LEU HD22 H 1  .86 . . 2 . . . . . . . . 1544 1 
+       59 . 1 1  9  9 LEU HD23 H 1  .86 . . 2 . . . . . . . . 1544 1 
+       60 . 1 1 10 10 GLY H    H 1 8.06 . . 1 . . . . . . . . 1544 1 
+       61 . 1 1 10 10 GLY HA2  H 1 3.81 . . 2 . . . . . . . . 1544 1 
+       62 . 1 1 10 10 GLY HA3  H 1 3.61 . . 2 . . . . . . . . 1544 1 
+       63 . 1 1 11 11 THR H    H 1 7.64 . . 1 . . . . . . . . 1544 1 
+       64 . 1 1 11 11 THR HA   H 1 4.22 . . 1 . . . . . . . . 1544 1 
+       65 . 1 1 11 11 THR HB   H 1 3.93 . . 1 . . . . . . . . 1544 1 
+       66 . 1 1 11 11 THR HG1  H 1 4.79 . . 1 . . . . . . . . 1544 1 
+       67 . 1 1 11 11 THR HG21 H 1  .94 . . 1 . . . . . . . . 1544 1 
+       68 . 1 1 11 11 THR HG22 H 1  .94 . . 1 . . . . . . . . 1544 1 
+       69 . 1 1 11 11 THR HG23 H 1  .94 . . 1 . . . . . . . . 1544 1 
+       70 . 1 1 12 12 TYR H    H 1 7.93 . . 1 . . . . . . . . 1544 1 
+       71 . 1 1 12 12 TYR HA   H 1 4.52 . . 1 . . . . . . . . 1544 1 
+       72 . 1 1 12 12 TYR HB2  H 1 2.75 . . 2 . . . . . . . . 1544 1 
+       73 . 1 1 12 12 TYR HB3  H 1 2.98 . . 2 . . . . . . . . 1544 1 
+       74 . 1 1 12 12 TYR HD1  H 1 7.04 . . 1 . . . . . . . . 1544 1 
+       75 . 1 1 12 12 TYR HD2  H 1 7.04 . . 1 . . . . . . . . 1544 1 
+       76 . 1 1 12 12 TYR HE1  H 1 7.63 . . 1 . . . . . . . . 1544 1 
+       77 . 1 1 12 12 TYR HE2  H 1 7.63 . . 1 . . . . . . . . 1544 1 
+       78 . 1 1 13 13 THR H    H 1 7.84 . . 1 . . . . . . . . 1544 1 
+       79 . 1 1 13 13 THR HA   H 1 4.2  . . 1 . . . . . . . . 1544 1 
+       80 . 1 1 13 13 THR HB   H 1 3.99 . . 1 . . . . . . . . 1544 1 
+       81 . 1 1 13 13 THR HG1  H 1 4.88 . . 1 . . . . . . . . 1544 1 
+       82 . 1 1 13 13 THR HG21 H 1 1.02 . . 1 . . . . . . . . 1544 1 
+       83 . 1 1 13 13 THR HG22 H 1 1.02 . . 1 . . . . . . . . 1544 1 
+       84 . 1 1 13 13 THR HG23 H 1 1.02 . . 1 . . . . . . . . 1544 1 
+       85 . 1 1 14 14 GLN H    H 1 7.89 . . 1 . . . . . . . . 1544 1 
+       86 . 1 1 14 14 GLN HA   H 1 4.25 . . 1 . . . . . . . . 1544 1 
+       87 . 1 1 14 14 GLN HB2  H 1 1.75 . . 2 . . . . . . . . 1544 1 
+       88 . 1 1 14 14 GLN HB3  H 1 1.88 . . 2 . . . . . . . . 1544 1 
+       89 . 1 1 14 14 GLN HG2  H 1 2.01 . . 2 . . . . . . . . 1544 1 
+       90 . 1 1 14 14 GLN HG3  H 1 2.09 . . 2 . . . . . . . . 1544 1 
+       91 . 1 1 14 14 GLN HE21 H 1 6.73 . . 2 . . . . . . . . 1544 1 
+       92 . 1 1 14 14 GLN HE22 H 1 7.2  . . 2 . . . . . . . . 1544 1 
+       93 . 1 1 15 15 ASP H    H 1 8.03 . . 1 . . . . . . . . 1544 1 
+       94 . 1 1 15 15 ASP HA   H 1 4.51 . . 1 . . . . . . . . 1544 1 
+       95 . 1 1 15 15 ASP HB2  H 1 2.42 . . 2 . . . . . . . . 1544 1 
+       96 . 1 1 15 15 ASP HB3  H 1 2.58 . . 2 . . . . . . . . 1544 1 
+       97 . 1 1 16 16 PHE H    H 1 8.17 . . 1 . . . . . . . . 1544 1 
+       98 . 1 1 16 16 PHE HA   H 1 4.41 . . 1 . . . . . . . . 1544 1 
+       99 . 1 1 16 16 PHE HB2  H 1 2.83 . . 2 . . . . . . . . 1544 1 
+      100 . 1 1 16 16 PHE HB3  H 1 3.06 . . 2 . . . . . . . . 1544 1 
+      101 . 1 1 16 16 PHE HD1  H 1 7.26 . . 1 . . . . . . . . 1544 1 
+      102 . 1 1 16 16 PHE HD2  H 1 7.26 . . 1 . . . . . . . . 1544 1 
+      103 . 1 1 16 16 PHE HE1  H 1 7.21 . . 1 . . . . . . . . 1544 1 
+      104 . 1 1 16 16 PHE HE2  H 1 7.21 . . 1 . . . . . . . . 1544 1 
+      105 . 1 1 16 16 PHE HZ   H 1 7.23 . . 1 . . . . . . . . 1544 1 
+      106 . 1 1 17 17 ASN H    H 1 8.34 . . 1 . . . . . . . . 1544 1 
+      107 . 1 1 17 17 ASN HA   H 1 4.48 . . 1 . . . . . . . . 1544 1 
+      108 . 1 1 17 17 ASN HB2  H 1 2.54 . . 2 . . . . . . . . 1544 1 
+      109 . 1 1 17 17 ASN HB3  H 1 2.82 . . 2 . . . . . . . . 1544 1 
+      110 . 1 1 17 17 ASN HD21 H 1 6.93 . . 2 . . . . . . . . 1544 1 
+      111 . 1 1 17 17 ASN HD22 H 1 7.52 . . 2 . . . . . . . . 1544 1 
+      112 . 1 1 18 18 LYS H    H 1 7.78 . . 1 . . . . . . . . 1544 1 
+      113 . 1 1 18 18 LYS HA   H 1 4.12 . . 1 . . . . . . . . 1544 1 
+      114 . 1 1 18 18 LYS HB2  H 1 1.47 . . 2 . . . . . . . . 1544 1 
+      115 . 1 1 18 18 LYS HB3  H 1 1.59 . . 2 . . . . . . . . 1544 1 
+      116 . 1 1 18 18 LYS HG2  H 1 1.26 . . 1 . . . . . . . . 1544 1 
+      117 . 1 1 18 18 LYS HG3  H 1 1.26 . . 1 . . . . . . . . 1544 1 
+      118 . 1 1 18 18 LYS HD2  H 1 1.32 . . 1 . . . . . . . . 1544 1 
+      119 . 1 1 18 18 LYS HD3  H 1 1.32 . . 1 . . . . . . . . 1544 1 
+      120 . 1 1 18 18 LYS HE2  H 1 2.74 . . 1 . . . . . . . . 1544 1 
+      121 . 1 1 18 18 LYS HE3  H 1 2.74 . . 1 . . . . . . . . 1544 1 
+      122 . 1 1 18 18 LYS HZ1  H 1 7.6  . . 1 . . . . . . . . 1544 1 
+      123 . 1 1 18 18 LYS HZ2  H 1 7.6  . . 1 . . . . . . . . 1544 1 
+      124 . 1 1 18 18 LYS HZ3  H 1 7.6  . . 1 . . . . . . . . 1544 1 
+      125 . 1 1 19 19 PHE H    H 1 7.98 . . 1 . . . . . . . . 1544 1 
+      126 . 1 1 19 19 PHE HA   H 1 4.43 . . 1 . . . . . . . . 1544 1 
+      127 . 1 1 19 19 PHE HB2  H 1 2.82 . . 2 . . . . . . . . 1544 1 
+      128 . 1 1 19 19 PHE HB3  H 1 3.02 . . 2 . . . . . . . . 1544 1 
+      129 . 1 1 19 19 PHE HD1  H 1 7.23 . . 1 . . . . . . . . 1544 1 
+      130 . 1 1 19 19 PHE HD2  H 1 7.23 . . 1 . . . . . . . . 1544 1 
+      131 . 1 1 19 19 PHE HE1  H 1 7.27 . . 1 . . . . . . . . 1544 1 
+      132 . 1 1 19 19 PHE HE2  H 1 7.27 . . 1 . . . . . . . . 1544 1 
+      133 . 1 1 19 19 PHE HZ   H 1 7.23 . . 1 . . . . . . . . 1544 1 
+      134 . 1 1 20 20 HIS H    H 1 7.99 . . 1 . . . . . . . . 1544 1 
+      135 . 1 1 20 20 HIS HA   H 1 4.53 . . 1 . . . . . . . . 1544 1 
+      136 . 1 1 20 20 HIS HB2  H 1 2.91 . . 2 . . . . . . . . 1544 1 
+      137 . 1 1 20 20 HIS HB3  H 1 2.99 . . 2 . . . . . . . . 1544 1 
+      138 . 1 1 20 20 HIS HD2  H 1 7.62 . . 1 . . . . . . . . 1544 1 
+      139 . 1 1 20 20 HIS HE1  H 1 8.05 . . 1 . . . . . . . . 1544 1 
+      140 . 1 1 21 21 THR H    H 1 7.62 . . 1 . . . . . . . . 1544 1 
+      141 . 1 1 21 21 THR HA   H 1 4.16 . . 1 . . . . . . . . 1544 1 
+      142 . 1 1 21 21 THR HB   H 1 3.96 . . 1 . . . . . . . . 1544 1 
+      143 . 1 1 21 21 THR HG1  H 1 4.92 . . 1 . . . . . . . . 1544 1 
+      144 . 1 1 21 21 THR HG21 H 1  .95 . . 1 . . . . . . . . 1544 1 
+      145 . 1 1 21 21 THR HG22 H 1  .95 . . 1 . . . . . . . . 1544 1 
+      146 . 1 1 21 21 THR HG23 H 1  .95 . . 1 . . . . . . . . 1544 1 
+      147 . 1 1 22 22 PHE H    H 1 8.27 . . 1 . . . . . . . . 1544 1 
+      148 . 1 1 22 22 PHE HA   H 1 4.7  . . 1 . . . . . . . . 1544 1 
+      149 . 1 1 22 22 PHE HB2  H 1 2.84 . . 2 . . . . . . . . 1544 1 
+      150 . 1 1 22 22 PHE HB3  H 1 3.03 . . 2 . . . . . . . . 1544 1 
+      151 . 1 1 22 22 PHE HD1  H 1 7.25 . . 1 . . . . . . . . 1544 1 
+      152 . 1 1 22 22 PHE HD2  H 1 7.25 . . 1 . . . . . . . . 1544 1 
+      153 . 1 1 22 22 PHE HE1  H 1 7.25 . . 1 . . . . . . . . 1544 1 
+      154 . 1 1 22 22 PHE HE2  H 1 7.25 . . 1 . . . . . . . . 1544 1 
+      155 . 1 1 22 22 PHE HZ   H 1 7.27 . . 1 . . . . . . . . 1544 1 
+      156 . 1 1 23 23 PRO HA   H 1 4.36 . . 1 . . . . . . . . 1544 1 
+      157 . 1 1 23 23 PRO HB2  H 1 2.02 . . 2 . . . . . . . . 1544 1 
+      158 . 1 1 23 23 PRO HB3  H 1 2.06 . . 2 . . . . . . . . 1544 1 
+      159 . 1 1 23 23 PRO HG2  H 1 1.85 . . 1 . . . . . . . . 1544 1 
+      160 . 1 1 23 23 PRO HG3  H 1 1.85 . . 1 . . . . . . . . 1544 1 
+      161 . 1 1 23 23 PRO HD2  H 1 3.4  . . 2 . . . . . . . . 1544 1 
+      162 . 1 1 23 23 PRO HD3  H 1 3.63 . . 2 . . . . . . . . 1544 1 
+      163 . 1 1 24 24 GLN H    H 1 8.2  . . 1 . . . . . . . . 1544 1 
+      164 . 1 1 24 24 GLN HA   H 1 4.24 . . 1 . . . . . . . . 1544 1 
+      165 . 1 1 24 24 GLN HB2  H 1 1.81 . . 2 . . . . . . . . 1544 1 
+      166 . 1 1 24 24 GLN HB3  H 1 1.88 . . 2 . . . . . . . . 1544 1 
+      167 . 1 1 24 24 GLN HG2  H 1 1.94 . . 2 . . . . . . . . 1544 1 
+      168 . 1 1 24 24 GLN HG3  H 1 2.17 . . 2 . . . . . . . . 1544 1 
+      169 . 1 1 24 24 GLN HE21 H 1 6.8  . . 2 . . . . . . . . 1544 1 
+      170 . 1 1 24 24 GLN HE22 H 1 7.29 . . 2 . . . . . . . . 1544 1 
+      171 . 1 1 25 25 THR H    H 1 7.58 . . 1 . . . . . . . . 1544 1 
+      172 . 1 1 25 25 THR HA   H 1 4.21 . . 1 . . . . . . . . 1544 1 
+      173 . 1 1 25 25 THR HB   H 1 4.02 . . 1 . . . . . . . . 1544 1 
+      174 . 1 1 25 25 THR HG1  H 1 5.01 . . 1 . . . . . . . . 1544 1 
+      175 . 1 1 25 25 THR HG21 H 1 1.04 . . 1 . . . . . . . . 1544 1 
+      176 . 1 1 25 25 THR HG22 H 1 1.04 . . 1 . . . . . . . . 1544 1 
+      177 . 1 1 25 25 THR HG23 H 1 1.04 . . 1 . . . . . . . . 1544 1 
+      178 . 1 1 26 26 ALA H    H 1 7.85 . . 1 . . . . . . . . 1544 1 
+      179 . 1 1 26 26 ALA HA   H 1 4.35 . . 1 . . . . . . . . 1544 1 
+      180 . 1 1 26 26 ALA HB1  H 1 1.22 . . 1 . . . . . . . . 1544 1 
+      181 . 1 1 26 26 ALA HB2  H 1 1.22 . . 1 . . . . . . . . 1544 1 
+      182 . 1 1 26 26 ALA HB3  H 1 1.22 . . 1 . . . . . . . . 1544 1 
+      183 . 1 1 27 27 ILE H    H 1 7.74 . . 1 . . . . . . . . 1544 1 
+      184 . 1 1 27 27 ILE HA   H 1 4.13 . . 1 . . . . . . . . 1544 1 
+      185 . 1 1 27 27 ILE HB   H 1 1.72 . . 1 . . . . . . . . 1544 1 
+      186 . 1 1 27 27 ILE HG12 H 1 1.09 . . 2 . . . . . . . . 1544 1 
+      187 . 1 1 27 27 ILE HG13 H 1 1.44 . . 2 . . . . . . . . 1544 1 
+      188 . 1 1 27 27 ILE HG21 H 1  .84 . . 1 . . . . . . . . 1544 1 
+      189 . 1 1 27 27 ILE HG22 H 1  .84 . . 1 . . . . . . . . 1544 1 
+      190 . 1 1 27 27 ILE HG23 H 1  .84 . . 1 . . . . . . . . 1544 1 
+      191 . 1 1 27 27 ILE HD11 H 1  .88 . . 1 . . . . . . . . 1544 1 
+      192 . 1 1 27 27 ILE HD12 H 1  .88 . . 1 . . . . . . . . 1544 1 
+      193 . 1 1 27 27 ILE HD13 H 1  .88 . . 1 . . . . . . . . 1544 1 
+      194 . 1 1 28 28 GLY H    H 1 8.06 . . 1 . . . . . . . . 1544 1 
+      195 . 1 1 28 28 GLY HA2  H 1 3.83 . . 2 . . . . . . . . 1544 1 
+      196 . 1 1 28 28 GLY HA3  H 1 3.57 . . 2 . . . . . . . . 1544 1 
+      197 . 1 1 29 29 VAL H    H 1 7.69 . . 1 . . . . . . . . 1544 1 
+      198 . 1 1 29 29 VAL HA   H 1 4.15 . . 1 . . . . . . . . 1544 1 
+      199 . 1 1 29 29 VAL HB   H 1 1.97 . . 1 . . . . . . . . 1544 1 
+      200 . 1 1 29 29 VAL HG11 H 1  .88 . . 1 . . . . . . . . 1544 1 
+      201 . 1 1 29 29 VAL HG12 H 1  .88 . . 1 . . . . . . . . 1544 1 
+      202 . 1 1 29 29 VAL HG13 H 1  .88 . . 1 . . . . . . . . 1544 1 
+      203 . 1 1 29 29 VAL HG21 H 1  .88 . . 1 . . . . . . . . 1544 1 
+      204 . 1 1 29 29 VAL HG22 H 1  .88 . . 1 . . . . . . . . 1544 1 
+      205 . 1 1 29 29 VAL HG23 H 1  .88 . . 1 . . . . . . . . 1544 1 
+      206 . 1 1 30 30 GLY H    H 1 8.14 . . 1 . . . . . . . . 1544 1 
+      207 . 1 1 30 30 GLY HA2  H 1 3.71 . . 2 . . . . . . . . 1544 1 
+      208 . 1 1 30 30 GLY HA3  H 1 3.69 . . 2 . . . . . . . . 1544 1 
+      209 . 1 1 31 31 ALA H    H 1 7.9  . . 1 . . . . . . . . 1544 1 
+      210 . 1 1 31 31 ALA HA   H 1 4.53 . . 1 . . . . . . . . 1544 1 
+      211 . 1 1 31 31 ALA HB1  H 1 1.2  . . 1 . . . . . . . . 1544 1 
+      212 . 1 1 31 31 ALA HB2  H 1 1.2  . . 1 . . . . . . . . 1544 1 
+      213 . 1 1 31 31 ALA HB3  H 1 1.2  . . 1 . . . . . . . . 1544 1 
+
+   stop_
+
+save_
+

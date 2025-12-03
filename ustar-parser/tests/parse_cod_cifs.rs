@@ -3,7 +3,7 @@ use std::path::Path;
 
 #[test]
 fn parse_all_cod_cif_files() {
-    let dir = Path::new("tests/test_data/cod_cif_files");
+    let dir = Path::new("tests/test_data/cod_cifs");
     assert!(
         dir.exists() && dir.is_dir(),
         "Directory {:?} does not exist",
