@@ -364,30 +364,24 @@ fn test_comprehensive_example_walker_output() {
 /// ```text
 ///                                             #0
 /// start_loop                                  #1
-/// data tag: atom_identity_node  value: A1
-/// data tag: atom_identity_symbol value: B1
-/// start_loop                                  #2
-/// data tag: atom_bond_node_1 value: 1
-/// data tag: atom_bond_node_2 value: 2
-/// data tag: atom_bond_order value: single
-/// end_loop                                    #1
-/// data tag: atom_identity_node  value: A2
-/// data tag: atom_identity_symbol value: B2
-/// start_loop                                  #2
-/// data tag: atom_bond_node_1 value: 1
-/// data tag: atom_bond_node_2 value: 6
-/// data tag: atom_bond_order value: double
-/// data tag: atom_bond_node_1 value: 30
-/// data tag: atom_bond_node_2 value: 40
-/// data tag: atom_bond_order value: triple
-/// end_loop                                    #1
-/// data tag: atom_identity_node  value: A3
-/// data tag: atom_identity_symbol value: B3
-/// start_loop                                  #2
-/// data tag: atom_bond_node_1 value: 1
-/// data tag: atom_bond_node_2 value: 7
-/// data tag: atom_bond_order value: single
-/// end_loop                                    #1
+/// data tag: atom_identity_node  value: A1     #1
+/// data tag: atom_identity_symbol value: B1    #1
+/// data tag: atom_bond_node_1 value: 1         #2
+/// data tag: atom_bond_node_2 value: 2         #2       
+/// data tag: atom_bond_order value: single     #2
+/// data tag: atom_identity_node  value: A2     #1
+/// data tag: atom_identity_symbol value: B2    #1
+/// data tag: atom_bond_node_1 value: 1         #2
+/// data tag: atom_bond_node_2 value: 6         #2
+/// data tag: atom_bond_order value: double     #2
+/// data tag: atom_bond_node_1 value: 30        #2
+/// data tag: atom_bond_node_2 value: 40        #2
+/// data tag: atom_bond_order value: triple     #2
+/// data tag: atom_identity_node  value: A3     #1
+/// data tag: atom_identity_symbol value: B3    #1
+/// data tag: atom_bond_node_1 value: 1         #2
+/// data tag: atom_bond_node_2 value: 7         #2
+/// data tag: atom_bond_order value: single     #2
 /// end_loop                                    #0
 /// ```
 ///
