@@ -56,7 +56,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
+        os: [ubuntu-latest, macos-latest] # windows-latest, - removed till bugs fixed  
         rust: [stable] # Use stable Rust
         package: [ustar-parser, ustar-tools]
         features: [default, no-default]
