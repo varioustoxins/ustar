@@ -417,6 +417,90 @@ fn test_nested_loop_walker_output() {
     snapshot_utils::assert_snapshot_gz("sas_walker_tests__nested_loop_walker_output", &output);
 }
 
+/// Test empty loop with explicit stop_ keyword
+/// A loop with tags but no data values, terminated by stop_
+/// This is valid syntax: the stop_ indicates the loop has zero rows of data
+#[test]
+fn test_empty_loop_with_stop() {
+    let input = indoc::indoc!(
+        r#"
+        data_test
+            loop_
+                _tag1
+                _tag2
+                _tag3
+            stop_
+        _after_loop value
+    "#
+    );
+
+    let tree = parse_default(input).expect("Failed to parse empty loop test data");
+    let mut handler = ComprehensiveTestHandler { output: Vec::new() };
+    let mut walker = StarWalker::from_input(&mut handler, input);
+
+    walker.walk_star_tree_buffered(&tree);
+
+    let output = handler.output.join("\n");
+    snapshot_utils::assert_snapshot_gz("sas_walker_tests__empty_loop_with_stop", &output);
+}
+
+/// Test empty loop followed by save_ (which terminates the loop)
+/// Note: Without stop_, STAR parsers treat subsequent values as loop data
+/// So we need an explicit terminator like save_ or another data_
+#[test]
+fn test_empty_loop_before_saveframe() {
+    let input = indoc::indoc!(
+        r#"
+        data_test
+            loop_
+                _tag1
+                _tag2
+            stop_
+        save_frame1
+            _inside_frame value
+        save_
+    "#
+    );
+
+    let tree = parse_default(input).expect("Failed to parse empty loop test data");
+    let mut handler = ComprehensiveTestHandler { output: Vec::new() };
+    let mut walker = StarWalker::from_input(&mut handler, input);
+
+    walker.walk_star_tree_buffered(&tree);
+
+    let output = handler.output.join("\n");
+    snapshot_utils::assert_snapshot_gz("sas_walker_tests__empty_loop_before_saveframe", &output);
+}
+
+/// Test nested empty loop - outer loop has values but inner nested loop is empty
+/// The inner loop has no values between the outer values and the stop_
+#[test]
+fn test_nested_empty_loop() {
+    let input = indoc::indoc!(
+        r#"
+        data_test
+            loop_
+                _outer_tag1
+                _outer_tag2
+                loop_
+                    _inner_tag1
+                    _inner_tag2
+                    A B stop_
+                    C D stop_
+            stop_
+        "#
+    );
+
+    let tree = parse_default(input).expect("Failed to parse nested empty loop test data");
+    let mut handler = ComprehensiveTestHandler { output: Vec::new() };
+    let mut walker = StarWalker::from_input(&mut handler, input);
+
+    walker.walk_star_tree_buffered(&tree);
+
+    let output = handler.output.join("\n");
+    snapshot_utils::assert_snapshot_gz("sas_walker_tests__nested_empty_loop", &output);
+}
+
 #[test]
 fn test_early_termination_all_methods() {
     // 1. start_data - should stop immediately (after 1st occurrence)

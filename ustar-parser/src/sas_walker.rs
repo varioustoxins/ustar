@@ -1,6 +1,6 @@
 use crate::line_column_index::{LineColumn, LineColumnIndex};
 use crate::mutable_pair::MutablePair;
-use crate::sas_interface::SASContentHandler;
+use crate::sas_interface::{SASContentHandler, EMPTY_LOOP_DELIMITER};
 
 /// Walks a MutablePair parse tree and calls the BufferedContentHandler methods.
 pub struct StarWalker<'a, T: SASContentHandler> {
@@ -9,7 +9,9 @@ pub struct StarWalker<'a, T: SASContentHandler> {
     pub tag_level: usize,
     pub tag_index: usize,
     pub tag_positions: Vec<Vec<LineColumn>>,
-    pub loop_level: usize, // 0 = not in loop, 1+ = loop nesting level
+    pub loop_level: usize,        // 0 = not in loop, 1+ = loop nesting level
+    pub values_emitted: usize,    // Count of values emitted in current loop
+    pub max_depth_reached: usize, // Deepest tag_level that had values emitted
     pub handler: &'a mut T,
 }
 
@@ -53,6 +55,8 @@ impl<'a, T: SASContentHandler> StarWalker<'a, T> {
             tag_index: 0,
             tag_positions: Vec::new(),
             loop_level: 0,
+            values_emitted: 0,
+            max_depth_reached: 0,
             handler,
         }
     }
@@ -119,6 +123,12 @@ impl<'a, T: SASContentHandler> StarWalker<'a, T> {
                     );
                 }
 
+                if self.loop_level > 0 {
+                    self.values_emitted += 1;
+                    if self.tag_level + 1 > self.max_depth_reached {
+                        self.max_depth_reached = self.tag_level + 1;
+                    }
+                }
                 self.increment_tag_pointers();
             }
             // TODO: would it be better to make a non_quoted_string decompose to un_quoted_string->string for consistency
@@ -135,6 +145,12 @@ impl<'a, T: SASContentHandler> StarWalker<'a, T> {
                     "",
                     self.current_loop_level(),
                 );
+                if self.loop_level > 0 {
+                    self.values_emitted += 1;
+                    if self.tag_level + 1 > self.max_depth_reached {
+                        self.max_depth_reached = self.tag_level + 1;
+                    }
+                }
                 self.increment_tag_pointers();
             }
             "frame_code" => {
@@ -150,6 +166,12 @@ impl<'a, T: SASContentHandler> StarWalker<'a, T> {
                     "",
                     self.current_loop_level(),
                 );
+                if self.loop_level > 0 {
+                    self.values_emitted += 1;
+                    if self.tag_level + 1 > self.max_depth_reached {
+                        self.max_depth_reached = self.tag_level + 1;
+                    }
+                }
                 self.increment_tag_pointers();
             }
             "stop_keyword" => {
@@ -167,12 +189,42 @@ impl<'a, T: SASContentHandler> StarWalker<'a, T> {
 
                 if !should_stop {
                     self.loop_level = 1; // Enter first loop level
+                    self.values_emitted = 0; // Reset value counter
+                    self.max_depth_reached = 0; // Reset max depth tracker
                     for child in &node.children {
                         should_stop = self.walk_star_tree_buffered(child);
                         if should_stop {
                             break;
                         }
                     }
+
+                    // Check for empty loops: emit EMPTY_LOOP for any tag levels that had no values
+                    // This handles both completely empty loops and nested loops that were never filled
+                    if !should_stop && !self.tag_table.is_empty() {
+                        let empty_position = LineColumn { line: 0, column: 0 };
+                        // Emit EMPTY_LOOP for levels beyond max_depth_reached
+                        for level_idx in self.max_depth_reached..self.tag_table.len() {
+                            let level_tags = &self.tag_table[level_idx];
+                            for (tag_idx, tag) in level_tags.iter().enumerate() {
+                                let tag_position = self.tag_positions[level_idx][tag_idx];
+                                should_stop = self.handler.data(
+                                    tag,
+                                    tag_position,
+                                    "",
+                                    empty_position,
+                                    EMPTY_LOOP_DELIMITER,
+                                    level_idx + 1, // loop_level is 1-indexed
+                                );
+                                if should_stop {
+                                    break;
+                                }
+                            }
+                            if should_stop {
+                                break;
+                            }
+                        }
+                    }
+
                     self.loop_level = 0; // Exit loop
 
                     if !should_stop {

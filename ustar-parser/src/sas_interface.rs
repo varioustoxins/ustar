@@ -1,5 +1,10 @@
 use crate::line_column_index::LineColumn;
 
+/// Delimiter used to indicate an empty loop (no data values)
+/// When a loop has tags defined but no data values, each tag is emitted
+/// with this delimiter, an empty value "", and position for the values (-1, -1)
+pub const EMPTY_LOOP_DELIMITER: &str = "EMPTY_LOOP";
+
 /// SAS-style ContentHandler trait for STAR file parsing
 /// Returns true to stop parsing, false to continue (SAS convention)
 pub trait SASContentHandler {
