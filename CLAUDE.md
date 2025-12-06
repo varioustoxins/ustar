@@ -75,7 +75,8 @@ Extensive test suite includes:
   - Crystallography Open Database CIF files (`tests/parse_cod_cifs.rs`)  
   - Protein Data Bank mmCIF files (`tests/parse_pdb_mmcifs.rs`)
 - Test data stored in `tests/test_data/` with samples from real databases
-- when running tests this should be done in release mode, as it is _much_ faster
+- When running tests this should be done in release mode, as it is _much_ faster
+- When running cargo test, do NOT use `| tail` or other output truncation - show full output
 
 ### Grammar Template System
 The `build.rs` script generates three grammar variants from `src/star.pest_template`:
