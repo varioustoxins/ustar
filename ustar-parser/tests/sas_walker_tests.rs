@@ -342,6 +342,87 @@ fn test_comprehensive_example_walker_output() {
     );
 }
 
+/// Test nested loop entry/exit events
+///
+/// # Input Format (STAR nested loop definition)
+///
+/// ```star
+/// loop_                                  # definition & start of data
+///     _atom_identity_node                # definition  
+///     _atom_identity_symbol              # definition
+///     loop_                              # definition
+///         _atom_bond_node_1              # definition
+///         _atom_bond_node_2              # definition
+///         _atom_bond_order               # definition
+/// A1 B1 1 2 single stop_                 # data
+/// A2 B2 1 6 double 30 40 triple stop_    # data
+/// A3 B3 1 7 single stop_                 # end of data
+/// ```
+///
+/// # Expected Output (pseudo-code showing level transitions)
+///
+/// ```text
+///                                             #0
+/// start_loop                                  #1
+/// data tag: atom_identity_node  value: A1
+/// data tag: atom_identity_symbol value: B1
+/// start_loop                                  #2
+/// data tag: atom_bond_node_1 value: 1
+/// data tag: atom_bond_node_2 value: 2
+/// data tag: atom_bond_order value: single
+/// end_loop                                    #1
+/// data tag: atom_identity_node  value: A2
+/// data tag: atom_identity_symbol value: B2
+/// start_loop                                  #2
+/// data tag: atom_bond_node_1 value: 1
+/// data tag: atom_bond_node_2 value: 6
+/// data tag: atom_bond_order value: double
+/// data tag: atom_bond_node_1 value: 30
+/// data tag: atom_bond_node_2 value: 40
+/// data tag: atom_bond_order value: triple
+/// end_loop                                    #1
+/// data tag: atom_identity_node  value: A3
+/// data tag: atom_identity_symbol value: B3
+/// start_loop                                  #2
+/// data tag: atom_bond_node_1 value: 1
+/// data tag: atom_bond_node_2 value: 7
+/// data tag: atom_bond_order value: single
+/// end_loop                                    #1
+/// end_loop                                    #0
+/// ```
+///
+/// Note: `start_loop` is emitted when transitioning to a nested loop level,
+/// and `end_loop` is emitted when `stop_` exits a nested level OR when the
+/// outer loop completes.
+#[test]
+fn test_nested_loop_walker_output() {
+    let input = indoc::indoc!(
+        r#"
+        data_test
+        loop_
+            _atom_identity_node
+            _atom_identity_symbol
+            loop_
+                _atom_bond_node_1
+                _atom_bond_node_2
+                _atom_bond_order
+        A1 B1 1 2 single stop_
+        A2 B2 1 6 double 30 40 triple stop_
+        A3 B3 1 7 single stop_
+        stop_
+    "#
+    );
+
+    let tree = parse_default(input).expect("Failed to parse nested loop test data");
+    let mut handler = ComprehensiveTestHandler { output: Vec::new() };
+    let mut walker = StarWalker::from_input(&mut handler, input);
+
+    walker.walk_star_tree_buffered(&tree);
+
+    let output = handler.output.join("\n");
+    snapshot_utils::assert_snapshot_gz("sas_walker_tests__nested_loop_walker_output", &output);
+}
+
 #[test]
 fn test_early_termination_all_methods() {
     // 1. start_data - should stop immediately (after 1st occurrence)

@@ -14,25 +14,29 @@ pub struct StarWalker<'a, T: SASContentHandler> {
 }
 
 impl<'a, T: SASContentHandler> StarWalker<'a, T> {
-    /// Decrement tag_level if possible, and reset tag_index to zero
-    pub fn decrement_tag_pointers(&mut self) {
-        if self.tag_level > 0 {
+    /// Decrement tag_level if possible, and reset tag_index to zero.
+    /// Returns true if tag_level was actually decremented (for nested loop exit events).
+    pub fn decrement_tag_pointers(&mut self) -> bool {
+        let decremented = self.tag_level > 0;
+        if decremented {
             self.tag_level -= 1;
         }
         self.tag_index = 0;
+        decremented
     }
-    /// Increment tag_index, and if needed, tag_level, according to tag_table structure
-    pub fn increment_tag_pointers(&mut self) {
+    /// Increment tag_index, and if needed, tag_level, according to tag_table structure.
+    /// Returns true if tag_level increased (for nested loop entry events).
+    pub fn increment_tag_pointers(&mut self) -> bool {
         self.tag_index += 1;
         let row_len = self.tag_table[self.tag_level].len();
+        let entered_nested = self.tag_index >= row_len && self.tag_level + 1 < self.tag_table.len();
         if self.tag_index >= row_len {
-            if self.tag_level + 1 < self.tag_table.len() {
+            if entered_nested {
                 self.tag_level += 1;
-                self.tag_index = 0;
-            } else {
-                self.tag_index = 0;
             }
+            self.tag_index = 0;
         }
+        entered_nested
     }
     pub fn from_input(handler: &'a mut T, input: &str) -> Self {
         let line_index = LineColumnIndex::new(input);
@@ -109,7 +113,10 @@ impl<'a, T: SASContentHandler> StarWalker<'a, T> {
                     );
                 }
 
-                self.increment_tag_pointers();
+                let entered_nested = self.increment_tag_pointers();
+                if !should_stop && entered_nested {
+                    should_stop = self.handler.start_loop(self.get_line_number(node.end));
+                }
             }
             // TODO: would it be better to make a non_quoted_string decompose to un_quoted_string->string for consistency
             "non_quoted_string" | "string" => {
@@ -125,7 +132,10 @@ impl<'a, T: SASContentHandler> StarWalker<'a, T> {
                     "",
                     self.loop_level,
                 );
-                self.increment_tag_pointers();
+                let entered_nested = self.increment_tag_pointers();
+                if !should_stop && entered_nested {
+                    should_stop = self.handler.start_loop(self.get_line_number(node.end));
+                }
             }
             "frame_code" => {
                 let tag = self.tag_table[self.tag_level][self.tag_index].as_str();
@@ -140,10 +150,16 @@ impl<'a, T: SASContentHandler> StarWalker<'a, T> {
                     "",
                     self.loop_level,
                 );
-                self.increment_tag_pointers();
+                let entered_nested = self.increment_tag_pointers();
+                if !should_stop && entered_nested {
+                    should_stop = self.handler.start_loop(self.get_line_number(node.end));
+                }
             }
             "stop_keyword" => {
-                self.decrement_tag_pointers();
+                let exited_nested = self.decrement_tag_pointers();
+                if exited_nested {
+                    should_stop = self.handler.end_loop(self.get_line_number(node.start));
+                }
             }
 
             "loop_keyword" => {
