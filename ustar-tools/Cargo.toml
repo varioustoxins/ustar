@@ -44,6 +44,10 @@ path = "src/bin/download-pdbs.rs"
 name = "sas-demo"
 path = "src/bin/sas_demo.rs"
 
+[[bin]]
+name = "ustar-grammar-railroad"
+path = "src/bin/ustar-grammar-railroad.rs"
+
 [dependencies]
 # Core parser
 ustar_parser = { package = "ustar-parser", path = "../ustar-parser", features = ["serde", "extended-errors"] }
@@ -61,6 +65,7 @@ scraper.workspace = true
 regex.workspace = true
 rand.workspace = true
 text_trees.workspace = true
+pest_railroad = "0.1"
 
 [dev-dependencies]
 rstest.workspace = true
