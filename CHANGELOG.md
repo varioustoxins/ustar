@@ -1,3 +1,12 @@
+## 0.1.4
+- replace line numbers with LineColumn positions in SASContentHandler trait
+- add global block reporting to SAS interface  
+- add start_stream and end_stream callbacks to SAS interface
+- improve snapshot testing utilities with external diff support
+- add support for loops with empty data_loop_values
+- fix nested loop handling in SAS walker
+- improve delimiter handling in SAS walker tests
+
 ## 0.1.3
 - added fast line number and column lookup
 - use snapshots for testing
