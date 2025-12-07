@@ -9,6 +9,19 @@ struct DemoHandler {
 }
 
 impl SASContentHandler for DemoHandler {
+    fn start_stream(&mut self, name: Option<&str>) -> bool {
+        match name {
+            Some(n) => println!("<start_stream> {}", n),
+            None => println!("<start_stream>"),
+        }
+        false
+    }
+
+    fn end_stream(&mut self, position: LineColumn) -> bool {
+        println!("<end_stream> [{}:{}]", position.line, position.column);
+        false
+    }
+
     fn start_data(&mut self, line: usize, name: &str) -> bool {
         let indent = "    ".repeat(self.depth);
         println!("{}<start data> [{}] {}", indent, line, name);

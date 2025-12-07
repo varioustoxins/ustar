@@ -1,0 +1,12 @@
+--- sas_walker_tests__sas_test_files_walker_output@bmr15334_3_str.snap (expected)
++++ sas_walker_tests__sas_test_files_walker_output@bmr15334_3_str.snap (actual)
++<start_stream>
+ <start data> [5] 15334
+ <start saveframe> [11] entry_information
+ <data> [t:12:4,v:12:42] _Entry.Sf_category delimiter: none loop_level: 0 value: entry_information
+...
+ 1573  7.940 119.517  7.816  1 U 2.27e+007        0 e 0  151  154  153
+ <end saveframe> [8391] peak_list_2
+ <end data> [8391] 15334
++<end_stream>
+\ No newline at end of file

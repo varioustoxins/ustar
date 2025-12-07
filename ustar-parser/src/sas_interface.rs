@@ -8,6 +8,10 @@ pub const EMPTY_LOOP_DELIMITER: &str = "EMPTY_LOOP";
 /// SAS-style ContentHandler trait for STAR file parsing
 /// Returns true to stop parsing, false to continue (SAS convention)
 pub trait SASContentHandler {
+    // Stream callbacks
+    fn start_stream(&mut self, name: Option<&str>) -> bool;
+    fn end_stream(&mut self, position: LineColumn) -> bool;
+
     // Structure callbacks
     fn start_data(&mut self, line: usize, name: &str) -> bool;
     fn end_data(&mut self, line: usize, name: &str) -> bool;

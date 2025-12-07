@@ -5,6 +5,7 @@ use crate::sas_interface::{SASContentHandler, EMPTY_LOOP_DELIMITER};
 /// Walks a MutablePair parse tree and calls the BufferedContentHandler methods.
 pub struct StarWalker<'a, T: SASContentHandler> {
     line_index: LineColumnIndex, // Fast line/column index (always present)
+    stream_name: Option<String>, // Optional name for the stream (file name, etc.)
     pub tag_table: Vec<Vec<String>>,
     pub tag_level: usize,
     pub tag_index: usize,
@@ -50,6 +51,23 @@ impl<'a, T: SASContentHandler> StarWalker<'a, T> {
         let line_index = LineColumnIndex::new(input);
         StarWalker {
             line_index,
+            stream_name: None,
+            tag_table: Vec::new(),
+            tag_level: 0,
+            tag_index: 0,
+            tag_positions: Vec::new(),
+            loop_level: 0,
+            values_emitted: 0,
+            max_depth_reached: 0,
+            handler,
+        }
+    }
+
+    pub fn from_input_with_name(handler: &'a mut T, input: &str, name: Option<String>) -> Self {
+        let line_index = LineColumnIndex::new(input);
+        StarWalker {
+            line_index,
+            stream_name: name,
             tag_table: Vec::new(),
             tag_level: 0,
             tag_index: 0,
@@ -73,6 +91,16 @@ impl<'a, T: SASContentHandler> StarWalker<'a, T> {
 
     pub fn walk_star_tree_buffered(&mut self, node: &MutablePair) -> bool {
         let mut should_stop = false;
+
+        // Check if this is the root of the tree (star_file rule)
+        if node.rule_name.as_str() == "star_file" {
+            // Call start_stream at the beginning of parsing
+            should_stop = self.handler.start_stream(self.stream_name.as_deref());
+            if should_stop {
+                return true;
+            }
+        }
+
         match node.rule_name.as_str() {
             "data" => {
                 for child in &node.children {
@@ -312,6 +340,13 @@ impl<'a, T: SASContentHandler> StarWalker<'a, T> {
                 }
             }
         }
+
+        // Check if this is the root of the tree (star_file rule) and we're finishing
+        if node.rule_name.as_str() == "star_file" && !should_stop {
+            // Call end_stream at the end of parsing
+            should_stop = self.handler.end_stream(self.get_line_column(node.end));
+        }
+
         should_stop
     }
 }

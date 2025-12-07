@@ -1,0 +1,12 @@
+--- sas_walker_tests__sas_test_files_walker_output@loop2_str.snap (expected)
++++ sas_walker_tests__sas_test_files_walker_output@loop2_str.snap (actual)
++<start_stream>
+ <start data> [6] loop2
+ <start saveframe> [8] entry_information
+ <data> [t:9:4,v:9:42] _Entry.Sf_category delimiter: none loop_level: 0 value: entry_information
+...
+ <end_loop> [20]
+ <end saveframe> [22] entry_information
+ <end data> [22] loop2
++<end_stream>
+\ No newline at end of file

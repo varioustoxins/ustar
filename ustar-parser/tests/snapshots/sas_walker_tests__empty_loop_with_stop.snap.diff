@@ -1,0 +1,12 @@
+--- sas_walker_tests__empty_loop_with_stop.snap (expected)
++++ sas_walker_tests__empty_loop_with_stop.snap (actual)
++<start_stream>
+ <start data> [1] test
+ <start_loop> [2]
+ <data> [t:3:9] _tag1 loop_level: 1 [empty-loop]
+...
+ <end_loop> [6]
+ <data> [t:7:1,v:7:13] _after_loop delimiter: none loop_level: 0 value: value
+ <end data> [7] test
++<end_stream>
+\ No newline at end of file

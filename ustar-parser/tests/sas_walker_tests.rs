@@ -44,6 +44,7 @@ data_test
 
 #[derive(Debug, Clone, Hash, Eq, PartialEq)]
 enum ElementToStopOn {
+    StartStream(usize),
     StartData(usize),
     EndData(usize),
     StartSaveframe(usize),
@@ -56,6 +57,7 @@ enum ElementToStopOn {
 impl ElementToStopOn {
     fn get_count(&self) -> usize {
         match self {
+            ElementToStopOn::StartStream(n) => *n,
             ElementToStopOn::StartData(n) => *n,
             ElementToStopOn::EndData(n) => *n,
             ElementToStopOn::StartSaveframe(n) => *n,
@@ -68,6 +70,7 @@ impl ElementToStopOn {
 
     fn element_type(&self) -> ElementType {
         match self {
+            ElementToStopOn::StartStream(_) => ElementType::StartStream,
             ElementToStopOn::StartData(_) => ElementType::StartData,
             ElementToStopOn::EndData(_) => ElementType::EndData,
             ElementToStopOn::StartSaveframe(_) => ElementType::StartSaveframe,
@@ -81,6 +84,7 @@ impl ElementToStopOn {
 
 #[derive(Debug, Clone, Copy, Hash, Eq, PartialEq)]
 enum ElementType {
+    StartStream,
     StartData,
     EndData,
     StartSaveframe,
@@ -118,6 +122,16 @@ impl ParameterizedHandler {
 }
 
 impl SASContentHandler for ParameterizedHandler {
+    fn start_stream(&mut self, _name: Option<&str>) -> bool {
+        self.events.push("start_stream".to_string());
+        self.increment_and_check(ElementType::StartStream)
+    }
+
+    fn end_stream(&mut self, _position: LineColumn) -> bool {
+        self.events.push("end_stream".to_string());
+        false
+    }
+
     fn start_data(&mut self, _line: usize, name: &str) -> bool {
         self.events.push(format!("start_data({})", name));
         self.increment_and_check(ElementType::StartData)
@@ -187,6 +201,16 @@ struct ComprehensiveTestHandler {
 }
 
 impl SASContentHandler for ComprehensiveTestHandler {
+    fn start_stream(&mut self, _name: Option<&str>) -> bool {
+        self.output.push("<start_stream>".to_string());
+        false
+    }
+
+    fn end_stream(&mut self, _position: LineColumn) -> bool {
+        self.output.push("<end_stream>".to_string());
+        false
+    }
+
     fn start_data(&mut self, line: usize, name: &str) -> bool {
         self.output
             .push(format!("<start data> [{}] {}", line, name));
@@ -529,11 +553,18 @@ fn test_nested_empty_loop() {
 
 #[test]
 fn test_early_termination_all_methods() {
+    // 0. start_stream - should stop immediately (after 1st occurrence)
+    test_early_termination(
+        ElementToStopOn::StartStream(1),
+        BASIC_INPUT,
+        &["start_stream"],
+    );
+
     // 1. start_data - should stop immediately (after 1st occurrence)
     test_early_termination(
         ElementToStopOn::StartData(1),
         BASIC_INPUT,
-        &["start_data(test)"],
+        &["start_stream", "start_data(test)"],
     );
 
     // 2. end_data - should process all data then stop (after 1st end_data)
@@ -541,6 +572,7 @@ fn test_early_termination_all_methods() {
         ElementToStopOn::EndData(1),
         BASIC_INPUT,
         &[
+            "start_stream",
             "start_data(test)",
             "data(_item1, value1)",
             "data(_item2, value2)",
@@ -552,7 +584,11 @@ fn test_early_termination_all_methods() {
     test_early_termination(
         ElementToStopOn::StartSaveframe(1),
         SAVEFRAME_INPUT,
-        &["start_data(test)", "start_saveframe(frame1)"],
+        &[
+            "start_stream",
+            "start_data(test)",
+            "start_saveframe(frame1)",
+        ],
     );
 
     // 4. end_saveframe - should process saveframe then stop (after 1st end_saveframe)
@@ -560,6 +596,7 @@ fn test_early_termination_all_methods() {
         ElementToStopOn::EndSaveframe(1),
         SAVEFRAME_INPUT,
         &[
+            "start_stream",
             "start_data(test)",
             "start_saveframe(frame1)",
             "data(_item1, value1)",
@@ -571,7 +608,7 @@ fn test_early_termination_all_methods() {
     test_early_termination(
         ElementToStopOn::StartLoop(1),
         LOOP_INPUT,
-        &["start_data(test)", "start_loop"],
+        &["start_stream", "start_data(test)", "start_loop"],
     );
 
     // 6. end_loop - should process loop data then stop (after 1st end_loop)
@@ -579,6 +616,7 @@ fn test_early_termination_all_methods() {
         ElementToStopOn::EndLoop(1),
         LOOP_INPUT,
         &[
+            "start_stream",
             "start_data(test)",
             "start_loop",
             "data(_tag1, value1)",
@@ -592,6 +630,7 @@ fn test_early_termination_all_methods() {
         ElementToStopOn::Data(2),
         BASIC_INPUT,
         &[
+            "start_stream",
             "start_data(test)",
             "data(_item1, value1)",
             "data(_item2, value2)",
@@ -602,7 +641,7 @@ fn test_early_termination_all_methods() {
     test_early_termination(
         ElementToStopOn::Data(1),
         BASIC_INPUT,
-        &["start_data(test)", "data(_item1, value1)"],
+        &["start_stream", "start_data(test)", "data(_item1, value1)"],
     );
 }
 

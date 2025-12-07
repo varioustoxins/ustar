@@ -37,9 +37,9 @@ The cen tral component of the SAS parser is the SASContentHandler trait which is
 
 ```rust
 pub trait SASContentHandler {
-    // Structure callbacks - return true to stop parsing, false to continue
-    fn start_stream(&mut self, name: &str)-> bool;
-    fn end_stream(&mut self, position: LineColumn)-> bool;
+    // Stream callbacks - return true to stop parsing, false to continue
+    fn start_stream(&mut self, name: Option<&str>) -> bool;
+    fn end_stream(&mut self, position: LineColumn) -> bool;
     fn start_global(&mut self, position: LineColumn) -> bool;
     fn end_global(&mut self, position: LineColumn) -> bool;
     fn start_data(&mut self, position: LineColumn, name: &str) -> bool;
@@ -57,13 +57,15 @@ pub trait SASContentHandler {
         tag_position: LineColumn,
         value: &str,                      // The value
         value_position: LineColumn,
-        delimiter: &str,                  // "" [none], $ [reference],  ', ", ;, or "EMPTY_LOOP"
+        delimiter: &str,                  // "" [none],  ', ", ;, or "EMPTY_LOOP"
         loop_level: usize,                // 0 = not in loop, 1 in a loop >1 in a nested loop
     ) -> bool;
 }
 ```
 
 This is based on the type 1 content handler `ContentHandler` from the Python implimentation with a small number of changes.
+
+it should be noted that references aen't directly annotated  and should be identified by the user of the SASContentHandler
 
 ### StarWalker
 

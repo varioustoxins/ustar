@@ -1,0 +1,12 @@
+--- sas_walker_tests__sas_test_files_walker_output@bmr25679_3_str.snap (expected)
++++ sas_walker_tests__sas_test_files_walker_output@bmr25679_3_str.snap (actual)
++<start_stream>
+ <start data> [5] 25679
+ <start saveframe> [13] entry_information
+ <data> [t:14:4,v:14:42] _Entry.Sf_category delimiter: none loop_level: 0 value: entry_information
+...
+ <end_loop> [1172]
+ <end saveframe> [1173] assigned_chem_shift_list_1
+ <end data> [1173] 25679
++<end_stream>
+\ No newline at end of file

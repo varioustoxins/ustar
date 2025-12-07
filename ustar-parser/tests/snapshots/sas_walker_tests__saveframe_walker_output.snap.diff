@@ -1,0 +1,10 @@
+--- sas_walker_tests__saveframe_walker_output.snap (expected)
++++ sas_walker_tests__saveframe_walker_output.snap (actual)
++<start_stream>
+ <start data> [1] test
+ <start saveframe> [2] frame1
+ <data> [t:3:1,v:3:6] _tag delimiter: none loop_level: 0 value: value
+ <end saveframe> [4] frame1
+ <end data> [4] test
++<end_stream>
+\ No newline at end of file

@@ -1,0 +1,12 @@
+--- sas_walker_tests__sas_test_files_walker_output@mmcif_pdbx_v5_next_dic.snap (expected)
++++ sas_walker_tests__sas_test_files_walker_output@mmcif_pdbx_v5_next_dic.snap (actual)
++<start_stream>
+ <start data> [69] mmcif_pdbx.dic
+ <data> [t:71:5,v:71:44] _datablock.id delimiter: none loop_level: 0 value: mmcif_pdbx.dic
+ <data> [t:72:5,v:73:2] _datablock.description delimiter: ; loop_level: 0 [multi-line] value: 
+...
+ <data> [t:148783:1,v:150295:175] _pdbx_item_linked_group_list.parent_category_id delimiter: none loop_level: 1 value: entity
+ <end_loop> [150295]
+ <end data> [150295] mmcif_pdbx.dic
++<end_stream>
+\ No newline at end of file
