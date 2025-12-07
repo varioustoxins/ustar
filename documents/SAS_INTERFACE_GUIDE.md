@@ -110,9 +110,9 @@ The `loop_level` parameter indicates nesting depth:
 **STAR Input:**
 ```star
 data_example
-_simple_tag    value1
-_quoted_tag    'value with spaces'
-_multiline
+    _simple_tag    value1
+    _quoted_tag    'value with spaces'
+    _multiline
 ;
 Line 1
 Line 2
@@ -121,11 +121,11 @@ Line 2
 
 **Handler Callbacks:**
 ```
-start_data(line: 1, name: "example")
+start_data(position: 1:1, name: "example")
   data(tag: "_simple_tag", value: "value1", delimiter: "", loop_level: 0)
   data(tag: "_quoted_tag", value: "value with spaces", delimiter: "'", loop_level: 0)
-  data(tag: "_multiline", value: "Line 1\nLine 2\n", delimiter: "\n", loop_level: 0)
-end_data(line: 8, name: "example")
+  data(tag: "_multiline", value: "Line 1\nLine 2\n", delimiter: ";", loop_level: 0)
+end_data(position: 8:1, name: "example")
 ```
 
 ### Example 2: Simple Loop
@@ -144,16 +144,16 @@ stop_
 
 **Handler Callbacks:**
 ```
-start_data(line: 1, name: "atoms")
-  start_loop(line: 2)
+start_data(position: 1:1, name: "atoms")
+  start_loop(position: 2:1)
     data(tag: "_atom_label", value: "C1", delimiter: "", loop_level: 1)
     data(tag: "_atom_symbol", value: "C", delimiter: "", loop_level: 1)
     data(tag: "_atom_x", value: "1.234", delimiter: "", loop_level: 1)
     data(tag: "_atom_label", value: "N1", delimiter: "", loop_level: 1)
     data(tag: "_atom_symbol", value: "N", delimiter: "", loop_level: 1)
     data(tag: "_atom_x", value: "2.345", delimiter: "", loop_level: 1)
-  end_loop(line: 8)
-end_data(line: 8, name: "atoms")
+  end_loop(position: 8:1)
+end_data(position: 8:1, name: "atoms")
 ```
 
 ### Example 3: Nested Loop
@@ -183,8 +183,8 @@ stop_
 
 **Handler Callbacks:**
 ```
-start_data(line: 1, name: "bonds")
-  start_loop(line: 2)
+start_data(position: 1:1, name: "bonds")
+  start_loop(position: 2:1)
     # First outer row
     data(tag: "_mol_id", value: "MOL1", delimiter: "", loop_level: 1)
     data(tag: "_mol_name", value: "Molecule One", delimiter: "'", loop_level: 1)
@@ -202,8 +202,8 @@ start_data(line: 1, name: "bonds")
     data(tag: "_bond_atom1", value: "N1", delimiter: "", loop_level: 2)
     data(tag: "_bond_atom2", value: "N2", delimiter: "", loop_level: 2)
     data(tag: "_bond_order", value: "single", delimiter: "", loop_level: 2)
-  end_loop(line: 18)
-end_data(line: 18, name: "bonds")
+  end_loop(position: 18:1)
+end_data(position: 18:1, name: "bonds")
 ```
 
 ### Example 4: Empty Loop
@@ -221,12 +221,12 @@ stop_
 
 **Handler Callbacks:**
 ```
-start_data(line: 1, name: "placeholder")
-  start_loop(line: 2)
+start_data(position: 1:1, name: "placeholder")
+  start_loop(position: 2:1)
     data(tag: "_planned_tag1", value: "", delimiter: "EMPTY_LOOP", loop_level: 1)
     data(tag: "_planned_tag2", value: "", delimiter: "EMPTY_LOOP", loop_level: 1)
-  end_loop(line: 5)
-end_data(line: 5, name: "placeholder")
+  end_loop(position: 5:1)
+end_data(position: 5:1, name: "placeholder")
 ```
 
 The `EMPTY_LOOP` delimiter signals that the value is empty because the loop itself
@@ -251,14 +251,14 @@ stop_
 
 **Handler Callbacks:**
 ```
-start_data(line: 1, name: "partial")
-  start_loop(line: 2)
+start_data(position: 1:1, name: "partial")
+  start_loop(position: 2:1)
     data(tag: "_outer_tag", value: "outer_value1", delimiter: "", loop_level: 1)
     data(tag: "_outer_tag", value: "outer_value2", delimiter: "", loop_level: 1)
     # Inner loop was never filled - emit EMPTY_LOOP for its tags
     data(tag: "_inner_tag", value: "", delimiter: "EMPTY_LOOP", loop_level: 2)
-  end_loop(line: 9)
-end_data(line: 9, name: "partial")
+  end_loop(position: 9:1)
+end_data(position: 9:1, name: "partial")
 ```
 
 ### Example 6: Save Frames
@@ -281,16 +281,16 @@ save_
 
 **Handler Callbacks:**
 ```
-start_data(line: 1, name: "experiment")
-  start_saveframe(line: 2, name: "sample_1")
+start_data(position: 1:1, name: "experiment")
+  start_saveframe(position: 2:1, name: "sample_1")
     data(tag: "_sample_name", value: "Test Sample", delimiter: "'", loop_level: 0)
     data(tag: "_sample_ph", value: "7.4", delimiter: "", loop_level: 0)
-  end_saveframe(line: 5, name: "sample_1")
-  start_saveframe(line: 7, name: "sample_2")
+  end_saveframe(position: 5:1, name: "sample_1")
+  start_saveframe(position: 7:1, name: "sample_2")
     data(tag: "_sample_name", value: "Control", delimiter: "'", loop_level: 0)
     data(tag: "_sample_ph", value: "7.0", delimiter: "", loop_level: 0)
-  end_saveframe(line: 10, name: "sample_2")
-end_data(line: 10, name: "experiment")
+  end_saveframe(position: 10:1, name: "sample_2")
+end_data(position: 10:1, name: "experiment")
 ```
 
 ## Implementing a Handler
@@ -306,13 +306,15 @@ struct DataCollector {
 }
 
 impl SASContentHandler for DataCollector {
-    fn start_data(&mut self, _line: usize, _name: &str) -> bool { false }
-    fn end_data(&mut self, _line: usize, _name: &str) -> bool { false }
-    fn start_saveframe(&mut self, _line: usize, _name: &str) -> bool { false }
-    fn end_saveframe(&mut self, _line: usize, _name: &str) -> bool { false }
-    fn start_loop(&mut self, _line: usize) -> bool { false }
-    fn end_loop(&mut self, _line: usize) -> bool { false }
-    fn comment(&mut self, _line: usize, _text: &str) -> bool { false }
+    fn start_stream(&mut self, _name: Option<&str>) -> bool { false }
+    fn end_stream(&mut self, _position: LineColumn) -> bool { false }
+    fn start_data(&mut self, _position: LineColumn, _name: &str) -> bool { false }
+    fn end_data(&mut self, _position: LineColumn, _name: &str) -> bool { false }
+    fn start_saveframe(&mut self, _position: LineColumn, _name: &str) -> bool { false }
+    fn end_saveframe(&mut self, _position: LineColumn, _name: &str) -> bool { false }
+    fn start_loop(&mut self, _position: LineColumn) -> bool { false }
+    fn end_loop(&mut self, _position: LineColumn) -> bool { false }
+    fn comment(&mut self, _position: LineColumn, text: &str) -> bool { false }
 
     fn data(
         &mut self,

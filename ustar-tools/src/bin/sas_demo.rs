@@ -22,51 +22,51 @@ impl SASContentHandler for DemoHandler {
         false
     }
 
-    fn start_data(&mut self, line: usize, name: &str) -> bool {
+    fn start_data(&mut self, position: LineColumn, name: &str) -> bool {
         let indent = "    ".repeat(self.depth);
-        println!("{}<start data> [{}] {}", indent, line, name);
+        println!("{}<start data> [{}] {}", indent, position.line, name);
         self.depth += 1;
         false
     }
-    fn end_data(&mut self, line: usize, name: &str) -> bool {
+    fn end_data(&mut self, position: LineColumn, name: &str) -> bool {
         if self.depth > 0 {
             self.depth -= 1;
         }
         let indent = "    ".repeat(self.depth);
-        println!("{}<end data> [{}] {}", indent, line, name);
+        println!("{}<end data> [{}] {}", indent, position.line, name);
         false
     }
-    fn start_saveframe(&mut self, line: usize, name: &str) -> bool {
+    fn start_saveframe(&mut self, position: LineColumn, name: &str) -> bool {
         let indent = "    ".repeat(self.depth);
-        println!("{}<start saveframe> [{}] {}", indent, line, name);
+        println!("{}<start saveframe> [{}] {}", indent, position.line, name);
         self.depth += 1;
         false
     }
-    fn end_saveframe(&mut self, line: usize, name: &str) -> bool {
+    fn end_saveframe(&mut self, position: LineColumn, name: &str) -> bool {
         if self.depth > 0 {
             self.depth -= 1;
         }
         let indent = "    ".repeat(self.depth);
-        println!("{}<end saveframe> [{}] {}", indent, line, name);
+        println!("{}<end saveframe> [{}] {}", indent, position.line, name);
         false
     }
-    fn start_loop(&mut self, line: usize) -> bool {
+    fn start_loop(&mut self, position: LineColumn) -> bool {
         let indent = "    ".repeat(self.depth);
-        println!("{}<start_loop> [{}]", indent, line);
+        println!("{}<start_loop> [{}]", indent, position.line);
         self.depth += 1;
         false
     }
-    fn end_loop(&mut self, line: usize) -> bool {
+    fn end_loop(&mut self, position: LineColumn) -> bool {
         if self.depth > 0 {
             self.depth -= 1;
         }
         let indent = "    ".repeat(self.depth);
-        println!("{}<end_loop> [{}]", indent, line);
+        println!("{}<end_loop> [{}]", indent, position.line);
         false
     }
-    fn comment(&mut self, line: usize, text: &str) -> bool {
+    fn comment(&mut self, position: LineColumn, text: &str) -> bool {
         let indent = "    ".repeat(self.depth);
-        println!("{}# [{}] {}", indent, line, text);
+        println!("{}# [{}] {}", indent, position.line, text);
         false
     }
     fn data(

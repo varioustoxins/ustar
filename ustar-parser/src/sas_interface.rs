@@ -13,13 +13,13 @@ pub trait SASContentHandler {
     fn end_stream(&mut self, position: LineColumn) -> bool;
 
     // Structure callbacks
-    fn start_data(&mut self, line: usize, name: &str) -> bool;
-    fn end_data(&mut self, line: usize, name: &str) -> bool;
-    fn start_saveframe(&mut self, line: usize, name: &str) -> bool;
-    fn end_saveframe(&mut self, line: usize, name: &str) -> bool;
-    fn start_loop(&mut self, line: usize) -> bool;
-    fn end_loop(&mut self, line: usize) -> bool;
-    fn comment(&mut self, line: usize, ext: &str) -> bool;
+    fn start_data(&mut self, position: LineColumn, name: &str) -> bool;
+    fn end_data(&mut self, position: LineColumn, name: &str) -> bool;
+    fn start_saveframe(&mut self, position: LineColumn, name: &str) -> bool;
+    fn end_saveframe(&mut self, position: LineColumn, name: &str) -> bool;
+    fn start_loop(&mut self, position: LineColumn) -> bool;
+    fn end_loop(&mut self, position: LineColumn) -> bool;
+    fn comment(&mut self, position: LineColumn, text: &str) -> bool;
 
     // Data item callback (buffered)
     fn data(

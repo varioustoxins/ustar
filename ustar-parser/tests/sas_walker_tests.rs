@@ -132,37 +132,37 @@ impl SASContentHandler for ParameterizedHandler {
         false
     }
 
-    fn start_data(&mut self, _line: usize, name: &str) -> bool {
+    fn start_data(&mut self, _position: LineColumn, name: &str) -> bool {
         self.events.push(format!("start_data({})", name));
         self.increment_and_check(ElementType::StartData)
     }
 
-    fn end_data(&mut self, _line: usize, name: &str) -> bool {
+    fn end_data(&mut self, _position: LineColumn, name: &str) -> bool {
         self.events.push(format!("end_data({})", name));
         self.increment_and_check(ElementType::EndData)
     }
 
-    fn start_saveframe(&mut self, _line: usize, name: &str) -> bool {
+    fn start_saveframe(&mut self, _position: LineColumn, name: &str) -> bool {
         self.events.push(format!("start_saveframe({})", name));
         self.increment_and_check(ElementType::StartSaveframe)
     }
 
-    fn end_saveframe(&mut self, _line: usize, name: &str) -> bool {
+    fn end_saveframe(&mut self, _position: LineColumn, name: &str) -> bool {
         self.events.push(format!("end_saveframe({})", name));
         self.increment_and_check(ElementType::EndSaveframe)
     }
 
-    fn start_loop(&mut self, _line: usize) -> bool {
+    fn start_loop(&mut self, _position: LineColumn) -> bool {
         self.events.push("start_loop".to_string());
         self.increment_and_check(ElementType::StartLoop)
     }
 
-    fn end_loop(&mut self, _line: usize) -> bool {
+    fn end_loop(&mut self, _position: LineColumn) -> bool {
         self.events.push("end_loop".to_string());
         self.increment_and_check(ElementType::EndLoop)
     }
 
-    fn comment(&mut self, _line: usize, text: &str) -> bool {
+    fn comment(&mut self, _position: LineColumn, text: &str) -> bool {
         self.events.push(format!("comment({})", text));
         false
     }
@@ -211,41 +211,43 @@ impl SASContentHandler for ComprehensiveTestHandler {
         false
     }
 
-    fn start_data(&mut self, line: usize, name: &str) -> bool {
+    fn start_data(&mut self, position: LineColumn, name: &str) -> bool {
         self.output
-            .push(format!("<start data> [{}] {}", line, name));
+            .push(format!("<start data> [{}] {}", position.line, name));
         false
     }
 
-    fn end_data(&mut self, line: usize, name: &str) -> bool {
-        self.output.push(format!("<end data> [{}] {}", line, name));
-        false
-    }
-
-    fn start_saveframe(&mut self, line: usize, name: &str) -> bool {
+    fn end_data(&mut self, position: LineColumn, name: &str) -> bool {
         self.output
-            .push(format!("<start saveframe> [{}] {}", line, name));
+            .push(format!("<end data> [{}] {}", position.line, name));
         false
     }
 
-    fn end_saveframe(&mut self, line: usize, name: &str) -> bool {
+    fn start_saveframe(&mut self, position: LineColumn, name: &str) -> bool {
         self.output
-            .push(format!("<end saveframe> [{}] {}", line, name));
+            .push(format!("<start saveframe> [{}] {}", position.line, name));
         false
     }
 
-    fn start_loop(&mut self, line: usize) -> bool {
-        self.output.push(format!("<start_loop> [{}]", line));
+    fn end_saveframe(&mut self, position: LineColumn, name: &str) -> bool {
+        self.output
+            .push(format!("<end saveframe> [{}] {}", position.line, name));
         false
     }
 
-    fn end_loop(&mut self, line: usize) -> bool {
-        self.output.push(format!("<end_loop> [{}]", line));
+    fn start_loop(&mut self, position: LineColumn) -> bool {
+        self.output
+            .push(format!("<start_loop> [{}]", position.line));
         false
     }
 
-    fn comment(&mut self, line: usize, text: &str) -> bool {
-        self.output.push(format!("# [{}] {}", line, text));
+    fn end_loop(&mut self, position: LineColumn) -> bool {
+        self.output.push(format!("<end_loop> [{}]", position.line));
+        false
+    }
+
+    fn comment(&mut self, position: LineColumn, text: &str) -> bool {
+        self.output.push(format!("# [{}] {}", position.line, text));
         false
     }
 
