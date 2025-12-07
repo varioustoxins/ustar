@@ -107,7 +107,12 @@ impl<'a, T: SASContentHandler> StarWalker<'a, T> {
                         self.current_loop_level(),
                     );
                 } else {
-                    let delimiter = &node.content[0..1];
+                    // For semicolon strings, content starts with "\n;" so we need the semicolon
+                    let delimiter = if node.rule_name == "semi_colon_string" {
+                        ";"
+                    } else {
+                        &node.content[0..1]
+                    };
                     let value = if delimiter == ";" {
                         &node.content[2..node.content.len() - 2]
                     } else {

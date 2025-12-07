@@ -3,7 +3,7 @@ use std::fs;
 use std::path::Path;
 use ustar::line_column_index::LineColumn;
 use ustar::parse_default;
-use ustar::sas_interface::SASContentHandler;
+use ustar::sas_interface::{SASContentHandler, EMPTY_LOOP_DELIMITER};
 use ustar::sas_walker::StarWalker;
 
 mod snapshot_utils;
@@ -235,25 +235,51 @@ impl SASContentHandler for ComprehensiveTestHandler {
         loop_level: usize,
     ) -> bool {
         match delimiter {
-            "\n" => {
+            EMPTY_LOOP_DELIMITER => {
+                // Empty loop - no value position, special format
                 self.output.push(format!(
-                    "<data> [t:{}:{},v:{}:{}] {} delimiter: {:?} loop_level: {} value:",
+                    "<data> [t:{}:{}] {} loop_level: {} [empty-loop]",
+                    tag_position.line, tag_position.column, tag, loop_level
+                ));
+            }
+            ";" => {
+                // Semicolon-bounded string - multi-line
+                self.output.push(format!(
+                    "<data> [t:{}:{},v:{}:{}] {} delimiter: ; loop_level: {} [multi-line] value: {}",
+                    tag_position.line,
+                    tag_position.column,
+                    value_position.line,
+                    value_position.column,
+                    tag,
+                    loop_level,
+                    value
+                ));
+            }
+            "" => {
+                // No delimiter (non-quoted string, frame code)
+                self.output.push(format!(
+                    "<data> [t:{}:{},v:{}:{}] {} delimiter: none loop_level: {} value: {}",
+                    tag_position.line,
+                    tag_position.column,
+                    value_position.line,
+                    value_position.column,
+                    tag,
+                    loop_level,
+                    value
+                ));
+            }
+            _ => {
+                // Quote delimiters: "'", "\""
+                self.output.push(format!(
+                    "<data> [t:{}:{},v:{}:{}] {} delimiter: {} loop_level: {} value: {}",
                     tag_position.line,
                     tag_position.column,
                     value_position.line,
                     value_position.column,
                     tag,
                     delimiter,
-                    loop_level
-                ));
-                for line in value.lines() {
-                    self.output.push(format!("       {}", line));
-                }
-            }
-            _ => {
-                self.output.push(format!(
-                    "<data> [t:{}:{},v:{}:{}] {} delimiter: {} loop_level: {} value [multiline]: {}",
-                    tag_position.line, tag_position.column, value_position.line, value_position.column, tag, delimiter, loop_level, value
+                    loop_level,
+                    value
                 ));
             }
         }
@@ -585,7 +611,9 @@ fn test_early_termination_all_methods() {
 // ============================================================================
 
 /// Generate a snapshot test for each file in the sas_test_files directory
-/// that can be successfully parsed
+/// that can be successfully parsed.
+/// Uses check_snapshot_gz to collect all failures before panicking,
+/// so all .snap.new files are generated in a single test run.
 #[test]
 fn test_sas_test_files_walker_output() {
     let dir = Path::new("tests/test_data/sas_test_files");
@@ -594,6 +622,8 @@ fn test_sas_test_files_walker_output() {
         "Directory {:?} does not exist",
         dir
     );
+
+    let mut failures: Vec<snapshot_utils::SnapshotMismatch> = Vec::new();
 
     for entry in fs::read_dir(dir).expect("read_dir failed") {
         let entry = entry.expect("entry failed");
@@ -621,13 +651,25 @@ fn test_sas_test_files_walker_output() {
 
                 let output = handler.output.join("\n");
 
-                // Use our compressed snapshot function with dynamic naming
+                // Use check_snapshot_gz to collect failures without panicking
                 let snapshot_name = format!(
                     "sas_walker_tests__sas_test_files_walker_output@{}",
                     filename.replace('.', "_")
                 );
-                snapshot_utils::assert_snapshot_gz(&snapshot_name, &output);
+                if let Err(mismatch) = snapshot_utils::check_snapshot_gz(&snapshot_name, &output) {
+                    failures.push(mismatch);
+                }
             }
         }
+    }
+
+    // After processing all files, panic if there were any failures
+    if !failures.is_empty() {
+        let failure_summary: Vec<String> = failures.iter().map(|f| f.to_string()).collect();
+        panic!(
+            "{} snapshot(s) failed:\n\n{}\n\nRun ./scripts/insta-accept.sh to accept all new snapshots.",
+            failures.len(),
+            failure_summary.join("\n\n")
+        );
     }
 }
