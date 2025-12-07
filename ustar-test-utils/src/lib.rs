@@ -5,4 +5,4 @@
 
 mod snapshot_utils;
 
-pub use snapshot_utils::{assert_snapshot_gz, read_snapshot};
+pub use snapshot_utils::{assert_snapshot_gz, check_snapshot_gz, read_snapshot, SnapshotMismatch};

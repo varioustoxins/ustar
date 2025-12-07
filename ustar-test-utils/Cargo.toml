@@ -14,3 +14,4 @@ publish = false
 [dependencies]
 flate2.workspace = true
 insta.workspace = true
+similar = "2.6"
