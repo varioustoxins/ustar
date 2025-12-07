@@ -100,5 +100,12 @@ The `build.rs` script generates three grammar variants from `src/star.pest_templ
 - All parsers share identical rule structures but differ in character class definitions
 - The project includes extensive real-world test data for validation
 
-## Version control
-- _ALL_ commits to version control will be made by the user not claude...
+## Version Control and Git
+- **CRITICAL: ALL commits to version control will be made by the user, NOT Claude**
+- **NEVER run `git commit` unless explicitly asked to commit**
+- When user asks for "commit message" or "commit msg" - provide the message text only
+- Only run `git commit` when user explicitly says "commit this", "make the commit", or "please commit"
+- The distinction is crucial:
+  - "give me a commit message" = provide text only
+  - "commit this" or "make the commit" = actually run git commit
+- Always ask for clarification if the intent is ambiguous
