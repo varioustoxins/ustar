@@ -57,10 +57,11 @@ impl std::fmt::Display for SnapshotMismatch {
 /// Use this in loops where you want to collect all failures before panicking.
 /// For single-shot tests, use `assert_snapshot_gz` instead.
 ///
-/// Looks for snapshots in `tests/snapshots/` relative to the current directory.
+/// Looks for snapshots in the calling package's `tests/snapshots/` directory.
 pub fn check_snapshot_gz(snapshot_name: &str, value: &str) -> Result<(), SnapshotMismatch> {
     let filename = format!("{}.snap", snapshot_name);
-    let snapshot_path = std::path::Path::new("tests/snapshots").join(&filename);
+    let snapshot_dir = get_snapshot_dir();
+    let snapshot_path = snapshot_dir.join(&filename);
 
     match read_snapshot(&snapshot_path) {
         Ok(expected) => {
@@ -123,9 +124,9 @@ pub fn check_snapshot_gz(snapshot_name: &str, value: &str) -> Result<(), Snapsho
         }
         Err(_) => {
             // No existing snapshot found - create new one using insta
-            let target_dir = std::path::Path::new("tests/snapshots");
+            let target_dir = get_snapshot_dir();
             let mut settings = insta::Settings::clone_current();
-            settings.set_snapshot_path(target_dir);
+            settings.set_snapshot_path(&target_dir);
             settings.bind(|| {
                 insta::assert_snapshot!(snapshot_name, value);
             });
@@ -203,4 +204,31 @@ fn create_diff(expected: &str, actual: &str, snapshot_name: &str) -> String {
     }
 
     output
+}
+
+/// Get the snapshot directory for the current package.
+/// Uses CARGO_MANIFEST_DIR which Cargo sets to the package being tested.
+///
+/// # Panics
+/// Panics with a helpful message if CARGO_MANIFEST_DIR is not set, which
+/// indicates the code is being run outside of Cargo (e.g., direct binary execution).
+fn get_snapshot_dir() -> std::path::PathBuf {
+    let manifest_dir = std::env::var("CARGO_MANIFEST_DIR").unwrap_or_else(|_| {
+        panic!(
+            "CARGO_MANIFEST_DIR environment variable not found!\n\
+            \n\
+            This usually means you're running tests outside of Cargo.\n\
+            \n\
+            Solutions:\n\
+            - Run tests with: cargo test\n\
+            - If running from IDE, ensure it uses Cargo to run tests\n\
+            - If running binary directly, set CARGO_MANIFEST_DIR manually\n\
+            \n\
+            CARGO_MANIFEST_DIR should point to the directory containing Cargo.toml"
+        );
+    });
+
+    std::path::Path::new(&manifest_dir)
+        .join("tests")
+        .join("snapshots")
 }
