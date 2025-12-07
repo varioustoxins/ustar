@@ -17,11 +17,11 @@ cargo build --all-targets      # Build all targets including tests and benchmark
 
 ### Testing
 ```bash
-cargo test                     # Run all tests
-cargo test parser_tests        # Run specific test module
-cargo test --test parse_bmrb_stars    # Run integration test for BMRB files
-cargo test --test parse_cod_cifs      # Run integration test for COD CIF files
-cargo test --test parse_pdb_mmcifs    # Run integration test for PDB mmCIF files
+cargo test --no-fail-fast      # Run all tests (always use --no-fail-fast)
+cargo test --no-fail-fast parser_tests        # Run specific test module
+cargo test --no-fail-fast --test parse_bmrb_stars    # Run integration test for BMRB files
+cargo test --no-fail-fast --test parse_cod_cifs      # Run integration test for COD CIF files
+cargo test --no-fail-fast --test parse_pdb_mmcifs    # Run integration test for PDB mmCIF files
 ```
 
 ### Binaries
@@ -77,6 +77,14 @@ Extensive test suite includes:
 - Test data stored in `tests/test_data/` with samples from real databases
 - When running tests this should be done in release mode, as it is _much_ faster
 - When running cargo test, do NOT use `| tail` or other output truncation - show full output
+- Always use `--no-fail-fast` with cargo test to see all failures, not just the first one
+
+### Snapshot Testing
+```bash
+./scripts/insta-accept.sh --keep-diffs    # Accept snapshots, keep .diff files for review (DEFAULT)
+./scripts/insta-accept.sh                  # Accept snapshots and remove .diff files
+```
+- When running insta-accept.sh, use `--keep-diffs` by default to preserve diff files for review
 
 ### Grammar Template System
 The `build.rs` script generates three grammar variants from `src/star.pest_template`:
