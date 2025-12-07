@@ -277,6 +277,22 @@ impl<'a, T: SASContentHandler> StarWalker<'a, T> {
                     self.tag_positions.push(vec![tag_position]);
                 }
             }
+            "global_block" => {
+                should_stop = self.handler.start_global(self.get_line_column(node.start));
+
+                if !should_stop {
+                    for child in &node.children[1..] {
+                        should_stop = self.walk_star_tree_buffered(child);
+                        if should_stop {
+                            break;
+                        }
+                    }
+                }
+
+                if !should_stop {
+                    should_stop = self.handler.end_global(self.get_line_column(node.end));
+                }
+            }
             "data_block" => {
                 let data_heading = &node.children[0];
                 let data_name = &data_heading.content[5..];

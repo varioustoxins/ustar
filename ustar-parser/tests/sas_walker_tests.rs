@@ -42,6 +42,53 @@ data_test
     _after value
 ";
 
+const GLOBAL_INPUT: &str = "
+global_
+    _global_setting 'test_value'
+    _global_version 1.0
+
+data_test
+    _local_item value1
+";
+
+const GLOBAL_WITH_LOOP_INPUT: &str = "
+global_
+    _global_setting 'test_value'
+    loop_
+        _config_key
+        _config_value
+        'database_host' 'localhost'
+        'database_port' '5432'
+    stop_
+    _global_version 1.0
+
+data_experiment
+    _experiment_name 'test_exp'
+";
+
+const GLOBAL_WITH_NESTED_INPUT: &str = "
+global_
+    _global_setting 'production'
+    loop_
+        _server_name
+        _server_type
+        loop_
+            _port
+            _protocol
+        stop_
+        'web-server' 'nginx'
+            '80' 'http'
+            '443' 'https'
+        stop_
+        'db-server' 'postgresql'
+            '5432' 'tcp'
+        stop_
+    stop_
+
+data_application
+    _app_name 'web_app'
+";
+
 #[derive(Debug, Clone, Hash, Eq, PartialEq)]
 enum ElementToStopOn {
     StartStream(usize),
@@ -132,6 +179,16 @@ impl SASContentHandler for ParameterizedHandler {
         false
     }
 
+    fn start_global(&mut self, _position: LineColumn) -> bool {
+        self.events.push("start_global".to_string());
+        false
+    }
+
+    fn end_global(&mut self, _position: LineColumn) -> bool {
+        self.events.push("end_global".to_string());
+        false
+    }
+
     fn start_data(&mut self, _position: LineColumn, name: &str) -> bool {
         self.events.push(format!("start_data({})", name));
         self.increment_and_check(ElementType::StartData)
@@ -208,6 +265,18 @@ impl SASContentHandler for ComprehensiveTestHandler {
 
     fn end_stream(&mut self, _position: LineColumn) -> bool {
         self.output.push("<end_stream>".to_string());
+        false
+    }
+
+    fn start_global(&mut self, position: LineColumn) -> bool {
+        self.output
+            .push(format!("<start global> [{}]", position.line));
+        false
+    }
+
+    fn end_global(&mut self, position: LineColumn) -> bool {
+        self.output
+            .push(format!("<end global> [{}]", position.line));
         false
     }
 
@@ -713,4 +782,45 @@ fn test_sas_test_files_walker_output() {
             failure_summary.join("\n\n")
         );
     }
+}
+
+#[test]
+fn test_global_block_walker_output() {
+    let tree = parse_default(GLOBAL_INPUT).expect("Failed to parse global input");
+    let mut handler = ComprehensiveTestHandler { output: Vec::new() };
+    let mut walker = StarWalker::from_input(&mut handler, GLOBAL_INPUT);
+
+    walker.walk_star_tree_buffered(&tree);
+
+    let output = handler.output.join("\n");
+    snapshot_utils::assert_snapshot_gz("sas_walker_tests__global_block_walker_output", &output);
+}
+
+#[test]
+fn test_global_with_loop_walker_output() {
+    let tree =
+        parse_default(GLOBAL_WITH_LOOP_INPUT).expect("Failed to parse global with loop input");
+    let mut handler = ComprehensiveTestHandler { output: Vec::new() };
+    let mut walker = StarWalker::from_input(&mut handler, GLOBAL_WITH_LOOP_INPUT);
+
+    walker.walk_star_tree_buffered(&tree);
+
+    let output = handler.output.join("\n");
+    snapshot_utils::assert_snapshot_gz("sas_walker_tests__global_with_loop_walker_output", &output);
+}
+
+#[test]
+fn test_global_with_nested_walker_output() {
+    let tree =
+        parse_default(GLOBAL_WITH_NESTED_INPUT).expect("Failed to parse global with nested input");
+    let mut handler = ComprehensiveTestHandler { output: Vec::new() };
+    let mut walker = StarWalker::from_input(&mut handler, GLOBAL_WITH_NESTED_INPUT);
+
+    walker.walk_star_tree_buffered(&tree);
+
+    let output = handler.output.join("\n");
+    snapshot_utils::assert_snapshot_gz(
+        "sas_walker_tests__global_with_nested_walker_output",
+        &output,
+    );
 }

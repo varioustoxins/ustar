@@ -22,6 +22,22 @@ impl SASContentHandler for DemoHandler {
         false
     }
 
+    fn start_global(&mut self, position: LineColumn) -> bool {
+        let indent = "    ".repeat(self.depth);
+        println!("{}<start global> [{}]", indent, position.line);
+        self.depth += 1;
+        false
+    }
+
+    fn end_global(&mut self, position: LineColumn) -> bool {
+        if self.depth > 0 {
+            self.depth -= 1;
+        }
+        let indent = "    ".repeat(self.depth);
+        println!("{}<end global> [{}]", indent, position.line);
+        false
+    }
+
     fn start_data(&mut self, position: LineColumn, name: &str) -> bool {
         let indent = "    ".repeat(self.depth);
         println!("{}<start data> [{}] {}", indent, position.line, name);

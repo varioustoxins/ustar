@@ -13,6 +13,8 @@ pub trait SASContentHandler {
     fn end_stream(&mut self, position: LineColumn) -> bool;
 
     // Structure callbacks
+    fn start_global(&mut self, position: LineColumn) -> bool;
+    fn end_global(&mut self, position: LineColumn) -> bool;
     fn start_data(&mut self, position: LineColumn, name: &str) -> bool;
     fn end_data(&mut self, position: LineColumn, name: &str) -> bool;
     fn start_saveframe(&mut self, position: LineColumn, name: &str) -> bool;

@@ -293,6 +293,31 @@ start_data(position: 1:1, name: "experiment")
 end_data(position: 10:1, name: "experiment")
 ```
 
+### Example 7: Global Block
+
+Global blocks contain data that applies to all subsequent data blocks.
+
+**STAR Input:**
+```star
+global_
+    _global_setting  'default_value'
+    _global_version  1.2
+
+data_test
+    _local_item  value1
+```
+
+**Handler Callbacks:**
+```
+start_global(position: 1:1)
+  data(tag: "_global_setting", value: "default_value", delimiter: "'", loop_level: 0)
+  data(tag: "_global_version", value: "1.2", delimiter: "", loop_level: 0)
+end_global(position: 5:1)
+start_data(position: 5:1, name: "test")
+  data(tag: "_local_item", value: "value1", delimiter: "", loop_level: 0)
+end_data(position: 6:1, name: "test")
+```
+
 ## Implementing a Handler
 
 Here's a minimal handler that collects all data items:
@@ -308,6 +333,8 @@ struct DataCollector {
 impl SASContentHandler for DataCollector {
     fn start_stream(&mut self, _name: Option<&str>) -> bool { false }
     fn end_stream(&mut self, _position: LineColumn) -> bool { false }
+    fn start_global(&mut self, _position: LineColumn) -> bool { false }
+    fn end_global(&mut self, _position: LineColumn) -> bool { false }
     fn start_data(&mut self, _position: LineColumn, _name: &str) -> bool { false }
     fn end_data(&mut self, _position: LineColumn, _name: &str) -> bool { false }
     fn start_saveframe(&mut self, _position: LineColumn, _name: &str) -> bool { false }
