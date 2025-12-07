@@ -2,15 +2,29 @@
 # Wrapper around `cargo insta accept` that automatically compresses
 # accepted snapshots to .snap.gz format.
 #
-# Usage: ./scripts/insta-accept.sh [insta args...]
+# Usage: ./scripts/insta-accept.sh [--keep-diffs] [insta args...]
+#
+# Options:
+#   --keep-diffs    Do not remove .snap.diff files (keep for review)
 #
 # This script:
 # 1. Runs `cargo insta accept` with any provided arguments
 # 2. Processes .snap.new files (from our custom snapshot utils) → compress to .snap.gz
 # 3. Compresses any .snap files to .snap.gz
-# 4. Removes .snap.diff files (cleanup from failed test runs)
+# 4. Removes .snap.diff files (unless --keep-diffs is specified)
 
 set -e
+
+# Parse our custom options
+KEEP_DIFFS=false
+INSTA_ARGS=()
+for arg in "$@"; do
+    if [[ "$arg" == "--keep-diffs" ]]; then
+        KEEP_DIFFS=true
+    else
+        INSTA_ARGS+=("$arg")
+    fi
+done
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
@@ -19,11 +33,10 @@ PROJECT_ROOT="$(dirname "$SCRIPT_DIR")"
 SNAPSHOT_DIRS=(
     "ustar-parser/tests/snapshots"
     "ustar-tools/tests/snapshots"
-    "ustar-test-utils/src/snapshots"
 )
 
-echo "Running cargo insta accept $*..."
-cargo insta accept "$@"
+echo "Running cargo insta accept ${INSTA_ARGS[*]}..."
+cargo insta accept "${INSTA_ARGS[@]}"
 
 echo ""
 echo "Processing snapshot files..."
@@ -55,12 +68,14 @@ for dir in "${SNAPSHOT_DIRS[@]}"; do
             ((compressed_count++))
         done < <(find "$full_path" -maxdepth 1 -name "*.snap" -type f -print0 2>/dev/null)
         
-        # Step 3: Remove .snap.diff files (cleanup)
-        while IFS= read -r -d '' diff_file; do
-            echo "  Removing diff: $diff_file"
-            rm -f "$diff_file"
-            ((diff_count++))
-        done < <(find "$full_path" -maxdepth 1 -name "*.snap.diff" -type f -print0 2>/dev/null)
+        # Step 3: Remove .snap.diff files (cleanup) - unless --keep-diffs is set
+        if [[ "$KEEP_DIFFS" == "false" ]]; then
+            while IFS= read -r -d '' diff_file; do
+                echo "  Removing diff: $diff_file"
+                rm -f "$diff_file"
+                ((diff_count++))
+            done < <(find "$full_path" -maxdepth 1 -name "*.snap.diff" -type f -print0 2>/dev/null)
+        fi
     fi
 done
 
@@ -75,7 +90,10 @@ fi
 if [[ $diff_count -gt 0 ]]; then
     echo "  - Removed $diff_count .snap.diff file(s)"
 fi
-if [[ $new_count -eq 0 && $compressed_count -eq 0 && $diff_count -eq 0 ]]; then
+if [[ "$KEEP_DIFFS" == "true" ]]; then
+    echo "  - Kept .snap.diff files (--keep-diffs)"
+fi
+if [[ $new_count -eq 0 && $compressed_count -eq 0 && $diff_count -eq 0 && "$KEEP_DIFFS" == "false" ]]; then
     echo "  - No snapshot files to process"
 fi
 
