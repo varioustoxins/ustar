@@ -1,9 +1,14 @@
 use std::fs;
 use std::path::Path;
+use ustar_test_utils::ensure_test_data_available;
 
 #[test]
 fn parse_all_cod_cif_files() {
     let dir = Path::new("tests/test_data/cod_cifs");
+
+    // Verify test data is available and checksums are valid
+    ensure_test_data_available(dir).expect("Failed to verify test data integrity for COD CIFs");
+
     assert!(
         dir.exists() && dir.is_dir(),
         "Directory {:?} does not exist",

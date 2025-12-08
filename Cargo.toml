@@ -36,12 +36,14 @@ flate2 = "1.0"
 scraper = "0.19"
 regex = "1"
 text_trees = "0.1"
+sha1 = "0.10"
 
 # Dev dependencies
 rstest = "0.18"
 indicatif = "0.17"
 insta = "1.34"
 indoc = "2.0"
+tempfile = "3.8"
 
 [workspace.lints.clippy]
 expect_fun_call = "allow"

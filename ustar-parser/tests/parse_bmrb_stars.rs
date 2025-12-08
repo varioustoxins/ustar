@@ -1,9 +1,14 @@
 use std::fs;
 use std::path::Path;
+use ustar_test_utils::ensure_test_data_available;
 
 #[test]
 fn parse_all_bmrb_star_files() {
     let dir = Path::new("tests/test_data/bmrb_stars");
+
+    // Verify test data is available and checksums are valid
+    ensure_test_data_available(dir).expect("Failed to verify test data integrity for BMRB stars");
+
     assert!(
         dir.exists() && dir.is_dir(),
         "Directory {:?} does not exist",

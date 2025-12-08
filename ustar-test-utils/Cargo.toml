@@ -15,3 +15,7 @@ publish = false
 flate2.workspace = true
 insta.workspace = true
 similar = "2.6"
+sha1.workspace = true
+
+[dev-dependencies]
+tempfile.workspace = true

@@ -4,6 +4,7 @@ extern crate pest;
 use pest::Parser;
 use ustar::parsers::ascii::{AsciiParser, Rule as AsciiRule};
 use ustar::parsers::unicode::{Rule as UnicodeRule, UnicodeParser};
+use ustar_test_utils::ensure_test_data_available;
 
 mod snapshot_utils;
 
@@ -1795,6 +1796,10 @@ fn test_nef_specification_files_can_be_parsed() {
 
     let ccpn_dir = Path::new("tests/test_data/nef_spec");
 
+    // Verify test data is available and checksums are valid
+    ensure_test_data_available(ccpn_dir)
+        .expect("Failed to verify test data integrity for NEF specification files");
+
     // Check if directory exists
     assert!(
         ccpn_dir.exists(),
@@ -1938,6 +1943,10 @@ fn test_nef_site_files_can_be_parsed(#[case] parser_mode: &str) {
     use std::time::Instant;
 
     let nef_site_dir = Path::new("tests/test_data/nef_spec");
+
+    // Verify test data is available and checksums are valid
+    ensure_test_data_available(nef_site_dir)
+        .expect("Failed to verify test data integrity for NEF site files");
 
     // Check if directory exists
     assert!(

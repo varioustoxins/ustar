@@ -1,9 +1,14 @@
 use std::fs;
 use std::path::Path;
+use ustar_test_utils::ensure_test_data_available;
 
 #[test]
 fn parse_all_mmcif_files_in_pdb_mmcifs() {
     let dir = Path::new("tests/test_data/pdb_mmcifs");
+
+    // Verify test data is available and checksums are valid
+    ensure_test_data_available(dir).expect("Failed to verify test data integrity for PDB mmCIFs");
+
     assert!(
         dir.exists() && dir.is_dir(),
         "Directory {:?} does not exist",
