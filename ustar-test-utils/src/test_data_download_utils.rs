@@ -1,8 +1,8 @@
 //! Test data download utilities for ustar parser.
 //!
 //! This module is provided because size limits prevent the complete project
-//! form being stored on crates.io therefore if test data files are missing,
-//! after doing a `cargo test` the missing files can be automatically downloaded
+//! from being stored on crates.io. Therefore if test data files are missing
+//! when running cargo test the missing files will be automatically downloaded
 //! from the GitHub repository.
 //!
 //! This module provides functionality to:
