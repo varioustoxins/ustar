@@ -5,6 +5,16 @@ keywords = ["parser", "star", "cif", "mmcif", "crystallography"]
 categories = ["parsing", "science"]
 readme = "../README.md"
 documentation = "https://docs.rs/ustar-parser"
+exclude = [
+    "tests/test_data/dicts/*.dic", 
+    "tests/test_data/dicts/*.cif",
+    "tests/test_data/bmrb_stars/*.str",
+    "tests/test_data/cod_cifs/*.cif", 
+    "tests/test_data/mmcif/*.cif",
+    "tests/test_data/nef_examples/*.nef",
+    "tests/test_data/nef_spec/*.nef",
+    "tests/test_data/pdb_mmcifs/*.cif"
+]
 
 version.workspace = true
 edition.workspace = true
