@@ -109,3 +109,4 @@ The `build.rs` script generates three grammar variants from `src/star.pest_templ
   - "give me a commit message" = provide text only
   - "commit this" or "make the commit" = actually run git commit
 - Always ask for clarification if the intent is ambiguous
+- **NEVER use emojis in commit messages or GitHub issues** - keep all version control text plain
