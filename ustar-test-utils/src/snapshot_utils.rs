@@ -59,77 +59,49 @@ impl std::fmt::Display for SnapshotMismatch {
 ///
 /// Looks for snapshots in the calling package's `tests/snapshots/` directory.
 pub fn check_snapshot_gz(snapshot_name: &str, value: &str) -> Result<(), SnapshotMismatch> {
-    let filename = format!("{}.snap", snapshot_name);
     let snapshot_dir = get_snapshot_dir();
-    let snapshot_path = snapshot_dir.join(&filename);
+    let snapshot_path = snapshot_dir.join(format!("{}.snap", snapshot_name));
 
+    // Check if we already have a snapshot (compressed or uncompressed)
     match read_snapshot(&snapshot_path) {
         Ok(expected) => {
-            // Compare the content - extract just the content part after "---"
+            // We have an existing snapshot - compare it
             let expected_content = extract_snapshot_content(&expected);
-            let actual_content = value;
-
-            if expected_content.trim() != actual_content.trim() {
-                // Create an uncompressed version of the snapshot for easier debugging
-                let uncompressed_path = snapshot_path.with_extension("snap");
-                if let Err(e) = std::fs::write(&uncompressed_path, &expected) {
+            if expected_content.trim() == value.trim() {
+                // Match! Compress if needed and return success
+                if let Err(e) = compress_snapshot_if_needed(&snapshot_path) {
                     eprintln!(
-                        "Warning: Could not write uncompressed snapshot to {}: {}",
-                        uncompressed_path.display(),
+                        "Warning: Failed to compress snapshot {}: {}",
+                        snapshot_path.display(),
                         e
                     );
                 }
-
-                // Create a diff file to show the differences
-                let diff_path = snapshot_path.with_extension("snap.diff");
-                let diff_content = create_diff(expected_content, actual_content, snapshot_name);
-                if let Err(e) = std::fs::write(&diff_path, &diff_content) {
-                    eprintln!(
-                        "Warning: Could not write diff to {}: {}",
-                        diff_path.display(),
-                        e
-                    );
-                } else {
-                    eprintln!("Diff written to: {}", diff_path.display());
-                }
-
-                // Create the new snapshot content for review
-                let source_file = format!(
-                    "{}/tests/{}.rs",
-                    std::env::var("CARGO_PKG_NAME").unwrap_or_default(),
-                    snapshot_name.split("__").next().unwrap_or("unknown")
-                );
-                let new_snapshot_content = format!(
-                    "---\nsource: {}\nexpression: output\n---\n{}",
-                    source_file, actual_content
-                );
-                let new_path = snapshot_path.with_extension("snap.new");
-                if let Err(e) = std::fs::write(&new_path, &new_snapshot_content) {
-                    eprintln!(
-                        "Warning: Could not write new snapshot to {}: {}",
-                        new_path.display(),
-                        e
-                    );
-                } else {
-                    eprintln!("New snapshot written to: {}", new_path.display());
-                }
-
-                return Err(SnapshotMismatch {
-                    snapshot_name: snapshot_name.to_string(),
-                    diff_path,
-                    new_path,
-                });
+                Ok(())
+            } else {
+                // Mismatch! Create .snap.new using insta format and diff files
+                create_snapshot_mismatch_files(
+                    snapshot_name,
+                    value,
+                    &snapshot_path,
+                    expected_content,
+                )
             }
-            Ok(()) // Success
         }
         Err(_) => {
-            // No existing snapshot found - create new one using insta
-            let target_dir = get_snapshot_dir();
+            // No existing snapshot - create a new one using insta
             let mut settings = insta::Settings::clone_current();
-            settings.set_snapshot_path(&target_dir);
+            settings.set_snapshot_path(&snapshot_dir);
             settings.bind(|| {
                 insta::assert_snapshot!(snapshot_name, value);
             });
+            // Compress the newly created snapshot
+            if let Err(e) = compress_snapshot_if_needed(&snapshot_path) {
+                eprintln!(
+                    "Warning: Failed to compress snapshot {}: {}",
+                    snapshot_path.display(),
+                    e
+                );
+            }
             Ok(())
         }
     }
@@ -204,6 +176,97 @@ fn create_diff(expected: &str, actual: &str, snapshot_name: &str) -> String {
     }
 
     output
+}
+
+/// Create snapshot mismatch files (.snap.new and .snap.diff) using insta's format
+fn create_snapshot_mismatch_files(
+    snapshot_name: &str,
+    actual_value: &str,
+    snapshot_path: &std::path::Path,
+    expected_content: &str,
+) -> Result<(), SnapshotMismatch> {
+    let diff_path = snapshot_path.with_extension("snap.diff");
+    let new_path = snapshot_path.with_extension("snap.new");
+
+    // Create diff file
+    let diff_content = create_diff(expected_content, actual_value, snapshot_name);
+    if let Err(e) = std::fs::write(&diff_path, &diff_content) {
+        eprintln!(
+            "Warning: Could not write diff to {}: {}",
+            diff_path.display(),
+            e
+        );
+    } else {
+        eprintln!("Diff written to: {}", diff_path.display());
+    }
+
+    // Create .snap.new file using insta's format by calling insta in a temporary location
+    // then copying the result. This ensures we get the same format insta would create.
+    let temp_dir = std::env::temp_dir().join("insta_temp_snapshots");
+    std::fs::create_dir_all(&temp_dir).ok();
+
+    let temp_snapshot_path = temp_dir.join(format!("{}.snap", snapshot_name));
+
+    // Remove any existing temp file
+    let _ = std::fs::remove_file(&temp_snapshot_path);
+
+    // Use insta to create the snapshot in temp location, catch any panic
+    let _result = std::panic::catch_unwind(|| {
+        let mut settings = insta::Settings::clone_current();
+        settings.set_snapshot_path(&temp_dir);
+        settings.bind(|| {
+            insta::assert_snapshot!(snapshot_name, actual_value);
+        });
+    });
+
+    // Whether insta succeeded or failed, it should have created a .snap file
+    if temp_snapshot_path.exists() {
+        // Copy the insta-created snapshot to our .snap.new location
+        if let Err(e) = std::fs::copy(&temp_snapshot_path, &new_path) {
+            eprintln!(
+                "Warning: Could not copy snapshot to {}: {}",
+                new_path.display(),
+                e
+            );
+        } else {
+            eprintln!("New snapshot written to: {}", new_path.display());
+        }
+        // Clean up temp file
+        let _ = std::fs::remove_file(&temp_snapshot_path);
+    } else {
+        eprintln!("Warning: insta failed to create temporary snapshot");
+    }
+
+    Err(SnapshotMismatch {
+        snapshot_name: snapshot_name.to_string(),
+        diff_path,
+        new_path,
+    })
+}
+
+/// Compress a snapshot file to .gz format if it exists and isn't already compressed
+fn compress_snapshot_if_needed(
+    snapshot_path: &std::path::Path,
+) -> Result<(), Box<dyn std::error::Error>> {
+    let gz_path = snapshot_path.with_extension("snap.gz");
+
+    // If .snap exists but .snap.gz doesn't, compress it
+    if snapshot_path.exists() && !gz_path.exists() {
+        use flate2::write::GzEncoder;
+        use flate2::Compression;
+        use std::fs::File;
+        use std::io::Write;
+
+        let input = std::fs::read_to_string(snapshot_path)?;
+        let output = File::create(&gz_path)?;
+        let mut encoder = GzEncoder::new(output, Compression::default());
+        encoder.write_all(input.as_bytes())?;
+        encoder.finish()?;
+
+        // Remove the uncompressed version
+        std::fs::remove_file(snapshot_path)?;
+    }
+    Ok(())
 }
 
 /// Get the snapshot directory for the current package.
