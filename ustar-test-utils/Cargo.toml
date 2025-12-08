@@ -11,11 +11,17 @@ homepage.workspace = true
 # This crate is not published - it's only for internal testing
 publish = false
 
+[features]
+no-large-tests = []
+
 [dependencies]
 flate2.workspace = true
 insta.workspace = true
 similar = "2.6"
 sha1.workspace = true
+reqwest = { workspace = true, features = ["stream"] }
+tokio = { workspace = true, features = ["rt", "macros"] }
+zip = "2.1"
 
 [dev-dependencies]
 tempfile.workspace = true

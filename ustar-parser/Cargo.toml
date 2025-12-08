@@ -33,6 +33,7 @@ name = "ustar"
 default = ["extended-errors"]
 extended-errors = ["miette", "thiserror"]
 serde = ["dep:serde", "dep:serde_json"]
+no-large-tests = ["ustar-test-utils/no-large-tests"]
 
 [dependencies]
 # Core - always needed
@@ -54,3 +55,4 @@ tabled.workspace = true
 indicatif.workspace = true
 flate2.workspace = true
 ustar-test-utils = { path = "../ustar-test-utils" }
+sha1 = "0.10"

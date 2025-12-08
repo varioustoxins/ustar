@@ -1,0 +1,140 @@
+name: Test Data Download from crates.io
+
+on:
+  workflow_run:
+    workflows: ["CI"]
+    types:
+      - completed
+  workflow_dispatch:
+
+jobs:
+  test-crates-io-download:
+    name: Test Download from Published Crate
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch' }}
+    
+    steps:
+      - name: Set up Rust
+        uses: dtolnay/rust-toolchain@stable
+        
+      - name: Create test project
+        run: |
+          echo "Creating fresh Cargo project to test crates.io integration..."
+          cargo new --name download-test download-test
+          cd download-test
+          
+          # Add ustar-parser dependency from crates.io
+          echo "Adding ustar-parser from crates.io..."
+          cargo add ustar-parser
+          
+          echo "✅ Project created with ustar-parser dependency"
+
+      - name: Create test that requires test data
+        run: |
+          cd download-test
+          
+          # Create a test that will trigger download
+          cat > tests/integration_test.rs << 'EOF'
+          use ustar_test_utils::ensure_test_data_available;
+          
+          #[test]
+          fn test_download_functionality() {
+              // This test will trigger automatic download if files are missing
+              let test_data_dir = "../target/test_data/nef_spec";
+              
+              // Create the directory structure
+              std::fs::create_dir_all(test_data_dir).unwrap();
+              
+              // Create checksums.sha1 file to define what files are expected
+              let checksum_content = r#"00480c740992a8b6764175e5d0b7ea8a2d276adc  XPLOR_test1.nef
+          b955df08a9e06e86ca6822e5950c0110e81914e1  CCPN_H1GI_clean.nef"#;
+              std::fs::write(format!("{}/checksums.sha1", test_data_dir), checksum_content).unwrap();
+              
+              // This should trigger download
+              let result = ensure_test_data_available(test_data_dir);
+              
+              match result {
+                  Ok(_) => {
+                      println!("✅ Auto-download from crates.io worked!");
+                      
+                      // Verify files exist
+                      assert!(std::path::Path::new(&format!("{}/XPLOR_test1.nef", test_data_dir)).exists());
+                      assert!(std::path::Path::new(&format!("{}/CCPN_H1GI_clean.nef", test_data_dir)).exists());
+                  }
+                  Err(e) => {
+                      panic!("Download failed: {}", e);
+                  }
+              }
+          }
+          EOF
+          
+          echo "✅ Integration test created"
+
+      - name: Test default behavior (auto-download)
+        run: |
+          cd download-test
+          echo "Testing auto-download with published crate..."
+          
+          # Run the test that should trigger download
+          cargo test test_download_functionality -- --nocapture
+          
+          echo "✅ Auto-download test passed!"
+
+      - name: Test no-large-tests flag
+        run: |
+          cd download-test
+          echo "Testing --features no-large-tests flag..."
+          
+          # Remove downloaded files
+          rm -rf ../target/test_data/nef_spec/*.nef || true
+          
+          # This should fail because downloads are disabled
+          if cargo test --features no-large-tests test_download_functionality 2>&1; then
+            echo "❌ Test should have failed with no-large-tests flag"
+            exit 1
+          else
+            echo "✅ no-large-tests flag correctly prevented download"
+          fi
+
+      - name: Test parser functionality with downloaded data
+        run: |
+          cd download-test
+          
+          # Create a test that actually parses downloaded files
+          cat > tests/parser_test.rs << 'EOF'
+          use ustar::parse_star;
+          use ustar_test_utils::ensure_test_data_available;
+          use std::fs;
+          
+          #[test]
+          fn test_parse_downloaded_files() {
+              let test_data_dir = "../target/test_data/nef_spec";
+              
+              // Ensure data is available
+              ensure_test_data_available(test_data_dir).unwrap();
+              
+              // Try to parse a downloaded file
+              let nef_file = format!("{}/CCPN_H1GI_clean.nef", test_data_dir);
+              if std::path::Path::new(&nef_file).exists() {
+                  let content = fs::read_to_string(&nef_file).unwrap();
+                  let result = parse_star(&content);
+                  assert!(result.is_ok(), "Failed to parse downloaded NEF file");
+                  println!("✅ Successfully parsed downloaded file: {}", nef_file);
+              }
+          }
+          EOF
+          
+          echo "Running parser test with downloaded data..."
+          cargo test test_parse_downloaded_files -- --nocapture
+          
+          echo "✅ Parser integration test passed!"
+
+      - name: Show download statistics
+        run: |
+          cd download-test
+          echo "Download statistics:"
+          find ../target/test_data -name "*.nef" 2>/dev/null | wc -l || echo "0"
+          find ../target/test_data -name "*.cif" 2>/dev/null | wc -l || echo "0"
+          find ../target/test_data -name "*.str" 2>/dev/null | wc -l || echo "0"
+          
+          echo "✅ Real-world crates.io integration test completed!"
