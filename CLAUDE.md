@@ -100,6 +100,13 @@ The `build.rs` script generates three grammar variants from `src/star.pest_templ
 - All parsers share identical rule structures but differ in character class definitions
 - The project includes extensive real-world test data for validation
 
+## Testing and Code Organization
+
+- **REQUIRED: Separate tests from implementation** - Unit tests MUST be in separate files in `tests/` directory, never mixed with implementation code
+- Integration tests belong in `tests/` directory as separate files
+- Test utilities and shared test code belong in the `ustar-test-utils` crate
+- **Always create separate test files instead of inline `#[cfg(test)]` modules for tests**
+
 ## Version Control and Git
 - **CRITICAL: ALL commits to version control will be made by the user, NOT Claude**
 - **NEVER run `git commit` unless explicitly asked to commit**
