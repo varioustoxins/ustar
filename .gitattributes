@@ -1,36 +1,16 @@
-# Preserve line endings for test data files to ensure consistent parser position tests
-tests/test_data/*.str text eol=lf
-tests/test_data/*.star text eol=lf
-tests/test_data/*.cif text eol=lf
-tests/test_data/*.nef text eol=lf
-tests/test_data/*.mmcif text eol=lf
+# Force LF for all test data (consistent cross-platform)
+**/tests/test_data/**/*.* text eol=lf
 
-# ustar-parser test data
-ustar-parser/tests/test_data/*.str text eol=lf
-ustar-parser/tests/test_data/*.star text eol=lf
-ustar-parser/tests/test_data/*.cif text eol=lf
-ustar-parser/tests/test_data/*.nef text eol=lf
-ustar-parser/tests/test_data/*.mmcif text eol=lf
+# Exception: Windows CRLF test files - store actual CRLF bytes in repo
+**/tests/test_data/*windows*.* -text
+**/tests/test_data/*crlf*.* -text
 
-# Windows CRLF test files - preserve CRLF line endings for cross-platform testing
-tests/test_data/*_crlf.str text eol=crlf
-tests/test_data/*_crlf.star text eol=crlf
-tests/test_data/*_crlf.cif text eol=crlf
-tests/test_data/*_crlf.nef text eol=crlf
-tests/test_data/*_crlf.mmcif text eol=crlf
-
-ustar-parser/tests/test_data/*_crlf.str text eol=crlf
-ustar-parser/tests/test_data/*_crlf.star text eol=crlf
-ustar-parser/tests/test_data/*_crlf.cif text eol=crlf
-ustar-parser/tests/test_data/*_crlf.nef text eol=crlf
-ustar-parser/tests/test_data/*_crlf.mmcif text eol=crlf
-
-# Preserve line endings for grammar template files
-src/*.pest_template text eol=lf
-
-# Normal text files can use platform line endings
+# Source code
 *.rs text
 *.toml text
 *.md text
 *.yml text
 *.yaml text
+
+# Preserve line endings for grammar template files
+src/*.pest_template text eol=lf
