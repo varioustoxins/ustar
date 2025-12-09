@@ -50,7 +50,7 @@ path = "src/bin/ustar-grammar-railroad.rs"
 
 [dependencies]
 # Core parser
-ustar_parser = { package = "ustar-parser", path = "../ustar-parser", features = ["serde", "extended-errors"] }
+ustar_parser = { package = "ustar-parser", path = "../ustar-parser", version = "0.1.4", features = ["serde", "extended-errors"] }
 
 # CLI and utilities
 clap.workspace = true
@@ -72,4 +72,4 @@ rstest.workspace = true
 indicatif.workspace = true
 insta.workspace = true
 indoc.workspace = true
-ustar-test-utils = { path = "../ustar-test-utils" }
+ustar-test-utils = { path = "../ustar-test-utils", version = "0.1.4" }

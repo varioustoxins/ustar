@@ -8,8 +8,7 @@ license.workspace = true
 repository.workspace = true
 homepage.workspace = true
 
-# This crate is not published - it's only for internal testing
-publish = false
+# This crate provides test utilities and automatic test data download
 
 [features]
 no-large-tests = []
