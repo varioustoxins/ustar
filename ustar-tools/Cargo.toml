@@ -13,7 +13,7 @@ license.workspace = true
 repository.workspace = true
 homepage.workspace = true
 
-exclude = [".DS_Store"]
+exclude = ["**/.DS_Store"]
 
 [lints]
 workspace = true

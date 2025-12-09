@@ -14,7 +14,7 @@ exclude = [
     "tests/test_data/nef_examples/*.nef",
     "tests/test_data/nef_spec/*.nef",
     "tests/test_data/pdb_mmcifs/*.cif",
-    ".DS_Store"
+    "**/.DS_Store"
 ]
 
 version.workspace = true
