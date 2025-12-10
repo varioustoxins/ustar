@@ -5,11 +5,11 @@ use ustar::{ConfigKey, ConfigValue, EncodingMode, ErrorFormatMode, ParserConfig}
 use ustar_test_utils::ensure_test_data_available;
 
 #[test]
-fn parse_all_cod_cif_files() {
-    let dir = Path::new("tests/test_data/cod_cifs");
+fn parse_all_mmcif_files() {
+    let dir = Path::new("tests/test_data/mmcif");
 
     // Verify test data is available and checksums are valid
-    ensure_test_data_available(dir).expect("Failed to verify test data integrity for COD CIFs");
+    ensure_test_data_available(dir).expect("Failed to verify test data integrity for mmCIF files");
 
     assert!(
         dir.exists() && dir.is_dir(),
@@ -17,7 +17,7 @@ fn parse_all_cod_cif_files() {
         dir
     );
 
-    // Create Unicode config with fancy error formatting for comprehensive parsing
+    // Create Unicode config with fancy error formatting
     let mut config: ParserConfig = HashMap::new();
     config.insert(
         ConfigKey::Encoding,
@@ -33,8 +33,6 @@ fn parse_all_cod_cif_files() {
 
     let mut found = false;
     let mut errors = Vec::new();
-    let mut success_count = 0;
-
     for entry in fs::read_dir(dir).expect("read_dir failed") {
         let entry = entry.expect("entry failed");
         let path = entry.path();
@@ -44,24 +42,17 @@ fn parse_all_cod_cif_files() {
                 let data = fs::read(&path).expect(&format!("Failed to read file {:?}", path));
                 let content = String::from_utf8_lossy(&data).to_string();
                 match ustar::parse(&content, &config) {
-                    Ok(_) => success_count += 1,
+                    Ok(_) => {}
                     Err(e) => errors.push(format!("Failed to parse {:?}: {}", path, e)),
                 }
             }
         }
     }
-
     assert!(found, "No .cif files found in {:?}", dir);
-
-    println!(
-        "COD CIF parsing results: {} successful, {} failed",
-        success_count,
-        errors.len()
-    );
 
     if !errors.is_empty() {
         panic!(
-            "Parsing errors in {} COD CIF files:\n{}",
+            "Parsing errors in {} files:\n{}",
             errors.len(),
             errors.join("\n")
         );
