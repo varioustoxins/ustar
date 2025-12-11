@@ -198,14 +198,8 @@ jobs:
         name: generated-grammars
         path: ustar-parser/src/
     
-    - name: Run BMRB integration tests
-      run: cargo test --test parse_bmrb_stars -p ustar-parser
-    
-    - name: Run COD integration tests
-      run: cargo test --test parse_cod_cifs -p ustar-parser
-    
-    - name: Run PDB integration tests
-      run: cargo test --test parse_pdb_mmcifs -p ustar-parser
+    - name: Run consolidated integration tests  
+      run: cargo test --test integration_tests -p ustar-parser
     
     - name: Run snapshot tests
       run: cargo test error_handling_tests -p ustar-parser

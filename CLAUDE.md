@@ -19,9 +19,9 @@ cargo build --all-targets      # Build all targets including tests and benchmark
 ```bash
 cargo test --no-fail-fast      # Run all tests (always use --no-fail-fast)
 cargo test --no-fail-fast parser_tests        # Run specific test module
-cargo test --no-fail-fast --test parse_bmrb_stars    # Run integration test for BMRB files
-cargo test --no-fail-fast --test parse_cod_cifs      # Run integration test for COD CIF files
-cargo test --no-fail-fast --test parse_pdb_mmcifs    # Run integration test for PDB mmCIF files
+cargo test --no-fail-fast --test integration_tests   # Run consolidated integration tests (BMRB, COD, PDB, NEF, Dict)
+cargo test --no-fail-fast --test sas_walker_tests    # Run SAS walker tests
+cargo test --no-fail-fast --test error_handling_tests # Run error handling tests
 ```
 
 ### Binaries
