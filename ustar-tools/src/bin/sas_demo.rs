@@ -1,3 +1,4 @@
+use clap::Parser;
 use std::fs;
 use ustar_parser::line_column_index::LineColumn;
 use ustar_parser::sas_interface::SASContentHandler;
@@ -129,23 +130,51 @@ impl SASContentHandler for DemoHandler {
     }
 }
 
+#[derive(Parser, Debug)]
+#[command(author, version, about = "Demonstrate SAS (SAX-like API for STAR) event streaming", long_about = None)]
+struct Cli {
+    /// STAR file to parse and demonstrate SAS events
+    #[arg(value_name = "FILE", help = "Input STAR file to process")]
+    file: Option<String>,
+
+    /// Show verbose output with line numbers and positions
+    #[arg(short, long, help = "Enable verbose output")]
+    verbose: bool,
+}
+
 fn main() {
-    let args: Vec<String> = std::env::args().collect();
-    let filename = if args.len() > 1 {
-        &args[1]
-    } else {
-        "examples/comprehensive_example.star"
-    };
-    let input = fs::read_to_string(filename)
-        .unwrap_or_else(|_| panic!("Failed to read example file: {}", filename));
+    let cli = Cli::parse();
+
+    let filename = cli
+        .file
+        .unwrap_or_else(|| "examples/comprehensive_example.star".to_string());
+
+    let input = fs::read_to_string(&filename).unwrap_or_else(|_| {
+        eprintln!("Error: Failed to read file: {}", filename);
+        eprintln!("Please check that the file exists and is readable.");
+        std::process::exit(1);
+    });
+
+    if cli.verbose {
+        println!("Processing STAR file: {}", filename);
+        println!("File size: {} bytes", input.len());
+        println!("Starting SAS event stream...\n");
+    }
+
     let config = default_config();
     let tree = parse(&input, &config).unwrap_or_else(|e| {
         let error_format = get_error_format(&config);
         let context_lines = get_context_lines(&config);
+        eprintln!("Parse error in {}:", filename);
         eprintln!("{}", e.format_error(error_format, context_lines));
         std::process::exit(1);
     });
+
     let mut handler = DemoHandler { depth: 0 };
     let mut walker = StarWalker::from_input(&mut handler, &input);
     walker.walk_star_tree_buffered(&tree);
+
+    if cli.verbose {
+        println!("\nSAS event streaming completed successfully.");
+    }
 }
