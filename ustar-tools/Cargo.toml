@@ -77,3 +77,4 @@ indicatif = "0.17"
 insta.workspace = true
 indoc.workspace = true
 ustar-test-utils = { path = "../ustar-test-utils", version = "0.1.4" }
+usvg = "0.45"
