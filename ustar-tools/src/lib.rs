@@ -1,4 +1,5 @@
 // CLI utilities
+pub mod downloader_common;
 pub mod dump_extractors;
 
 // Re-export common types from the core parser for convenience

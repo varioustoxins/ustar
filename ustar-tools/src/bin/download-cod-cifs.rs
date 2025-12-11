@@ -1,134 +1,210 @@
-use rand::Rng;
-use reqwest;
-// use rand::seq::SliceRandom; // No longer needed, use rand::Rng and shuffle as in download-pdbs
 use clap::Parser;
 use regex::Regex;
-use scraper::{Html, Selector};
-use std::collections::HashSet;
 use std::fs;
-use std::path::Path;
+use std::path::PathBuf;
 use std::time::Duration;
 use tokio::time::sleep;
+use ustar_tools::downloader_common::{
+    CommonDownloaderCli, DataSource, DownloadError, DownloaderConfig, GenericDownloader,
+};
 
-#[derive(Parser, Debug)]
-#[command(author, version, about, long_about = None)]
-struct Cli {
-    /// Number of CIF files to download
-    #[arg(default_value_t = 50, value_name = "COUNT")]
-    count: usize,
-    /// Output directory
-    #[arg(short, long, default_value = "tests/test_data/cod_cif_files")]
-    output_dir: String,
-    /// Enable verbose output
-    #[arg(long)]
+/// COD-specific data source implementation
+pub struct CodDataSource {
     verbose: bool,
-    /// List available COD CIF files and which are downloaded
-    #[arg(long)]
-    list: bool,
-    /// Random number seed for reproducible shuffling
-    #[arg(long, default_value_t = 42)]
-    seed: u64,
 }
 
-#[tokio::main]
-async fn main() -> Result<(), Box<dyn std::error::Error>> {
-    let cli = Cli::parse();
-    fs::create_dir_all(&cli.output_dir)?;
+impl CodDataSource {
+    pub fn new(verbose: bool) -> Self {
+        Self { verbose }
+    }
+}
 
-    if cli.verbose {
-        println!("Getting list of valid COD IDs...");
-    }
-    let valid_ids = get_cod_ids().await?;
-    if cli.verbose {
-        println!("Found {} valid COD IDs", valid_ids.len());
-    }
-    if valid_ids.is_empty() {
-        eprintln!("No valid COD IDs found!");
-        return Ok(());
-    }
+impl DataSource for CodDataSource {
+    fn get_available_entries(&self) -> Result<Vec<String>, DownloadError> {
+        let rt = tokio::runtime::Runtime::new().map_err(|e| {
+            DownloadError::DownloadFailed(format!("Failed to create runtime: {}", e))
+        })?;
 
-    if cli.list {
-        // List available COD CIF files and which are downloaded
-        let mut downloaded = HashSet::new();
-        let ext = "cif";
-        if let Ok(dir_entries) = std::fs::read_dir(&cli.output_dir) {
-            for entry in dir_entries.flatten() {
-                if let Some(name) = entry.file_name().to_str() {
-                    if name.starts_with("cod_") && name.ends_with(ext) {
-                        if let Some(stem) = name
-                            .strip_prefix("cod_")
-                            .and_then(|n| n.strip_suffix(&format!(".{}", ext)))
-                        {
-                            downloaded.insert(stem.to_string());
-                        }
-                    }
+        rt.block_on(async {
+            if self.verbose {
+                println!("Getting list of valid COD IDs...");
+            }
+
+            // Get the first page to determine total range
+            let base_url = "http://www.crystallography.net/cod/result.php";
+            let mut page = 1;
+            let mut all_ids = Vec::new();
+
+            // Compile regex once outside the loop
+            let cod_regex = Regex::new(r"cod/(\d{7})\.cif")
+                .map_err(|e| DownloadError::DownloadFailed(format!("Regex error: {}", e)))?;
+
+            loop {
+                let url = format!(
+                    "{}?start={}&stop=50000&selection=id",
+                    base_url,
+                    (page - 1) * 50 + 1
+                );
+
+                if self.verbose {
+                    println!("Fetching page {} from COD database...", page);
+                }
+
+                let response = reqwest::get(&url).await?;
+                if response.status() != reqwest::StatusCode::OK {
+                    return Err(DownloadError::DownloadFailed(format!(
+                        "Failed to fetch COD page: HTTP {}",
+                        response.status()
+                    )));
+                }
+
+                let html = response.text().await?;
+
+                let page_ids: Vec<String> = cod_regex
+                    .captures_iter(&html)
+                    .map(|cap| cap[1].to_string())
+                    .collect();
+
+                if page_ids.is_empty() {
+                    break;
+                }
+
+                all_ids.extend(page_ids);
+
+                // Add delay to be respectful to the COD server
+                sleep(Duration::from_millis(500)).await;
+
+                // For simplicity, limit to first few pages to avoid overwhelming the server
+                page += 1;
+                if page > 10 {
+                    // Limit to prevent excessive requests
+                    break;
                 }
             }
-        }
-        if cli.verbose {
-            println!(
-                "[VERBOSE] Total available COD CIF files: {}",
-                valid_ids.len()
-            );
-        } else {
-            println!("Total available COD CIF files: {}", valid_ids.len());
-        }
-        let mut downloaded_count = 0;
-        for cod_id in &valid_ids {
-            let is_downloaded = downloaded.contains(cod_id);
-            if is_downloaded {
-                downloaded_count += 1;
+
+            if self.verbose {
+                println!("Found {} COD entries", all_ids.len());
             }
-            if cli.verbose {
+
+            if all_ids.is_empty() {
+                return Err(DownloadError::NoEntriesFound);
+            }
+
+            // Remove duplicates and sort
+            all_ids.sort_unstable();
+            all_ids.dedup();
+
+            Ok(all_ids)
+        })
+    }
+
+    fn download_entry(
+        &self,
+        entry_id: &str,
+        output_path: &PathBuf,
+    ) -> Result<PathBuf, DownloadError> {
+        let rt = tokio::runtime::Runtime::new().map_err(|e| {
+            DownloadError::DownloadFailed(format!("Failed to create runtime: {}", e))
+        })?;
+
+        rt.block_on(async {
+            let url = format!("http://www.crystallography.net/cod/{}.cif", entry_id);
+
+            if self.verbose {
                 println!(
-                    "[VERBOSE] {}{}",
-                    cod_id,
-                    if is_downloaded { " [downloaded]" } else { "" }
-                );
-            } else {
-                println!(
-                    "{}{}",
-                    cod_id,
-                    if is_downloaded { " [downloaded]" } else { "" }
+                    "[VERBOSE] Downloading COD entry {} from {}...",
+                    entry_id, url
                 );
             }
+
+            let response = reqwest::get(&url).await?;
+
+            if response.status() != reqwest::StatusCode::OK {
+                return Err(DownloadError::DownloadFailed(format!(
+                    "Failed to download COD entry {}: HTTP {}",
+                    entry_id,
+                    response.status()
+                )));
+            }
+
+            let content = response.text().await?;
+
+            // Create output directory if it doesn't exist
+            if let Some(parent) = output_path.parent() {
+                fs::create_dir_all(parent)?;
+            }
+
+            fs::write(output_path, content)?;
+
+            if self.verbose {
+                let metadata = fs::metadata(output_path)?;
+                println!(
+                    "Successfully saved {} ({} bytes)",
+                    output_path.display(),
+                    metadata.len()
+                );
+            }
+
+            // Small delay to be respectful to the server
+            sleep(Duration::from_millis(200)).await;
+
+            Ok(output_path.clone())
+        })
+    }
+}
+
+#[derive(Parser, Debug)]
+#[command(author, version, about = "Download COD (Crystallography Open Database) CIF files", long_about = None)]
+struct Cli {
+    #[command(flatten)]
+    common: CommonDownloaderCli,
+}
+
+impl Default for Cli {
+    fn default() -> Self {
+        Self {
+            common: CommonDownloaderCli {
+                count: 50,
+                output_dir: "tests/test_data/cod_cif_files".to_string(),
+                verbose: false,
+                list: false,
+                seed: 42,
+            },
         }
-        if cli.verbose {
-            println!(
-                "[VERBOSE] Total downloaded: {} / {}",
-                downloaded_count,
-                valid_ids.len()
-            );
-        } else {
-            println!(
-                "\nTotal downloaded: {} / {}",
-                downloaded_count,
-                valid_ids.len()
-            );
-        }
+    }
+}
+
+fn main() -> Result<(), Box<dyn std::error::Error>> {
+    let cli = Cli::parse();
+
+    let config = DownloaderConfig::new()
+        .output_dir(&cli.common.output_dir)
+        .verbose(cli.common.verbose)
+        .file_extension("cif");
+
+    let data_source = CodDataSource::new(cli.common.verbose);
+    let downloader = GenericDownloader::new(config, data_source);
+
+    if cli.common.list {
+        downloader.list_files()?;
         return Ok(());
     }
 
-    if cli.verbose {
+    if cli.common.verbose {
         println!(
             "[VERBOSE] Downloading {} unique random COD CIF files to {}...",
-            cli.count, cli.output_dir
+            cli.common.count, cli.common.output_dir
         );
     } else {
         println!(
             "Downloading {} unique random COD CIF files to {}...",
-            cli.count, cli.output_dir
+            cli.common.count, cli.common.output_dir
         );
     }
-    let batch = download_unique_random_cod_batch(
-        valid_ids,
-        cli.count,
-        &cli.output_dir,
-        cli.seed,
-        cli.verbose,
-    )
-    .await?;
-    if cli.verbose {
+
+    let batch = downloader.download_unique_random_batch(cli.common.count, cli.common.seed)?;
+
+    if cli.common.verbose {
         println!("[VERBOSE] Downloaded {} files:", batch.len());
         for (id, path) in &batch {
             println!("[VERBOSE] {} -> {}", id, path.display());
@@ -138,141 +214,6 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
             println!("Downloaded {} to {}", id, path.display());
         }
     }
+
     Ok(())
-}
-
-async fn get_cod_ids() -> Result<Vec<String>, Box<dyn std::error::Error>> {
-    let client = reqwest::Client::builder()
-        .timeout(Duration::from_secs(60))
-        .build()?;
-
-    // Step 1: Fetch the search results page (wildcard search for all entries)
-    let url = "https://www.crystallography.net/cod/result?text=%25";
-    println!("Fetching COD search results page...");
-    let response = client.get(url).send().await?;
-    if !response.status().is_success() {
-        return Err(format!(
-            "Failed to fetch COD search page: HTTP {}",
-            response.status()
-        )
-        .into());
-    }
-    let html = response.text().await?;
-
-    // Step 2: Parse HTML to find the download link for 'list of cod numbers'
-    let document = Html::parse_document(&html);
-    let selector = Selector::parse("a").unwrap();
-    let mut download_url = None;
-    for element in document.select(&selector) {
-        if let Some(text) = element.text().next() {
-            if text.to_ascii_lowercase().contains("list of cod numbers") {
-                if let Some(href) = element.value().attr("href") {
-                    download_url = Some(href.to_string());
-                    break;
-                }
-            }
-        }
-    }
-    let download_url = match download_url {
-        Some(url) => {
-            if url.starts_with("http") {
-                url
-            } else {
-                format!(
-                    "https://www.crystallography.net/{}",
-                    url.trim_start_matches('/')
-                )
-            }
-        }
-        None => return Err("Could not find download link for COD numbers list".into()),
-    };
-
-    println!("Fetching COD numbers list from: {}", download_url);
-    let response = client.get(&download_url).send().await?;
-    if !response.status().is_success() {
-        return Err(format!(
-            "Failed to fetch COD numbers list: HTTP {}",
-            response.status()
-        )
-        .into());
-    }
-    let text = response.text().await?;
-    let re = Regex::new(r"\d{7}")?;
-    let ids: Vec<String> = re
-        .find_iter(&text)
-        .map(|m| m.as_str().to_string())
-        .collect();
-    let unique_ids: HashSet<String> = ids.into_iter().collect();
-    Ok(unique_ids.into_iter().collect())
-}
-
-use rand::SeedableRng;
-
-async fn download_unique_random_cod_batch(
-    valid_ids: Vec<String>,
-    n: usize,
-    output_dir: &str,
-    seed: u64,
-    verbose: bool,
-) -> Result<Vec<(String, std::path::PathBuf)>, Box<dyn std::error::Error>> {
-    let client = reqwest::Client::builder()
-        .timeout(Duration::from_secs(10))
-        .build()?;
-    let mut ids = valid_ids;
-    let mut rng = rand::rngs::StdRng::seed_from_u64(seed);
-    // Fisher-Yates shuffle, as in download-pdbs
-    for i in (1..ids.len()).rev() {
-        let j = rng.gen_range(0..=i);
-        ids.swap(i, j);
-    }
-    let mut results = Vec::new();
-    let mut tried = HashSet::new();
-    for cod_id in ids.into_iter() {
-        if results.len() >= n {
-            break;
-        }
-        if !tried.insert(cod_id.clone()) {
-            continue;
-        }
-        let filename = format!("cod_{}.cif", cod_id);
-        let filepath = Path::new(output_dir).join(&filename);
-        if filepath.exists() {
-            if verbose {
-                println!("Already exists, skipping: {}", filepath.display());
-            }
-            continue;
-        }
-        match client
-            .get(&format!(
-                "http://www.crystallography.net/cod/{}.cif",
-                cod_id
-            ))
-            .send()
-            .await
-        {
-            Ok(response) => {
-                if response.status().is_success() {
-                    let content = response.text().await?;
-                    fs::write(&filepath, content)?;
-                    if verbose {
-                        println!("Downloaded: {}", filename);
-                    }
-                    results.push((cod_id, filepath));
-                    sleep(Duration::from_secs(1)).await;
-                } else if verbose {
-                    println!(
-                        "Failed to download COD {}: HTTP {}",
-                        cod_id,
-                        response.status()
-                    );
-                }
-            }
-            Err(e) => {
-                if verbose {
-                    println!("Failed to download COD {}: {}", cod_id, e);
-                }
-            }
-        }
-    }
-    Ok(results)
 }
