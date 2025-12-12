@@ -7,10 +7,36 @@ repos:
         language: system
         files: \.rs$
         pass_filenames: false
-      - id: cargo-clippy
-        name: cargo clippy
+        args: ["--all", "--", "--check"]
+      
+      - id: cargo-clippy-parser
+        name: cargo clippy (ustar-parser)
         entry: cargo clippy
         language: system
-        files: \.rs$
+        files: ustar-parser/.*\.rs$
         pass_filenames: false
-        args: ["--all-targets", "--all-features", "--", "-D", "warnings"]
+        args: ["--all-targets", "--all-features", "-p", "ustar-parser", "--", "-D", "warnings"]
+      
+      - id: cargo-clippy-tools
+        name: cargo clippy (ustar-tools) 
+        entry: cargo clippy
+        language: system
+        files: ustar-tools/.*\.rs$
+        pass_filenames: false
+        args: ["--all-targets", "--all-features", "-p", "ustar-tools", "--", "-D", "warnings"]
+      
+      - id: cargo-test-parser
+        name: cargo test (ustar-parser)
+        entry: cargo test
+        language: system
+        files: ustar-parser/.*\.rs$
+        pass_filenames: false
+        args: ["--verbose", "-p", "ustar-parser"]
+      
+      - id: cargo-test-tools
+        name: cargo test (ustar-tools)
+        entry: cargo test
+        language: system  
+        files: ustar-tools/.*\.rs$
+        pass_filenames: false
+        args: ["--verbose", "-p", "ustar-tools"]

@@ -1,0 +1,12 @@
+# Clippy configuration to match CI settings
+# This ensures local development catches the same issues as CI
+
+# Additional strict lints that CI might be using
+avoid-breaking-exported-api = false
+disallowed-types = []
+disallowed-methods = []
+disallowed-macros = []
+
+# Performance and correctness lints
+too-many-arguments-threshold = 7
+type-complexity-threshold = 250

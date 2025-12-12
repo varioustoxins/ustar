@@ -32,6 +32,14 @@ cargo run --bin ustar-benchmark        # Performance benchmarking
 cargo run --bin ustar-parse-debugger   # Debug parser behavior
 ```
 
+### Code Quality
+```bash
+./scripts/setup-git-hooks.sh           # One-time setup of git hooks (matches CI)
+./scripts/ci-clippy.sh                 # Run clippy with CI-matching configuration
+cargo fmt --all                        # Format code
+pre-commit run --all-files             # Run all pre-commit checks manually
+```
+
 ## Architecture and Key Components
 
 ### Multi-Encoding Parser System
