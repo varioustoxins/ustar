@@ -4,6 +4,7 @@ use std::io::{self, Read};
 use std::path::PathBuf;
 use tabled::{settings::Style, Table, Tabled};
 use text_trees::{FormatCharacters, StringTreeNode, TreeFormatting};
+use ustar_parser::line_column_index::LineColumnIndex;
 use ustar_parser::mutable_pair::MutablePair;
 use ustar_parser::{default_config, get_context_lines, get_error_format, parse};
 use ustar_tools::dump_extractors::{DumpExtractor, MutablePairExtractor};
@@ -126,30 +127,10 @@ fn apply_content_coloring(content_part: &str) -> String {
     result
 }
 
-/// Helper function to convert byte position to line and column numbers (1-indexed)
-fn get_line_col(input: &str, pos: usize) -> (usize, usize) {
-    let mut line = 1;
-    let mut col = 1;
-
-    for (i, ch) in input.char_indices() {
-        if i >= pos {
-            break;
-        }
-        if ch == '\n' {
-            line += 1;
-            col = 1;
-        } else {
-            col += 1;
-        }
-    }
-
-    (line, col)
-}
-
 /// Collect symbol information from MutablePair into a vector for table display
 fn collect_symbol_info_from_mutable(
     pair: &MutablePair,
-    input: &str,
+    line_index: &LineColumnIndex,
     symbol_counter: &mut usize,
     indent_level: usize,
     symbols: &mut Vec<SymbolInfo>,
@@ -176,9 +157,9 @@ fn collect_symbol_info_from_mutable(
     let end_pos = extractor.extract_end(pair);
     let content = extractor.extract_str(pair);
 
-    // Calculate line and column positions
-    let (start_line, start_col) = get_line_col(input, start_pos);
-    let (end_line, end_col) = get_line_col(input, end_pos);
+    // Calculate line and column positions using fast index
+    let start_line_col = line_index.offset_to_line_col(start_pos);
+    let end_line_col = line_index.offset_to_line_col(end_pos);
 
     // Check if this has children (non-terminal)
     let has_children = extractor.has_children(pair);
@@ -207,7 +188,10 @@ fn collect_symbol_info_from_mutable(
         level: indent_level,
         rule_name,
         positions: format!("{}-{}", start_pos, end_pos),
-        line_col: format!("{}:{}-{}:{}", start_line, start_col, end_line, end_col),
+        line_col: format!(
+            "{}:{}-{}:{}",
+            start_line_col.line, start_line_col.column, end_line_col.line, end_line_col.column
+        ),
         content: display_content,
     };
 
@@ -218,7 +202,7 @@ fn collect_symbol_info_from_mutable(
         for child in extractor.get_children(pair) {
             collect_symbol_info_from_mutable(
                 &child,
-                input,
+                line_index,
                 symbol_counter,
                 indent_level + 1,
                 symbols,
@@ -234,6 +218,9 @@ fn display_parse_tree(mutable_pair: &MutablePair, input: &str, use_tree: bool) -
     let mut symbol_counter = 0;
     let mut symbols = Vec::new();
 
+    // Create fast line/column index for O(log n) lookups
+    let line_index = LineColumnIndex::new(input);
+
     let tree_lines = if use_tree {
         Some(generate_tree_lines(mutable_pair))
     } else {
@@ -242,7 +229,7 @@ fn display_parse_tree(mutable_pair: &MutablePair, input: &str, use_tree: bool) -
 
     collect_symbol_info_from_mutable(
         mutable_pair,
-        input,
+        &line_index,
         &mut symbol_counter,
         0,
         &mut symbols,
