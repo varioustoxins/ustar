@@ -1,0 +1,6 @@
+# Mock PDB Holdings List for Testing
+# Small subset for fast tests
+1abc
+2def
+3ghi
+4test

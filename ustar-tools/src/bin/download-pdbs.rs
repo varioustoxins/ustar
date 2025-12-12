@@ -2,8 +2,10 @@ use clap::Parser;
 use std::fs;
 use std::io::Write;
 use std::path::PathBuf;
+use std::sync::Arc;
 use ustar_tools::downloader_common::{
     CommonDownloaderCli, DataSource, DownloadError, DownloaderConfig, GenericDownloader,
+    HttpClient, ReqwestClient,
 };
 
 /// PDB-specific data source implementation
@@ -11,6 +13,7 @@ pub struct PdbDataSource {
     base_url: String,
     compressed: bool,
     verbose: bool,
+    http_client: Arc<dyn HttpClient>,
 }
 
 impl PdbDataSource {
@@ -19,44 +22,41 @@ impl PdbDataSource {
             base_url: "https://files.rcsb.org/download".to_string(),
             compressed,
             verbose,
+            http_client: Arc::new(ReqwestClient),
+        }
+    }
+
+    #[cfg(test)]
+    pub fn with_client(compressed: bool, verbose: bool, client: Arc<dyn HttpClient>) -> Self {
+        Self {
+            base_url: "https://files.rcsb.org/download".to_string(),
+            compressed,
+            verbose,
+            http_client: client,
         }
     }
 }
 
 impl DataSource for PdbDataSource {
     fn get_available_entries(&self) -> Result<Vec<String>, DownloadError> {
-        let rt = tokio::runtime::Runtime::new().map_err(|e| {
-            DownloadError::DownloadFailed(format!("Failed to create runtime: {}", e))
-        })?;
+        if self.verbose {
+            println!("Fetching current PDB holdings list...");
+        }
 
-        rt.block_on(async {
-            if self.verbose {
-                println!("Fetching current PDB holdings list...");
-            }
+        let url = "https://files.rcsb.org/pub/pdb/holdings/current_holdings.txt";
+        let text = self.http_client.get(url)?;
 
-            let url = "https://files.rcsb.org/pub/pdb/holdings/current_holdings.txt";
-            let response = reqwest::get(url).await?;
+        let entries: Vec<String> = text
+            .lines()
+            .filter(|line| !line.is_empty() && !line.starts_with('#'))
+            .map(|line| line.to_lowercase())
+            .collect();
 
-            if response.status() != reqwest::StatusCode::OK {
-                return Err(DownloadError::DownloadFailed(format!(
-                    "Failed to fetch holdings: HTTP {}",
-                    response.status()
-                )));
-            }
+        if self.verbose {
+            println!("Found {} PDB entries in current holdings", entries.len());
+        }
 
-            let text = response.text().await?;
-            let entries: Vec<String> = text
-                .lines()
-                .filter(|line| !line.is_empty() && !line.starts_with('#'))
-                .map(|line| line.to_lowercase())
-                .collect();
-
-            if self.verbose {
-                println!("Found {} PDB entries in current holdings", entries.len());
-            }
-
-            Ok(entries)
-        })
+        Ok(entries)
     }
 
     fn download_entry(
@@ -64,30 +64,25 @@ impl DataSource for PdbDataSource {
         pdb_id: &str,
         output_path: &PathBuf,
     ) -> Result<PathBuf, DownloadError> {
-        let rt = tokio::runtime::Runtime::new().map_err(|e| {
-            DownloadError::DownloadFailed(format!("Failed to create runtime: {}", e))
-        })?;
+        let pdb_id = pdb_id.to_lowercase();
 
-        rt.block_on(async {
-            let pdb_id = pdb_id.to_lowercase();
+        let (extension, url) = if self.compressed {
+            ("cif.gz", format!("{}/{}.cif.gz", self.base_url, pdb_id))
+        } else {
+            ("cif", format!("{}/{}.cif", self.base_url, pdb_id))
+        };
 
-            let (extension, url) = if self.compressed {
-                ("cif.gz", format!("{}/{}.cif.gz", self.base_url, pdb_id))
-            } else {
-                ("cif", format!("{}/{}.cif", self.base_url, pdb_id))
-            };
+        if self.verbose {
+            println!(
+                "[VERBOSE] Downloading PDB entry {} in mmCIF format...",
+                pdb_id
+            );
+            println!("[VERBOSE] Download URL: {}", url);
+        }
 
-            if self.verbose {
-                println!(
-                    "[VERBOSE] Downloading PDB entry {} in mmCIF format...",
-                    pdb_id
-                );
-                println!("[VERBOSE] Download URL: {}", url);
-            }
-
-            let response = reqwest::get(&url).await?;
-
-            if response.status() != reqwest::StatusCode::OK {
+        match self.http_client.get_bytes(&url) {
+            Ok(content) => self.save_content(&content, output_path),
+            Err(_) => {
                 let alt_url = format!("https://files.rcsb.org/view/{}.{}", pdb_id, extension);
                 if self.verbose {
                     println!(
@@ -95,37 +90,26 @@ impl DataSource for PdbDataSource {
                         alt_url
                     );
                 }
-                let alt_response = reqwest::get(&alt_url).await?;
-                if alt_response.status() != reqwest::StatusCode::OK {
-                    return Err(DownloadError::DownloadFailed(format!(
-                        "Failed to download PDB entry {}: HTTP {}",
-                        pdb_id,
-                        alt_response.status()
-                    )));
-                }
-                return self.save_response(alt_response, output_path).await;
+                let content = self.http_client.get_bytes(&alt_url)?;
+                self.save_content(&content, output_path)
             }
-
-            self.save_response(response, output_path).await
-        })
+        }
     }
 }
 
 impl PdbDataSource {
-    async fn save_response(
+    fn save_content(
         &self,
-        response: reqwest::Response,
+        content: &[u8],
         output_path: &PathBuf,
     ) -> Result<PathBuf, DownloadError> {
-        let content = response.bytes().await?;
-
         // Create output directory if it doesn't exist
         if let Some(parent) = output_path.parent() {
             fs::create_dir_all(parent)?;
         }
 
         let mut file = fs::File::create(output_path)?;
-        file.write_all(&content)?;
+        file.write_all(content)?;
 
         if self.verbose {
             println!(

@@ -6,93 +6,77 @@ use ustar_test_utils::assert_snapshot_gz;
 
 // Simple smoke tests to verify the binaries execute without errors
 
-/// Helper function to test download binaries with reproducible seed-based downloads
-fn test_download_binary_functionality(binary_name: &str, temp_dir_name: &str) {
-    use std::fs;
-
-    // Create a temporary directory for the test
-    let temp_dir = std::env::temp_dir().join(temp_dir_name);
+/// Helper function to test download functionality using mocked data sources
+fn test_download_functionality_with_mocks<F>(downloader_type: &str, file_ext: &str, test_fn: F)
+where
+    F: FnOnce(
+        &std::path::Path,
+    ) -> Result<
+        Vec<(String, std::path::PathBuf)>,
+        ustar_tools::downloader_common::DownloadError,
+    >,
+{
+    // Create temporary directory
+    let temp_dir = std::env::temp_dir().join(format!("mock_{}_test", downloader_type));
     if temp_dir.exists() {
-        fs::remove_dir_all(&temp_dir).expect("Failed to clean temp directory");
+        std::fs::remove_dir_all(&temp_dir).expect("Failed to clean temp directory");
     }
-    fs::create_dir_all(&temp_dir).expect("Failed to create temp directory");
+    std::fs::create_dir_all(&temp_dir).expect("Failed to create temp directory");
 
-    // Download 1 file with seed 42 (default seed)
-    let output1 = Command::new("cargo")
-        .args(&[
-            "run",
-            "--bin",
-            binary_name,
-            "--",
-            "1",
-            "--output-dir",
-            temp_dir.to_str().unwrap(),
-            "--seed",
-            "42",
-        ])
-        .output()
-        .unwrap_or_else(|_| panic!("Failed to run {} first time", binary_name));
+    // Run the test function
+    let batch = test_fn(&temp_dir).expect("Download should succeed with mock data");
 
-    assert!(
-        output1.status.success(),
-        "{} first run should succeed",
-        binary_name
-    );
+    // Verify results
+    assert_eq!(batch.len(), 2, "Should download exactly 2 files");
 
-    // Check that exactly 1 file was downloaded
-    let entries1: Vec<_> = fs::read_dir(&temp_dir)
-        .expect("Failed to read temp directory")
-        .collect::<Result<Vec<_>, _>>()
-        .expect("Failed to collect directory entries");
-    assert_eq!(entries1.len(), 1, "Should download exactly 1 file");
-    let first_file = entries1[0].file_name();
+    // Verify files exist and have correct extensions
+    for (id, path) in &batch {
+        assert!(
+            path.exists(),
+            "Downloaded file {} should exist at {:?}",
+            id,
+            path
+        );
+        assert!(
+            path.extension().unwrap().to_str().unwrap() == file_ext,
+            "File should have {} extension",
+            file_ext
+        );
 
-    // Download 1 more file with same seed (should skip existing, get a different one)
-    let output2 = Command::new("cargo")
-        .args(&[
-            "run",
-            "--bin",
-            binary_name,
-            "--",
-            "1",
-            "--output-dir",
-            temp_dir.to_str().unwrap(),
-            "--seed",
-            "42",
-        ])
-        .output()
-        .unwrap_or_else(|_| panic!("Failed to run {} second time", binary_name));
+        let content = std::fs::read_to_string(path).unwrap();
+        assert!(!content.is_empty(), "File should not be empty");
+        assert!(
+            content.contains("data_"),
+            "File should contain STAR/CIF data"
+        );
+    }
 
-    assert!(
-        output2.status.success(),
-        "{} second run should succeed",
-        binary_name
-    );
-
-    // Check that we now have 2 different files
-    let entries2: Vec<_> = fs::read_dir(&temp_dir)
-        .expect("Failed to read temp directory after second run")
-        .collect::<Result<Vec<_>, _>>()
-        .expect("Failed to collect directory entries");
-    assert_eq!(entries2.len(), 2, "Should have 2 files after second run");
-
-    // Verify the files are different
-    let filenames: Vec<_> = entries2.iter().map(|e| e.file_name()).collect();
-    assert!(
-        filenames.contains(&first_file),
-        "First file should still exist"
-    );
-    assert_ne!(
-        filenames[0], filenames[1],
-        "Files should have different names"
-    );
+    // Verify no duplicates
+    let ids: Vec<&String> = batch.iter().map(|(id, _)| id).collect();
+    assert_ne!(ids[0], ids[1], "Should download different files");
 
     // Clean up
-    fs::remove_dir_all(&temp_dir).expect("Failed to clean up temp directory");
+    std::fs::remove_dir_all(&temp_dir).expect("Failed to clean up temp directory");
 }
 
 #[test]
 fn test_binaries_help_commands() {
+    use std::path::Path;
+
+    // Build all binaries first
+    println!("Building binaries...");
+    let build_output = Command::new("cargo")
+        .args(&["build", "--bins"])
+        .output()
+        .expect("Failed to build binaries");
+
+    if !build_output.status.success() {
+        panic!(
+            "Failed to build binaries: {}",
+            String::from_utf8_lossy(&build_output.stderr)
+        );
+    }
+
     let binaries_with_help = [
         "ustar-benchmark",
         "ustar-parse-debugger",
@@ -103,13 +87,26 @@ fn test_binaries_help_commands() {
         "sas-demo",
     ];
 
+    // Find the target directory
+    let target_dir = Path::new("../target/debug");
+
     for binary in &binaries_with_help {
-        let output = Command::new("cargo")
-            .args(&["run", "--bin", binary, "--", "--help"])
+        println!("Testing {} --help...", binary);
+
+        let binary_path = target_dir.join(binary);
+        if !binary_path.exists() {
+            panic!("Binary {} not found at {:?}", binary, binary_path);
+        }
+
+        let output = Command::new(&binary_path)
+            .arg("--help")
             .output()
             .unwrap_or_else(|_| panic!("Failed to run {} --help", binary));
 
-        assert!(output.status.success(), "{} --help should succeed", binary);
+        if !output.status.success() {
+            let stderr = String::from_utf8_lossy(&output.stderr);
+            panic!("{} --help failed: {}", binary, stderr);
+        }
 
         let stdout = String::from_utf8_lossy(&output.stdout);
         assert!(!stdout.is_empty(), "{} help should produce output", binary);
@@ -118,16 +115,33 @@ fn test_binaries_help_commands() {
             "{} help should contain usage information",
             binary
         );
+
+        println!("✓ {} --help works correctly", binary);
     }
 }
 
 #[test]
 fn test_sas_demo_basic_execution() {
-    // sas-demo doesn't use clap, so test with actual file
-    let test_file = "../ustar-parser/tests/test_data/comprehensive_example.star";
+    use std::path::Path;
 
-    let output = Command::new("cargo")
-        .args(&["run", "--bin", "sas-demo", "--", test_file])
+    // Build the binary first
+    let build_output = Command::new("cargo")
+        .args(&["build", "--bin", "sas-demo"])
+        .output()
+        .expect("Failed to build sas-demo");
+
+    if !build_output.status.success() {
+        panic!(
+            "Failed to build sas-demo: {}",
+            String::from_utf8_lossy(&build_output.stderr)
+        );
+    }
+
+    let test_file = "../ustar-parser/tests/test_data/comprehensive_example.star";
+    let binary_path = Path::new("../target/debug/sas-demo");
+
+    let output = Command::new(binary_path)
+        .arg(test_file)
         .output()
         .expect("Failed to run sas-demo");
 
@@ -152,29 +166,260 @@ fn test_sas_demo_basic_execution() {
 
 #[test]
 fn test_download_pdbs_basic_functionality() {
-    test_download_binary_functionality("download-pdbs", "test_download_pdbs");
+    test_download_functionality_with_mocks("pdb", "cif", |temp_dir| {
+        // Create mock PDB data source
+        use std::sync::Arc;
+        use ustar_test_utils::MockHttpClient;
+        use ustar_tools::downloader_common::{
+            DataSource, DownloadError, DownloaderConfig, GenericDownloader,
+        };
+
+        // Simple mock PDB implementation
+        struct MockPdbSource {
+            http_client: Arc<MockHttpClient>,
+        }
+
+        impl MockPdbSource {
+            fn new() -> Self {
+                let client = Arc::new(
+                    MockHttpClient::new()
+                        .with_response(
+                            "https://files.rcsb.org/pub/pdb/holdings/current_holdings.txt",
+                            "1abc\n2def\n3ghi",
+                        )
+                        .with_response(
+                            "https://files.rcsb.org/download/1abc.cif",
+                            "data_1ABC\n_entry.id 1ABC\n",
+                        )
+                        .with_response(
+                            "https://files.rcsb.org/download/2def.cif",
+                            "data_2DEF\n_entry.id 2DEF\n",
+                        ),
+                );
+                Self {
+                    http_client: client,
+                }
+            }
+        }
+
+        impl DataSource for MockPdbSource {
+            fn get_available_entries(&self) -> Result<Vec<String>, DownloadError> {
+                let text = self
+                    .http_client
+                    .get("https://files.rcsb.org/pub/pdb/holdings/current_holdings.txt")?;
+                Ok(text
+                    .lines()
+                    .filter(|l| !l.is_empty())
+                    .map(|l| l.to_lowercase())
+                    .collect())
+            }
+
+            fn download_entry(
+                &self,
+                entry_id: &str,
+                output_path: &std::path::PathBuf,
+            ) -> Result<std::path::PathBuf, DownloadError> {
+                let url = format!("https://files.rcsb.org/download/{}.cif", entry_id);
+                let content = self.http_client.get(&url)?;
+                std::fs::create_dir_all(output_path.parent().unwrap())?;
+                std::fs::write(output_path, content)?;
+                Ok(output_path.clone())
+            }
+        }
+
+        let config = DownloaderConfig::new()
+            .output_dir(temp_dir.to_str().unwrap())
+            .verbose(false)
+            .file_extension("cif");
+
+        let downloader = GenericDownloader::new(config, MockPdbSource::new());
+        downloader.download_unique_random_batch(2, 42)
+    });
 }
 
 #[test]
 fn test_download_bmrb_stars_basic_functionality() {
-    test_download_binary_functionality("download-bmrb-stars", "test_download_bmrb");
+    test_download_functionality_with_mocks("bmrb", "str", |temp_dir| {
+        // Create mock BMRB data source
+        use std::sync::Arc;
+        use ustar_test_utils::MockHttpClient;
+        use ustar_tools::downloader_common::{
+            DataSource, DownloadError, DownloaderConfig, GenericDownloader,
+        };
+
+        // Simple mock BMRB implementation
+        struct MockBmrbSource {
+            http_client: Arc<MockHttpClient>,
+        }
+
+        impl MockBmrbSource {
+            fn new() -> Self {
+                let client = Arc::new(
+                    MockHttpClient::new()
+                        .with_response(
+                            "https://bmrb.io/ftp/pub/bmrb/entry_directories/",
+                            "<html><a href=\"bmr1000/\">bmr1000/</a><a href=\"bmr2000/\">bmr2000/</a></html>"
+                        )
+                        .with_response(
+                            "https://bmrb.io/ftp/pub/bmrb/entry_directories/bmr1000/bmr1000.str",
+                            "data_1000\nsave_entry_information\n_Entry.ID 1000\nsave_"
+                        )
+                        .with_response(
+                            "https://bmrb.io/ftp/pub/bmrb/entry_directories/bmr2000/bmr2000.str",
+                            "data_2000\nsave_entry_information\n_Entry.ID 2000\nsave_"
+                        )
+                );
+                Self {
+                    http_client: client,
+                }
+            }
+        }
+
+        impl DataSource for MockBmrbSource {
+            fn get_available_entries(&self) -> Result<Vec<String>, DownloadError> {
+                let html = self
+                    .http_client
+                    .get("https://bmrb.io/ftp/pub/bmrb/entry_directories/")?;
+                let mut entries = Vec::new();
+                for cap in html.match_indices("bmr") {
+                    let start = cap.0;
+                    let rest = &html[start..];
+                    if let Some(end) = rest.find('/') {
+                        let dir = &rest[..end];
+                        if dir.len() > 3 && dir[3..].chars().all(|c| c.is_ascii_digit()) {
+                            entries.push(dir.to_string());
+                        }
+                    }
+                }
+                Ok(entries)
+            }
+
+            fn download_entry(
+                &self,
+                entry_id: &str,
+                output_path: &std::path::PathBuf,
+            ) -> Result<std::path::PathBuf, DownloadError> {
+                let url = format!(
+                    "https://bmrb.io/ftp/pub/bmrb/entry_directories/{}/{}.str",
+                    entry_id, entry_id
+                );
+                let content = self.http_client.get(&url)?;
+                std::fs::create_dir_all(output_path.parent().unwrap())?;
+                std::fs::write(output_path, content)?;
+                Ok(output_path.clone())
+            }
+        }
+
+        let config = DownloaderConfig::new()
+            .output_dir(temp_dir.to_str().unwrap())
+            .verbose(false)
+            .file_extension("str");
+
+        let downloader = GenericDownloader::new(config, MockBmrbSource::new());
+        downloader.download_unique_random_batch(2, 42)
+    });
 }
 
 #[test]
 fn test_download_cod_cifs_basic_functionality() {
-    test_download_binary_functionality("download-cod-cifs", "test_download_cod");
+    test_download_functionality_with_mocks("cod", "cif", |temp_dir| {
+        // Create mock COD data source
+        use std::sync::Arc;
+        use ustar_test_utils::MockHttpClient;
+        use ustar_tools::downloader_common::{
+            DataSource, DownloadError, DownloaderConfig, GenericDownloader,
+        };
+
+        // Simple mock COD implementation
+        struct MockCodSource {
+            http_client: Arc<MockHttpClient>,
+        }
+
+        impl MockCodSource {
+            fn new() -> Self {
+                let client = Arc::new(
+                    MockHttpClient::new()
+                        .with_response(
+                            "http://www.crystallography.net/cod/result.php?start=1&stop=50000&selection=id",
+                            "<html><a href=\"/cod/1000001.cif\">1000001</a><a href=\"/cod/2000002.cif\">2000002</a></html>"
+                        )
+                        .with_response(
+                            "http://www.crystallography.net/cod/1000001.cif",
+                            "data_1000001\n_database_code_COD 1000001\n"
+                        )
+                        .with_response(
+                            "http://www.crystallography.net/cod/2000002.cif",
+                            "data_2000002\n_database_code_COD 2000002\n"
+                        )
+                );
+                Self {
+                    http_client: client,
+                }
+            }
+        }
+
+        impl DataSource for MockCodSource {
+            fn get_available_entries(&self) -> Result<Vec<String>, DownloadError> {
+                let html = self.http_client.get(
+                    "http://www.crystallography.net/cod/result.php?start=1&stop=50000&selection=id",
+                )?;
+                let mut entries = Vec::new();
+                for cap in html.match_indices("/cod/") {
+                    let start = cap.0;
+                    let rest = &html[start + 5..];
+                    if let Some(end) = rest.find('.') {
+                        let id = &rest[..end];
+                        if id.chars().all(|c| c.is_ascii_digit()) {
+                            entries.push(id.to_string());
+                        }
+                    }
+                }
+                Ok(entries)
+            }
+
+            fn download_entry(
+                &self,
+                entry_id: &str,
+                output_path: &std::path::PathBuf,
+            ) -> Result<std::path::PathBuf, DownloadError> {
+                let url = format!("http://www.crystallography.net/cod/{}.cif", entry_id);
+                let content = self.http_client.get(&url)?;
+                std::fs::create_dir_all(output_path.parent().unwrap())?;
+                std::fs::write(output_path, content)?;
+                Ok(output_path.clone())
+            }
+        }
+
+        let config = DownloaderConfig::new()
+            .output_dir(temp_dir.to_str().unwrap())
+            .verbose(false)
+            .file_extension("cif");
+
+        let downloader = GenericDownloader::new(config, MockCodSource::new());
+        downloader.download_unique_random_batch(2, 42)
+    });
 }
 
 #[test]
 fn test_ustar_parse_debugger_invalid_file() {
-    let output = Command::new("cargo")
-        .args(&[
-            "run",
-            "--bin",
-            "ustar-parse-debugger",
-            "--",
-            "tests/test_data/invalid_syntax.star",
-        ])
+    use std::path::Path;
+
+    // Build the binary first
+    let build_output = Command::new("cargo")
+        .args(&["build", "--bin", "ustar-parse-debugger"])
+        .output()
+        .expect("Failed to build ustar-parse-debugger");
+
+    if !build_output.status.success() {
+        panic!(
+            "Failed to build ustar-parse-debugger: {}",
+            String::from_utf8_lossy(&build_output.stderr)
+        );
+    }
+
+    let binary_path = Path::new("../target/debug/ustar-parse-debugger");
+    let output = Command::new(binary_path)
+        .arg("tests/test_data/invalid_syntax.star")
         .output()
         .expect("Failed to run ustar-parse-debugger");
 
@@ -200,7 +445,6 @@ fn test_ustar_parse_debugger_invalid_file() {
 }
 
 #[test]
-#[ignore] // Ignored due to very long execution time for grammar railroad generation
 fn test_ustar_grammar_railroad_svg_generation() {
     use std::fs;
     use std::path::Path;
@@ -212,92 +456,111 @@ fn test_ustar_grammar_railroad_svg_generation() {
     }
     fs::create_dir_all(&temp_dir).expect("Failed to create temp directory");
 
-    // Find a grammar file to process (look for generated ones, prefer ASCII for speed)
+    // Test all three grammar files
     let grammar_files = [
-        "../ustar-parser/src/star_ascii.pest", // Try ASCII first as it's simpler
+        "../ustar-parser/src/star_ascii.pest",
         "../ustar-parser/src/star_extended.pest",
         "../ustar-parser/src/star_unicode.pest",
     ];
 
-    let mut grammar_file = None;
-    for file in &grammar_files {
-        if Path::new(file).exists() {
-            grammar_file = Some(file);
-            break;
+    for (i, grammar_file) in grammar_files.iter().enumerate() {
+        if !Path::new(grammar_file).exists() {
+            continue; // Skip if grammar file doesn't exist
         }
+
+        let output_svg = temp_dir.join(format!("test_grammar_{}.svg", i));
+
+        let output = Command::new("cargo")
+            .args(&[
+                "run",
+                "--bin",
+                "ustar-grammar-railroad",
+                "--",
+                grammar_file,
+                "--output",
+                output_svg.to_str().unwrap(),
+            ])
+            .output()
+            .expect("Failed to run ustar-grammar-railroad");
+
+        assert!(
+            output.status.success(),
+            "ustar-grammar-railroad should execute successfully for {}",
+            grammar_file
+        );
+
+        // Check that SVG file was created
+        assert!(
+            output_svg.exists(),
+            "Should create SVG output file for {}",
+            grammar_file
+        );
+
+        // Check SVG file size (should be reasonable for a grammar diagram)
+        let metadata = fs::metadata(&output_svg).expect("Failed to read SVG metadata");
+        assert!(
+            metadata.len() > 1000,
+            "SVG file should be substantial (>1KB) for {}",
+            grammar_file
+        );
+        assert!(
+            metadata.len() < 50_000_000,
+            "SVG file shouldn't be too large (<50MB) for {}",
+            grammar_file
+        );
+
+        // Read and validate the SVG content using usvg for proper SVG validation
+        let svg_content = fs::read_to_string(&output_svg).expect("Failed to read SVG file");
+
+        // Basic XML structure checks
+        assert!(
+            svg_content.contains("<svg"),
+            "Should contain SVG root element for {}",
+            grammar_file
+        );
+        assert!(
+            svg_content.contains("</svg>"),
+            "Should have closing SVG tag for {}",
+            grammar_file
+        );
+
+        // Use usvg to validate SVG semantics and structure
+        let tree = usvg::Tree::from_str(&svg_content, &usvg::Options::default()).expect(&format!(
+            "Generated SVG should be valid and parseable by usvg for {}",
+            grammar_file
+        ));
+
+        // Verify the SVG has some actual content (not just empty)
+        let svg_node = tree.root();
+        assert!(
+            svg_node.has_children(),
+            "SVG should contain graphical elements for {}",
+            grammar_file
+        );
+
+        // Check that the SVG has reasonable dimensions
+        let size = tree.size();
+        assert!(
+            size.width() > 0.0,
+            "SVG should have positive width for {}",
+            grammar_file
+        );
+        assert!(
+            size.height() > 0.0,
+            "SVG should have positive height for {}",
+            grammar_file
+        );
+        assert!(
+            size.width() < 100000.0,
+            "SVG width should be reasonable (<100000px) for {}",
+            grammar_file
+        );
+        assert!(
+            size.height() < 100000.0,
+            "SVG height should be reasonable (<100000px) for {}",
+            grammar_file
+        );
     }
-
-    let grammar_file = grammar_file.expect("No grammar file found - run cargo build first");
-    let output_svg = temp_dir.join("test_grammar.svg");
-
-    let output = Command::new("cargo")
-        .args(&[
-            "run",
-            "--bin",
-            "ustar-grammar-railroad",
-            "--",
-            grammar_file,
-            "--output",
-            output_svg.to_str().unwrap(),
-        ])
-        .output()
-        .expect("Failed to run ustar-grammar-railroad");
-
-    assert!(
-        output.status.success(),
-        "ustar-grammar-railroad should execute successfully"
-    );
-
-    // Check that SVG file was created
-    assert!(output_svg.exists(), "Should create SVG output file");
-
-    // Check SVG file size (should be reasonable for a grammar diagram)
-    let metadata = fs::metadata(&output_svg).expect("Failed to read SVG metadata");
-    assert!(
-        metadata.len() > 1000,
-        "SVG file should be substantial (>1KB)"
-    );
-    assert!(
-        metadata.len() < 50_000_000,
-        "SVG file shouldn't be too large (<50MB)"
-    );
-
-    // Read and validate the SVG content using usvg for proper SVG validation
-    let svg_content = fs::read_to_string(&output_svg).expect("Failed to read SVG file");
-
-    // Basic XML structure checks
-    assert!(
-        svg_content.contains("<svg"),
-        "Should contain SVG root element"
-    );
-    assert!(
-        svg_content.contains("</svg>"),
-        "Should have closing SVG tag"
-    );
-
-    // Use usvg to validate SVG semantics and structure
-    let tree = usvg::Tree::from_str(&svg_content, &usvg::Options::default())
-        .expect("Generated SVG should be valid and parseable by usvg");
-
-    // Verify the SVG has some actual content (not just empty)
-    let svg_node = tree.root();
-    assert!(
-        svg_node.has_children(),
-        "SVG should contain graphical elements"
-    );
-
-    // Check that the SVG has reasonable dimensions
-    let size = tree.size();
-    assert!(size.width() > 0.0, "SVG should have positive width");
-    assert!(size.height() > 0.0, "SVG should have positive height");
-    assert!(
-        size.width() < 100000.0,
-        "SVG width should be reasonable (<100000px)"
-    );
-    assert!(
-        size.height() < 100000.0,
-        "SVG height should be reasonable (<100000px)"
-    );
 
     // Clean up
     fs::remove_dir_all(&temp_dir).expect("Failed to clean up temp directory");

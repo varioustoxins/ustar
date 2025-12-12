@@ -1,0 +1,20 @@
+data_1000
+
+save_entry_information
+   _Entry.Sf_category                 entry_information
+   _Entry.Sf_framecode                entry_information
+   _Entry.ID                          1000
+   _Entry.Title                       'Test BMRB Entry for Unit Tests'
+   _Entry.Type                        macromolecule
+   _Entry.Version_type                original
+   _Entry.Submission_date             2024-01-01
+   _Entry.Last_release_date           2024-01-01
+save_
+
+save_test_data
+   _Test.Sf_category                  test_data
+   _Test.Sf_framecode                 test_data
+   _Test.ID                           1
+   _Test.Name                         'Mock test data'
+   _Test.Value                        42.5
+save_

@@ -6,27 +6,13 @@ use std::collections::HashSet;
 use std::fs;
 use std::path::PathBuf;
 
-/// Common CLI structure for all downloaders
-#[derive(clap::Parser, Debug)]
-pub struct CommonDownloaderCli {
-    /// Number of files to download
-    #[arg(default_value_t = 50, value_name = "COUNT")]
-    pub count: usize,
-    /// Output directory
-    #[arg(short, long, default_value = "tests/test_data")]
-    pub output_dir: String,
-    /// Enable verbose output
-    #[arg(long)]
-    pub verbose: bool,
-    /// List available files and which are downloaded
-    #[arg(long)]
-    pub list: bool,
-    /// Random number seed for reproducible shuffling
-    #[arg(long, default_value_t = 42)]
-    pub seed: u64,
+/// HTTP client trait for dependency injection and testing
+pub trait HttpClient: Send + Sync {
+    fn get(&self, url: &str) -> Result<String, DownloadError>;
+    fn get_bytes(&self, url: &str) -> Result<Vec<u8>, DownloadError>;
 }
 
-/// Error type for download operations
+/// Error types for download operations
 #[derive(Debug)]
 pub enum DownloadError {
     RequestError(reqwest::Error),
@@ -35,6 +21,20 @@ pub enum DownloadError {
     DownloadFailed(String),
     JsonError(serde_json::Error),
 }
+
+impl std::fmt::Display for DownloadError {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            DownloadError::RequestError(e) => write!(f, "Request error: {}", e),
+            DownloadError::IoError(e) => write!(f, "IO error: {}", e),
+            DownloadError::NoEntriesFound => write!(f, "No entries found"),
+            DownloadError::DownloadFailed(msg) => write!(f, "Download failed: {}", msg),
+            DownloadError::JsonError(e) => write!(f, "JSON error: {}", e),
+        }
+    }
+}
+
+impl std::error::Error for DownloadError {}
 
 impl From<reqwest::Error> for DownloadError {
     fn from(err: reqwest::Error) -> Self {
@@ -54,19 +54,84 @@ impl From<serde_json::Error> for DownloadError {
     }
 }
 
-impl std::fmt::Display for DownloadError {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        match self {
-            DownloadError::RequestError(e) => write!(f, "Request error: {}", e),
-            DownloadError::IoError(e) => write!(f, "IO error: {}", e),
-            DownloadError::NoEntriesFound => write!(f, "No entries found"),
-            DownloadError::DownloadFailed(msg) => write!(f, "Download failed: {}", msg),
-            DownloadError::JsonError(e) => write!(f, "JSON error: {}", e),
-        }
+impl From<String> for DownloadError {
+    fn from(err: String) -> Self {
+        DownloadError::DownloadFailed(err)
     }
 }
 
-impl std::error::Error for DownloadError {}
+/// Production HTTP client using reqwest
+pub struct ReqwestClient;
+
+/// Implementation of HttpClient for MockHttpClient from test utils
+#[cfg(test)]
+impl HttpClient for ustar_test_utils::MockHttpClient {
+    fn get(&self, url: &str) -> Result<String, DownloadError> {
+        self.get(url).map_err(DownloadError::DownloadFailed)
+    }
+
+    fn get_bytes(&self, url: &str) -> Result<Vec<u8>, DownloadError> {
+        self.get_bytes(url).map_err(DownloadError::DownloadFailed)
+    }
+}
+
+impl HttpClient for ReqwestClient {
+    fn get(&self, url: &str) -> Result<String, DownloadError> {
+        let rt = tokio::runtime::Runtime::new().map_err(|e| {
+            DownloadError::DownloadFailed(format!("Failed to create runtime: {}", e))
+        })?;
+
+        rt.block_on(async {
+            let response = reqwest::get(url).await?;
+            if !response.status().is_success() {
+                return Err(DownloadError::DownloadFailed(format!(
+                    "HTTP {}: {}",
+                    response.status(),
+                    url
+                )));
+            }
+            Ok(response.text().await?)
+        })
+    }
+
+    fn get_bytes(&self, url: &str) -> Result<Vec<u8>, DownloadError> {
+        let rt = tokio::runtime::Runtime::new().map_err(|e| {
+            DownloadError::DownloadFailed(format!("Failed to create runtime: {}", e))
+        })?;
+
+        rt.block_on(async {
+            let response = reqwest::get(url).await?;
+            if !response.status().is_success() {
+                return Err(DownloadError::DownloadFailed(format!(
+                    "HTTP {}: {}",
+                    response.status(),
+                    url
+                )));
+            }
+            Ok(response.bytes().await?.to_vec())
+        })
+    }
+}
+
+/// Common CLI structure for all downloaders
+#[derive(clap::Parser, Debug)]
+pub struct CommonDownloaderCli {
+    /// Number of files to download
+    #[arg(default_value_t = 50, value_name = "COUNT")]
+    pub count: usize,
+    /// Output directory
+    #[arg(short, long, default_value = "tests/test_data")]
+    pub output_dir: String,
+    /// Enable verbose output
+    #[arg(long)]
+    pub verbose: bool,
+    /// List available files and which are downloaded
+    #[arg(long)]
+    pub list: bool,
+    /// Random number seed for reproducible shuffling
+    #[arg(long, default_value_t = 42)]
+    pub seed: u64,
+}
 
 /// Configuration for a downloader
 pub struct DownloaderConfig {
