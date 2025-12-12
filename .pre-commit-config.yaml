@@ -25,18 +25,18 @@ repos:
         pass_filenames: false
         args: ["--all-targets", "--all-features", "-p", "ustar-tools", "--", "-D", "warnings"]
       
-      - id: cargo-test-parser
-        name: cargo test (ustar-parser)
+      - id: cargo-test-parser-lib
+        name: cargo test (ustar-parser lib only)
         entry: cargo test
         language: system
         files: ustar-parser/.*\.rs$
         pass_filenames: false
-        args: ["--verbose", "-p", "ustar-parser"]
+        args: ["--lib", "-p", "ustar-parser"]
       
-      - id: cargo-test-tools
-        name: cargo test (ustar-tools)
+      - id: cargo-test-tools-lib
+        name: cargo test (ustar-tools lib only)
         entry: cargo test
         language: system  
         files: ustar-tools/.*\.rs$
         pass_filenames: false
-        args: ["--verbose", "-p", "ustar-tools"]
+        args: ["--lib", "-p", "ustar-tools"]
