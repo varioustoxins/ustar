@@ -1,11 +1,46 @@
+use std::path::PathBuf;
 use std::process::Command;
 use std::str;
+use std::sync::OnceLock;
 use ustar_test_utils::assert_snapshot_gz;
+
+static DUMPER_BINARY: OnceLock<PathBuf> = OnceLock::new();
+
+/// Build the ustar-dumper binary once and return its path
+fn get_dumper_binary() -> &'static PathBuf {
+    DUMPER_BINARY.get_or_init(|| {
+        // Build the binary in release mode once
+        let output = Command::new("cargo")
+            .args(&["build", "--release", "--bin", "ustar-dumper"])
+            .current_dir(
+                env!("CARGO_MANIFEST_DIR")
+                    .split("/ustar-tools")
+                    .next()
+                    .unwrap(),
+            )
+            .output()
+            .expect("Failed to build ustar-dumper");
+
+        if !output.status.success() {
+            let stderr = String::from_utf8(output.stderr).unwrap_or_default();
+            panic!("Failed to build ustar-dumper: {}", stderr);
+        }
+
+        // Get the absolute path to the built binary
+        let manifest_dir = env!("CARGO_MANIFEST_DIR");
+        let workspace_root = manifest_dir.split("/ustar-tools").next().unwrap();
+        PathBuf::from(workspace_root).join("target/release/ustar-dumper")
+    })
+}
 
 /// Test helper to run ustar-dumper and capture output
 fn run_ustar_parser(input_file: &str) -> Result<String, Box<dyn std::error::Error>> {
-    let output = Command::new("cargo")
-        .args(&["run", "--bin", "ustar-dumper", "--", input_file])
+    let binary_path = get_dumper_binary();
+    let manifest_dir = env!("CARGO_MANIFEST_DIR");
+    let workspace_root = manifest_dir.split("/ustar-tools").next().unwrap();
+    let output = Command::new(binary_path)
+        .arg(input_file)
+        .current_dir(workspace_root)
         .output()?;
 
     if output.status.success() {
@@ -18,8 +53,12 @@ fn run_ustar_parser(input_file: &str) -> Result<String, Box<dyn std::error::Erro
 
 /// Test helper to run ustar-dumper with tree flag and capture output
 fn run_ustar_parser_with_tree(input_file: &str) -> Result<String, Box<dyn std::error::Error>> {
-    let output = Command::new("cargo")
-        .args(&["run", "--bin", "ustar-dumper", "--", "--tree", input_file])
+    let binary_path = get_dumper_binary();
+    let manifest_dir = env!("CARGO_MANIFEST_DIR");
+    let workspace_root = manifest_dir.split("/ustar-tools").next().unwrap();
+    let output = Command::new(binary_path)
+        .args(&["--tree", input_file])
+        .current_dir(workspace_root)
         .output()?;
 
     if output.status.success() {
@@ -32,8 +71,11 @@ fn run_ustar_parser_with_tree(input_file: &str) -> Result<String, Box<dyn std::e
 
 /// Test helper to run ustar-dumper with stdin and capture output
 fn run_ustar_parser_stdin(input: &str) -> Result<String, Box<dyn std::error::Error>> {
-    let mut child = Command::new("cargo")
-        .args(&["run", "--bin", "ustar-dumper"])
+    let binary_path = get_dumper_binary();
+    let manifest_dir = env!("CARGO_MANIFEST_DIR");
+    let workspace_root = manifest_dir.split("/ustar-tools").next().unwrap();
+    let mut child = Command::new(binary_path)
+        .current_dir(workspace_root)
         .stdin(std::process::Stdio::piped())
         .stdout(std::process::Stdio::piped())
         .stderr(std::process::Stdio::piped())
@@ -94,7 +136,7 @@ fn test_cli_whitespace_visualization() {
 
 #[test]
 fn test_cli_test_input_star_file() {
-    let output = run_ustar_parser("tests/test_data/test_input.star")
+    let output = run_ustar_parser("ustar-parser/tests/test_data/test_input.star")
         .expect("Failed to run ustar-dumper on test_input.star");
 
     assert_snapshot_gz("ustar_dumper_tests__test_input_star_output", &output);
@@ -102,7 +144,7 @@ fn test_cli_test_input_star_file() {
 
 #[test]
 fn test_cli_simple_star_file() {
-    let output = run_ustar_parser("tests/test_data/simple_star_file.star")
+    let output = run_ustar_parser("ustar-parser/tests/test_data/simple_star_file.star")
         .expect("Failed to run ustar-dumper on simple_star_file.star");
 
     assert_snapshot_gz("ustar_dumper_tests__simple_star_file_output", &output);
@@ -110,12 +152,12 @@ fn test_cli_simple_star_file() {
 
 #[test]
 fn test_cli_semicolon_bounded_file() {
-    let output = run_ustar_parser("tests/test_data/semicolon_bounded.star")
+    let output = run_ustar_parser("ustar-parser/tests/test_data/semicolon_bounded.star")
         .expect("Failed to run ustar-dumper on semicolon_bounded.star");
 
     // Check source information
     assert!(
-        output.contains("source: tests/test_data/semicolon_bounded.star"),
+        output.contains("source: ustar-parser/tests/test_data/semicolon_bounded.star"),
         "Should show correct source file"
     );
 
@@ -132,12 +174,12 @@ fn test_cli_semicolon_bounded_file() {
 
 #[test]
 fn test_cli_mixed_content_file() {
-    let output = run_ustar_parser("tests/test_data/mixed_content.star")
+    let output = run_ustar_parser("ustar-parser/tests/test_data/mixed_content.star")
         .expect("Failed to run ustar-dumper on mixed_content.star");
 
     // Check source information
     assert!(
-        output.contains("source: tests/test_data/mixed_content.star"),
+        output.contains("source: ustar-parser/tests/test_data/mixed_content.star"),
         "Should show correct source file"
     );
 
@@ -179,7 +221,7 @@ fn test_cli_error_handling() {
 
 #[test]
 fn test_cli_comprehensive_example_without_tree() {
-    let output = run_ustar_parser("tests/test_data/comprehensive_example.star")
+    let output = run_ustar_parser("ustar-parser/tests/test_data/comprehensive_example.star")
         .expect("Failed to run ustar-dumper on comprehensive_example.star");
 
     assert_snapshot_gz(
@@ -190,8 +232,9 @@ fn test_cli_comprehensive_example_without_tree() {
 
 #[test]
 fn test_cli_comprehensive_example_with_tree() {
-    let output = run_ustar_parser_with_tree("tests/test_data/comprehensive_example.star")
-        .expect("Failed to run ustar-dumper with tree on comprehensive_example.star");
+    let output =
+        run_ustar_parser_with_tree("ustar-parser/tests/test_data/comprehensive_example.star")
+            .expect("Failed to run ustar-dumper with tree on comprehensive_example.star");
 
     assert_snapshot_gz(
         "ustar_dumper_tests__comprehensive_example_with_tree",
@@ -202,8 +245,12 @@ fn test_cli_comprehensive_example_with_tree() {
 #[test]
 fn test_cli_simple_example_with_tree() {
     let input = "data_test _value 'hello world'\n";
-    let mut child = Command::new("cargo")
-        .args(&["run", "--bin", "ustar-dumper", "--", "--tree"])
+    let binary_path = get_dumper_binary();
+    let manifest_dir = env!("CARGO_MANIFEST_DIR");
+    let workspace_root = manifest_dir.split("/ustar-tools").next().unwrap();
+    let mut child = Command::new(binary_path)
+        .arg("--tree")
+        .current_dir(workspace_root)
         .stdin(std::process::Stdio::piped())
         .stdout(std::process::Stdio::piped())
         .stderr(std::process::Stdio::piped())
