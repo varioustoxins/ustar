@@ -7,7 +7,7 @@ use miette::{Diagnostic, SourceSpan};
 #[derive(Debug, Clone)]
 #[cfg_attr(feature = "extended-errors", derive(thiserror::Error, Diagnostic))]
 #[cfg_attr(feature = "extended-errors", error("{message}"))]
-#[allow(dead_code)] // Fields used by miette macros
+#[allow(unused_assignments)] // Fields used by miette macros
 pub struct ErrorData {
     pub encoding: EncodingMode,
     pub message: String,

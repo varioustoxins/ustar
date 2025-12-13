@@ -5,7 +5,7 @@ use miette::{Diagnostic, SourceSpan};
 
 /// USTAR parsing error types with rich diagnostics
 #[derive(thiserror::Error, Debug, Clone, Diagnostic)]
-#[allow(dead_code)] // Fields used by miette macros
+#[allow(unused_assignments)] // Fields used by miette macros
 pub enum UstarError {
     #[error("{core}")]
     ParseError {
