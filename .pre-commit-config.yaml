@@ -31,7 +31,7 @@ repos:
         language: system
         files: ustar-parser/.*\.rs$
         pass_filenames: false
-        args: ["--lib", "-p", "ustar-parser"]
+        args: ["--lib", "--all-features", "-p", "ustar-parser"]
       
       - id: cargo-test-tools-lib
         name: cargo test (ustar-tools lib only)
@@ -39,4 +39,4 @@ repos:
         language: system  
         files: ustar-tools/.*\.rs$
         pass_filenames: false
-        args: ["--lib", "-p", "ustar-tools"]
+        args: ["--lib", "--all-features", "-p", "ustar-tools"]
