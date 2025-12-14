@@ -7,7 +7,6 @@ use miette::{Diagnostic, SourceSpan};
 #[derive(Debug, Clone)]
 #[cfg_attr(feature = "extended-errors", derive(thiserror::Error, Diagnostic))]
 #[cfg_attr(feature = "extended-errors", error("{message}"))]
-#[cfg_attr(not(feature = "extended-errors"), allow(unused_assignments))]
 pub struct ErrorData {
     pub encoding: EncodingMode,
     pub message: String,
@@ -23,6 +22,26 @@ pub struct ErrorData {
 }
 
 impl ErrorData {
+    /// Silence unused field warnings - clippy can't see that miette macros use these fields
+    /// This tricks the compiler into thinking fields are "used" even when miette macros are opaque to clippy
+    #[allow(dead_code)]
+    fn _silence_unused_warnings(&self) {
+        // All fields that clippy complains about as "unused assignments"
+        let _ = &self.encoding;
+        let _ = &self.message;
+        let _ = &self.line;
+        let _ = &self.col;
+        let _ = &self.line_content;
+        let _ = &self.pest_error_display;
+        let _ = &self.src;
+
+        // Handle the conditional field safely
+        #[cfg(feature = "extended-errors")]
+        {
+            let _ = &self.error_span;
+        }
+    }
+
     /// Create ErrorData from a pest error
     pub fn from_pest_error<R: pest::RuleType>(
         error: pest::error::Error<R>,

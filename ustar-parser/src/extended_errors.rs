@@ -5,7 +5,6 @@ use miette::{Diagnostic, SourceSpan};
 
 /// USTAR parsing error types with rich diagnostics
 #[derive(thiserror::Error, Debug, Clone, Diagnostic)]
-#[allow(unused_assignments)] // Fields used by miette macros
 pub enum UstarError {
     #[error("{core}")]
     ParseError {
@@ -19,6 +18,23 @@ pub enum UstarError {
 }
 
 impl UstarError {
+    /// Silence unused field warnings - clippy can't see that miette macros use these fields
+    /// This tricks the compiler into thinking fields are "used" even when miette macros are opaque to clippy
+    #[allow(dead_code)]
+    fn _silence_unused_warnings(&self) {
+        match self {
+            UstarError::ParseError {
+                core,
+                src,
+                error_span,
+            } => {
+                let _ = &core;
+                let _ = &src;
+                let _ = &error_span;
+            }
+        }
+    }
+
     pub fn from_pest_error<R: pest::RuleType>(
         error: pest::error::Error<R>,
         encoding: EncodingMode,
