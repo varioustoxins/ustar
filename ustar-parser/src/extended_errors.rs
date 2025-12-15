@@ -1,3 +1,4 @@
+#![allow(unused_assignments)] // Miette derive macros use fields in ways clippy can't see
 use crate::config::EncodingMode;
 use crate::error_core::ErrorData;
 use crate::ErrorFormatMode;
@@ -18,23 +19,6 @@ pub enum UstarError {
 }
 
 impl UstarError {
-    /// Silence unused field warnings - clippy can't see that miette macros use these fields
-    /// This tricks the compiler into thinking fields are "used" even when miette macros are opaque to clippy
-    #[allow(dead_code)]
-    fn _silence_unused_warnings(&self) {
-        match self {
-            UstarError::ParseError {
-                core,
-                src,
-                error_span,
-            } => {
-                let _ = &core;
-                let _ = &src;
-                let _ = &error_span;
-            }
-        }
-    }
-
     pub fn from_pest_error<R: pest::RuleType>(
         error: pest::error::Error<R>,
         encoding: EncodingMode,
@@ -53,8 +37,6 @@ impl UstarError {
             core,
         };
 
-        // Explicitly call the dummy method to silence clippy warnings
-        result._silence_unused_warnings();
         result
     }
 

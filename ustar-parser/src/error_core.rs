@@ -1,3 +1,4 @@
+#![allow(unused_assignments)] // Miette derive macros use fields in ways clippy can't see
 use crate::config::EncodingMode;
 
 /// Core error data shared between extended and simple error implementations
@@ -22,26 +23,6 @@ pub struct ErrorData {
 }
 
 impl ErrorData {
-    /// Silence unused field warnings - clippy can't see that miette macros use these fields
-    /// This tricks the compiler into thinking fields are "used" even when miette macros are opaque to clippy
-    #[allow(dead_code)]
-    fn _silence_unused_warnings(&self) {
-        // All fields that clippy complains about as "unused assignments"
-        let _ = &self.encoding;
-        let _ = &self.message;
-        let _ = &self.line;
-        let _ = &self.col;
-        let _ = &self.line_content;
-        let _ = &self.pest_error_display;
-        let _ = &self.src;
-
-        // Handle the conditional field safely
-        #[cfg(feature = "extended-errors")]
-        {
-            let _ = &self.error_span;
-        }
-    }
-
     /// Create ErrorData from a pest error
     pub fn from_pest_error<R: pest::RuleType>(
         error: pest::error::Error<R>,
@@ -101,8 +82,6 @@ impl ErrorData {
             error_span,
         };
 
-        // Explicitly call the dummy method to silence clippy warnings
-        result._silence_unused_warnings();
         result
     }
 
