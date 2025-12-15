@@ -89,7 +89,7 @@ impl ErrorData {
             pest::error::InputLocation::Span((start, end)) => (*start, *end - *start).into(),
         };
 
-        ErrorData {
+        let result = ErrorData {
             encoding,
             message: simple_message,
             line,
@@ -99,7 +99,11 @@ impl ErrorData {
             src: input.to_string(),
             #[cfg(feature = "extended-errors")]
             error_span,
-        }
+        };
+
+        // Explicitly call the dummy method to silence clippy warnings
+        result._silence_unused_warnings();
+        result
     }
 
     /// Format error in basic format (similar to ASCII but minimal)

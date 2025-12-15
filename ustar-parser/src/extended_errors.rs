@@ -47,11 +47,15 @@ impl UstarError {
 
         let core = ErrorData::from_pest_error(error, encoding, input);
 
-        UstarError::ParseError {
+        let result = UstarError::ParseError {
             src: core.src.clone(),
             error_span,
             core,
-        }
+        };
+
+        // Explicitly call the dummy method to silence clippy warnings
+        result._silence_unused_warnings();
+        result
     }
 
     /// Format error according to specified mode
