@@ -161,7 +161,7 @@ fn create_review_files(snapshot_path: &std::path::Path, snapshot_name: &str) {
 
     // Create .snap.old file (current snapshot decompressed) for easy comparison
     if !old_path.exists() {
-        if let Ok(expected_content) = read_snapshot(&snapshot_path) {
+        if let Ok(expected_content) = read_snapshot(snapshot_path) {
             if let Err(e) = std::fs::write(&old_path, &expected_content) {
                 eprintln!("Failed to write .snap.old file: {}", e);
             } else {
@@ -175,7 +175,7 @@ fn create_review_files(snapshot_path: &std::path::Path, snapshot_name: &str) {
         verbose_println!("Creating diff for {}", snapshot_name);
         if let (Ok(new_content), Ok(expected_content)) = (
             std::fs::read_to_string(&new_path),
-            read_snapshot(&snapshot_path),
+            read_snapshot(snapshot_path),
         ) {
             // Don't strip headers - show diff of full files including metadata
             let diff_content = create_diff(&expected_content, &new_content, snapshot_name);

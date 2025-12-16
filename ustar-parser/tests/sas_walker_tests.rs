@@ -393,10 +393,7 @@ fn test_simple_data_walker_output() {
     walker.walk_star_tree_buffered(&tree);
 
     let output = handler.output.join("\n");
-    snapshot_utils::assert_snapshot_gz(
-        "sas_walker_tests__snapshot_utils__sas_walker_tests__simple_data_walker_output",
-        &output,
-    );
+    snapshot_utils::assert_snapshot_gz("sas_walker_tests__simple_data_walker_output", &output);
 }
 
 #[test]
@@ -424,10 +421,7 @@ fn test_multiline_and_frame_codes() {
     walker.walk_star_tree_buffered(&tree);
 
     let output = handler.output.join("\n");
-    snapshot_utils::assert_snapshot_gz(
-        "sas_walker_tests__snapshot_utils__sas_walker_tests__multiline_and_frame_codes",
-        &output,
-    );
+    snapshot_utils::assert_snapshot_gz("sas_walker_tests__multiline_and_frame_codes", &output);
 }
 
 #[test]
