@@ -32,16 +32,8 @@ jobs:
           target/
         key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
     
-    - name: Generate grammar files
-      run: cargo build --verbose -p ustar-parser
-    
-    - name: Verify grammar files generated
-      run: |
-        ls -la ustar-parser/src/star_*.pest
-        echo "Generated grammar files:"
-        echo "- ASCII: $(wc -l < ustar-parser/src/star_ascii.pest) lines"
-        echo "- Extended: $(wc -l < ustar-parser/src/star_extended.pest) lines" 
-        echo "- Unicode: $(wc -l < ustar-parser/src/star_unicode.pest) lines"
+    - name: Generate grammar files using CI script
+      run: ./scripts/ci-grammar-generation.sh
     
     - name: Upload grammar artifacts
       uses: actions/upload-artifact@v4
@@ -87,39 +79,14 @@ jobs:
         name: generated-grammars
         path: ustar-parser/src/
     
-    - name: Build with default features
-      if: matrix.features == 'default'
-      run: cargo build --verbose --all-targets -p ${{ matrix.package }}
-    
-    - name: Build without default features  
-      if: matrix.features == 'no-default'
-      run: cargo build --verbose --all-targets --no-default-features -p ${{ matrix.package }}
-    
-    - name: Debug walker differences (show stderr output)
-      if: matrix.features == 'default' && matrix.package == 'ustar-parser'
+    - name: Run test matrix using CI script
       run: |
-        echo "=== Running debug walker test to show platform differences ==="
-        cargo test test_comprehensive_example_walker_output --test sas_walker_tests --verbose -p ustar-parser -- --nocapture || true
-        echo "=== End debug output ==="
-    
-    - name: Run tests with default features
-      if: matrix.features == 'default'
-      run: cargo test --verbose -p ${{ matrix.package }}
-    
-    - name: Run tests without default features
-      if: matrix.features == 'no-default' 
-      run: cargo test --verbose --no-default-features -p ${{ matrix.package }}
-    
-    - name: Test documentation
-      if: matrix.features == 'default' && matrix.rust == 'stable'
-      run: cargo test --doc -p ${{ matrix.package }}
-    
-    - name: Test binaries work
-      if: matrix.features == 'default' && matrix.rust == 'stable' && matrix.package == 'ustar-tools'
-      run: |
-        cargo run --bin ustar-dumper -- --help
-        cargo run --bin ustar-benchmark -- --help  
-        cargo run --bin ustar-parse-debugger -- --help
+        ./scripts/ci-test-matrix.sh         \
+          --package  ${{ matrix.package }}  \
+          --features ${{ matrix.features }} \
+          --platform ${{ matrix.os }}
+      env:
+        RUST_VERSION: ${{ matrix.rust }}
 
   code-quality:
     name: Code Quality
@@ -150,20 +117,8 @@ jobs:
         name: generated-grammars
         path: ustar-parser/src/
     
-    - name: Check formatting
-      run: cargo fmt --all -- --check
-    
-    - name: Run Clippy for ustar-parser
-      run: cargo clippy --all-targets --all-features -p ustar-parser -- -D warnings
-    
-    - name: Run Clippy for ustar-tools
-      run: cargo clippy --all-targets --all-features -p ustar-tools -- -D warnings
-    
-    - name: Check documentation for ustar-parser
-      run: cargo doc --no-deps --document-private-items -p ustar-parser
-    
-    - name: Check documentation for ustar-tools
-      run: cargo doc --no-deps --document-private-items -p ustar-tools
+    - name: Run code quality checks using CI script
+      run: ./scripts/ci-code-quality.sh
 
   integration-tests:
     name: Integration Tests
@@ -198,19 +153,11 @@ jobs:
         name: generated-grammars
         path: ustar-parser/src/
     
-    - name: Run consolidated integration tests  
-      run: cargo test --test integration_tests -p ustar-parser
+    - name: Install cargo-insta for snapshot testing
+      run: cargo install cargo-insta --version 1.34.0
     
-    - name: Run snapshot tests
-      run: cargo test error_handling_tests -p ustar-parser
-    
-    - name: Check for unused snapshots
-      run: |
-        if command -v cargo-insta &> /dev/null; then
-          cargo insta test --unreferenced=reject
-        else
-          echo "cargo-insta not available, skipping unreferenced snapshot check"
-        fi
+    - name: Run integration tests using CI script
+      run: ./scripts/ci-integration-tests.sh
 
   release:
     name: Release to Crates.io
