@@ -771,7 +771,7 @@ fn test_sas_test_files_walker_output() {
     if !failures.is_empty() {
         let failure_summary: Vec<String> = failures.iter().map(|f| f.to_string()).collect();
         panic!(
-            "{} snapshot(s) failed:\n\n{}\n\nRun ./scripts/insta-accept.sh to accept all new snapshots.",
+            "{} snapshot(s) failed:\n\n{}\n\nRun ./scripts/insta-zstd.sh to accept all new snapshots.",
             failures.len(),
             failure_summary.join("\n\n")
         );

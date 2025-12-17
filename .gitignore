@@ -21,7 +21,7 @@ Cargo.lock
 #.idea/
 .DS_Store
 
-# Snapshot working files (only .snap.gz files are tracked)
+# Snapshot working files (.snap.zst files are tracked, .snap files are working files)
 *.snap
 *.snap.new
 *.snap.old

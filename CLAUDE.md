@@ -89,10 +89,10 @@ Extensive test suite includes:
 
 ### Snapshot Testing
 ```bash
-./scripts/insta-accept.sh --keep-diffs    # Accept snapshots, keep .diff files for review (DEFAULT)
-./scripts/insta-accept.sh                  # Accept snapshots and remove .diff files
+./scripts/insta-zstd.sh --keep-diffs    # Accept snapshots, keep .diff files for review (DEFAULT)
+./scripts/insta-zstd.sh                  # Accept snapshots and remove .diff files
 ```
-- When running insta-accept.sh, use `--keep-diffs` by default to preserve diff files for review
+- When running insta-zstd.sh, use `--keep-diffs` by default to preserve diff files for review
 
 ### Grammar Template System
 The `build.rs` script generates three grammar variants from `src/star.pest_template`:

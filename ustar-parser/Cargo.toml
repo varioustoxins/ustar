@@ -52,6 +52,5 @@ thiserror = { workspace = true, optional = true }
 rstest.workspace = true
 insta.workspace = true
 indoc.workspace = true
-flate2.workspace = true
 ustar-test-utils = { path = "../ustar-test-utils", version = "0.1.4" }
 sha1 = "0.10"

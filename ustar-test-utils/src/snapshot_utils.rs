@@ -1,7 +1,4 @@
-use flate2::read::GzDecoder;
 use similar::{ChangeTag, TextDiff};
-use std::fs::File;
-use std::io::Read;
 use std::path::Path;
 
 /// Print message only in verbose mode - controlled by insta settings
@@ -14,19 +11,17 @@ macro_rules! verbose_println {
     };
 }
 
-/// Read a snapshot file, automatically decompressing if it's gzipped
+/// Read a snapshot file, automatically decompressing if it's zstd compressed
 /// Returns the FULL file content including headers
 pub fn read_snapshot<P: AsRef<Path>>(path: P) -> Result<String, Box<dyn std::error::Error>> {
     let path = path.as_ref();
-    let gz_path = path.with_extension("snap.gz");
+    let zst_path = path.with_extension("snap.zst");
 
-    // Try to read the gzipped version first
-    if gz_path.exists() {
-        let file = File::open(&gz_path)?;
-        let mut decoder = GzDecoder::new(file);
-        let mut content = String::new();
-        decoder.read_to_string(&mut content)?;
-        Ok(content)
+    // Try to read the zstd compressed version first
+    if zst_path.exists() {
+        let compressed_data = std::fs::read(&zst_path)?;
+        let decompressed = zstd::decode_all(&compressed_data[..])?;
+        Ok(String::from_utf8(decompressed)?)
     }
     // Fall back to uncompressed version
     else if path.exists() {
@@ -35,16 +30,16 @@ pub fn read_snapshot<P: AsRef<Path>>(path: P) -> Result<String, Box<dyn std::err
         Err(format!(
             "Snapshot file not found: {} or {}",
             path.display(),
-            gz_path.display()
+            zst_path.display()
         )
         .into())
     }
 }
 
-/// Ensure all .snap.gz files have corresponding .snap files with identical content
-/// This allows insta to work with uncompressed .snap files while maintaining compressed storage
+/// Ensure all .snap.zst files have corresponding .snap files with identical content
+/// This allows insta to work with uncompressed .snap files while maintaining zstd compressed storage
 fn ensure_snapshots_synchronized(snapshot_dir: &Path) -> Result<(), Box<dyn std::error::Error>> {
-    // Read the directory and find all .snap.gz files
+    // Read the directory and find all .snap.zst files
     if !snapshot_dir.exists() {
         return Ok(()); // No snapshot directory yet
     }
@@ -53,30 +48,26 @@ fn ensure_snapshots_synchronized(snapshot_dir: &Path) -> Result<(), Box<dyn std:
         let entry = entry?;
         let path = entry.path();
 
-        // Only process .snap.gz files
-        if path.extension() == Some("gz".as_ref()) && path.to_string_lossy().ends_with(".snap.gz") {
+        // Only process .snap.zst files
+        if path.extension() == Some("zst".as_ref()) && path.to_string_lossy().ends_with(".snap.zst")
+        {
             // Determine the corresponding .snap file path
-            let snap_path = path.with_extension(""); // Remove .gz extension, leaving .snap
+            let snap_path = path.with_extension(""); // Remove .zst extension, leaving .snap
 
             // Check if we need to decompress
             let should_decompress = !snap_path.exists() || {
                 // Compare content to ensure they match
                 match (read_snapshot(&snap_path), read_snapshot(&path)) {
-                    (Ok(snap_content), Ok(gz_content)) => snap_content != gz_content,
+                    (Ok(snap_content), Ok(zst_content)) => snap_content != zst_content,
                     _ => true, // If we can't read either file, decompress to be safe
                 }
             };
 
             if should_decompress {
-                // Decompress .snap.gz to .snap
-                let gz_file = File::open(&path)?;
-                let mut decoder = GzDecoder::new(gz_file);
-                let mut content = String::new();
-                decoder.read_to_string(&mut content)?;
-
-                // Write the decompressed content to .snap file
-                std::fs::write(&snap_path, &content)?;
-
+                // Decompress .snap.zst to .snap using zstd crate
+                let compressed_data = std::fs::read(&path)?;
+                let decompressed = zstd::decode_all(&compressed_data[..])?;
+                std::fs::write(&snap_path, &decompressed)?;
                 verbose_println!("Synchronized {} -> {}", path.display(), snap_path.display());
             }
         }
@@ -117,7 +108,7 @@ pub fn check_snapshot_gz(snapshot_name: &str, value: &str) -> Result<(), Snapsho
     let snapshot_dir = get_snapshot_dir();
     let snapshot_path = snapshot_dir.join(format!("{}.snap", snapshot_name));
 
-    // Ensure all .snap.gz files are decompressed to .snap files for insta to use
+    // Ensure all .snap.zst files are decompressed to .snap files for insta to use
     if let Err(e) = ensure_snapshots_synchronized(&snapshot_dir) {
         eprintln!("Warning: Failed to synchronize snapshots: {}", e);
     }
@@ -190,17 +181,17 @@ fn create_review_files(snapshot_path: &std::path::Path, snapshot_name: &str) {
     }
 }
 
-/// Custom assertion that works with gzipped snapshots.
-/// Works like `insta::assert_snapshot!` but reads from `.snap.gz` files.
+/// Custom assertion that works with zstd compressed snapshots.
+/// Works like `insta::assert_snapshot!` but reads from `.snap.zst` files.
 /// Panics on mismatch - use `check_snapshot_gz` if you need to collect multiple failures.
 ///
 /// The `snapshot_name` should be the full name as it appears in the snapshot file
 /// (e.g., "sas_walker_tests__loop_walker_output" for file
-/// "sas_walker_tests__loop_walker_output.snap.gz")
+/// "sas_walker_tests__loop_walker_output.snap.zst")
 pub fn assert_snapshot_gz(snapshot_name: &str, value: &str) {
     if let Err(mismatch) = check_snapshot_gz(snapshot_name, value) {
         panic!(
-            "Snapshot mismatch for '{}':\n\nDiff available at: {}\nNew snapshot at: {}\n\nRun ./scripts/insta-accept.sh to accept the new snapshot.\n",
+            "Snapshot mismatch for '{}':\n\nDiff available at: {}\nNew snapshot at: {}\n\nRun ./scripts/insta-zstd.sh to accept the new snapshot.\n",
             mismatch.snapshot_name,
             mismatch.diff_path.display(),
             mismatch.new_path.display(),
