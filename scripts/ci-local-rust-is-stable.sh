@@ -10,20 +10,51 @@ YELLOW='\033[1;33m'
 GREEN='\033[0;32m'
 NC='\033[0m'
 
-# Get local Rust version
-LOCAL_VERSION=$(rustc --version | grep -oE '[0-9]+\.[0-9]+\.[0-9]+')
+# Extract version number from a string like "rustc 1.92.0 (hash date)"
+extract_version() {
+    local version_string="$1"
+    # Remove everything before the first space
+    version_string="${version_string#* }"
+    # Remove everything after the first space (hash and date)
+    version_string="${version_string%% *}"
+    echo "$version_string"
+}
 
-# Get stable version from rustup (fallback to forge API if needed)
+# Get local Rust version
+LOCAL_VERSION=$(extract_version "$(rustc --version)")
+
+# Get stable version from rustup
+STABLE_VERSION="unknown"
 if command -v rustup &> /dev/null; then
-    STABLE_VERSION=$(rustup check 2>/dev/null | grep -oE 'stable-[^ ]+ - [0-9]+\.[0-9]+\.[0-9]+' | grep -oE '[0-9]+\.[0-9]+\.[0-9]+' || echo "unknown")
-else
-    STABLE_VERSION="unknown"
+    # Parse rustup check output like "stable-x86_64-apple-darwin - Up to date : 1.92.0"
+    rustup_output=$(rustup check 2>/dev/null | grep "stable-" | head -1)
+    if [ -n "$rustup_output" ]; then
+        # Extract everything after the colon and space
+        after_colon="${rustup_output##*: }"
+        # Remove any parentheses and what follows
+        STABLE_VERSION="${after_colon%% (*}"
+        # Remove any trailing whitespace
+        STABLE_VERSION="${STABLE_VERSION%% }"
+    fi
 fi
 
-# If rustup didn't work, try forge API
-if [ "$STABLE_VERSION" = "unknown" ]; then
-    if command -v curl &> /dev/null; then
-        STABLE_VERSION=$(curl -s https://forge.rust-lang.org/infra/channel-releases.html | grep -oE 'Rust [0-9]+\.[0-9]+\.[0-9]+' | head -1 | grep -oE '[0-9]+\.[0-9]+\.[0-9]+' || echo "unknown")
+# Fallback: try to get stable version from release info
+if [ "$STABLE_VERSION" = "unknown" ] && command -v curl &> /dev/null; then
+    # Get current stable from GitHub API (simpler than parsing HTML)
+    api_response=$(curl -s "https://api.github.com/repos/rust-lang/rust/releases" 2>/dev/null || echo "")
+    if [ -n "$api_response" ]; then
+        # Look for first tag that looks like a version number (starts with number)
+        for tag in $(echo "$api_response" | grep '"tag_name"' | head -5); do
+            # Extract tag value between quotes
+            tag="${tag#*\"}"
+            tag="${tag%%\"*}"
+            # If it starts with a digit, it's probably a version
+            first_char="${tag:0:1}"
+            if [[ "$first_char" == [0-9] ]]; then
+                STABLE_VERSION="$tag"
+                break
+            fi
+        done
     fi
 fi
 
