@@ -60,18 +60,22 @@ fi
 # Packages in dependency order
 PACKAGES=("ustar-test-utils" "ustar-parser" "ustar-tools")
 
-# Dry-run all packages first
-echo -e "${YELLOW}🔍 Verifying packages with dry-run...${NC}"
+# Verify all packages build in release mode
+# Note: We skip `cargo package` or `cargo publish --dry-run` because they
+# both validate against the crates.io registry, which fails for workspace crates
+# that depend on each other but aren't published yet. The CI checks above have
+# already verified tests pass; this just confirms release builds work.
+echo -e "${YELLOW}🔨 Building all packages in release mode...${NC}"
 for package in "${PACKAGES[@]}"; do
-    echo "  Checking $package..."
-    if ! cargo publish -p "$package" --dry-run --allow-dirty; then
-        echo -e "${RED}❌ Dry-run failed for $package${NC}"
+    echo "  Building $package..."
+    if ! cargo build -p "$package" --release; then
+        echo -e "${RED}❌ Failed to build $package${NC}"
         exit 1
     fi
 done
 
 if [[ "$DRY_RUN" == true ]]; then
-    echo -e "${GREEN}✅ Dry-run completed successfully!${NC}"
+    echo -e "${GREEN}✅ All pre-publish checks passed!${NC}"
     echo -e "${YELLOW}💡 To actually publish, run: $0${NC}"
     exit 0
 fi
