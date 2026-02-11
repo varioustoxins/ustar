@@ -13,7 +13,11 @@ license.workspace = true
 repository.workspace = true
 homepage.workspace = true
 
-exclude = ["**/.DS_Store"]
+exclude = [
+    "tests/snapshots/*.snap",
+    "tests/snapshots/*.snap.gz",
+    "**/.DS_Store"
+]
 
 [lints]
 workspace = true

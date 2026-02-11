@@ -14,6 +14,8 @@ exclude = [
     "tests/test_data/nef_examples/*.nef",
     "tests/test_data/nef_spec/*.nef",
     "tests/test_data/pdb_mmcifs/*.cif",
+    "tests/snapshots/*.snap",
+    "tests/snapshots/*.snap.zst",
     "**/.DS_Store"
 ]
 
