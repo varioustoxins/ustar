@@ -93,6 +93,7 @@ Extensive test suite includes:
 ./scripts/insta-zstd.sh                  # Accept snapshots and remove .diff files
 ```
 - When running insta-zstd.sh, use `--keep-diffs` by default to preserve diff files for review
+- See [SNAPSHOT_STRATEGY.md](SNAPSHOT_STRATEGY.md) for complete details on snapshot compression and management
 
 ### Grammar Template System
 The `build.rs` script generates three grammar variants from `src/star.pest_template`:
