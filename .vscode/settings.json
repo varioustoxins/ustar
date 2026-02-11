@@ -4,24 +4,38 @@
     "editor.formatOnSave": true,
     "editor.defaultFormatter": "rust-lang.rust-analyzer"
   },
-  
+
   // Run cargo fmt when saving Rust files
   "rust-analyzer.rustfmt.overrideCommand": ["cargo", "fmt", "--"],
-  
+
   // Auto-fix imports and run clippy on save (uses Cargo.toml lints config)
   "rust-analyzer.check.command": "clippy",
   "rust-analyzer.check.allTargets": true,
   "rust-analyzer.check.extraArgs": ["--all-features", "--", "-D", "warnings"],
-  
+
   // Git integration settings
   "git.enableCommitSigning": false,
   "git.alwaysSignOff": false,
-  
+
   // Show problems in the problems panel
   "problems.showCurrentInStatus": true,
-  
+
   // Run pre-commit hooks via tasks
   "git.postCommitCommand": "none",
   "git.enableSmartCommit": true,
-  "git.confirmSync": false
+  "git.confirmSync": false,
+
+  // Preserve trailing whitespace in test data files
+  "files.trimTrailingWhitespace": true,
+  "[plaintext]": {
+    "files.trimTrailingWhitespace": false
+  },
+  "files.associations": {
+    "*.nef": "plaintext",
+    "*.star": "plaintext",
+    "*.cif": "plaintext",
+    "*.str": "plaintext",
+    "*.dic": "plaintext",
+    "*.expected": "plaintext"
+  }
 }

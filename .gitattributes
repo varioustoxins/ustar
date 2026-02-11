@@ -14,3 +14,11 @@
 
 # Preserve line endings for grammar template files
 src/*.pest_template text eol=lf
+
+# Preserve exact whitespace in test data files (no auto-formatting)
+*.nef -text
+*.star -text
+*.cif -text
+*.str -text
+*.dic -text
+*.expected -text
