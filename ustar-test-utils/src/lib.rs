@@ -5,9 +5,11 @@
 //! and mock HTTP clients for testing download functionality.
 
 mod mock_http_client;
+mod pest_format;
 mod snapshot_utils;
 mod test_data_download_utils;
 
 pub use mock_http_client::MockHttpClient;
+pub use pest_format::format_pest_pair;
 pub use snapshot_utils::{assert_snapshot_gz, check_snapshot_gz, read_snapshot, SnapshotMismatch};
 pub use test_data_download_utils::{ensure_test_data_available, verify_test_data_checksums};

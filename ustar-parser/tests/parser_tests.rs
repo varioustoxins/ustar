@@ -1395,7 +1395,7 @@ fn comprehensive_example() {
     let star_file_pair = pairs.into_iter().next().unwrap();
     snapshot_utils::assert_snapshot_gz(
         "parser_tests__comprehensive_example",
-        &format!("{:#?}", star_file_pair),
+        &ustar_test_utils::format_pest_pair(&star_file_pair),
     );
 }
 
@@ -1414,7 +1414,7 @@ fn comprehensive_example_crlf() {
     let star_file_pair = pairs.into_iter().next().unwrap();
     snapshot_utils::assert_snapshot_gz(
         "parser_tests__comprehensive_example_crlf",
-        &format!("{:#?}", star_file_pair),
+        &ustar_test_utils::format_pest_pair(&star_file_pair),
     );
 }
 

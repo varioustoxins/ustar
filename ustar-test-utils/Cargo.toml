@@ -15,6 +15,7 @@ exclude = ["**/.DS_Store"]
 no-large-tests = []
 
 [dependencies]
+pest.workspace = true
 zstd.workspace = true
 insta.workspace = true
 similar = "2.6"
