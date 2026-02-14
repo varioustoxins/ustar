@@ -80,7 +80,7 @@ Extensive test suite includes:
 - Unit tests in `tests/parser_tests.rs` and `tests/encoding_tests.rs`
 - Integration tests with real-world data:
   - BMRB NMR-STAR files (`tests/parse_bmrb_stars.rs`)
-  - Crystallography Open Database CIF files (`tests/parse_cod_cifs.rs`)  
+  - Crystallography Open Database CIF files (`tests/parse_cod_cifs.rs`)
   - Protein Data Bank mmCIF files (`tests/parse_pdb_mmcifs.rs`)
 - Test data stored in `tests/test_data/` with samples from real databases
 - When running tests this should be done in release mode, as it is _much_ faster
@@ -89,10 +89,16 @@ Extensive test suite includes:
 
 ### Snapshot Testing
 ```bash
-./scripts/insta-zstd.sh --keep-diffs    # Accept snapshots, keep .diff files for review (DEFAULT)
-./scripts/insta-zstd.sh                  # Accept snapshots and remove .diff files
+./scripts/insta-zstd.sh test --verbose   # Run tests and generate new snapshots
+./scripts/insta-zstd.sh accept --verbose # Accept pending snapshots and compress to .snap.zst
+./scripts/insta-zstd.sh --keep-diffs     # Accept snapshots, keep .diff files for review
+./scripts/insta-zstd.sh clean            # Remove all .snap.old, .snap.new, .snap.diff files
 ```
+- **REQUIRED: Always use `scripts/insta-zstd.sh` to manage snapshots** - never use `cargo insta` directly or `INSTA_UPDATE=always`
+- The script handles decompression of `.snap.zst` files, runs insta, then recompresses updated snapshots
+- Requires `cargo-insta` to be installed (`cargo install cargo-insta`)
 - When running insta-zstd.sh, use `--keep-diffs` by default to preserve diff files for review
+- **Snapshot tests must NOT depend on pest's Debug format** - use `ustar_test_utils::format_pest_pair()` instead of `{:#?}` on pest `Pair` types to avoid breakage from semver-compatible pest updates
 - See [SNAPSHOT_STRATEGY.md](SNAPSHOT_STRATEGY.md) for complete details on snapshot compression and management
 
 ### Grammar Template System
